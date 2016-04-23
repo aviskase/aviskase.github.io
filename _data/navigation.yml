@@ -1,0 +1,20 @@
+en:
+  logo:
+    title: "aviskase"
+    url:   "/blog/"
+  journal:
+    title: "blog"
+    url:   "/blog/"
+  about:
+    title: "about"
+    url:   "/about/"
+ru:
+  logo:
+    title: "aviskase"
+    url:   "/"
+  journal:
+    title: "блог"
+    url:   "/"
+  about:
+    title: "кто я"
+    url:   "/whois/"
