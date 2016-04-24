@@ -17,6 +17,8 @@
                 {% capture sup %}<sup>th</sup>{% endcapture %}
         {% endcase %}
 
+        {% capture month_case %}{{ include.date | date: "%B" }}{% endcapture %}
+
     {% else %}
 
         {% capture sup %}<sup></sup>{% endcapture %}
@@ -58,7 +60,7 @@
 
     {% capture month %}{{ include.date | date: "%B" }}{% endcapture %}
 
-    {% else %}
+{% else %}
 
     {% assign m = include.date | date: "%-m" %}
     {% case m %}
