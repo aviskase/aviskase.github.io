@@ -1,4 +1,4 @@
-permalink: /:title/
+permalink: /:year/:month/:title
 base: https://aviskase.github.io/
 
 kramdown:
