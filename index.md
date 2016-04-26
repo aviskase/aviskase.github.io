@@ -1,7 +1,8 @@
 ---
 title: Блог
-permalink: /
-type: pages
+down_title: блог
+layout: page
+ref: index
 lang: ru
 ---
 
