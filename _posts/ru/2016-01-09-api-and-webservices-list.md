@@ -8,7 +8,7 @@ lang: ru
 
 ## Отличия между API и веб-сервисами
 
-~
+~*~
 
 * [API vs Web Service](http://stackoverflow.com/questions/808421/api-vs-webservice), [Difference between web API and web service](http://programmers.stackexchange.com/questions/38691/difference-between-web-api-and-web-service), [Difference between API and web service](http://www.differencebetween.net/technology/internet/difference-between-api-and-web-service/#ixzz3l5QC4tYj)
 * [What APIs Are And Why They’re Important](http://readwrite.com/2013/09/19/api-defined) --- Brian Proffitt
@@ -17,7 +17,7 @@ lang: ru
 
 ## Понятие SOAP и REST
 
-~
+~*~
 
 * [Understanding SOAP](http://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html#N10278) (section) --- Nicholas Chase
 * [What is REST?](http://www.restapitutorial.com/lessons/whatisrest.html) (video) --- Todd Fredrich
@@ -26,7 +26,7 @@ lang: ru
 
 ## Тестирование API и веб-сервисов
 
-~
+~*~
 
 * [API Testing: Why it matters and how to do it](https://blog.udemy.com/api-testing/) --- Michael Churchman
 * [Johnny mnemonic --- ICEOVERMAD](http://testingisbelieving.blogspot.co.uk/2013/11/johnny-mnemonic-iceovermad.html) --- Ash Winter
@@ -38,7 +38,7 @@ lang: ru
 
 ## Глубокое понимание REST API
 
-~
+~*~
 
 * [How to design a REST API](http://blog.octo.com/en/design-a-rest-api/) --- Antoine Chantalou, Jérémy Buisson, Mohamed Kissa, Florent Jaby, Nicolas Laurent, Augustin Grimprel, Benoit Lafontaine
 * [The commoditization of the user interface](http://toddfredrich.com/commoditization-of-the-user-interface.html) --- Todd Friedrich
@@ -48,7 +48,7 @@ lang: ru
 
 ## Тестирование защищенности API
 
-~
+~*~
 
 * [How to Hack an API and Get Away with It (Part 1 of 3)](http://blog.smartbear.com/readyapi/api-security-testing-how-to-hack-an-api-and-get-away-with-it-part-1-of-3/) --- Ole Lensmar
 * [How to Hack an API and Get Away with It (Part 2 of 3)](http://blog.smartbear.com/readyapi/api-security-testing-how-to-hack-an-api-and-get-away-with-it-part-2-of-3/) --- Ole Lensmar
@@ -57,7 +57,7 @@ lang: ru
 
 ## Виртуализация сервисов
 
-~
+~*~
 
 * [What is service virtualization](http://smartbear.com/all-resources/articles/what-is-service-virtualization) --- John Mueller
 * [Hardening Your Application Against API Failures with API Virtualization](http://blog.smartbear.com/readyapi/hardening-your-application-against-api-failures-with-api-virtualization/) --- Lorinda Brandon
@@ -65,7 +65,7 @@ lang: ru
 
 ## Основы работы с микросервисами
 
-~
+~*~
 
 * [Microservices](http://martinfowler.com/articles/microservices.html) --- Martin Fowler
 * [Introduction to microservices](https://www.nginx.com/blog/introduction-to-microservices/) --- Chris Richardson
@@ -75,7 +75,7 @@ lang: ru
 
 ## Тестирование микросервисов
 
-~
+~*~
 
 * [Testing Strategies in a Microservice Architecture](http://martinfowler.com/articles/microservice-testing/) --- Toby Clemson et al.
 * [Performance Issue Considerations for Microservices APIs](http://blog.smartbear.com/apm/performance-issue-considerations-for-microservices-apis/) --- John Mueller
@@ -85,7 +85,7 @@ lang: ru
 
 ## Дополнительно. Погружение в API
 
-~
+~*~
 
 * [What is API management --- A Brief Primer](http://www.softwareag.com/blog/reality_check/index.php/soa-what/what-is-api-management/) --- Navdeep Sidhu
 * [API management platform capabilities](http://www.infoq.com/research/api-management) --- Jeevak Kasarkod
