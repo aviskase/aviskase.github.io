@@ -16,8 +16,8 @@ index:
   en: blog.html
   ru:
 feed:
-  en: /en-feed.xml
-  fr: /ru-feed.xml
+  en: /feed-en.xml
+  fr: /feed-ru.xml
 
 email: aviskase@gmail.com
 github_username:  aviskase
