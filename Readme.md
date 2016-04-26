@@ -1,4 +1,4 @@
-This repository is the source code of the personnal website [aviskase.github.io](aviskase.github.io), built with *Jekyll*.
+This repository is the source code of the personnal website [aviskase.github.io](http://aviskase.github.io/), built with *Jekyll*.
 
 In its current stage it is mostly based on [sylvaindurand.org](https://sylvaindurand.org) blog (check it, it's awesome!).
 
