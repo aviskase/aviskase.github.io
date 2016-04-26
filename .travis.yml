@@ -7,4 +7,4 @@ install:
 
 script:
   - jekyll build
-  - htmlproofer --check-html --empty-alt-ignore --assume-extension ./_site
+  - htmlproofer --check-html --empty-alt-ignore --assume-extension --check-favicon ./_site
