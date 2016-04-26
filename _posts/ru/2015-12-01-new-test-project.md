@@ -1,6 +1,7 @@
 ---
 title: Перевод карты по началу работы с новым проектом (checkvist)
 lang: ru
+ref: 151201
 ---
 
 Сделала перевод майндмапа [First day in a new testing project](http://apps.testinsane.com/mindmaps/first-day-in-a-new-testing-project). Оформила в виде [списка на checkvist](https://checkvist.com/checklists/531307).

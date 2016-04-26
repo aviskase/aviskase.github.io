@@ -1,12 +1,30 @@
-permalink: /:title/
+permalink: /:year/:month/:title
+baseurl: ""
 base: https://aviskase.github.io/
 
 kramdown:
   input: GFM
 
+# Site settings
+title:
+  en: aviskase
+  ru: aviskase
+description:
+  en: Simple blog on testing.
+  ru: Простенький бложик о тестировании.
+index:
+  en: blog.html
+  ru:
+feed:
+  en: /feed-en.xml
+  fr: /feed-ru.xml
+
+email: aviskase@gmail.com
+github_username:  aviskase
+
 defaults:
   -
     scope:
-      path: ""
+      path: "" # an empty string here means all files in the project
     values:
-      layout: default
+      layout: "post"

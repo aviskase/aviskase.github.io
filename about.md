@@ -1,6 +1,7 @@
 ---
 title: About
-type: pages
+layout: page
+ref: about
 lang: en
 ---
 
