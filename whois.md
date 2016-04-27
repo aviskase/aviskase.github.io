@@ -1,8 +1,6 @@
 ---
 layout: page
 title: Кто я
-down_title: кто я
-permalink: /whois/
 ref: about
 lang: ru
 ---
