@@ -1,9 +1,9 @@
 <div class="nav">
   <ul>
-    <li><a class="site-title" href="{{ site.baseurl }}/{{ site.index[page.lang] }}">{{ site.title[page.lang] }}</a></li>
+    <li><a class="site-title" href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].title }}</a></li>
 
-    {% assign my_page=site.pages | where:"lang", page.lang | where:"ref", "about" | first%}
-    <li><a href="{{ my_page.url | prepend: site.baseurl }}">{% if my_page.down_title %}{{ my_page.down_title }}{% else %}{{ my_page.title | downcase }}{% endif %}</a></li>
+    <li><a href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].index.title }}</a></li>
+    <li><a href="{{ site.baseurl }}/{{ site[page.lang].about.url }}">{{ site[page.lang].about.title }}</a></li>
 
     <li class="lang">
       {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}

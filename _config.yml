@@ -6,25 +6,34 @@ kramdown:
   input: GFM
 
 # Site settings
-title:
-  en: aviskase
-  ru: aviskase
-description:
-  en: Simple blog on testing.
-  ru: Простенький бложик о тестировании.
-index:
-  en: blog.html
-  ru:
-feed:
-  en: /feed-en.xml
-  ru: /feed-ru.xml
+en:
+  title: aviskase
+  description: "Simple blog on testing."
+  index:
+    url: blog.html
+    title: blog
+  about:
+    url: about.html
+    title: about
+  feed: /feed-en.xml
+ru:
+  title: aviskase
+  description: "Простенький бложик о тестировании."
+  index:
+    url: index.html
+    title: блог
+  about:
+    url: whois.html
+    title: "кто я"
+  feed: /feed-ru.xml
 
 email: aviskase@gmail.com
-github_username:  aviskase
+github_username: aviskase
 
 defaults:
   -
     scope:
       path: "" # an empty string here means all files in the project
+      type: "posts"
     values:
       layout: "post"
