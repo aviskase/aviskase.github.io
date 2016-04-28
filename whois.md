@@ -13,4 +13,4 @@ lang: ru
 
 
 ## P.S.
-Если есть опечатки, тыкайте <a href="mailto:aviskase@gmail.com">в почту</a>.
+Если есть опечатки, тыкайте <a href="mailto:{{ site.email }}">в почту</a> или открывайте ишшу <a href="{{ site.github_repo }}/issues">на гитхабе бложика</a>.
