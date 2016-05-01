@@ -32,6 +32,11 @@ img {
   width: 100%;
 }
 
+img.emoji {
+  width: auto;
+  vertical-align:middle;
+}
+
 .article, .nav ul {
   max-width: 31em;
   @include padding($main, 0, 0, 1);

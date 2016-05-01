@@ -5,6 +5,9 @@ base: https://aviskase.github.io/
 kramdown:
   input: GFM
 
+gems:
+  - jemoji
+
 # Site settings
 en:
   title: aviskase
