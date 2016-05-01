@@ -1,0 +1,146 @@
+// Articles list
+
+.list {
+  @include padding(18, 1);
+  h2 {
+    color: #cccccc;
+    @include font(19);
+    padding: 0;
+    margin: $line / 19 + em 0;
+  }
+  a {
+    @include font(20);
+    display: block;
+    max-width: 19em;
+    div {
+      @include font(13);
+      margin-left: -3em;
+      text-align: right;
+      width: 2em;
+      position: absolute;
+      color: #dddddd;
+    }
+  }
+}
+
+// Other pages
+sup {
+  padding: 0.07em;
+  font-size: 0.8em;
+  line-height: 0;
+}
+
+.date {
+  @include padding(19, 2, 1);
+  @include font(19);
+  font-style: italic;
+  color: #aaaaaa;
+}
+
+.original {
+  @include padding(13, 0, 1);
+  @include font(13, 2);
+  margin-top: -$line / 13 + em;
+  font-style: italic;
+  color: #d4d4d4;
+}
+
+.article li {
+  padding-left: 2em;
+  &:before {
+    content: "– ";
+  }
+}
+
+.article > p:first-child {
+  padding-top: 4em;
+}
+
+.list li {
+  padding-left: 0;
+  &:before {
+    content: "";
+  }
+}
+
+// Head and foot
+
+h1 {
+  @include font(26);
+  background-color: #2f1e2e;
+  /* Background pattern from subtlepatterns.com */
+  background-image: url("/css/bright-squares.png");
+  color: white;
+  top: 0;
+  text-shadow: 0 0 0 black, 0 0 0.3em black;
+  border-top: 2 * $line / 26 + em #191919 solid;
+  @include padding(26, 2, 2);
+}
+
+.page h1 {
+  @include padding(26, 2.5, 2.5);
+}
+
+.nav, .foot {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.nav, .foot {
+  z-index: 1;
+}
+
+.nav {
+  position: fixed;
+  background-color: #100a10;
+  li {
+    float: left;
+    padding: 0;
+    &:first-child a {
+      color: #dddddd;
+    }
+  }
+  a {
+    @include padding($main, 0.5, 0.5, 0.5);
+    display: block;
+    float: left;
+    color: #777777;
+  }
+  a:hover, .en .en, .fr .fr {
+    color: white;
+  }
+  .lang {
+    float: right;
+  }
+}
+
+.en .en, .ru .ru {
+  color: white;
+}
+
+.foot {
+  @include font(16);
+  @include padding(16, 1, 1);
+  position: absolute;
+  color: #dddddd;
+  background: #fcfcfc;
+  span, a {
+    color: #d0d0d0;
+  }
+  a:hover {
+    color: #999999;
+    text-decoration: none;
+  }
+}
+
+hr {
+  @include font(24);
+  @include padding(24, 2, 3);
+  border: 0;
+  color: #cccccc;
+  &:before {
+    content: "*\00a0*\00a0*";
+    white-space: pre;
+  }
+}

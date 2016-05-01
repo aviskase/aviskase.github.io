@@ -1,0 +1,23 @@
+---
+---
+
+// Variables
+$main: 18;
+$line: 30;
+
+// Vertical rhythm
+
+@mixin font($size, $height: 1) {
+  font-size: #{$size / $main}em;
+  line-height: #{$line / $size / $height};
+}
+
+@mixin padding($size, $top: 0, $bottom: 0, $lateral: 0) {
+  padding: $top * $line / $size + em $lateral + em $bottom * $line / $size + em;
+}
+
+@import
+  "base",
+  "layout",
+  "highlight"
+;

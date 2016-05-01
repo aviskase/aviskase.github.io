@@ -22,26 +22,26 @@ ref: 151104
 ### Vncserver
 Ставим, настраиваем. В процессе попросит поставить пароль для vnc сервера --- пишем что угодно, он нам не понадобится.
 
-```sh
+{% highlight console %}
 $ sudo apt-get install -y vnc4server
 $ sudo su jenkins
 $ vncserver
 $ exit
-```
+{% endhighlight %}
 
 ### Xvfb
 Все просто, ставим и радуемся. Поговаривают, что там еще какие-то шрифты нужно установить. Я не ставила, но тебя, заблудший сюда, если что предупредили =)
 
-```sh
+{% highlight console %}
 $ sudo apt-get install xvfb
-```
+{% endhighlight %}
 
 ## Как запускать
 
 ### Python
 Существует библиотека [PyVirtualDisplay](https://pypi.python.org/pypi/PyVirtualDisplay). Это обертка вокруг этих наших виртуальных дисплеев. Нет смысла сособо ее описывать, доки очень понятные. Приведу лишь пример кода в тесте:
 
-```python
+{% highlight python %}
 from selenium import webdriver
 from pyvirtualdisplay import Display
 display = Display(visible=0, size=(800, 600))
@@ -50,7 +50,7 @@ driver = webdriver.Firefox()
 # tests
 driver.quit()
 display.stop()
-```
+{% endhighlight %}
 
 Этот способ хорош тем, что не зависит от того, где будут запускаться тесты. Есть Jenkins, нет его, какой конкретно X установлен --- не нужно заморачиваться.
 
