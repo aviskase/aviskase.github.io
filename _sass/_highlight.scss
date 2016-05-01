@@ -1,0 +1,56 @@
+// Code
+
+code {
+  font-family: PT Sans, Calibri, Arial, sans;
+  color: #4d4e53;
+  line-height: 1.5;
+  background: whitesmoke;
+  border: 3px solid whitesmoke;
+}
+
+pre {
+  @include padding($main, 0.5, 0.5, 0.75);
+  font-family: monospace, monospace;
+  overflow-x: auto;
+  background: whitesmoke;
+  border-left: 6px solid #eeeeee;
+  code {
+    border: none;
+  }
+}
+
+.ge,.gs {
+  color: #93a1a1;
+}
+
+.nb {
+  color: #b58900;
+}
+
+.c,.cm,.c1,.sb {
+  color: #586e75;
+}
+
+.err,.g,.l,.n,.p,.go,.gp,.gt,.ld,.na,.nl,.nn,.nx,.py,.w,.sd,.sh {
+  color: #93a1a1;
+}
+
+.k,.o,.cp,.cs,.gi,.kn,.kp,.ow {
+  color: #859900;
+}
+
+.x,.gh,.gu,.kc,.no,.ni,.ne,.se {
+  color: #cb4b16;
+}
+
+.gd,.m,.s,.mf,.mh,code .mi,code .mo,.sc,.s2,.si,.sx,.s1,.ss,.il {
+  color: #2aa198;
+}
+
+.gr,.kt,.sr {
+  color: #dc322f;
+}
+
+.kd,.kr,.nc,.nd,.nf,.nt,.nv,.bp,.vc,.vg,.vi {
+  color: #268bd2;
+}
