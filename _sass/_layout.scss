@@ -67,7 +67,7 @@ sup {
 
 h1 {
   @include font(26);
-  background-color: #252525;
+  background-color: #2f1e2e;
   /* Background pattern from subtlepatterns.com */
   background-image: url("/css/bright-squares.png");
   color: white;
@@ -93,7 +93,7 @@ h1 {
 
 .nav {
   position: fixed;
-  background-color: #191919;
+  background-color: #100a10;
   li {
     float: left;
     padding: 0;
