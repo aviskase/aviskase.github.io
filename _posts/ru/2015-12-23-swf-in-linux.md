@@ -18,7 +18,7 @@ application/x-shockwave-flash  swf swfl
 
 Если хочется заморочиться, то можно сделать сию настройку глобальной, но будь осторожен, друг, при апгрейде это изменение затрётся. Нужно открыть на редактирование файл
 
-{% highlight bash %}
+{% highlight console %}
 sudo nano /usr/share/mime/packages/freedesktop.org.xml
 {% endhighlight %}
 
@@ -36,6 +36,6 @@ sudo nano /usr/share/mime/packages/freedesktop.org.xml
 
 И потом выполнить:
 
-{% highlight bash %}
+{% highlight console %}
 sudo update-mime-database /usr/share/mime
 {% endhighlight %}
