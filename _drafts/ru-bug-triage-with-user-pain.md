@@ -118,9 +118,7 @@ Once a bug is ranked on all three factors, you multiply the numbers together to 
 
 The basic equation for calculating User Pain is as follows:
 
-```text
-User Pain = Type * Likelihood * Priority / Max Possible Score
-```
+$$UserPain = \frac{Type \cdot Likelihood \cdot Priority}{MaxPossibleScore}$$
 
 User pain is auto calculated when the bug is entered and whenever the bug changes. After you calculate user pain for a set of bugs, you’ll find that you have a smooth spectrum of bugs ranked from 1 to 100% Pain.
 
@@ -201,26 +199,28 @@ Teams thrive under this bug process. There is less thrashing and ambiguity. Ther
 
 User Pain doesn’t work for every team. Nor does it completely eliminate triaging. Anyone who thinks process is a panacea hasn’t worked in this industry very long. However, with your heart in the right place, User Pain is a substantial improvement over sitting in a room and manually reviewing hundreds of bugs. It makes the team more efficient, helps people make better decisions and focuses the team on building quality into the product.
 
-## Appendixes
+## Дополнения
 
-### Bug Maturity
-Setting quality bar is great for fixing high pain bugs. However, over time you will build up hundreds of older low pain bugs. Since you are triaging less often, the quality of such bugs can be quite low.
+### Зрелость бага
+Фиксирование планки качества помогает быстрому фиксу "очень болевых" багов. Однако с течением времени скопятся сотни старых багов с малой болью. А так как процесс "насильственной" приоритезации происходит гораздо реже, само качество заведения этих дефектов может быть достаточно низким.
 
-You can alleviate this issue is to add a Bug Maturity factor to the pain score. For every day that passes once a bug is entered, you increment its user pain by .2 points. Over time, old bugs slowly rise to the top of the pain list. You can adjust the rate of bug maturation to match the needs of your particular project.
+Что бы решить эту проблему достаточно добавить фактор зрелости бага к оценке боли. За каждый день с момента заведения бага надо прибавлять к оценке 0,2 очка. Со временем старые баги медленно подымятся к самому верху болелиста. Конечно же стоит адаптировать скорость с какой баг будет зреть к тому, что требуется на конкретном проекте.
 
-This has two effects
+В результате получается что:
 
-* *Old bugs are slowly removed from the system:* Either you decide to never fix them or you fix them.
-* *Small bugs are fixed slowly:* Instead of indefinitely leaving small bugs in your product, you end up fixing them in order to meet your quality bars. This helps prevent the accumulation of code cruft.
+* *Старые баги медленно уходят из системы:* вы либо решите их не фиксить вообще или фиксите.
+* *Небольшие баги медленно фиксятся:* вместо того, что бы постоянно оставлять небольшие баги в продукте, в конечном итоге вы пофиксите их, что бы достичь планки качества. Тем самым предотвращается накопление технического долга. 
 
-### Tracking Charts
+### График появления дефектов
 
-A basic line chart that tracks the number of bugs above your various quality bars works well for tracking bugs. You can compare this to your total bug count as a reference. The ideal trend is that your high priority bugs drop quickly. Warning signs include the following:
+![График появления дефектов]({{ site.url }}/assets/images/tracking_chart.png)
 
-* *Focusing too much on feature work:* The bug count across the board keeps rising.
-* *Poorly directed bug fixing:* The overall bug count is dropping, but the high pain bugs stays relatively constant.
+Обычный линейный график, на котором изображено количество багов выше различных планк качества, очень подходит для отслеживания ситуации. Можно сравнивать его с графиком всех заведённых багов. Идеальный тренд --- когда количество багов высокого приоритета быстро уменьшается. Тревожными знаками будет:
 
-Other metrics of interest include:
+* *Слишком много внимания разработке новых фич:* количество багов продолжает увеличиваться.
+* *Неправильный приоритет в выборе что фиксить:* общее число уменьшается, но количество багов с высокой болью почти неизменно.
 
-* *Total Pain:* This represents the accumulated impact on the user of all the bugs in the system. Some teams use this as an additional gate to determine if the product should be released or not. It is another way of ensuring that the team doesn't ship with hundreds of small issues that end up causing the user substantial grief. This value is far more meaningful than bug count, but serves a similar purpose.
-* *Average Pain:* You can get a sense of the general instability of your product simply by looking at the Average Pain across all bugs. A high average pain, especially one near your quality bar, means that you have a lot of work left to do.
+Другие интересные метрики:
+
+* *Общая боль:* суммарный эффект всех багов в системе на пользователя. Некоторые команды используют это как дополнительную оценку могут ли они выпускать релиз или нет. Это еще один из способов удостовериться, что релиз не будет содержать сотню мелких дефектов, которые вызовут у пользователя значительное раздражение. Данная оценка гораздо показательнее чем просто число дефектов, но имеет схожее назначение.
+* *Средняя боль:* позволяет на глаз определить общую нестабильность продукта. Высокая средняя боль, особенно вблизи планки качества, означает что осталось еще очень много работы. 
