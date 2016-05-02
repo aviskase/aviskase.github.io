@@ -45,11 +45,23 @@ sup {
   color: #d4d4d4;
 }
 
-.article li {
+.article ul li {
   padding-left: 2em;
   &:before {
     content: "– ";
   }
+}
+
+.article ol {
+  padding-left: 3em;
+  li {
+    list-style-type: decimal;
+  }
+}
+
+.article h2 + ul, .article h2 + ol,
+.article h3 + ul, .article h3 + ol {
+  @include padding($main, 0.5, 0);
 }
 
 .article > p:first-child {
