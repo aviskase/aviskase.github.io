@@ -134,7 +134,10 @@ h1 {
   }
 }
 
-hr {
+hr.hr-end {
+  background-image: none;
+  height: 0;
+  margin: 0;
   @include font(24);
   @include padding(24, 2, 3);
   border: 0;
@@ -143,4 +146,15 @@ hr {
     content: "*\00a0*\00a0*";
     white-space: pre;
   }
+}
+
+hr {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #ffffff, #cccccc, #ffffff);
+  background-image: -moz-linear-gradient(left, #ffffff, #cccccc, #ffffff);
+  background-image: -ms-linear-gradient(left, #ffffff, #cccccc, #ffffff);
+  background-image: -o-linear-gradient(left, #ffffff, #cccccc, #ffffff);
 }
