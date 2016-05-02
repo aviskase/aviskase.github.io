@@ -64,7 +64,7 @@ sup {
   @include padding($main, 0.5, 0);
 }
 
-.article > p:first-child {
+.not-article > p:first-child {
   padding-top: 4em;
 }
 
