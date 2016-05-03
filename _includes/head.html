@@ -14,5 +14,6 @@
     <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url }}" />{% endfor %}
     <link rel="alternate" type="application/rss+xml" title="{{ site[page.lang].title }}" href="{{ site[page.lang].feed | prepend: site.baseurl | prepend: site.url }}">
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    {% include ga.html %}
 </head>
 
