@@ -1,7 +1,7 @@
 // Code
 
 code {
-  font-family: PT Sans, Calibri, Arial, sans;
+  font-family: $font-family-mono;
   color: #2f1e2e;
   line-height: 1.5;
   background: #e7e9db;
@@ -10,13 +10,13 @@ code {
 
 pre {
   @include padding($main, 0.5, 0.5, 0.75);
-  font-family: monospace, monospace;
   overflow-x: auto;
   border-left: 6px solid #100a10;
   code {
     border: none;
     background: inherit;
     color: inherit;
+    font-family: $font-family-mono;
   }
 }
 

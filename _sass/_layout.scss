@@ -9,9 +9,9 @@
     margin: $line / 19 + em 0;
   }
   a {
-    @include font(20);
+    @include font(18);
     display: block;
-    max-width: 19em;
+    max-width: 22em;
     div {
       @include font(13);
       margin-left: -3em;
@@ -40,8 +40,8 @@ sup {
 .original {
   @include padding(13, 0, 1);
   @include font(13, 2);
-  margin-top: -$line / 13 + em;
   font-style: italic;
+  margin-top: -$line / 13 + em;
   color: #d4d4d4;
 }
 
@@ -87,6 +87,7 @@ h1 {
   text-shadow: 0 0 0 black, 0 0 0.3em black;
   border-top: 2 * $line / 26 + em #191919 solid;
   @include padding(26, 2, 2);
+  font-family: $font-family-head;
 }
 
 .page h1 {
