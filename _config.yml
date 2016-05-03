@@ -1,6 +1,6 @@
 permalink: /:year/:month/:title
 baseurl: ""
-base: https://aviskase.github.io/
+url: https://aviskase.github.io
 
 kramdown:
   input: GFM
