@@ -4,9 +4,11 @@ en:
   nothing: "Nothing to see here yet!"
   subscribe: "Subscribe"
   my_name: "Yuliya Bagriy"
+  translation: "translation"
 ru:
   created: "Опубликовано"
   original: "первая публикация"
   nothing: "Пока здесь еще ничего нет!"
   subscribe: "Подпишись"
   my_name: "Юлия Багрий"
+  translation: "перевод"

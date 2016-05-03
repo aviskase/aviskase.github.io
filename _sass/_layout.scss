@@ -171,3 +171,22 @@ hr {
   background-image: -ms-linear-gradient(left, #ffffff, #cccccc, #ffffff);
   background-image: -o-linear-gradient(left, #ffffff, #cccccc, #ffffff);
 }
+
+.tag {
+  height: 16px;
+  display: inline-block;
+  vertical-align: 10%;
+  font-size: 0.7em;
+  font-family: $font-family-mono;
+  line-height: 16px;
+  text-align: left;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 4px;
+  text-decoration: none;
+}
+
+.tag-translation, .tag-lang {
+  background-color: #e7e9db;
+  color: #2f1e2e;
+}

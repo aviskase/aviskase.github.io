@@ -10,7 +10,7 @@
     <ul>{% capture month %}{{ currentmonth }}{% endcapture %}{% endif %}
       <li>
         <a href="{{ post.url }}">
-          <div>{{ post.date | date: '%-d' }}</div> {{ post.title | replace: '<br/>', '' }}
+          <div>{{ post.date | date: '%-d' }}</div> {{ post.title | replace: '<br/>', '' }}{% if post.translation %}<span class="tag tag-translation">{{ site.data.translations[page.lang].translation }}</span> {% endif %}
         </a>
       </li>{% endfor %}
     </ul>

@@ -1,9 +1,10 @@
 ---
-title: Сортировка дефектов по боли (перевод)
+title: Сортировка дефектов по боли
 ref: dr01
 lang: ru
+translation: true
 ---
-Перевод статьи [Improving Bug Triage with User Pain](http://www.lostgarden.com/2008/05/improving-bug-triage-with-user-pain.html)<sup>en</sup> от Daniel Cook.
+Перевод статьи [Improving Bug Triage with User Pain](http://www.lostgarden.com/2008/05/improving-bug-triage-with-user-pain.html)<span class="tag tag-lang">en</span> от Daniel Cook.
 
 Не являюсь хорошим переводчиком, поэтому заранее прошу прощения. Но так как я не видела нигде перевода на русский, то может мой, пусть и дурацкий, перевод кому-то пригодится.
 
