@@ -58,7 +58,8 @@ strong {
 h2 {
   position: relative;
   top: 0.5 * $line / 25 + em;
-  font-style: italic;
+  //font-style: italic;
+  font-family: $font-family-alt;
   @include font(25);
   @include padding(25, 1, 1);
   color: #666666;
@@ -69,6 +70,7 @@ h2 {
 h3 {
   @include font(21);
   @include padding(21, 1, 0);
+  font-family: $font-family-alt;
   color: #888888;
 }
 

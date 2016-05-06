@@ -33,14 +33,16 @@ sup {
 .date {
   @include padding(19, 2, 1);
   @include font(19);
-  font-style: italic;
+  font-family: $font-family-alt;
+  //font-style: italic;
   color: #aaaaaa;
 }
 
 .original {
   @include padding(13, 0, 1);
   @include font(13, 2);
-  font-style: italic;
+  //font-style: italic;
+  font-family: $font-family-alt;
   margin-top: -$line / 13 + em;
   color: #d4d4d4;
 }
@@ -87,7 +89,7 @@ h1 {
   text-shadow: 0 0 0 black, 0 0 0.3em black;
   border-top: 2 * $line / 26 + em #191919 solid;
   @include padding(26, 2, 2);
-  font-family: $font-family-head;
+  font-family: $font-family-alt;
 }
 
 .page h1 {
@@ -107,6 +109,7 @@ h1 {
 .nav {
   position: fixed;
   background-color: #100a10;
+  font-family: $font-family-alt;
   li {
     float: left;
     padding: 0;
@@ -138,6 +141,7 @@ h1 {
   position: absolute;
   color: #dddddd;
   background: #fcfcfc;
+  font-family: $font-family-alt;
   span, a {
     color: #d0d0d0;
   }
@@ -177,7 +181,7 @@ hr {
   display: inline-block;
   vertical-align: 10%;
   font-size: 0.7em;
-  font-family: $font-family-mono;
+  font-family: $font-family-alt;
   line-height: 16px;
   text-align: left;
   padding-left: 4px;
