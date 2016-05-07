@@ -54,12 +54,21 @@ strong {
   font-weight: bold;
 }
 
+blockquote {
+  @include padding($main, 0, 0, 0.75);
+  border-left: 6px solid #e7e9db;
+  color: #2f1e2e;
+  font-style: italic;
+}
+
 // Titles
+h2, h3, h4 {
+  font-family: $font-family-alt;
+}
 h2 {
   position: relative;
   top: 0.5 * $line / 25 + em;
   //font-style: italic;
-  font-family: $font-family-alt;
   @include font(25);
   @include padding(25, 1, 1);
   color: #666666;
@@ -70,8 +79,13 @@ h2 {
 h3 {
   @include font(21);
   @include padding(21, 1, 0);
-  font-family: $font-family-alt;
   color: #888888;
+}
+
+h4 {
+  @include font(19);
+  @include padding(19, 1, 0);
+  color: #aaaaaa;
 }
 
 // Marginalias
