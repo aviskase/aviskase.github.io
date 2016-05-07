@@ -18,45 +18,45 @@ translation: true
 
 
 ## Проблемы с обычной приоритизацией
-Traditional bug triaging is a time consuming and tedious process. Bugs come into a bug database with little prioritization, the team leads sort and rate each problem and then assign them to the appropriate members of the team. This process tends to run into several issues:
+Типичный процесс приоритизации дефектов занимает много времени и крайне утомителен. Дефекты заводятся в систему с кое-как выставленными приоритетами, тим-лиды сортируют и классифицируют каждую порблему, а потом назначают на подходящих членов команды. Такой процесс ведет к нескольким последствиям:
 
-* *Lack of shared criteria:* Different people often value different aspects of a bug, which leads to unhealthy disagreement. A designer might think a usability issue is a critical fix, while a programmer might be concerned about a crash. With no common criteria, it is hard to build consensus quickly.
-* *Потерянное время:* Often the highest skilled team members are required to triage bugs. They spend hundreds of hours poring over mundane issues again and again. This is time that could be better spent improving the product.
-* *Bottlenecks:* Bugs are often required to go through a review process so that precious developer time isn’t spent on bugs that would have otherwise been punted. The loop from the submitter to the triage team to the developer can cause delays for critical bugs.
-* *Big undifferentiated bins of bugs:* Since the incoming rate of bugs is often higher than the fix rate, large piles of bugs will accumulate for each developer. If a developer has 50 bugs on their plate, they will fix them in a semi-random order or rely on micromanagement by the triage team. The first tactic means critical bugs are sometimes left to be fixed until the end. The second means more time is wasted on reviewing bugs.
-* *Triage burn out:* After reviewing thousands of bugs, many triage teams stop caring or become fixated on a few bugs at the cost of reviewing others. The result is that some bugs are poorly triaged and the quality of bug ranking in the database is low.
+* *Отсутствие общих критерие.* Разные люди обращают внимание на разные аспекты дефектов, что приводит к разногласиям. Дизайнер может считать критичной проблему с юзабилити, тогда как разрабочика больше волнуют сбои. Без общих критериев оценки сложно быстро прийти к согласию.
+* *Потерянное время.* Обычно приоритизацией занимаются самые опытные ребята. Они тратят гигантское количество времени обдумывая рутинные дефекты снова и снова. То время, которое могло бы быть использовано на улучшение продукта. 
+* *Узкие места.* Часто требуется, что бы дефекты кто-то проверил, прежде чем они дойдут до разработчика, что бы не тратить его драгоценное время. Из-за этого путь от того, кто завел критический дефект, до того, кто его будет фиксить, может заметно увеличиться по времени. 
+* *Груды неразличимых багов.* Так как темп поступления багов чаще всего выше чем темп фикса, у каждого разработчика скапливаются кучи дефектов. Если на разработчике висит 50 багов, то он/она будет фиксить их в случайном порядке либо надеяться на микро-менеджмент триажной группы. В первом случае есть вероятность, что критические баги будут исправлены в самом конце. Во втором случае еще больше времени будет потрачено на приоритизацию.
+* *Выгорание команды.* После проверки тысячи багов триажные группы перестают заботиться о качестве процесса или наоборот уделяют слишком много внимания только части дефектов, пропуская другие. В результате некоторые дефекты плохо приоритизированы и качество сортировки довольно плохое.
 
-These are the problems we want to solve with User Pain.
+Эти проблемы мы постараемся решить с помощью оценки боли пользователя.
 
 ## Суть техники
-User Pain is yet another technique inspirted by the world of Lean Manufacturing, the ancient mother of so many Agile practices. The technique was original developed in the 80’s as a method of efficiently classifying product defects on manufacturing lines. While some of the ideas are new to software development, the core concepts have been tested in intense product development situations for decades.
+Техника боли пользователя зародилась на основе идей Lean Manufacturing, бабушкой многих практик в Agile. Техника была разработана в 80-х как метод эффективной классификаци дефектов на производственных линиях. Некоторые идеи новы для сферы разработки ПО, однако ключевые моменты проверены на производствах уже десятки лет. 
 
-At with many agile techniques, User Pain isn’t all the complicated.
+Как и многие другие техники Agile, понять, как оценить боль пользователя, не сложно:
 
-1. Rank each bug on several criteria
-2. Combine those criteria into a single score called User Pain
-3. Sort all bugs by User Pain into a public list
-4. Start fixing the most painful bugs at the top of the list.
+1. Оценить каждый баг по нескольким критериям
+2. Соединить оценки в одну, называемую "боль пользователя"
+3. Отсортировать все дефекты по боли в общедоступном списке
+4. Начать исправлять самые болевые дефекты сверху списка
 
-There is a distinct philosophy at work here. First, empower bug submitters to easily create well formed, well classified bugs. Next, give the team the tools and information necessary to make smart decisions about what to work on first. Finally, encourage practices that make it easy to put quality first. Instead of relying on expert managers, you rely on a well informed, empowered team. As a result, the User Pain system removes most of the need for a triage middleman.
+Первое, дать возможность заводить дефекты, которые хорошо сформированы и поддаются классификации. Следующее, дать команде необходимые средства и информацию для приниятия решения о том, что нужно делать в первую очередь. Наконец, команде будет проще работать на качество. Вместо упования на менеджеров, можно быть уверенными в решениях самой команды. В результате пропадает почти вся необходимость в посреднике --- триажной группе.
 
-Let’s dig into each step and explore the devil in the details.
+Давайте подробнее рассмотрим каждый шаг.
 
 ## Шаг 1: оценить каждый баг по нескольким критериям
-Bug submitters use a simplified bug submission page that clearly lists three factors: Type, Likelihood and Priority. Each factor has multiple values, listed in order of impact. At submission time, the bug submitter rates the bug.
+На странице заведения дефекта должны быть представлены три фактора: тип, вероятность и приоритет. Каждый фактор несет несколько значений, перечисленных в порядке увеличения степени последствий. Оценка проставляется в момент заведения дефекта.
 
 ### Три фактора оценки
-Here are the three factors that I’ve been using.
+Вот три фактора, которые использую я:
 
-* *Тип:* What type of bug is this? For example is it a crashing issue, a problem with localization or a matter of visual polish?
-* *Вероятность:* How likely are users to experience the bug? For example, does everyone run into the issue or do only a few users run into it?
-* *Приоритет:* Of the people who experience the bug, how badly does it affect their experience with the product?
+* *Тип.* Какого типа этот дефект? Например, это сбой, проблема с локализацией или версткой?
+* *Вероятность.* Насколько вероятно что пользователи обнаружат дефект? Например, все или только часть пользователей? 
+* *Приоритет.* Из тех людей, которые обратят внимание на проблему, насколько сильно это повлияет на их мнение о продукте? 
 
-These particular factors have been battle tested for many a release and were selected for the following reasons.
+Конкретно эти факторы были проверены уже на многих релизах и были выбраны по следующим причинам:
 
-* *Хорошее покрытие:* These cover the range of concerns expressed by most stakeholders. Type includes business priorities while Likelihood and Priority help classify user impact.
-* *Не перекрываются (aka ортогональные):* A bug can be rated on one factor without affecting how you would rate the other factors. This allows you to rate each factor in isolation and greatly improves the objectivity of the results.
-* *Малое число:* There are few enough of them that they don’t overload the bug submitter. It is easy to add more factors for various edge cases, but typically this results in a cluttered and confusing bug submission form.
+* *Хорошее покрытие.* Заинтересованных сторон много, и их могут волновать разные аспекты. Данные факторы покрывают большинство их них. Тип определяет бизнес направленность, тогда как вероятность и приоритет помогают понять воздействие на пользователя. 
+* *Не перекрываются (aka ортогональные).* Оценка бага по одному фактору не влияет на оценки по другим. Возможность оценивать факторы в изоляции друг от друга повышает объективность результата. 
+* *Малое число.* Их достаточно мало что бы не запутаться при заведении дефекта. Можно с легкостью добавить еще факторов, что бы покрыть пограничные случаи, но форма заведения багов станет сложной и непонятной. 
 
 ### Использование фиксированной шкалы
 Теперь, когда мы определились с факторами, каждому нужно определить фиксированную шкалу. Каждое очко на шкале соотносится с объективным описанием. Вот шкала, которая нравится мне:
@@ -90,25 +90,25 @@ These particular factors have been battle tested for many a release and were sel
 Фиксированная шкала описывает каждое очко на шкале конкретными, объективными критериями. До тех пор пока все элементы,которые нужно оценить, подходят под один из критериев, вы всегда знаете какое значение нужно выбрать. Фиксированная шкала предпочтительней относительной (напр., оцените проблему от 1 до 10) т.к. она менее субъективна.
 
 ### Добавить фиксированную шкалу на видное место туда, где заводят дефекты
-Anchored scales are only useful if the team can see the descriptions.
+Фиксированные шкалы полезны только тогда, когда команда видит их описания.
 
-On one team, we only displayed values 1 to 5 in a drop down list and asked submitters to remember what each value meant. This wasn’t very effective. People treated each factor as a relative scale and would rate items by ‘feel’ initially instead of referring to the definitions of each value. The end result was that bug ratings were heavily influenced by personal preference.
+Для одной команды мы только отображали цифры от 1 до 5 в выпадающем списке и требовали помнить, что каждая цифра означает. Это было не очень эффективно. Люди трактовали факторы как относительные шкалы и оценивали их по тому как ощущали, а не по реальным определениям каждого значения. В итоге оценки были слишком зависимы от личных убеждений. 
 
-Instead, build a bug submission UI that lets the submitter read the descriptions as they rate the bug. Radio buttons work wonderfully since you can place all the descriptions right in front of the user. A drop down that contains the descriptions is also feasible.
+Поэтому лучше использовать такую форму заведения дефектов, где человек может прочитать описание каждого значения в процессе оценки дефекта. Например, можно использовать радио кнопки. Выпадающий список, содержащий описания, тоже подойдет.
 
-This may seems like a minor issue, but people are usually in a hurry. If you don’t make the rating process painless, they’ll happily toss random data into your bug database. Improving the clarity of your bug submission UI is the single cheapest thing you can do to improve the quality of your bugs.
+Может показаться что это мелочь, но люди обычно спешат. Если процесс оценки будет слишком затруднен, то они без зазрения совести отметят первое что попадется. Понятность формы заведения дефектов --- это простейший способ улучшить качество заведенных багов. 
 
 ### Кто заводит баги
-This system is intended to be used by members of the development team. Artists, testers, developers, designers, project managers and producers all should be able to understand the criteria and enter well rated bugs. They'll need an understanding of the core scenarios and the target user. The better that you educate the team on what you are doing and who you are doing it for, the better your bugs will be.
+Такая система направлена на использование всеми членами команды. Дизайнеры, тестировщики, разработчики, менеджеры --- у всех должно быть понимание критериев и возможность заведения сразу оцененных дефектов. Они должны понимать ключевые сценарии и конечного пользователя. Чем лучше вы обясните команде что вы делаете и для кого, тем качественне будут ваши баги.
 
-This system does not work well for bug submissions by external users. They don’t understand the terminology and tend to create bugs that are poorly formed. A good solution is for a tester to reenter the user bugs with the proper ratings and format. It is a form of triage, but is a relatively minor cost in the grand scheme of things.
+Для внешних пользователей система хорошо работать не будет. Они не понимают терминологию и обычно плохо описывают проблемы. Лучшим решением будет давать тестировщику заводить обращения пользователей с уже правильным форматом и офенкой. Это можно назвать формой приоритизации, но в целом стоит гораздо меньше.
 
 ### Выгоды
-Using anchored scaled for rating bugs upon submission has the following benefits.
+Использование фиксированной шкалы оценки дефектов приносит следующие выгоды:
 
-* *Less reliance on personal opinion:* A tester who has some domain knowledge can quickly classify the bug into one of the buckets without relying overly much on their personal opinion. The result is that even when multiple people independently rate the same bug, the final user pain tends to cluster very tightly around the same values.
-* *Harder to game the system:* Anchored scales also make it harder to simply ‘bump the pain’ up for a bug that has become a hot topic. Due to the clarity of the rating categories, poorly rated bugs are usually flagged by the next person who looks at them.
-* *Push triage to the submitter:* When you can trust the ratings set by bug submitters, you can eliminate a large portion of the triage process. Provided that your submitters have basic domain expertise, 80-90% of the values that they set during the initial submission stay the same throughout the life of the bug. This means that there is less need for reviews to reset random values.
+* *Меньше зависимость от субъективного мнения.* Тестировщик, которые имеет представление о предметной области, может быстро определить категорию дефекты не полагаясь на личное мнение. Даже если дать нескольким людям независимо оценить один и тот же баг, финальная оценка будет примерно совпадать. 
+* *Тяжелее обмануть систему.* Фиксированные шкалы не дают быстро подогнать оценку для бага. Так как критерии достаточно ясны, плохо оцененные дефекты легко распознает первый же человек, который его увидит.
+* *Приоритизация сразу при заведении.* Процесс приоритизации становится проще, когда вы можете доверить оценку тем, то заводит дефекты. Если у человека есть базовое представление о предметной области, 80-90% проставляемых оценок не будет менятся на протяжении существования дефекта. Поэтому потребность в дополнительных проверках меньше.  
 
 ## Шаг 2: соединить критерии в одну оценку "боль пользователя"
 Как только баг оценён по всем трем факторам, нужно перемножить числа что бы получить оценку боли. Боль пользователя --- это одно значение, которое можно использовать для сравнения различных дефектов. Она позволяет выявить такие дефекты как:
@@ -125,69 +125,69 @@ $$Боль = \frac{Тип \cdot Вероятность \cdot Приоритет}
 
 ### Выгоды
 
-* *One value for comparing different bugs:* Instead of forcing users to juggle multiple different criteria when comparing bugs, they only need to look at one. This means quicker judgments and easier sorting.
-* *Fewer big bug buckets:* No longer do you need to deal with huge swathes of undifferentiated bugs. Instead of dealing with 300 priority 2 issues, you typically will see much more manageable clumps of 3 to 5 bugs with the same pain rating. Bug Maturity, as described in the Appendix also helps spread out the bugs.
+* *Одно значение для сравнения разных дефектов.* Вместо того, что бы пытаться понять разные критерии при сравнении багов, нужно посмотреть только на одну итоговую оценку. А это значит, что решения принимаются быстрее и сортировка становится проще. 
+* *Больший диапазон приоритетов.* Теперь не нужно работать с кучей неразличимых дефектов. Вместо 300 багов с приоритетом 2, будут маленькие управляемые кучки в 3 или 5 дефектов с одинаковой болью. Зрелость багов, котороя описана в приложении, так же позволяет распределить дефекты.
 
 ## Шаг 3: отсортировать все баги по боли в общедоступном списке
-Once you have your list of bugs complete with user pain, you need to display them to your team in an easy to understand manner. I’ve dabbled with custom queries inside bug tracking tools, but my favorite technique is to create the world’s simplest bug dashboard.
+Как только у вас появился список дефектов с подсчитанной болью, его необходимо предоставить команде в удобном форме. Я пробовал различные хитрые выборки в системах управления дефектами, но больше всего мне нравится моя простейшая в мире доска под названием "болелист". 
 
 ### Болелист
-The Pain List is a webpage that lists all the active bugs in order of User Pain. You put the highest pain bugs at the top of the list and you make each bug a hyper link that takes you to the bug details in your bug database. Be sure to auto reload the list every 10 seconds or so the data is fresh and reliable.
+Болелист --- страница, на которой представлены все актуальные баги в порядке умеьшения боли пользователя. Самые болевые дефекты идут наверх списка и для каждого есть ссылка на страницу в базе дефектов. Важно часто обновлять список, например, каждые 10 секунд.
 
 ![Пример болелиста]({{ site.url }}/assets/images/pain_list.png)
 
-The Pain List becomes your central dashboard for daily bug management. I’ve gone so far as to make it the homepage on my web browser.
+Болелист --- ключевой момент в ежедневном управлении дефектами. У меня он даже назначен домашней страницей в браузере. 
 
 ### Планки качества
-The team can use the Pain List to set easy-to-understand quality bars as exit criteria for your milestones. For example, they can say “In order to release, we want no bugs greater than 30 pain.” At the 30 pain threshold on the Pain List, you draw a line. Anything above the line needs to be fixed. Anything below the line you can ship with.
+Команда может использовать болелист что бы определить планки качества, которые можно использовать как выходной критерий выпуска. Например, "что бы выпустить релиз, нам нельзя иметь дефекты с болью выше 30". На этой планке проводится черта в болелисте. Всё что выше этой линии должно быть исправлено. Всё что ниже --- допустимо в релизе.
 
-Quality bars can be more meaningful than traditional bug counts since you are implicitly taking into account the final user experience. Meeting this bar means that you’ve fixed all crashing and unpleasant bugs and the only issues that are left are minor cosmetic ones that are rarely seen by users.
+Планки качества могут быть более демонстративны чем традиционное количество дефектов, так как учитывается влияние на конечного пользователя. Соответствие определенной планке означает что вы исправили все сбои и неприятные дефекты и остались только незначительные косметические проблемы, на которые пользователи не обратят внимание.
 
-Since you have a finely incremented spectrum of bugs, you can also precisely adjust quality bars based on your place in the release cycle. You could set a high pain threshold if you are dealing with new features. You can tighten the quality bar further for subsequent releases.
+Так как спектр дефектов стал более широк, вы можете более точно определять планку качества в зависимости от важности текущего релиза. Можно поставить высокую планку если ведется работа над новыми фичами. Можно сделать ее еще выше в последующих релизах.
 
 ### Выгоды
-* *One view:* One view shared by everyone, including both testers and developers. You don’t have to worry about juggling divergent database queries.
-* *Simple to understand for all parties involved.* There are no specialized tools or incomprehensible graphs. Even management can know where you are at just by glancing at the list.
-* *Clear understanding of status:* If there are bugs above the quality bar, you need to start fixing bugs.
+* *Одна точка входа.* Один список доступный всем, включая тестировщиков и  разработчиков. Не нужно беспокоится об управлении разными фильтрами. 
+* *Легко понять для всех заинтересованных лиц.* Нет сложных методов и непонятных графиков. Даже менеджеры могут понять как обстоят дела просто взглянув на список. 
+* *Чёткое понимание статуса.* Если есть баги выше планки качество, то нужно начать их исправлять.
 
-## Шаг 4: начать фиксить самые болевые баги сверху списка
-Now that we have the Pain List, we can finally put it to use. Developers check the Pain List daily and fix the highest pain bugs on the list. If there are no bugs left above the current quality bar, they work on feature work. This basic heuristic is a surprisingly efficient method for managing quality.
+## Шаг 4: начать исправлять самые болевые баги сверху списка
+Теперь, когда у нас есть болелист, его нужно использовать. Разработчики ежедневно просматривают список и правят дефекты с наибольшей болью. Если не осталось багов выше текущей планки качества, можно продолжить работу над новой функциональность. Эвристика очень проста и удивительно эффективна для управления качеством.
 
 ### Назначение дефектов на исполнителя
-All bugs are assigned to Active upon submission, not a particular developer. When a developer sees a high pain bug that they want to work on, they assign it to themselves. The bug then goes through the standard process of being fixed, tested, and closed by the submitter. In general, developers should have no more than a half dozen bugs assigned at once. They pop items off the list, fix them and go back for more. Hoarding is highly discouraged. So is assigning bugs based on feature area.
+Все дефекту определяются как актуальные на момент заведения и не назначаются на кого-то определенного. Когда разработчик видит болевой баг, над которым хочет поработать, он назначает его на себя. Дальше баг идет через стандартную процедуру исправления, тестирования и закрытия. В общем, разработчики не должны одновременно иметь больше десятки дефектов на них. Они выбирают элемент из списка, фиксят его, и возвращаются за следующим. Чрезмерное накопление не приветствуется.
 
 ### Фикс багов до работы над фичами
-All bugs above the quality bar should be fixed before new feature work is started. If you follow this practice, you should exit each sprint with no more high pain bugs than you entered the sprint. Bug debt doesn’t accumulate.
+Все дефекты выше планки качества должны быть исправлены до того, как начнется работа над новыми фичами. Если следовать этому правилу, то при окончании спринта не должно быть больше сильно болевых багов чем на момент начала спринта. Технический долг не накапливается.
 
-This practice helps you build quality in as you develop. When this practice is paired with solid automated tests, you enter into a whole new world of high quality development.
+Такая практика позволяет поддерживает качество в процессе разрабтки. А если подкрепить её ещё и хорошими автоматизированными тестами, то начнётся магия высококачественной разработки.
 
 ### Мои баги
-At the top of the Pain List is a section that lists the current user’s assigned bugs. This both helps devs treat the Pain List as their entry into the bug database and it reminds them that they should finish the items on their plate before taking on new work. Since this list is short, it rarely interferes with browsing the Pain List.
+Сверху болелиста имеется область, в которой перечислены все дефекты, назначенные на пользователя. Это позволяет использовать болелист как единую точку входа и напоминает, что нужно закончить работку по всем своим дефектам прежде чем браться за новые. Так как список маленький, он редко будет мешать просматривать сам болелист.
 
 ### Выгоды
 
-* *Developers always know what to fix:* All they need to do is look at the top of the list and there is almost always a bug waiting for them to grab. As a result, developers never need to juggle multiple criteria in their head when deciding what to work on next. Nor do they have to wait on leads or managers to assign them bugs.
-* *Promotes shared code ownership:* The rule ‘fix from the top’ rarely correspond with ‘fix the code that I developed’. Short term, this is less efficient since developers may need to ask questions of the original developer about an area of the code. Long term, the broad knowledge of the code base that comes from fixing bugs outside area of expertise results in higher overall productivity and team flexibility.
-* *Bugs that prevent you from shipping don't accumulate:* The benefits of fixing bugs before features are numerous. The pain of shipping is greatly reduced. Testing is more effective since they don’t need to constantly juggle workarounds to problems that won’t be fixed for months. Finally, the team feels better because they know they are always building a high quality product.
+* *Разработчики всегда знают что исправлять.* Всё что им нужно делать это смотреть на верх списка. В результате разработчикам не требуется прикидывать различные факторы что бы решить, над чем работать дальше. Как и не требуется ждать лидов или менеджеров что бы они назначили дефект.
+* *Способствует коллективному владению кодом.* Правило "правь с верха" редко совпадает с "правь код, который написал я". В краткосрочной перспективе это менее эффективно, так как разработчики вероятно будут задавать вопросы автору кода. В долгосрочной перспективе хорошее знание кодовой базы в результате фикса дефектов вне зоны компетенции повышает общую продуктивность и гибкость команды.
+* *Не накапливаются дефекты, которые мешают выпуску.* Выгоды от исправления дефектов до работы над фичами бесконечны. Проблем в ходе релиза гораздно меньше. Тестирование более эффективно так как не нужно придумывать обходные пути для дефектов, которые не будут исправлены месяцами. Наконец, команда чувствует себя уверенней так как знает что они всегда делают высококачественный продукт.
 
 ## Ошибки
 Есть несколько ошибок, которые могут возникнуть при первой попытке внедрения техники.
 
 ### Обучение команды
-There are likely people on your team that have been dealing with bugs for decades. Changing the bug tracking system will require retraining before you see positive results.
+Вероятно в вашей команде будут люди, которые годами боролись с багами. Изменения в системе управления дефектами требует переобучения прежде чем получатся хорошие результаты.
 
-In my experience, new teams initially rank 80% of the bugs incorrectly because they A) do not use the rating scale or B) do not understand the target user. To fix this issue, keep making the anchored scales highly visible and keep promoting the major scenarios and target user. After people get the chance to enter a few dozen bugs, their pain ratings will become far more reliable.
+По моему опыту, новые команды изначально оценивают 80% дефектов не верно потому что они А) не используют шкалу оценки или Б) не понимают конечного пользователя. Что бы решить эту проблему, удостоверьтесь, что описание фиксированной шкалы оценки легко доступно, и не забывайте доносить до сотрудников информацию о ключевых сценариях и конечном пользователе. После того, как люди оценят пару десятков дефектов, их оценки боли статут достаточно надежными.
 
 ### Соблазн приписать "стоимость фикса"
-You’ll notice that there is no place for ‘cost’ or technical risk of fixing a bug anywhere in the pain score. This is one factor that most developers immediately request. Despite the temptation, I recommend leaving it out.
+Вы наверняка заметили что в боли нигде не используется "стоимость" или технический риск исправления ошибки. Этот фактор почти незамедлительно предлагают разработчики. Несмотря на искушение, я предлагаю его не учитывать:
 
-* *It requires extra effort:* 8 times out of 10 the developer actually needs to dig into the code to figure out what is causing the bug before they know how much it will take to fix. If you require ‘cost’ to be figured into the User Pain calculation, you bog down the entire system.
-* *99% of the time it doesn’t matter.* The cost of fixing bugs tends to fall on an exponential distribution. Many bugs are one or two line fixes. Others rarely take more than a couple of days. Only a very few are truly killer bugs. Flag the exceptions and use a generic bug velocity to track the rest and your results will be just as predictable as if you had costed each and every bug.
+* *Требует дополнительных усилий.* В 8-ми случаях из 10-и разработчкику нужно разобраться в коде что бы понять причину дефекта прежде чем они определят, сколько потребуется времени на фикс. Если требовать определения "стоимости" в момент расчета боли пользователя, вся система пойдет на дно.
+* *В 99% это не имеет значения.* Стоимость фикса предположительно подчиняется экспоненциальному распределению. Для многих дефектов хватит одной или двух строк изменений. Другие изредка занимают больше нескольких суток. Очень редко случаются настоящие бомбы. Пометьте исключения, а для остальных используйте универсальную скорость фикса и результаты будут так же предсказуемы, как если бы вы оценивали стоимость для каждого бага.
 
 ### Соблазн автоматизировать исключения
-The User Pain system is about automating triage. There is a temptation to attempt to automate everything. What about the 1% of the bugs that have the potential to push your release into the next century? When you do stumble upon a bug that will take more than a week to fix, flag it as a ‘killer’ bug. Killer bugs show up in red on the Pain List and an email is sent to the team.
+Техника пользовательской боли создана для автоматизации процесса приоритизации. Всегда есть соблазн автоматизировать всё. Что насчёт 1% багов, которые могут задержать ваше релиз на столетие? Если вы наткнётесь на дефект, которые потребует больше недели на исправление, пометьте его какой-нибудь меткой (например, "бомба"). Бомбы должны быть помечены красным в болелисте и по ним нужно отсылать команде уведомление по почте.
 
-It is now the responsibility of the team leaders to find a solution. They can design around it, postpone it, or even fix it. Now that they’ve been freed of the burden of triage, they have the time to attack the hard problems with great vigor.
+Найти решение --- теперь обязанность лидов. Они могут сделать какие-то архитектурные правки, отсрочить решение, или таки сделать фикс. Раз их освободили от мук приоритизации, у них есть время занятся сложными проблемы с удвоенной силой.
 
 The pain score helps keep killer bugs in perspective so that panic is kept to a minimum. There will be Killer issues that are very low pain. It probably isn’t worth delaying the product to fix these. On the other hand, a Killer issue that has high pain is likely to have a serious impact on schedule and should be addressed immediately.
 
@@ -200,7 +200,7 @@ Teams thrive under this bug process. There is less thrashing and ambiguity. Ther
 
 User Pain doesn’t work for every team. Nor does it completely eliminate triaging. Anyone who thinks process is a panacea hasn’t worked in this industry very long. However, with your heart in the right place, User Pain is a substantial improvement over sitting in a room and manually reviewing hundreds of bugs. It makes the team more efficient, helps people make better decisions and focuses the team on building quality into the product.
 
-## Дополнения
+## Приложения
 
 ### Зрелость бага
 Фиксирование планки качества помогает быстрому фиксу "очень болевых" багов. Однако с течением времени скопятся сотни старых багов с малой болью. А так как процесс "насильственной" приоритизации происходит гораздо реже, само качество заведения этих дефектов может быть достаточно низким.
@@ -209,8 +209,8 @@ User Pain doesn’t work for every team. Nor does it completely eliminate triagi
 
 В результате получается что:
 
-* *Старые баги медленно уходят из системы:* вы либо решите их не фиксить вообще или фиксите.
-* *Небольшие баги медленно фиксятся:* вместо того, что бы постоянно оставлять небольшие баги в продукте, в конечном итоге вы пофиксите их, что бы достичь планки качества. Тем самым предотвращается накопление технического долга.
+* *Старые баги медленно уходят из системы.* Вы либо решите их не фиксить вообще или фиксите.
+* *Небольшие баги медленно фиксятся.* Вместо того, что бы постоянно оставлять небольшие баги в продукте, в конечном итоге вы пофиксите их, что бы достичь планки качества. Тем самым предотвращается накопление технического долга.
 
 ### График появления дефектов
 
