@@ -187,18 +187,19 @@ $$Боль = \frac{Тип \cdot Вероятность \cdot Приоритет}
 ### Соблазн автоматизировать исключения
 Техника пользовательской боли создана для автоматизации процесса приоритизации. Всегда есть соблазн автоматизировать всё. Что насчёт 1% багов, которые могут задержать ваше релиз на столетие? Если вы наткнётесь на дефект, которые потребует больше недели на исправление, пометьте его какой-нибудь меткой (например, "бомба"). Бомбы должны быть помечены красным в болелисте и по ним нужно отсылать команде уведомление по почте.
 
-Найти решение --- теперь обязанность лидов. Они могут сделать какие-то архитектурные правки, отсрочить решение, или таки сделать фикс. Раз их освободили от мук приоритизации, у них есть время занятся сложными проблемы с удвоенной силой.
+Найти решение --- теперь обязанность лидов. Они могут сделать какие-то архитектурные правки, отсрочить решение, или таки сделать фикс. Раз их освободили от мук приоритизации, у них есть время занятся сложными проблемами с удвоенной силой.
 
-The pain score helps keep killer bugs in perspective so that panic is kept to a minimum. There will be Killer issues that are very low pain. It probably isn’t worth delaying the product to fix these. On the other hand, a Killer issue that has high pain is likely to have a serious impact on schedule and should be addressed immediately.
+Оценка боли позволяет адекватно воспринимать баги-бомбы. Будут бомбы с очень низкой болью из-за которых не стоит отодвигать время релиза. И будут бомбы с высокой болью, которые серьёзно повлияют на релиз и должны быть исправлены без промедления.
 
-There is a small lesson here. Never build a system, especially one involving people, that aims to handle every exception. You'll destroy what value the process adds by building in all the edge cases. Instead, allow people to raise an alarm so that smart minds can deal with the exception in a timely fashion.
+А урок из этого такой. Никогда не пытайтесь построить систему, особенно зависящую от людей, которая бы смогла обрабатывать каждую непридвиденную ситуацию. Чем больше вы будете подстраиваться под каждый пограничный случай, тем мененее эффективен будет конечный результат. Вместо этого позвольте самим сотрудникам подымать тревогу что бы разум, а не формулы, принимали решения по мере поступления проблем.
+
 
 ## Заключение
-User Pain remains simple despite all the detail I’ve tossed your way. The team submits and ranks bugs. The system calculates user pain and pumps out a fresh list of prioritized bugs for everyone to see. The team fixes the bugs from the top of the list. Those are the essentials.
+Техника боли пользователя достаточно проста не смотря на все упомянутые детали. Команда заводит и оценивает дефекты. Система подсчитывает боль и выплёвывает всем свежий список приоритизированных дефектов . Команда исправляет баги начиная сверху списка. Это самое основное.
 
-Teams thrive under this bug process. There is less thrashing and ambiguity. There is a lot less need for micromanaging every single little bug (and every single developer). With User Pain, the responsibility for creating a quality product is placed clearly in the hands of the team. They triage the bugs. They fix the most important ones early. The process exists to give them all the tools they need to make the right decisions. Again, it is about empowering people, not managing them.
+С таким процессом команда процветает. Неопределенность меньше. Не нужно детально контроллировать каждый малёхонький дефект (и каждого разработчика). С этой техникой ответсвенность за качество лежит в руках команды. Они сами приоритизируют баги. Они исправляют самые важные в первую очередь. Процесс предоставляет все средства для принятия правильных решений. Ещё раз, мы говорим о поддержке людей, а не управлении.  
 
-User Pain doesn’t work for every team. Nor does it completely eliminate triaging. Anyone who thinks process is a panacea hasn’t worked in this industry very long. However, with your heart in the right place, User Pain is a substantial improvement over sitting in a room and manually reviewing hundreds of bugs. It makes the team more efficient, helps people make better decisions and focuses the team on building quality into the product.
+Оценка боли не подойдет каждой команде. Как и не убирает полностью процесс приоритизации. Если кто-то думает что процесс --- это панацея, то он имеет ещё мало опыта. Тем не менее, при правильном подходе техника боли пользователя является заметным прогрессом по сравнению с просиживанием часами в душной комнате вручную просматривая сотни багов. С ней команда может стать более эффективной, принимать лучшие решения и выпускать высококачественный продукт.
 
 ## Приложения
 
