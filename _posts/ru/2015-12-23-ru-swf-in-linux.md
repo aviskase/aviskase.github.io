@@ -18,8 +18,8 @@ application/x-shockwave-flash  swf swfl
 
 Если хочется заморочиться, то можно сделать сию настройку глобальной, но будь осторожен, друг, при апгрейде это изменение затрётся. Нужно открыть на редактирование файл
 
-```console
-sudo nano /usr/share/mime/packages/freedesktop.org.xml
+```bash
+$ sudo nano /usr/share/mime/packages/freedesktop.org.xml
 ```
 
 и заменить строку:
@@ -36,6 +36,6 @@ sudo nano /usr/share/mime/packages/freedesktop.org.xml
 
 И потом выполнить:
 
-```console
-sudo update-mime-database /usr/share/mime
+```bash
+$ sudo update-mime-database /usr/share/mime
 ```
