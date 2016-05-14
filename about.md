@@ -11,4 +11,4 @@ I am a test guy. Not a tester, not a QA, not a "test engineer", just a plain tes
 
 
 ## P.S.
-If you notice some problems here (mistakes or worse), just write me <a href="mailto:{{ site.email }}">a email</a> or open an issue <a href="{{ site.github_repo }}/issues">on the blog's repo</a>.
+If you notice some problems here (there are probably hundreds of mistakes here), just write me <a href="mailto:{{ site.email }}">a email</a> or open an issue <a href="{{ site.github_repo }}/issues">on the blog's repo</a>.
