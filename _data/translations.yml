@@ -5,6 +5,7 @@ en:
   subscribe: "Subscribe"
   my_name: "Yuliya Bagriy"
   translation: "translation"
+  back: "Back"
 ru:
   created: "Опубликовано"
   original: "первая публикация"
@@ -12,3 +13,4 @@ ru:
   subscribe: "Подпишись"
   my_name: "Юлия Багрий"
   translation: "перевод"
+  back: "Назад"

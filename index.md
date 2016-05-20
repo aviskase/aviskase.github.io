@@ -1,8 +1,10 @@
 ---
 title: Блог
-layout: page
+layout: default
 ref: index
 lang: ru
 ---
 
-{% include list.html %}
+<section>
+    {% include list.html %}
+</section>

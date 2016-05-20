@@ -1,16 +1,34 @@
 ---
 layout: default
 ---
+<noscript>
+    <style>
 
-<h1>{{ page.title }}</h1>
+        article .footnotes {
+            display: block;
+        }
 
-<div class="article">
-{% include date.html date=page.date %}
-<div class="date">{{ day }}{{ sup }} {{ month_case }} {{ year }}</div>
-{% if page.original %}{% include date.html date=page.original %}
-<div class="original">({{ site.data.translations[page.lang].original }} {{ day }}{{ sup }} {{ month_case }} {{ year }})</div>{% endif %}
+    </style>
+</noscript>
 
-{% include strip_content.html %}
-<hr class="hr-end" />
-{% include disqus.html %}
+<article>
+
+    <div class="center">
+        <h1>{{ page.title }}</h1>
+        {% include date.html date=page.date %}
+        <time>{{ day }}{{ sup }} {{ month_case }} {{ year }}</time>
+        {% if page.original %}{% include date.html date=page.original %}
+        <br/><time class="original">({{ site.data.translations[page.lang].original }} {{ day }}{{ sup }} {{ month_case }} {{ year }})</time>{% endif %}
+    </div>
+
+    <div class="divider"></div>
+
+    {% include strip_content.html %}
+
+</article>
+
+<div class="back">
+    <a href="{{site.baseurl}}/">{{ site.data.translations[page.lang].back }}</a>
 </div>
+
+{% include disqus.html %}

@@ -1,21 +1,26 @@
 {% assign posts=site.posts | where:"lang", page.lang | where:"type", posts %}
 {% if posts.size > 0 %}
 
-<ul class="list">{% for post in posts %}{% capture hide %}
+<ul>{% for post in posts %}{% capture hide %}
     {% capture currentmonth %}{{ post.date | date: "%m/%Y" }}{% endcapture %}
     {% endcapture %}{% if currentmonth != month %}{% unless forloop.first %}
     </ul>
   </li>{% endunless %}
-  <li><h2>{% include date.html date=post.date %}{{ month }} {{ year }}</h2>
+  <li><div class="post-date">{% include date.html date=post.date %}{{ month }} {{ year }}</div>
     <ul>{% capture month %}{{ currentmonth }}{% endcapture %}{% endif %}
-      <li>
+      <li class="title">
         <a href="{{ post.url }}">
-          <div>{{ post.date | date: '%-d' }}</div> {{ post.title | replace: '<br/>', '' }}{% if post.translation %}<span class="tag tag-translation">{{ site.data.translations[page.lang].translation }}</span> {% endif %}
+          <div class='post-day'>{{ post.date | date: '%-d' }}</div>
+          <div class='post-title'>{{ post.title | replace: '<br/>', '' }}</div>
         </a>
       </li>{% endfor %}
     </ul>
   </li>
 </ul>
+
+
 {% else %}
+
 <h2>{{ site.data.translations[page.lang].nothing }}</h2>
+
 {% endif %}
