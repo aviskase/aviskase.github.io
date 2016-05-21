@@ -2,7 +2,9 @@
 
 This repository is the source code of the personal website [aviskase.github.io](http://aviskase.github.io/), built with *Jekyll*.
 
-Currently it is mostly based on [sylvaindurand.org](https://sylvaindurand.org) blog (check it, it's awesome!).
+Multilingual support is based on [sylvaindurand.org](https://sylvaindurand.org) blog (check it, it's awesome!).
+
+Theme is hugely based on [the-plain theme](https://github.com/heiswayi/the-plain).
 
 I don't like ruby so building is done with docker:
 
