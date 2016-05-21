@@ -6,7 +6,7 @@
 <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | replace: "[[", " ("  | replace: "]]", ")" | truncate: 160 }}{% else %}{{ site[page.lang].description }}{% endif %}">
 
 <link rel="icon" href="{{ site.baseurl }}/assets/favicon.ico">
-<!-- <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css"> -->
+<link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/core.css">
 
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
@@ -15,7 +15,7 @@
 {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}{% for page in pages %}
 <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url }}" />{% endfor %}
 <link rel="alternate" type="application/rss+xml" title="{{ site[page.lang].title }}" href="{{ site[page.lang].feed | prepend: site.baseurl | prepend: site.url }}">
-<!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 {% if jekyll.environment == 'production' %}

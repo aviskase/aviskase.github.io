@@ -1,15 +1,13 @@
-<div class="nav">
-  <ul>
-    <li><a class="site-title" href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].title }}</a></li>
+<ul>
+  <li><a class="site-title" href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].title }}</a></li>
 
-    <li><a href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].index.title }}</a></li>
-    <li><a href="{{ site.baseurl }}/{{ site[page.lang].about.url }}">{{ site[page.lang].about.title }}</a></li>
+  <li><a href="{{ site.baseurl }}/{{ site[page.lang].index.url }}">{{ site[page.lang].index.title }}</a></li>
+  <li><a href="{{ site.baseurl }}/{{ site[page.lang].about.url }}">{{ site[page.lang].about.title }}</a></li>
 
-    <li class="lang">
-      {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
-      {% for post in posts %} <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a> {% endfor %}
-      {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
-      {% for page in pages %} <a href="{{ page.url }}" class="{{ page.lang }}">{{ page.lang }}</a> {% endfor %}
-    </li>
-  </ul>
-</div>
+  <li class="lang">
+    {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
+    {% for post in posts %} <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a> {% endfor %}
+    {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+    {% for page in pages %} <a href="{{ page.url }}" class="{{ page.lang }}">{{ page.lang }}</a> {% endfor %}
+  </li>
+</ul>

@@ -8,9 +8,8 @@
     {% assign t = part.last %}
 
     {% assign t = t | replace: '~*~', '&nbsp;'
-                    | replace: 'LaTeX', '<span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>'
-                    | replace: '[[', '<span class="as"></span><span class="br"> (</span><span class="mar">'
-                    | replace: ']]', '</span><span class="br">)</span>' %}
+                    | replace: '[[', '<sup>'
+                    | replace: ']]', '</sup>' %}
 
     {% if page.lang == 'ru' %}
 

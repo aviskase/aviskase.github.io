@@ -7,7 +7,9 @@
 
 <body class="{{ page.lang }}{% if page.type == 'pages' %} page{% endif %}">
 
-    {% include header.html %}
+    <nav>
+        {% include header.html %}
+    </nav>
 
     <main>
         {{ content | replace: '&#8617;', '&#8617;&#xfe0e;' }}
@@ -22,7 +24,9 @@
 
     {% endif %}
 
-    {% include footer.html %}
+    <footer>
+        {% include footer.html %}
+    </footer>
 
 </body>
 </html>
