@@ -1,5 +1,5 @@
 ---
-title: Планирование тестирования: вопросы от Google (checkvist)
+title: "Планирование тестирования: вопросы от Google (checkvist)"
 lang: ru
 ref: 160606
 ---
