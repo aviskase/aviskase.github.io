@@ -55,7 +55,7 @@ iframe {
 }
 ul,
 ol {
-  margin: 40px 0;
+  margin: 0.25em 0 1.25em 0;
   padding-left: 50px;
   li {
     word-wrap: break-word;
@@ -206,6 +206,9 @@ article {
     font-size: 15px;
     line-height: 1.9em;
     word-wrap: break-word;
+  }
+  p {
+    margin-bottom: 0.5em;
   }
   a {
     color: blue;
