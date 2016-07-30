@@ -10,7 +10,7 @@ ref: 160109
 ## Отличия между API и веб-сервисами
 
 * [API vs Web Service](http://stackoverflow.com/questions/808421/api-vs-webservice), [Difference between web API and web service](http://programmers.stackexchange.com/questions/38691/difference-between-web-api-and-web-service), [Difference between API and web service](http://www.differencebetween.net/technology/internet/difference-between-api-and-web-service/#ixzz3l5QC4tYj)
-* [What APIs Are And Why They’re Important](http://readwrite.com/2013/09/19/api-defined) --- Brian Proffitt
+* [What APIs Are And Why They’re Important](http://readwrite.com/2013/09/19/api-defined/) --- Brian Proffitt
 * [What are web services](http://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html#N10144) (section) --- Nicholas Chase
 * [Introduction to Web Services](https://www.cl.cam.ac.uk/~ib249/teaching/Lecture1.handout.pdf) (PDF) --- Ioannis G. Baltopoulos
 
@@ -70,7 +70,7 @@ ref: 160109
 
 ## Дополнительно. Погружение в API
 
-* [What is API management --- A Brief Primer](http://www.softwareag.com/blog/reality_check/index.php/soa-what/what-is-api-management/) --- Navdeep Sidhu
+* ~~<a href="http://www.softwareag.com/blog/reality_check/index.php/soa-what/what-is-api-management/" data-proofer-ignore>What is API management --- A Brief Primer</a> --- Navdeep Sidhu~~ _Upd. ссылка недоступна_ 
 * [API management platform capabilities](http://www.infoq.com/research/api-management) --- Jeevak Kasarkod
 * [The API is the Invisible Hand Behind the Internet of Things](http://blog.smartbear.com/iot-2/the-api-is-the-invisible-hand-behind-the-internet-of-things) --- Jennifer Riggins
 * [Working with Hypermedia APIs](http://blog.smartbear.com/apis/hypermedia-apis/working-with-hypermedia-apis) --- John Mueller
