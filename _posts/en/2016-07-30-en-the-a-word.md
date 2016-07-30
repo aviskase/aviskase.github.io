@@ -3,7 +3,7 @@ title: Thoughts on "The 'A' Word"
 ref: 160730
 lang: en
 ---
-Alan Page is known as one of the authors of "How We Test Software at Microsoft". But there is is another good book and it's called "The 'A' Word". You can buy it on [LeanPub](https://leanpub.com/TheAWord).
+Alan Page is known as one of the authors of "How We Test Software at Microsoft". But there is another good book and it's called "The 'A' Word". You can buy it on [LeanPub](https://leanpub.com/TheAWord).
 
 The book is about automation in testing, but not how _to do_ it --- it's about how _to think_ about it. It's short, just 58 pages, but very dense with ideas and Alan's opinions.
 
