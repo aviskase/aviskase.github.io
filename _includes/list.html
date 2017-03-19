@@ -1,4 +1,4 @@
-{% assign posts=site.posts | where:"lang", page.lang | where:"type", posts %}
+{% assign posts=site.posts | where:"lang", page.lang %}
 {% if posts.size > 0 %}
 
 <ul>{% for post in posts %}{% capture hide %}
