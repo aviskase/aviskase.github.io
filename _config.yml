@@ -14,7 +14,7 @@ en:
   title: aviskase
   description: "Simple blog on testing."
   index:
-    url: blog.html
+    url: index.html
     title: blog
   about:
     url: about.html
@@ -24,7 +24,7 @@ ru:
   title: aviskase
   description: "Простенький бложик о тестировании."
   index:
-    url: index.html
+    url: archive-ru.html
     title: блог
   about:
     url: whois.html

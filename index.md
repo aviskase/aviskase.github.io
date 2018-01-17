@@ -1,10 +1,9 @@
 ---
-title: Блог
-layout: default
+title: Blog
 ref: index
-lang: ru
+lang: en
+layout: default
 ---
-
 <section>
     {% include list.html %}
 </section>
