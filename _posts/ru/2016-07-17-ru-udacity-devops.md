@@ -84,7 +84,7 @@ CommitStrip --- [чем DevOps *не является*](http://www.commitstrip.c
 
 * [The Nutanix Bible](http://stevenpoitras.com/the-nutanix-bible/) --- краткая история дата центров, виртуализации, архитектуры уровня web scale и объяснение гиперконвергентной архитектуры Nutanix
 * [Hyperconverged Infrastructure Guide](http://go.nutanix.com/webscale-101-hyper-converged-infrastructure-guide.html)
-* [Nutanix Education portal](http://www.nutanix.com/company/education/)
+* [Nutanix Education portal](https://next.nutanix.com/t5/Nutanix-Education-Blog/bg-p/Certifications)
 * [Nutanix Education YouTube channel](https://www.youtube.com/channel/UCJupSMWQRKQTvkb2CfkW0Eg)
 * [Nutanix NEXT community site](http://next.nutanix.com/)
 

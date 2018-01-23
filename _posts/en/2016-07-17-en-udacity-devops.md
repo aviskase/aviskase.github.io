@@ -83,7 +83,7 @@ Monitoring data products:
 
 * [The Nutanix Bible](http://stevenpoitras.com/the-nutanix-bible/) --- brief history of data centers, visualization, webscale architecture and an explanation of Nutanix hyperconverged architecture
 * [Hyperconverged Infrastructure Guide](http://go.nutanix.com/webscale-101-hyper-converged-infrastructure-guide.html)
-* [Nutanix Education portal](http://www.nutanix.com/company/education/)
+* [Nutanix Education portal](https://next.nutanix.com/t5/Nutanix-Education-Blog/bg-p/Certifications)
 * [Nutanix Education YouTube channel](https://www.youtube.com/channel/UCJupSMWQRKQTvkb2CfkW0Eg)
 * [Nutanix NEXT community site](http://next.nutanix.com/)
 

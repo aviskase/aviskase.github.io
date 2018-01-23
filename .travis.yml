@@ -8,7 +8,7 @@ install:
 
 script:
   - jekyll build
-  - htmlproofer --check-html --assume-extension --check-favicon --http-status-ignore "429" ./_site
+  - htmlproofer --check-html --assume-extension --check-favicon --only-4xx --http-status-ignore "429" ./_site
   - chmod a+x .test_size.sh
   - ./.test_size.sh ./assets/images 1
 env:
