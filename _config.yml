@@ -5,7 +5,7 @@ url: https://aviskase.github.io
 kramdown:
   input: GFM
 
-gems:
+plugins:
   - jemoji
   - jekyll-sitemap
 
