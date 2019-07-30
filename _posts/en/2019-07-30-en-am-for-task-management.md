@@ -4,7 +4,7 @@ ref: 190730
 lang: en
 ---
 
-I'm an infrequent blogger, so how weird it is my last post was about RTM? I was a loyal RTM user for quite a time... Well, I have a new love now. His name is [Marvin](https://www.amazingmarvin.com/). 
+I'm an infrequent blogger, so how weird it is that my last post was about RTM? I was a loyal RTM user for quite a time... Well, I have a new love now. His name is [Marvin](https://www.amazingmarvin.com/). 
 
 Marvin is still young, yet powerful. He has some problems and rough corners, but development couple (yes, just 2 persons!) is the most responsive and creative force I've seen. I'm still learning and tweaking my system there, but I want to describe the first working iteration to be able to improve and compare later.
 
@@ -110,7 +110,7 @@ I have a recurring task *Plan tasks for the next month*, which is setup to run m
 
 ### Weekly planning
 
-This is a *Weekly Review* strategy with checklist scheduled to be done on Sundays. Checklist is a combination of weekly planning and everyday review stuff.
+This is a **Weekly Review** strategy with checklist scheduled to be done on Sundays. Checklist is a combination of weekly planning and everyday review stuff.
 
 #### Reformulate task names left in Today pool
 
