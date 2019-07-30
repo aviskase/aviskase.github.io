@@ -102,7 +102,7 @@ My PS cycle has three phases:
 
 - Daily scheduling
 
-Notice difference between planning and scheduling? This is because AM has a bit head-scratching at first, but really powerful distinction between these processes. In short, *planning* is about assigning *start date* and *end date* ("soft deadline") and *scheduling* is about assigning a *due date* ("when should I do this task"). Also, there can be a *due date*, it's not quite clear is it planning or scheduling category. I think both, because I use **Auto-schedule Due Tasks** strategy. For example, if something is due tomorrow, this task will have a do date = today.
+Notice difference between planning and scheduling? This is because AM has a bit head-scratching at first, but really powerful distinction between these processes. In short, *planning* is about assigning *start date* and *end date* ("soft deadline") and *scheduling* is about assigning a *do date* ("when should I do this task"). Also, there can be a *due date*, it's not quite clear is it planning or scheduling category. I think both, because I use **Auto-schedule Due Tasks** strategy. For example, if something is due tomorrow, this task will have a do date = today.
 
 ### Monthly planning
 
