@@ -106,7 +106,7 @@ Notice difference between planning and scheduling? This is because AM has a bit 
 
 ### Monthly planning
 
-I have a recurring task *Plan tasks for the next month*, which is setup to run monthly on the 31st day. To complete this task I go to **Planning > Monthly** and plan task **only** for the next month while working from *Master List*. I don't want to overplan too much into the future.  What can be changed is maybe I should work from some smart list, but so far I don't have too many tasks in ML.
+I have a recurring task *Plan tasks for the next month*, which is setup to run monthly on the 31st day. To complete this task I go to **Planning > Monthly** and plan tasks **only** for the next month while working from *Master List*. I don't want to overplan too much into the future.  What can be changed is maybe I should work from some smart list, but so far I don't have too many tasks in ML.
 
 ### Weekly planning
 
@@ -116,7 +116,7 @@ This is a **Weekly Review** strategy with checklist scheduled to be done on Sund
 
 Done on: Daily view
 
-This a part from Jedi techniques, which goal is to rename task you didn't complete for some reason. That way the next day they will look "fresher" or more inviting to you.
+This is a part from Jedi techniques, which goal is to rename tasks you didn't complete for some reason. That way the next day they will look "fresher" or more inviting to you.
 
 #### Review calendars for 2 weeks ahead: add tasks if needed
 
@@ -178,9 +178,9 @@ Triggers are things which can be used to recall what was forgotten. For example,
 
 Backwards day recall is a technique also used to recall things. You sit down and try to remember today in detail in backwards: from now to the morning.
 
-#### Empty inboxes: paper, gmail, outlook, jotter, AM
+#### Empty inboxes: paper, gmail, outlook, joplin, AM
 
-Categorize everything and clean up all inboxes I can have. First go with paper notes, then emails (gmail + outlook), then note taking application (for now it's Jotter), and finally AM category *Inbox*
+Categorize everything and clean up all inboxes I can have. First go with paper notes, then emails (gmail + outlook), then note taking application (for now it's Joplin), and finally AM category *Inbox*
 
 If you see something that should be planned for this month, set it right away.
 
@@ -228,7 +228,7 @@ Main:
 
 * Health
 
-* Productivity --- tasks like everyday review or cleaning up overflown inboxes. I suppose calendar think will go there too.
+* Productivity --- tasks like everyday review or cleaning up overflown inboxes. I suppose calendar sync will go there too.
 
 ### Sections
 
