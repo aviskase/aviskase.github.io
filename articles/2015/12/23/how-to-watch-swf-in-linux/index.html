@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+          <title>aviskase - How to watch <span class="caps">SWF</span> in&nbsp;Linux</title>
+        <meta charset="utf-8" />
+        <link href="https://aviskase.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+
+        <link rel="icon" href="https://aviskase.github.io/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/style.css" />
+
+<script>var _gaq=[['_setAccount','UA-57143597-2'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<script type="text/javascript">
+    var disqus_identifier = "articles/2015/12/23/how-to-watch-swf-in-linux/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://aviskase.github.io/">aviskase</a></li>
+          <li><a class="site-title" href="https://aviskase.github.io/">BLOG</a></li>
+
+            <li><a href="https://aviskase.github.io/pages/about/">About</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <div class="center">
+        <h1>How to watch <span class="caps">SWF</span> in&nbsp;Linux</h1>
+
+        <time class="published">
+    23rd December 2015</time>
+    </div>
+
+    <div class="divider"></div>
+
+    <p>Sometimes people use Jing to record videos for bug reports. This pest is saving them as <span class="caps">SWF</span> file. So, here is a simple note on how to open these videos in&nbsp;Linux.</p>
+<p>It&rsquo;s really easy. Firefox can open them (of course, if Shockwave plugin is present). Just download that nasty video and open it in <span class="caps">FF</span>, all&rsquo;s&nbsp;done.</p>
+<p>But there is a catch. I don&rsquo;t know how it&rsquo;s on Windows, but for Linux you should edit mime types. In order to do that you should create a file <code>~/.mime.types</code> with this&nbsp;content:</p>
+<div class="highlight"><pre><span></span>application/x-shockwave-flash  swf swfl
+</pre></div>
+
+<p>That&rsquo;s all! This way is the easiest, because it works only for the owner of the home directory, where the file was&nbsp;created.</p>
+<p>But if you want, you can make this setting global. But be careful, because everything will be reset after an upgrade. You should open the&nbsp;file: </p>
+<div class="highlight"><pre><span></span>$ sudo nano /usr/share/mime/packages/freedesktop.org.xml
+</pre></div>
+
+<p>and replace this&nbsp;string:</p>
+<div class="highlight"><pre><span></span>&lt;mime-type type=&quot;application/vnd.adobe.flash.movie&quot;&gt;
+</pre></div>
+
+<p>with this&nbsp;one:</p>
+<div class="highlight"><pre><span></span>&lt;mime-type type=&quot;application/x-shockwave-flash&quot;&gt;
+</pre></div>
+
+<p>Then&nbsp;execute:</p>
+<div class="highlight"><pre><span></span>$ sudo update-mime-database /usr/share/mime
+</pre></div>
+
+    <div class="divider"></div>
+
+
+<hr><div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="https://aviskase.github.io/feeds/all.atom.xml">Subscribe!</a>
+    </footer>
+
+</body>
+</html>
