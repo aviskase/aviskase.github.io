@@ -1,6 +1,5 @@
-_site/
-.jekyll-metadata
-.DS_Store
-.sass-cache
 *.sublime-workspace
 *.sublime-project
+
+venv
+__pycache__

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+
+    <head>
+        {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8" />
+        {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+
+
+        <link rel="icon" href="{{ SITEURL }}/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/style.css" />
+
+        {% include "analytics.html" %}
+        {% include "disqus.html" %}
+        {% endblock head %}
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="{{ SITEURL }}/">{{ SITENAME }}</a></li>
+          <li><a class="site-title" href="{{ SITEURL }}/">BLOG</a></li>
+
+          {% if DISPLAY_PAGES_ON_MENU %}
+          {% for p in pages %}
+            <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+          {% endfor %}
+          {% endif %}
+
+        </ul>
+
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <a href="mailto:{{ EMAIL }}">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">Subscribe!</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+          <title>aviskase - Thoughts on &#8220;The &#8216;A&#8217;&nbsp;Word&#8221;</title>
+        <meta charset="utf-8" />
+
+
+        <link rel="icon" href="/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+
+
+
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="/">aviskase</a></li>
+          <li><a class="site-title" href="/">BLOG</a></li>
+
+            <li><a href="/pages/about/">About</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <div class="center">
+        <h1>Thoughts on &#8220;The &#8216;A&#8217;&nbsp;Word&#8221;</h1>
+
+        <time class="published">
+    30th July 2016</time>
+    </div>
+
+    <div class="divider"></div>
+
+    <p>Alan Page is known as one of the authors of &ldquo;How We Test Software at Microsoft&rdquo;. But there is another good book and it&rsquo;s called &ldquo;The &lsquo;A&rsquo; Word&rdquo;. You can buy it on <a href="https://leanpub.com/TheAWord">LeanPub</a>.</p>
+<p>The book is about automation in testing, but not how <em>to do</em> it &mdash; it&rsquo;s about how <em>to think</em> about it. It&rsquo;s short, just 58 pages, but very dense with ideas and Alan&rsquo;s&nbsp;opinions.</p>
+<p>As I am not qualified to give an opinion on automation topics (because I don&rsquo;t have much experience with it), I&rsquo;ve just gathered some notes for future referencing. Sections are divided by&nbsp;chapters.</p>
+<hr>
+<blockquote>
+<p>Sometimes, testers use programming skills to help their testing. Sometimes, that code automates some application functionality. That&rsquo;s&nbsp;it.</p>
+</blockquote>
+<h3>Testing: Failing to&nbsp;Succeed</h3>
+<p>There is a very famous concept called &ldquo;Orders of Ignorance&rdquo; introduced by Phillip Glen Armour (<a href="https://www.researchgate.net/publication/27293624_The_five_orders_of_ignorance">more here</a>). Chapter&rsquo;s idea is that mostly tests are done on <span class="caps">0OI</span> level, but we should never forget about <span class="caps">2OI</span> test. <span class="caps">0OI</span> is a lack of ignorance (I know) and <span class="caps">2OI</span> is a lack of awareness (I don&rsquo;t know what I don&rsquo;t&nbsp;know).</p>
+<blockquote>
+<p><span class="caps">0OI</span> tests are <em>knowledge-proving</em> tests, while <span class="caps">2OI</span> tests are <em>knowledge-acquiring</em>&nbsp;tests.</p>
+</blockquote>
+<h3>The Robots are Taking&nbsp;Over</h3>
+<blockquote>
+<p>Humans fail when they don&rsquo;t use automation to solve problems impossible or impractical for manual&nbsp;efforts.</p>
+<p>Automation fails when it tries to do or verify something that&rsquo;s more suited for a human&nbsp;evaluation.</p>
+</blockquote>
+<h3>To Automate&nbsp;&hellip;?</h3>
+<blockquote>
+<p><em>Good</em> testers test first &mdash; or at the very least they think of tests&nbsp;first. </p>
+<p><em>Great</em> testers first think about how they&rsquo;re going to approach a testing problem, then figure out what&rsquo;s suitable for automation, and what&rsquo;s not&nbsp;suitable. </p>
+<p>You should automate 100% of the tests that <em>should be</em>&nbsp;automated</p>
+</blockquote>
+<p>Alan&rsquo;s heuristic when to automate: &ldquo;I&rsquo;m&nbsp;Bored&rdquo;</p>
+<h3>The Coding&nbsp;Tester</h3>
+<p>Summary:</p>
+<ul>
+<li>the role of a coder-tester <em>is not</em> to automate&nbsp;everything</li>
+<li>testers <em>do not</em> need to have a computer&nbsp;science</li>
+<li>testers <em>do not</em> need to be able to&nbsp;program</li>
+<li>programming knowledge <em>does not</em> destroy &ldquo;a proper tester&nbsp;angle&rdquo;</li>
+<li>background similar to customer&rsquo;s <em>does not</em> make you a&nbsp;customer</li>
+</ul>
+<h3><span class="caps">GUI</span>&nbsp;Shmooey</h3>
+<blockquote>
+<p>For 95% of all software applications, directly automating the <span class="caps">GUI</span> is a waste of&nbsp;time. </p>
+<p>For the record, I typed 99% above first, then chickened&nbsp;out.</p>
+</blockquote>
+<h3>Design for <span class="caps">GUI</span>&nbsp;Automation</h3>
+<p>Alan&rsquo;s main points for disliking <span class="caps">GUI</span>&nbsp;automation:</p>
+<ul>
+<li>It&rsquo;s (typically) fragile &mdash; tests tend to break / stop working / work unsuccessfully&nbsp;often</li>
+<li>It rarely lasts through multiple versions of a project (another aspect of&nbsp;fragility)</li>
+<li>It&rsquo;s freakin&rsquo; hard to automate <span class="caps">UI</span> (and keep track of state, verify,&nbsp;etc.)</li>
+<li>Available tools are weak to moderate (this is arguable, depending on what you want to do with the tools &mdash; I&rsquo;m particularly pleased, for example, with what good testers are able to do with selenium and web&nbsp;driver).</li>
+</ul>
+<blockquote>
+<p>I love <span class="caps">GUI</span> automation that can automatically explore variations of a <span class="caps">GUI</span> based task&nbsp;flow.</p>
+<p>I like <span class="caps">GUI</span> automation is in stress or performance&nbsp;issues.</p>
+</blockquote>
+<h3>It&rsquo;s (probably) a Design&nbsp;Problem</h3>
+<ul>
+<li>Record <span class="amp">&amp;</span> Playback automation is a&nbsp;non-starter</li>
+<li>Basic verification that would be hit by anyone walking through the basics of the application isn&rsquo;t worth&nbsp;automation</li>
+<li>Tests that do exactly the same thing every time are not&nbsp;valuable</li>
+<li>Always think&nbsp;forward</li>
+<li>Plan for failure and ensure that all test failures tell you exactly what is&nbsp;wrong</li>
+<li>Tests should be&nbsp;reliable</li>
+<li>There is always a better alternative to Sleep&nbsp;statements</li>
+<li><span class="caps">UI</span> is fragile, its testability should&nbsp;designed</li>
+</ul>
+<h3>In the&nbsp;Middle</h3>
+<p>Alan&rsquo;s brainstorming technique: first spend a reasonable amount of time focusing on the extremes &mdash; because often, some great ideas for &ldquo;the middle&rdquo; comes out of that&nbsp;brainstorming. </p>
+<h3>Test Design for&nbsp;Automation</h3>
+<blockquote>
+<p>The first step &mdash; and most important &mdash; is to think how you&rsquo;re going to&nbsp;test.</p>
+<p>From that initial test design effort, you can deduce what aspects of testing could be accomplished more efficiently with automation (and&nbsp;without).</p>
+</blockquote>
+<h3>Orchestrating Test&nbsp;Automation</h3>
+<blockquote>
+<p>Designing good tests is one of the hardest tasks in software&nbsp;development.</p>
+</blockquote>
+<h3><span class="caps">LOL</span> &mdash; <span class="caps">UR</span> <span class="caps">AUTOMASHUN</span> <span class="caps">SUCKZ</span>!</h3>
+<p>Your tests don&rsquo;t&nbsp;suck:</p>
+<ul>
+<li>when you treat their code like a production code<ul>
+<li>core&nbsp;reviews</li>
+<li>static&nbsp;analysis</li>
+<li>running with the debugger to ensure they are doing what you think they&nbsp;are</li>
+<li>trust: if a test fails, it&rsquo;s a product bug, not a test&nbsp;bug</li>
+</ul>
+</li>
+<li>when they execute&nbsp;automatically</li>
+<li>when failures are handled automatically<ul>
+<li>bugs are entered automatically &mdash; including logs, call stacks, screen shots, trace information, and other relevant&nbsp;info</li>
+<li>when bug is fixed, it&rsquo;s checked&nbsp;automatically</li>
+<li>generation of &ldquo;Test Result&nbsp;Report&rdquo;</li>
+</ul>
+</li>
+</ul>
+<h3>Musings on Test&nbsp;Design</h3>
+<blockquote>
+<p>Some tests can only be run via some sort of test&nbsp;automation.</p>
+<p>Some tests can only be done via human&nbsp;interaction.</p>
+<p>You can&rsquo;t effectively think about automated testing separately from human&nbsp;testing.</p>
+<p>In my world, there are no such things as automated testing, exploratory testing, manual testing,&nbsp;etc.</p>
+<p>There is only&nbsp;testing</p>
+</blockquote>
+<h3>Beyond Regression Tests <span class="amp">&amp;</span> Testing with&nbsp;Code</h3>
+<blockquote>
+<p>Useful tests are tests that provide new&nbsp;information. </p>
+<p>An automation strategy that only performs regression testing is short-sighted and&nbsp;incomplete.</p>
+</blockquote>
+<p>How to make test&nbsp;useful:</p>
+<ul>
+<li>model-based&nbsp;testing</li>
+<li>introducing some&nbsp;randomness</li>
+<li>data driven&nbsp;testing</li>
+<li>scaled fault&nbsp;injection </li>
+<li>fuzzing</li>
+</ul>
+<h3>More on Test&nbsp;Design</h3>
+<blockquote>
+<p>Test Design ideas are <em>endless.</em></p>
+<p>To be a <em>good</em> test designer (and tester), you need a lot of testing ideas, and you need to know how and when to apply&nbsp;them.</p>
+</blockquote>
+
+    <div class="divider"></div>
+
+
+
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="/None">Subscribe!</a>
+    </footer>
+
+</body>
+</html>

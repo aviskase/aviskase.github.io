@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% macro customedate(date) -%}
+
+    {% if 4 <= date.day <= 20 or 24 <= date.day <= 30 %}
+        {% set suffix = "th" %}
+    {% else %}
+        {% set suffix = ["st", "nd", "rd"][date.day % 10 - 1] %}
+    {% endif %}
+
+    {{date.day}}{{suffix}} {{ date | strftime('%B %Y')}}
+{%- endmacro %}
+
+
+
+
+{% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+
+  {% if article.description %}
+    <meta name="description" content="{{article.description}}" />
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<article>
+
+    <div class="center">
+        <h1>{{ article.title }}</h1>
+
+        <time class="published">{{ customedate(article.date) }}</time>
+        {% if article.modified %}
+          <time class="modified">{{ customedate(article.modified) }}</time>
+        {% endif %}
+    </div>
+
+    <div class="divider"></div>
+
+    {{ article.content }}
+
+    <div class="divider"></div>
+
+
+    {% if DISQUS_SITENAME %}<hr><div id="disqus_thread"></div>{% endif %}
+
+</article>
+{% endblock %}

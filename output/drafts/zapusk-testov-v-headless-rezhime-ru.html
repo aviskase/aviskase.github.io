@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+          <title>aviskase - Запуск тестов в headless&nbsp;режиме</title>
+        <meta charset="utf-8" />
+
+
+        <link rel="icon" href="/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+
+
+
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="/">aviskase</a></li>
+          <li><a class="site-title" href="/">BLOG</a></li>
+
+            <li><a href="/pages/about/">About</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <div class="center">
+        <h1>Запуск тестов в headless&nbsp;режиме</h1>
+
+        <time class="published">
+    4th November 2015</time>
+    </div>
+
+    <div class="divider"></div>
+
+    <p>Это баян, все это знают, но а вдруг&nbsp;забуду?</p>
+<p>Коротенько о том, что питон прелестен и аве&nbsp;плагино-писателям.</p>
+<h2>Болтовня</h2>
+<p>Поставила Jenkins как белый человек нативно, а не war. И тут-то оказалось, что запустить Selenium тесты просто так не выйдет. Видите-ли при установке Jenkins создал себе собственного юзверя и выполняет задачки от его имени. А значит, если вы залогинены под собой, то этот пользователь не имеет доступа к гуям. Такие&nbsp;дела.</p>
+<p>Поэтому нужно обеспечить ему доступ к виртуальным гуям. По сути есть два способа это сделать: <em>vncserver</em> либо <em>xvfb</em>. Здесь и далее речь идет о *nix, что там под Windows я не знаю, и не очень хочу выяснять, пока не&nbsp;припрет.</p>
+<p>Честно, я не в курсе, что там за разница между этими двумя способами. Субъективно, <em>xvfb</em>&nbsp;быстрее.</p>
+<h2>Установка</h2>
+<p>Команды приведены для debian-like&nbsp;дистрибутивов.</p>
+<h3>Vncserver</h3>
+<p>Ставим, настраиваем. В процессе попросит поставить пароль для vnc сервера &mdash; пишем что угодно, он нам не&nbsp;понадобится.</p>
+<div class="highlight"><pre><span></span>$ sudo apt-get install -y vnc4server
+$ sudo su jenkins
+$ vncserver
+$ <span class="nb">exit</span>
+</pre></div>
+
+<h3>Xvfb</h3>
+<p>Все просто, ставим и радуемся. Поговаривают, что там еще какие-то шрифты нужно установить. Я не ставила, но тебя, заблудший сюда, если что предупредили&nbsp;=)</p>
+<div class="highlight"><pre><span></span>$ sudo apt-get install xvfb
+</pre></div>
+
+<h2>Как&nbsp;запускать</h2>
+<h3>Python</h3>
+<p>Существует библиотека <a href="https://pypi.python.org/pypi/PyVirtualDisplay">PyVirtualDisplay</a>. Это обертка вокруг этих наших виртуальных дисплеев. Нет смысла сособо ее описывать, доки очень понятные. Приведу лишь пример кода в&nbsp;тесте:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">pyvirtualdisplay</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="c1"># tests</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+<p>Этот способ хорош тем, что не зависит от того, где будут запускаться тесты. Есть Jenkins, нет его, какой конкретно X установлен &mdash; не нужно&nbsp;заморачиваться.</p>
+<h3>Java</h3>
+<p>Умные люди говорят, что таких замечательных библиотек для джавы нема. У меня тоже найти не получилось. Поэтому скажем спасибо хорошим людям, которые написали плагины для&nbsp;Jenkins.</p>
+<p>Если запускать через vncserver, то нужно установить плагин <code>xvnc</code>. Если через xvfb &mdash; то <code>xvfb</code>.</p>
+<p>И теперь при конфигурации джобов нужно все-лишь поставить галочку  &ldquo;Run xvnc / xvfb during build&rdquo; в разделе &ldquo;Build Environment&rdquo;. Вроде&nbsp;все.</p>
+<p>С одной стороны, этот способ хорош тем, что метод запуска отделен от логики тестов. С другой стороны, если мы захотим прогнать эти же самые тесты на локальной машине, то все равно придется городить зависимости от maven плагинов (да, они&nbsp;существуют).</p>
+<h2><span class="caps">P.S.</span></h2>
+<p>Ну да, знаю, есть же еще PhantomJS. Готовый headless браузер. Замечательная штука, но он не смог переварить прелестный код мой текущего проекта и отказывается грузить половину элементов. Поэтому play-safe, лучше пусть будет тормознее, но с реальными&nbsp;браузерами.</p>
+<p>Кстати. Headless. А как по-русски? Мне на ум приходит только&nbsp;&ldquo;безбашенный&rdquo;.</p>
+
+    <div class="divider"></div>
+
+
+
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="/None">Subscribe!</a>
+    </footer>
+
+</body>
+</html>

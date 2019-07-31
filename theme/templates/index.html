@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<section>
+<ul>
+    {% for year, year_group in dates|groupby('date.year')|reverse %}
+    {% for month, month_group in year_group|groupby('date.month')|reverse %}
+     <li><div class="post-date">{{ (month_group|first).date|strftime('%B %Y') }}</div></li>
+     <ul>
+         {% for article in month_group %}
+            <li class="title">
+                <a href="{{ SITEURL }}/{{ article.url }}">
+                    <div class='post-day'>{{ article.date | strftime('%-d') }}</div>
+                    <div class='post-title'>{{ article.title }}</div>
+                </a>
+            </li>
+         {% endfor %}
+     </ul>
+     {% endfor %}
+     {% endfor %}
+</ul>
+</section>
+
+
+{% endblock content %}
+
+
+
+
