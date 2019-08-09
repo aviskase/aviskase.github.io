@@ -79,4 +79,21 @@ github: publish
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 
+DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
+SLUG := $(shell echo '${NAME}' | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)
+EXT ?= md
+
+newpost:
+ifdef NAME
+	echo "Title: $(NAME)" >  $(INPUTDIR)/articles/$(SLUG).$(EXT)
+	echo "Date: $(DATE)" >> $(INPUTDIR)/articles/$(SLUG).$(EXT)
+	echo ""              >> $(INPUTDIR)/articles/$(SLUG).$(EXT)
+	echo ""              >> $(INPUTDIR)/articles/$(SLUG).$(EXT)
+	subl ${INPUTDIR}/articles/${SLUG}.${EXT} &
+else
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make newpost NAME='"'"'Post Name'"'"
+endif
+
+
 .PHONY: html help clean regenerate serve serve-global devserver publish github
