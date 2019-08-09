@@ -27,7 +27,7 @@ AUTHOR_FEED_RSS = None
 #RELATIVE_URLS = True
 
 PLUGIN_PATHS = ['../pelican-plugins']
-
+PLUGINS = ['neighbors']
 
 ARTICLE_PATHS = ['articles']
 STATIC_PATHS = ['images', 'pdf']

@@ -184,14 +184,36 @@ article .title {
  line-height:1.4em;
  text-align:center
 }
+
+article .page-navigation {
+    text-align: center;
+    max-width: 500px;
+    margin:2em 0;
+    font-size: 1rem;
+}
+
+article .page-navigation a {
+    color: #555;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+article .page-navigation span {
+    color: #555;
+    display: inline-block;
+}
+
+
 article .divider {
- background:#ddd;
+ background: #ddd;
  background:-webkit-gradient(linear, left top, right top, from(rgba(255,255,255,0)), color-stop(#ccc), to(rgba(255,255,255,0)));
  background:-webkit-linear-gradient(left, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
  background:linear-gradient(to right, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
  height:1px;
- margin:2em 0
+ margin:2em 0;
 }
+
 article .center {
  text-align:center;
  margin:0 auto

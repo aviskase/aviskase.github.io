@@ -39,10 +39,23 @@
 
     {{ article.content }}
 
-    <div class="divider"></div>
 
 
-    {% if DISQUS_SITENAME %}<hr><div id="disqus_thread"></div>{% endif %}
+    <div class="page-navigation code">
+    {% if article.prev_article %}
+        <a class="prev" href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title | striptags }}">&larr; older</a>
+    {% endif %}
+
+    {% if article.prev_article and article.next_article %}
+        <span>&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+    {% endif %}
+
+    {% if article.next_article %}
+        <a class="next" href="{{ SITEURL }}/{{ article.next_article.url}}" title="{{ article.next_article.title | striptags }}">newer &rarr;</a>
+    {% endif %}
+    </div>
+
+    {% if DISQUS_SITENAME %}<div id="disqus_thread"></div>{% endif %}
 
 </article>
 {% endblock %}
