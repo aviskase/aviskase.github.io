@@ -9,6 +9,7 @@ from invoke import task
 from invoke.util import cd
 from pelican.server import ComplexHTTPRequestHandler, RootedHTTPServer
 from pelican.settings import DEFAULT_CONFIG, get_settings_from_file
+from pelican.utils import slugify
 
 SETTINGS_FILE_BASE = 'pelicanconf.py'
 SETTINGS = {}
@@ -112,3 +113,14 @@ def gh_pages(c):
     c.run('ghp-import -b {github_pages_branch} '
           '-m {commit_message} '
           '{deploy_path} -p'.format(**CONFIG))
+
+
+@task
+def new_post(c, post_name):
+    date = datetime.date.today().isoformat()
+    slug = slugify(post_name, regex_subs=SETTINGS.get('SLUG_REGEX_SUBSTITUTIONS', []))
+    ext = 'md'
+    file_path = f'content/articles/{date}-{slug}.{ext}'
+    with open(file_path, mode='w') as f:
+        f.write(f'Title: {post_name}\nDate: {date}\n\n')
+    c.run(f'subl {file_path} &')
