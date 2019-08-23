@@ -18,3 +18,5 @@ Unidecode>=1.1.1
 pelican-readtime
 pelican-gist
 minchin.pelican.plugins.optimize-images
+invoke
+livereload

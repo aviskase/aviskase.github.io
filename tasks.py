@@ -102,13 +102,8 @@ def livereload(c):
 
 @task
 def publish(c):
-    """Publish to production via rsync"""
-    c.run('pelican -s {settings_publish}'.format(**CONFIG))
-    c.run(
-        'rsync --delete --exclude ".DS_Store" -pthrvz -c '
-        '{} {production}:{dest_path}'.format(
-            CONFIG['deploy_path'].rstrip('/') + '/',
-            **CONFIG))
+    """Publish to production"""
+    c.run('pelican -s {settings_publish} --fatal=warnings'.format(**CONFIG))
 
 @task
 def gh_pages(c):
