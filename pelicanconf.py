@@ -26,7 +26,12 @@ AUTHOR_FEED_RSS = None
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-PLUGINS = ['neighbors', 'readtime', 'pelican_gist']
+PLUGINS = [
+  'neighbors',
+  'readtime',
+  'pelican_gist',
+  'minchin.pelican.plugins.optimize_images'
+]
 
 READTIME_WPM = 180
 
