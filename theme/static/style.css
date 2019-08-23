@@ -73,9 +73,14 @@ sup {
  top:-0.5em;
  margin-left:1px
 }
-time {
+time, .readtime {
  color:#555
 }
+
+.readtime {
+ padding-top: 0.5em;
+}
+
 code,
 pre {
  font-family:Consolas, monospace, x
@@ -211,13 +216,18 @@ article .divider {
  background:-webkit-linear-gradient(left, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
  background:linear-gradient(to right, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
  height:1px;
- margin:2em 0;
+ margin:1em 0 1.75em 0;
 }
 
 article .center {
  text-align:center;
  margin:0 auto
 }
+
+article .center h1 {
+    margin-bottom: 0.5em;
+}
+
 article hr {
  border:0;
  border-bottom:1px solid #000;

@@ -26,8 +26,9 @@ AUTHOR_FEED_RSS = None
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-PLUGIN_PATHS = ['../pelican-plugins']
-PLUGINS = ['neighbors']
+PLUGINS = ['neighbors', 'readtime', 'pelican_gist']
+
+READTIME_WPM = 180
 
 ARTICLE_PATHS = ['articles']
 STATIC_PATHS = ['images', 'pdf']

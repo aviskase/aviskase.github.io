@@ -30,9 +30,21 @@
         <h1>{{ article.title }}</h1>
 
         <time class="published">{{ customedate(article.date) }}</time>
+
+
+
         {% if article.modified %}
-          <time class="modified">{{ customedate(article.modified) }}</time>
+          <time class="modified"> / upd: {{ customedate(article.modified) }}</time>
         {% endif %}
+
+        <div class="readtime">
+            {% if article.readtime %}
+            ~&nbsp;{{article.readtime}}&nbsp;min&nbsp;read
+            {% else %}
+            ~&nbsp;1&nbsp;min&nbsp;read
+            {% endif %}
+        </div>
+
     </div>
 
     <div class="divider"></div>
