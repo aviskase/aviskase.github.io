@@ -4,6 +4,7 @@ import os
 import shutil
 import sys
 import datetime
+from pathlib import Path
 
 from invoke import task
 from invoke.util import cd
@@ -123,4 +124,14 @@ def new_post(c, post_name):
     file_path = f'content/articles/{date}-{slug}.{ext}'
     with open(file_path, mode='w') as f:
         f.write(f'Title: {post_name}\nDate: {date}\n\n')
-    c.run(f'subl {file_path} &')
+    c.run(f'subl {file_path} &', pty=True)
+
+
+@task
+def touch_date(c, post_path):
+    date = datetime.date.today().isoformat()
+    post_path = Path(post_path)
+    post_name = post_path.name[10:]
+    file_path = f'content/articles/{date}{post_name}'
+    c.run(f'sed -i \'s/Date:.*/Date: {date}/\' {post_path}')
+    c.run(f'mv {str(post_path)} {file_path}')
