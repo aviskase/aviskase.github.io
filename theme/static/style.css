@@ -82,7 +82,8 @@ time, .readtime {
 }
 
 code,
-pre {
+pre,
+kbd {
  font-family:Consolas, monospace, x
 }
 code {
@@ -300,6 +301,26 @@ section ul li .post-title:hover {
 .emoji {
  margin:0
 }
+
+
+.keys kbd {
+    padding: 0 0.29412em;
+    border: 0.1rem solid #c9c9c9;
+    border-bottom-color: rgb(201, 201, 201);
+    border-radius: 0.3rem;
+    border-bottom-color: #bcbcbc;
+    background-color: #FCFCFC;
+    color: #555555;
+    font-size: 85%;
+    box-shadow: 0 0.1rem 0 #b0b0b0;
+    word-break: break-word;
+}
+
+.keys span {
+    padding: 0 .2rem;
+    color: #555555;
+}
+
 .highlight {
  margin:0.5em 0 1.5em 0
 }

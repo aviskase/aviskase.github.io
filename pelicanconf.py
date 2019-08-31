@@ -59,7 +59,7 @@ MARKDOWN = {
         'markdown.extensions.meta': {},
         'markdown.extensions.sane_lists': {},
         'markdown.extensions.smarty': {},
-        # 'markdown.extensions.nl2br': {},
+        'markdown.extensions.admonition': {},
         # 'markdown.extensions.toc': {'permalink': True},
         # https://facelessuser.github.io/pymdown-extensions/
         'pymdownx.extra': {},
@@ -77,6 +77,9 @@ MARKDOWN = {
         'pymdownx.tilde': {},
         'pymdownx.magiclink': {},
         'pymdownx.smartsymbols': {},
+        'pymdownx.keys': {'key_map': {'percent': '%'}},
+        'nlbqx.nlbqx': {},
+        'nlcx.nlcx': {},
     },
     'output_format': 'html5',
     'lazy_ol': False,

@@ -50,14 +50,14 @@ touch {fileA,fileB}.txt
 
 tmux --- terminal multiplexor
 
-* Go to commands mode: <kbd>Ctrl + B</kbd>
-* Create new window: <kbd>Ctrl + B , C </kbd>
-* Create vertical split: <kbd>Ctrl + B , % </kbd>
-* Create horizontal split: <kbd>Ctrl + B , " </kbd>
-* Go to window number N: <kbd>Ctrl + B , &lt;N&gt;</kbd>
-* Go to next window: <kbd>Ctrl + B , N</kbd>
-* Go to previous window: <kbd>Ctrl + B , P</kbd>
-* Close window or split: <kbd>Ctrl + B , X</kbd>
-* Detach (temporal exit): <kbd>Ctrl + B , D</kbd>
+* Go to commands mode: ++ctrl+b++
+* Create new window: commands mode and ++c++
+* Create vertical split: commands mode and ++percent++
+* Create horizontal split: commands mode and ++double-quote++
+* Go to window number 1 ... 9: commands mode and ++1++ ... ++9++
+* Go to next window: commands mode and ++n++
+* Go to previous window: commands mode and ++p++
+* Close window or split: commands mode and ++x++
+* Detach (temporal exit): commands mode and ++d++
 * Return to tmux: `tmux attach / tmux a`
 * List all running tmux: `tmux list-sessions`

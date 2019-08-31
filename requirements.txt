@@ -20,3 +20,5 @@ pelican-gist
 minchin.pelican.plugins.optimize-images
 invoke
 livereload
+Markdown-No-Lazy-Code-Extension
+Markdown-No-Lazy-BlockQuote-Extension
