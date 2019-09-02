@@ -13,7 +13,7 @@
 
 
 
-{% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
+{% block title %}{{ SITENAME }} - {{ article.title | striptags }}{% endblock %}
 
 {% block head %}
   {{ super() }}
