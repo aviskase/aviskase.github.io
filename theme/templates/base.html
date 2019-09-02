@@ -3,6 +3,7 @@
 
     <head>
         {% block head %}
+        {% include "analytics.html" %}
         <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
         <meta charset="utf-8" />
         {% if FEED_ALL_ATOM %}
@@ -18,7 +19,6 @@
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/fontello.css" />
         <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/style.css" />
 
-        {% include "analytics.html" %}
         {% include "disqus.html" %}
         {% endblock head %}
     </head>
