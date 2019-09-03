@@ -1,4 +1,4 @@
-Title: How to watch SWF in Linux
+Title: How to Watch SWF in Linux
 Date: 2015-12-23
 
 Sometimes people use Jing to record videos for bug reports. This pest is saving them as SWF file. So, here is a simple note on how to open these videos in Linux.

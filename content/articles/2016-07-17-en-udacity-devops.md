@@ -1,4 +1,5 @@
 Title: Course "Intro to DevOps" by Udacity
+Date: 2016-07-17
 
 I love MOOCs: Coursera, Udacity, Stepic. There are so many courses to watch for entire life. Just now watched a course [Intro to DevOps](https://www.udacity.com/course/intro-to-devops--ud611) by Udacity.
 
@@ -23,7 +24,7 @@ Components that make up DevOps --- CAMS:
 > If you can't measure it, you can't improve it.
 
 
-## Solving the environment problem
+## Solving the Environment Problem
 
 1. Golden image
     * more work up front --- large install image must be regenerated for any change
@@ -52,7 +53,7 @@ Monitoring data products:
 
 ![Monitoring systems]({attach}/images/monitoring_systems.png)
 
-## Additional resources
+## Additional Resources
 
 ### Notable Books
 
@@ -68,7 +69,7 @@ Monitoring data products:
 * [Jez Humble Keynote](https://www.youtube.com/watch?v=L1w2_AY82WY) --- ChefConf 2015
 * [Leading the Horses to Drink](https://vimeo.com/69079272) --- support and initiate a DevOps transformation by Damon Edwards
 
-### Additional DevOps related blogs and sites
+### Additional DevOps Related Blogs and Sites
 
 * [What DevOps means to me](https://www.chef.io/blog/2010/07/16/what-devops-means-to-me/) --- an explanation of the components that make up CAMS (Culture, Automation, Measurement, Sharing), as well additional thoughts on what DevOps is and is not --- by John Willis
 * [dev2ops](http://dev2ops.org/) --- delivering change in a DevOps and cloud world
@@ -84,7 +85,7 @@ Monitoring data products:
 * [Nutanix Education YouTube channel](https://www.youtube.com/channel/UCJupSMWQRKQTvkb2CfkW0Eg)
 * [Nutanix NEXT community site](http://next.nutanix.com/)
 
-### Popular monitoring tools
+### Popular Monitoring Tools
 
 * [Nagios](https://www.nagios.org/) and [Zabbix](http://www.zabbix.com/) --- comprehensive solutions for monitoring large infrastructure, but maybe too big and complex for small projects
 * [Graphite](http://graphite.wikidot.com/) --- open-source database and a graphing solution for storing and displaying monitoring data
