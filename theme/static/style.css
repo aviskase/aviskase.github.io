@@ -87,8 +87,8 @@ kbd {
  font-family:Consolas, monospace, x
 }
 code {
- color:#f14e32;
- background:#eee;
+ color:#586e75;
+ background:#fdf6e3;
  padding:2px 6px;
  font-size:13px
 }
@@ -100,8 +100,7 @@ pre {
  line-height:1.4;
  white-space:pre;
  overflow-x:auto;
- background-color:#f9f9f9;
- border:1px solid #ddd;
+ border:1px solid #fdf6e3;
  padding:1rem
 }
 pre code {
@@ -418,7 +417,7 @@ div.tip p.admonition-title:before {
   content: "\f0eb\00a0";
 }
 
-.highlight {
+/*.highlight {
  margin:0.5em 0 1.5em 0
 }
 .highlight .hll {
@@ -620,3 +619,4 @@ div.tip p.admonition-title:before {
 .highlight .il {
  color:#cb4b16
 }
+*/
