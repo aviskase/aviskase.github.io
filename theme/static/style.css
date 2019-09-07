@@ -193,6 +193,7 @@ footer {
 article {
  max-width: 38em;
  margin:0 auto;
+ padding:0 0.75em;
  line-height: 1.75;
  color: #222;
 }
