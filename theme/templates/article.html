@@ -26,28 +26,27 @@
 {% block content %}
 <article>
 
-    <div class="center">
-        <h1>{{ article.title }}</h1>
+    <h1>{{ article.title }}</h1>
 
-        <time class="published">{{ customedate(article.date) }}</time>
+    <div class='article-meta'>
 
-
+        <time class="published">{{ article.date | strftime('%-d %b %Y') }}</time>
 
         {% if article.modified %}
-          <time class="modified"> / upd: {{ customedate(article.modified) }}</time>
+        <time class="modified"> / upd: {{ article.modified | strftime('%-d %b %Y') }}</time>
         {% endif %}
 
-        <div class="readtime">
-            {% if article.readtime %}
-            ~&nbsp;{{article.readtime}}&nbsp;min&nbsp;read
-            {% else %}
-            ~&nbsp;1&nbsp;min&nbsp;read
-            {% endif %}
-        </div>
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+        {% if article.readtime and article.readtime > 1 %}
+            {{article.readtime}}&nbsp;mins
+        {% else %}
+            1&nbsp;min
+        {% endif %}
+        </span>
 
     </div>
 
-    <div class="divider"></div>
 
     {{ article.content }}
 

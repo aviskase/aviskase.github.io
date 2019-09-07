@@ -4,7 +4,8 @@
 }
 html {
  position:relative;
- min-height:100%
+ min-height:100%;
+
 }
 body {
  font-family:'Fira Sans', sans-serif;
@@ -73,8 +74,21 @@ sup {
  top:-0.5em;
  margin-left:1px
 }
-time, .readtime {
- color:#555
+
+
+.article-meta {
+  color: #555;
+  display: inline-block;
+  margin-bottom: 1.5em;
+  margin-top: 0.75em;
+}
+
+
+.article-tags::before,
+.article-meta .modified::before,
+.article-meta .readtime::before,
+.article-comments::before {
+    content: "|";
 }
 
 .readtime {
@@ -187,7 +201,7 @@ article {
 }
 article .title {
  line-height:1.4em;
- text-align:center
+ margin-bottom: 1.25em;
 }
 
 article .page-navigation {
@@ -219,14 +233,7 @@ article .divider {
  margin:1em 0 1.75em 0;
 }
 
-article .center {
- text-align:center;
- margin:0 auto
-}
 
-article .center h1 {
-    margin-bottom: 0.5em;
-}
 
 article hr {
  border:0;
