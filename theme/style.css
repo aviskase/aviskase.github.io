@@ -83,6 +83,11 @@ sup {
 }
 
 
+.article-meta a {
+  color: #55f;
+}
+
+
 .article-tags::before,
 .article-meta .modified::before,
 .article-meta .readtime::before,
@@ -162,20 +167,13 @@ nav a {
  padding:1em 0.5em;
  display:block;
  float:left;
- color:#777777
+ color:#777777;
 }
-nav a:hover,
-nav .en .en,
-nav .fr .fr {
+nav a:hover {
  color:white
 }
-nav .lang {
- float:right
-}
-.en .en,
-.ru .ru {
- color:white
-}
+
+
 main {
  padding:6em 0 2em 0
 }
@@ -318,6 +316,24 @@ section ul li .post-title:hover {
  margin:0
 }
 
+h1 .icon {
+  font-size: 75%;
+}
+
+
+section ul.tags {
+ list-style: disc;
+}
+.tag-count {
+ color:#757575;
+}
+
+section ul.tags li {
+ border-bottom:2px solid transparent
+}
+section ul.tags li:hover {
+ border-color:#000
+}
 
 .keys kbd {
     padding: 0 0.29412em;
