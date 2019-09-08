@@ -1,16 +1,4 @@
 {% extends "base.html" %}
-{% macro customedate(date) -%}
-
-    {% if 4 <= date.day <= 20 or 24 <= date.day <= 30 %}
-        {% set suffix = "th" %}
-    {% else %}
-        {% set suffix = ["st", "nd", "rd"][date.day % 10 - 1] %}
-    {% endif %}
-
-    {{date.day}}{{suffix}} {{ date | strftime('%B %Y')}}
-{%- endmacro %}
-
-
 
 
 {% block title %}{{ SITENAME }} - {{ article.title | striptags }}{% endblock %}
@@ -20,6 +8,9 @@
 
   {% if article.description %}
     <meta name="description" content="{{article.description}}" />
+  {% endif %}
+  {% if article.tags %}
+    <meta name="keywords" content="{{ article.tags|join(', ') }}" />
   {% endif %}
 {% endblock %}
 
@@ -33,7 +24,7 @@
         <time class="published">{{ article.date | strftime('%-d %b %Y') }}</time>
 
         {% if article.modified %}
-        <time class="modified"> / upd: {{ article.modified | strftime('%-d %b %Y') }}</time>
+        <time class="modified">upd: {{ article.modified | strftime('%-d %b %Y') }}</time>
         {% endif %}
 
         <span class="readtime">
@@ -43,6 +34,21 @@
         {% else %}
             1&nbsp;min
         {% endif %}
+        </span>
+
+        {% if article.tags %}
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+            {% for tag in article.tags %}
+                <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </span>
+        {% endif %}
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" data-disqus-identifier="{{article.id}}">0 comments</a>
         </span>
 
     </div>

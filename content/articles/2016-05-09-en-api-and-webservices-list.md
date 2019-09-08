@@ -1,6 +1,7 @@
 Title: List of Articles and Videos on API and Web Services Testing
 Date: 2016-01-09
----
+Tags: testing, api
+
 
 There was a great list on now  discontinued site `qahelp.net`. I managed to save it through yandex cache (even google cache and web archive couldn't help).
 

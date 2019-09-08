@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ super() }} — Tags{% endblock %}
+
+
+{% block content %}
+
+<section>
+
+<ul class='tags'>
+    {%- for tag, articles in tags|sort %}
+    <li>
+        <a href="{{ SITEURL }}/{{ tag.url }}">
+            {{ tag }}
+            <span class='tag-count'>({{ articles|count }})</span>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+</section>
+
+
+{% endblock content %}

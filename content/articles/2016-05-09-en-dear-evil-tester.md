@@ -1,5 +1,6 @@
 Title: Thoughts on "Dear Evil Tester"
 Date: 2016-05-09
+Tags: testing, book, thoughts
 
 
 Recently I've read a book "Dear Evil Tester" by Alan Richardson. The book has three parts: published letters, unpublished, essays. 

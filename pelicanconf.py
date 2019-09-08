@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+from datetime import date
 import pymdownx.emoji
 
 AUTHOR = 'Yuliya Bagriy'
@@ -8,6 +9,8 @@ SITENAME = 'aviskase'
 SITEURL = ''
 EMAIL = 'aviskase@gmail.com'
 PATH = 'content'
+CURRENTYEAR = date.today().year
+
 
 TIMEZONE = 'America/Montreal'
 
@@ -44,8 +47,8 @@ PAGE_URL = 'pages/{slug}/'
 PAGE_SAVE_AS = 'pages/{slug}/index.html'
 CATEGORY_URL = ''
 CATEGORY_SAVE_AS = ''
-TAG_URL = ''
-TAG_SAVE_AS = ''
+TAG_URL = 'tag/{slug}.html'
+TAG_SAVE_AS = 'tag/{slug}.html'
 
 USE_FOLDER_AS_CATEGORY = False
 DISPLAY_CATEGORIES_ON_MENU = False

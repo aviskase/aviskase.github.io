@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+
+
 {% block content %}
 
-
-
 <section>
+{% block index_title %}{% endblock index_title %}
+
 <ul>
     {% for year, year_group in dates|groupby('date.year')|reverse %}
     {% for month, month_group in year_group|groupby('date.month')|reverse %}
