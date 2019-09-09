@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://aviskase.github.io/" rel="alternate"></link><link href="https://aviskase.github.io/feeds/all.atom.xml" rel="self"></link><id>https://aviskase.github.io/</id><updated>2019-09-04T00:00:00-04:00</updated><entry><title>Stereotype Rant</title><link href="https://aviskase.github.io/articles/2019/09/04/stereotype-rant/" rel="alternate"></link><published>2019-09-04T00:00:00-04:00</published><updated>2019-09-04T00:00:00-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:aviskase.github.io,2019-09-04:/articles/2019/09/04/stereotype-rant/</id><summary type="html">&lt;p&gt;We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&amp;rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&amp;rsquo;s a real shame when you see a post like this from a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&amp;rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&amp;rsquo;s a real shame when you see a post like this from a test&amp;nbsp;agency: &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://aviskase.github.io/" rel="alternate"></link><link href="https://aviskase.github.io/feeds/all.atom.xml" rel="self"></link><id>https://aviskase.github.io/</id><updated>2019-09-08T00:00:00-04:00</updated><entry><title>Using Google Apps Scripts for Productivity Improvements</title><link href="https://aviskase.github.io/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/" rel="alternate"></link><published>2019-09-08T00:00:00-04:00</published><updated>2019-09-08T00:00:00-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:aviskase.github.io,2019-09-08:/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/</id><summary type="html">&lt;p&gt;Google Apps Scripts are probably the most useful automation tools I&amp;rsquo;ve used. They can be used as &amp;ldquo;excel macros&amp;rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task&amp;nbsp;management.&lt;/p&gt;
+&lt;h2&gt;Mark All Emails as&amp;nbsp;Read&lt;/h2&gt;
+&lt;p&gt;If you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Google Apps Scripts are probably the most useful automation tools I&amp;rsquo;ve used. They can be used as &amp;ldquo;excel macros&amp;rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task&amp;nbsp;management.&lt;/p&gt;
+&lt;h2&gt;Mark All Emails as&amp;nbsp;Read&lt;/h2&gt;
+&lt;p&gt;If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on &lt;a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/"&gt;the script by Mike Crittenden&lt;/a&gt;. &lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/634dba0b10f5cd0bad3f41709ed3e41c.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;function markArchivedAsRead() {
+  var threads = GmailApp.search('label:unread -label:{inbox, Unsnoozed}');
+  for (var i=0; i&lt;threads.length; i++)
+  {
+    var messages = threads[i].getMessages();
+    var markUnread = 1;
+    for (var j=0; j&lt;messages.length; j++)
+    {
+      if (messages[j].isInInbox())
+        markUnread = 0;
+    }
+    if (markUnread)
+      threads[i].markRead();
+  }
+};&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;I don&amp;rsquo;t really need it right now, because I have a filter which marks &lt;em&gt;all&lt;/em&gt; incoming emails as read right&amp;nbsp;away:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;Matches&lt;/span&gt;: &lt;span class="nv"&gt;larger&lt;/span&gt;:&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt;: &lt;span class="nv"&gt;Mark&lt;/span&gt; &lt;span class="nv"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;read&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But it was effective for cleaning&amp;nbsp;up.&lt;/p&gt;
+&lt;h2&gt;Tasks Recurring Randomly for Amazing&amp;nbsp;Marvin&lt;/h2&gt;
+&lt;p&gt;I use Amazing Marvin for task&amp;amp;project management and currently it doesn&amp;rsquo;t support randomly recurring items. In fact, no app I&amp;rsquo;ve tried supports that. It&amp;rsquo;s a shame, because there could be several use cases for that: &amp;ldquo;spontaneous&amp;rdquo; cleaning&amp;amp;organizing, fun activities, ideas&amp;nbsp;review.&lt;/p&gt;
+&lt;p&gt;If you are able to import tasks (for example, via email), you can check this script. The most important thing is a &lt;code&gt;TASKS&lt;/code&gt; list. Each item should have &lt;code&gt;range_start&lt;/code&gt; and &lt;code&gt;range_end&lt;/code&gt;. For example, &lt;code&gt;range_start = 2&lt;/code&gt; and &lt;code&gt;range_end = 9&lt;/code&gt; mean that task will be created in ranges from two to nine days after last created date. E.g. if the last time task with this &lt;code&gt;id&lt;/code&gt; was created on September 10, next task will be created sometime between September 12 and September&amp;nbsp;19. &lt;/p&gt;
+&lt;p&gt;Script ensures the task will be created at some point during this range, just make sure it&amp;rsquo;s triggered to run&amp;nbsp;daily.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/c986a50fd0d2a24f98302201fcdc9fd7.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;// Trigger for this script should be run DAILY
+
+var TARGET_EMAIL = '&lt;AMAZING MARVIN IMPORT EMAIL&gt;'; 
+
+var MILLIS_PER_DAY = 1000 * 60 * 60 * 24;
+
+var TASKS = [
+  { // Task will be created in ranges from 5 to 10 after last created date. E.g. if last created = May 10, next task will be created between May 15 and May 20 
+    id: '&lt;TASK ID&gt;',
+    range_start: 5,
+    range_end: 10,
+    subject: '&lt;TASK NAME&gt;',
+    body: '&lt;TASK NOTE&gt;'
+  }
+];
+
+function getNow() {
+  return new Date(date_to_str(new Date()));
+}
+
+function date_to_str(date) {
+  var timeZone = Session.getScriptTimeZone();
+  return Utilities.formatDate(date, timeZone, 'MMMM dd, yyyy 12:00:00 Z');
+}
+
+
+
+function createTask(task, props) {
+  var last_run = props.getProperty(task['id']);
+  var now = getNow();
+  
+  if(!last_run) {
+    Logger.log('First run for task with id = %s ', task['id']);
+    var offset = Math.floor((task['range_start'] + task['range_end']) / 2);
+    last_run = new Date(now - offset * MILLIS_PER_DAY);
+    Logger.log('Set last run to = %s', date_to_str(last_run));
+    props.setProperty(task['id'], date_to_str(last_run));
+  } else {
+    last_run = new Date(last_run);
+  }
+  var range_start = new Date(last_run.getTime() + task['range_start'] * MILLIS_PER_DAY);
+  var range_end = new Date(last_run.getTime() + task['range_end'] * MILLIS_PER_DAY);
+  var should_be_created = now &gt;= range_end || (now &gt;= range_start &amp;&amp; Math.random() &gt;= 0.5)
+  if(should_be_created) { 
+    Logger.log('Task with id = %s was created', task['id']);
+    GmailApp.sendEmail(TARGET_EMAIL, task['subject'], task['body']);
+    props.setProperty(task['id'], date_to_str(now))
+  }
+}
+
+
+function run() {
+  var props = PropertiesService.getScriptProperties();
+
+  TASKS.forEach(function(task) {
+    createTask(task, props);
+  });
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Create a Task When New Package Release Is Available on&amp;nbsp;PyPI&lt;/h2&gt;
+&lt;p&gt;I have a weird project which can start only after a particular release of one python package. It&amp;rsquo;s not very urgent, so no hurry, but I don&amp;rsquo;t want to check for releases&amp;nbsp;manually. &lt;/p&gt;
+&lt;p&gt;This script checks &lt;span class="caps"&gt;RSS&lt;/span&gt; for the package on &lt;a href="https://libraries.io/"&gt;libraries.io&lt;/a&gt; and if there is a new version available, it will send email to &lt;span class="caps"&gt;AM&lt;/span&gt; to create a&amp;nbsp;task.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/079fda60adaa0c74e37c84089e4bb1ae.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;var TARGET_EMAIL = '&lt;AMAZING_MARVIN_IMPORT_EMAIL&gt;'; 
+var LIBRARY_NAME = '&lt;SOME_LIBRARY&gt;'
+var URL_LIBRARIES_IO = 'https://libraries.io/pypi/LIBRARY_NAME/versions.atom'
+var CATEGORY_OR_PROJECT = '&lt;CATEGORY OR PROJECT IN AMAZING MARVIN&gt;'
+
+function parseXml() {
+  var props = PropertiesService.getScriptProperties();
+  var xml = UrlFetchApp.fetch(URL_LIBRARIES_IO).getContentText();
+  var document = XmlService.parse(xml);
+  var root = document.getRootElement();
+  var atom = XmlService.getNamespace('http://www.w3.org/2005/Atom');
+
+  var entries = document.getRootElement().getChildren('entry', atom);
+  for (var i = 0; i &lt; entries.length; i++) {
+    var title = entries[i].getChild('title', atom).getText();
+    var prop_title = props.getProperty(title);
+    if(!prop_title) {
+      Logger.log('New version found %s', title);
+      var link = entries[i].getChild('link', atom).getAttribute('href').getValue();
+      props.setProperty(title, '1')
+      sendEmail(title, link);
+    }
+  }
+}
+
+function sendEmail(title, link) {
+  var subject = Utilities.formatString('New version [%s %s](%s)  #"%s" +today', LIBRARY_NAME, title, link, CATEGORY_OR_PROJECT);
+  GmailApp.sendEmail(TARGET_EMAIL, subject, '');
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;I didn&amp;rsquo;t go into details about how to setup these scripts, so if you have any questions, feel free to&amp;nbsp;comment.&lt;/p&gt;</content><category term="practical"></category><category term="productivity"></category></entry><entry><title>Stereotype Rant</title><link href="https://aviskase.github.io/articles/2019/09/04/stereotype-rant/" rel="alternate"></link><published>2019-09-04T00:00:00-04:00</published><updated>2019-09-04T00:00:00-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:aviskase.github.io,2019-09-04:/articles/2019/09/04/stereotype-rant/</id><summary type="html">&lt;p&gt;We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&amp;rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&amp;rsquo;s a real shame when you see a post like this from a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&amp;rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&amp;rsquo;s a real shame when you see a post like this from a test&amp;nbsp;agency: &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;What makes you feel more&amp;nbsp;powerful:&lt;/p&gt;
 &lt;ul&gt;

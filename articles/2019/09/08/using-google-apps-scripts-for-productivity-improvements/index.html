@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  <script>var _gaq=[['_setAccount','UA-57143597-2'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+        <title>aviskase - Using Google Apps Scripts for Productivity Improvements</title>
+        <meta charset="utf-8" />
+        <link href="https://aviskase.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+
+        <link rel="icon" href="https://aviskase.github.io/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+    <meta name="keywords" content="practical, productivity" />
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://aviskase.github.io/">aviskase</a></li>
+          <li><a class="site-title" href="https://aviskase.github.io/">Blog</a></li>
+          <li><a href="https://aviskase.github.io/tags.html">Tags</a></li>
+
+            <li><a href="https://aviskase.github.io/pages/about/">About</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>Using Google Apps Scripts for Productivity&nbsp;Improvements</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">8 Sep 2019</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            4&nbsp;mins
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://aviskase.github.io/tag/practical.html">practical</a>,                 <a href="https://aviskase.github.io/tag/productivity.html">productivity</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://aviskase.github.io/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>Google Apps Scripts are probably the most useful automation tools I&rsquo;ve used. They can be used as &ldquo;excel macros&rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task&nbsp;management.</p>
+<h2>Mark All Emails as&nbsp;Read</h2>
+<p>If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/">the script by Mike Crittenden</a>. </p>
+<div class="gist">
+    <script src='https://gist.github.com/634dba0b10f5cd0bad3f41709ed3e41c.js'></script>
+    <noscript>
+        <pre><code>function markArchivedAsRead() {
+  var threads = GmailApp.search('label:unread -label:{inbox, Unsnoozed}');
+  for (var i=0; i<threads.length; i++)
+  {
+    var messages = threads[i].getMessages();
+    var markUnread = 1;
+    for (var j=0; j<messages.length; j++)
+    {
+      if (messages[j].isInInbox())
+        markUnread = 0;
+    }
+    if (markUnread)
+      threads[i].markRead();
+  }
+};</code></pre>
+    </noscript>
+</div>
+<p>I don&rsquo;t really need it right now, because I have a filter which marks <em>all</em> incoming emails as read right&nbsp;away:</p>
+<div class="highlight"><pre><span></span><span class="nv">Matches</span>: <span class="nv">larger</span>:<span class="mi">1</span>
+<span class="k">Do</span> <span class="nv">this</span>: <span class="nv">Mark</span> <span class="nv">as</span> <span class="nv">read</span>
+</pre></div>
+
+<p>But it was effective for cleaning&nbsp;up.</p>
+<h2>Tasks Recurring Randomly for Amazing&nbsp;Marvin</h2>
+<p>I use Amazing Marvin for task&amp;project management and currently it doesn&rsquo;t support randomly recurring items. In fact, no app I&rsquo;ve tried supports that. It&rsquo;s a shame, because there could be several use cases for that: &ldquo;spontaneous&rdquo; cleaning&amp;organizing, fun activities, ideas&nbsp;review.</p>
+<p>If you are able to import tasks (for example, via email), you can check this script. The most important thing is a <code>TASKS</code> list. Each item should have <code>range_start</code> and <code>range_end</code>. For example, <code>range_start = 2</code> and <code>range_end = 9</code> mean that task will be created in ranges from two to nine days after last created date. E.g. if the last time task with this <code>id</code> was created on September 10, next task will be created sometime between September 12 and September&nbsp;19. </p>
+<p>Script ensures the task will be created at some point during this range, just make sure it&rsquo;s triggered to run&nbsp;daily.</p>
+<div class="gist">
+    <script src='https://gist.github.com/c986a50fd0d2a24f98302201fcdc9fd7.js'></script>
+    <noscript>
+        <pre><code>// Trigger for this script should be run DAILY
+
+var TARGET_EMAIL = '<AMAZING MARVIN IMPORT EMAIL>'; 
+
+var MILLIS_PER_DAY = 1000 * 60 * 60 * 24;
+
+var TASKS = [
+  { // Task will be created in ranges from 5 to 10 after last created date. E.g. if last created = May 10, next task will be created between May 15 and May 20 
+    id: '<TASK ID>',
+    range_start: 5,
+    range_end: 10,
+    subject: '<TASK NAME>',
+    body: '<TASK NOTE>'
+  }
+];
+
+function getNow() {
+  return new Date(date_to_str(new Date()));
+}
+
+function date_to_str(date) {
+  var timeZone = Session.getScriptTimeZone();
+  return Utilities.formatDate(date, timeZone, 'MMMM dd, yyyy 12:00:00 Z');
+}
+
+
+
+function createTask(task, props) {
+  var last_run = props.getProperty(task['id']);
+  var now = getNow();
+  
+  if(!last_run) {
+    Logger.log('First run for task with id = %s ', task['id']);
+    var offset = Math.floor((task['range_start'] + task['range_end']) / 2);
+    last_run = new Date(now - offset * MILLIS_PER_DAY);
+    Logger.log('Set last run to = %s', date_to_str(last_run));
+    props.setProperty(task['id'], date_to_str(last_run));
+  } else {
+    last_run = new Date(last_run);
+  }
+  var range_start = new Date(last_run.getTime() + task['range_start'] * MILLIS_PER_DAY);
+  var range_end = new Date(last_run.getTime() + task['range_end'] * MILLIS_PER_DAY);
+  var should_be_created = now >= range_end || (now >= range_start && Math.random() >= 0.5)
+  if(should_be_created) { 
+    Logger.log('Task with id = %s was created', task['id']);
+    GmailApp.sendEmail(TARGET_EMAIL, task['subject'], task['body']);
+    props.setProperty(task['id'], date_to_str(now))
+  }
+}
+
+
+function run() {
+  var props = PropertiesService.getScriptProperties();
+
+  TASKS.forEach(function(task) {
+    createTask(task, props);
+  });
+}</code></pre>
+    </noscript>
+</div>
+<h2>Create a Task When New Package Release Is Available on&nbsp;PyPI</h2>
+<p>I have a weird project which can start only after a particular release of one python package. It&rsquo;s not very urgent, so no hurry, but I don&rsquo;t want to check for releases&nbsp;manually. </p>
+<p>This script checks <span class="caps">RSS</span> for the package on <a href="https://libraries.io/">libraries.io</a> and if there is a new version available, it will send email to <span class="caps">AM</span> to create a&nbsp;task.</p>
+<div class="gist">
+    <script src='https://gist.github.com/079fda60adaa0c74e37c84089e4bb1ae.js'></script>
+    <noscript>
+        <pre><code>var TARGET_EMAIL = '<AMAZING_MARVIN_IMPORT_EMAIL>'; 
+var LIBRARY_NAME = '<SOME_LIBRARY>'
+var URL_LIBRARIES_IO = 'https://libraries.io/pypi/LIBRARY_NAME/versions.atom'
+var CATEGORY_OR_PROJECT = '<CATEGORY OR PROJECT IN AMAZING MARVIN>'
+
+function parseXml() {
+  var props = PropertiesService.getScriptProperties();
+  var xml = UrlFetchApp.fetch(URL_LIBRARIES_IO).getContentText();
+  var document = XmlService.parse(xml);
+  var root = document.getRootElement();
+  var atom = XmlService.getNamespace('http://www.w3.org/2005/Atom');
+
+  var entries = document.getRootElement().getChildren('entry', atom);
+  for (var i = 0; i < entries.length; i++) {
+    var title = entries[i].getChild('title', atom).getText();
+    var prop_title = props.getProperty(title);
+    if(!prop_title) {
+      Logger.log('New version found %s', title);
+      var link = entries[i].getChild('link', atom).getAttribute('href').getValue();
+      props.setProperty(title, '1')
+      sendEmail(title, link);
+    }
+  }
+}
+
+function sendEmail(title, link) {
+  var subject = Utilities.formatString('New version [%s %s](%s)  #"%s" +today', LIBRARY_NAME, title, link, CATEGORY_OR_PROJECT);
+  GmailApp.sendEmail(TARGET_EMAIL, subject, '');
+}</code></pre>
+    </noscript>
+</div>
+<hr>
+<p>I didn&rsquo;t go into details about how to setup these scripts, so if you have any questions, feel free to&nbsp;comment.</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://aviskase.github.io/articles/2019/09/04/stereotype-rant/" title="Stereotype Rant">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="https://aviskase.github.io/feeds/all.atom.xml">Subscribe!</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
