@@ -48,7 +48,12 @@ blockquote, div.admonition {
  padding: 1em 1.75em;
  background:#eee;
 }
-blockquote p:last-child, div.admonition p:last-child {
+blockquote p:last-child,
+blockquote ol:last-child,
+blockquote ul:last-child,
+div.admonition p:last-child,
+div.admonition ol:last-child,
+div.admonition ul:last-child {
  margin-bottom:0
 }
 iframe {
