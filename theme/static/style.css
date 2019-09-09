@@ -173,6 +173,11 @@ nav a:hover {
  color:white
 }
 
+nav li.active {
+  -webkit-box-shadow: inset 0px -5px 0px 0px #777;
+  -moz-box-shadow: inset 0px -5px 0px 0px #777;
+  box-shadow: inset 0px -5px 0px 0px #777;
+}
 
 main {
  padding:6em 0 2em 0
