@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  <script>var _gaq=[['_setAccount','UA-57143597-2'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+        <title>aviskase - SOAP Testing 101</title>
+        <meta charset="utf-8" />
+        <link href="https://aviskase.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+
+        <link rel="icon" href="https://aviskase.github.io/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2019/09/15/soap-testing-101/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+    <meta name="keywords" content="testing, api" />
+    </head>
+
+<body id="index" class="home">
+
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://aviskase.github.io/">aviskase</a></li>
+          <li><a class="site-title" href="https://aviskase.github.io/">Blog</a></li>
+          <li><a href="https://aviskase.github.io/tags.html">Tags</a></li>
+
+            <li><a href="https://aviskase.github.io/pages/about/">About</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1><span class="caps">SOAP</span> Testing&nbsp;101</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">15 Sep 2019</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            11&nbsp;mins
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://aviskase.github.io/tag/testing.html">testing</a>,                 <a href="https://aviskase.github.io/tag/api.html">api</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://aviskase.github.io/articles/2019/09/15/soap-testing-101/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p><strong>Disclaimer:</strong> this is a translation of <a href="https://quality-lab.ru/blog/soap-api-testing/">the article</a> written 2 years ago for a corporate blog. I didn&rsquo;t do a word-for-word translation because the original article went through an editor, whose style was not that close to mine. Too watered down and &ldquo;official.&rdquo; Also, some examples don&rsquo;t make sense in English. Still, I didn&rsquo;t update it too radically. Bear in mind, at the moment of the writing I was testing <span class="caps">SOAP</span> services and Excel-based import/export at big government project, so most of the examples relate to that&nbsp;experience.  </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes you&rsquo;ll see a block like that. It will contain my current thoughts on the subject or&nbsp;comments.</p>
+</div>
+<hr>
+<p><span class="caps">SOAP</span> (Simple Object Access Protocol) is a standardized protocol for communication between a server and a client. Typically, it&rsquo;s used over <span class="caps">HTTP</span>(S), but it can operate over other application level protocols like <span class="caps">SMTP</span> or <span class="caps">FTP</span>.</p>
+<p>Testing <span class="caps">SOAP</span> services is not drastically different from any other <span class="caps">API</span> testing, but you need to learn some specifics and use better suited tools. This article will provide a small checklist of know-hows and skills which you can use as a guide for getting started and improving your&nbsp;work.</p>
+<h2>Theory</h2>
+<p><span class="caps">SOAP</span> is a protocol, so you need to read about the protocol itself as well as standards and other protocols it uses and, when the time comes, about its&nbsp;extensions.</p>
+<h3><span class="caps">XML</span></h3>
+<p><span class="caps">XML</span> is a markup language similar to <span class="caps">HTML</span>. Every message sent via <span class="caps">SOAP</span> is a <span class="caps">XML</span>-document, where you can easily identify how data are&nbsp;structured.</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;note&gt;</span>
+  <span class="nt">&lt;to&gt;</span>aviskase<span class="nt">&lt;/to&gt;</span>
+  <span class="nt">&lt;from&gt;</span>universe<span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;heading&gt;</span>Reminder<span class="nt">&lt;/heading&gt;</span>
+  <span class="nt">&lt;body&gt;</span>Do not forget to translate the article!<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/note&gt;</span>
+</pre></div>
+
+<p>You can read about <span class="caps">XML</span> in details on <a href="https://www.w3schools.com/xml/default.asp">w3schools</a>. Pay attention to <a href="https://www.w3schools.com/xml/xml_namespaces.asp">namespaces</a> (name conflict resolution method for <span class="caps">XML</span> elements), they are used in <span class="caps">SOAP</span> a&nbsp;lot.</p>
+<h3><span class="caps">XSD</span></h3>
+<p>It&rsquo;s quite handy to have standardized description of possible <span class="caps">XML</span>-documents and to be able to validate them. For that we use <span class="caps">XML</span> Schema Definition (or <span class="caps">XSD</span>). Two key <span class="caps">XSD</span> features for a tester are data type definitions and an ability to restrict possible values. For instance, element <code>body</code> from the previous example can be set as optional and with a maximum string length of&nbsp;255. </p>
+<div class="highlight"><pre><span></span>...
+<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;body&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;xs:simpleType&gt;</span>
+    <span class="nt">&lt;xs:restriction</span> <span class="na">base=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;xs:maxLength</span> <span class="na">value=</span><span class="s">&quot;255&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xs:restriction&gt;</span>
+  <span class="nt">&lt;/xs:simpleType&gt;</span>
+<span class="nt">&lt;/xs:element&gt;</span>
+...
+</pre></div>
+
+<p><span class="caps">XSD</span> is awesome. The more detailed it is, the fewer dumb tests you need to do. Services can use <span class="caps">XSD</span> to automatically validate requests and respond with a proper error. Therefore, you don&rsquo;t need to check all those equivalence classes and boundaries (as long as <span class="caps">XSD</span> is detailed and correct and this server-side validation is turned on). So, the first thing you should do for <span class="caps">SOAP</span> testing is to test its documentation, which is <span class="caps">XSD</span>. That way I found tons of issues like wrong restriction or accidental Cyrillic symbols in element&nbsp;definitions.</p>
+<p>More info about <span class="caps">XSD</span> you can get on <a href="https://www.w3schools.com/xml/schema_intro.asp">w3schools</a>.</p>
+<h3><span class="caps">WSDL</span></h3>
+<p><a href="https://www.w3schools.com/xml/xml_wsdl.asp"><span class="caps">WSDL</span></a> is used for describing web services. <span class="caps">WSDL</span>-documents contain information about service location and available methods (operations); every operation has descriptions of request and response parameters. Sometimes <span class="caps">XSD</span> can be embedded inside <span class="caps">WSDL</span>, but that&rsquo;s not always the case. <span class="caps">WSDL</span>-document is a bit of <em>magic.</em> You can generate it from classes implementing the server and then use it to generate classes for a client. So don&rsquo;t forget to check that <span class="caps">WSDL</span>-document is accurate and accessible to&nbsp;users.</p>
+<h3><span class="caps">SOAP</span></h3>
+<p><span class="caps">SOAP</span> has two versions: 1.1 or 1.2. Novice tester might not bother about differences between them. Just make sure you know which version is used in your system (and sometimes it could be both). <span class="caps">SOAP</span> describes message formats and details for handling particular messages. For example, some header elements can be used in the services where messages are transferred between several intermediates before reaching a&nbsp;destination.</p>
+<p>Here is a request example of operation <code>checkText</code> from Yandex Speller <span class="caps">API</span>:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span> <span class="na">xmlns:spel=</span><span class="s">&quot;http://speller.yandex.net/services/spellservice&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+    <span class="nt">&lt;spel:CheckTextRequest</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span> <span class="nt">&gt;</span>
+      <span class="nt">&lt;spel:text&gt;</span>mistace<span class="nt">&lt;/spel:text&gt;</span>
+    <span class="nt">&lt;/spel:CheckTextRequest&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</pre></div>
+
+<p>And&nbsp;response:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="na">xmlns:soap=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;soap:Body&gt;</span>
+    <span class="nt">&lt;CheckTextResponse</span> <span class="na">xmlns=</span><span class="s">&quot;http://speller.yandex.net/services/spellservice&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;SpellResult&gt;</span>
+        <span class="nt">&lt;error</span> <span class="na">code=</span><span class="s">&quot;1&quot;</span> <span class="na">pos=</span><span class="s">&quot;0&quot;</span> <span class="na">row=</span><span class="s">&quot;0&quot;</span> <span class="na">col=</span><span class="s">&quot;0&quot;</span> <span class="na">len=</span><span class="s">&quot;7&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;word&gt;</span>mistace<span class="nt">&lt;/word&gt;</span>
+          <span class="nt">&lt;s&gt;</span>mistake<span class="nt">&lt;/s&gt;</span>
+        <span class="nt">&lt;/error&gt;</span>
+      <span class="nt">&lt;/SpellResult&gt;</span>
+    <span class="nt">&lt;/CheckTextResponse&gt;</span>
+  <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</pre></div>
+
+<p>Read details about <span class="caps">SOAP</span> on <a href="https://www.w3schools.com/xml/xml_soap.asp">w3schools</a>.</p>
+<h3><span class="caps">SOAP</span>&nbsp;Extensions</h3>
+<p>Occasionally you&rsquo;ll bump into <span class="caps">SOAP</span> extensions with names like <code>WS-</code>. One of the most common is <a href="https://en.wikipedia.org/wiki/WS-Security"><span class="caps">WS</span>-Security</a> which is used for encryption and digital signatures. Often it&rsquo;s combined with <span class="caps">WS</span>-Policy for managing service access&nbsp;rights.</p>
+<p>Example of <span class="caps">WS</span>-Security&nbsp;usage:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;wsse:UsernameToken</span> <span class="na">wsu:Id=</span><span class="s">&quot;uuid_faf0159a-6b13-4139-a6da-cb7b4100c10c&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;wsse:Username&gt;</span>Alice<span class="nt">&lt;/wsse:Username&gt;</span>
+  <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest&quot;</span><span class="nt">&gt;</span>6S3P2EWNP3lQf+9VC3emNoT57oQ=<span class="nt">&lt;/wsse:Password&gt;</span>
+  <span class="nt">&lt;wsse:Nonce</span> <span class="na">EncodingType=</span><span class="s">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary&quot;</span><span class="nt">&gt;</span>YF6j8V/CAqi+1nRsGLRbuZhi<span class="nt">&lt;/wsse:Nonce&gt;</span>
+  <span class="nt">&lt;wsu:Created&gt;</span>2008-04-28T10:02:11Z<span class="nt">&lt;/wsu:Created&gt;</span>
+<span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+</pre></div>
+
+<p>Extension can be complex and intimidating. You can skip learning about them in details if your service does not have&nbsp;them.</p>
+<h2>Tools</h2>
+<p><span class="caps">SOAP</span> is a serious business: all this theory and standards. And XMLs tend to be <em>huge</em>. You <em>can,</em> but you <em>don&rsquo;t want</em> to use tools like notepad and cURL for daily work. But don&rsquo;t worry, there are tools to make life easier with <span class="caps">SOAP</span>.  </p>
+<h3><span class="caps">XML</span>&amp;<span class="caps">XSD</span>&nbsp;Editors</h3>
+<p>As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are <a href="https://www.oxygenxml.com/">Oxygen</a> (cross-platform) and <a href="https://www.altova.com/">Altova</a> (Windows-only); both are not free. These are feature-heavy applications used by&nbsp;analysts.</p>
+<p>I routinely use three features: <span class="caps">XSD</span> visualization, <span class="caps">XML</span> generation, and <span class="caps">XML</span>&nbsp;validation.</p>
+<p><strong><span class="caps">XSD</span> visualization</strong> is helpful to easily spot schema elements, attributes, and restrictions. For example, <code>CheckTextRequest</code> has a required <code>text</code> element, whereas all three attributes are optional. In addition, attribute <code>option</code> has a default value <code>0</code>.</p>
+<p><img alt="XSD visualization in Oxygen" src="https://aviskase.github.io/articles/2019/09/15/soap-testing-101/oxygen.png"></p>
+<p>Visualization is handy when there are lots of types and restrictions. If you need only this feature and you don&rsquo;t want to buy apps, you can check
+<a href="http://stackoverflow.com/questions/2486758/how-to-visualize-an-xml-schema">free alternatives</a> like&nbsp;JDeveloper.</p>
+<p>You can use <strong><span class="caps">XML</span> generation</strong> to quickly create examples of messages based on supplied <span class="caps">XSD</span>. I use is for exploration and experimentation on possible XMLs and checking how restrictions are&nbsp;applied.</p>
+<p>After generating messages, you can perform <strong><span class="caps">XML</span> validation</strong> on them. Together these two features allow you to find issues with a service even when it&rsquo;s not yet&nbsp;implemented.</p>
+<h3>Testing with&nbsp;SoapUI</h3>
+<p>Testing <span class="caps">SOAP</span> services almost always means using <a href="https://www.soapui.org/">SoapUI</a>. You can read about it in <a href="https://www.guru99.com/webservice-testing-beginner-guide.html">this tutorial</a> or <a href="https://www.soapui.org/getting-started.html">the official documentation</a>. </p>
+<p>I&rsquo;ve come up with eight possible levels of SoapUI&nbsp;mastery.</p>
+<h4>Level 1: Sending&nbsp;Requests</h4>
+<p>Learn how to create a project based on <span class="caps">WSDL</span>. SoapUI can generate all requests for you; all you need to do is to check their correctness and click a &ldquo;Send&rdquo; button. After getting used to send valid requests you&rsquo;ll need to start creating invalid ones to get expected error&nbsp;messages.</p>
+<h4>Level 2: Using &ldquo;Test Suites&rdquo; and &ldquo;Test&nbsp;Cases&rdquo;</h4>
+<p>Start writing mini-autotests. Tests suites and test cases allow creating automation scenarios, prepare test data, and automatically assert responses. At first you can use them simply for organization. For example, if you filed an issue, you&rsquo;d want to quickly check its fix and for that you can have a separate test suite with requests specific to each&nbsp;issue.</p>
+<h4>Level 3: Writing&nbsp;Assertions</h4>
+<p>After using cases for some time, you&rsquo;ll want to make them automatically asserted to mark valid responses as green and invalid ones as red. SoapUI has lots of assertion types, but the simplest ones are <code>Contains</code> and <code>Not Contains</code> which you can use to check existence of some string in the response. These assertions also support regular&nbsp;expressions.</p>
+<h4>Level 4: Using XPath and/or XQuery in&nbsp;Assertions</h4>
+<p><a href="https://www.w3schools.com/xml/xpath_intro.asp">XPath</a> is a familiar thing for those who work on <span class="caps">UI</span> automation with Selenium.  In short, XPath is used to search for elements inside <span class="caps">XML</span>-document. <a href="https://www.w3schools.com/xml/xquery_intro.asp">XQuery</a> is a similar technology which can use XPath &ldquo;inside&rdquo;; this language is way more powerful and <span class="caps">SQL</span>-like. Both can be used in assertions and will make checks more robust and&nbsp;precise.</p>
+<h4>Level 5: Writing Complex Checks with Special&nbsp;Steps</h4>
+<p>Test cases can contain several requests and other special steps, which can form a user flow (for example, a scenario &ldquo;create entity → export entity&rdquo;). Some of those steps&nbsp;are:</p>
+<ul>
+<li><code>Properties</code> and <code>Property Transfer</code> (help to reuse data and transfer it  between&nbsp;requests)</li>
+<li><code>JDBC Request</code> (used for getting data from&nbsp;databases)</li>
+<li><code>Conditional Goto</code> (allows to create conditions and&nbsp;loops)</li>
+<li><code>Run TestCase</code> (help to reuse common test&nbsp;cases)</li>
+</ul>
+<h4>Level 6: Using Groovy&nbsp;Scripts</h4>
+<p>SoapUI supports writing scripts in Groovy language. The simplest idea is to generate data embedding Groovy via <code>${=}</code> inside a request body. For&nbsp;example:</p>
+<ul>
+<li>Insert current date and time: <code>${=new Date().format("yyyy-MM-dd'T'HH:mm:ss")}</code></li>
+<li>Insert a random <span class="caps">GUID</span>: <code>${=java.util.UUID.randomUUID()}</code> </li>
+</ul>
+<p>More complex scripts can be used in separate steps and assertions.  At some point you&rsquo;ll notice you tend to write everything inside script step instead of steps from level&nbsp;5.</p>
+<h4>Level 7: Using&nbsp;MockServices</h4>
+<p>SoapUI can generate mock objects based on <span class="caps">WSDL</span>. It&rsquo;s a crude service simulation which you can use to write and debug test cases before they are actually available for testing. Also, you can use them in place of temporarily down&nbsp;services.</p>
+<h4>Level 8:&nbsp;God-Mode</h4>
+<p>You recognize differences between free and pro versions of SoapUI. You use SoapUI as a library from code. You use plugins and run test cases via <span class="caps">CLI</span> and/or <span class="caps">CI</span>. Your tests cases are elegant and easy to support. You know all the angles! I envy&nbsp;you.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Or not. Presently I don&rsquo;t use any <span class="caps">GUI</span> tools for <span class="caps">API</span> testing except for exploratory&nbsp;sessions.  </p>
+</div>
+<h3>Testing with&nbsp;Code</h3>
+<p>At some point you&rsquo;ll have a feeling that it&rsquo;s more efficient to use programming languages for writing tests. That&rsquo;s fine. SoapUI is a <span class="caps">GUI</span> application and has its drawbacks; some of them are resolved with pro version, while others require huge and brittle scripting&nbsp;hacks. </p>
+<p>There are tons of libraries for working with <span class="caps">SOAP</span> in any language. For example, there are <a href="http://axis.apache.org/axis2/java/core/">Axis2</a> for Java (good examples are in the articles at <a href="https://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html"><span class="caps">IBM</span> developerWorks</a>), <a href="https://bitbucket.org/jurko/suds/">suds</a> or <a href="http://docs.python-zeep.org/en/latest/">zeep</a> for Python, or <a href="https://github.com/jwagenleitner/groovy-wslite">groovy-wslite</a> for&nbsp;Groovy.</p>
+<p>Here is an example of request made to YandexSpeller <span class="caps">API</span> using&nbsp;groovy-wslite:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wslite.soap.*</span>
+<span class="kt">def</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SOAPClient</span><span class="o">(</span><span class="s1">&#39;http://speller.yandex.net/services/spellservice?WSDL&#39;</span><span class="o">)</span>
+<span class="kt">def</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="nl">SOAPAction:</span> <span class="s1">&#39;http://speller.yandex.net/services/spellservice/checkText&#39;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">body</span> <span class="o">{</span>
+    <span class="n">CheckTextRequest</span><span class="o">(</span><span class="s1">&#39;lang&#39;</span><span class="o">:</span> <span class="s1">&#39;en&#39;</span><span class="o">,</span> <span class="s1">&#39;xmlns&#39;</span><span class="o">:</span><span class="s1">&#39;http://speller.yandex.net/services/spellservice&#39;</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">text</span><span class="o">(</span><span class="s1">&#39;mistace&#39;</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="k">assert</span> <span class="s1">&#39;mistake&#39;</span> <span class="o">==</span> <span class="n">response</span><span class="o">.</span><span class="na">CheckTextResponse</span><span class="o">.</span><span class="na">SpellResult</span><span class="o">.</span><span class="na">error</span><span class="o">.</span><span class="na">s</span><span class="o">.</span><span class="na">text</span><span class="o">()</span>
+<span class="k">assert</span> <span class="s1">&#39;1&#39;</span> <span class="o">==</span> <span class="n">response</span><span class="o">.</span><span class="na">CheckTextResponse</span><span class="o">.</span><span class="na">SpellResult</span><span class="o">.</span><span class="na">error</span><span class="o">.</span><span class="nd">@code.text</span><span class="o">()</span>
+</pre></div>
+
+<p>As far as I know there are no high-level test frameworks for <span class="caps">SOAP</span> (similar to Rest-assured), but there is an interesting framework called <a href="https://github.com/intuit/karate">karate</a> where you can describe test cases for <span class="caps">SOAP</span> and <span class="caps">REST</span> in Cucumber / Gherkin&nbsp;style.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I don&rsquo;t do any Groovy programming anymore, so no idea how groovy-wslite fares. In fact, I don&rsquo;t do <span class="caps">SOAP</span> testing now, so my knowledge about libraries can be&nbsp;outdated.</p>
+<p>Plus, I avoid anything cucumber-ish&nbsp;=) </p>
+</div>
+<hr>
+<p>I doubt anyone will go and test <span class="caps">SOAP</span> services in their free time just of curiosity. It&rsquo;s a heavy protocol used in serious corporate systems. But its heaviness is a good news for testing: all technologies are standardized and there is a vast ecosystem around&nbsp;it. </p>
+<p>So, here is a promised checklist. If you are only starting to test <span class="caps">SOAP</span> services, you need to learn and be able to&nbsp;use:</p>
+<ul>
+<li><span class="caps">XML</span></li>
+<li><span class="caps">XSD</span></li>
+<li><span class="caps">WSDL</span></li>
+<li><span class="caps">SOAP</span></li>
+<li><span class="caps">XML</span>&amp;<span class="caps">XSD</span> editors for <span class="caps">XSD</span>&nbsp;visualization</li>
+<li>SoapUI level&nbsp;1</li>
+</ul>
+<p>Basically, just standards and being able to send requests, nothing more. That&rsquo;s it. Of course, you&rsquo;ll unavoidably learn more with time, but don&rsquo;t deep dive right away or your head will explode&nbsp;=)</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://aviskase.github.io/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/" title="Using Google Apps Scripts for Productivity Improvements">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="https://aviskase.github.io/feeds/all.atom.xml">Subscribe!</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
