@@ -376,13 +376,15 @@ div.admonition p.admonition-title {
 
 /* -- danger, error -- */
 div.danger,
-div.error {
+div.error,
+div.update {
   background-color: rgba(231, 76, 60, 0.1);
   border-left: 5px solid #e00000;
 }
 
 
 div.danger p.admonition-title,
+div.update p.admonition-title,
 div.error p.admonition-title {
   color: #e00000;
 }
@@ -428,6 +430,7 @@ div.tip p.admonition-title {
 }
 
 div.danger p.admonition-title:before,
+div.update p.admonition-title:before,
 div.error p.admonition-title:before,
 div.warning p.admonition-title:before,
 div.caution p.admonition-title:before,
@@ -448,6 +451,7 @@ div.tip p.admonition-title:before
 }
 
 div.danger p.admonition-title:before,
+div.update p.admonition-title:before,
 div.error p.admonition-title:before {
   content: "\e802\00a0";
 }

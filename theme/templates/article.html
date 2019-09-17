@@ -24,7 +24,7 @@
         <time class="published">{{ article.date | strftime('%-d %b %Y') }}</time>
 
         {% if article.modified %}
-        <time class="modified">upd: {{ article.modified | strftime('%-d %b %Y') }}</time>
+        <span class="modified"> upd: {{ article.modified | strftime('%-d %b %Y') }}</span>
         {% endif %}
 
         <span class="readtime">
