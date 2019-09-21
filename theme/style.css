@@ -94,6 +94,7 @@ sup {
 
 
 .article-tags::before,
+.article-category::before,
 .article-meta .modified::before,
 .article-meta .readtime::before,
 .article-comments::before {
