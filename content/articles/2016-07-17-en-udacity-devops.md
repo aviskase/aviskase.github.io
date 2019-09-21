@@ -1,6 +1,7 @@
 Title: Course "Intro to DevOps" by Udacity
 Date: 2016-07-17
 Tags: devops, course
+Category: Other
 
 
 I love MOOCs: Coursera, Udacity, Stepic. There are so many courses to watch for entire life. Just now watched a course [Intro to DevOps](https://www.udacity.com/course/intro-to-devops--ud611) by Udacity.

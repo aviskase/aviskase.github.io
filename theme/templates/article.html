@@ -12,6 +12,10 @@
   {% if article.tags %}
     <meta name="keywords" content="{{ article.tags|join(', ') }}" />
   {% endif %}
+
+  {% if article.category %}
+    <meta name="category" content="{{ article.category }}" />
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -35,6 +39,13 @@
             1&nbsp;min
         {% endif %}
         </span>
+
+        {% if article.category %}
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        </span>
+        {% endif %}
 
         {% if article.tags %}
         <span class="article-tags">

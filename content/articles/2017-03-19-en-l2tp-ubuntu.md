@@ -1,6 +1,7 @@
 Title: Enabling L2TP/IPSec in Ubuntu 
 Date: 2017-03-19
 Tags: linux, practical
+Category: Other
 
 
 Linux is like that: you can do anything, but sometimes it's not easy for a common user. As for me, I hate writing config files for VPN, because network-manager is awesome. But sometimes it's not easy to make it work. 

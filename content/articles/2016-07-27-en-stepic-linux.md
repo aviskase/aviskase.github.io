@@ -1,6 +1,7 @@
 Title: Notes for Course "Intro to Linux" 
 Date: 2016-07-27
 Tags: linux, course, practical
+Category: Other
 
 
 If there is a Linux course on a platform, I'll always watch it. Those who know me are aware that I am using some kind of Debian-based distributive full time --- I'm not a hardcore fan, but I like it here. One might ask: why am I watching all these courses when they are mostly for beginners? Answer is simple: repetition is the mother of learning, plus there are always some tricks that you forget or can become more interesting with time.

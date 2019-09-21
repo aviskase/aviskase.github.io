@@ -1,6 +1,7 @@
 Title: Remember The Milk for Task Management
 Date: 2018-03-20
-Tags: productivity
+Tags: practical
+Category: Productivity
 
 
 Today I received a letter from [Remember The Milk](https://www.rememberthemilk.com/) that I had won a free year of Pro. That's great, yet I feel a bit sad because somehow everyone talks about every other todo app and not RTM.

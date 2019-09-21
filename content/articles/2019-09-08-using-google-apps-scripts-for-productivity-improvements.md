@@ -1,6 +1,7 @@
 Title: Using Google Apps Scripts for Productivity Improvements
 Date: 2019-09-08
-Tags: practical, productivity
+Tags: practical
+Category: Productivity
 
 
 Google Apps Scripts are probably the most useful automation tools I've used. They can be used as "excel macros" for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task management.

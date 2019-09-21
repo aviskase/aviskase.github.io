@@ -1,6 +1,7 @@
 Title: Lasha Tumbai or rm -rf RU
 Date: 2019-08-08 23:51:52
 Tags: writing
+Category: Other
 
 
 Just a quick note: I've switched to Pelican site generator, because ruby-shuby decided not to work. Unfortunately, switching and preserving multi-language support is cumbersome. So, I've decided to ditch RU version. For what it's worth, I moved to Canada and no longer really interested in trying to "promote" myself in Russian speaking communities.

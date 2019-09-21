@@ -1,6 +1,7 @@
 Title: Your API Is Your Public Image
 Date: 2019-09-02
-Tags: testing, api
+Tags: api
+Category: Testing
 
 
 **Disclaimer:** this is a translation of [the article](https://quality-lab.ru/blog/your-api-is-your-public-face/) written 2 years ago for a corporate blog. I didn't do a word-for-word translation because the original article went through an editor, whose style was not that close to mine. Too watered down and "official." Also, some examples don't make sense in English. Still, I didn't update it too radically. Bear in mind, at the moment of the writing I was testing SOAP services and Excel-based import/export at big government project, so most of the examples relate to that experience.  
