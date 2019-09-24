@@ -33,7 +33,8 @@ PLUGINS = [
   'neighbors',
   'readtime',
   'pelican_gist',
-  'minchin.pelican.plugins.optimize_images'
+  'minchin.pelican.plugins.optimize_images',
+  'minchin.pelican.plugins.cname'
 ]
 
 READTIME_WPM = 180
