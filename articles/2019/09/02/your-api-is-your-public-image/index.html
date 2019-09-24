@@ -15,14 +15,14 @@
 
         <title>aviskase - Your API Is Your Public Image</title>
         <meta charset="utf-8" />
-        <link href="https://aviskase.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
 
 
-        <link rel="icon" href="https://aviskase.github.io/theme/favicon.ico">
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/css/fontello.css" />
-        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="https://aviskase.github.io/theme/solarized-light.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
 
 <script type="text/javascript">
     var disqus_identifier = "articles/2019/09/02/your-api-is-your-public-image/";
@@ -43,11 +43,11 @@
 
     <nav>
         <ul>
-          <li><a class="site-title" href="https://aviskase.github.io/">aviskase</a></li>
-          <li><a class="site-title" href="https://aviskase.github.io/">Blog</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
 
-            <li><a href="https://aviskase.github.io/pages/about/">About</a></li>
-            <li><a href="https://aviskase.github.io/meta/">Meta</a></li>
+            <li><a href="https://www.aviskase.com/pages/about/">About</a></li>
+            <li><a href="https://www.aviskase.com/meta/">Meta</a></li>
 
         </ul>
 
@@ -70,17 +70,17 @@
 
         <span class="article-category">
             <span class="icon-folder-open" aria-hidden="true"></span>
-            <a href="https://aviskase.github.io/category/testing/">Testing</a>
+            <a href="https://www.aviskase.com/category/testing/">Testing</a>
         </span>
 
         <span class="article-tags">
             <span class='icon-tags' aria-hidden="true"></span>
-                <a href="https://aviskase.github.io/tag/api/">api</a>        </span>
+                <a href="https://www.aviskase.com/tag/api/">api</a>        </span>
 
 
         <span class="article-comments">
             <span class='icon-chat-empty' aria-hidden="true"></span>
-            <a href="https://aviskase.github.io/articles/2019/09/02/your-api-is-your-public-image/#disqus_thread" data-disqus-identifier="">0 comments</a>
+            <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/#disqus_thread" data-disqus-identifier="">0 comments</a>
         </span>
 
     </div>
@@ -117,7 +117,7 @@
 <p>Service is reliable if it works when it&rsquo;s expected to be working and provides timely feedback in case of any&nbsp;problems. </p>
 <p>Worst performance problems I encountered were with export services. One of them was working perfectly fine until the biggest organization in the system started using it and crashing application servers. Hot-fixes after hot-fixes, optimizations, new version; nothing helped. And we couldn&rsquo;t disable that service or completely rewrite its public <span class="caps">API</span> because of contractual&nbsp;obligations.</p>
 <p>So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like&nbsp;this:</p>
-<p><img alt="API status table" src="https://aviskase.github.io/articles/2019/09/02/your-api-is-your-public-image/api_status.png"></p>
+<p><img alt="API status table" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png"></p>
 <p>And beware, this page should not on the same infrastructure as the services it&rsquo;s showing! It would be quite embarrassing if <a href="https://twitter.com/awscloud/status/836656664635846656">it goes down at the same time your services go down</a>.</p>
 <h3>Crappy&nbsp;Usability</h3>
 <p>When we hear the word &ldquo;usability&rdquo;, we usually think about <span class="caps">GUI</span>: buttons and dialogs. I think <span class="caps">GUI</span> usability is somewhat overrated: even in the ugliest app you can guess your way by trial and error. With <span class="caps">API</span> it won&rsquo;t&nbsp;work:</p>
@@ -137,7 +137,7 @@
 <ul>
 <li>Service works fine, but error messages are not that informative? Users won&rsquo;t understand how to fix an error (and probably will open a support ticket, so you&rsquo;ll needlessly spend time resolving non-existing&nbsp;issue).</li>
 </ul>
-<p><img alt="Unhelpful error message" src="https://aviskase.github.io/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png"></p>
+<p><img alt="Unhelpful error message" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png"></p>
 <ul>
 <li>
 <p>You have <span class="caps">UI</span> and <span class="caps">API</span>? Don&rsquo;t forget to check they correspond to each other. The most common problem is when constraints on <span class="caps">UI</span> fields don&rsquo;t match same fields in <span class="caps">API</span>: for example, <span class="caps">UI</span> can accept maximum 50 characters for the name and <span class="caps">API</span> only 20, which leads to errors when trying to export anything created on <span class="caps">UI</span>.</p>
@@ -158,11 +158,11 @@
 
 
     <div class="page-navigation code">
-        <a class="prev" href="https://aviskase.github.io/articles/2019/08/26/revision-testers-in-this-world/" title="Revision: Testers in This World">&larr; older</a>
+        <a class="prev" href="https://www.aviskase.com/articles/2019/08/26/revision-testers-in-this-world/" title="Revision: Testers in This World">&larr; older</a>
 
         <span>&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
 
-        <a class="next" href="https://aviskase.github.io/articles/2019/09/04/stereotype-rant/" title="Stereotype Rant">newer &rarr;</a>
+        <a class="next" href="https://www.aviskase.com/articles/2019/09/04/stereotype-rant/" title="Stereotype Rant">newer &rarr;</a>
     </div>
 
 <div id="disqus_thread"></div>
@@ -172,7 +172,7 @@
     <footer>
         <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
         <br/>
-        <a href="https://aviskase.github.io/feeds/all.atom.xml">Subscribe!</a>
+        <a href="https://www.aviskase.com/feeds/all.atom.xml">Subscribe!</a>
     </footer>
 
     <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
