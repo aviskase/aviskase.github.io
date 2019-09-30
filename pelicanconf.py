@@ -33,6 +33,7 @@ PLUGINS = [
   'neighbors',
   'readtime',
   'pelican_gist',
+  'pelican_linkclass',
   'minchin.pelican.plugins.optimize_images',
   'minchin.pelican.plugins.cname'
 ]
