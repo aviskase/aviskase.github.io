@@ -276,6 +276,13 @@ article a {
  color:blue;
  border-bottom:1px solid transparent
 }
+
+article a.external:after {
+  font-family: "fontello";
+  content: "\00a0\f08e";
+  margin-right: 0.2em;
+  font-size: 0.7em;
+}
 article a:hover {
  border-color:blue
 }
