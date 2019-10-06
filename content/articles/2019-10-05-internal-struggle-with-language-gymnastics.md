@@ -54,6 +54,6 @@ One of the best examples is an accentual system in Russian (stress). Whoever tri
 
 ---
 
-I won't be able to stop arguing about some words. Even those who say that they are sick and tired of some common testing debates, still nit-pick on other concepts. It's a part of human nature which is common not only in testing community: recently I've read [an article by Troy Hunter](https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/) about which way of API versioning is better. And the most valuable lesson from there is:
+I won't be able to stop arguing about some words. Even those who say that they are sick and tired of some common testing debates, still nit-pick on other concepts. It's a part of human nature which is common not only in testing community: recently I've read [an article by Troy Hunt](https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/) about which way of API versioning is better. And the most valuable lesson from there is:
 
 > Unfortunately this very often gets philosophical and loses sight of what the real goal should be: **building software that works**
