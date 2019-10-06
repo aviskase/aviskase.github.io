@@ -42,7 +42,7 @@ Some words with the same spelling can have completely distinct origins. For exam
 
 And the opposite situation, when words with different spelling and meaning came from the same origin, e.g. _"suit"_ and _"suite"_.
 
-People tend to make wrong assumptions about modern spelling and pronunciation. We think we understand words and their relative closeness. Therefore, many  everyday conclusions about them are also faulty. Those who try to be on a safe side refer to dictionaries, but here is a catch: dictionaries are opinionated language slices. That's why there are so many dictionaries: general, jargon-specific, etymological. There is no single point of truth you can safely refer to. Isn't it funny when you read news about some big-name dictionary _finally_ including a word that was in use for a long time?
+People tend to make wrong assumptions about modern spelling and pronunciation. We think we understand words and their relative closeness. We don't. Therefore, many  everyday conclusions about them are also faulty. Those who try to be on a safe side refer to dictionaries, but here is a catch: dictionaries are opinionated language slices. That's why there are so many dictionaries: general, jargon-specific, etymological. There is no single point of truth you can safely refer to. Isn't it funny when you read news about some big-name dictionary _finally_ including a word that was in use for a long time?
 
 By the way, in Russian _"тестер"_ while being direct calque of "tester" is a name for devices like multimeter. Electrical engineers coined this term in Russian earlier than our role was invented (so we are named "тестировщик" ~ "testist"). It's quite funny considering how much emphasize is there on testing being human activity. 
 
