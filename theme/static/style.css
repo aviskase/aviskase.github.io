@@ -207,6 +207,11 @@ article {
  color: #222;
 }
 
+article img {
+ display: block;
+ margin:0 auto;
+}
+
 article .page-navigation {
     text-align: center;
     margin:2em 0;
