@@ -7,7 +7,7 @@
 <script>
 dataLayer = [{
   'pageType': 'article',
-  'articleCategory': '{{ article.category }}'
+  'articleCategory': '{{ article.category }}',
   'articleTags': {{ article.tags | map(attribute='name') | list | tojson }}
 }];
 </script>
