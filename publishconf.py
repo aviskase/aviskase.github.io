@@ -20,4 +20,4 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "aviskase"
-GOOGLE_ANALYTICS = "UA-57143597-2"
+GOOGLE_ANALYTICS = "GTM-W75RR8K"
