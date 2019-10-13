@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  
+<script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  'pageType': 'article',
+  'articleCategory': 'Testing',
+  'articleTags': ["api", "usability"]
+});
+</script>
+          <!-- Google Tag Manager -->
+          <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');</script>
+          <!-- End Google Tag Manager -->
+
+        <title>aviskase - How to Test API Usability: Part 1</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+           <link rel="canonical" href="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/index.html">
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2019/10/13/how-to-test-api-usability-part-1/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+
+    <meta name="keywords" content="api, usability" />
+
+    <meta name="category" content="Testing" />
+    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+            <li><a href="https://www.aviskase.com/pages/about/">About</a></li>
+            <li><a href="https://www.aviskase.com/meta/">Meta</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>How to Test <span class="caps">API</span> Usability: Part&nbsp;1</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">13 Oct 2019</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            9&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/testing/">Testing</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/tag/api/">api</a>,                 <a href="https://www.aviskase.com/tag/usability/">usability</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p><strong>Disclaimer:</strong> this is a translation of <a class="external" href="https://quality-lab.ru/blog/api-usability-testing/">the article</a> written 2 years ago for a corporate blog. Bear in mind, at the moment of the writing I was testing <span class="caps">SOAP</span> services and Excel-based import/export at big government project, so most of the examples relate to that&nbsp;experience.  </p>
+<hr>
+<p>Usability is one of the most crucial quality attributes of an <span class="caps">API</span>. Let&rsquo;s talk about why, when, and how we can assess this&nbsp;characteristic.</p>
+<p>Today (hopefully) no one doubts the necessity of usability testing of <abbr title="Graphical user interface"><span class="caps">GUI</span></abbr>. Yet, according to <a class="external" href="https://en.wikipedia.org/wiki/ISO_9241"><span class="caps">ISO</span> 9241</a>, <em>usability is the effectiveness, efficiency and satisfaction with which specified users achieve specified goals in particular environments.</em> There is no mention of menus, fonts, or buttons color. Hence, we can evaluate usability of any product, be it a mobile app, a vacuum cleaner, or an <span class="caps">API</span>.</p>
+<p>For testing <span class="caps">API</span> usability we can use methods developed in the field of <abbr title="Human-computer interaction"><span class="caps">HCI</span></abbr>; same as used for <abbr title="Graphical user interface"><span class="caps">GUI</span></abbr>. Generally, these methods can be divided into two categories: analytical and&nbsp;empirical.</p>
+<h2>Analytical&nbsp;Methods</h2>
+<p>Analytical methods involve exploration based on some expert knowledge. Loosely speaking, you and/or the whole dev team try to evaluate and find hypothetical usability problems without users&nbsp;input.</p>
+<h3>Heuristic&nbsp;Evaluation</h3>
+<p>Easiest way is to use heuristics. There are no strict lists of what criteria you should check; all depends on what kind of <span class="caps">API</span> you have (e.g., library or <span class="caps">REST</span>&nbsp;service).</p>
+<p>For instance, <a class="external" href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf">a paper on a structural analysis of usability problem categories</a> mentions this set of&nbsp;heuristics:</p>
+<ul>
+<li><strong>Complexity.</strong> An <span class="caps">API</span> should not be too complex. Complexity and flexibility should be balanced. Use&nbsp;abstraction.</li>
+<li><strong>Naming.</strong> Names should be self-documenting and used&nbsp;consistently. </li>
+<li><strong>Caller&rsquo;s perspective.</strong> Make the code readable, e.g. <code>makeTV(Color)</code> is better than <code>makeTV(true)</code>.</li>
+<li><strong>Documentation.</strong> Provide documentation and&nbsp;examples.</li>
+<li><strong>Consistency  and  conventions.</strong> Design consistent APIs (order of parameters, call semantics) and obey conventions (get/set&nbsp;methods).</li>
+<li><strong>Conceptual correctness.</strong> Help programmers to use an <span class="caps">API</span> properly by using correct&nbsp;elements.</li>
+<li><strong>Method parameters and return type.</strong> Do not use many parameters. Return values should indicate a result of the method. Use exceptions when exceptional processing is&nbsp;demanded.</li>
+<li><strong>Parametrized  constructor.</strong> Always provide default constructor and setters rather than a constructor with multiple&nbsp;parameters.</li>
+<li><strong>Factory pattern.</strong> Use factory pattern only when&nbsp;inevitable.</li>
+<li><strong>Data types.</strong> Choose correct data types. Do not force users to use casting. Avoid using strings if better type&nbsp;exists.</li>
+<li><strong>Concurrency.</strong> Anticipate concurrent access in&nbsp;mind.</li>
+<li><strong>Error handling and exceptions.</strong> Define class members as public only when necessary. Exceptions should be handled near from where it occurred. Error message should convey sufficient&nbsp;information.</li>
+<li><strong>Leftovers for client code.</strong> Make the user type as few code as&nbsp;possible.</li>
+<li><strong>Multiple ways to do one.</strong> Do not provide multiple ways to achieve one&nbsp;thing.</li>
+<li><strong>Long chain of references.</strong> Do not use long complex inheritance&nbsp;hierarchies.</li>
+<li><strong>Implementation vs. interface.</strong> Interface dependencies should be preferred as they are more&nbsp;flexible.</li>
+</ul>
+<p>Let&rsquo;s try to apply some of these heuristics.
+There was a time when every new tester came to me during the onboarding and asked about the error message &ldquo;House with <span class="caps">ID</span> &lt;&gt; was not found.&rdquo; I told them to use internal system id instead of global <span class="caps">FIAS</span> id (Russian index system for buildings). And every one looked startled and answered me that there is no such parameter in the <span class="caps">API</span> request! Well, the problem was that you had to use the same parameter named <code>FIASHouseGUID</code>. For some reason when system was designed no one thought that the better name would have been <code>HouseID</code> as it could be filled either with <span class="caps">FIAS</span> id or with internal id. Even though current name was misleading (naming heuristic), it was no longer possible to change without breaking backward&nbsp;compatibility. </p>
+<p>Next example is about error handling. One service I tested had a very common error &ldquo;Access is denied.&rdquo; There were numerous reasons for this error: no entitling documents, documents are not in the status &ldquo;published,&rdquo; other organization already created the same object. Reasons were different, but the received error message was the same; users couldn&rsquo;t guess what was their&nbsp;problem.</p>
+<p>There are other, more &ldquo;serious&rdquo; heuristics for <span class="caps">API</span>. Often they target specific technical details. You need to be able to code to understand them. For example, <a class="external" href="http://www.cs.bc.edu/~muller/teaching/cs102/s06/lib/pdf/api-design">criteria from Joshua Bloch</a>. Or <a class="external" href="https://www.cs.cmu.edu/~NatProg/papers/Stylos2007CreateSetCall.pdf">a usability research made by Microsoft</a> to determine which constructor is better: default constructor with setters and getters or constructor with required parameters. Results showed that the first method was more preferable; this became a heuristic for library&nbsp;design.</p>
+<h3>Cognitive&nbsp;Dimensions</h3>
+<p>These are distinct criteria used predominately for evaluating usability of notations, user interfaces, and programming languages &mdash; or, generally speaking, information artifacts. In my view, they intersect with some heuristics, but there is a difference: heuristics are contextually selected by some experts, whereas cognitive dimensions are more or less stable set of principles. You can read about the main set described by Thomas <span class="caps">R.G.</span> Green and Marian Petre <a class="external" href="https://en.wikipedia.org/wiki/Cognitive_dimensions_of_notations">in the Wikipedia</a>.</p>
+<p>Some companies customize cognitive dimensions for their needs, like <a class="external" href="https://web.archive.org/web/20190402085549/http://www.drdobbs.com/windows/measuring-api-usability/184405654">a framework suggested by Visual Studio usability group</a>:</p>
+<ul>
+<li><strong>Abstraction level.</strong> The minimum and maximum levels of abstraction exposed by the <span class="caps">API</span>, and the minimum and maximum levels usable by a targeted&nbsp;developer.</li>
+<li><strong>Learning style.</strong> The learning requirements posed by the <span class="caps">API</span> and the learning styles available to a targeted&nbsp;developer.</li>
+<li><strong>Working framework.</strong> The size of the conceptual chunk (developer working set) needed to work&nbsp;effectively.</li>
+<li><strong>Work-step unit.</strong> How much of a programming task must/can be completed in a single&nbsp;step.</li>
+<li><strong>Progressive evaluation.</strong> To what extent partially completed code can be executed to obtain feedback on code&nbsp;behavior.</li>
+<li><strong>Premature commitment.</strong> The number of decisions that developers have to make when writing code for a given scenario and the consequences of those&nbsp;decisions.</li>
+<li><strong>Penetrability.</strong> How the <span class="caps">API</span> facilitates exploration, analysis, and understanding of its components, and how targeted developers go about retrieving what is&nbsp;needed.</li>
+<li><strong><span class="caps">API</span> elaboration.</strong> The extent to which the <span class="caps">API</span> must be adapted to meet the needs of targeted&nbsp;developers.</li>
+<li><strong><span class="caps">API</span> viscosity.</strong> The barriers to change inherent in the <span class="caps">API</span> and how much effort a targeted developer needs to expend to make a&nbsp;change.</li>
+<li><strong>Consistency.</strong> How much of the rest of an <span class="caps">API</span> can be inferred once part of it is&nbsp;learned.</li>
+<li><strong>Role expressiveness.</strong> How apparent the relationship is between each component exposed by an <span class="caps">API</span> and the program as a&nbsp;whole.</li>
+<li><strong>Domain correspondence.</strong> How clearly the <span class="caps">API</span> components map to the domain and any special tricks that the developer needs to be aware of to accomplish some&nbsp;functionality.</li>
+</ul>
+<p>Here is an example for domain correspondence. Service main entity was a house. Common apartment building can have several entryways, each leading to set of apartments. But in Kaliningrad this doesn&rsquo;t apply: a typical address there can look like &ldquo;2-4 Green Street,&rdquo; where entryways are house 2 and house 4. This bizarre (and initially unknown) domain model broke the whole logic behind <span class="caps">API</span> design. For instance, we had to allow users to add house-level metering devices to entryways if it&rsquo;s actually a&nbsp;house.</p>
+<h3>Cognitive&nbsp;Walkthrough</h3>
+<p>While the first two methods are based on checking <span class="caps">API</span> against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical <span class="caps">API</span> usage scenarios and attempts to perform&nbsp;them.</p>
+<p><img alt="Cognitive walkthrough example" src="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png"></p>
+<p>You can combine this method with heuristics. When we analyzed services, we found out that there were  problems with the consistency: when you sent a request to create an entity, some services responded with entity version id, while others provided root id. Moreover, most of the services required entity id for creation of other entities, and again, it could be either root or version id. It didn&rsquo;t look that bad, until we tried walking through a business&nbsp;scenario:</p>
+<ol>
+<li>Create an entitling&nbsp;document</li>
+<li>Create a metering device providing document root&nbsp;id</li>
+</ol>
+<p>In existing <span class="caps">API</span> workflow you had to do it in 3 steps  instead of&nbsp;2:</p>
+<ol>
+<li>Create an entitling document → server responds with document version&nbsp;id</li>
+<li>Retrieve the document using provided version id and get document root id from the&nbsp;response</li>
+<li>Create a metering device providing document root&nbsp;id</li>
+</ol>
+<p>This middle step is objectively unnecessary and generates additional server load. Here, using cognitive walkthrough, we also detected an inconsistency with heuristic &ldquo;minimal working code&nbsp;size.&rdquo;</p>
+<h3><span class="caps">API</span> Peer&nbsp;Review</h3>
+<p>Heuristics and walkthroughs are great methods, but they could be quite subjective. For better objectivity you&rsquo;d better use group evaluations, where several persons analyze <span class="caps">API</span>. You can read about how and why this method can find usability problems which are rarely found by empirical methods in <a class="external" href="https://pdfs.semanticscholar.org/b936/17a339d2a1dfa167e6700d15e31d813c331c.pdf">this Microsoft paper</a>.</p>
+<p>Peer reviews involve these four&nbsp;roles:</p>
+<ul>
+<li>Usability expert who will organize and moderate the evaluation process from usability&nbsp;perspective</li>
+<li>A person who is an owner for the specific <span class="caps">API</span> chunk under&nbsp;review</li>
+<li>A person who is an owner of the <span class="caps">API</span> unit (or system) where the reviewed chunk resides and who knows the context of <span class="caps">API</span> usage and its interactions with other&nbsp;APIs</li>
+<li>3-4 persons who will complete some task which will be used to actually evaluate usability (usually just other&nbsp;developers)</li>
+</ul>
+<p>During the planning process, a usability expert and a chunk owner should&nbsp;discuss:</p>
+<ul>
+<li>Key tasks to be completed during the review (e.g., how to create a document using an <span class="caps">API</span>)</li>
+<li>Code examples to be&nbsp;reviewed</li>
+<li>Who are the other participants (they can be selected based on specific criteria, like knowledge of <span class="caps">SOAP</span> services and&nbsp;Java)</li>
+<li>Place and time for review&nbsp;session</li>
+</ul>
+<p>You should start a peer review session with the explanation of how this meeting will proceed and communicate basic information related to the evaluated <span class="caps">API</span> chunk. Next you distribute code examples and discuss them, asking these main&nbsp;questions:</p>
+<ul>
+<li>Do you understand what this code does and what its objective&nbsp;is?</li>
+<li>Is this objective achieved in logical and rational&nbsp;manner?</li>
+</ul>
+<p>Based on the answers, a usability expert asks to elaborate details. For example, hearing that naming is weird, expert should ask why a person thinks that way and what different name would be&nbsp;better.</p>
+<p>The final step is to analyze problems. Here is where an <span class="caps">API</span> unit owner can help to identify the most significant issues and could they be resolved or&nbsp;not.</p>
+<hr>
+<p>That&rsquo;s the end of part 1. Empirical methods will be covered in part 2 and <em>one more thing</em> in part&nbsp;3.</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2019/10/05/internal-struggle-with-language-gymnastics/" title="Internal Struggle with Language Gymnastics">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
+        <br/>
+        <a href="https://www.aviskase.com/feeds/all.atom.xml">Subscribe!</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "transparent",
+      "text": "#f1d600",
+      "border": "#f1d600"
+    }
+  },
+  "content": {
+    "message": "This site uses cookies. By continuing to use this website, you agree to their use. "
+  }
+});
+</script>
+</body>
+</html>
