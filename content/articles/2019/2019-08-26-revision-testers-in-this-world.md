@@ -5,7 +5,7 @@ Modified: 2019-09-17
 Category: Testing
 
 
-Recently I've remembered [my old article]({filename}/articles/2018-01-23-en-testers-in-this-world.md) and wondered, how much my thoughts  have changed and how they align to the principles of context-driven and modern testing (and yes, I don't see them as contradicting each other).
+Recently I've remembered [my old article]({filename}/articles/2018/2018-01-23-en-testers-in-this-world.md) and wondered, how much my thoughts  have changed and how they align to the principles of context-driven and modern testing (and yes, I don't see them as contradicting each other).
 
 !!! update ""
     Remark is the parentheses is a bit stupid. It was discussed in the [AB Testing episode 94](https://www.angryweasel.com/ABTesting/ab-testing-episode-94-modern-testing-meets-context-driven-testing/) and at least for Alan and Brent there is no real contradiction.
