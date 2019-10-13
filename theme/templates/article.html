@@ -5,11 +5,12 @@
 
 {% block gtm_dl %}
 <script>
-dataLayer = [{
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
   'pageType': 'article',
   'articleCategory': '{{ article.category }}',
   'articleTags': {{ article.tags | map(attribute='name') | list | tojson }}
-}];
+});
 </script>
 {% endblock %}
 

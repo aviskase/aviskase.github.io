@@ -7,12 +7,13 @@
         {% if GOOGLE_ANALYTICS %}
           {% block gtm_dl %}
           <script>
+            window.dataLayer = window.dataLayer || [];
             {% if page_name == 'index' %}
-              dataLayer = [{'pageType': 'home'}];
+              window.dataLayer.push({'pageType': 'home'});
             {% elif page and page.title == 'About' %}
-              dataLayer = [{'pageType': 'about'}];
+              window.dataLayer.push({'pageType': 'about'});
             {% else %}
-              dataLayer = [{'pageType': 'page'}];
+              window.dataLayer.push({'pageType': 'page'});
             {% endif %}
           </script>
           {% endblock %}
@@ -53,12 +54,6 @@
     </head>
 
 <body id="index" class="home">
-  {% if GOOGLE_ANALYTICS %}
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{GOOGLE_ANALYTICS}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-  {% endif %}
-
     <nav>
         <ul>
           <li><a class="site-title" href="{{ SITEURL }}/">{{ SITENAME }}</a></li>
