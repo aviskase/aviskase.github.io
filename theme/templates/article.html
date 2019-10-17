@@ -3,18 +3,6 @@
 
 {% block title %}{{ SITENAME }} - {{ article.title | striptags }}{% endblock %}
 
-{% block gtm_dl %}
-<script>
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  'pageType': 'article',
-  'articleCategory': '{{ article.category }}',
-  'articleTags': {{ article.tags | map(attribute='name') | list | tojson }}
-});
-</script>
-{% endblock %}
-
-
 {% block head %}
   {{ super() }}
 
