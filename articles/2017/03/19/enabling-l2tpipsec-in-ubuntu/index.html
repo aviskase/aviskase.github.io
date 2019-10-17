@@ -3,18 +3,6 @@
 
     <head>
   
-<script>
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  'pageType': 'article',
-  'articleCategory': 'Other',
-  'articleTags': ["linux", "practical"]
-});
-</script>
-          <!-- Google Tag Manager -->
-          <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');</script>
-          <!-- End Google Tag Manager -->
-
         <title>aviskase - Enabling L2TP/IPSec in Ubuntu</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8" />
@@ -38,8 +26,46 @@ window.dataLayer.push({
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Other',
+              'articleTags': ["linux", "practical"]
+            });
 
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>
 
     <meta name="keywords" content="linux, practical" />
 
@@ -54,6 +80,7 @@ window.dataLayer.push({
 
             <li><a href="https://www.aviskase.com/pages/about/">About</a></li>
             <li><a href="https://www.aviskase.com/meta/">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
 
         </ul>
 
@@ -169,31 +196,10 @@ window.dataLayer.push({
     </main>
 
     <footer>
-        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> // 2019</span>
-        <br/>
-        <a href="https://www.aviskase.com/feeds/all.atom.xml">Subscribe!</a>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2019 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
     </footer>
 
     <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-<script>
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000"
-    },
-    "button": {
-      "background": "transparent",
-      "text": "#f1d600",
-      "border": "#f1d600"
-    }
-  },
-  "content": {
-    "message": "This site uses cookies. By continuing to use this website, you agree to their use. "
-  }
-});
-</script>
 </body>
 </html>
