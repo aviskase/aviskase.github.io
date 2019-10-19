@@ -117,7 +117,7 @@ The final step is to analyze problems. Here is where an API unit owner can help 
 
 ---
 
-That's the end of part 1. Empirical methods will be covered in part 2 and _one more thing_ in part 3.
+That's the end of part one. Empirical methods are covered in [part two]({filename}/articles/2019/2019-10-19-how-to-test-api-usability-part-2.md).
 
 
 [pdf-structural-analysis]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf

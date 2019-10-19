@@ -89,7 +89,7 @@ def livereload(c):
     # Watch content source files
     content_file_extensions = ['.md', '.rst']
     for extension in content_file_extensions:
-        content_blob = '{0}/**/*{1}'.format(SETTINGS['PATH'], extension)
+        content_blob = '{0}/**/**/*{1}'.format(SETTINGS['PATH'], extension)
         server.watch(content_blob, lambda: build(c))
     # Watch the theme's templates and static assets
     theme_path = SETTINGS['THEME']
