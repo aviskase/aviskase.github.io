@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  
+        <title>aviskase - How to Test API Usability: Part 2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+           <link rel="canonical" href="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/index.html">
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2019/10/19/how-to-test-api-usability-part-2/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Testing',
+              'articleTags': ["api", "usability"]
+            });
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>
+
+    <meta name="keywords" content="api, usability" />
+
+    <meta name="category" content="Testing" />
+    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+            <li><a href="https://www.aviskase.com/pages/about/">About</a></li>
+            <li><a href="https://www.aviskase.com/meta/">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>How to Test <span class="caps">API</span> Usability: Part&nbsp;2</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">19 Oct 2019</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            7&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/testing/">Testing</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/tag/api/">api</a>,                 <a href="https://www.aviskase.com/tag/usability/">usability</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>This is part two of a two-parter. Check out <a class="internal" href="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/">part one</a>.</p>
+<h2>Empirical&nbsp;Methods</h2>
+<p>The distinction between analytical and empirical methods is that the latter investigates how real users will use the&nbsp;product.</p>
+<p>But don&rsquo;t assume that empirical methods are by default better than analytical: both are important because they discover different problems. <a class="external" href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf">This research</a> showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding <abbr title="User Experience"><span class="caps">UX</span></abbr> and runtime specific&nbsp;issues.</p>
+<p><img alt="Barchart with comparison of different issue types found via different methods" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png"></p>
+<h3>Monitoring</h3>
+<p>Monitoring is used to gather usage statistics. For web services, it&rsquo;s rather easy. For instance, you can discover that one <span class="caps">API</span> endpoint is never called. Hence, you should consider the causes: is it missing in the documentation or not needed to anyone? Monitoring also helps to map scenarios: what kind of requests, to which services, and in what order happen most&nbsp;often.</p>
+<p>And don&rsquo;t forget to monitor not only successful requests but also failures. Imagine, some business errors are stockpiling: maybe you need to reconsider <span class="caps">API</span> design or error&nbsp;handling?</p>
+<p>Another thing to monitor is data volumes. Analysts from the project I worked on assumed that  type A documents should be more common than type B documents, so the service was better optimized for the first type. It was quite a surprise when we did a simple <span class="caps">SQL</span> count and found out that the number of type A documents were 600 thousand, while type B accounted for 80 million. After that discovery, we had to prioritize tasks related to service B way&nbsp;higher.</p>
+<h3>Support&nbsp;Tickets</h3>
+<p>If you have a support team, you&rsquo;re in luck: analyze tickets, pick out those related to usability, and identify the most serious issues. Previously I <a class="internal" href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/">wrote about accidental Cyrillic symbols instead of English in service schema</a>: these problems resurfaced specifically via&nbsp;support.</p>
+<p>Moreover, support tickets offer insight into the most common tools and workflows used to work with your <span class="caps">API</span>. Once we had an external developer who generated <code>soapAction</code> dynamically based on a root request structure by trimming the word <code>Request</code>. For example, <code>importHouseRequest</code> gave <code>importHouse</code>. But one of our services with a name <code>importPaymentDocumentRequest</code> expected <code>soapAction=importPaymentDocumentData</code> instead of <code>importPaymentDocument</code> (what the developer would expect). On the one hand, the user&rsquo;s solution was poor: you&rsquo;d better use <abbr title="Web Services Description Language"><span class="caps">WSDL</span></abbr>. On the other hand, maybe they didn’t have a choice  and we probably should ask ourselves why naming wasn&rsquo;t&nbsp;consistent.</p>
+<h3>Surveys</h3>
+<p>Not everyone has a support service. Or perhaps it doesn&rsquo;t give enough information. In that case, surveying <span class="caps">API</span> users is helpful. There is no point in giving examples: this topic is highly contextual. But you can start with the basics: &ldquo;What do you like?&rdquo;, &ldquo;What do you don&rsquo;t like?&rdquo;, and &ldquo;What would you like to&nbsp;change?&rdquo;.</p>
+<h3>User&nbsp;Sessions</h3>
+<p>User sessions are the most expensive and cumbersome usability evaluation method. You need to find people based on a typical user profile, give them some tasks, watch the process, and analyze&nbsp;results.</p>
+<p>Each company administers sessions in its own way. <a class="external" href="http://apiux.com/2014/06/10/usability-dropbox-api/">Some perform remote sessions</a>, <a class="external" href="http://blog.pamelafox.org/2012/03/api-usability-testing.html">others invite developers on site</a>. In both cases developers can use their own laptops and favorite IDEs: first, it&rsquo;s closer to real-world conditions, second, it minimizes stress from an unknown&nbsp;environment.</p>
+<p>Yet, there are more exotic examples. A developer is led to the room with a one-way mirror (yup, like in movies). A usability expert sits behind the mirror and observes developer actions as well as what&rsquo;s happening on the dev&rsquo;s computer screen. The developer can ask questions, but the expert will answer only in rare cases. In my opinion, it&rsquo;s too&nbsp;sterile.</p>
+<p>Generally, all <span class="caps">API</span> related user sessions have two phases. The first phase is <strong>a developer workshop</strong> with tasks&nbsp;like:</p>
+<ul>
+<li>Solve a problem in the notebook without an <span class="caps">IDE</span> (to get an idea of how developers would design <span class="caps">API</span> on their&nbsp;own).</li>
+<li>Practical tasks for <span class="caps">API</span> usage (e.g., write a code for file upload using a&nbsp;service).</li>
+<li>Read and review a code snippet to assess its clarity and readability (use printouts to make this task more&nbsp;challenging).</li>
+<li>Debug a faulty code snippet (this helps to study how a user will handle and correct an&nbsp;error).</li>
+</ul>
+<p>The second phase is <strong>an interview</strong> where you&nbsp;ask:</p>
+<ul>
+<li>Name three biggest issues you encountered during the workshop and how did you overcome them (documentation, support, StackOverflow, a friend&rsquo;s&nbsp;help)?</li>
+<li>How much time did you spend looking for additional information outside official&nbsp;documentation?</li>
+<li>Did you encounter unexpected error messages? If yes, did they help you correct a&nbsp;problem?</li>
+<li>Name at least three ways to improve official&nbsp;documentation.</li>
+<li>Name at least three ways to improve <span class="caps">API</span>&nbsp;design.</li>
+</ul>
+<h2>Personas</h2>
+<p>Personas are used both in analytical and empirical methods. All you need is to figure out which characteristics best describe your users (in case of <span class="caps">API</span>, developers). These descriptions tend to be humanized by assigning a name and a photo, adding information about fears and preferences. You can wear a &ldquo;persona hat&rdquo; while applying heuristics or rely on them while selecting developers for user&nbsp;sessions.</p>
+<p>Typical developers&rsquo;&nbsp;personas:</p>
+<ul>
+<li><strong>Systematic developers</strong> don&rsquo;t trust <span class="caps">API</span> and write code defensively. They are usually deductive, write on C++, C, or even&nbsp;Assembly.</li>
+<li><strong>Pragmatic developers</strong> are more common and work both in deductive and inductive manners. Typically they code desktop and mobile apps in Java or&nbsp;C#.</li>
+<li><strong>Opportunistic developers</strong> concentrate on solving business problems in an exploratory and inductive fashion. Guess what language they prefer?&nbsp;JavaScript.</li>
+</ul>
+<div class="admonition warning">
+<p>Now, I want to point out that the aforementioned language discrimination is not my invention. If you&rsquo;re lucky, perhaps you&rsquo;ll find the original article by Visual Studio usability expert, where these quirky definitions were introduced. Unfortunately, I was able to get only <a class="external" href="https://web.archive.org/web/20190402085549/http://www.drdobbs.com/windows/measuring-api-usability/184405654">its first page in the Wayback Machine</a>, so you have to take my word for it. Nevertheless, I hope this example can encourage you to create your own&nbsp;personas. </p>
+</div>
+<p>We can also combine personas with cognitive dimensions. Create <a class="external" href="https://en.wikipedia.org/wiki/Radar_chart">a radar chart</a> with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your <span class="caps">API</span> and values according to the persona&rsquo;s expectations. This chart is great for comparing how existing <span class="caps">API</span> corresponds to user&nbsp;values. </p>
+<p><img alt="Radar chart with comparison of developer expectations vs current state of API" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png"></p>
+<p>Developer from the example chart (blue line) prefers <span class="caps">API</span> with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of <span class="caps">API</span> (black line) doesn&rsquo;t satisfy these&nbsp;criteria.</p>
+<h2>Summing&nbsp;Up</h2>
+<p>Readers comfortable with <span class="caps">GUI</span> usability testing would say: &ldquo;That&rsquo;s exactly the same stuff!&rdquo;. And you&rsquo;re right, there is nothing supernatural about <span class="caps">API</span> usability. Even though it&rsquo;s called an <em>application programming</em> interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That&rsquo;s why almost everything applied for <span class="caps">GUI</span> usability evaluation is reusable for <span class="caps">API</span> with some&nbsp;adjustments.</p>
+<p>Now, what about <em>the best method?</em>  None, apply them all! <a class="external" href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf">According to this research</a>, each method can identify unique&nbsp;issues.</p>
+<p><img alt="Venn diagram showing how different methods overlap in finding different issues" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png"></p>
+<p>If you are tight on resources, I suggest using the least expensive methods: heuristics, cognitive dimensions, walkthrough, and support tickets. Even the simplest techniques can drive <span class="caps">API</span>&nbsp;improvements.</p>
+<p>Someone would argue that <span class="caps">API</span> usability is not that important: &ldquo;we don&rsquo;t have time for that, it&rsquo;s a dev thingy.&rdquo; But developers created <a class="external" href="https://github.com/google/styleguide">style guides</a> not just to be fancy; this serves to accelerate the achievement of shippable quality. We care about hidden code quality, therefore we need to care about externally visible code like APIs even&nbsp;more.</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/" title="How to Test API Usability: Part 1">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2019 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
