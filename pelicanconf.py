@@ -7,6 +7,7 @@ import pymdownx.emoji
 AUTHOR = 'Yuliya Bagriy'
 SITENAME = 'aviskase'
 SITEURL = ''
+SITE_SUMMARY = 'A blog by Yuliya Bagriy aka aviskase about testing, APIs, and other techy thingies.'
 EMAIL = 'aviskase@gmail.com'
 PATH = 'content'
 CURRENTYEAR = date.today().year
@@ -55,10 +56,13 @@ TAGS_URL = ''
 TAGS_SAVE_AS = ''
 TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
+AUTHOR_URL = ''
+AUTHOR_SAVE_AS = ''
 
 USE_FOLDER_AS_CATEGORY = False
 DISPLAY_CATEGORIES_ON_MENU = False
 THEME='theme'
+DIRECT_TEMPLATES = ['index']
 
 
 MARKDOWN = {

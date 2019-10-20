@@ -1,0 +1,19 @@
+{% block canonical_rel %}
+
+{% if page_name == "index" %}
+    <link rel="canonical" href="{{ SITEURL }}">
+{% elif article %}
+    {% if article and article.canonical_url %}
+    <link rel="canonical" href="{{ article.canonical_url }}">
+    {% else %}
+    <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}"/>
+    {% endif %}
+{% elif page %}
+    {% if page.status != "hidden" %}
+    <link rel="canonical" href="{{ SITEURL }}/{{ page.url }}"/>
+    {% endif%}
+{% else %}
+    <link rel="canonical" href="{{ SITEURL }}/{{page_name}}">
+{% endif %}
+
+{% endblock %}

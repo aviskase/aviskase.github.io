@@ -1,5 +1,4 @@
 Title: Privacy and Cookies
-Status: hidden
 
 This site uses cookies for analytics and comments. You can read [more about cookies here](https://www.cookiesandyou.com).
 

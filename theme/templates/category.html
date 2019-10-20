@@ -1,5 +1,9 @@
 {% extends "index.html" %}
 
-{% block title %}{{ super() }} — Articles in category "{{ category | striptags}}"{% endblock %}
+{% block title %}Articles in category "{{ category | striptags}}" | {{ SITENAME }}{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Articles in category “{{ category | striptags}}”"/>
+{% endblock %}
 
 {% block index_title %}<h1><span class='icon-folder-open icon' aria-hidden="true"></span>{{ category }}</h1>{% endblock %}

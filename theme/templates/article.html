@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 
 
-{% block title %}{{ SITENAME }} - {{ article.title | striptags }}{% endblock %}
+{% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
+
+{% if article.summary %}
+{% block meta_description %}
+<meta name="description" content="{{ article.summary|striptags }}"/>
+{% endblock %}
+{% endif %}
 
 {% block head %}
   {{ super() }}
 
-  {% if article.description %}
-    <meta name="description" content="{{article.description}}" />
-  {% endif %}
   {% if article.tags %}
     <meta name="keywords" content="{{ article.tags|join(', ') }}" />
   {% endif %}

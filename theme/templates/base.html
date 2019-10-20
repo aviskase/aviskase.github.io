@@ -8,13 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8" />
 
-        {% block canonical_rel %}
-          {% if article and article.canonical_url %}
-          <link rel="canonical" href="{{ article.canonical_url }}">
-          {% else %}
-           <link rel="canonical" href="{{ABSOLUTE_SITEURL}}/{{output_file}}">
-          {% endif %}
-        {% endblock %}
+        {% include "canonicals.html" %}
 
         {% if FEED_ALL_ATOM %}
         <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
@@ -23,6 +17,9 @@
         <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
         {% endif %}
 
+        {% block meta_description %}
+        <meta name="description" content="{{ SITE_SUMMARY }}"/>
+        {% endblock meta_description %}
 
         <link rel="icon" href="{{ SITEURL }}/theme/favicon.ico">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
@@ -41,11 +38,8 @@
           <li><a class="site-title" href="{{ SITEURL }}/">{{ SITENAME }}</a></li>
           <li{% if page_name == 'index' %} class="active"{% endif %}><a class="site-title" href="{{ SITEURL }}/">Blog</a></li>
 
-          {% if DISPLAY_PAGES_ON_MENU %}
-          {% for p in pages %}
-            <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-          {% endfor %}
-          {% endif %}
+          <li{% if page and page.slug == 'about' %} class="active"{% endif %}><a href="{{ SITEURL }}/pages/about">About</a></li>
+          <li{% if page and page.slug == 'meta' %} class="active"{% endif %}><a href="{{ SITEURL }}/meta">Meta</a></li>
           <li><a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">RSS</a></li>
 
         </ul>
