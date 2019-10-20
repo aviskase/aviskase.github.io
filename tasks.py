@@ -3,7 +3,7 @@
 import os
 import shutil
 import sys
-import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from invoke import task
@@ -25,7 +25,7 @@ CONFIG = {
     'deploy_path': SETTINGS['OUTPUT_PATH'],
     # Github Pages configuration
     'github_pages_branch': 'master',
-    'commit_message': "'Publish site on {}'".format(datetime.date.today().isoformat()),
+    'commit_message': "'Publish site on {}'".format(datetime.today().date().isoformat()),
     # Port for `serve`
     'port': 8000,
 }
@@ -118,20 +118,31 @@ def gh_pages(c):
 
 @task
 def new_post(c, post_name):
-    date = datetime.date.today().isoformat()
-    slug = slugify(post_name, regex_subs=SETTINGS.get('SLUG_REGEX_SUBSTITUTIONS', []))
-    ext = 'md'
-    file_path = f'content/articles/{date}-{slug}.{ext}'
+    post_time = datetime.today().isoformat()
+    slug = slugify(
+        post_name,
+        regex_subs=SETTINGS.get('SLUG_REGEX_SUBSTITUTIONS', [])
+    )
+    file_path = f'content/articles/drafts/{slug}.md'
+    template = (
+        f'Title: {post_name}\n'
+        f'Date: {post_time}\n'
+        'Tags: xxx\n'
+        'Category: XXX\n'
+        'Status: draft\n\n'
+    )
     with open(file_path, mode='w') as f:
-        f.write(f'Title: {post_name}\nDate: {date}\n\n')
-    c.run(f'subl {file_path} &', pty=True)
+        f.write(template)
 
 
 @task
-def touch_date(c, post_path):
-    date = datetime.date.today().isoformat()
-    post_path = Path(post_path)
-    post_name = post_path.name[10:]
-    file_path = f'content/articles/{date}{post_name}'
-    c.run(f'sed -i \'s/Date:.*/Date: {date}/\' {post_path}')
-    c.run(f'mv {str(post_path)} {file_path}')
+def publish_post(c, draft_path):
+    post_time = datetime.today() + timedelta(minutes=30)
+    draft_path = Path(draft_path)
+    new_post_path = (
+        Path('content/articles/') /
+        f'{post_time.year}' /
+        f'{post_time.date().isoformat()}-{draft_path.name}'
+    )
+    c.run(f'sed -i \'s/Date:.*/Date: {post_time.isoformat()}/\' {draft_path}')
+    c.run(f'mv {str(draft_path)} {str(new_post_path)}')
