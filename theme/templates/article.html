@@ -3,22 +3,8 @@
 
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
-{% if article.summary %}
 {% block meta_description %}
 <meta name="description" content="{{ article.summary|striptags }}"/>
-{% endblock %}
-{% endif %}
-
-{% block head %}
-  {{ super() }}
-
-  {% if article.tags %}
-    <meta name="keywords" content="{{ article.tags|join(', ') }}" />
-  {% endif %}
-
-  {% if article.category %}
-    <meta name="category" content="{{ article.category }}" />
-  {% endif %}
 {% endblock %}
 
 {% block content %}

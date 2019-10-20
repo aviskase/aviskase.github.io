@@ -11,7 +11,7 @@ SITE_SUMMARY = 'A blog by Yuliya Bagriy aka aviskase about testing, APIs, and ot
 EMAIL = 'aviskase@gmail.com'
 PATH = 'content'
 CURRENTYEAR = date.today().year
-
+TWITTER_USERNAME = 'aviskase'
 
 TIMEZONE = 'America/Montreal'
 

@@ -2,7 +2,7 @@ Title: How to Test API Usability: Part 1
 Date: 2019-10-13
 Tags: api, usability
 Category: Testing
-
+og_image: og_how-to-test-api-usability-part-1.png
 
 **Disclaimer:** this is a translation of [the article](https://quality-lab.ru/blog/api-usability-testing/) written 2 years ago for a corporate blog. Bear in mind, at the moment of the writing I was testing SOAP services and Excel-based import/export at big government project, so most of the examples relate to that experience.  
 
