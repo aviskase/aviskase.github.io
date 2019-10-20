@@ -24,3 +24,4 @@ Markdown-No-Lazy-Code-Extension
 Markdown-No-Lazy-BlockQuote-Extension
 minchin.pelican.plugins.cname
 pelican-linkclass
+pelican-extended-sitemap
