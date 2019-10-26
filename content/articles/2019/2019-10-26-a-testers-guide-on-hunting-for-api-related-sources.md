@@ -2,6 +2,7 @@ Title: A Tester’s Guide on Hunting for API Related Sources
 Date: 2019-10-26T16:52:40.751554
 Tags: api
 Category: Testing
+og_image: og_a-testers-guide-on-hunting-for-api-related-sources.png
 
 You've got interested in APIs. Or you're not a fan (yet) but you have to test it. Whatever the cause, you'd want to develop a mental model of this vast field. And a model construction demands a generous supply of information to consume and digest. 
 
