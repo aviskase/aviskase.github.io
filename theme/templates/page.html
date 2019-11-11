@@ -3,7 +3,7 @@
 {% block title %}{{ page.title }} | {{ SITENAME }}{%endblock%}
 
 {% block meta_description %}
-<meta name="description" content="{{ page.summary|striptags }}"/>
+<meta name="description" content="{% if page.og_description is defined %}{{ page.og_description | striptags | e}}{% else %}{{ page.summary | striptags }}{% endif %}"/>
 {% endblock %}
 
 {% block content %}

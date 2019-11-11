@@ -4,7 +4,7 @@
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
 {% block meta_description %}
-<meta name="description" content="{{ article.summary|striptags }}"/>
+<meta name="description" content="{% if article.og_description is defined %}{{ article.og_description | striptags | e }}{% else %}{{ article.summary | striptags }}{% endif %}"/>
 {% endblock %}
 
 {% block content %}

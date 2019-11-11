@@ -29,7 +29,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
     <meta property="og:title" content="{{ article.title | striptags }}" />
-    <meta property="og:description" content="{{ article.summary | striptags }}" />
+    <meta property="og:description" content="{% if article.og_description is defined %}{{ article.og_description | striptags | e}}{% else %}{{ article.summary | striptags }}{% endif %}" />
     <meta property="og:image" content="{{ SITEURL }}/images/{% if article.og_image is defined %}{{ article.og_image }}{% else %}og_default.png{% endif %}" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:width" content="1200" />
@@ -71,7 +71,9 @@
 
     <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
     <meta property="og:title" content="{{ page.title | striptags }}" />
-    {% if page.summary %}
+    {% if page.og_description is defined %}
+    <meta property="og:description" content="{{ page.og_description | striptags | e}}" />
+    {% elif page.summary %}
     <meta property="og:description" content="{{ page.summary | striptags }}" />
     {% else %}
     <meta property="og:description" content="{{ SITE_SUMMARY }}" />
