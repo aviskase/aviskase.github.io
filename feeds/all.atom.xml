@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-11-25T01:20:58-05:00</updated><entry><title>Why I Don’t Use Postman</title><link href="https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/" rel="alternate"></link><published>2019-11-25T01:20:58-05:00</published><updated>2019-11-25T01:20:58-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-11-25:/articles/2019/11/25/why-i-dont-use-postman/</id><summary type="html">&lt;p&gt;Being an &lt;span class="caps"&gt;API&lt;/span&gt; person, many people would expect me to use Postman. It&amp;rsquo;s the most well-known tool for &lt;span class="caps"&gt;HTTP&lt;/span&gt;-based APIs and it&amp;rsquo;s so ubiquitous that some use it even for &lt;span class="caps"&gt;SOAP&lt;/span&gt; (not the best idea&amp;nbsp;ever).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-11-30T19:13:56-05:00</updated><entry><title>Weekly Hmms: Watching, Reading, Learning</title><link href="https://www.aviskase.com/articles/2019/11/30/weekly-hmms-watching-reading-learning/" rel="alternate"></link><published>2019-11-30T19:13:56-05:00</published><updated>2019-11-30T19:13:56-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-11-30:/articles/2019/11/30/weekly-hmms-watching-reading-learning/</id><summary type="html">&lt;h2&gt;Watching&lt;/h2&gt;
+&lt;p&gt;During lunch, I watch videos from conferences. This week my favorites&amp;nbsp;were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.youtube.com/watch?v=yYEne30CWUQ"&gt;Mike Kistler: The Importance of &lt;span class="caps"&gt;API&lt;/span&gt; Design&amp;nbsp;Guidelines&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.youtube.com/watch?v=qCdpTji8nxo"&gt;Kevin Lacker: How to Design Great&amp;nbsp;APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second one has a nice quotable&amp;nbsp;passage:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good &lt;span class="caps"&gt;API&lt;/span&gt; will let you be&amp;nbsp;lazy.&lt;/p&gt;
+&lt;p&gt;A great &lt;span class="caps"&gt;API&lt;/span&gt; will empower you …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h2&gt;Watching&lt;/h2&gt;
+&lt;p&gt;During lunch, I watch videos from conferences. This week my favorites&amp;nbsp;were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.youtube.com/watch?v=yYEne30CWUQ"&gt;Mike Kistler: The Importance of &lt;span class="caps"&gt;API&lt;/span&gt; Design&amp;nbsp;Guidelines&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.youtube.com/watch?v=qCdpTji8nxo"&gt;Kevin Lacker: How to Design Great&amp;nbsp;APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second one has a nice quotable&amp;nbsp;passage:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good &lt;span class="caps"&gt;API&lt;/span&gt; will let you be&amp;nbsp;lazy.&lt;/p&gt;
+&lt;p&gt;A great &lt;span class="caps"&gt;API&lt;/span&gt; will empower you to be &lt;em&gt;really lazy&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Reading&lt;/h2&gt;
+&lt;p&gt;Started&amp;nbsp;reading: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="external" href="https://www.manning.com/books/the-design-of-web-apis"&gt;The Design of Web APIs&lt;/a&gt; by Arnaud Lauret. I&amp;rsquo;ve got a hard copy,&amp;nbsp;yay!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="external" href="https://www.amazon.ca/Universal-Principles-Design-William-Lidwell/dp/1592530079"&gt;Universal Principles of Design&lt;/a&gt; by William Lidwell, Kritina Holden, and Jill Butler. There is a newer shorter edition, but I decided to try out the original one first. It was available in the local library, but I had to wait almost two months in the request queue: the book is old yet still&amp;nbsp;relevant.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Learning&lt;/h2&gt;
+&lt;p&gt;&lt;a class="external" href="https://www.angryweasel.com/ABTesting/"&gt;Alan and Brent&lt;/a&gt; talk a lot about basing feature development on testable hypotheses. Brent mentioned that he doesn&amp;rsquo;t even use the word &amp;ldquo;requirements&amp;rdquo;&amp;nbsp;anymore.&lt;/p&gt;
+&lt;p&gt;And just in time came a Coursera&amp;rsquo;s newsletter with the link to
+&lt;a class="external" href="https://www.coursera.org/learn/uva-darden-agile-testing"&gt;Hypothesis-Driven Development&lt;/a&gt; course, which is a part four out of five in the agile development specialization. So, ideally, you shouldn’t start with it. Nevertheless, I’ve finished the first week’s materials and looks like time spent will be&amp;nbsp;worthwhile.&lt;/p&gt;
+&lt;p&gt;Though, there are some&amp;nbsp;problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The instructor seems to sell his &amp;ldquo;venture design process.&amp;rdquo; That doesn&amp;rsquo;t make that methodology inherently bad, but keep it in&amp;nbsp;mind.&lt;/li&gt;
+&lt;li&gt;The way he talks makes hard for me to concentrate. Too&amp;nbsp;choppy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The course is short, so I&amp;rsquo;ll give it a chance (perhaps to the whole&amp;nbsp;specialization).&lt;/p&gt;</content><category term="Weekly Hmms"></category></entry><entry><title>Why I Don’t Use Postman</title><link href="https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/" rel="alternate"></link><published>2019-11-25T01:20:58-05:00</published><updated>2019-11-25T01:20:58-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-11-25:/articles/2019/11/25/why-i-dont-use-postman/</id><summary type="html">&lt;p&gt;Being an &lt;span class="caps"&gt;API&lt;/span&gt; person, many people would expect me to use Postman. It&amp;rsquo;s the most well-known tool for &lt;span class="caps"&gt;HTTP&lt;/span&gt;-based APIs and it&amp;rsquo;s so ubiquitous that some use it even for &lt;span class="caps"&gt;SOAP&lt;/span&gt; (not the best idea&amp;nbsp;ever).&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;I did use Postman.&lt;/em&gt; &lt;a class="external" href="https://gist.github.com/aviskase/e642248c35e400b56e2489430952369f"&gt;My gist with installation scripts for Linux …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Being an &lt;span class="caps"&gt;API&lt;/span&gt; person, many people would expect me to use Postman. It&amp;rsquo;s the most well-known tool for &lt;span class="caps"&gt;HTTP&lt;/span&gt;-based APIs and it&amp;rsquo;s so ubiquitous that some use it even for &lt;span class="caps"&gt;SOAP&lt;/span&gt; (not the best idea&amp;nbsp;ever).&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;I did use Postman.&lt;/em&gt; &lt;a class="external" href="https://gist.github.com/aviskase/e642248c35e400b56e2489430952369f"&gt;My gist with installation scripts for Linux&lt;/a&gt; was so popular that Postman support team reached me out when it started causing non-obvious issues with updates. I also used this tool for internship courses. Yet I won&amp;rsquo;t do it anymore and let me explain&amp;nbsp;why.&lt;/p&gt;
 &lt;h2&gt;I&amp;rsquo;m Not a Tech&amp;nbsp;Writer&lt;/h2&gt;
@@ -580,8 +619,8 @@ There was a time when every new tester came to me during the onboarding and aske
     &lt;/noscript&gt;
 &lt;/div&gt;
 &lt;p&gt;I don&amp;rsquo;t really need it right now, because I have a filter which marks &lt;em&gt;all&lt;/em&gt; incoming emails as read right&amp;nbsp;away:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;Matches&lt;/span&gt;: &lt;span class="nv"&gt;larger&lt;/span&gt;:&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt;: &lt;span class="nv"&gt;Mark&lt;/span&gt; &lt;span class="nv"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;read&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Matches&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;larger&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Mark&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;But it was effective for cleaning&amp;nbsp;up.&lt;/p&gt;
@@ -1153,49 +1192,49 @@ function sendEmail(title, link) {
 &lt;p&gt;The biggest problem for me is &lt;span class="caps"&gt;LT2PT&lt;/span&gt;/IPSec. There is &lt;a class="external" href="http://blog.z-proj.com/enabling-l2tp-over-ipsec-on-ubuntu-16-04/"&gt;an excellent article&lt;/a&gt; on how to enable it using &lt;code&gt;network-manager-l2tp&lt;/code&gt;. But as on-line articles have a tendency to be removed, I want to save these instructions&amp;nbsp;here.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Install the&amp;nbsp;prerequisites:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;intltool&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libtool&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;util&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;glib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;glib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;vpn&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libnma&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;ppp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libdbus&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;glib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libsecret&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libgtk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;libglib2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;xl2tpd&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;  
-&lt;span class="n"&gt;strongswan&lt;/span&gt;  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;sudo apt install \  &lt;/span&gt;
+&lt;span class="err"&gt;intltool \  &lt;/span&gt;
+&lt;span class="err"&gt;libtool \  &lt;/span&gt;
+&lt;span class="err"&gt;network-manager-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnm-util-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnm-glib-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnm-glib-vpn-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnm-gtk-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnm-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libnma-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;ppp-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libdbus-glib-1-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libsecret-1-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libgtk-3-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;libglib2.0-dev \  &lt;/span&gt;
+&lt;span class="err"&gt;xl2tpd \  &lt;/span&gt;
+&lt;span class="err"&gt;strongswan  &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Get&amp;nbsp;network-manager-l2tp:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l2tp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l2tp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;  
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l2tp&lt;/span&gt;  
-&lt;span class="n"&gt;autoreconf&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fi&lt;/span&gt;  
-&lt;span class="n"&gt;intltoolize&lt;/span&gt;  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;git clone https://github.com/nm-l2tp/network-manager-l2tp.git  &lt;/span&gt;
+&lt;span class="err"&gt;cd network-manager-l2tp  &lt;/span&gt;
+&lt;span class="err"&gt;autoreconf -fi  &lt;/span&gt;
+&lt;span class="err"&gt;intltoolize  &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Configure the&amp;nbsp;build: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;
-  &lt;span class="c1"&gt;--disable-static --prefix=/usr \&lt;/span&gt;
-  &lt;span class="c1"&gt;--sysconfdir=/etc --libdir=/usr/lib/x86_64-linux-gnu \&lt;/span&gt;
-  &lt;span class="c1"&gt;--libexecdir=/usr/lib/NetworkManager \&lt;/span&gt;
-  &lt;span class="c1"&gt;--localstatedir=/var \&lt;/span&gt;
-  &lt;span class="c1"&gt;--with-pppd-plugin-dir=/usr/lib/pppd/2.4.7&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;./configure \&lt;/span&gt;
+&lt;span class="err"&gt;  --disable-static --prefix=/usr \&lt;/span&gt;
+&lt;span class="err"&gt;  --sysconfdir=/etc --libdir=/usr/lib/x86_64-linux-gnu \&lt;/span&gt;
+&lt;span class="err"&gt;  --libexecdir=/usr/lib/NetworkManager \&lt;/span&gt;
+&lt;span class="err"&gt;  --localstatedir=/var \&lt;/span&gt;
+&lt;span class="err"&gt;  --with-pppd-plugin-dir=/usr/lib/pppd/2.4.7&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Next: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;  
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;make  &lt;/span&gt;
+&lt;span class="err"&gt;sudo make install &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Remove AppArmor settings for&amp;nbsp;IPSec: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apparmor_parser&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apparmor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipsec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;charon&lt;/span&gt;  
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apparmor_parser&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apparmor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipsec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stroke&lt;/span&gt;  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;sudo apparmor_parser -R /etc/apparmor.d/usr.lib.ipsec.charon  &lt;/span&gt;
+&lt;span class="err"&gt;sudo apparmor_parser -R /etc/apparmor.d/usr.lib.ipsec.stroke  &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Replace x2ltpd with&amp;nbsp;libpcap: &lt;/p&gt;
@@ -1354,15 +1393,15 @@ function sendEmail(title, link) {
 &lt;p&gt;And now as usual, some notes to not to forget. If something looks like a magic: read books or watch some&amp;nbsp;course!&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Run program in&amp;nbsp;background: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;program &amp;amp;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Check if link is&amp;nbsp;available: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="c1"&gt;--spider somelink&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;wget --spider somelink&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Download files by links from a text&amp;nbsp;file: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;some&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;textfile&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;wget -i some-textfile&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Using arguments in&amp;nbsp;scripts:&lt;/p&gt;
@@ -1373,12 +1412,12 @@ function sendEmail(title, link) {
 &lt;li&gt;&lt;code&gt;$2&lt;/code&gt; &amp;mdash; the second&amp;nbsp;argument&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;How much space does something&amp;nbsp;occupy:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;du&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;--max-depth &amp;lt;depth&amp;gt; -h] &amp;lt;path&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;du [--max-depth &amp;lt;depth&amp;gt; -h] &amp;lt;path&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Create several directories / files at&amp;nbsp;once:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;dir1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;dir2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;dir3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;dir4&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
-&lt;span class="n"&gt;touch&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;fileA&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;fileB&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;mkdir {dir1,dir2,dir3,dir4}&lt;/span&gt;
+&lt;span class="err"&gt;touch {fileA,fileB}.txt&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;tmux &amp;mdash; terminal&amp;nbsp;multiplexor&lt;/p&gt;

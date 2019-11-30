@@ -119,7 +119,7 @@
 
         <span class="readtime">
             <span class='icon-clock' aria-hidden="true"></span>
-            2&nbsp;mins
+            1&nbsp;min
         </span>
 
         <span class="article-category">
@@ -145,15 +145,15 @@
 <p>And now as usual, some notes to not to forget. If something looks like a magic: read books or watch some&nbsp;course!</p>
 <hr>
 <p>Run program in&nbsp;background: </p>
-<div class="highlight"><pre><span></span><span class="n">program</span> <span class="o">&amp;</span>
+<div class="highlight"><pre><span></span><span class="err">program &amp;</span>
 </pre></div>
 
 <p>Check if link is&nbsp;available: </p>
-<div class="highlight"><pre><span></span><span class="n">wget</span> <span class="c1">--spider somelink</span>
+<div class="highlight"><pre><span></span><span class="err">wget --spider somelink</span>
 </pre></div>
 
 <p>Download files by links from a text&nbsp;file: </p>
-<div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">i</span> <span class="k">some</span><span class="o">-</span><span class="n">textfile</span>
+<div class="highlight"><pre><span></span><span class="err">wget -i some-textfile</span>
 </pre></div>
 
 <p>Using arguments in&nbsp;scripts:</p>
@@ -164,12 +164,12 @@
 <li><code>$2</code> &mdash; the second&nbsp;argument</li>
 </ul>
 <p>How much space does something&nbsp;occupy:</p>
-<div class="highlight"><pre><span></span><span class="n">du</span> <span class="p">[</span><span class="c1">--max-depth &lt;depth&gt; -h] &lt;path&gt;</span>
+<div class="highlight"><pre><span></span><span class="err">du [--max-depth &lt;depth&gt; -h] &lt;path&gt;</span>
 </pre></div>
 
 <p>Create several directories / files at&nbsp;once:</p>
-<div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="err">{</span><span class="n">dir1</span><span class="p">,</span><span class="n">dir2</span><span class="p">,</span><span class="n">dir3</span><span class="p">,</span><span class="n">dir4</span><span class="err">}</span>
-<span class="n">touch</span> <span class="err">{</span><span class="n">fileA</span><span class="p">,</span><span class="n">fileB</span><span class="err">}</span><span class="p">.</span><span class="n">txt</span>
+<div class="highlight"><pre><span></span><span class="err">mkdir {dir1,dir2,dir3,dir4}</span>
+<span class="err">touch {fileA,fileB}.txt</span>
 </pre></div>
 
 <p>tmux &mdash; terminal&nbsp;multiplexor</p>
