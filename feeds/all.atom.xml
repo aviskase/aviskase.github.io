@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-12-14T22:32:58-05:00</updated><entry><title>Weekly Hmms: Advent of Code, NGINX, APIs</title><link href="https://www.aviskase.com/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/" rel="alternate"></link><published>2019-12-14T22:32:58-05:00</published><updated>2019-12-14T22:32:58-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-14:/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/</id><summary type="html">&lt;h2&gt;Advent Of&amp;nbsp;Code&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-12-21T19:33:46-05:00</updated><entry><title>Weekly Hmms: API Practices, Yegor Bugaenko, Culture</title><link href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/" rel="alternate"></link><published>2019-12-21T19:33:46-05:00</published><updated>2019-12-21T19:33:46-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-21:/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/</id><summary type="html">&lt;h2&gt;&lt;span class="caps"&gt;API&lt;/span&gt; Practices If You Hate Your&amp;nbsp;Customers&lt;/h2&gt;
+&lt;p&gt;A fun &lt;a class="external" href="https://queue.acm.org/detail.cfm?ref=rss&amp;amp;id=3375635"&gt;article from &lt;span class="caps"&gt;ACM&lt;/span&gt; Queue magazine&lt;/a&gt; about how to alienate
+customers from using your &lt;span class="caps"&gt;API&lt;/span&gt;. I like an &lt;a class="external" href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/"&gt;&amp;ldquo;anti-tutorial&amp;rdquo; form&lt;/a&gt;, 
+it is easier to recall bad patterns and&amp;nbsp;behaviors.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One such form I filled out required me to describe the application I …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h2&gt;&lt;span class="caps"&gt;API&lt;/span&gt; Practices If You Hate Your&amp;nbsp;Customers&lt;/h2&gt;
+&lt;p&gt;A fun &lt;a class="external" href="https://queue.acm.org/detail.cfm?ref=rss&amp;amp;id=3375635"&gt;article from &lt;span class="caps"&gt;ACM&lt;/span&gt; Queue magazine&lt;/a&gt; about how to alienate
+customers from using your &lt;span class="caps"&gt;API&lt;/span&gt;. I like an &lt;a class="external" href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/"&gt;&amp;ldquo;anti-tutorial&amp;rdquo; form&lt;/a&gt;, 
+it is easier to recall bad patterns and&amp;nbsp;behaviors.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One such form I filled out required me to describe the application I planned to write. &amp;lt;&amp;hellip;&amp;gt;
+Sadly, I didn&amp;rsquo;t have a particular application in mind. I was going to explore the &lt;span class="caps"&gt;API&lt;/span&gt; and write a few simple 
+Python-based utilities to automate some daily tasks. I didn&amp;rsquo;t want to explain all that, however, for fear that 
+my answer would not be good enough for whoever was judging my application. 
+In a panic, I simply described my application as &amp;ldquo;dark purple with white highlights.&amp;rdquo; 
+A few weeks later my application was approved. So far, I haven&amp;rsquo;t been visited by any auditor &lt;span class="caps"&gt;SWAT&lt;/span&gt; teams, 
+but as a precaution my code editor has been themed in dark purple with white highlights ever&amp;nbsp;since.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This particular quote hit&amp;nbsp;hard:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nothing says &amp;ldquo;we don&amp;rsquo;t actually want you to use our &lt;span class="caps"&gt;API&lt;/span&gt;&amp;rdquo; like making your &lt;span class="caps"&gt;API&lt;/span&gt; documentation invisible 
+to search engines. The &amp;ldquo;build, run, debug&amp;rdquo; cycle of decades ago has been replaced by &amp;ldquo;run, crash, Google,&amp;nbsp;fix.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once we tried to research our competitors and we couldn&amp;rsquo;t find even screenshots. How the hell 
+a potential customer is supposed to evaluate your product if you hide &lt;strong&gt;everything&lt;/strong&gt;?&lt;/p&gt;
+&lt;h2&gt;Yegor Bugaenko on &lt;span class="caps"&gt;QA&lt;/span&gt; vs&amp;nbsp;Testing&lt;/h2&gt;
+&lt;p&gt;Yegor Bugaenko presented &lt;a class="external" href="https://www.youtube.com/watch?v=jZitXMQaXvE"&gt;&amp;ldquo;Quality Assurance vs. Testing&amp;rdquo; on &lt;span class="caps"&gt;QA&lt;/span&gt; Fest 2019&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And I am&amp;nbsp;disappointed. &lt;/p&gt;
+&lt;p&gt;For those who don&amp;rsquo;t know Yegor, he is famous for controversial &lt;a class="external" href="https://www.xdsd.org/"&gt;eXtremely Distributed Software Development&lt;/a&gt; 
+methodology. One of the ideas is to pay only for closed&amp;nbsp;tasks.&lt;/p&gt;
+&lt;p&gt;So, I grabbed popcorn and expected blood and gore. Didn&amp;rsquo;t happen, it was dull, except for one or two topics.
+The talk started with an obvious difference between &lt;span class="caps"&gt;QA&lt;/span&gt; and testing and moved to explain the importance of 
+quantitative metrics to measure tester&amp;rsquo;s productivity. Unfortunately, he suggested the most stupid metric ever: the 
+number of bugs logged. I also was annoyed by his notion that testers should not talk to devs much and must log every issue. 
+My practice shows that working with dev together and fixing bugs as we go is way more productive and requires less time. 
+Perhaps, his ideas works in &lt;span class="caps"&gt;XDSD&lt;/span&gt;, where everyone is expendable, but I hope others won&amp;rsquo;t borrow them into normal agile&amp;nbsp;teams.&lt;/p&gt;
+&lt;h2&gt;Cultures and&amp;nbsp;Sci-Fi&lt;/h2&gt;
+&lt;p&gt;Speaking of&amp;nbsp;teams.&lt;/p&gt;
+&lt;p&gt;Prelude: I&amp;rsquo;m a fan of space sci-fi series. Not a nerd, but I watched my&amp;nbsp;share:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Star Trek: &lt;span class="caps"&gt;TOS&lt;/span&gt; (bits), &lt;span class="caps"&gt;TNG&lt;/span&gt;, &lt;span class="caps"&gt;DS9&lt;/span&gt;, Voyager,&amp;nbsp;Enterprise&lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;LEXX&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Battlestar Galactica (with spin-offs, except&amp;nbsp;Caprica)&lt;/li&gt;
+&lt;li&gt;Firefly&lt;/li&gt;
+&lt;li&gt;Babylon 5 (and all&amp;nbsp;spin-offs)&lt;/li&gt;
+&lt;li&gt;Farscape&lt;/li&gt;
+&lt;li&gt;Andromeda&lt;/li&gt;
+&lt;li&gt;Stargate &lt;span class="caps"&gt;SG&lt;/span&gt;-1 (in&amp;nbsp;progress)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As you may notice, there is no Expanse, Orville, or new Star Treks (Discovery, Short Trek). We watch only
+finished stuff. I hope to avoid spoilers, but it&amp;rsquo;s impossible with the new Star Treks. Also, I doubt I would even
+want to watch them (mushroom drives? horrid&amp;nbsp;Klingons??).&lt;/p&gt;
+&lt;p&gt;This week I stumbled upon a &lt;a class="external" href="https://www.youtube.com/watch?v=rnlxugk3Qb0"&gt;comparison between &lt;span class="caps"&gt;TNG&lt;/span&gt; and Short Trek&lt;/a&gt;. 
+How this is related to teams and culture? Well, the basic problem is the same for both series: a crew member with a quirky 
+behavior who doesn&amp;rsquo;t fit a&amp;nbsp;team.&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;TNG&lt;/span&gt; solved the problem by trying to help Lieutenant Barclay to overcome his anxiety and integrate into the team. 
+While he remained awkward for the rest of the series, some of his quirks were channeled into a productive direction and
+helped to save the crew numerous&amp;nbsp;times.&lt;/p&gt;
+&lt;p&gt;Short Trek&amp;rsquo;s approach was&amp;hellip; different. Edward Larkin died and was called an idiot by his &lt;em&gt;&amp;ldquo;competent&amp;rdquo;&lt;/em&gt; captain. 
+Just watch it. The captain wanted to transfer that scientist even &lt;em&gt;before he made a mistake.&lt;/em&gt; Show defenders say that 
+it&amp;rsquo;s just a comedy, but these series are not marketed as a parody show.  It&amp;rsquo;s a canon now. Which means, 
+that obnoxious and demeaning conduct of the captain is considered ok in that universe. No one reprimanded her for
+causing an ecological disaster, and she never showed any remorse for the &amp;ldquo;idiot&amp;rsquo;s&amp;rdquo;&amp;nbsp;death. &lt;/p&gt;
+&lt;p&gt;I understand that showrunners are just money hoarders and want to have a comedy because it&amp;rsquo;s profitable. They 
+probably never consider how it affects existing&amp;nbsp;canon. &lt;/p&gt;
+&lt;p&gt;Still. I wonder, what this &lt;em&gt;modern&lt;/em&gt; approach tells about our&amp;nbsp;society? &lt;/p&gt;</content><category term="Weekly Hmms"></category></entry><entry><title>Weekly Hmms: Advent of Code, NGINX, APIs</title><link href="https://www.aviskase.com/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/" rel="alternate"></link><published>2019-12-14T22:32:58-05:00</published><updated>2019-12-14T22:32:58-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-14:/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/</id><summary type="html">&lt;h2&gt;Advent Of&amp;nbsp;Code&lt;/h2&gt;
 &lt;p&gt;Last week I forgot to mention that I started solving the &lt;a class="external" href="https://adventofcode.com/"&gt;Advent of Code&lt;/a&gt; challenges. This is my first year, so I don&amp;rsquo;t even try to have elegant solutions. Old trusty Python, &lt;a class="external" href="https://github.com/aviskase/advent-of-code"&gt;lists&amp;rsquo; and dicts&amp;rsquo; galore&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The reason is simple: the goal is to go through …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Advent Of&amp;nbsp;Code&lt;/h2&gt;
 &lt;p&gt;Last week I forgot to mention that I started solving the &lt;a class="external" href="https://adventofcode.com/"&gt;Advent of Code&lt;/a&gt; challenges. This is my first year, so I don&amp;rsquo;t even try to have elegant solutions. Old trusty Python, &lt;a class="external" href="https://github.com/aviskase/advent-of-code"&gt;lists&amp;rsquo; and dicts&amp;rsquo; galore&lt;/a&gt;.&lt;/p&gt;
