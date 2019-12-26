@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-12-21T19:33:46-05:00</updated><entry><title>Weekly Hmms: API Practices, Yegor Bugaenko, Culture</title><link href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/" rel="alternate"></link><published>2019-12-21T19:33:46-05:00</published><updated>2019-12-21T19:33:46-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-21:/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/</id><summary type="html">&lt;h2&gt;&lt;span class="caps"&gt;API&lt;/span&gt; Practices If You Hate Your&amp;nbsp;Customers&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2019-12-26T19:21:00-05:00</updated><entry><title>Lunch&amp;Learn: Linting OpenAPI Description Docs</title><link href="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/" rel="alternate"></link><published>2019-12-26T19:21:00-05:00</published><updated>2019-12-26T19:21:00-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-26:/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/</id><summary type="html">&lt;p&gt;Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;amp;Learn, kinda like Google&amp;rsquo;s &lt;a class="external" href="https://testing.googleblog.com/2007/01/introducing-testing-on-toilet.html"&gt;Testing on the Toilet&lt;/a&gt;: short non-mandatory meeting during the lunchtime (30min) with shared recording&amp;nbsp;later.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve started to use them for &lt;span class="caps"&gt;API&lt;/span&gt; related …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;amp;Learn, kinda like Google&amp;rsquo;s &lt;a class="external" href="https://testing.googleblog.com/2007/01/introducing-testing-on-toilet.html"&gt;Testing on the Toilet&lt;/a&gt;: short non-mandatory meeting during the lunchtime (30min) with shared recording&amp;nbsp;later.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve started to use them for &lt;span class="caps"&gt;API&lt;/span&gt; related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (&lt;span class="caps"&gt;FYI&lt;/span&gt;, &lt;em&gt;testers are part of the dev team, duh&lt;/em&gt;). Also, it&amp;rsquo;s an opportunity to organize my brain, so I&amp;rsquo;ll be posting notes here for future reference. One thing though, &lt;strong&gt;these posts are not supposed to be comprehensive:&lt;/strong&gt; there is only information applicable to my&amp;nbsp;team!&lt;/p&gt;
+&lt;h2&gt;Validation vs.&amp;nbsp;Linting&lt;/h2&gt;
+&lt;p&gt;Anyone remotely familiar with coding knows that validators and linters are important for successful development. Shortly, validators check &amp;ldquo;does X conform to the standards/specification,&amp;rdquo; whereas linters complain about style and design issues. Usually, tools combine both in some&amp;nbsp;way.&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;ll cover linters for OpenAPI description documents. But you can use linting for everything, from obvious source code files to shell scripts or markdown&amp;nbsp;documents.&lt;/p&gt;
+&lt;h2&gt;Why We Need a Linter for OpenAPI Description&amp;nbsp;Docs&lt;/h2&gt;
+&lt;p&gt;We&amp;rsquo;ve started writing style guidelines for our APIs. Usually, I am that nitpicky person to review description docs; but I am lazy. &lt;em&gt;I choose to automate myself out of the job.&lt;/em&gt; I don&amp;rsquo;t want to spend time checking for obvious style violations like capitalization or error definitions. And by the way, it would speed up the&amp;nbsp;process.&lt;/p&gt;
+&lt;p&gt;Because of that, our current requirements for the linter&amp;nbsp;are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;easy to set up and run locally (so that devs and testers could use it without&amp;nbsp;pain)&lt;/li&gt;
+&lt;li&gt;can be run via&amp;nbsp;Jenkins&lt;/li&gt;
+&lt;li&gt;possible to customize with our own&amp;nbsp;rules&lt;/li&gt;
+&lt;li&gt;support for OpenAPI&amp;nbsp;2&lt;/li&gt;
+&lt;li&gt;has a future: development is active and there is at least the possibility of OpenAPI 3&amp;nbsp;support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Current Implicit&amp;nbsp;Validation&lt;/h2&gt;
+&lt;p&gt;Right now we have description docs validation during integration tests, where we use &lt;a class="external" href="https://github.com/Yelp/bravado"&gt;bravado&lt;/a&gt; library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses &lt;a class="external" href="https://github.com/Yelp/swagger_spec_validator"&gt;swagger_spec_validator&lt;/a&gt;. Here is a small script to show how it&amp;rsquo;s typical &lt;em&gt;exceptional&lt;/em&gt; output looks&amp;nbsp;like.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pathlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;swagger_spec_validator&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;validate_spec_url&lt;/span&gt;
+
+
+&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;openapi_spec&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_uri&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;validate_spec_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;openapi_spec&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➜ python validate.py  api.json
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&amp;quot;, line 24, in wrapper
+    return method(*args, **kwargs)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&amp;quot;, line 60, in validate_spec_url
+    validator.validate_spec(spec_json, spec_url)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 170, in validate_spec
+    validate_apis(apis, bound_deref)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 376, in validate_apis
+    validate_unresolvable_path_params(api_name, all_path_params)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 602, in validate_unresolvable_path_params
+    raise SwaggerValidationError(msg)
+swagger_spec_validator.common.SwaggerValidationError: Path parameter &amp;#39;tenantID&amp;#39; used is not documented on &amp;#39;/{tenantID}/administrators/&amp;#39;
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &amp;quot;validate.py&amp;quot;, line 12, in &amp;lt;module&amp;gt;
+    validate_spec_url(p.openapi_spec)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&amp;quot;, line 29, in wrapper
+    sys.exc_info()[2])
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/six.py&amp;quot;, line 695, in reraise
+    raise value.with_traceback(tb)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&amp;quot;, line 24, in wrapper
+    return method(*args, **kwargs)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&amp;quot;, line 60, in validate_spec_url
+    validator.validate_spec(spec_json, spec_url)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 170, in validate_spec
+    validate_apis(apis, bound_deref)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 376, in validate_apis
+    validate_unresolvable_path_params(api_name, all_path_params)
+  File &amp;quot;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&amp;quot;, line 602, in validate_unresolvable_path_params
+    raise SwaggerValidationError(msg)
+swagger_spec_validator.common.SwaggerValidationError: (&amp;quot;Path parameter &amp;#39;tenantID&amp;#39; used is not documented on &amp;#39;/{tenantID}/administrators/&amp;#39;&amp;quot;, SwaggerValidationError(&amp;quot;Path parameter &amp;#39;tenantID&amp;#39; used is not documented on &amp;#39;/{tenantID}/administrators/&amp;#39;&amp;quot;))
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Also, bravado performs bits of contract testing: by default, it validates incoming responses against description&amp;nbsp;docs.&lt;/p&gt;
+&lt;p&gt;It serves us nice, but feedback is slow. At least we know when our spec is blatantly broken (beloved duplication of &lt;code&gt;operationId&lt;/code&gt;s).&lt;/p&gt;
+&lt;h2&gt;Zally&lt;/h2&gt;
+&lt;p&gt;&lt;a class="external" href="https://github.com/zalando/zally"&gt;Zally&lt;/a&gt; is a linter from Zalando, which is famous for its open-sourced &lt;a class="external" href="https://opensource.zalando.com/restful-api-guidelines/"&gt;&lt;span class="caps"&gt;API&lt;/span&gt; guidelines&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&amp;rsquo;m sure it&amp;rsquo;s an excellent tool, but not for&amp;nbsp;us.&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;BTW&lt;/span&gt;, it has nice &lt;span class="caps"&gt;UI&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zally web UI with violations highlighting and links" src="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Speccy&lt;/h2&gt;
+&lt;p&gt;Welcome to JavaScript galore. &lt;a class="external" href="https://github.com/wework/speccy"&gt;Speccy&lt;/a&gt; and all next linters are run using node.js. Even though I&amp;rsquo;m not a fan of &lt;span class="caps"&gt;JS&lt;/span&gt;, it&amp;rsquo;s easy to&amp;nbsp;use.&lt;/p&gt;
+&lt;p&gt;So, back to Speccy. It was a popular tool once, but won&amp;rsquo;t work in our&amp;nbsp;company:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;no support for OpenAPI&amp;nbsp;2&lt;/li&gt;
+&lt;li&gt;is (was?) developed by WeWork.&amp;nbsp;Ouch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span class="caps"&gt;IBM&lt;/span&gt; OpenAPI&amp;nbsp;Validator&lt;/h2&gt;
+&lt;p&gt;&lt;a class="external" href="https://github.com/IBM/openapi-validator"&gt;The next candidate is from &lt;span class="caps"&gt;IBM&lt;/span&gt;&lt;/a&gt;. Respectable origin.  I like how it reports problems with the exact origins of&amp;nbsp;errors:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➜ npx ibm-openapi-validator -e api.json
+npx: installed 244 in 5.108s
+
+errors
+
+  Message :   PUT and POST operations must have a non-empty `consumes` field.
+  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.consumes
+  Line    :   20
+
+  Message :   operationIds must be unique
+  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.operationId
+  Line    :   20
+
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Unfortunately, it&amp;rsquo;s not customizable enough. You can only tweak existing rules, change severity, or disable&amp;nbsp;them.&lt;/p&gt;
+&lt;h2&gt;Spectral&lt;/h2&gt;
+&lt;p&gt;And the last one, &lt;a class="external" href="https://stoplight.io/p/docs/gh/stoplightio/spectral"&gt;Spectral&lt;/a&gt;. As far as I know, a clear&amp;nbsp;winner:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;core devs are also contributors to OpenAPI and &lt;span class="caps"&gt;JSON&lt;/span&gt;&amp;nbsp;Schema&lt;/li&gt;
+&lt;li&gt;the most flexible, adding new rules is easy (&lt;a class="external" href="https://github.com/openapi-contrib/style-guides"&gt;examples&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The one smallish problem I see is that the &lt;span class="caps"&gt;CLI&lt;/span&gt; report is not as fun as &lt;span class="caps"&gt;IBM&lt;/span&gt;&amp;rsquo;s, just line&amp;nbsp;numbers. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;➜ npx @stoplight/spectral lint -DF error api.json
+OpenAPI 2.0 (Swagger) detected
+
+/&amp;lt;...&amp;gt;/api.json
+  3972:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
+  4024:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
+  5029:17  error  oas2-valid-definition-example  `example` property type should be object
+ 11602:26  error  no-$ref-siblings               $ref cannot be placed next to any other properties
+
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can either use Stoplight Studio or integrate with your &lt;span class="caps"&gt;IDE&lt;/span&gt; of choice to click lazily on an error to go to its source: I did with Sublime and SublimeLinter plugin, worked fine. PyCharm (and other IDEAs) are ok&amp;nbsp;too.&lt;/p&gt;</content><category term="Testing"></category><category term="api"></category><category term="practical"></category><category term="tools"></category></entry><entry><title>Weekly Hmms: API Practices, Yegor Bugaenko, Culture</title><link href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/" rel="alternate"></link><published>2019-12-21T19:33:46-05:00</published><updated>2019-12-21T19:33:46-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-21:/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/</id><summary type="html">&lt;h2&gt;&lt;span class="caps"&gt;API&lt;/span&gt; Practices If You Hate Your&amp;nbsp;Customers&lt;/h2&gt;
 &lt;p&gt;A fun &lt;a class="external" href="https://queue.acm.org/detail.cfm?ref=rss&amp;amp;id=3375635"&gt;article from &lt;span class="caps"&gt;ACM&lt;/span&gt; Queue magazine&lt;/a&gt; about how to alienate
 customers from using your &lt;span class="caps"&gt;API&lt;/span&gt;. I like an &lt;a class="external" href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/"&gt;&amp;ldquo;anti-tutorial&amp;rdquo; form&lt;/a&gt;, 
 it is easier to recall bad patterns and&amp;nbsp;behaviors.&lt;/p&gt;
