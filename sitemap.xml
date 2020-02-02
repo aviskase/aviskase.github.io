@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.aviskase.com/</loc>
-<lastmod>2019-12-26</lastmod>
+<lastmod>2020-02-01</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>https://www.aviskase.com/articles/2020/02/01/hmms-january/</loc>
+<lastmod>2020-02-01</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/</loc>
 <lastmod>2019-12-26</lastmod>
@@ -197,6 +202,11 @@
 <loc>https://www.aviskase.com/pages/privacy-and-cookies/</loc>
 <changefreq>monthly</changefreq>
 <priority>0.50</priority>
+</url><url>
+<loc>https://www.aviskase.com/category/hmms/</loc>
+<lastmod>2020-02-01</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.40</priority>
 </url><url>
 <loc>https://www.aviskase.com/category/other/</loc>
 <lastmod>2019-09-24</lastmod>
