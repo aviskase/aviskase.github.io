@@ -124,21 +124,21 @@
 <p>Команды приведены для debian-like&nbsp;дистрибутивов.</p>
 <h3>Vncserver</h3>
 <p>Ставим, настраиваем. В процессе попросит поставить пароль для vnc сервера &mdash; пишем что угодно, он нам не&nbsp;понадобится.</p>
-<div class="highlight"><pre><span></span>$ sudo apt-get install -y vnc4server
+<div class="highlight"><pre><span></span><code>$ sudo apt-get install -y vnc4server
 $ sudo su jenkins
 $ vncserver
 $ <span class="nb">exit</span>
-</pre></div>
+</code></pre></div>
 
 <h3>Xvfb</h3>
 <p>Все просто, ставим и радуемся. Поговаривают, что там еще какие-то шрифты нужно установить. Я не ставила, но тебя, заблудший сюда, если что предупредили&nbsp;=)</p>
-<div class="highlight"><pre><span></span>$ sudo apt-get install xvfb
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ sudo apt-get install xvfb
+</code></pre></div>
 
 <h2>Как&nbsp;запускать</h2>
 <h3>Python</h3>
 <p>Существует библиотека <a class="external" href="https://pypi.python.org/pypi/PyVirtualDisplay">PyVirtualDisplay</a>. Это обертка вокруг этих наших виртуальных дисплеев. Нет смысла сособо ее описывать, доки очень понятные. Приведу лишь пример кода в&nbsp;тесте:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">pyvirtualdisplay</span> <span class="kn">import</span> <span class="n">Display</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
 <span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -146,7 +146,7 @@ $ <span class="nb">exit</span>
 <span class="c1"># tests</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 <span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 <p>Этот способ хорош тем, что не зависит от того, где будут запускаться тесты. Есть Jenkins, нет его, какой конкретно X установлен &mdash; не нужно&nbsp;заморачиваться.</p>
 <h3>Java</h3>

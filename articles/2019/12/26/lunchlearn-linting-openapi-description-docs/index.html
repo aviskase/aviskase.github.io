@@ -157,7 +157,7 @@
 </ul>
 <h2>Current Implicit&nbsp;Validation</h2>
 <p>Right now we have description docs validation during integration tests, where we use <a class="external" href="https://github.com/Yelp/bravado">bravado</a> library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses <a class="external" href="https://github.com/Yelp/swagger_spec_validator">swagger_spec_validator</a>. Here is a small script to show how it&rsquo;s typical <em>exceptional</em> output looks&nbsp;like.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">swagger_spec_validator</span> <span class="kn">import</span> <span class="n">validate_spec_url</span>
 
@@ -169,9 +169,9 @@
 <span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 <span class="n">validate_spec_url</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">openapi_spec</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span>➜ python validate.py  api.json
+<div class="highlight"><pre><span></span><code>➜ python validate.py  api.json
 Traceback (most recent call last):
   File &quot;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&quot;, line 24, in wrapper
     return method(*args, **kwargs)
@@ -205,7 +205,7 @@ Traceback (most recent call last):
   File &quot;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&quot;, line 602, in validate_unresolvable_path_params
     raise SwaggerValidationError(msg)
 swagger_spec_validator.common.SwaggerValidationError: (&quot;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&quot;, SwaggerValidationError(&quot;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&quot;))
-</pre></div>
+</code></pre></div>
 
 <p>Also, bravado performs bits of contract testing: by default, it validates incoming responses against description&nbsp;docs.</p>
 <p>It serves us nice, but feedback is slow. At least we know when our spec is blatantly broken (beloved duplication of <code>operationId</code>s).</p>
@@ -223,7 +223,7 @@ swagger_spec_validator.common.SwaggerValidationError: (&quot;Path parameter &#39
 </ul>
 <h2><span class="caps">IBM</span> OpenAPI&nbsp;Validator</h2>
 <p><a class="external" href="https://github.com/IBM/openapi-validator">The next candidate is from <span class="caps">IBM</span></a>. Respectable origin.  I like how it reports problems with the exact origins of&nbsp;errors:</p>
-<div class="highlight"><pre><span></span>➜ npx ibm-openapi-validator -e api.json
+<div class="highlight"><pre><span></span><code>➜ npx ibm-openapi-validator -e api.json
 npx: installed 244 in 5.108s
 
 errors
@@ -237,7 +237,7 @@ errors
   Line    :   20
 
 ...
-</pre></div>
+</code></pre></div>
 
 <p>Unfortunately, it&rsquo;s not customizable enough. You can only tweak existing rules, change severity, or disable&nbsp;them.</p>
 <h2>Spectral</h2>
@@ -247,7 +247,7 @@ errors
 <li>the most flexible, adding new rules is easy (<a class="external" href="https://github.com/openapi-contrib/style-guides">examples</a>)</li>
 </ul>
 <p>The one smallish problem I see is that the <span class="caps">CLI</span> report is not as fun as <span class="caps">IBM</span>&rsquo;s, just line&nbsp;numbers. </p>
-<div class="highlight"><pre><span></span>➜ npx @stoplight/spectral lint -DF error api.json
+<div class="highlight"><pre><span></span><code>➜ npx @stoplight/spectral lint -DF error api.json
 OpenAPI 2.0 (Swagger) detected
 
 /&lt;...&gt;/api.json
@@ -257,7 +257,7 @@ OpenAPI 2.0 (Swagger) detected
  11602:26  error  no-$ref-siblings               $ref cannot be placed next to any other properties
 
 ...
-</pre></div>
+</code></pre></div>
 
 <p>You can either use Stoplight Studio or integrate with your <span class="caps">IDE</span> of choice to click lazily on an error to go to its source: I did with Sublime and SublimeLinter plugin, worked fine. PyCharm (and other IDEAs) are ok&nbsp;too.</p>
 

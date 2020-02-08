@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.aviskase.com/</loc>
-<lastmod>2020-02-01</lastmod>
+<lastmod>2020-02-07</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/</loc>
+<lastmod>2020-02-07</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>https://www.aviskase.com/articles/2020/02/01/hmms-january/</loc>
 <lastmod>2020-02-01</lastmod>
@@ -219,7 +224,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://www.aviskase.com/category/testing/</loc>
-<lastmod>2019-12-26</lastmod>
+<lastmod>2020-02-07</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -229,7 +234,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://www.aviskase.com/tag/api/</loc>
-<lastmod>2019-12-26</lastmod>
+<lastmod>2020-02-07</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -254,7 +259,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://www.aviskase.com/tag/practical/</loc>
-<lastmod>2019-12-26</lastmod>
+<lastmod>2020-02-07</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -264,7 +269,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://www.aviskase.com/tag/tools/</loc>
-<lastmod>2019-12-26</lastmod>
+<lastmod>2020-02-07</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
