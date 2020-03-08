@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-02-07T23:40:44-05:00</updated><entry><title>API Testing in Python: requests vs bravado</title><link href="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/" rel="alternate"></link><published>2020-02-07T23:40:44-05:00</published><updated>2020-02-07T23:40:44-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-02-07:/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/</id><summary type="html">&lt;div class="admonition note"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-03-08T00:35:17-05:00</updated><entry><title>Hmms: February</title><link href="https://www.aviskase.com/articles/2020/03/08/hmms-february/" rel="alternate"></link><published>2020-03-08T00:35:17-05:00</published><updated>2020-03-08T00:35:17-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-08:/articles/2020/03/08/hmms-february/</id><summary type="html">&lt;p&gt;It&amp;rsquo;s March already, time to summarize&amp;nbsp;February!&lt;/p&gt;
+&lt;h1&gt;APIs&amp;nbsp;Trainings&lt;/h1&gt;
+&lt;p&gt;I did a small company-wide training about APIs. Here is &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api101.pdf"&gt;the main deck&lt;/a&gt;
+and &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api_salad.pdf"&gt;supplementary deck&lt;/a&gt; left from dev lunch&amp;amp;learn. 
+Anyone is free to use it and if you have questions just ping me somewhere. They don&amp;rsquo;t have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It&amp;rsquo;s March already, time to summarize&amp;nbsp;February!&lt;/p&gt;
+&lt;h1&gt;APIs&amp;nbsp;Trainings&lt;/h1&gt;
+&lt;p&gt;I did a small company-wide training about APIs. Here is &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api101.pdf"&gt;the main deck&lt;/a&gt;
+and &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api_salad.pdf"&gt;supplementary deck&lt;/a&gt; left from dev lunch&amp;amp;learn. 
+Anyone is free to use it and if you have questions just ping me somewhere. They don&amp;rsquo;t have notes, so can be pretty
+cryptic, but I am inclined to continue improving them to use for new&amp;nbsp;hires. &lt;/p&gt;
+&lt;p&gt;The most important feedback was from members of marketing and tech writing teams. I failed to properly address &amp;ldquo;why&amp;rsquo;s&amp;rdquo;
+and they felt a bit lost. Which is a great reminder that by being constantly in the &amp;ldquo;dev soup,&amp;rdquo; you falsely assume that everyone
+understands how immense APIs&amp;rsquo; power and impact&amp;nbsp;are.&lt;/p&gt;
+&lt;h1&gt;Readings&lt;/h1&gt;
+&lt;p&gt;&lt;a class="external" href="https://www.canada.ca/en/government/system/digital-government/modern-emerging-technologies/government-canada-standards-apis.html"&gt;Government of Canada published standards on APIs&lt;/a&gt;.
+Not perfect, but it&amp;rsquo;s great to see not only corporates showing their development practices but also the public&amp;nbsp;sector.&lt;/p&gt;
+&lt;p&gt;Curity suggested a simple &lt;a class="external" href="https://curity.io/resources/architect/api-security/the-api-security-maturity-model/"&gt;&amp;ldquo;&lt;span class="caps"&gt;API&lt;/span&gt; security maturity model&lt;/a&gt;.
+All models are wrong, but some are useful, including this&amp;nbsp;one.&lt;/p&gt;
+&lt;p&gt;While &lt;a class="external" href="https://www.a-sisyphean-task.com/2020/01/why-we-need-to-get-rid-of-thought.html?goal=0_02cca1920b-49fb91397f-289479173&amp;amp;mc_cid=49fb91397f&amp;amp;mc_eid=8933fe8877"&gt;&amp;ldquo;Why we need to get rid of thought leaders&amp;rdquo;&lt;/a&gt;
+article by Adam Knight makes interesting points, I actually hoped it to cover &amp;ldquo;the leaders&amp;rdquo; problem. And this segues us
+to the next&amp;nbsp;section&amp;hellip;&lt;/p&gt;
+&lt;h1&gt;Leaders and Their&amp;nbsp;Followers&lt;/h1&gt;
+&lt;p&gt;Perhaps I&amp;rsquo;m stating the obvious fact, but here it is: do not ever assume that appreciating content created
+by the person correlates with wanting to be/stay a part of their community. Because true meanings are shown in 
+&lt;a class="external" href="https://www.ted.com/talks/derek_sivers_how_to_start_a_movement/transcript?language=en"&gt;the interactions between the leader and the followers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As I still have respect and hope for innovations from those people, I will keep it general. There are two communities,
+both sparkled by well-known persons. I was eager to join both and quickly enough found them almost at odds. And 
+while one is chill and mildly sarcastic about it, the other keeps being almost aggressive. The biggest
+problem with the second community &lt;em&gt;for me&lt;/em&gt; is that the most vocal followers act as non-debatable intellectuals 
+who paint everything in absolutes and this behavior is &lt;em&gt;supported by their leaders.&lt;/em&gt;  Well. You never know until you
+dive&amp;nbsp;in. &lt;/p&gt;</content><category term="Hmms"></category></entry><entry><title>API Testing in Python: requests vs bravado</title><link href="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/" rel="alternate"></link><published>2020-02-07T23:40:44-05:00</published><updated>2020-02-07T23:40:44-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-02-07:/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/</id><summary type="html">&lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Note&lt;/p&gt;
 &lt;p&gt;This article is written as a result of collaboration with &lt;a class="external" href="https://testproject.io/"&gt;TestProject&lt;/a&gt;. 
 While many of you know me as &lt;a class="internal" href="https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/"&gt;a &lt;span class="caps"&gt;GUI&lt;/span&gt;-driven tools hater&lt;/a&gt;, 
