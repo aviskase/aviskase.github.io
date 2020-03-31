@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-03-08T00:35:17-05:00</updated><entry><title>Hmms: February</title><link href="https://www.aviskase.com/articles/2020/03/08/hmms-february/" rel="alternate"></link><published>2020-03-08T00:35:17-05:00</published><updated>2020-03-08T00:35:17-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-08:/articles/2020/03/08/hmms-february/</id><summary type="html">&lt;p&gt;It&amp;rsquo;s March already, time to summarize&amp;nbsp;February!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-03-31T20:24:05-04:00</updated><entry><title>Hmms: March</title><link href="https://www.aviskase.com/articles/2020/03/31/hmms-march/" rel="alternate"></link><published>2020-03-31T20:24:05-04:00</published><updated>2020-03-31T20:24:05-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-31:/articles/2020/03/31/hmms-march/</id><summary type="html">&lt;p&gt;Coronavirus-free&amp;nbsp;edition!&lt;/p&gt;
+&lt;h2&gt;Top X Videos and&amp;nbsp;Readings&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Meme: APIs, APIs everywhere" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Erik Wilde started a video series about &lt;span class="caps"&gt;API&lt;/span&gt; design, 
+and &lt;a class="external" href="https://www.youtube.com/watch?v=qc_DF01qgZg"&gt;the last one&lt;/a&gt; covers pros and cons of exposing system&amp;nbsp;APIs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tyk explains &lt;a class="external" href="https://tyk.io/considerations-before-building-your-own-api-gateway/"&gt;why you shouldn&amp;rsquo;t write our own &lt;span class="caps"&gt;API&lt;/span&gt; gateway&lt;/a&gt;.
+I particularly liked this&amp;nbsp;part:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Another chose to build their own …&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Coronavirus-free&amp;nbsp;edition!&lt;/p&gt;
+&lt;h2&gt;Top X Videos and&amp;nbsp;Readings&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Meme: APIs, APIs everywhere" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Erik Wilde started a video series about &lt;span class="caps"&gt;API&lt;/span&gt; design, 
+and &lt;a class="external" href="https://www.youtube.com/watch?v=qc_DF01qgZg"&gt;the last one&lt;/a&gt; covers pros and cons of exposing system&amp;nbsp;APIs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tyk explains &lt;a class="external" href="https://tyk.io/considerations-before-building-your-own-api-gateway/"&gt;why you shouldn&amp;rsquo;t write our own &lt;span class="caps"&gt;API&lt;/span&gt; gateway&lt;/a&gt;.
+I particularly liked this&amp;nbsp;part:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Another chose to build their own &lt;span class="caps"&gt;API&lt;/span&gt; gateway because no offerings existed that would operate in their 
+preferred Windows-based server environment. 
+I haven’t heard from them since as they still haven’t shipped their product &amp;mdash; a full year&amp;nbsp;later.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Adidas has awesome &lt;span class="caps"&gt;API&lt;/span&gt; guidelines and recently they&amp;rsquo;ve published &lt;a class="external" href="https://github.com/adidas/api-pm-training"&gt;their &lt;span class="caps"&gt;API&lt;/span&gt; training for PMs&lt;/a&gt;.
+If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
+business-y for me to comprehend without hands-on&amp;nbsp;experience.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Almost non-&lt;span class="caps"&gt;API&lt;/span&gt; topic. Why you should always carefully read RFCs and standards: in this case,
+&lt;a class="external" href="https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/"&gt;what is the proper input type for numbers&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Testing vs &lt;span class="caps"&gt;DX&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;While I was reading &lt;a class="external" href="https://nordicapis.com/why-your-api-needs-a-dedicated-developer-experience-team/"&gt;an article about &lt;span class="caps"&gt;DX&lt;/span&gt; teams&lt;/a&gt;,
+it came to me that I&amp;rsquo;m (at least partially) not a tester. I mean, I knew it, but I didn&amp;rsquo;t have a proper name for&amp;nbsp;that.&lt;/p&gt;
+&lt;p&gt;So, what does &lt;span class="caps"&gt;DX&lt;/span&gt; specialist&amp;nbsp;do?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="caps"&gt;API&lt;/span&gt;&amp;nbsp;design &lt;/li&gt;
+&lt;li&gt;&lt;span class="caps"&gt;QA&lt;/span&gt;. Clarification: not the obvious &amp;ldquo;I&amp;rsquo;m capable of sending requests&amp;rdquo; part, but more about contract testing, linting, 
+style guides, and&amp;nbsp;docs.&lt;/li&gt;
+&lt;li&gt;Tooling&lt;/li&gt;
+&lt;li&gt;Developer&amp;nbsp;relations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What&amp;rsquo;s funny is that if you read that article carefully you won&amp;rsquo;t find any mentions of testers.
+None. There are tech writers, advocates, but no testers whatsoever. In fact, in any non-Postman induced article about &lt;span class="caps"&gt;API&lt;/span&gt;
+there are no presence of testers. &lt;em&gt;And it&amp;rsquo;s totally&amp;nbsp;fine.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Remote&amp;nbsp;Work&lt;/h2&gt;
+&lt;p&gt;Sorry, it&amp;rsquo;s not totally coronavirus-free edition. Almost everyone works remotely now, so there is an avalanche of 
+articles about how to work from home. The company I dearly love even decided to offer &lt;em&gt;a payed&lt;/em&gt; conference (frack&amp;nbsp;you).&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve started my career as a fully remote worker and was there for three years. Next two years I was working from home
+at least one day a week, often more. One would say I have immense amount of tips and tricks to share, but &lt;em&gt;I don&amp;rsquo;t&lt;/em&gt;. 
+Because I&amp;rsquo;ve never been accustomed to the office work in the first place. I had to learn how to work &lt;span class="caps"&gt;NOT&lt;/span&gt; from&amp;nbsp;home.&lt;/p&gt;
+&lt;p&gt;All the sad things aside, it&amp;rsquo;s curious how much this experience can change companies in the positive way. 
+Some didn&amp;rsquo;t even consider before that their work can be done remotely. Perhaps we will see a surge of remote-friendly 
+and/or flexible hours positions (which are rare at the&amp;nbsp;moment)?&lt;/p&gt;</content><category term="Hmms"></category></entry><entry><title>Hmms: February</title><link href="https://www.aviskase.com/articles/2020/03/08/hmms-february/" rel="alternate"></link><published>2020-03-08T00:35:17-05:00</published><updated>2020-03-08T00:35:17-05:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-08:/articles/2020/03/08/hmms-february/</id><summary type="html">&lt;p&gt;It&amp;rsquo;s March already, time to summarize&amp;nbsp;February!&lt;/p&gt;
 &lt;h1&gt;APIs&amp;nbsp;Trainings&lt;/h1&gt;
 &lt;p&gt;I did a small company-wide training about APIs. Here is &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api101.pdf"&gt;the main deck&lt;/a&gt;
 and &lt;a class="external" href="https://github.com/aviskase/trucs/blob/master/api_salad.pdf"&gt;supplementary deck&lt;/a&gt; left from dev lunch&amp;amp;learn. 
@@ -78,7 +139,7 @@ But sometimes you want to pass additional headers, so your framework should supp
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;auth_headers&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_specific_project&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{self.endpoint}&lt;/span&gt;&lt;span class="s1"&gt;/projects/&lt;/span&gt;&lt;span class="si"&gt;{identifier}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_construct_headers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;endpoint&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;/projects/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_construct_headers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now it’s time to write simple tests. I use &lt;em&gt;pytest&lt;/em&gt; as a test runner because of its versatility and&amp;nbsp;pluggability.&lt;/p&gt;
