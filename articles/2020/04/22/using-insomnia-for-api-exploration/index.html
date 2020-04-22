@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+
+    <head>
+
+        <title>Using Insomnia for API exploration | aviskase</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+
+    <link rel="canonical" href="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/"/>
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@aviskase" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/" />
+    <meta property="og:title" content="Using Insomnia for API exploration" />
+    <meta property="og:description" content="One of the tools I use almost daily is Insomnia. It’s a great alternative to the P-everyone-knows-that-one. Insomnia is easy to use on Linux, has plugins, and UI is clean and simple. Let me show you some basic features. We will use OpenWeatherMap API. Workspaces Workspaces are collections of …" />
+    <meta property="og:image" content="https://www.aviskase.com/images/og_using_insomnia_for_exploration.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="article:author" content="https://www.aviskase.com/pages/about/" />
+    <meta property="article:published_time" content="2020-04-22 01:06:01.497569-04:00" />
+
+
+    <meta name="category" content="Testing" />
+    <meta property="article:section" content="Testing" />
+
+    <meta name="keywords" content="api, tools, practical" />
+    <meta property="article:tag" content="api" />
+    <meta property="article:tag" content="tools" />
+    <meta property="article:tag" content="practical" />
+
+
+
+<meta name="description" content="One of the tools I use almost daily is Insomnia. It’s a great alternative to the P-everyone-knows-that-one. Insomnia is easy to use on Linux, has plugins, and UI is clean and simple. Let me show you some basic features. We will use OpenWeatherMap API. Workspaces Workspaces are collections of …"/>
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2020/04/22/using-insomnia-for-api-exploration/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Testing',
+              'articleTags': ["api", "tools", "practical"]
+            });
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+          <li><a href="https://www.aviskase.com/pages/about">About</a></li>
+          <li><a href="https://www.aviskase.com/meta">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>Using Insomnia for <span class="caps">API</span>&nbsp;exploration</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">22 Apr 2020</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            3&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/testing/">Testing</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/tag/api/">api</a>,                 <a href="https://www.aviskase.com/tag/tools/">tools</a>,                 <a href="https://www.aviskase.com/tag/practical/">practical</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>One of the tools I use almost daily is <a class="external" href="https://insomnia.rest/">Insomnia</a>. 
+It&rsquo;s a great alternative to the <em>P-everyone-knows-that-one.</em> 
+Insomnia is easy to use on Linux, has plugins, and <span class="caps">UI</span> is clean and&nbsp;simple.</p>
+<p>Let me show you some basic features. We will use <a class="external" href="https://openweathermap.org/">OpenWeatherMap <span class="caps">API</span></a>. </p>
+<h2>Workspaces</h2>
+<p>Workspaces are collections of thematically combined requests. Some of my workspaces are service-specific, 
+while others contain everything related to the particular client use case or event (i.e.,&nbsp;cross-service). </p>
+<p>Our first examples: get current weather and forecast for Montreal. OpenWeatherMap <span class="caps">API</span> requires an <span class="caps">API</span> key, 
+so you need to add it to the query parameters for each&nbsp;request.</p>
+<p><img alt="Insomnia: basic interface" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png"></p>
+<h2>Environments</h2>
+<p>Too much duplication, isn&rsquo;t&nbsp;it?</p>
+<p>Welcome to environments. Insomnia supports multi-layered variable&nbsp;assignments:</p>
+<ul>
+<li>
+<p>Base environment: values are accessible regardless of which environment is&nbsp;selected.</p>
+</li>
+<li>
+<p>Sub environments: you can create as many as you want. Especially useful for testing APIs on different&nbsp;servers.</p>
+</li>
+<li>
+<p>Folder-level environment: requests can be grouped by folders and sometimes it makes sense to assign specific values 
+to all requests in the&nbsp;folder.</p>
+</li>
+</ul>
+<p>Ok, so for this <span class="caps">API</span> let&rsquo;s do like this. <code>https://api.openweathermap.org/data/2.5</code> can go into base, 
+because we have access only to one&nbsp;server.</p>
+<p><img alt="Insomnia: base environment" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png"></p>
+<p>An <span class="caps">API</span> key is perfect for the sub&nbsp;environment. </p>
+<p><img alt="Insomnia: sub environment" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png"></p>
+<p><em><span class="dquo">&ldquo;</span>Montreal&rdquo;</em> is stored as a folder-level value, just for the sake of&nbsp;example.</p>
+<p><img alt="Insomnia: folder-level environment" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png"></p>
+<p>Then, our requests will look like (use <code>{{var_name}}</code> to access&nbsp;variable):</p>
+<p><img alt="Insomnia: requests with variables from environments" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png"></p>
+<p>You might notice that we still have to fill out the <span class="caps">API</span> key query parameter for each request. Kinda boring. 
+That&rsquo;s where plugins can help, in this case, it&rsquo;s <code>insomnia-plugin-defaults</code>. 
+Just go into <em>Preferences &gt; Plugins</em> and type its name to install. 
+This plugin allows us to set default headers and/or query parameters in the&nbsp;environments.</p>
+<p><img alt="Insomnia: environment setup with query param defaults" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png"></p>
+<p>And now we can remove it from&nbsp;requests:</p>
+<p><img alt="Insomnia: requests with default query params" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png"></p>
+<h2>Response&nbsp;querying</h2>
+<p>The response for the forecast <span class="caps">API</span> is big. What if we want to check all returned values for 
+weather descriptions? We can do it by using JSONPath response&nbsp;filtering.</p>
+<p><code>$.list[*].weather[*].description</code> means <em>&lsquo;Get descriptions from each element of <code>weather</code> 
+array that is a property of elements in the <code>list</code> array&rsquo;</em>.</p>
+<p><img alt="Insomnia: querying response using JSONPath" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png"></p>
+<h2>Generating&nbsp;values</h2>
+<p>Sometimes we want to use random values. Insomnia has embedded 
+<a class="external" href="https://support.insomnia.rest/article/40-template-tags">template tags</a> for that, like timestamp and <span class="caps">UUID</span>. For other
+cases plugins come to the rescue yet again: <code>insomnia-plugin-random</code> uses <a class="external" href="https://chancejs.com/">Chance</a> library 
+which gives you tons of&nbsp;options. </p>
+<p>Here is how to generate random latitude and longitude&nbsp;coordinates:</p>
+<p><img alt="Insomnia: random value generation" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png"></p>
+<p><img alt="Insomnia: usage of generated values in the request" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png"></p>
+<p><span class="caps">BTW</span>, use <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-space">Space</kbd></span> shortcut for the fastest template tag&nbsp;autocomplete.</p>
+<h2>Reusing response&nbsp;values</h2>
+<p>Another commonly used feature is sending a request with values from the response of another request. 
+In Insomnia you should use <code>Response</code> template tag and JSONPath if you want to grab a value from the response&nbsp;body:</p>
+<p><img alt="Insomnia: pulling values from previous response" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png"></p>
+<p><img alt="Insomnia: request with pulled values" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png"></p>
+<p>Pretty simple,&nbsp;huh? </p>
+<p>There are other useful features and no one stops you from writing a plugin if you miss anything. But, s&rsquo;il te plaît,
+don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what programming languages are&nbsp;for. </p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2020/03/31/hmms-march/" title="Hmms: March">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2020 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
