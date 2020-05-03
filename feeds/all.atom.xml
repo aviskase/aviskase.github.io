@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-04-22T01:06:01-04:00</updated><entry><title>Using Insomnia for API exploration</title><link href="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/" rel="alternate"></link><published>2020-04-22T01:06:01-04:00</published><updated>2020-04-22T01:06:01-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-04-22:/articles/2020/04/22/using-insomnia-for-api-exploration/</id><summary type="html">&lt;p&gt;One of the tools I use almost daily is &lt;a class="external" href="https://insomnia.rest/"&gt;Insomnia&lt;/a&gt;. 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-05-02T23:43:38-04:00</updated><entry><title>Hmms: April</title><link href="https://www.aviskase.com/articles/2020/05/02/hmms-april/" rel="alternate"></link><published>2020-05-02T23:43:38-04:00</published><updated>2020-05-02T23:43:38-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-05-02:/articles/2020/05/02/hmms-april/</id><summary type="html">&lt;h1&gt;Learning&lt;/h1&gt;
+&lt;p&gt;One of the good things to emerge during the corona times is more educational&amp;nbsp;opportunities.&lt;/p&gt;
+&lt;p&gt;For example, you can (and perhaps should) check the
+&lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt; by Udi&amp;nbsp;Dahan.&lt;/p&gt;
+&lt;p&gt;Another way to satisfy knowledge thirst is to attend a virtual&amp;nbsp;conference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="external" href="https://apithedocs.org/"&gt;&lt;span class="caps"&gt;API&lt;/span&gt; The Docs&lt;/a&gt; hosts bite-sized …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h1&gt;Learning&lt;/h1&gt;
+&lt;p&gt;One of the good things to emerge during the corona times is more educational&amp;nbsp;opportunities.&lt;/p&gt;
+&lt;p&gt;For example, you can (and perhaps should) check the
+&lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt; by Udi&amp;nbsp;Dahan.&lt;/p&gt;
+&lt;p&gt;Another way to satisfy knowledge thirst is to attend a virtual&amp;nbsp;conference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="external" href="https://apithedocs.org/"&gt;&lt;span class="caps"&gt;API&lt;/span&gt; The Docs&lt;/a&gt; hosts bite-sized virtual events with discussion&amp;nbsp;opportunities.&lt;/li&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.asyncapiconf.com/"&gt;AsyncAPI&lt;/a&gt; has finished already, but you can watch it on&amp;nbsp;YouTube.&lt;/li&gt;
+&lt;li&gt;&lt;a class="external" href="https://www.onlinetestconf.com/"&gt;OnlineTestConf&lt;/a&gt; is soon. I&amp;rsquo;m particularly excited about 
+&amp;ldquo;The Lessons we can Learn from the Aviation Industry&amp;rdquo; by Conor&amp;nbsp;Fitzgerald.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;New&amp;nbsp;font&lt;/h1&gt;
+&lt;p&gt;Any &amp;ldquo;&lt;span class="caps"&gt;IT&lt;/span&gt; person&amp;rdquo; should have a favorite monospaced font. Except for those weirdos who prefer non-monospaced. 
+I wasn&amp;rsquo;t very original in this matter and used &lt;a class="external" href="https://github.com/tonsky/FiraCode"&gt;Fira Code&lt;/a&gt; because it has 
+ligatures and proper support for&amp;nbsp;Cyrillic.&lt;/p&gt;
+&lt;p&gt;Any &amp;ldquo;&lt;span class="caps"&gt;IT&lt;/span&gt; person&amp;rdquo; should also have a favorite &lt;span class="caps"&gt;IDE&lt;/span&gt;. Mine is PyCharm by JetBrains. Recently an amazing thing has happened:
+JetBrains released their own monospaced font, &lt;a class="external" href="https://www.jetbrains.com/lp/mono/"&gt;JetBrains Mono&lt;/a&gt;. The key feature is
+an increased height of lowercase letters. Love&amp;nbsp;it!&lt;/p&gt;
+&lt;h1&gt;Fam0us&lt;/h1&gt;
+&lt;p&gt;I participated in &lt;a class="external" href="https://www.angryweasel.com/ABTesting/abt-343-yuliya-bagriy-aviskase/"&gt;the podcast hosted by Alan Page&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;In retrospect, I should have &amp;ldquo;rehearsed&amp;rdquo; a bit more. For example, I somehow was able to forget the phrase 
+&lt;em&gt;open-book management.&lt;/em&gt;  Or some answers could be more laconic and concise. Nevertheless, it was a great&amp;nbsp;experience.&lt;/p&gt;
+&lt;h1&gt;Visible&amp;nbsp;work&lt;/h1&gt;
+&lt;p&gt;I slowly write &lt;a class="external" href="https://netgovern.github.io/api-guidelines"&gt;our &lt;span class="caps"&gt;API&lt;/span&gt; guidelines&lt;/a&gt;. Still work in progress,
+but it&amp;rsquo;s cool to have bits of your work visible and perhaps at some point serving others. 
+My admiration for companies who published their guidelines in the same matter 
+grew immensely: Adidas, PayPal, Heroku, Microsoft, Zalando, etc. It really helps to be able to see real artifacts and
+not just generic &lt;span class="caps"&gt;NDA&lt;/span&gt;-sanitized dev blog&amp;nbsp;posts.&lt;/p&gt;</content><category term="Hmms"></category></entry><entry><title>Using Insomnia for API exploration</title><link href="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/" rel="alternate"></link><published>2020-04-22T01:06:01-04:00</published><updated>2020-04-22T01:06:01-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-04-22:/articles/2020/04/22/using-insomnia-for-api-exploration/</id><summary type="html">&lt;p&gt;One of the tools I use almost daily is &lt;a class="external" href="https://insomnia.rest/"&gt;Insomnia&lt;/a&gt;. 
 It&amp;rsquo;s a great alternative to the &lt;em&gt;P-everyone-knows-that-one.&lt;/em&gt; 
 Insomnia is easy to use on Linux, has plugins, and &lt;span class="caps"&gt;UI&lt;/span&gt; is clean and&amp;nbsp;simple.&lt;/p&gt;
 &lt;p&gt;Let me show you some basic features. We will use &lt;a class="external" href="https://openweathermap.org/"&gt;OpenWeatherMap &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/a&gt;. &lt;/p&gt;
