@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block title %}Articles with tag "{{ tag | striptags}}" | {{ SITENAME }}{% endblock %}
+
+
+{% block meta_description %}
+<meta name="description" content="Articles with tag “{{ tag | striptags}}” in the category “{{ tag.category | striptags}}”"/>
+{% endblock %}
+
+{% block index_title %}<h1><span class='icon-tags icon' aria-hidden="true"></span>{{tag.category}} > {{ tag }}</h1>{% endblock %}

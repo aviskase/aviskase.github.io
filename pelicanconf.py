@@ -31,13 +31,14 @@ AUTHOR_FEED_RSS = None
 #RELATIVE_URLS = True
 
 PLUGINS = [
-  'neighbors',
-  'readtime',
-  'pelican_gist',
-  'pelican_linkclass',
-  'extended_sitemap',
-  'minchin.pelican.plugins.optimize_images',
-  'minchin.pelican.plugins.cname'
+    'neighbors',
+    'readtime',
+    'pelican_gist',
+    'pelican_linkclass',
+    'extended_sitemap',
+    'minchin.pelican.plugins.optimize_images',
+    'minchin.pelican.plugins.cname',
+    'pelican-tags-per-category.pelican_tags_per_category'
 ]
 
 READTIME_WPM = 180
@@ -55,14 +56,17 @@ CATEGORY_URL = 'category/{slug}/'
 CATEGORY_SAVE_AS = 'category/{slug}/index.html'
 TAGS_URL = ''
 TAGS_SAVE_AS = ''
-TAG_URL = 'tag/{slug}/'
-TAG_SAVE_AS = 'tag/{slug}/index.html'
+TAG_URL = ''
+TAG_SAVE_AS = ''
+CATEGORIZEDTAG_URL = 'category/{full_url}/'
+CATEGORIZEDTAG_SAVE_AS = 'category/{save_path}/index.html'
 AUTHOR_URL = ''
 AUTHOR_SAVE_AS = ''
 
+
 USE_FOLDER_AS_CATEGORY = False
 DISPLAY_CATEGORIES_ON_MENU = False
-THEME='theme'
+THEME = 'theme'
 DIRECT_TEMPLATES = ['index']
 
 

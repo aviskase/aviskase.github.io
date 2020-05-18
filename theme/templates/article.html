@@ -36,10 +36,10 @@
         </span>
         {% endif %}
 
-        {% if article.tags %}
+        {% if article.categorized_tags %}
         <span class="article-tags">
             <span class='icon-tags' aria-hidden="true"></span>
-            {% for tag in article.tags %}
+            {% for tag in article.categorized_tags %}
                 <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
             {% endfor %}
         </span>
