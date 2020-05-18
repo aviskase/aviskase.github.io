@@ -358,18 +358,19 @@ h1 .icon {
 }
 
 
-section ul.tags {
- list-style: disc;
- list-style-position: inside;
-}
-.tag-count {
- color:#757575;
+section ul.meta_categories {
+ margin-top: 2em;
 }
 
-section ul.tags li {
+section ul.meta_tags {
+ margin-left: 2em;
+ margin-top: -0.5em;
+}
+
+section ul.meta_categories li, section ul.meta_tags li  {
  border-bottom:2px solid transparent
 }
-section ul.tags li:hover {
+section ul.meta_categories li:hover, section ul.meta_tags li:hover {
  border-color:#000
 }
 
