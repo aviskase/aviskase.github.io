@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-05-02T23:43:38-04:00</updated><entry><title>Hmms: April</title><link href="https://www.aviskase.com/articles/2020/05/02/hmms-april/" rel="alternate"></link><published>2020-05-02T23:43:38-04:00</published><updated>2020-05-02T23:43:38-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-05-02:/articles/2020/05/02/hmms-april/</id><summary type="html">&lt;h1&gt;Learning&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-06-02T20:33:43-04:00</updated><entry><title>Hmms: May</title><link href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" rel="alternate"></link><published>2020-06-02T20:33:43-04:00</published><updated>2020-06-02T20:33:43-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-06-02:/articles/2020/06/02/hmms-may/</id><summary type="html">&lt;p&gt;This was a slow month in the sense of discovering&amp;nbsp;new.&lt;/p&gt;
+&lt;p&gt;I finished the &lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt;. 
+&lt;span class="caps"&gt;CQRS&lt;/span&gt;, &lt;span class="caps"&gt;DDD&lt;/span&gt;, messaging patterns: doesn&amp;rsquo;t sound like this course is in any way helpful for testers.
+Yet being &lt;em&gt;just a tester&lt;/em&gt; is dull. Exploring such courses helps to diminish the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a slow month in the sense of discovering&amp;nbsp;new.&lt;/p&gt;
+&lt;p&gt;I finished the &lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt;. 
+&lt;span class="caps"&gt;CQRS&lt;/span&gt;, &lt;span class="caps"&gt;DDD&lt;/span&gt;, messaging patterns: doesn&amp;rsquo;t sound like this course is in any way helpful for testers.
+Yet being &lt;em&gt;just a tester&lt;/em&gt; is dull. Exploring such courses helps to diminish the hardest 
+&lt;a class="external" href="https://wiki.c2.com/?OrdersOfIgnorance"&gt;order of ignorance&lt;/a&gt; &amp;ldquo;I don&amp;rsquo;t know what I don&amp;rsquo;t know&amp;rdquo;. And as I&amp;rsquo;m wearing an 
+&lt;span class="caps"&gt;API&lt;/span&gt; designer hat more and more, learning about broader architectural stuff is&amp;nbsp;essential.&lt;/p&gt;
+&lt;p&gt;Another &amp;ldquo;merging the trenches&amp;rdquo; experience was 
+&lt;a class="external" href="https://blogs.mulesoft.com/dev/design-dev/intentional-api-consumer-experience/"&gt;an article about using user types and personas for &lt;span class="caps"&gt;API&lt;/span&gt; design&lt;/a&gt;.
+Personas are a nifty tool for any team, but for me, it&amp;rsquo;s been difficult to apply them consistently. 
+This is something I still need to learn and&amp;nbsp;practice.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;In these uncertain times, uncertainty is certain ©.&lt;/em&gt; Right before the quarantine, I ordered a book 
+&lt;a class="external" href="http://shop.oreilly.com/product/0636920201755.do"&gt;Continuous &lt;span class="caps"&gt;API&lt;/span&gt; Management&lt;/a&gt;. Well, it arrived. Today. On the 
+serious note, I&amp;rsquo;m happy to start reading it, though I could have it finished in e-book format 
+while waiting&amp;nbsp;xD&lt;/p&gt;
+&lt;p&gt;And a small off-topic, my other purchase this month was a drawing tablet 
+&lt;a class="external" href="https://www.huion.com/pen_tablet/Inspiroy/H640P.html"&gt;Huion &lt;span class="caps"&gt;H640P&lt;/span&gt;&lt;/a&gt;. The good thing about it is that there are 
+proper drivers for Linux. And it&amp;rsquo;s cheap =) Bad thing is that I&amp;rsquo;ve just upgraded to Ubuntu 20.04 with 5.4 kernel 
+that is buggy and prevents these drivers from being installed. Oopsie. So, I&amp;rsquo;m waiting until 5.6 kernel is stable 
+enough or  5.4 is fixed to fully dive into e-drawing. At the very least I&amp;rsquo;d like to draw doodles and diagrams with it, 
+and maybe, &lt;span class="caps"&gt;MAYBE&lt;/span&gt;, actually learn to&amp;nbsp;draw.&lt;/p&gt;</content><category term="Hmms"></category></entry><entry><title>Hmms: April</title><link href="https://www.aviskase.com/articles/2020/05/02/hmms-april/" rel="alternate"></link><published>2020-05-02T23:43:38-04:00</published><updated>2020-05-02T23:43:38-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-05-02:/articles/2020/05/02/hmms-april/</id><summary type="html">&lt;h1&gt;Learning&lt;/h1&gt;
 &lt;p&gt;One of the good things to emerge during the corona times is more educational&amp;nbsp;opportunities.&lt;/p&gt;
 &lt;p&gt;For example, you can (and perhaps should) check the
 &lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt; by Udi&amp;nbsp;Dahan.&lt;/p&gt;
