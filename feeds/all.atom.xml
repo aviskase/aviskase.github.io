@@ -69,11 +69,13 @@ float(&amp;quot;blah&amp;quot;) --&amp;gt; Exception
 assert typeof(x) == &amp;#39;float&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;then for:
-- &lt;code&gt;"tugrik": 10&lt;/code&gt; passes 
-- &lt;code&gt;"tugrik": 10.0&lt;/code&gt; passes 
-- &lt;code&gt;"tugrik": "10"&lt;/code&gt; fails 
-- &lt;code&gt;"tugrik": "blah"&lt;/code&gt; fails &lt;/p&gt;
+&lt;p&gt;then&amp;nbsp;for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;"tugrik": 10&lt;/code&gt; passes &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"tugrik": 10.0&lt;/code&gt; passes &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"tugrik": "10"&lt;/code&gt; fails &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"tugrik": "blah"&lt;/code&gt; fails &lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Can you guess how &lt;em&gt;really robust&lt;/em&gt; validators are different? Right! They make &lt;code&gt;"tugrik": "10"&lt;/code&gt; to pass validation. Because they follow Postel&amp;rsquo;s&amp;nbsp;law:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Be conservative in what you send, be liberal in what you&amp;nbsp;accept.&lt;/p&gt;

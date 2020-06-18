@@ -207,11 +207,13 @@ float(&quot;blah&quot;) --&gt; Exception
 assert typeof(x) == &#39;float&#39;
 </code></pre></div>
 
-<p>then for:
-- <code>"tugrik": 10</code> passes 
-- <code>"tugrik": 10.0</code> passes 
-- <code>"tugrik": "10"</code> fails 
-- <code>"tugrik": "blah"</code> fails </p>
+<p>then&nbsp;for:</p>
+<ul>
+<li><code>"tugrik": 10</code> passes </li>
+<li><code>"tugrik": 10.0</code> passes </li>
+<li><code>"tugrik": "10"</code> fails </li>
+<li><code>"tugrik": "blah"</code> fails </li>
+</ul>
 <p>Can you guess how <em>really robust</em> validators are different? Right! They make <code>"tugrik": "10"</code> to pass validation. Because they follow Postel&rsquo;s&nbsp;law:</p>
 <blockquote>
 <p>Be conservative in what you send, be liberal in what you&nbsp;accept.</p>
