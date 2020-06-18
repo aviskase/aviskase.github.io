@@ -72,7 +72,7 @@ Oh no, you say, that looks wrong! We know that `tugrik` is a number, so make it 
 }
 ```
 
-Yet by doing that, now we don't even need any JSON Schema to guess the property type. No pesky little quotes --- it's a number!
+Yet by doing that, now we don't even need any JSON Schema to guess the type. No pesky little quotes --- it's a number!
 
 
 Perhaps you see where this is going. XML documents are plain-text. Each element's value is a simple string that frameworks cast into proper types using XSD. 
@@ -120,4 +120,4 @@ If your service is designed to handle weak input like `"tugrik": "10"` as a vali
 
 And yes, there is definitely a way [to do robustness wrong or overdo it](https://techblog.workiva.com/tech-blog/wrestling-postel%E2%80%99s-law). If you write a browser engine from scratch (why?), you'll follow Postel's law religiously. Another reason would be ensuring the maximum uptime of API clients. More successful requests they do and less work is required from them to connect to your product result in more profit. 
 
-So, when you explore new API, make sure you understand hows and whys around the design before filing bugs "Achtung, Achtung, no validation!!!1". 
+So, when you explore new API, make sure you understand how's and why's around the design before filing bugs "Achtung, Achtung, no validation!!!1". 
