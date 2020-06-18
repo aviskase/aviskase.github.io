@@ -103,6 +103,7 @@ assert typeof(x) == 'float'
 ```
 
 then for:
+
 - `"tugrik": 10` passes 
 - `"tugrik": 10.0` passes 
 - `"tugrik": "10"` fails 
