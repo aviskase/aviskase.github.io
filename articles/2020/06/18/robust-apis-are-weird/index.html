@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+
+    <head>
+
+        <title>Robust APIs Are Weird | aviskase</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+
+    <link rel="canonical" href="https://www.aviskase.com/articles/2020/06/18/robust-apis-are-weird/"/>
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@aviskase" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.aviskase.com/articles/2020/06/18/robust-apis-are-weird/" />
+    <meta property="og:title" content="Robust APIs Are Weird" />
+    <meta property="og:description" content="My first full-time API testing experience was for SOAP services. There you learn what XSD is. You learn to love it. Of course, you do! With server-side enabled validation based on a schema, you need not worry about stupid testing like checking what happens when you send 100 length string …" />
+    <meta property="og:image" content="https://www.aviskase.com/images/og/og_robust_apis_are_weird.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="article:author" content="https://www.aviskase.com/pages/about/" />
+    <meta property="article:published_time" content="2020-06-18 00:30:59.650913-04:00" />
+
+
+    <meta name="category" content="Other" />
+    <meta property="article:section" content="Other" />
+
+    <meta name="keywords" content="api" />
+    <meta property="article:tag" content="api" />
+
+
+
+<meta name="description" content="My first full-time API testing experience was for SOAP services. There you learn what XSD is. You learn to love it. Of course, you do! With server-side enabled validation based on a schema, you need not worry about stupid testing like checking what happens when you send 100 length string …"/>
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2020/06/18/robust-apis-are-weird/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Other',
+              'articleTags': ["api"]
+            });
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+          <li><a href="https://www.aviskase.com/pages/about">About</a></li>
+          <li><a href="https://www.aviskase.com/meta">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>Robust APIs Are&nbsp;Weird</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">18 Jun 2020</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            4&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/other/">Other</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/category/other/api/">api</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2020/06/18/robust-apis-are-weird/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>My first full-time <span class="caps">API</span> testing experience was for <span class="caps">SOAP</span> services. There you learn what <span class="caps">XSD</span> is. You learn to love&nbsp;it.</p>
+<p>Of course, you do! With server-side enabled validation based on a schema, you need not worry about stupid testing like checking what happens when you send 100 length string where expected maximum length is 50. Just make sure that <span class="caps">XSD</span> is&nbsp;correct.</p>
+<p>After that witchcraft, testing RESTish APIs feels like going back in time. To the very <em>manual</em> times. But then you learn about <span class="caps">JSON</span> Schema (<span class="caps">RAML</span>, OpenAPI, etc) and you are happy again! Yay, we can turn on server-side validation and shove off stupid testing&nbsp;again.</p>
+<p>The problem is that <span class="caps">JSON</span> and <span class="caps">XML</span> are different beasts. Assuming at face value that whatever is defined in schema should be blindly validated <strong>can be&nbsp;wrong.</strong></p>
+<p>Let me explain why. And don&rsquo;t worry, I did the same&nbsp;mistake.</p>
+<p>Here is a simple <span class="caps">XML</span>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;item&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Ring of the Wild Hunt<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;tugrik&gt;</span>10<span class="nt">&lt;/tugrik&gt;</span>
+<span class="nt">&lt;/item&gt;</span> 
+</code></pre></div>
+
+<p>Take <em>a good look at</em> <code>tugrik</code> element. Without <span class="caps">XSD</span> you wouldn&rsquo;t know the expected type. While it looks like something numeric, you can&rsquo;t be sure. Maybe it&rsquo;s a string like a <code>name</code>? </p>
+<p>Addition of <span class="caps">XSD</span> clarifies that <code>tugrik</code> expects decimal&nbsp;value:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;xs:schema</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+<span class="na">targetNamespace=</span><span class="s">&quot;https://www.w3schools.com&quot;</span>
+<span class="na">xmlns=</span><span class="s">&quot;https://www.w3schools.com&quot;</span>
+<span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;note&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;xs:complexType&gt;</span>
+    <span class="nt">&lt;xs:sequence&gt;</span>
+      <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;tugrik&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:decimal&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xs:sequence&gt;</span>
+  <span class="nt">&lt;/xs:complexType&gt;</span>
+<span class="nt">&lt;/xs:element&gt;</span>
+
+<span class="nt">&lt;/xs:schema&gt;</span> 
+</code></pre></div>
+
+<p>Now, let&rsquo;s convert the same document to <span class="caps">JSON</span>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;item&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ring of the Wild Hunt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tugrik&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Oh no, you say, that looks wrong! We know that <code>tugrik</code> is a number, so make it&nbsp;so:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;item&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ring of the Wild Hunt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tugrik&quot;</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Yet by doing that, now we don&rsquo;t even need any <span class="caps">JSON</span> Schema to guess the property type. No pesky little quotes &mdash; it&rsquo;s a&nbsp;number!</p>
+<p>Perhaps you see where this is going. <span class="caps">XML</span> documents are plain-text. Each element&rsquo;s value is a simple string that frameworks cast into proper types using <span class="caps">XSD</span>. </p>
+<p>So, if <code>tugrik</code> is defined as decimal&nbsp;field:</p>
+<div class="highlight"><pre><span></span><code>float(&quot;10&quot;) == 10.0
+float(&quot;10.0&quot;) == 10.0
+float(&quot;blah&quot;) --&gt; Exception
+</code></pre></div>
+
+<p>Maybe there is a trimming in between too, so <code>float("  10  ".trim()) == 10.0</code>.</p>
+<p>Maybe our casting is incredibly smart and can do things like <code>float("ten") == 10.0</code>!</p>
+<p>But I digress. The main point is that <span class="caps">XML</span>-based documents often go through casting mechanism. <strong>Validation fails only when casting could not be&nbsp;done.</strong></p>
+<p>JSONs are not plain-text. They already have some rudimentary types visible just by looking at them. If you add <span class="caps">JSON</span> Schema on top and use any <em>not overly robust</em> validator, the behavior will be&nbsp;different.</p>
+<p>Because the simplest way to validate a <span class="caps">JSON</span> document is first to consume it with some common library that guesses types almost like we do: &ldquo;does it have quotes around? string!&rdquo; And only then, with already cast value, to compare its type with whatever is defined in a&nbsp;schema.</p>
+<p>(Yes, yes, I do oversimplify&nbsp;internals)</p>
+<div class="highlight"><pre><span></span><code>x = parse(&lt;json&gt;) 
+assert typeof(x) == &#39;float&#39;
+</code></pre></div>
+
+<p>then for:
+- <code>"tugrik": 10</code> passes 
+- <code>"tugrik": 10.0</code> passes 
+- <code>"tugrik": "10"</code> fails 
+- <code>"tugrik": "blah"</code> fails </p>
+<p>Can you guess how <em>really robust</em> validators are different? Right! They make <code>"tugrik": "10"</code> to pass validation. Because they follow Postel&rsquo;s&nbsp;law:</p>
+<blockquote>
+<p>Be conservative in what you send, be liberal in what you&nbsp;accept.</p>
+</blockquote>
+<p>While this statement is way more complex than puny little tester&rsquo;s blog could handle, it&rsquo;s important to know its existence and application.  Following Postel&rsquo;s law to any degree is <em>a design&nbsp;choice.</em> </p>
+<p>If your service is designed to handle weak input like <code>"tugrik": "10"</code> as a valid number, it&rsquo;s not a bug. If you send additional properties in the request and a service ignores them without throwing 4xx error, it&rsquo;s not a bug either. It can be very well a&nbsp;feature. </p>
+<p>And yes, there is definitely a way <a class="external" href="https://techblog.workiva.com/tech-blog/wrestling-postel%E2%80%99s-law">to do robustness wrong or overdo it</a>. If you write a browser engine from scratch (why?), you&rsquo;ll follow Postel&rsquo;s law religiously. Another reason would be ensuring the maximum uptime of <span class="caps">API</span> clients. More successful requests they do and less work is required from them to connect to your product result in more&nbsp;profit. </p>
+<p>So, when you explore new <span class="caps">API</span>, make sure you understand hows and whys around the design before filing bugs &ldquo;Achtung, Achtung, no&nbsp;validation!!!1&rdquo;. </p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" title="Hmms: May">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2020 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>

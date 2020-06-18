@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-06-02T20:33:43-04:00</updated><entry><title>Hmms: May</title><link href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" rel="alternate"></link><published>2020-06-02T20:33:43-04:00</published><updated>2020-06-02T20:33:43-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-06-02:/articles/2020/06/02/hmms-may/</id><summary type="html">&lt;p&gt;This was a slow month in the sense of discovering&amp;nbsp;new.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aviskase</title><link href="https://www.aviskase.com/" rel="alternate"></link><link href="https://www.aviskase.com/feeds/all.atom.xml" rel="self"></link><id>https://www.aviskase.com/</id><updated>2020-06-18T00:30:59-04:00</updated><entry><title>Robust APIs Are Weird</title><link href="https://www.aviskase.com/articles/2020/06/18/robust-apis-are-weird/" rel="alternate"></link><published>2020-06-18T00:30:59-04:00</published><updated>2020-06-18T00:30:59-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-06-18:/articles/2020/06/18/robust-apis-are-weird/</id><summary type="html">&lt;p&gt;My first full-time &lt;span class="caps"&gt;API&lt;/span&gt; testing experience was for &lt;span class="caps"&gt;SOAP&lt;/span&gt; services. There you learn what &lt;span class="caps"&gt;XSD&lt;/span&gt; is. You learn to love&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Of course, you do! With server-side enabled validation based on a schema, you need not worry about stupid testing like checking what happens when you send 100 length string …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My first full-time &lt;span class="caps"&gt;API&lt;/span&gt; testing experience was for &lt;span class="caps"&gt;SOAP&lt;/span&gt; services. There you learn what &lt;span class="caps"&gt;XSD&lt;/span&gt; is. You learn to love&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Of course, you do! With server-side enabled validation based on a schema, you need not worry about stupid testing like checking what happens when you send 100 length string where expected maximum length is 50. Just make sure that &lt;span class="caps"&gt;XSD&lt;/span&gt; is&amp;nbsp;correct.&lt;/p&gt;
+&lt;p&gt;After that witchcraft, testing RESTish APIs feels like going back in time. To the very &lt;em&gt;manual&lt;/em&gt; times. But then you learn about &lt;span class="caps"&gt;JSON&lt;/span&gt; Schema (&lt;span class="caps"&gt;RAML&lt;/span&gt;, OpenAPI, etc) and you are happy again! Yay, we can turn on server-side validation and shove off stupid testing&amp;nbsp;again.&lt;/p&gt;
+&lt;p&gt;The problem is that &lt;span class="caps"&gt;JSON&lt;/span&gt; and &lt;span class="caps"&gt;XML&lt;/span&gt; are different beasts. Assuming at face value that whatever is defined in schema should be blindly validated &lt;strong&gt;can be&amp;nbsp;wrong.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let me explain why. And don&amp;rsquo;t worry, I did the same&amp;nbsp;mistake.&lt;/p&gt;
+&lt;p&gt;Here is a simple &lt;span class="caps"&gt;XML&lt;/span&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Ring of the Wild Hunt&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;tugrik&amp;gt;&lt;/span&gt;10&lt;span class="nt"&gt;&amp;lt;/tugrik&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Take &lt;em&gt;a good look at&lt;/em&gt; &lt;code&gt;tugrik&lt;/code&gt; element. Without &lt;span class="caps"&gt;XSD&lt;/span&gt; you wouldn&amp;rsquo;t know the expected type. While it looks like something numeric, you can&amp;rsquo;t be sure. Maybe it&amp;rsquo;s a string like a &lt;code&gt;name&lt;/code&gt;? &lt;/p&gt;
+&lt;p&gt;Addition of &lt;span class="caps"&gt;XSD&lt;/span&gt; clarifies that &lt;code&gt;tugrik&lt;/code&gt; expects decimal&amp;nbsp;value:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;xs:schema&lt;/span&gt; &lt;span class="na"&gt;xmlns:xs=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;targetNamespace=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://www.w3schools.com&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;xmlns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://www.w3schools.com&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;elementFormDefault=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;qualified&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;note&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;xs:complexType&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;xs:sequence&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;xs:string&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tugrik&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;xs:decimal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/xs:sequence&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/xs:complexType&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/xs:element&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;/xs:schema&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s convert the same document to &lt;span class="caps"&gt;JSON&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;item&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Ring of the Wild Hunt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;tugrik&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;10&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Oh no, you say, that looks wrong! We know that &lt;code&gt;tugrik&lt;/code&gt; is a number, so make it&amp;nbsp;so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;item&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Ring of the Wild Hunt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;tugrik&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Yet by doing that, now we don&amp;rsquo;t even need any &lt;span class="caps"&gt;JSON&lt;/span&gt; Schema to guess the property type. No pesky little quotes &amp;mdash; it&amp;rsquo;s a&amp;nbsp;number!&lt;/p&gt;
+&lt;p&gt;Perhaps you see where this is going. &lt;span class="caps"&gt;XML&lt;/span&gt; documents are plain-text. Each element&amp;rsquo;s value is a simple string that frameworks cast into proper types using &lt;span class="caps"&gt;XSD&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;So, if &lt;code&gt;tugrik&lt;/code&gt; is defined as decimal&amp;nbsp;field:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;float(&amp;quot;10&amp;quot;) == 10.0
+float(&amp;quot;10.0&amp;quot;) == 10.0
+float(&amp;quot;blah&amp;quot;) --&amp;gt; Exception
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Maybe there is a trimming in between too, so &lt;code&gt;float("  10  ".trim()) == 10.0&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Maybe our casting is incredibly smart and can do things like &lt;code&gt;float("ten") == 10.0&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;But I digress. The main point is that &lt;span class="caps"&gt;XML&lt;/span&gt;-based documents often go through casting mechanism. &lt;strong&gt;Validation fails only when casting could not be&amp;nbsp;done.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;JSONs are not plain-text. They already have some rudimentary types visible just by looking at them. If you add &lt;span class="caps"&gt;JSON&lt;/span&gt; Schema on top and use any &lt;em&gt;not overly robust&lt;/em&gt; validator, the behavior will be&amp;nbsp;different.&lt;/p&gt;
+&lt;p&gt;Because the simplest way to validate a &lt;span class="caps"&gt;JSON&lt;/span&gt; document is first to consume it with some common library that guesses types almost like we do: &amp;ldquo;does it have quotes around? string!&amp;rdquo; And only then, with already cast value, to compare its type with whatever is defined in a&amp;nbsp;schema.&lt;/p&gt;
+&lt;p&gt;(Yes, yes, I do oversimplify&amp;nbsp;internals)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;x = parse(&amp;lt;json&amp;gt;) 
+assert typeof(x) == &amp;#39;float&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;then for:
+- &lt;code&gt;"tugrik": 10&lt;/code&gt; passes 
+- &lt;code&gt;"tugrik": 10.0&lt;/code&gt; passes 
+- &lt;code&gt;"tugrik": "10"&lt;/code&gt; fails 
+- &lt;code&gt;"tugrik": "blah"&lt;/code&gt; fails &lt;/p&gt;
+&lt;p&gt;Can you guess how &lt;em&gt;really robust&lt;/em&gt; validators are different? Right! They make &lt;code&gt;"tugrik": "10"&lt;/code&gt; to pass validation. Because they follow Postel&amp;rsquo;s&amp;nbsp;law:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Be conservative in what you send, be liberal in what you&amp;nbsp;accept.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While this statement is way more complex than puny little tester&amp;rsquo;s blog could handle, it&amp;rsquo;s important to know its existence and application.  Following Postel&amp;rsquo;s law to any degree is &lt;em&gt;a design&amp;nbsp;choice.&lt;/em&gt; &lt;/p&gt;
+&lt;p&gt;If your service is designed to handle weak input like &lt;code&gt;"tugrik": "10"&lt;/code&gt; as a valid number, it&amp;rsquo;s not a bug. If you send additional properties in the request and a service ignores them without throwing 4xx error, it&amp;rsquo;s not a bug either. It can be very well a&amp;nbsp;feature. &lt;/p&gt;
+&lt;p&gt;And yes, there is definitely a way &lt;a class="external" href="https://techblog.workiva.com/tech-blog/wrestling-postel%E2%80%99s-law"&gt;to do robustness wrong or overdo it&lt;/a&gt;. If you write a browser engine from scratch (why?), you&amp;rsquo;ll follow Postel&amp;rsquo;s law religiously. Another reason would be ensuring the maximum uptime of &lt;span class="caps"&gt;API&lt;/span&gt; clients. More successful requests they do and less work is required from them to connect to your product result in more&amp;nbsp;profit. &lt;/p&gt;
+&lt;p&gt;So, when you explore new &lt;span class="caps"&gt;API&lt;/span&gt;, make sure you understand hows and whys around the design before filing bugs &amp;ldquo;Achtung, Achtung, no&amp;nbsp;validation!!!1&amp;rdquo;. &lt;/p&gt;</content><category term="Other"></category><category term="api"></category></entry><entry><title>Hmms: May</title><link href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" rel="alternate"></link><published>2020-06-02T20:33:43-04:00</published><updated>2020-06-02T20:33:43-04:00</updated><author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-06-02:/articles/2020/06/02/hmms-may/</id><summary type="html">&lt;p&gt;This was a slow month in the sense of discovering&amp;nbsp;new.&lt;/p&gt;
 &lt;p&gt;I finished the &lt;a class="external" href="https://learn.particular.net/courses/adsd-online"&gt;&amp;ldquo;Advanced Distributed Systems Design&amp;rdquo; course&lt;/a&gt;. 
 &lt;span class="caps"&gt;CQRS&lt;/span&gt;, &lt;span class="caps"&gt;DDD&lt;/span&gt;, messaging patterns: doesn&amp;rsquo;t sound like this course is in any way helpful for testers.
 Yet being &lt;em&gt;just a tester&lt;/em&gt; is dull. Exploring such courses helps to diminish the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a slow month in the sense of discovering&amp;nbsp;new.&lt;/p&gt;
