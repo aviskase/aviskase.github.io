@@ -189,7 +189,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Yet by doing that, now we don&rsquo;t even need any <span class="caps">JSON</span> Schema to guess the property type. No pesky little quotes &mdash; it&rsquo;s a&nbsp;number!</p>
+<p>Yet by doing that, now we don&rsquo;t even need any <span class="caps">JSON</span> Schema to guess the type. No pesky little quotes &mdash; it&rsquo;s a&nbsp;number!</p>
 <p>Perhaps you see where this is going. <span class="caps">XML</span> documents are plain-text. Each element&rsquo;s value is a simple string that frameworks cast into proper types using <span class="caps">XSD</span>. </p>
 <p>So, if <code>tugrik</code> is defined as decimal&nbsp;field:</p>
 <div class="highlight"><pre><span></span><code>float(&quot;10&quot;) == 10.0
@@ -221,7 +221,7 @@ assert typeof(x) == &#39;float&#39;
 <p>While this statement is way more complex than puny little tester&rsquo;s blog could handle, it&rsquo;s important to know its existence and application.  Following Postel&rsquo;s law to any degree is <em>a design&nbsp;choice.</em> </p>
 <p>If your service is designed to handle weak input like <code>"tugrik": "10"</code> as a valid number, it&rsquo;s not a bug. If you send additional properties in the request and a service ignores them without throwing 4xx error, it&rsquo;s not a bug either. It can be very well a&nbsp;feature. </p>
 <p>And yes, there is definitely a way <a class="external" href="https://techblog.workiva.com/tech-blog/wrestling-postel%E2%80%99s-law">to do robustness wrong or overdo it</a>. If you write a browser engine from scratch (why?), you&rsquo;ll follow Postel&rsquo;s law religiously. Another reason would be ensuring the maximum uptime of <span class="caps">API</span> clients. More successful requests they do and less work is required from them to connect to your product result in more&nbsp;profit. </p>
-<p>So, when you explore new <span class="caps">API</span>, make sure you understand hows and whys around the design before filing bugs &ldquo;Achtung, Achtung, no&nbsp;validation!!!1&rdquo;. </p>
+<p>So, when you explore new <span class="caps">API</span>, make sure you understand how&rsquo;s and why&rsquo;s around the design before filing bugs &ldquo;Achtung, Achtung, no&nbsp;validation!!!1&rdquo;. </p>
 
 
 
