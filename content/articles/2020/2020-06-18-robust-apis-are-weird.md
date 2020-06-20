@@ -38,7 +38,7 @@ targetNamespace="https://www.w3schools.com"
 xmlns="https://www.w3schools.com"
 elementFormDefault="qualified">
 
-<xs:element name="note">
+<xs:element name="item">
   <xs:complexType>
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
