@@ -2,9 +2,23 @@ Title: About
 Slug: about
 Lang: en
 
-My name is Yuliya. Just Yuliya. But in our old internet I'm better known as **aviskase.** By that nickname you can find me nearly everywhere. And my surname is badass: Bagriy. You can pronounce it as "Bug-ray". Yay!
+Hi, I'm Yuliya Bagriy. Yeah, too many y's, but that's an official transliteration from Russian; if you have trouble spelling it without mistakes, so do I =) My nickname is **aviskase**, and you can find me nearly everywhere using it.
 
-I am a tester. Not a QA, not a "test engineer", just a plain tester. It can be defined more specific as *a software tester*, but, metaphorically speaking, I like testing because this process and/or way of thinking can be applied to anything: hardware, concepts, social dynamics. Veni, vidi, probavi. 
+My interests vary:
+
+- IT stuff, including, but not limited to:
+    - testing
+    - APIs
+    - development in general
+    - consumer-oriented Linux (yup, no hardcoreness)
+- system and process control/management/improvement 
+- math and statistics in particular
+- genetics
+- linguistics and language learning
+- science fiction   
+
+Important disclaimer: this blog **is not obscenity-free.** [English is not my first language, thus,](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0081225) expect _occasional_ fucks and tabarnaks  ¯\\\_(ツ)_/¯
+
 
 ## P.S.
-If you notice some problems here (there are probably hundreds of mistakes), just write me [a email](mailto:aviskase@gmail.com) or open an issue [on the blog's repo](https://github.com/aviskase/aviskase.github.io/issues).
+If you notice any problems (there are probably hundreds of errors), just write me [an email](mailto:aviskase@gmail.com) or open an issue [on the blog's repo](https://github.com/aviskase/aviskase.github.io/issues).
