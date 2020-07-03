@@ -30,6 +30,7 @@ CONFIG = {
     'port': 8000,
 }
 
+
 @task
 def clean(c):
     """Remove generated files"""
@@ -37,20 +38,24 @@ def clean(c):
         shutil.rmtree(CONFIG['deploy_path'])
         os.makedirs(CONFIG['deploy_path'])
 
+
 @task
 def build(c):
     """Build local version of site"""
     c.run('pelican -s {settings_base}'.format(**CONFIG))
+
 
 @task
 def rebuild(c):
     """`build` with the delete switch"""
     c.run('pelican -d -s {settings_base}'.format(**CONFIG))
 
+
 @task
 def regenerate(c):
     """Automatically regenerate site upon file modification"""
     c.run('pelican -r -s {settings_base}'.format(**CONFIG))
+
 
 @task
 def serve(c):
@@ -67,16 +72,19 @@ def serve(c):
     sys.stderr.write('Serving on port {port} ...\n'.format(**CONFIG))
     server.serve_forever()
 
+
 @task
 def reserve(c):
     """`build`, then `serve`"""
     build(c)
     serve(c)
 
+
 @task
 def preview(c):
     """Build production version of site"""
     c.run('pelican -s {settings_publish}'.format(**CONFIG))
+
 
 @task
 def livereload(c):
@@ -106,6 +114,7 @@ def livereload(c):
 def publish(c):
     """Publish to production"""
     c.run('pelican -s {settings_publish} --fatal=warnings'.format(**CONFIG))
+
 
 @task
 def gh_pages(c):
@@ -146,3 +155,16 @@ def publish_post(c, draft_path):
     )
     c.run(f'sed -i \'s/Date:.*/Date: {post_time.isoformat()}/\' {draft_path}')
     c.run(f'mv {str(draft_path)} {str(new_post_path)}')
+
+
+@task
+def update_date(c, post_path):
+    post_time = datetime.today() + timedelta(minutes=30)
+    post_path = Path(post_path)
+    new_post_path = (
+        Path('content/articles/') /
+        f'{post_time.year}' /
+        f'{post_time.date().isoformat()}-{post_path.name.split("-", 3)[-1]}'
+    )
+    c.run(f'sed -i \'s/Date:.*/Date: {post_time.isoformat()}/\' {post_path}')
+    c.run(f'mv {str(post_path)} {str(new_post_path)}')
