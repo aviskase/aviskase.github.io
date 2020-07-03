@@ -2,6 +2,7 @@ Title: Knowledge Management Tools
 Date: 2020-07-03T19:50:58.535336
 Tags: practical, tools
 Category: Productivity
+og_image: og_knowledge_management_tools.png
 
 
 As a knowledge worker, I spend a lot of time searching and experimenting with approaches for knowledge capture and storage. Currently, I play with the new shiny app, so I figured it's a perfect moment to systemize and reflect on tools and techniques I used until now.
