@@ -1,4 +1,4 @@
-# aviskase.com [![Build Status](https://travis-ci.org/aviskase/aviskase.github.io.svg?branch=source)](https://travis-ci.org/aviskase/aviskase.github.io)
+# aviskase.com ![Pelican](https://github.com/aviskase/aviskase.github.io/workflows/Pelican/badge.svg?branch=source)
 
 This repository is the source code of the personal website [aviskase.com](https://www.aviskase.com/), built with *Pelican*.
 
