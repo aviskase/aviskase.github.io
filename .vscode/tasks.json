@@ -1,0 +1,38 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Livereload",
+            "type": "shell",
+            "command": "source ./venv/bin/activate; invoke livereload"
+        },
+        {
+            "label": "Add draft",
+            "type": "shell",
+            "presentation": {"reveal": "never"},
+            "command": "source ./venv/bin/activate; invoke new-post '${input:postTitle}'"
+        },
+        {
+            "label": "Move to publish",
+            "type": "shell",
+            "presentation": {"reveal": "never"},
+            "command": "source ./venv/bin/activate; invoke publish-post '${relativeFile}'"
+        },
+        {
+            "label": "Update date",
+            "type": "shell",
+            "presentation": {"reveal": "never"},
+            "command": "source ./venv/bin/activate; invoke update-date '${relativeFile}'"
+        },
+        
+    ],
+    "inputs": [
+        {
+          "id": "postTitle",
+          "type": "promptString",
+          "description": "Post title"
+        }
+    ]
+}
