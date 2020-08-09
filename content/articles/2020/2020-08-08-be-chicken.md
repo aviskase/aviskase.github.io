@@ -2,6 +2,7 @@ Title: Be Chicken!
 Date: 2020-08-08T23:42:54.998711
 Tags: processes, organizational culture
 Category: Other
+og_image: og_be_chicken.png
 
 
 [The article on API change culture](https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/) uses a well-known "the chicken and the pig" fable as an inspiration:
