@@ -24,7 +24,7 @@ Well, I grew up in the 90s in Kazakhstan. Like many people we were relying on ou
 
 Growing pigs is a *slow process* with a big *one-time payoff*. It's not free: you need to feed them and clean the place.  And you'd better have a pair of pigs so that the production could be at least somewhat renewable. One committed pig is a splendid feast in the short term and hunger in the long term. Don't forget an emotional cost: pigs don't die by themselves. You will hear it. You will *smell* it.
 
-Chicken produces eggs *continuously*. You don't even need a rooster. Feeding is less involved, and you can practice a free-run approach to optimize costs. With a rooster, eggs can be fertilized, and production can grow even more.
+Chicken produces eggs *continuously*. You don't even need a rooster. Feeding is less involved, and you may practice a free-range approach to optimize costs. With a rooster, eggs can be fertilized, and production might grow even more.
 
 Thus, in my opinion, **chicken-style contributors are better for a project**. They bring *sustainability*. They create small ~~eggs~~  incremental improvements. They are the force of kaizen.
 
