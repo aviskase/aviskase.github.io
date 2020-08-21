@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+
+    <head>
+
+        <title>Postmortem: Borking Ubuntu (Again) | aviskase</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+
+    <link rel="canonical" href="https://www.aviskase.com/articles/2020/08/20/postmortem-borking-ubuntu-again/"/>
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@aviskase" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.aviskase.com/articles/2020/08/20/postmortem-borking-ubuntu-again/" />
+    <meta property="og:title" content="Postmortem: Borking Ubuntu (Again)" />
+    <meta property="og:description" content="Since I had to deal with an incident recovery this week, I thought why not use it for practicing writing postmortems? Postmortem is an excellent way to reflect and learn from disasters. Check Google’s SRE book for more information. So, let’s begin. Summary. On Tuesday at roughly 02 …" />
+    <meta property="og:image" content="https://www.aviskase.com/images/og/og_postmortem_ubuntu.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="article:author" content="https://www.aviskase.com/pages/about/" />
+    <meta property="article:published_time" content="2020-08-20 22:41:32.330195-04:00" />
+
+
+    <meta name="category" content="Other" />
+    <meta property="article:section" content="Other" />
+
+    <meta name="keywords" content="linux" />
+    <meta property="article:tag" content="linux" />
+
+
+
+<meta name="description" content="Since I had to deal with an incident recovery this week, I thought why not use it for practicing writing postmortems? Postmortem is an excellent way to reflect and learn from disasters. Check Google’s SRE book for more information. So, let’s begin. Summary. On Tuesday at roughly 02 …"/>
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2020/08/20/postmortem-borking-ubuntu-again/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Other',
+              'articleTags': ["linux"]
+            });
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+          <li><a href="https://www.aviskase.com/pages/about">About</a></li>
+          <li><a href="https://www.aviskase.com/meta">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>Postmortem: Borking Ubuntu&nbsp;(Again)</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">20 Aug 2020</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            3&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/other/">Other</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/category/other/linux/">linux</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2020/08/20/postmortem-borking-ubuntu-again/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>Since I had to deal with an incident recovery this week, I thought why not use it for practicing writing&nbsp;postmortems?</p>
+<p>Postmortem is an excellent way to reflect and learn from disasters. Check <a class="external" href="https://landing.google.com/sre/sre-book/chapters/postmortem-culture/">Google&rsquo;s <span class="caps">SRE</span> book</a> for more&nbsp;information.</p>
+<p>So, let&rsquo;s&nbsp;begin.</p>
+<p><strong>Summary.</strong> On Tuesday at roughly 02:30 I wasn&rsquo;t able to log into Ubuntu: <span class="caps">GNOME</span> crashed before being able to display login&nbsp;screen.</p>
+<p><strong>Impact.</strong> Had to do a clean Ubuntu installation, most of the workday time&nbsp;lost.</p>
+<p><strong>Root causes.</strong> Incorrect and incomplete purge of accidental upgrade to Pop!_OS. The upgrade itself was cased by adding <code>ppa:system76/pop</code> and not noticing that it contains all the packages that makes Pop!_OS a different&nbsp;distributive.</p>
+<p><strong>Action&nbsp;items:</strong></p>
+<ul>
+<li>Buy an additional external drive and setup regular <code>/home</code> backup&nbsp;procedure.</li>
+<li>Document all necessary tweaks for running Ubuntu on Dell <span class="caps">XPS</span>&nbsp;15.</li>
+</ul>
+<p><strong>Lessons&nbsp;learned:</strong></p>
+<ul>
+<li>Always use separate partition for <code>/home</code>. Currently Ubuntu recommends otherwise, that&rsquo;s why I didn&rsquo;t make&nbsp;it.</li>
+<li>Don&rsquo;t ever upgrade or purge in the middle of the night&nbsp;(duh!).</li>
+<li>Pay attention to <span class="caps">PPA</span>&rsquo;s&nbsp;content.</li>
+<li>One big external drive per household is a&nbsp;bottleneck.</li>
+</ul>
+<p><strong>Timeline:</strong>&nbsp;(approximate)</p>
+<ol>
+<li>Saturday. While exploring shiny new themes for Ubuntu I stumbled upon <a class="external" href="https://github.com/pop-os/gtk-theme">Pop theme</a>.</li>
+<li>Saturday. Since I prefer using <span class="caps">PPA</span> to installing from source, I added <code>ppa:system76/pop</code> repository and installed <code>pop-theme</code>.</li>
+<li>Monday 20:00. Ubuntu showed notification about available updates. I didn&rsquo;t check it and simply&nbsp;agreed.</li>
+<li>Monday 23:00. Rebooted into&nbsp;Windows.</li>
+<li>Tuesday 01:30. Rebooted into Ubuntu to leave it ready for the next work day. Noticed that dual monitor settings and other customizations were&nbsp;gone.</li>
+<li>Tuesday 01:40. Checked <code>apt</code>, it showed a warning that some <span class="caps">GNOME</span> packages hadn&rsquo;t been upgraded properly. Thus, I decided to rerun <code>sudo apt upgrade</code> manually. </li>
+<li>Tuesday 01:50. System suggests rebooting&nbsp;(accepted).</li>
+<li>Tuesday 02:00. After rebooting it became obvious that it&rsquo;s no longer pure Ubuntu. Several places showed that it&rsquo;s now&nbsp;Pop!_OS. </li>
+<li>Tuesday 02:10. Googled for how to downgrade back to Ubuntu (Pop!_OS lacks certain features). Didn&rsquo;t read much and used the advice to run <code>sudo ppa-purge ppa:system76/pop</code> (was&nbsp;sleepy). </li>
+<li>Tuesday 02:20. Purge threw exception in middle and screwed up the system, <span class="caps">GNOME</span> in&nbsp;particular.</li>
+<li>Tuesday 02:30. After rebooting I was not able to login into <span class="caps">UI</span>. Root shell recovery mode&nbsp;worked.</li>
+<li>Tuesday 09:00. Spent time researching steps for fixing, decided it would take more time than reinstalling the&nbsp;system.</li>
+<li>Tuesday. Booted from LiveUSB. Discovered that there was no separate <code>/home</code> partition. </li>
+<li>Tuesday. There were no recent backups, so I had to do one manually. The external hard drive at the moment didn&rsquo;t have enough space, and I needed to move data from it to other computer&nbsp;first.</li>
+<li>Tuesday. After cleaning up external drive I attempted to create <code>tar</code> archives with permission preservation. I went with two archives, one for VMs, another for everything else in <code>/home</code>.</li>
+<li>Tuesday. VMs&rsquo; archive creation failed several times. Had to split it in more archives based on&nbsp;directories.</li>
+<li>Tuesday. Copied all archives to external drive and checked it on the other computer. Archives for VMs were in the subdirectory and the system failed to open it (this computer has half-broken Manjaro, can&rsquo;t find time to fix&nbsp;it).</li>
+<li>Tuesday. Copied VMs&rsquo; archive to <span class="caps">USB</span> drive. Checking failed, because I forgot that this drive had <code>ext4</code> format. </li>
+<li>Tuesday. Tired and not wanting to bother with proper permissions setup, I formatted <span class="caps">USB</span> drive to <span class="caps">NTFS</span>, copied archives again, checked that they were&nbsp;accessible.</li>
+<li>Tuesday. Created separate partitions for <code>/</code> and <code>/home</code> and reinstalled&nbsp;Ubuntu.</li>
+<li>Tuesday. Transferred backups to the fresh system, unpacked, installed necessary&nbsp;apps.</li>
+<li>Tuesday. Checked that dual-boot Windows was still ok after all&nbsp;manipulations.</li>
+</ol>
+<hr>
+<p>I&rsquo;ve been using Ubuntu, Fedora, or ElementaryOS since early university. You&rsquo;d think I&rsquo;ll have enough experience and caution not to do stupid things like purging <span class="caps">GUI</span> packages while still being in <span class="caps">GUI</span> ;) But on the other hand, I always had a separate <code>/home</code> partition and got used to rapidly recover or change distributions. Even though it sounds like a typical Windows user behavior, I see one important difference: generally, I do know what got broken. I did it myself. I&rsquo;m just not patient enough to fix all the problems&nbsp;¯\_(ツ)_/¯</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2020/08/08/be-chicken/" title="Be Chicken!">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2020 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
