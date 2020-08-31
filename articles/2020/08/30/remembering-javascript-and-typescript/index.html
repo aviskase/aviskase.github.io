@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+
+    <head>
+
+        <title>Remembering JavaScript and TypeScript | aviskase</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+
+    <link rel="canonical" href="https://www.aviskase.com/articles/2020/08/30/remembering-javascript-and-typescript/"/>
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@aviskase" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.aviskase.com/articles/2020/08/30/remembering-javascript-and-typescript/" />
+    <meta property="og:title" content="Remembering JavaScript and TypeScript" />
+    <meta property="og:description" content="Until recently, I had been coding mostly in Python. I’m not an expert, but have a fair understanding of PEPs and practices. But now I work with JavaScript/TypeScript project, and my knowledge is definitely lacking. I was following these only in the university, when there was still a …" />
+    <meta property="og:image" content="https://www.aviskase.com/images/og/og_remembering_js_and_ts.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="article:author" content="https://www.aviskase.com/pages/about/" />
+    <meta property="article:published_time" content="2020-08-30 20:46:02.150242-04:00" />
+
+
+    <meta name="category" content="Other" />
+    <meta property="article:section" content="Other" />
+
+    <meta name="keywords" content="javascript, typescript" />
+    <meta property="article:tag" content="javascript" />
+    <meta property="article:tag" content="typescript" />
+
+
+
+<meta name="description" content="Until recently, I had been coding mostly in Python. I’m not an expert, but have a fair understanding of PEPs and practices. But now I work with JavaScript/TypeScript project, and my knowledge is definitely lacking. I was following these only in the university, when there was still a …"/>
+
+        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
+
+        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
+
+<script type="text/javascript">
+    var disqus_identifier = "articles/2020/08/30/remembering-javascript-and-typescript/";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://aviskase.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    window.addEventListener("load", function(){
+      function enableCookies() {
+          window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'pageType': 'article',
+              'articleCategory': 'Other',
+              'articleTags': ["javascript", "typescript"]
+            });
+
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
+      }
+
+      function handleStatus(status) {
+        if ('allow' === status) {
+          enableCookies();
+        }
+      }
+      window.cookieconsent.hasTransition = false;
+
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {background: "#000000"},
+          button: {background: 'transparent', border: "#d47500"},
+          highlight: {background: 'transparent', border: '#008000'}
+        },
+        type: "opt-in",
+        content: {
+          message: "This site uses cookies for analytics.",
+          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
+        },
+        onInitialise: handleStatus,
+        onStatusChange: handleStatus
+      })
+    });
+  }
+  </script>    </head>
+
+<body id="index" class="home">
+    <nav>
+        <ul>
+          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
+          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
+
+          <li><a href="https://www.aviskase.com/pages/about">About</a></li>
+          <li><a href="https://www.aviskase.com/meta">Meta</a></li>
+          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+<article>
+
+    <h1>Remembering JavaScript and&nbsp;TypeScript</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">30 Aug 2020</time>
+
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            2&nbsp;mins
+        </span>
+
+        <span class="article-category">
+            <span class="icon-folder-open" aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/category/other/">Other</a>
+        </span>
+
+        <span class="article-tags">
+            <span class='icon-tags' aria-hidden="true"></span>
+                <a href="https://www.aviskase.com/category/other/javascript/">javascript</a>,                 <a href="https://www.aviskase.com/category/other/typescript/">typescript</a>        </span>
+
+
+        <span class="article-comments">
+            <span class='icon-chat-empty' aria-hidden="true"></span>
+            <a href="https://www.aviskase.com/articles/2020/08/30/remembering-javascript-and-typescript/#disqus_thread" data-disqus-identifier="">0 comments</a>
+        </span>
+
+    </div>
+
+
+    <p>Until recently, I had been coding mostly in Python. I&rsquo;m not an expert, but have a fair understanding of PEPs and&nbsp;practices.</p>
+<p>But now I work with JavaScript/TypeScript project, and my knowledge is definitely lacking. I was following these only in the university, when there was still a chance that I had to do web development. I distinctly remember the moment of downloading <a class="external" href="https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20&amp;%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes">&ldquo;You Don&rsquo;t Know <span class="caps">JS</span>: this <span class="amp">&amp;</span> Object Prototypes&rdquo;</a> book and thinking &ldquo;nope, that&rsquo;s it, I don&rsquo;t want to deal with such&nbsp;language.&rdquo;</p>
+<p>Anyway, I&rsquo;m in dire need of relearning <span class="caps">JS</span> and <span class="caps">TS</span>. After experience with Python I know better how important it is to lint, follow a style guide, and type, type, type it all. For learning I prefer books and articles, but also noticed growing appreciation for videos. Yes, they are less efficient, longer, but you can use them during some &ldquo;brainless&rdquo; time and revisit interesting topics afterwards in a more thorough&nbsp;fashion.</p>
+<p>Here is the list of resources I&rsquo;m using&nbsp;now:</p>
+<ul>
+<li><span class="dquo">&ldquo;</span>You Don&rsquo;t Know <span class="caps">JS</span> Yet (book series)&rdquo; by Kyle Simpson, <a class="external" href="https://github.com/getify/You-Dont-Know-JS">2<sup>nd</sup></a> and <a class="external" href="https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/README.md">1<sup>st</sup></a> editions. Keep in mind, the author is known for some controversial views, don&rsquo;t treat these books as a holy grail. Do your research (as&nbsp;always).</li>
+<li><a class="external" href="https://javascript.info/">javascript.info</a></li>
+<li><a class="external" href="https://www.youtube.com/c/TraversyMedia/">Traversy Media channel on&nbsp;YouTube</a></li>
+<li><a class="external" href="https://kangax.github.io/compat-table/es6/">ECMAScript compatibility</a> and <a class="external" href="https://node.green/">node.js support</a> tables. Nice for quick links to standards and&nbsp;docs.</li>
+<li>Good old <a class="external" href="https://developer.mozilla.org"><span class="caps">MDN</span></a>.</li>
+<li><a class="external" href="https://github.com/airbnb/javascript">Airbnb JavaScript style guide</a> and <a class="external" href="https://standardjs.com/">Standard style</a> for checking practices. You can learn interesting things just by reading rules and discussions that introduced&nbsp;them.</li>
+<li>Official <a class="external" href="https://www.typescriptlang.org/docs/handbook/intro.html">&ldquo;The TypeScript Handbook&rdquo;</a>.</li>
+<li><a class="external" href="https://basarat.gitbook.io/typescript/"><span class="dquo">&ldquo;</span>TypeScript Deep Dive&rdquo;</a> by Basarat Ali and his <a class="external" href="https://www.youtube.com/basaratali">YouTube channel</a>.</li>
+<li>Courses from <a class="external" href="https://frontendmasters.com/">FrontendMasters</a>. Still <em>evaluating</em>, but I don&rsquo;t believe the price is worth it for me. But if you&rsquo;re a video-oriented learner, I suppose, this resource is one of the best, simply because these courses are&nbsp;updated.</li>
+</ul>
+<p>On the side note, I think I&rsquo;ll be migrating this blog from Pelican to Hugo (learning Go, why not) or something <span class="caps">JS</span>-y for a nice added practice. Though, the actual reason is that it&rsquo;s built with an older Pelican version, which is very slow, so I have to spend time on either upgrading or migrating&nbsp;anyway.</p>
+
+
+
+    <div class="page-navigation code">
+        <a class="prev" href="https://www.aviskase.com/articles/2020/08/20/postmortem-borking-ubuntu-again/" title="Postmortem: Borking Ubuntu (Again)">&larr; older</a>
+
+
+    </div>
+
+<div id="disqus_thread"></div>
+</article>
+    </main>
+
+    <footer>
+        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2020 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
+    </footer>
+
+    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
+
+</body>
+</html>
