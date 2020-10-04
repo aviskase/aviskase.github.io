@@ -1,0 +1,45 @@
+{{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
+{{ define "content" }}
+<article>
+
+    <h1>{{ .Title | markdownify }}</h1>
+
+    <div class='article-meta'>
+
+        <time class="published">{{ .Date.Format "2 Jan 2006" }}</time>
+
+        {{- if ne .Lastmod .Date }}
+        <span class="modified"> upd: {{ .Lastmod.Format "2 Jan 2006" }}</span>
+        {{ end }}
+
+        <span class="readtime">
+            <span class='icon-clock' aria-hidden="true"></span>
+            {{- if gt .ReadingTime 1 }}{{ .ReadingTime }}&nbsp;mins{{ else }}1&nbsp;min{{ end }}
+        </span>
+
+    </div>
+
+
+    {{ .Content }}
+
+
+
+    <div class="page-navigation code">
+        {{- $pages := where site.RegularPages "Section" .Section -}}
+        {{- $prev := $pages.ByDate.Reverse.Prev . -}}
+        {{- $next := $pages.ByDate.Reverse.Next . -}}
+        {{ with $prev }}
+        <a class="prev" href="{{ .Permalink }}" title="{{ .Title | plainify }}">&larr; older</a>
+        {{ end }}
+
+        {{ if and $prev $next }}
+        <span>&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+        {{ end }}
+
+        {{ with $next }}
+        <a class="next" href="{{ .Permalink }}" title="{{ .Title | plainify }}">newer &rarr;</a>
+        {{ end }}
+    </div>
+
+</article>
+{{ end }}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+  
+    <head>
+        {{ block "head" . }}
+
+        <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+
+        {{ if ne .Kind "404" }}
+        {{ partial "opengraph.html" . }}
+        {{ template "_internal/twitter_cards.html" . }}
+        {{ end }}
+
+        {{ with .OutputFormats.Get "ATOM" }}
+        <link href="{{ .RelPermalink }}" rel="alternate" type="application/atom+xml" title="{{ $.Site.Title }} Full Atom Feed" />
+        {{ end }}
+
+        <link rel="icon" href="/theme/img/favicon.ico">
+        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <link rel="stylesheet" type="text/css" href="/theme/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+        {{ end }}
+    </head>
+
+    <body id="index" class="home">
+        <nav>
+            <ul>
+                <li><a class="site-title" href="/">{{ .Site.Title }}</a></li>
+
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <li{{ if $currentPage.IsMenuCurrent "main" . }} class="active"{{ end }}><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+
+        <main>    
+            {{ block "content" . }}{{ end }}
+        </main>
+
+        <footer>
+            <a href="mailto:{{ .Site.Social.email }}">{{ .Site.Params.firstname }} {{ .Site.Params.lastname }}</a><span> &middot; {{ now.Format "2006" }} &middot; </span><a href="{{ ref . "pages/i-dont-track-you" }}">No tracking</a>
+        </footer>
+
+    </body>
+</html>

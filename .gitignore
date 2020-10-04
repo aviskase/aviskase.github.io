@@ -3,8 +3,6 @@
 
 venv
 __pycache__
-output
-
 
 ### VisualStudioCode ###
 .vscode/*
@@ -17,3 +15,14 @@ output
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+
+### Hugo ###
+# Generated files by hugo
+/output/
+/resources/_gen/
+hugo_stats.json
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux

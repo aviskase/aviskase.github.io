@@ -1,0 +1,34 @@
+{{- $pages := where .Site.RegularPages "Type" "in" "articles" -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+{{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- $firstArticle := index $pages 0 -}}
+{{- $firstArticleUpdated :=  $firstArticle.Lastmod.UTC -}}
+{{- $url :=  urls.Parse .Site.BaseURL -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ .Site.LanguageCode }}">
+  <title>{{ .Site.Title }}</title>
+  <id>{{ "/" | absLangURL }}</id>
+  <updated>{{ dateFormat "2006-01-02T15:04:05Z" $firstArticleUpdated | safeHTML }}</updated>
+  {{- with .OutputFormats.Get "ATOM" }}
+  {{ printf `<link rel="self" type="%s" href="%s" hreflang="%s"/>` .MediaType.Type .Permalink $.Site.LanguageCode | safeHTML }}
+  {{- end }}
+  {{- range .AlternativeOutputFormats }}
+  {{ printf `<link rel="alternate" type="%s" href="%s" hreflang="%s"/>` .MediaType.Type .Permalink $.Site.LanguageCode | safeHTML }}
+  {{- end }}
+  {{- range $pages }}
+  <entry>
+    <title>{{ .Title | markdownify | htmlEscape }}</title>
+    <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ $.Site.LanguageCode }}"/>
+    <published>{{ dateFormat "2006-01-02T15:04:05Z" .Date.UTC | safeHTML }}</published>
+    <updated>{{ dateFormat "2006-01-02T15:04:05Z" .Lastmod.UTC | safeHTML }}</updated>
+    <author><name>{{ .Site.Params.firstname }} {{ .Site.Params.lastname }}</name></author>
+    {{- $link :=  urls.Parse .Permalink -}}
+    <id>tag:{{ $url.Host }},{{ dateFormat "2006-01-02" .Date.UTC | safeHTML }}:{{ $link.Path }}</id>
+    {{/*<id>tag:www.aviskase.com,2020-09-15:/articles/2020/09/15/conference-notes-asc-2020/</id>*/}}
+    <summary type="html">{{ .Summary | htmlEscape }}</summary>
+    <content type="html">{{ trim .Content "\n" }}</content>
+  </entry>
+  {{- end }}
+</feed>

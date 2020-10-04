@@ -1,0 +1,8 @@
+{{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
+
+{{ define "content" }}
+<article>
+    <h1 class="title">{{ .Title | markdownify }}</h1>
+    {{ .Content }}
+</article>
+{{ end }}

@@ -1,0 +1,83 @@
+baseURL = "https://www.aviskase.com"
+languageCode = "en"
+title = "aviskase"
+buildFuture = true
+# canonifyURLs = true
+disableKinds = ["taxonomy", "term", "section"]
+enableEmoji = true
+publishDir = "output"
+summaryLength = 50
+
+[params]
+description = "A blog by Yuliya Bagriy aka aviskase about testing, APIs, and other techy thingies."
+images = ["site-feature.png"]
+title = "aviskase"
+username = "aviskase"
+firstname = "Yuliya"
+lastname = "Bagriy"
+mainSections = ["posts"]
+
+
+# [frontmatter]
+# date = ["Date", ":default"]
+# lastmod = ["Modified", ":default"]
+
+[Social]
+email = "aviskase@gmail.com"
+twitter = "aviskase"
+
+[outputs]
+# Output HTML, and ATOM on Home
+home = ["HTML", "ATOM"]
+# Output only HTML everywhere else
+# section = ["HTML"]
+# section = ["HTML"]
+# taxonomy = ["HTML"]
+# term = ["HTML"]
+
+# Define a new ATOM output format
+[outputFormats]
+[outputFormats.ATOM]
+name = "ATOM"
+path = "feeds"
+baseName = "all"
+mediaType = "application/atom+xml"
+
+# Define a new ATOM media type
+[mediaTypes]
+[mediaTypes."application/atom+xml"]
+suffixes = ["atom.xml"]
+
+
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+
+[markup.highlight]
+style = "dracula"
+
+
+[permalinks]
+articles = "/articles/:year/:month/:day/:slug/"
+
+
+[menu]
+[[menu.main]]
+identifier = "blog"
+name = "Blog"
+url = "/"
+weight = 100
+
+[[menu.main]]
+identifier = "rss"
+name = "RSS"
+url = "/feeds/all.atom.xml"
+weight = 300
