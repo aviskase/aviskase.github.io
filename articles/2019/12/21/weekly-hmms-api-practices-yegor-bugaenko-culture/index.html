@@ -1,219 +1,34 @@
-<!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
-
-    <head>
-
-        <title>Weekly Hmms: API Practices, Yegor Bugaenko, Culture | aviskase</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="utf-8" />
-
-
-    <link rel="canonical" href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/"/>
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="@aviskase" />
-
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/" />
-    <meta property="og:title" content="Weekly Hmms: API Practices, Yegor Bugaenko, Culture" />
-    <meta property="og:description" content="API Practices If You Hate Your Customers A fun article from ACM Queue magazine about how to alienate customers from using your API. I like an “anti-tutorial” form, it is easier to recall bad patterns and behaviors. One such form I filled out required me to describe the application I …" />
-    <meta property="og:image" content="https://www.aviskase.com/images/og/og_wh_6.png" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="article:author" content="https://www.aviskase.com/pages/about/" />
-    <meta property="article:published_time" content="2019-12-21 19:33:46.298723-05:00" />
-
-
-    <meta name="category" content="Weekly Hmms" />
-    <meta property="article:section" content="Weekly Hmms" />
-
-
-
-
-<meta name="description" content="API Practices If You Hate Your Customers A fun article from ACM Queue magazine about how to alienate customers from using your API. I like an “anti-tutorial” form, it is easier to recall bad patterns and behaviors. One such form I filled out required me to describe the application I …"/>
-
-        <link href="https://www.aviskase.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aviskase Full Atom Feed" />
-
-        <link rel="icon" href="https://www.aviskase.com/theme/favicon.ico">
-        <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/css/fontello.css" />
-        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="https://www.aviskase.com/theme/solarized-light.css" />
-
-<script type="text/javascript">
-    var disqus_identifier = "articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/";
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'https://aviskase.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-  <script>
-  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
-    window.addEventListener("load", function(){
-      function enableCookies() {
-          window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              'pageType': 'article',
-              'articleCategory': 'Weekly Hmms',
-              'articleTags': []
-            });
-
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W75RR8K');
-      }
-
-      function handleStatus(status) {
-        if ('allow' === status) {
-          enableCookies();
-        }
-      }
-      window.cookieconsent.hasTransition = false;
-
-      window.cookieconsent.initialise({
-        palette: {
-          popup: {background: "#000000"},
-          button: {background: 'transparent', border: "#d47500"},
-          highlight: {background: 'transparent', border: '#008000'}
-        },
-        type: "opt-in",
-        content: {
-          message: "This site uses cookies for analytics.",
-          href: 'https://www.aviskase.com/pages/privacy-and-cookies',
-        },
-        onInitialise: handleStatus,
-        onStatusChange: handleStatus
-      })
-    });
-  }
-  </script>    </head>
-
-<body id="index" class="home">
-    <nav>
-        <ul>
-          <li><a class="site-title" href="https://www.aviskase.com/">aviskase</a></li>
-          <li><a class="site-title" href="https://www.aviskase.com/">Blog</a></li>
-
-          <li><a href="https://www.aviskase.com/pages/about">About</a></li>
-          <li><a href="https://www.aviskase.com/meta">Meta</a></li>
-          <li><a href="https://www.aviskase.com/feeds/all.atom.xml">RSS</a></li>
-
-        </ul>
-
-    </nav>
-
-    <main>
-<article>
-
-    <h1>Weekly Hmms: <span class="caps">API</span> Practices, Yegor Bugaenko,&nbsp;Culture</h1>
-
-    <div class='article-meta'>
-
-        <time class="published">21 Dec 2019</time>
-
-
-        <span class="readtime">
-            <span class='icon-clock' aria-hidden="true"></span>
-            4&nbsp;mins
-        </span>
-
-        <span class="article-category">
-            <span class="icon-folder-open" aria-hidden="true"></span>
-            <a href="https://www.aviskase.com/category/weekly-hmms/">Weekly Hmms</a>
-        </span>
-
-
-
-        <span class="article-comments">
-            <span class='icon-chat-empty' aria-hidden="true"></span>
-            <a href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/#disqus_thread" data-disqus-identifier="">0 comments</a>
-        </span>
-
-    </div>
-
-
-    <h2><span class="caps">API</span> Practices If You Hate Your&nbsp;Customers</h2>
-<p>A fun <a class="external" href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635">article from <span class="caps">ACM</span> Queue magazine</a> about how to alienate
-customers from using your <span class="caps">API</span>. I like an <a class="external" href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/">&ldquo;anti-tutorial&rdquo; form</a>, 
-it is easier to recall bad patterns and&nbsp;behaviors.</p>
-<blockquote>
-<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
-Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the <span class="caps">API</span> and write a few simple 
-Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that 
-my answer would not be good enough for whoever was judging my application. 
-In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo; 
-A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor <span class="caps">SWAT</span> teams, 
-but as a precaution my code editor has been themed in dark purple with white highlights ever&nbsp;since.</p>
-</blockquote>
-<p>This particular quote hit&nbsp;hard:</p>
-<blockquote>
-<p>Nothing says &ldquo;we don&rsquo;t actually want you to use our <span class="caps">API</span>&rdquo; like making your <span class="caps">API</span> documentation invisible 
-to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google,&nbsp;fix.&rdquo;</p>
-</blockquote>
-<p>Once we tried to research our competitors and we couldn&rsquo;t find even screenshots. How the hell 
-a potential customer is supposed to evaluate your product if you hide <strong>everything</strong>?</p>
-<h2>Yegor Bugaenko on <span class="caps">QA</span> vs&nbsp;Testing</h2>
-<p>Yegor Bugaenko presented <a class="external" href="https://www.youtube.com/watch?v=jZitXMQaXvE">&ldquo;Quality Assurance vs. Testing&rdquo; on <span class="caps">QA</span> Fest 2019</a>.</p>
-<p>And I am&nbsp;disappointed. </p>
-<p>For those who don&rsquo;t know Yegor, he is famous for controversial <a class="external" href="https://www.xdsd.org/">eXtremely Distributed Software Development</a> 
-methodology. One of the ideas is to pay only for closed&nbsp;tasks.</p>
-<p>So, I grabbed popcorn and expected blood and gore. Didn&rsquo;t happen, it was dull, except for one or two topics.
-The talk started with an obvious difference between <span class="caps">QA</span> and testing and moved to explain the importance of 
-quantitative metrics to measure tester&rsquo;s productivity. Unfortunately, he suggested the most stupid metric ever: the 
-number of bugs logged. I also was annoyed by his notion that testers should not talk to devs much and must log every issue. 
-My practice shows that working with dev together and fixing bugs as we go is way more productive and requires less time. 
-Perhaps, his ideas works in <span class="caps">XDSD</span>, where everyone is expendable, but I hope others won&rsquo;t borrow them into normal agile&nbsp;teams.</p>
-<h2>Cultures and&nbsp;Sci-Fi</h2>
-<p>Speaking of&nbsp;teams.</p>
-<p>Prelude: I&rsquo;m a fan of space sci-fi series. Not a nerd, but I watched my&nbsp;share:</p>
-<ul>
-<li>Star Trek: <span class="caps">TOS</span> (bits), <span class="caps">TNG</span>, <span class="caps">DS9</span>, Voyager,&nbsp;Enterprise</li>
-<li><span class="caps">LEXX</span></li>
-<li>Battlestar Galactica (with spin-offs, except&nbsp;Caprica)</li>
-<li>Firefly</li>
-<li>Babylon 5 (and all&nbsp;spin-offs)</li>
-<li>Farscape</li>
-<li>Andromeda</li>
-<li>Stargate <span class="caps">SG</span>-1 (in&nbsp;progress)</li>
-</ul>
-<p>As you may notice, there is no Expanse, Orville, or new Star Treks (Discovery, Short Trek). We watch only
+<!doctype html><html lang=en prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><head><title>Weekly Hmms: API Practices, Yegor Bugaenko, Culture | aviskase</title><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><meta property="og:title" content="Weekly Hmms: API Practices, Yegor Bugaenko, Culture"><meta property="og:description" content="API Practices If You Hate Your Customers A fun article from ACM Queue magazine about how to alienate customers from using your API. I like an &ldquo;anti-tutorial&rdquo; form, it is easier to recall bad patterns and behaviors.
+ One such form I filled out required me to describe the application I planned to write."><meta name=description content="API Practices If You Hate Your Customers A fun article from ACM Queue magazine about how to alienate customers from using your API. I like an &ldquo;anti-tutorial&rdquo; form, it is easier to recall bad patterns and behaviors.
+ One such form I filled out required me to describe the application I planned to write."><meta property="og:url" content="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/"><link rel=canonical href=https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/><meta property="og:type" content="article"><meta property="og:image" content="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/feature.png"><meta property="og:image:height" content="630"><meta property="og:image:width" content="1200"><meta property="article:published_time" content="2019-12-21T19:33:46+00:00"><meta property="article:modified_time" content="2019-12-21T19:33:46+00:00"><meta property="og:site_name" content="aviskase"><meta property="article:author" content="https://www.aviskase.com/pages/about/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/feature.png"><meta name=twitter:title content="Weekly Hmms: API Practices, Yegor Bugaenko, Culture"><meta name=twitter:description content="API Practices If You Hate Your Customers A fun article from ACM Queue magazine about how to alienate customers from using your API. I like an &ldquo;anti-tutorial&rdquo; form, it is easier to recall bad patterns and behaviors.
+ One such form I filled out required me to describe the application I planned to write."><meta name=twitter:site content="@aviskase"><link rel=icon href=/theme/img/favicon.ico><link rel=stylesheet href=//code.cdn.mozilla.net/fonts/fira.css><link rel=stylesheet type=text/css href=/theme/css/fontello.css><link rel=stylesheet type=text/css href=/theme/css/style.css></head><body id=index class=home><nav><ul><li><a class=site-title href=/>aviskase</a></li><li><a href=/>Blog</a></li><li><a href=/pages/about/>About</a></li><li><a href=/feeds/all.atom.xml>RSS</a></li></ul></nav><main><article><h1>Weekly Hmms: API Practices, Yegor Bugaenko, Culture</h1><div class=article-meta><time class=published>21 Dec 2019</time>
+<span class=readtime><span class=icon-clock aria-hidden=true></span>4&nbsp;mins</span></div><h2 id=api-practices-if-you-hate-your-customers>API Practices If You Hate Your Customers</h2><p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&id=3375635" class=external>article from ACM Queue magazine</a> about how to alienate
+customers from using your API. I like an <a href=https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/ class=external>&ldquo;anti-tutorial&rdquo; form</a>,
+it is easier to recall bad patterns and behaviors.</p><blockquote><p>One such form I filled out required me to describe the application I planned to write. &lt;&mldr;>
+Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
+Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
+my answer would not be good enough for whoever was judging my application.
+In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo;
+A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor SWAT teams,
+but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p></blockquote><p>This particular quote hit hard:</p><blockquote><p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
+to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p></blockquote><p>Once we tried to research our competitors and we couldn&rsquo;t find even screenshots. How the hell
+a potential customer is supposed to evaluate your product if you hide <strong>everything</strong>?</p><h2 id=yegor-bugaenko-on-qa-vs-testing>Yegor Bugaenko on QA vs Testing</h2><p>Yegor Bugaenko presented <a href="https://www.youtube.com/watch?v=jZitXMQaXvE" class=external>&ldquo;Quality Assurance vs. Testing&rdquo; on QA Fest 2019</a>.</p><p>And I am disappointed.</p><p>For those who don&rsquo;t know Yegor, he is famous for controversial <a href=https://www.xdsd.org/ class=external>eXtremely Distributed Software Development</a>
+methodology. One of the ideas is to pay only for closed tasks.</p><p>So, I grabbed popcorn and expected blood and gore. Didn&rsquo;t happen, it was dull, except for one or two topics.
+The talk started with an obvious difference between QA and testing and moved to explain the importance of
+quantitative metrics to measure tester&rsquo;s productivity. Unfortunately, he suggested the most stupid metric ever: the
+number of bugs logged. I also was annoyed by his notion that testers should not talk to devs much and must log every issue.
+My practice shows that working with dev together and fixing bugs as we go is way more productive and requires less time.
+Perhaps, his ideas works in XDSD, where everyone is expendable, but I hope others won&rsquo;t borrow them into normal agile teams.</p><h2 id=cultures-and-sci-fi>Cultures and Sci-Fi</h2><p>Speaking of teams.</p><p>Prelude: I&rsquo;m a fan of space sci-fi series. Not a nerd, but I watched my share:</p><ul><li>Star Trek: TOS (bits), TNG, DS9, Voyager, Enterprise</li><li>LEXX</li><li>Battlestar Galactica (with spin-offs, except Caprica)</li><li>Firefly</li><li>Babylon 5 (and all spin-offs)</li><li>Farscape</li><li>Andromeda</li><li>Stargate SG-1 (in progress)</li></ul><p>As you may notice, there is no Expanse, Orville, or new Star Treks (Discovery, Short Trek). We watch only
 finished stuff. I hope to avoid spoilers, but it&rsquo;s impossible with the new Star Treks. Also, I doubt I would even
-want to watch them (mushroom drives? horrid&nbsp;Klingons??).</p>
-<p>This week I stumbled upon a <a class="external" href="https://www.youtube.com/watch?v=rnlxugk3Qb0">comparison between <span class="caps">TNG</span> and Short Trek</a>. 
-How this is related to teams and culture? Well, the basic problem is the same for both series: a crew member with a quirky 
-behavior who doesn&rsquo;t fit a&nbsp;team.</p>
-<p><span class="caps">TNG</span> solved the problem by trying to help Lieutenant Barclay to overcome his anxiety and integrate into the team. 
+want to watch them (mushroom drives? horrid Klingons??).</p><p>This week I stumbled upon a <a href="https://www.youtube.com/watch?v=rnlxugk3Qb0" class=external>comparison between TNG and Short Trek</a>.
+How this is related to teams and culture? Well, the basic problem is the same for both series: a crew member with a quirky
+behavior who doesn&rsquo;t fit a team.</p><p>TNG solved the problem by trying to help Lieutenant Barclay to overcome his anxiety and integrate into the team.
 While he remained awkward for the rest of the series, some of his quirks were channeled into a productive direction and
-helped to save the crew numerous&nbsp;times.</p>
-<p>Short Trek&rsquo;s approach was&hellip; different. Edward Larkin died and was called an idiot by his <em>&ldquo;competent&rdquo;</em> captain. 
-Just watch it. The captain wanted to transfer that scientist even <em>before he made a mistake.</em> Show defenders say that 
-it&rsquo;s just a comedy, but these series are not marketed as a parody show.  It&rsquo;s a canon now. Which means, 
+helped to save the crew numerous times.</p><p>Short Trek&rsquo;s approach was&mldr; different. Edward Larkin died and was called an idiot by his <em>&ldquo;competent&rdquo;</em> captain.
+Just watch it. The captain wanted to transfer that scientist even <em>before he made a mistake.</em> Show defenders say that
+it&rsquo;s just a comedy, but these series are not marketed as a parody show. It&rsquo;s a canon now. Which means,
 that obnoxious and demeaning conduct of the captain is considered ok in that universe. No one reprimanded her for
-causing an ecological disaster, and she never showed any remorse for the &ldquo;idiot&rsquo;s&rdquo;&nbsp;death. </p>
-<p>I understand that showrunners are just money hoarders and want to have a comedy because it&rsquo;s profitable. They 
-probably never consider how it affects existing&nbsp;canon. </p>
-<p>Still. I wonder, what this <em>modern</em> approach tells about our&nbsp;society? </p>
-
-
-
-    <div class="page-navigation code">
-        <a class="prev" href="https://www.aviskase.com/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/" title="Weekly Hmms: Advent of Code, NGINX, APIs">&larr; older</a>
-
-        <span>&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
-
-        <a class="next" href="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/" title="Lunch&Learn: Linting OpenAPI Description Docs">newer &rarr;</a>
-    </div>
-
-<div id="disqus_thread"></div>
-</article>
-    </main>
-
-    <footer>
-        <a href="mailto:aviskase@gmail.com">Yuliya Bagriy</a><span> &middot; 2020 &middot; </span><a href="https://www.aviskase.com/pages/privacy-and-cookies">Privacy</a>
-    </footer>
-
-    <script id="dsq-count-scr" src="//aviskase.disqus.com/count.js" async></script>
-
-</body>
-</html>
+causing an ecological disaster, and she never showed any remorse for the &ldquo;idiot&rsquo;s&rdquo; death.</p><p>I understand that showrunners are just money hoarders and want to have a comedy because it&rsquo;s profitable. They
+probably never consider how it affects existing canon.</p><p>Still. I wonder, what this <em>modern</em> approach tells about our society?</p><div class="page-navigation code"><a class=prev href=https://www.aviskase.com/articles/2019/12/14/weekly-hmms-advent-of-code-nginx-apis/ title="Weekly Hmms: Advent of Code, NGINX, APIs">&larr; older</a>
+<span>&nbsp; &#183; &nbsp; &#183; &nbsp; &#183; &nbsp;</span>
+<a class=next href=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/ title="Lunch&Learn: Linting OpenAPI Description Docs">newer &rarr;</a></div></article></main><footer><a href=mailto:aviskase@gmail.com>Yuliya Bagriy</a><span> &#183; 2020 &#183; </span><a href=https://www.aviskase.com/pages/i-dont-track-you/>No tracking</a></footer></body></html>
