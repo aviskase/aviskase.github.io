@@ -1,6 +1,6 @@
 ---
 title: "From Pelican to Hugo"
-date: 2020-10-04T21:15:54-04:00
+date: 2020-10-04T22:46:54-04:00
 draft: false
 ---
 
@@ -33,7 +33,7 @@ As you have guessed by the title, I went with Hugo because:
 
 Pelican and Hugo have a very different template format. Rewriting took most of the time, but as you can see, there are no visual changes. I also had to write Atom feed template almost from scratch and test it to make sure that `id`'s are the same and the whole feed won't be completely regenerated (like it happened the last migration.)
 
-But Hugo templates are way more flexible than Pelican's. What I had to do with plugins was achieved with core features. I also fell in love with [shortcodes](https://gohugo.io/content-management/shortcodes/) and [markdown render hooks](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) which allow further customizations. For example, I used to have a Pelican plugin that detects links to external resources and adds a special `external` CSS class to them. Now the whole plugin is replaced with one link render hook that I can easily customized as I want later:
+But Hugo templates are way more flexible than Pelican's. What I had to do with plugins was achieved with core features. I also fell in love with [shortcodes](https://gohugo.io/content-management/shortcodes/) and [markdown render hooks](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) which allow further customizations. For example, I used to have a Pelican plugin that detects links to external resources and adds a special `external` CSS class to them. Now the whole plugin is replaced with one link render hook that I can easily customize as I want later:
 
 ```go-html-template
 <a href="{{ .Destination | safeURL }}"{{ if strings.HasPrefix .Destination "http" }} class="external"{{ end }}>{{ .Text | safeHTML }}</a>
@@ -54,6 +54,6 @@ While I was trying to preserve as much as I could, there are some _intentional_ 
 
 ## Results
 
-I'm quite happy with the migration. It is blazing fast as advertised: GitHub action build went from 2-3 minutes down to 30 seconds. Local live reload is faster than it takes to turn my head to the browser tab.
+I'm quite happy with the migration. It is blazing fast as advertised: GitHub action build went from 2-3 minutes down to 30 seconds. And local live reload is faster than it takes to turn my head to the browser tab.
 
 There is only one problem left. I used `img` shortcode [to generate responsive images](https://laurakalbag.com/processing-responsive-images-with-hugo/), but for some reason on my site browsers select too low resolution. I tried to understand why yet couldn't: I had less trouble hacking my way through GnuCash reporting in Scheme (which I don't know) than trying to fix the damn CSS. Current style sheet was borrowed from some theme and reworked over time, but it probably doesn't follow modern best practices. Hugo documentation introduced me to [Tailwind CSS](https://tailwindcss.com/) and [PostCSS](https://postcss.org/); and while I hate CSS, the time for redesign has come. 
