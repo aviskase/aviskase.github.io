@@ -3,29 +3,35 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Livereload",
-            "type": "shell",
-            "command": "source ./venv/bin/activate; invoke livereload"
-        },
+        // {
+        //     "label": "Livereload",
+        //     "type": "shell",
+        //     "command": "source ./venv/bin/activate; invoke livereload"
+        // },
         {
             "label": "Add draft",
             "type": "shell",
             "presentation": {"reveal": "never"},
-            "command": "source ./venv/bin/activate; invoke new-post '${input:postTitle}'"
+            "command": "hugo new --kind article articles/`date +'%Y'`/`date +'%Y-%m-%d'`-'${input:postTitle}'"
         },
         {
-            "label": "Move to publish",
+            "label": "Serve",
             "type": "shell",
             "presentation": {"reveal": "never"},
-            "command": "source ./venv/bin/activate; invoke publish-post '${relativeFile}'"
+            "command": "hugo server -w"
         },
-        {
-            "label": "Update date",
-            "type": "shell",
-            "presentation": {"reveal": "never"},
-            "command": "source ./venv/bin/activate; invoke update-date '${relativeFile}'"
-        },
+        // {
+        //     "label": "Move to publish",
+        //     "type": "shell",
+        //     "presentation": {"reveal": "never"},
+        //     "command": "source ./venv/bin/activate; invoke publish-post '${relativeFile}'"
+        // },
+        // {
+        //     "label": "Update date",
+        //     "type": "shell",
+        //     "presentation": {"reveal": "never"},
+        //     "command": "source ./venv/bin/activate; invoke update-date '${relativeFile}'"
+        // },
         
     ],
     "inputs": [
