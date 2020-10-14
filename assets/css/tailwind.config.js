@@ -22,7 +22,7 @@ module.exports = {
         bglight: 'var(--color-bglight)'
       },
       fontFamily: {
-        nunito: 'Nunito'
+        primary: 'var(--font-primary)'
       }
     },
   },
