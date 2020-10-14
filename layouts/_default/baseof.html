@@ -3,10 +3,12 @@
     {{ partial "head.html" . }}
     <body>
         {{- partial "dev-size-indicator.html" . -}}
-        {{- partial "header.html" . -}}
-        <main>
+        <div class="min-h-screen grid grid-rows-mainLayout">
+            {{- partial "header.html" . -}}
+            <main>
             {{ block "content" . }}{{ end }}
-        </main>
-        {{- partial "footer.html" . -}}
+            </main>
+            {{- partial "footer.html" . -}}
+        </div>
     </body>
 </html>

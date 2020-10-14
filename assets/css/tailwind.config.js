@@ -13,6 +13,9 @@ module.exports = {
     'exampleSite/content/**/*.html',
   ],
   theme: {
+    screens: {
+      'normal': '48em',
+    },
     extend: {
       colors: {
         // This colors are defined on the theme stylesheet
@@ -23,6 +26,12 @@ module.exports = {
       },
       fontFamily: {
         primary: 'var(--font-primary)'
+      },
+      gridTemplateRows: {
+        mainLayout: 'auto 1fr auto'
+      },
+      gridTemplateColumns: {
+        articleContent: '1fr min(65ch, calc(100% - 3rem)) 1fr'
       }
     },
   },
