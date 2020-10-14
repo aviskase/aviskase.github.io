@@ -1,0 +1,32 @@
+
+/* Rubik font 
+ * https://fonts.google.com/specimen/Rubik
+ * */
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Nunito Italic'), local('Nunito-Italic'), url("/fonts/Nunito-Italic.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito'), local('Nunito-Regular'), url("/fonts/Nunito-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Nunito SemiBold'), local('Nunito-SemiBold'), url("/fonts/Nunito-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Nunito Bold'), local('Nunito-Bold'), url("/fonts/Nunito-Bold.ttf") format('truetype');
+}

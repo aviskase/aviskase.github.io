@@ -1,0 +1,20 @@
+{
+    "scripts": {
+        "build": "rm -rf output && env MODE=\"production\" NODE_ENV=\"production\" hugo -e \"production\" --minify --debug --i18n-warnings --path-warnings",
+        "serve": "env MODE=\"development\" hugo server --watch --i18n-warnings --path-warnings --disableFastRender"
+    },
+    "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^3.0.0",
+        "autoprefixer": "^10.0.1",
+        "postcss": "^8.1.1",
+        "postcss-cli": "^8.1.0",
+        "postcss-import": "^12.0.1",
+        "tailwindcss": "^1.8.13"
+    },
+    "browserslist": [
+        "last 1 version",
+        "> 1%",
+        "maintained node versions",
+        "not dead"
+    ]
+}
