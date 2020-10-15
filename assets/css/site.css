@@ -47,3 +47,47 @@ article > * {
         max-width: calc(65ch + 3rem);
     }
 }
+
+
+
+input#nav-toggle {
+    @apply hidden;
+}
+  
+input#nav-toggle:checked~label#show-button {
+    @apply hidden;
+}
+
+input#nav-toggle:checked~label#hide-button {
+    @apply flex;
+}
+
+input#nav-toggle:checked~#nav-menu {
+    @apply block;
+}
+
+#show-button svg, #hide-button svg {
+    fill: var(--color-text-default);
+}
+
+
+.shape-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(198% + 1.3px);
+    height: 37px;
+}
+
+.shape-divider .shape-fill {
+    fill: #FFFFFF;
+}

@@ -16,11 +16,16 @@ module.exports = {
     screens: {
       'normal': '48em',
     },
+    fontSize: {
+      '16': '1.6rem',
+      '24': '2.4rem'
+    },
     extend: {
       colors: {
         // This colors are defined on the theme stylesheet
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
+        tertiary: 'var(--color-tertiary)',
         bgdark: 'var(--color-bgdark)',
         bglight: 'var(--color-bglight)'
       },
@@ -32,6 +37,12 @@ module.exports = {
       },
       gridTemplateColumns: {
         articleContent: '1fr min(65ch, calc(100% - 3rem)) 1fr'
+      },
+      maxWidth: {
+        normal: '73.8rem'
+      },
+      spacing: {
+        '4.5': '4.5rem'
       }
     },
   },

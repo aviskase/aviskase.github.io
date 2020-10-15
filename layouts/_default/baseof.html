@@ -2,7 +2,6 @@
 <html lang="{{ .Site.Language.Lang }}" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
     {{ partial "head.html" . }}
     <body>
-        {{- partial "dev-size-indicator.html" . -}}
         <div class="min-h-screen grid grid-rows-mainLayout">
             {{- partial "header.html" . -}}
             <main>
@@ -10,5 +9,6 @@
             </main>
             {{- partial "footer.html" . -}}
         </div>
+        {{/*  {{- partial "dev-size-indicator.html" . -}}  */}}
     </body>
 </html>
