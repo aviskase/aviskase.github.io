@@ -30,3 +30,10 @@
   font-weight: 700;
   src: local('Nunito Bold'), local('Nunito-Bold'), url("/fonts/Nunito-Bold.ttf") format('truetype');
 }
+
+@font-face {
+  font-family: 'Bellota';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Bellota BoldItalic'), local('Bellota-BoldItalic'), url("/fonts/Bellota-BoldItalic.ttf") format('truetype');
+}

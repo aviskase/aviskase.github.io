@@ -110,3 +110,11 @@ article p {
     @apply text-19;
     @apply mb-r32; 
 }
+
+article em {
+    color: var(--color-primary);
+    font-family: var(--font-em);
+    font-style: italic;
+    letter-spacing: -0.25px;
+    font-weight: bold;
+}
