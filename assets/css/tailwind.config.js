@@ -18,6 +18,7 @@ module.exports = {
     },
     fontSize: {
       '16': '1.6rem',
+      '19': '1.9rem',
       '24': '2.4rem'
     },
     extend: {
@@ -42,7 +43,8 @@ module.exports = {
         normal: '73.8rem'
       },
       spacing: {
-        '4.5': '4.5rem'
+        '4.5': '4.5rem',
+        'r32': '3.2rem'
       }
     },
   },
