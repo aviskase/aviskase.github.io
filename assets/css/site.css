@@ -91,3 +91,8 @@ input#nav-toggle:checked~#nav-menu {
 .shape-divider .shape-fill {
     fill: #FFFFFF;
 }
+
+footer {
+    border-top: 2px solid;
+    border-image: radial-gradient(circle, var(--color-bgdark) 0%, var(--color-primary) 100%) 1;
+}
