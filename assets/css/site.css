@@ -94,5 +94,5 @@ input#nav-toggle:checked~#nav-menu {
 
 footer {
     border-top: 2px solid;
-    border-image: radial-gradient(circle, var(--color-bgdark) 0%, var(--color-primary) 100%) 1;
+    border-image: radial-gradient(circle, var(--color-bgdark) 0%, var(--color-secondary) 50%, var(--color-primary) 100%) 1;
 }
