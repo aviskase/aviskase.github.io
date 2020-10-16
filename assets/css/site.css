@@ -2,6 +2,9 @@
     font-size: 62.5%;
 }
 
+$max-bleed-width: 80.5rem;
+$bleed-padding: 2.25rem;
+
 body {
     background-color: var(--color-bg);
     color: var(--color-text-default);
@@ -44,7 +47,7 @@ article > * {
 
 @screen normal {
     .mini-bleed {
-        max-width: 76.8rem;
+        max-width: $max-bleed-width;
     }
 }
 
@@ -163,7 +166,7 @@ article .highlight {
     margin-right: auto;
     margin-bottom: 3rem;
     border-radius: 0.6rem;
-    padding: 1.5rem 1.5rem;
+    padding: $bleed-padding;
     background-color: #282a36;
     overflow: auto;
 }
@@ -175,7 +178,7 @@ article .highlight code {
 
 @screen normal {
     article .highlight {
-        max-width: 76.8rem;
+        max-width: $max-bleed-width;
     }
 }
 
@@ -190,7 +193,7 @@ article blockquote {
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
     border-left: 0.3rem solid var(--color-primary);
     margin-bottom: 3rem;
-    padding: 1.5rem;
+    padding: $bleed-padding;
 }
 
 article blockquote p {
@@ -205,7 +208,7 @@ article blockquote > :last-child {
 
 @screen normal {
     article blockquote {
-        max-width: 76.8rem;
+        max-width: $max-bleed-width;
     }
 }
 

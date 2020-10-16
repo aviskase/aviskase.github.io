@@ -14,7 +14,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'normal': '48em',
+      'normal': '47.5em',
     },
     fontSize: {
       '16': '1.6rem',
@@ -37,10 +37,10 @@ module.exports = {
         mainLayout: 'auto 1fr auto'
       },
       gridTemplateColumns: {
-        articleContent: '1fr min(65ch, calc(100% - 3rem)) 1fr'
+        articleContent: '1fr min(76rem, calc(100% - 3rem)) 1fr'
       },
       maxWidth: {
-        normal: '73.8rem'
+        normal: '76rem'
       },
       spacing: {
         '4.5': '4.5rem',
