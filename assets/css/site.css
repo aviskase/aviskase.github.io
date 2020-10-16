@@ -187,40 +187,53 @@ article blockquote > :last-child {
 
 
 article li {
+    position: relative;
     margin-bottom: 1.5rem;
 }
 
 article ol {
     counter-reset: counts 0;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+article ul {
+    margin-bottom: 1.5rem;
 }
 
 article ol > li {
     counter-increment: counts;
+    display: table;
+}
+
+article ul > li {
     padding-left: 3rem;
 }
 
 
 article ol > li:before {
     content: counters(counts, '.') '.';
-    /* position: absolute; */
     font-weight: bolder;
     color: var(--color-primary);
-    /* left: 0; */
+    display: table-cell;
     padding-right: 1.5rem;
 }
 
-
-article > ol > li {
-    padding-left: 0;
+article li ol li:last-child, article li ol, article li ul li:last-child, article li ul {
+    margin: 0;
 }
 
-article > ol > li > *:last-child {
-    margin-bottom: 1.5rem;
+
+article ul > li:before {
+    content: '→';
+    color: var(--color-primary);
+    font-weight: bolder;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 article ul ul, article ul ol, article ol ul, article ol ol {
     margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
 }
 
