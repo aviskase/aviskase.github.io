@@ -44,7 +44,7 @@ article > * {
 
 @screen normal {
     .mini-bleed {
-        max-width: calc(65ch + 3rem);
+        max-width: 76.8rem;
     }
 }
 
@@ -153,4 +153,34 @@ article code {
     margin: 0.1rem 0px;
     display: inline-block;
     background-color: var(--color-bg-code);
+}
+
+article blockquote {
+    width: 100%;
+    grid-column: 1 / 4;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: var(--color-bg-code);
+    border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
+    border-left: 0.3rem solid var(--color-primary);
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+}
+
+article blockquote p {
+    font-size: 1.7rem;
+}
+
+
+article blockquote > :last-child {
+    margin-bottom: 0px !important;
+}
+
+
+@screen normal {
+    article blockquote {
+        max-width: 76.8rem;
+    }
 }
