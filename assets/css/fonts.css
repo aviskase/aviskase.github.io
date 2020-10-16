@@ -37,3 +37,10 @@
   font-weight: 700;
   src: local('Bellota BoldItalic'), local('Bellota-BoldItalic'), url("/fonts/Bellota-BoldItalic.ttf") format('truetype');
 }
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('JetBrainsMono'), local('JetBrainsMono-Regular'), url("/fonts/JetBrainsMono-Regular.ttf") format('truetype');
+}
