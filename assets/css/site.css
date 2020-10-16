@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 article p {
     @apply text-19;
-    @apply mb-r32; 
+    margin-bottom: 3rem; 
 }
 
 article em {
@@ -184,3 +184,43 @@ article blockquote > :last-child {
         max-width: 76.8rem;
     }
 }
+
+
+article li {
+    margin-bottom: 1.5rem;
+}
+
+article ol {
+    counter-reset: counts 0;
+    margin-bottom: 3rem;
+}
+
+article ol > li {
+    counter-increment: counts;
+    padding-left: 3rem;
+}
+
+
+article ol > li:before {
+    content: counters(counts, '.') '.';
+    /* position: absolute; */
+    font-weight: bolder;
+    color: var(--color-primary);
+    /* left: 0; */
+    padding-right: 1.5rem;
+}
+
+
+article > ol > li {
+    padding-left: 0;
+}
+
+article > ol > li > *:last-child {
+    margin-bottom: 1.5rem;
+}
+
+article ul ul, article ul ol, article ol ul, article ol ol {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
