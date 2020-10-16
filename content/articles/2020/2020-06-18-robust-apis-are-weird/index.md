@@ -32,12 +32,8 @@ Take _a good look at_ `tugrik` element. Without XSD you wouldn't know the expect
 Addition of XSD clarifies that `tugrik` expects decimal value:
 
 ```xml
-
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-targetNamespace="https://www.w3schools.com"
-xmlns="https://www.w3schools.com"
-elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.w3schools.com" xmlns="https://www.w3schools.com" elementFormDefault="qualified">
 
 <xs:element name="item">
   <xs:complexType>

@@ -145,7 +145,7 @@ article hr {
     @apply mb-r32; 
 }
 
-article code {
+article p code, article li code {
     font-family: var(--font-mono);
     font-size: 0.8em;
     border-radius: 0.3rem;
@@ -153,6 +153,30 @@ article code {
     margin: 0.1rem 0px;
     display: inline-block;
     background-color: var(--color-bg-code);
+}
+
+article .highlight {
+    width: 100%;
+    grid-column: 1 / 4;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    border-radius: 0.6rem;
+    padding: 1.5rem 1.5rem;
+    background-color: #282a36;
+    overflow: auto;
+}
+
+article .highlight code {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+}
+
+@screen normal {
+    article .highlight {
+        max-width: 76.8rem;
+    }
 }
 
 article blockquote {

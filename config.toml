@@ -63,6 +63,7 @@ typographer = true
 
 [markup.highlight]
 style = "dracula"
+guessSyntax = true
 
 
 [permalinks]
