@@ -94,7 +94,7 @@ input#nav-toggle:checked~#nav-menu {
 
 footer {
     border-top: 2px solid;
-    border-image: radial-gradient(circle, var(--color-bgdark) 0%, var(--color-secondary) 50%, var(--color-primary) 100%) 1;
+    border-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white) 1;
 }
 
 
@@ -137,4 +137,10 @@ article a {
         background-size: 100% 100%;
     }
 }
-  
+
+article hr {
+    border: 0;
+    background: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white);
+    height: 0.1rem;
+    @apply mb-r32; 
+}
