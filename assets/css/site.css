@@ -118,3 +118,23 @@ article em {
     letter-spacing: -0.25px;
     font-weight: bold;
 }
+
+article a {
+    cursor: pointer;
+
+}
+
+article a {
+    text-decoration: none;
+    background-image: linear-gradient(var(--color-primary), var(--color-primary));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 0.2rem;
+    transition: background .3s;
+
+    &:hover, &:focus {
+        background-image: linear-gradient(var(--color-bgdark), var(--color-bgdark));
+        background-size: 100% 100%;
+    }
+}
+  
