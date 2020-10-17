@@ -26,13 +26,18 @@ article > * {
 
 .title-hero {
     @apply text-left;
+    padding: 4.5rem 1.5rem 6rem;
 }
 
-
+.title-hero h1 {
+    font-size: 3.8rem;
+    line-height: 1.5em;
+}
 
 @screen normal {
     .title-hero {
         @apply text-center;
+        padding: 4.5rem 3rem 6rem;
     }
 }
 
@@ -286,4 +291,3 @@ article ul ul, article ul ol, article ol ul, article ol ol {
     margin-top: 1.5rem;
     /* margin-bottom: 1.5rem; */
 }
-
