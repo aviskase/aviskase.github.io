@@ -253,17 +253,16 @@ article p.admonition-title {
     top: 0px;
     left: 0px;
     transform: translate(-50%, -50%);
-    padding: 0.8rem;
+    padding: 0.6rem;
     background: var(--color-bg);
+    border-radius: 50%;
 
     .warning & {
         color: hsl(37deg, 100%, 50%);
-        border-radius: 25%;
     }
 
     .note & {
         color: hsl(245deg, 100%, 60%);
-        border-radius: 50%;
     }
 }
 
