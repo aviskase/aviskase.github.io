@@ -15,18 +15,21 @@ body {
 }
 
 article {
-    @apply grid;
-    @apply grid-cols-articleContent;
-    @apply gap-x-6;
+    max-width: calc(100vw - 3rem);
+    margin: 0 1.5rem;
 }
 
-article > * {
-    grid-column: 2;
+@screen normal {
+    article {
+        max-width: 76rem;
+        margin: 0 auto;
+    }
 }
+
 
 .title-hero {
     @apply text-left;
-    padding: 4.5rem 1.5rem 6rem;
+    margin: 4.5rem 1.5rem 6rem;
 }
 
 .title-hero h1 {
@@ -37,25 +40,9 @@ article > * {
 @screen normal {
     .title-hero {
         @apply text-center;
-        padding: 4.5rem 3rem 6rem;
+        margin: 4.5rem 3rem 6rem;
     }
 }
-
-
-.mini-bleed {
-    width: 100%;
-    grid-column: 1 / 4;
-    max-width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@screen normal {
-    .mini-bleed {
-        max-width: $max-bleed-width;
-    }
-}
-
 
 
 input#nav-toggle {
@@ -165,11 +152,7 @@ article p code, article li code {
 
 article .gist {
     width: 100%;
-    grid-column: 1 / 4;
-    max-width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
+    margin: 0 0 3rem;
 }
 
 article .gist a {
@@ -180,19 +163,10 @@ article .gist .gist-file {
     margin-bottom: 0;
 }
 
-@screen normal {
-    article .gist {
-        max-width: $max-bleed-width;
-    }
-}
-
 article .highlight {
     width: 100%;
-    grid-column: 1 / 4;
-    max-width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
+    margin: 0 0 3rem;
+
     border-radius: 0.6rem;
     padding: $bleed-padding;
     background-color: #282a36;
@@ -204,27 +178,19 @@ article .highlight code {
     font-size: 0.8em;
 }
 
-@screen normal {
-    article .highlight {
-        max-width: $max-bleed-width;
-    }
-}
+
 
 article blockquote {
     width: 100%;
-    grid-column: 1 / 4;
-    max-width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 0 3rem;
 
     background-color: var(--color-bg-code);
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
     border-left: 0.3rem solid var(--color-primary);
-    margin-bottom: 3rem;
     padding: $bleed-padding;
 }
 
-article blockquote p {
+article blockquote p, article blockquote {
     font-size: 1.7rem;
 }
 
@@ -235,11 +201,11 @@ article blockquote > :last-child {
 
 
 @screen normal {
-    article blockquote {
-        max-width: $max-bleed-width;
+    article .highlight, article blockquote, article .gist {
+        width: $max-bleed-width;
+        margin: 0 -$bleed-padding 3rem;
     }
 }
-
 
 article li {
     position: relative;

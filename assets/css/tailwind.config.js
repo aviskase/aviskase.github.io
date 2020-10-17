@@ -14,7 +14,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'normal': '47.5em',
+      'normal': '50em',
     },
     fontSize: {
       '16': '1.6rem',
