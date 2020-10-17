@@ -88,6 +88,7 @@ input#nav-toggle:checked~#nav-menu {
 }
 
 footer {
+    margin-top: 6rem;
     border-top: 2px solid;
     border-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white) 1;
 }
