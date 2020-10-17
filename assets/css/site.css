@@ -158,6 +158,29 @@ article p code, article li code {
     background-color: var(--color-bg-code);
 }
 
+article .gist {
+    width: 100%;
+    grid-column: 1 / 4;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+}
+
+article .gist a {
+    background: none;
+}
+
+article .gist .gist-file {
+    margin-bottom: 0;
+}
+
+@screen normal {
+    article .gist {
+        max-width: $max-bleed-width;
+    }
+}
+
 article .highlight {
     width: 100%;
     grid-column: 1 / 4;
