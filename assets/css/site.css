@@ -204,28 +204,71 @@ article blockquote {
     width: 100%;
     margin: 2.4rem 0 2.4rem;
 
-    background-color: var(--color-bg-code);
+    background-color: #f5f6f9;
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
-    border-left: 0.3rem solid var(--color-primary);
+    border-left: 0.3rem solid var(--color-text-default);
     padding: $bleed-padding;
 }
 
-article blockquote p, article blockquote {
+article blockquote p, article blockquote, article .admonition {
     font-size: 1.7rem;
 }
 
-article blockquote p {
-    margin-bottom: 2rem;
+article blockquote p, article .admonition p {
+    margin-bottom: 1.6rem;
 }
 
 
-article blockquote > :last-child {
+article blockquote > :last-child, article .admonition > :last-child {
     margin-bottom: 0px !important;
+}
+
+article .admonition {
+    width: 100%;
+    margin: 2.4rem 0 2.4rem;
+    position: relative;
+    border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
+    padding: $bleed-padding;
+
+    &.warning {
+        border-left: 0.3rem solid hsl(37deg, 100%, 50%);
+        background-color: hsla(52deg, 100%, 50%, 0.25);
+    }
+
+    &.note {
+        border-left: 0.3rem solid hsl(245deg, 100%, 60%);
+        background-color: hsl(210deg, 55%, 92%);
+
+    }
+}
+
+article p.admonition-title {
+    font-weight: bolder;
+    margin-bottom: 2rem;
+}
+
+.admonition-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(-50%, -50%);
+    padding: 0.8rem;
+    background: var(--color-bg);
+
+    .warning & {
+        color: hsl(37deg, 100%, 50%);
+        border-radius: 25%;
+    }
+
+    .note & {
+        color: hsl(245deg, 100%, 60%);
+        border-radius: 50%;
+    }
 }
 
 
 @screen normal {
-    article .highlight, article blockquote, article .gist {
+    article .highlight, article blockquote, article .gist, article .admonition {
         width: $max-bleed-width;
         margin: 2.4rem -$bleed-padding 2.4rem;
     }

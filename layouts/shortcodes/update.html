@@ -1,5 +1,0 @@
-<div class="admonition update">
-    {{- $title := .Get "title" -}}
-    {{ if ne $title "" }}<p class="admonition-title">{{ $title | default "Update" }}</p>{{ end }}
-    {{ printf "%s" .Inner | markdownify }}
-</div>
