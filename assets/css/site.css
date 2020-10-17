@@ -153,6 +153,23 @@ article p code, article li code {
     background-color: var(--color-bg-code);
 }
 
+article p kbd, article li kbd {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    border-radius: 0.3rem;
+    padding: 0 0.6rem;
+    margin: 0.1rem 0px;
+    display: inline-block;
+    background-color: var(--color-bg-code);
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px 1px 2px 1px;
+}
+
+.keys span {
+    padding: 0 .2rem;
+}
+
 article .gist {
     width: 100%;
     margin: 2.4rem 0 2.4rem;
