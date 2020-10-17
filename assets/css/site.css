@@ -9,8 +9,8 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text-default);
     font-family: var(--font-primary);
-    font-size: 1.9rem;
-    line-height: 3rem;
+    font-size: 1.8rem;
+    line-height: 1.77;
 
 }
 
@@ -33,8 +33,8 @@ article {
 }
 
 .title-hero h1 {
-    font-size: 3.8rem;
-    line-height: 1.5em;
+    font-size: 4.8rem;
+    line-height: 1;
 }
 
 @screen normal {
@@ -102,8 +102,10 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 article > p {
-    @apply text-19;
-    margin-bottom: 3rem; 
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+    margin-bottom: 2.4rem; 
+    margin-top: 2.4rem; 
 }
 
 article em {
@@ -137,7 +139,8 @@ article hr {
     border: 0;
     background: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white);
     height: 0.1rem;
-    @apply mb-r32; 
+    margin-bottom: 5.6rem; 
+    margin-top: 5.6rem; 
 }
 
 article p code, article li code {
@@ -152,7 +155,7 @@ article p code, article li code {
 
 article .gist {
     width: 100%;
-    margin: 0 0 3rem;
+    margin: 2.4rem 0 2.4rem;
 }
 
 article .gist a {
@@ -165,7 +168,7 @@ article .gist .gist-file {
 
 article .highlight {
     width: 100%;
-    margin: 0 0 3rem;
+    margin: 2.4rem 0 2.4rem;
 
     border-radius: 0.6rem;
     padding: $bleed-padding;
@@ -182,7 +185,7 @@ article .highlight code {
 
 article blockquote {
     width: 100%;
-    margin: 0 0 3rem;
+    margin: 2.4rem 0 2.4rem;
 
     background-color: var(--color-bg-code);
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
@@ -195,7 +198,7 @@ article blockquote p, article blockquote {
 }
 
 article blockquote p {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -207,22 +210,24 @@ article blockquote > :last-child {
 @screen normal {
     article .highlight, article blockquote, article .gist {
         width: $max-bleed-width;
-        margin: 0 -$bleed-padding 3rem;
+        margin: 2.4rem -$bleed-padding 2.4rem;
     }
 }
 
 article li {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 article ol {
     counter-reset: counts 0;
-    margin-bottom: 3rem;
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
 }
 
 article ul {
-    margin-bottom: 3rem;
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
 }
 
 article ol > li {
@@ -231,7 +236,7 @@ article ol > li {
 }
 
 article ul > li {
-    padding-left: 3rem;
+    padding-left: 2.4rem;
 }
 
 
@@ -258,14 +263,34 @@ article ul > li:before {
 }
 
 article ul ul, article ul ol, article ol ul, article ol ol {
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
     /* margin-bottom: 1.5rem; */
 }
 
 
 h2 {
-    font-size: 3.2rem;
+    font-size: 3rem;
+    line-height: 4rem;
     color: var(--color-tertiary);
-    margin-top: 4.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.2rem;
+    margin-top: 5.6rem;
+}
+
+
+h3 {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    margin-bottom: 1.6rem;
+    margin-top: 4rem;
+}
+
+
+h4 {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    margin-bottom: 0.8rem;
+}
+
+article h2 + *, article h3 + *, article h4 + *, article hr + * {
+    margin-bottom: 0;
 }
