@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, h6, p {
     text-rendering: optimizeLegibility;
 }
 
-article p {
+article > p {
     @apply text-19;
     margin-bottom: 3rem; 
 }
@@ -194,6 +194,10 @@ article blockquote p, article blockquote {
     font-size: 1.7rem;
 }
 
+article blockquote p {
+    margin-bottom: 2.5rem;
+}
+
 
 article blockquote > :last-child {
     margin-bottom: 0px !important;
@@ -214,11 +218,11 @@ article li {
 
 article ol {
     counter-reset: counts 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 article ul {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 article ol > li {
