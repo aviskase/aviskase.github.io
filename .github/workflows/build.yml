@@ -19,6 +19,9 @@ jobs:
         with:
           hugo-version: '0.75.1'
           extended: true
+      
+      - name: Setup npm
+        run: npm ci
 
       - name: Build
         run: npm run build
