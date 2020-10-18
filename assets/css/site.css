@@ -29,7 +29,10 @@ article {
 
 .title-hero {
     @apply text-left;
-    margin: 4.5rem 1.5rem 6rem;
+    margin-top: 6rem;
+    margin-bottom: 4.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 .title-hero h1 {
@@ -40,7 +43,8 @@ article {
 @screen normal {
     .title-hero {
         @apply text-center;
-        margin: 4.5rem 3rem 6rem;
+        margin-left: 3rem;
+        margin-right: 3rem;
     }
 }
 
