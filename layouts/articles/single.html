@@ -5,16 +5,16 @@
 <div class="title-hero">
     <h1>{{ .Title | markdownify }}</h1>
     <div class='article-meta'>
-        <time class="published">{{ .Date.Format "2 Jan 2006" }}</time>
-
+        <div class="normal:justify-self-end">{{ .Date.Format "2 Jan 2006" }}
         {{- if ne .Lastmod .Date }}
-        <span class="modified"> upd: {{ .Lastmod.Format "2 Jan 2006" }}</span>
+        (upd: {{ .Lastmod.Format "2 Jan 2006" }})
         {{ end }}
-
-        <span class="readtime">
-            <span class='icon-clock' aria-hidden="true"></span>
-            {{- if gt .ReadingTime 1 }}{{ .ReadingTime }}&nbsp;mins{{ else }}1&nbsp;min{{ end }}
-        </span>
+        </div>
+        <div class="hidden normal:block">&nbsp;—&nbsp;</div>
+        <div class="relative normal:justify-self-start">
+            <svg class="inline relative" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>{{- if gt .ReadingTime 1 }}{{ .ReadingTime }}&nbsp;mins{{ else }}1&nbsp;min{{ end -}}</span>
+        </div>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
     {{ .Content }}
 </article>
 
-<div class="page-navigation code">
+{{/*  <div class="page-navigation code">
     {{- $pages := where site.RegularPages "Section" .Section -}}
     {{- $prev := $pages.ByDate.Reverse.Prev . -}}
     {{- $next := $pages.ByDate.Reverse.Next . -}}
@@ -37,5 +37,5 @@
     {{ with $next }}
     <a class="next" href="{{ .Permalink }}" title="{{ .Title | plainify }}">newer &rarr;</a>
     {{ end }}
-</div>
+</div>  */}}
 {{ end }}
