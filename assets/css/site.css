@@ -373,7 +373,7 @@ article figure > * {
 
 .article-meta {
     font-size: 2rem;
-    color: hsl(225deg, 12%, 40%);
+    color: #5a6072;
     margin-top: 2rem;
 
     & svg {
@@ -426,4 +426,9 @@ article tbody td:first-child {
 
 article tbody td:last-child {
     padding-right: 0;
+}
+
+.yearmonth {
+    font-size: 2rem;
+    color: #5a6072;
 }

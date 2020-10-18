@@ -1,20 +1,16 @@
 {{ define "content" }}
-<section>
-    <ul>
-        {{ range (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
+<section class="normal:max-w-4xl mx-6 mt-12 normal:mx-auto">
+    <ul>{{ range (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
         {{- $firstArticle := index .Pages 0 -}}
-        <li><div class="post-date">{{ $firstArticle.Date.Format "January 2006" }}</div></li>
-        <ul>
-            {{ range .Pages }}
-                <li class="title">
-                    <a href="{{ .Permalink }}">
-                        <div class='post-day'>{{ .Date.Day }}</div>
-                        <div class='post-title'>{{ .Title | markdownify }}</div>
-                    </a>
-                </li>
-                {{ end }}
-        </ul>
-        {{ end }}
-    </ul>
+        <li><div class="lowercase mb-3 yearmonth">[[&nbsp;{{ $firstArticle.Date.Format "January 2006" }}&nbsp;]]</div></li>
+        <ul class="mb-16">{{ range .Pages }}
+            <li>
+                <a class="flex hover:text-primary mb-3" href="{{ .Permalink }}">
+                    <div class="w-12 text-primary">{{ .Date.Day }}</div>
+                    <div class="">{{ .Title | markdownify }}</div>
+                </a>
+            </li>
+        {{ end }}</ul>
+    {{ end }}</ul>
 </section>
 {{ end }}

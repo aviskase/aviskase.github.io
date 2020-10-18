@@ -28,7 +28,8 @@ module.exports = {
         secondary: 'var(--color-secondary)',
         tertiary: 'var(--color-tertiary)',
         bgdark: 'var(--color-bgdark)',
-        bglight: 'var(--color-bglight)'
+        bglight: 'var(--color-bglight)',
+        bgcode: 'var(--color-bg-code)'
       },
       fontFamily: {
         primary: 'var(--font-primary)'
