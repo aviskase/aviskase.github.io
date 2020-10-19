@@ -1,6 +1,6 @@
 ---
 title: "Blog Redesign: Phase 1"
-date: 2020-10-18T17:06:15-04:00
+date: 2020-10-18T20:09:15-04:00
 draft: false
 ---
 
