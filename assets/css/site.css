@@ -125,10 +125,9 @@ article em {
 
 article a {
     cursor: pointer;
-
 }
 
-article a {
+article a.external {
     text-decoration: none;
     background-image: linear-gradient(var(--color-primary), var(--color-primary));
     background-position: 0% 100%;
@@ -139,6 +138,26 @@ article a {
     &:hover, &:focus {
         background-image: linear-gradient(var(--color-bgdark), var(--color-bgdark));
         background-size: 100% 100%;
+    }
+}
+
+article a.internal {
+    transition: color .3s;
+    
+    &::before {
+        content: "[[";
+    }
+    &::after {
+        content: "]]";
+    }
+
+    &::before, &::after {
+        color: var(--color-primary);
+        font-size: 1.05em;
+    }
+
+    &:hover, &:focus {
+        color: var(--color-primary);
     }
 }
 
@@ -180,10 +199,6 @@ article p kbd, article li kbd {
 article .gist {
     width: 100%;
     margin: 2.4rem 0 2.4rem;
-}
-
-article .gist a {
-    background: none;
 }
 
 article .gist .gist-file {
