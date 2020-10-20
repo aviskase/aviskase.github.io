@@ -31,9 +31,6 @@ module.exports = {
         bglight: 'var(--color-bglight)',
         bgcode: 'var(--color-bg-code)'
       },
-      fontFamily: {
-        primary: 'var(--font-primary)'
-      },
       gridTemplateRows: {
         mainLayout: 'auto 1fr auto'
       },

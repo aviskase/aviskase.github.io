@@ -1,3 +1,7 @@
+$font-primary: Nunito, Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-em: Bellota, $font-primary;
+$font-mono: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
 :root {
   --color-primary: #4433FF;
   --color-secondary: #e60067;
@@ -7,7 +11,4 @@
   --color-bglight: #ffe3bc;
   --color-text-default: #0a0c10;
   --color-bg-code: #e6e7ea;
-  --font-primary: Nunito, Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-em: Bellota, var(--font-primary);
-  --font-mono: JetBrainsMono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

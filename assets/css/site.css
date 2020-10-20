@@ -1,3 +1,5 @@
+
+
 :root{
     font-size: 62.5%;
 }
@@ -8,7 +10,7 @@ $bleed-padding: 2.25rem;
 body {
     background-color: var(--color-bg);
     color: var(--color-text-default);
-    font-family: var(--font-primary);
+    font-family: $font-primary;
     font-size: 1.8rem;
     line-height: 1.77;
 
@@ -115,7 +117,7 @@ article > p {
 
 article em {
     color: var(--color-primary);
-    font-family: var(--font-em);
+    font-family: $font-em;
     font-style: italic;
     letter-spacing: -0.25px;
     font-weight: bold;
@@ -149,7 +151,7 @@ article hr {
 }
 
 article p code, article li code {
-    font-family: var(--font-mono);
+    font-family: $font-mono;
     font-size: 0.8em;
     border-radius: 0.3rem;
     padding: 0.2rem 0.6rem;
@@ -159,7 +161,7 @@ article p code, article li code {
 }
 
 article p kbd, article li kbd {
-    font-family: var(--font-mono);
+    font-family: $font-mono;
     font-size: 0.8em;
     border-radius: 0.3rem;
     padding: 0 0.6rem;
@@ -199,7 +201,7 @@ article .highlight {
 }
 
 article .highlight code {
-    font-family: var(--font-mono);
+    font-family: $font-mono;
     font-size: 0.8em;
 }
 
