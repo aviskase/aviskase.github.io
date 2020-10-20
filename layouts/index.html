@@ -2,7 +2,7 @@
 <section class="normal:max-w-4xl mx-6 mt-12 normal:mx-auto">
     <ul>{{ range (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
         {{- $firstArticle := index .Pages 0 -}}
-        <li><div class="lowercase mb-3 yearmonth">[[&nbsp;{{ $firstArticle.Date.Format "January 2006" }}&nbsp;]]</div></li>
+        <li><div class="lowercase mb-3 yearmonth">/&nbsp;{{ $firstArticle.Date.Format "January 2006" }}&nbsp;/</div></li>
         <ul class="mb-16">{{ range .Pages }}
             <li>
                 <a class="flex hover:text-primary mb-3" href="{{ .Permalink }}">
