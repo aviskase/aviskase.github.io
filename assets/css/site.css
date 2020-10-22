@@ -409,43 +409,43 @@ article figure > * {
     }
 }
 
-article table {
+article table:not([class]) {
     font-size: 1.6rem;
     line-height: 1.5em;
 }
 
-article thead {
+article table:not([class]) thead {
     font-weight: bold;
     background-color: var(--color-bgdark);
 }
 
-article thead th {
+article table:not([class]) thead th {
     vertical-align: bottom;
     padding: 0.75em;
 }
 
-article thead th:first-child {
+article table:not([class]) thead th:first-child {
     padding-left: 0;
 }
 
-article thead th:last-child {
+article table:not([class]) thead th:last-child {
     padding-right: 0;
 }
 
-article tbody tr {
+article table:not([class]) tbody tr {
     border-bottom: 1px solid var(--color-bgdark);
 } 
 
-article tbody td {
+article table:not([class]) tbody td {
     vertical-align: top; 
     padding: 0.75em;
 }
 
-article tbody td:first-child {
+article table:not([class]) tbody td:first-child {
     padding-left: 0;
 }
 
-article tbody td:last-child {
+article table:not([class]) tbody td:last-child {
     padding-right: 0;
 }
 
