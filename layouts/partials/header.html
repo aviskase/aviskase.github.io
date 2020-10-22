@@ -21,7 +21,7 @@
             <ul id="nav-menu" class="font-semibold text-16 hidden normal:flex mt-3 normal:mt-0 space-y-3 normal:space-y-0 normal:space-x-4.5 w-full normal:w-auto">
                 {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
-                <li{{ if $currentPage.IsMenuCurrent "main" . }} class="border-primary border-b-2  "{{ end }}><a href="{{ .URL }}">{{ .Name }}</a></li>
+                <li{{ if $currentPage.IsMenuCurrent "main" . }} class="border-primary border-b-2  "{{ end }}><a href="{{ .URL }}">{{ .Name | markdownify }}</a></li>
                 {{ end }}
             </ul>
         </div>

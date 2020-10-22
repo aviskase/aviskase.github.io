@@ -1,6 +1,6 @@
 <div class="admonition note">
     <div class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
     {{- $title := .Get "title" -}}
-    {{ if ne $title "" }}<p class="admonition-title">{{ $title | default "Note" }}</p>{{ end }}
+    {{ if ne $title "" }}<p class="admonition-title">{{ $title | default "Note" | markdownify }}</p>{{ end }}
     {{ printf "%s" .Inner | markdownify }}
 </div>
