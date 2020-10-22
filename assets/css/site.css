@@ -4,6 +4,11 @@
     font-size: 62.5%;
 }
 
+::selection {
+	background-color: var(--color-primary);
+	color: white;
+}
+
 $max-bleed-width: 80.5rem;
 $bleed-padding: 2.25rem;
 
