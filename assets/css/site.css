@@ -458,3 +458,32 @@ article table:not([class]) tbody td:last-child {
     font-size: 2rem;
     color: #5a6072;
 }
+
+.header-link {
+    display: none;
+    pointer-events: none;
+
+    & > svg {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@screen normal {
+    .header-link {
+        color: inherit;
+        display: block;
+        position: absolute;
+        left: 0px;
+        transform: translateX(-125%) translateY(-2px);
+        transition: opacity 250ms ease 0s;
+        opacity: 0;
+        scroll-margin-top: 128px;
+        font-size: 0.75em;
+    }
+
+}
+
+.header-wrapper:hover .header-link, .header-link:focus {
+    opacity: 0.75;
+}
