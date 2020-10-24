@@ -498,3 +498,27 @@ article table:not([class]) tbody td:last-child {
 .header-wrapper:hover .header-link, .header-link:focus {
     opacity: 0.75;
 }
+
+
+.page-navigation {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    max-width: max-content;
+
+    & a {
+        position: relative;
+
+        & > svg {
+            position: relative;
+            display: inline;
+            color: var(--color-primary);
+            font-size: 1.3em;
+            margin: 0.5rem;
+        }
+    }
+
+    & .separator {
+        color: var(--color-primary);
+    }
+}

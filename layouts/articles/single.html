@@ -1,7 +1,9 @@
 {{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
 {{ define "content" }}
 
-
+{{- $pages := where site.RegularPages "Section" .Section -}}
+{{- $prev := $pages.ByDate.Reverse.Prev . -}}
+{{- $next := $pages.ByDate.Reverse.Next . -}}
 <div class="title-hero">
     <h1>{{ .Title | markdownify }}</h1>
     <div class='article-meta'>
@@ -21,20 +23,18 @@
     {{ .Content }}
 </article>
 
-{{/*  <div class="page-navigation code">
-    {{- $pages := where site.RegularPages "Section" .Section -}}
-    {{- $prev := $pages.ByDate.Reverse.Prev . -}}
-    {{- $next := $pages.ByDate.Reverse.Next . -}}
+<div class="page-navigation">
+
     {{ with $prev }}
-    <a class="prev" href="{{ .Permalink }}" title="{{ .Title | plainify }}">&larr; older</a>
+    <a class="prev" href="{{ .Permalink }}" title="{{ .Title | plainify }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
     {{ end }}
 
     {{ if and $prev $next }}
-    <span>&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+    <span class="separator">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
     {{ end }}
 
     {{ with $next }}
-    <a class="next" href="{{ .Permalink }}" title="{{ .Title | plainify }}">newer &rarr;</a>
+    <a class="next" href="{{ .Permalink }}" title="{{ .Title | plainify }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
     {{ end }}
-</div>  */}}
+</div>
 {{ end }}
