@@ -427,6 +427,7 @@ article figure > * {
 article table:not([class]) {
     font-size: 1.6rem;
     line-height: 1.5em;
+    width: 100%;
 }
 
 article table:not([class]) thead {
