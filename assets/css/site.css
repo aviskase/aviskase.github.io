@@ -174,7 +174,8 @@ article hr {
     margin-top: 5.6rem; 
 }
 
-article p code, article li code {
+
+article p > code, article li > code, article td > code {
     font-family: $font-mono;
     font-size: 0.8em;
     border-radius: 0.3rem;
@@ -182,6 +183,15 @@ article p code, article li code {
     margin: 0.1rem 0px;
     display: inline-block;
     background-color: var(--color-bg-code);
+}
+
+a code, h1 code, h2 code, h3 code, h4 code, article th > code {
+    font-family: $font-mono;
+    font-size: 0.9em;
+
+    &::after, &::before {
+        content: "`";
+    }
 }
 
 article p kbd, article li kbd {
