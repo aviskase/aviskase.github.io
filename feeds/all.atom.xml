@@ -2,9 +2,76 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-10-19T00:09:15Z</updated>
+  <updated>2020-10-26T02:05:10Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Automap API Operation Handlers in Components-Based Project</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/10/25/automap-api-operation-handlers-in-components-based-project/" hreflang="en"/>
+    <published>2020-10-26T02:05:10Z</published>
+    <updated>2020-10-26T02:05:10Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-10-26:/articles/2020/10/25/automap-api-operation-handlers-in-components-based-project/</id>
+    
+    <summary type="html">Node.js best practices repo is the most comprehensive list of style guides and architectural tips for Node.js apps I&amp;amp;rsquo;ve seen. The very first of them is about structuring projects based on components instead of layers.
+For example, the typical layers-based layout would be:
+. ├── common │ └── utils.ts ├── routers │ ├── locations.</summary>
+    <content type="html">&lt;p&gt;&lt;a href=&#34;https://github.com/goldbergyoni/nodebestpractices&#34; class=&#34;external&#34;&gt;Node.js best practices repo&lt;/a&gt; is the most comprehensive list of style guides and architectural tips for Node.js apps I&amp;rsquo;ve seen. The very first of them is about &lt;a href=&#34;https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md&#34; class=&#34;external&#34;&gt;structuring projects based on components instead of layers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example, the typical layers-based layout would be:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
+├── common
+│   └── utils.ts
+├── routers
+│   ├── locations.router.ts
+│   └── users.router.ts
+├── services
+│   ├── locations.service.ts
+│   └── users.service.ts
+└── index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In comparison, this is a components-based layout:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
+├── common
+│   └── utils.ts
+├── components
+│   ├── locations
+│   │   ├── locations.router.ts
+│   │   └── locations.service.ts
+│   └── users
+│       ├── users.router.ts
+│       └── users.service.ts
+└── index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When it comes to API design, the design-first approach is the most recommended: write the OpenAPI description document (or in any other format), then write the implementation code. Usually, you&amp;rsquo;d want to leverage the description doc as much as possible to automate routine stuff, like request/response validation and operation handlers automapping.&lt;/p&gt;
+&lt;p&gt;For these purposes I use &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/&#34; class=&#34;external&#34;&gt;&lt;code&gt;express-openapi-validator&lt;/code&gt;&lt;/a&gt; package. The default behavior for automapping is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;grab all files sitting directly under base directory (set on &lt;code&gt;OpenApiValidator&lt;/code&gt; middleware options)&lt;/li&gt;
+&lt;li&gt;check files with names equal to &lt;code&gt;x-eov-operation-handler&lt;/code&gt; from the description doc&lt;/li&gt;
+&lt;li&gt;search files for exported functions with the names equal to either &lt;code&gt;operationId&lt;/code&gt; or &lt;code&gt;x-eov-operation-id&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This behavior isn&amp;rsquo;t compatible with the components-base layout, since there is no such thing as base directory: each handler lives in the separate directory. Fortunately, you can customize default behavior with &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/#%EF%B8%8F-operationhandlers-optional&#34; class=&#34;external&#34;&gt;custom resolver&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;For example, custom resolver I wrote:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;operationHandlers&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; path.join(__dirname, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;components&amp;#39;&lt;/span&gt;),
+    resolver&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; string, route) =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; functionName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;operationId&amp;#39;&lt;/span&gt;];
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; [componentName, routerName] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;x-eov-operation-handler&amp;#39;&lt;/span&gt;].split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;);
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; routerPath &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; routerName &lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;routerName&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;.router`&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;componentName&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;.router`&lt;/span&gt;;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; modulePath &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; path.join(basePath, componentName, routerPath);
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; handler &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(modulePath);
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (handler[functionName] &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;undefined&lt;/span&gt;) {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Error&lt;/span&gt;(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`Could not find a [&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;functionName&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;] function in &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;modulePath&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt; when trying to route [&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;route.method&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;route.expressRoute&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;].`&lt;/span&gt;);
+        }
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; handler[functionName];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It assumes several things about the project&amp;rsquo;s structure:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All handlers are in the &lt;code&gt;components/{componentName}&lt;/code&gt; directories.&lt;/li&gt;
+&lt;li&gt;All handlers have &lt;code&gt;.router&lt;/code&gt; postfix in the filename&lt;/li&gt;
+&lt;li&gt;There could be several handlers inside component.&lt;/li&gt;
+&lt;li&gt;Default handler should have the same name as the component.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x-eov-operation-handler&lt;/code&gt; is equal to either component name (default handler) or &lt;code&gt;{componentName}.{handler}&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Why so many assumptions? First, I wanted it simple. Second, I avoided introducing libraries for glob file search (yes, Node.js doesn&amp;rsquo;t have globs in standard library, bleh). And third, it will be fairly easy to change anyway!&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Blog Redesign: Phase 1</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/10/18/blog-redesign-phase-1/" hreflang="en"/>
