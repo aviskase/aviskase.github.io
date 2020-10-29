@@ -1,6 +1,7 @@
 ---
 title: "Automap API Operation Handlers in Components-Based Project"
 date: 2020-10-25T22:05:10-04:00
+Modified: 2020-10-28T23:10:10-04:00
 draft: false
 ---
 
@@ -52,9 +53,11 @@ For example, custom resolver I wrote:
 ```js
 operationHandlers: {
     basePath: path.join(__dirname, 'components'),
-    resolver: (basePath: string, route) => {
-        const functionName = route.schema['operationId'];
-        const [componentName, routerName] = route.schema['x-eov-operation-handler'].split('.');
+    resolver: (basePath: string, route, apiDoc) => {
+        const pathKey = route.openApiRoute.substring(route.basePath.length);
+        const schema = apiDoc.paths[pathKey][route.method.toLowerCase()];
+        const functionName = schema['operationId'];
+        const [componentName, routerName] = schema['x-eov-operation-handler'].split('.');
         const routerPath = routerName ? `${routerName}.router` : `${componentName}.router`;
         const modulePath = path.join(basePath, componentName, routerPath);
         const handler = require(modulePath);
@@ -65,6 +68,11 @@ operationHandlers: {
     }
 }
 ```
+
+{{< warning title="" >}}
+The code was updated after the fix [#426](https://github.com/cdimascio/express-openapi-validator/issues/426). Should be a valid example as of version v4.3.6.
+{{< /warning >}}
+
 
 It assumes several things about the project's structure:
 
