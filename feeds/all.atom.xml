@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-10-26T02:05:10Z</updated>
+  <updated>2020-10-29T03:10:10Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
   <entry>
     <title>Automap API Operation Handlers in Components-Based Project</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/10/25/automap-api-operation-handlers-in-components-based-project/" hreflang="en"/>
     <published>2020-10-26T02:05:10Z</published>
-    <updated>2020-10-26T02:05:10Z</updated>
+    <updated>2020-10-29T03:10:10Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-10-26:/articles/2020/10/25/automap-api-operation-handlers-in-components-based-project/</id>
     
     <summary type="html">Node.js best practices repo is the most comprehensive list of style guides and architectural tips for Node.js apps I&amp;amp;rsquo;ve seen. The very first of them is about structuring projects based on components instead of layers.
@@ -50,9 +50,11 @@ For example, the typical layers-based layout would be:
 &lt;p&gt;For example, custom resolver I wrote:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;operationHandlers&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
     basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; path.join(__dirname, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;components&amp;#39;&lt;/span&gt;),
-    resolver&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; string, route) =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; functionName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;operationId&amp;#39;&lt;/span&gt;];
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; [componentName, routerName] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;x-eov-operation-handler&amp;#39;&lt;/span&gt;].split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;);
+    resolver&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; string, route, apiDoc) =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; pathKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.openApiRoute.substring(route.basePath.length);
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; schema &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; apiDoc.paths[pathKey][route.method.toLowerCase()];
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; functionName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;operationId&amp;#39;&lt;/span&gt;];
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; [componentName, routerName] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; schema[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;x-eov-operation-handler&amp;#39;&lt;/span&gt;].split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;);
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; routerPath &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; routerName &lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;routerName&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;.router`&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;componentName&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;.router`&lt;/span&gt;;
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; modulePath &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; path.join(basePath, componentName, routerPath);
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; handler &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(modulePath);
@@ -62,7 +64,12 @@ For example, the typical layers-based layout would be:
         &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; handler[functionName];
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It assumes several things about the project&amp;rsquo;s structure:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;admonition warning&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;The code was updated after the fix &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/issues/426&#34;&gt;#426&lt;/a&gt;. Should be a valid example as of version v4.3.6.&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;p&gt;It assumes several things about the project&amp;rsquo;s structure:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;All handlers are in the &lt;code&gt;components/{componentName}&lt;/code&gt; directories.&lt;/li&gt;
 &lt;li&gt;All handlers have &lt;code&gt;.router&lt;/code&gt; postfix in the filename&lt;/li&gt;
