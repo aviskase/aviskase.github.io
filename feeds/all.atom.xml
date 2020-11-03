@@ -66,7 +66,7 @@ For example, the typical layers-based layout would be:
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;admonition warning&#34;&gt;
     &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
-        &lt;p&gt;The code was updated after the fix &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/issues/426&#34;&gt;#426&lt;/a&gt;. Should be a valid example as of version v4.3.6.&lt;/p&gt;
+        &lt;p&gt;The code was updated after the fix &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/issues/426&#34; class=&#34;external&#34;&gt;#426&lt;/a&gt;. Should be a valid example as of version v4.3.6.&lt;/p&gt;
     
 &lt;/div&gt;
 &lt;p&gt;It assumes several things about the project&amp;rsquo;s structure:&lt;/p&gt;
@@ -99,7 +99,7 @@ PlanningFor planning and progress tracking, I used a GitHub project. This is a b
 &lt;p&gt;For layout I used &lt;code&gt;grid&lt;/code&gt; and &lt;code&gt;flexbox&lt;/code&gt;. Last time I did any CSS these two weren&amp;rsquo;t a common thing; you had to do a million of &lt;code&gt;div&lt;/code&gt;&amp;rsquo;s with &lt;code&gt;float&lt;/code&gt;&amp;rsquo;s and other weird things. I also wanted to use &lt;code&gt;grid&lt;/code&gt; for minor bleeding elements &lt;a href=&#34;https://joshwcomeau.com/css/full-bleed/&#34; class=&#34;external&#34;&gt;how it was described here&lt;/a&gt;, but I didn&amp;rsquo;t like the result: vertical margins don&amp;rsquo;t collapse when you apply grid to child elements.&lt;/p&gt;
 &lt;div class=&#34;admonition note&#34;&gt;
     &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
-        &lt;p&gt;BTW, &lt;a href=&#34;https://raindrop.io/&#34;&gt;raindrop.io&lt;/a&gt; helped tremendously with gathering links and sources. I completely migrated there from &lt;a href=&#34;http://getpocket.com/&#34;&gt;Pocket&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;BTW, &lt;a href=&#34;https://raindrop.io/&#34; class=&#34;external&#34;&gt;raindrop.io&lt;/a&gt; helped tremendously with gathering links and sources. I completely migrated there from &lt;a href=&#34;http://getpocket.com/&#34; class=&#34;external&#34;&gt;Pocket&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It has a similar &amp;ldquo;save for later&amp;rdquo; experience, but also supports collections and comments. For example, for this project I created a collection &amp;ldquo;blog redesign&amp;rdquo; and added a comment for each link saved there to remember later why it was saved in the first place.&lt;/p&gt;
 
     
@@ -1086,8 +1086,8 @@ dive in.&lt;/p&gt;</content>
 This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&amp;amp;rsquo;s just my preference, so if something works for you and your company, that&amp;amp;rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone.</summary>
     <content type="html">&lt;div class=&#34;admonition note&#34;&gt;
     &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;admonition-title&#34;&gt;Note&lt;/p&gt;
-        &lt;p&gt;This article is written as a result of collaboration with &lt;a href=&#34;https://testproject.io/&#34;&gt;TestProject&lt;/a&gt;.
-While many of you know me as &lt;a href=&#34;https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/&#34;&gt;a GUI-driven tools hater&lt;/a&gt;,
+        &lt;p&gt;This article is written as a result of collaboration with &lt;a href=&#34;https://testproject.io/&#34; class=&#34;external&#34;&gt;TestProject&lt;/a&gt;.
+While many of you know me as &lt;a href=&#34;https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/&#34; class=&#34;external&#34;&gt;a GUI-driven tools hater&lt;/a&gt;,
 that&amp;rsquo;s just my preference, so if something works for you and your company, that&amp;rsquo;s the only thing
 that matters. There are no best practices and there are no best tools for everyone.&lt;/p&gt;
 &lt;p&gt;What I really admire the TestProject team for is their strategy of creating a knowledge-sharing community.
@@ -2411,7 +2411,7 @@ Do this: Mark as read
     <content type="html">&lt;p&gt;Recently I&amp;rsquo;ve remembered &lt;a href=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/&#34; class=&#34;internal&#34;&gt;my old article&lt;/a&gt; and wondered, how much my thoughts  have changed and how they align to the principles of context-driven and modern testing (and yes, I don&amp;rsquo;t see them as contradicting each other).&lt;/p&gt;
 &lt;div class=&#34;admonition warning&#34;&gt;
     &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
-        &lt;p&gt;Remark in the parentheses is a bit stupid. It was discussed in the &lt;a href=&#34;https://www.angryweasel.com/ABTesting/ab-testing-episode-94-modern-testing-meets-context-driven-testing/&#34;&gt;AB Testing episode 94&lt;/a&gt; and at least for Alan and Brent there is no real contradiction.&lt;/p&gt;
+        &lt;p&gt;Remark in the parentheses is a bit stupid. It was discussed in the &lt;a href=&#34;https://www.angryweasel.com/ABTesting/ab-testing-episode-94-modern-testing-meets-context-driven-testing/&#34; class=&#34;external&#34;&gt;AB Testing episode 94&lt;/a&gt; and at least for Alan and Brent there is no real contradiction.&lt;/p&gt;
     
 &lt;/div&gt;
 &lt;p&gt;It looks like there are two main themes in that article.&lt;/p&gt;
