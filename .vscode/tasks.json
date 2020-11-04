@@ -12,7 +12,7 @@
             "label": "Add draft",
             "type": "shell",
             "presentation": {"reveal": "never"},
-            "command": "hugo new --kind article articles/`date +'%Y'`/`date +'%Y-%m-%d'`-'${input:postTitle}'"
+            "command": "node invoke.js draft --title '${input:postTitle}'"
         },
         {
             "label": "Serve",
