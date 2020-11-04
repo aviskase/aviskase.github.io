@@ -2,9 +2,60 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-10-29T03:10:10Z</updated>
+  <updated>2020-11-04T03:33:09Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Hmms: October</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/03/hmms-october/" hreflang="en"/>
+    <published>2020-11-04T03:33:09Z</published>
+    <updated>2020-11-04T03:33:09Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-11-04:/articles/2020/11/03/hmms-october/</id>
+    
+    <summary type="html">Monthly collection of things that got me thinking hmming.
+Links lunch  I was reading &amp;amp;ldquo;Patterns for Managing Source Code Branches&amp;amp;rdquo; (which in itself is a great piece) when I saw MediaWiki&amp;amp;rsquo;s discussion about moving to GitLab. Guess what, they used Fowler&amp;amp;rsquo;s article as a basis for definitions in the discussion.</summary>
+    <content type="html">&lt;p&gt;Monthly collection of things that got me &lt;del&gt;thinking&lt;/del&gt; &lt;em&gt;hmming&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;links-lunch&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#links-lunch&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Links lunch&lt;/h2&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I was reading &lt;a href=&#34;https://martinfowler.com/articles/branching-patterns.html&#34; class=&#34;external&#34;&gt;&amp;ldquo;Patterns for Managing Source Code Branches&amp;rdquo;&lt;/a&gt; (which in itself is a great piece) when I saw
+&lt;a href=&#34;https://www.mediawiki.org/wiki/GitLab_consultation#Outcome&#34; class=&#34;external&#34;&gt;MediaWiki&amp;rsquo;s discussion about moving to GitLab&lt;/a&gt;. Guess what, they used Fowler&amp;rsquo;s article as a basis for definitions in the discussion. It&amp;rsquo;s curious how some persons&#39; outputs instantly become almost a &amp;ldquo;standard.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Uncle Bob &lt;a href=&#34;http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html&#34; class=&#34;external&#34;&gt;explained SOLID yet again&lt;/a&gt;. What got my attention was how &lt;em&gt;simple&lt;/em&gt; was his explanation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No, I didn&amp;rsquo;t switch to &lt;a href=&#34;https://cormullion.github.io/pages/2020-07-26-JuliaMono/&#34; class=&#34;external&#34;&gt;JuliaMono font&lt;/a&gt;, but please check it out if you need a font with an enormous range of characters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And take a look at draft for extending &lt;a href=&#34;https://tools.ietf.org/html/draft-snell-search-method-02&#34; class=&#34;external&#34;&gt;HTTP &lt;code&gt;SEARCH&lt;/code&gt; method&amp;rsquo;s semantics&lt;/a&gt;. Perhaps, one day we will forget about &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt; queries?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This tweet perfectly captures &lt;a href=&#34;https://twitter.com/fredericl/status/1320764737576030215&#34; class=&#34;external&#34;&gt;my feelings about new Google redesign&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;no-code-api-platforms&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#no-code-api-platforms&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;No-code API platforms&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;One of the recurring theme in the API domain is &lt;a href=&#34;https://increment.com/apis/how-low-code-api-integrations/&#34; class=&#34;external&#34;&gt;low&amp;ndash; and no-code API solutions&lt;/a&gt;, so-called &lt;em&gt;democratization of APIs&lt;/em&gt;. Common examples are &lt;a href=&#34;https://ifttt.com/&#34; class=&#34;external&#34;&gt;IFTTT&lt;/a&gt; and &lt;a href=&#34;https://zapier.com/&#34; class=&#34;external&#34;&gt;Zapier&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Yesterday I stumbled upon this video by Curtis McHale:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/mfK3M9GHfZ0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It shows a very specific productivity workflow for iOS, but the curious thing is how much of it is automated by glueing together different apps via &lt;a href=&#34;https://support.apple.com/en-ca/guide/shortcuts/welcome/ios&#34; class=&#34;external&#34;&gt;shortcuts&lt;/a&gt;. More eloquent writer could conjure the whole essay, but my thoughts so far are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I, &amp;ldquo;lots-of-code&amp;rdquo; person, wouldn&amp;rsquo;t come up with such workflow. My routine automation tend to be one-to-one connections, whereas presented shortcut covers many apps.&lt;/li&gt;
+&lt;li&gt;UI-based automation mechanisms are limited but provide inspiration via affordances (&lt;a href=&#34;https://medium.com/swlh/for-a-more-creative-brain-embrace-constraints-5a588c8a8619&#34; class=&#34;external&#34;&gt;see also&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Having a native OS mechanism enables the widest possible audience.&lt;/li&gt;
+&lt;li&gt;Services with apps shouldn&amp;rsquo;t limit integration capabilities only to web APIs; custom URL schemes are perfect for local app-to-app interactions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;hi-youtube&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#hi-youtube&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Hi, YouTube&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;One day, as we were talking about our &lt;a href=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/&#34; class=&#34;internal&#34;&gt;knowledge management systems&lt;/a&gt; in the &lt;a href=&#34;https://obsidian.md/community&#34; class=&#34;external&#34;&gt;Obsidian discord&amp;rsquo;s&lt;/a&gt; #russian channel, I decided to record a video to show mine.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s in Russian and it&amp;rsquo;s bad xD&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/n5klioVz7FM&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Jeez, &lt;em&gt;this was hard&lt;/em&gt;. Rerecording, cleaning up, cutting bits, and constantly, constantly hearing yourself in the process. And I didn&amp;rsquo;t even try to do anything fancy, just plain screen cast with editing out all the &amp;ldquo;eeeehm&amp;rdquo;. I&amp;rsquo;ll probably have to do the same in English, and the very thought terrifies me: it was painful enough to hear me speak in my native language. Guess how horrible will be that with the accent.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Automap API Operation Handlers in Components-Based Project</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/10/25/automap-api-operation-handlers-in-components-based-project/" hreflang="en"/>
