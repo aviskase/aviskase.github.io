@@ -22,6 +22,18 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient938">
+      <stop
+         style="stop-color:#ffd395;stop-opacity:1"
+         offset="0"
+         id="stop934" />
+      <stop
+         style="stop-color:#ffe3bc;stop-opacity:1"
+         offset="1"
+         id="stop936" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient924">
       <stop
          style="stop-color:#2c0b8e;stop-opacity:1"
@@ -47,6 +59,21 @@
        x2="152.22803"
        y2="298.63803"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient938"
+       id="linearGradient105"
+       gradientUnits="userSpaceOnUse"
+       x1="151.95699"
+       y1="130.94646"
+       x2="152.22803"
+       y2="298.63803" />
+    <rect
+       x="172.99571"
+       y="79.659826"
+       width="0.28573566"
+       height="26.600512"
+       id="rect960" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -56,10 +83,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="464.40854"
+     inkscape:cx="397.73847"
      inkscape:cy="497.66065"
      inkscape:document-units="px"
-     inkscape:current-layer="g100"
+     inkscape:current-layer="g103"
      showgrid="false"
      units="px"
      inkscape:window-width="1920"
@@ -119,9 +146,10 @@
      inkscape:groupmode="layer"
      id="g86"
      transform="translate(0,-130.31248)"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <rect
-       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient926);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.07000434;marker:none;enable-background:accumulate"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient926);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0700043;marker:none;enable-background:accumulate"
        id="rect84"
        width="317.5"
        height="166.6875"
@@ -134,7 +162,9 @@
   <g
      inkscape:groupmode="layer"
      id="layer7"
-     inkscape:label="waves">
+     inkscape:label="waves"
+     sodipodi:insensitive="true"
+     style="display:none">
     <g
        id="g110"
        transform="matrix(0.26458333,0,0,-0.26458333,4e-6,166.6875)"
@@ -159,30 +189,102 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="title"
      id="g100"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.3958px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.3958px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="162.46475"
        y="72.664795"
        id="text98"><tspan
          sodipodi:role="line"
          x="162.46475"
          y="72.664795"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:34.3958px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264583;"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:34.3958px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="tspan131">Blog Redesign: </tspan><tspan
          sodipodi:role="line"
          x="162.46475"
-         y="116.47047"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:34.3958px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264583;"
+         y="116.47044"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:34.3958px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="tspan135">Phase 1</tspan></text>
     <text
        xml:space="preserve"
        id="text123"
-       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect125);" />
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect125);fill:#000000;fill-opacity:1;stroke:none;" />
+  </g>
+  <g
+     inkscape:label="new bg copy"
+     inkscape:groupmode="layer"
+     id="g103"
+     style="display:inline"
+     transform="translate(0,-130.31248)">
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient105);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0700043;marker:none;enable-background:accumulate"
+       id="rect101"
+       width="317.5"
+       height="166.6875"
+       x="-2.220446e-14"
+       y="130.31248"
+       inkscape:export-filename="/home/aviskase/Projects/aviskase.github.io/content/articles/2020/2020-11-03-hmms-october/feature.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g948"
+     inkscape:label="waves copy">
+    <g
+       id="g946"
+       transform="matrix(0.26458333,0,0,-0.26458333,4e-6,166.6875)"
+       style="fill:#4433ff;fill-opacity:1">
+      <path
+         d="m 0,0 v 46.29 c 47.79,22.2 103.59,32.17 158,28 70.36,-5.37 136.33,-33.31 206.8,-37.5 73.84,-4.36 147.54,16.88 218.2,35.26 69.27,18 138.3,24.88 209.4,13.08 36.15,-6 69.85,-17.84 104.45,-29.34 C 989.49,25 1113,-14.29 1200,52.47 V 0 Z"
+         opacity="0.25"
+         class="shape-fill"
+         id="path940"
+         style="fill:#4433ff;fill-opacity:1" />
+      <path
+         d="M 0,0 V 15.81 C 13,36.92 27.64,56.86 47.69,72.05 99.41,111.27 165,111 224.58,91.58 c 31.15,-10.15 60.09,-26.07 89.67,-39.8 40.92,-19 84.73,-46 130.83,-49.67 36.26,-2.85 70.9,9.42 98.6,31.56 31.77,25.39 62.32,62 103.63,73 40.44,10.79 81.35,-6.69 119.13,-24.28 37.78,-17.59 75.16,-39 116.92,-43.05 59.73,-5.85 113.28,22.88 168.9,38.84 30.2,8.66 59,6.17 87.09,-7.5 22.43,-10.89 48,-26.93 60.65,-49.24 V 0 Z"
+         opacity="0.5"
+         class="shape-fill"
+         id="path942"
+         style="fill:#4433ff;fill-opacity:1" />
+      <path
+         d="M 0,0 V 5.63 C 149.93,59 314.09,71.32 475.83,42.57 518.83,34.93 560.06,22.45 603.44,16.11 662.44,7.48 715.92,28.35 769,51.51 827.93,77.22 886,95.24 951.2,90 1037.73,83 1123.66,44.29 1200,5.19 V 0 Z"
+         class="shape-fill"
+         id="path944"
+         style="fill:#4433ff;fill-opacity:1" />
+    </g>
+  </g>
+  <g
+     style="display:inline"
+     inkscape:label="title copy"
+     id="g958"
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.3958px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:0px;word-spacing:0px;fill:#2c0b8e;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="157.28816"
+       y="59.745789"
+       id="text954"><tspan
+         sodipodi:role="line"
+         x="157.28816"
+         y="59.745789"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:34.3958px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#2c0b8e;fill-opacity:1;stroke-width:0.264583"
+         id="tspan952">Hmms:</tspan><tspan
+         sodipodi:role="line"
+         x="157.28816"
+         y="111.90791"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:44.9792px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';text-align:center;text-anchor:middle;fill:#2c0b8e;fill-opacity:1;stroke-width:0.264583"
+         id="tspan964">October</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text956"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect960);fill:#000000;fill-opacity:1;stroke:none;" />
   </g>
   <g
      inkscape:groupmode="layer"
