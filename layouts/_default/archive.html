@@ -1,6 +1,9 @@
+{{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
+
 {{ define "content" }}
+<div class="title-hero"><h1>{{ .Title | markdownify }}</h1></div>
 <section class="normal:max-w-4xl mx-6 mt-12 normal:mx-auto">
-    <ul>{{ range first 4 ((where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01") -}}
+    <ul>{{ range (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
         {{- $firstArticle := index .Pages 0 -}}
         <li><div class="lowercase mb-3 yearmonth">/&nbsp;{{ $firstArticle.Date.Format "January 2006" }}&nbsp;/</div></li>
         <ul class="mb-16">{{ range .Pages }}
@@ -12,6 +15,6 @@
             </li>
         {{ end }}</ul>
     {{ end }}</ul>
-    <div class="see_more"><a href="{{ ref . "pages/archive" }}"><span>see more</span></a></div>
 </section>
 {{ end }}
+

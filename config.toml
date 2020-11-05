@@ -73,8 +73,8 @@ articles = "/articles/:year/:month/:day/:slug/"
 [menu]
 [[menu.main]]
 # if you need special typography chars in name, you them as is, because layout page cannot markdownify them
-identifier = "blog"
-name = "Blog"
+identifier = "home"
+name = "Home"
 url = "/"
 weight = 100
 

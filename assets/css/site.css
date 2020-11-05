@@ -522,3 +522,41 @@ article table:not([class]) tbody td:last-child {
         color: var(--color-primary);
     }
 }
+
+.see_more {
+    display: flex;
+    font-size: 1.6rem;
+    /* justify-content: right; */
+
+    & a {
+        border-radius: 0.6rem;
+        padding: 0.2rem;
+        background: linear-gradient(120deg, var(--color-primary), var(--color-secondary), var(--color-bgdark), var(--color-secondary), var(--color-primary)) var(--x, 0)/200%;
+        color: var(--color-tertiary);
+        transition: 0.5s ease;
+
+        &:hover {
+            color: var(--color-primary);
+            --x: 100%;
+
+            /* & span {
+                 background: transparent; 
+            } */
+        }
+
+        & span {
+            padding: 0.5rem 2rem;
+            align-items: center;
+            background: var(--color-bg);
+            border-radius: 0.3rem;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            /* transition: background .5s ease; */
+            width: 100%;
+        }
+    }
+
+}
+
+
