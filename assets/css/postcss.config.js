@@ -16,19 +16,16 @@ module.exports = {
                             normal: {
                                 url: {
                                     woff2: '/fonts/nunito-v14-regular.woff2',
-                                    woff: '/fonts/nunito-v14-regular.woff',
                                 }
                             },
                             600: {
                                 url: {
                                     woff2: '/fonts/nunito-v14-600.woff2',
-                                    woff: '/fonts/nunito-v14-600.woff',
                                 }
                             },
                             bold: {
                                 url: {
                                     woff2: '/fonts/nunito-v14-700.woff2',
-                                    woff: '/fonts/nunito-v14-700.woff',
                                 }
                             }
                         },
@@ -36,13 +33,11 @@ module.exports = {
                             normal: {
                                 url: {
                                     woff2: '/fonts/nunito-v14-italic.woff2',
-                                    woff: '/fonts/nunito-v14-italic.woff',
                                 }
                             },
                             bold: {
                                 url: {
                                     woff2: '/fonts/nunito-v14-700italic.woff2',
-                                    woff: '/fonts/nunito-v14-700italic.woff',
                                 }
                             }
                         }
@@ -54,7 +49,6 @@ module.exports = {
                             bold: {
                                 url: {
                                     woff2: '/fonts/Bellota-BoldItalic.woff2',
-                                    woff: '/fonts/Bellota-BoldItalic.woff'
                                 }
                             }
                         }
@@ -66,13 +60,11 @@ module.exports = {
                             normal: {
                                 url: {
                                     woff2: '/fonts/JetBrainsMono-Regular.woff2',
-                                    woff: '/fonts/JetBrainsMono-Regular.woff'
                                 }
                             },
                             bold: {
                                 url: {
                                     woff2: '/fonts/JetBrainsMono-Bold.woff2',
-                                    woff: '/fonts/JetBrainsMono-Bold.woff'
                                 }
                             }
                         },
@@ -80,13 +72,11 @@ module.exports = {
                             normal: {
                                 url: {
                                     woff2: '/fonts/JetBrainsMono-Italic.woff2',
-                                    woff: '/fonts/JetBrainsMono-Italic.woff'
                                 }
                             },
                             bold: {
                                 url: {
-                                    woff2: '/fonts/JetBrainsMono-Bold-Italic.woff2',
-                                    woff: '/fonts/JetBrainsMono-Bold-Italic.woff'
+                                    woff2: '/fonts/JetBrainsMono-BoldItalic.woff2',
                                 }
                             }
                         }
