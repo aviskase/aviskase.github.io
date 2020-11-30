@@ -2,9 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-11-04T03:33:09Z</updated>
+  <updated>2020-11-30T23:35:10Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Hmms: November</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/30/hmms-november/" hreflang="en"/>
+    <published>2020-11-30T23:35:10Z</published>
+    <updated>2020-11-30T23:35:10Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-11-30:/articles/2020/11/30/hmms-november/</id>
+    
+    <summary type="html">Monthly collection of things that got me thinking hmming.
+Awards and reportsTime for ThoughtWorks Technology Radar. One of the themes is democratizing programming which is tightly coupled with democratization of APIs I mentioned in the last hmms.
+The 2020 state of DevOps report is there! I haven&amp;amp;rsquo;t even read it yet =)</summary>
+    <content type="html">&lt;p&gt;Monthly collection of things that got me &lt;del&gt;thinking&lt;/del&gt; hmming.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;awards-and-reports&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#awards-and-reports&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Awards and reports&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Time for &lt;a href=&#34;https://www.thoughtworks.com/radar&#34; class=&#34;external&#34;&gt;ThoughtWorks Technology Radar&lt;/a&gt;. One of the themes is democratizing programming which is tightly coupled with &lt;a href=&#34;https://www.aviskase.com/articles/2020/11/03/hmms-october/&#34; class=&#34;internal&#34;&gt;democratization of APIs I mentioned in the last hmms&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://puppet.com/resources/report/2020-state-of-devops-report/&#34; class=&#34;external&#34;&gt;The 2020 state of DevOps report&lt;/a&gt; is there! I haven&amp;rsquo;t even read it yet =)&lt;/p&gt;
+&lt;p&gt;This year was the first time I attended &lt;a href=&#34;https://devportalawards.org/winners&#34; class=&#34;external&#34;&gt;DevPortal Awards&lt;/a&gt;. While there is a certain feeling of  &lt;em&gt;being too narrow&lt;/em&gt; (seriously, handful of portals getting several awards for several years?), it&amp;rsquo;s still useful for getting inspirations apart from usual &amp;ldquo;check Stripe docs!&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;In non-tech world, &lt;a href=&#34;http://www.worldvaluessurvey.org/photos/cultural_map_2020.jpg&#34; class=&#34;external&#34;&gt;the Inglehart-Welzel World Cultural Map&lt;/a&gt; is all rad. There is no data point for Canada at the moment, but I&amp;rsquo;d guesstimate somewhere close to Great Britain and New Zealand. The most valuable thing is checking the dynamics between current and previous maps. For example, most of the red zone countries moved right, but the jump made by Belarus and Ukraine was bigger than by Russia; this seems to correlate with political and social events I know.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;helpful-guides&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#helpful-guides&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Helpful guides&lt;/h2&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://martinfowler.com/articles/agile-threat-modelling.html&#34; class=&#34;external&#34;&gt;A guide to threat modelling for developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://martinfowler.com/articles/dont-compare-averages.html&#34; class=&#34;external&#34;&gt;Don&amp;rsquo;t compare averages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jvns.ca/blog/answer-questions-well/&#34; class=&#34;external&#34;&gt;How to answer questions in a helpful way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://thegooddocsproject.dev/&#34; class=&#34;external&#34;&gt;The Good Docs Project&lt;/a&gt; with templates to make good docs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;weird-recommendation&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#weird-recommendation&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Weird recommendation&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLBitIgZ_UvGFNHPFlRg4834gYBmbYmdr7&#34; class=&#34;external&#34;&gt;Watch this playlist&lt;/a&gt; (3 videos at the time of writing). You may think &amp;ldquo;wtf, Yuliya, this is some bullshit video game essays&amp;rdquo;. Yes, it is.&lt;/p&gt;
+&lt;p&gt;But it is also one of the best videos explaining modern testing principles, agile, and lean. Damn, this could be on par with some TED talks. It also explains the appeal of APIs: modding in games is the similar concept to publishing APIs; you never know what users come up with.&lt;/p&gt;
+&lt;p&gt;How about some quotes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Early access is your &lt;em&gt;release&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;With &lt;em&gt;rapid iterations&lt;/em&gt; DayZ mod evolved as the features were added based on &lt;em&gt;what people wanted&lt;/em&gt; rather than what developer and publisher thought people wanted.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[&amp;hellip;] design pressure from the bottom up.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And, I don&amp;rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&amp;hellip; even those who don&amp;rsquo;t play games know the biggest game in that genre ;)&lt;/p&gt;
+
+&lt;img src=&#34;/articles/2020/11/30/hmms-november/floss.gif&#34; alt=&#34;Floss dance&#34;&gt;
+
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;blog-progress&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#blog-progress&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Blog progress&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I have a bunch of articles in draft stage, but none got published this month, because I accidentally &lt;a href=&#34;https://www.youtube.com/channel/UCjUKyZccRzEiawqx2ysFrlQ&#34; class=&#34;external&#34;&gt;became a youtuber&lt;/a&gt; (Russian-only for now). Yay&amp;hellip; Had to learn how to use all the tools, write scripts, and what not. I do love learning, but, jeez, this one takes time.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Hmms: October</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/03/hmms-october/" hreflang="en"/>
