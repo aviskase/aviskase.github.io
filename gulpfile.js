@@ -3,7 +3,7 @@ const shell = require('gulp-shell');
 const del = require('del')
 const webp = require('gulp-webp');
 
-gulp.task('hugoServe', shell.task('hugo server --watch --i18n-warnings --path-warnings --disableFastRender', {
+gulp.task('hugoServe', shell.task('hugo server -D --watch --i18n-warnings --path-warnings --disableFastRender', {
     env: { MODE: 'development', ...process.env }
 }));
 
