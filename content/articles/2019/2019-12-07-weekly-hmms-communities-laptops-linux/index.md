@@ -38,11 +38,11 @@ But there are some disappointments. Let's start with the objective one: keyboard
 
 This is my old keyboard: it has Numpad, all keys, and even separate volume controls.
 
-{{< img src="lenovo_keyboard.jpg" alt="Lenovo G560 keyboard" >}}
+![Lenovo G560 keyboard](lenovo_keyboard.jpg)
 
 This is the new one:
 
-{{< img src="dell_keyboard.jpg" alt="Dell XPS15 keyboard" >}}
+![Dell XPS15 keyboard](dell_keyboard.jpg)
 
 I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn't even consider that there wouldn't be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but [people complained about it on the Dell forum](https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592). You, guys, I hate you. You're exactly like [from that XKCD comic strip](https://xkcd.com/1172/).
 

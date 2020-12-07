@@ -38,7 +38,7 @@ How about some quotes:
 
 And, I don't want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean... even those who don't play games know the biggest game in that genre ;)
 
-{{< img src="floss.gif" alt="Floss dance" >}}
+![Floss dance](floss.gif)
 
 ## Blog progress
 I have a bunch of articles in draft stage, but none got published this month, because I accidentally [became a youtuber](https://www.youtube.com/channel/UCjUKyZccRzEiawqx2ysFrlQ) (Russian-only for now). Yay... Had to learn how to use all the tools, write scripts, and what not. I do love learning, but, jeez, this one takes time.

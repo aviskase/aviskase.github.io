@@ -126,7 +126,7 @@ I routinely use three features: XSD visualization, XML generation, and XML valid
 
 **XSD visualization** is helpful to easily spot schema elements, attributes, and restrictions. For example, `CheckTextRequest` has a required `text` element, whereas all three attributes are optional. In addition, attribute `option` has a default value `0`.
 
-{{< img src="oxygen.png" alt="XSD visualization in Oxygen" >}}
+![XSD visualization in Oxygen](oxygen.png)
 
 Visualization is handy when there are lots of types and restrictions. If you need only this feature and you don't want to buy apps, you can check
 [free alternatives](http://stackoverflow.com/questions/2486758/how-to-visualize-an-xml-schema) like JDeveloper.

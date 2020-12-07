@@ -75,7 +75,7 @@ Here is an example for domain correspondence. Service main entity was a house. C
 
 While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.
 
-{{< img src="walkthrough.png" alt="Cognitive walkthrough example" >}}
+![Cognitive walkthrough example](walkthrough.png)
 
 You can combine this method with heuristics. When we analyzed services, we found out that there were  problems with the consistency: when you sent a request to create an entity, some services responded with entity version id, while others provided root id. Moreover, most of the services required entity id for creation of other entities, and again, it could be either root or version id. It didn't look that bad, until we tried walking through a business scenario:
 

@@ -38,7 +38,7 @@ Thus, I made some decision:
 
 **2.** Won't hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS + ABT podcast is more than enough. 
 
-{{< img src="rss_feeds.png" alt="45 RSS feeds in \"Testing\" category" >}}
+![45 RSS feeds in "Testing" category](rss_feeds.png)
 
 **3.** Won't save articles into reading queue "just in case", if it's obvious from the title and the first paragraph that the author is repeating themselves.
 

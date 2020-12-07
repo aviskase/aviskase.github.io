@@ -1,6 +1,6 @@
-{{- $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) -}}
-{{ if in (.Get "src") ".gif" }}
-<img src="{{$src.RelPermalink}}" {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>
+{{- $src := .Page.Resources.GetMatch (printf "*%s*" .Destination) -}}
+{{ if in $src ".gif" }}
+<img src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }}>
 {{ else }}
 {{- $type_arr := split $src "." -}}
 {{- $srcbase := index $type_arr 0 -}}
@@ -10,9 +10,9 @@
     {{/*  {{ if (fileExists "./{{$srcbase}}.webp") -}}  */}}
     <source srcset="{{ replace $src.Permalink $srcend "webp" }}" type="image/webp">
     {{/*  {{- end }}  */}}
-    <img src="{{ $src.Permalink }}" alt="{{.Get `alt` }}" defer>
+    <img src="{{ $src.Permalink }}" alt="{{ .Text }}" defer>
 	</picture>
-	{{ with .Get "caption" }}
+	{{ with .Title }}
     <figcaption>
     <p class="caption">{{ . }}</p>
 	</figcaption>

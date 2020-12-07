@@ -11,7 +11,7 @@ Since [migrating to Obsidian]({{< ref "2020-07-03-knowledge-management-tools" >}
 
 Perhaps I should try to be more consistent and always write [literature notes](https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017). Alas, my current graph looks like that (obviously, I didn't have time to transfer older notes from other systems):
 
-{{< img src="obsidian_july_2020.png" alt="Obsidian graph view as of July 2020" >}}
+![Obsidian graph view as of July 2020](obsidian_july_2020.png)
 
 In general, my topics of interests for this month were:
 

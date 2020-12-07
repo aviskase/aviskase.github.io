@@ -13,17 +13,17 @@ I was more into handwriting during school and university, and there are still to
 
 One of the last examples from English&French practice:
 
-{{< img src="km_oldnotes.jpg" alt="Old handwritten notebook" >}}
+![Old handwritten notebook](km_oldnotes.jpg)
 
 Don't get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn't that atrocious, perhaps I'd be more into bullet journals and scrapbooks, but alas, it still doesn't make them useful for anything else besides creativity outbursts.
 
 Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for [advent of code](https://adventofcode.com/).
 
-{{< img src="km_notes.jpg" alt="Untranslatable scribbles" >}}
+![Untranslatable scribbles](km_notes.jpg)
 
 Though, I prefer [Rocketbook](https://getrocketbook.com/), because it's like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:
 
-{{< img src="km_rocketbook.jpg" alt="Brainstorming in Rocketbook" >}}
+![Brainstorming in Rocketbook](km_rocketbook.jpg)
 
 
 ## Digital
@@ -35,7 +35,7 @@ If handwritten notes are useless, digital ones are too chaotic, because I experi
 
 The first iterations were a transposition of handwritten notes into digital via _Google Docs._
 
-{{< img src="km_gdocs.png" alt="Notes in the Google Docs" >}}
+![Notes in the Google Docs](km_gdocs.png)
 
 They are as ineffective as the real notebooks. Type once and forget.
 
@@ -44,9 +44,9 @@ The direct opposite are _plain text notes_ in [Sublime](https://www.sublimetext.
 - transient notes like "did this during the smoke test"
 - common copy pastes
 
-{{< img src="km_sublime.png" alt="Sublime with PlainNotes" >}}
+![Sublime with PlainNotes](km_sublime.png)
 
-### Mind Maps 
+### Mind Maps
 At some point I learned about _mind mapping_ and tried almost all installable applications for that, including:
 
 - [XMind](https://www.xmind.net/): UX is great, but features in the free tier are meh, especially in the last versions. Likes to eat memory.
@@ -55,9 +55,9 @@ At some point I learned about _mind mapping_ and tried almost all installable ap
 
 As of now I have an assortment of mind maps in various formats, like [Freeplane]({{< ref "2018-03-19-en-mmm-v2" >}}) or XMind:
 
-{{< img src="km_xmind.png" alt="XMind mind map overview" >}}
+![XMind mind map overview](km_xmind.png)
 
-I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes. 
+I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes.
 
 ### Outliners
 
@@ -68,32 +68,32 @@ The most well advertised outliner is [WorkFlowy](https://workflowy.com/), but I 
 - opposite of mind maps: hard to capture, easy to reference
 - web-based
 
-That's why I moved to [Mindomo](https://www.mindomo.com/), because it has a killer feature: switch between mind map and outline view. 
+That's why I moved to [Mindomo](https://www.mindomo.com/), because it has a killer feature: switch between mind map and outline view.
 
 ### Notebooks
 
-Around the same time as I discovered mind mapping, I saw the need for having long form note storage. Yeah, yeah, Evernote rules the stage. I had it, but the web version became slower and slower, and there was no Linux client, so I played with others. It's hard to remember their names though, I bet I tested more than a dozen. 
+Around the same time as I discovered mind mapping, I saw the need for having long form note storage. Yeah, yeah, Evernote rules the stage. I had it, but the web version became slower and slower, and there was no Linux client, so I played with others. It's hard to remember their names though, I bet I tested more than a dozen.
 
 For example, [Simplenote](https://simplenote.com/). Nice, but very basic.
 
-Or extremely Chinese [WizNote](https://www.wiz.cn/). 
+Or extremely Chinese [WizNote](https://www.wiz.cn/).
 
 The last one ditched just a month ago was [Joplin](https://joplinapp.org/). It's very good, I do recommend it: open source, supports markdown, has a web clipper and an Android app with WebDAV sync. If all you need is more or less suitable Evernote alternative, it's ok. Spoilers: _I needed more._
 
 Before we go to the last section, notable mentions:
 
-- LaTeX and RST formats: used them for a while, but Markdown is way easier and better supported. 
+- LaTeX and RST formats: used them for a while, but Markdown is way easier and better supported.
 - [OneNote](https://www.onenote.com/): I heard it's fine if you are Windows user. Well, I am not :)
 - [Google Keep](https://keep.google.com/): perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:
 
-{{< img src="km_keep.png" alt="Google Keep with transient lists" >}}
+![Google Keep with transient lists](km_keep.png)
 
 ### Zettels
 
 Ok, that's a wrong term, but it encapsulates what differs from common notebooks the best. [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) is a note-taking method that relies on linking. Overly simplified process is:
 
 - create basic and the smallest possible notes (one concept per note)
-- link notes with each other 
+- link notes with each other
 - group notes thematically
 
 There are different variations and similar methods, but all of them are based on ability to form concept maps (non-hierarchical storage). Checkout [Andy Matuschak's notes](https://notes.andymatuschak.org/About_these_notes) for example.
@@ -103,11 +103,11 @@ The most crucial part is to trace links and backlinks for each note:
 - links: note A links to notes B, C, D
 - backlinks: note A is linked from notes E, F, J
 
-Usually it's easy to add links, but cumbersome to add backlinks, because as soon as you link A to B you need to open B and add a link to A. That's a wiki approach. 
+Usually it's easy to add links, but cumbersome to add backlinks, because as soon as you link A to B you need to open B and add a link to A. That's a wiki approach.
 
 There are apps that simplify the process, like [Obsidian](https://obsidian.md/). It has other neat features: link visualization with a graph, note/file transclusion (aka "embedding"), and tagging.
 
-I've started slowly migrating my non-work notes there, and it's hard. You get used to rigid hierarchies based on folders. You don't have to stop using them, but it makes sense with approaches like [@nickmilo's](https://github.com/nickmilo/IMF-v3) (which I follow loosely). 
+I've started slowly migrating my non-work notes there, and it's hard. You get used to rigid hierarchies based on folders. You don't have to stop using them, but it makes sense with approaches like [@nickmilo's](https://github.com/nickmilo/IMF-v3) (which I follow loosely).
 
 ## Non-Text Content
 
@@ -129,12 +129,12 @@ Let's summarize. Handwritten notes:
 - for generating ideas or designs
 - for small tasks during the day
 
-One important exception is recipes. All are handwritten on small cards and stored in the box. The reason is to pull one out and stick to the fridge with a magnet. I don't have much recipes anyway, so searching and storage aren't a problem. 
+One important exception is recipes. All are handwritten on small cards and stored in the box. The reason is to pull one out and stick to the fridge with a magnet. I don't have much recipes anyway, so searching and storage aren't a problem.
 
 
 For digital:
 
-- Mindomo when I _really_ want a mind map. Something tells me I won't. 
+- Mindomo when I _really_ want a mind map. Something tells me I won't.
 - Sublime PlainNotes for transient notes and copy pastes.
 - Google Keep for semi-transient lists and inbox.
 - Obsidian for anything else, except overly work related (I prefer to experiment with it more on the free tier before paying for commercial license).

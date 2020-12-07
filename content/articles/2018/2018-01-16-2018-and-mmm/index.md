@@ -18,4 +18,4 @@ Here is a first iteration:
 * APV aka ДПЗ (Actions / Parameters / Values)
 * Value analysis
 
-{{< img src="mmm_v1.jpg" alt="Mega mind map version 1" >}}
+![Mega mind map version 1](mmm_v1.jpg)

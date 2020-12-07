@@ -99,7 +99,7 @@ It ticks all our requirements except for the ease of setup: Zally is written in 
 
 BTW, it has nice UI:
 
-{{< img src="zally.png" alt="Zally web UI with violations highlighting and links" >}}
+![Zally web UI with violations highlighting and links](zally.png)
 
 
 ## Speccy

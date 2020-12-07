@@ -14,7 +14,7 @@ The distinction between analytical and empirical methods is that the latter inve
 
 But don't assume that empirical methods are by default better than analytical: both are important because they discover different problems. [This research][pdf-structural-analysis] showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding UX and runtime specific issues.
 
-{{< img src="api_ux_barchart.png" alt="Barchart with comparison of different issue types found via different methods" >}}
+![Barchart with comparison of different issue types found via different methods](api_ux_barchart.png)
 
 ### Monitoring
 Monitoring is used to gather usage statistics. For web services, it's rather easy. For instance, you can discover that one API endpoint is never called. Hence, you should consider the causes: is it missing in the documentation or not needed to anyone? Monitoring also helps to map scenarios: what kind of requests, to which services, and in what order happen most often.
@@ -70,7 +70,7 @@ Now, I want to point out that the aforementioned language discrimination is not 
 
 We can also combine personas with cognitive dimensions. Create [a radar chart](https://en.wikipedia.org/wiki/Radar_chart) with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona's expectations. This chart is great for comparing how existing API corresponds to user values. 
 
-{{< img src="api_ux_chart.png" alt="Radar chart with comparison of developer expectations vs current state of API" >}}
+![Radar chart with comparison of developer expectations vs current state of API](api_ux_chart.png)
 
 Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn't satisfy these criteria.
 
@@ -80,7 +80,7 @@ Readers comfortable with GUI usability testing would say: "That's exactly the sa
 
 Now, what about _the best method?_  None, apply them all! [According to this research][pdf-structural-analysis], each method can identify unique issues.
 
-{{< img src="api_ux_stats.png" alt="Venn diagram showing how different methods overlap in finding different issues" >}}
+![Venn diagram showing how different methods overlap in finding different issues](api_ux_stats.png)
 
 If you are tight on resources, I suggest using the least expensive methods: heuristics, cognitive dimensions, walkthrough, and support tickets. Even the simplest techniques can drive API improvements.
 

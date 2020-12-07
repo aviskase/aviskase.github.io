@@ -18,26 +18,26 @@ Now, when I'm thinking about this *ideal* world, I can't find a place for tester
 
 Let's visualize this tester-less world as a perfect disk:
 
-{{< img src="world_1.png" alt="Ideal world of development" >}}
+![Ideal world of development](world_1.png)
 
 
 ## Real World of Software Development
 
 But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.
 
-{{< img src="world_2.png" alt="Real world of development" >}}
+![Real world of development](world_2.png)
 
 ## Testers in the Real World of Software Development
 
 And that's where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.
 
-{{< img src="world_3.png" alt="Real world of development with testers" >}}
+![Real world of development with testers](world_3.png)
 
 All products are distorted in different ways, that's why you can see testers doing all kind of things. Some are just "manual monkeys." On a different extreme are those who automate test cases that are written by others. Most are somewhere in between. There are projects where testers have a hat of analytic. Or support. Or both. Or PM. Someone, maybe gurus, don't test at all: they mentor a team to test themselves, control that quality is efficiently insured by others.
 
 Here is a fun fact. That patched version is still a lie. Testers are also not perfect. Thus, our world looks more like this:
 
-{{< img src="world_4.png" alt="Even more real world of development with testers" >}}
+![Even more real world of development with testers](world_4.png)
 
 
 We can't patch all holes. But we are here to try.

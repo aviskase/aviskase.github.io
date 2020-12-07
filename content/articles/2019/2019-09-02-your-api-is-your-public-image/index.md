@@ -57,7 +57,7 @@ Worst performance problems I encountered were with export services. One of them 
 
 So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like this:
 
-{{< img src="api_status.png" alt="API status table" >}}
+![API status table](api_status.png)
 
 And beware, this page should not on the same infrastructure as the services it's showing! It would be quite embarrassing if [it goes down at the same time your services go down](https://twitter.com/awscloud/status/836656664635846656).
 
@@ -78,7 +78,7 @@ Cyrillic `Р/р`  (pronounced like "r") looks exactly like Latin `P/p`.
 
 * Service works fine, but error messages are not that informative? Users won't understand how to fix an error (and probably will open a support ticket, so you'll needlessly spend time resolving non-existing issue).
 
-{{< img src="bad_error_message.png" alt="Unhelpful error message" >}}
+![Unhelpful error message](bad_error_message.png)
 
 * You have UI and API? Don't forget to check they correspond to each other. The most common problem is when constraints on UI fields don't match same fields in API: for example, UI can accept maximum 50 characters for the name and API only 20, which leads to errors when trying to export anything created on UI.
 

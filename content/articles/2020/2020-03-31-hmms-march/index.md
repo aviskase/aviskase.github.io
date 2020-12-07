@@ -9,7 +9,7 @@ Coronavirus-free edition!
 
 ## Top X Videos and Readings
 
-{{< img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere" >}}
+![Meme: APIs, APIs everywhere](apis_meme.jpg)
 
 - Erik Wilde started a video series about API design, 
 and [the last one](https://www.youtube.com/watch?v=qc_DF01qgZg) covers pros and cons of exposing system APIs.

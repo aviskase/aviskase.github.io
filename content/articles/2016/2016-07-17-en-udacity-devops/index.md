@@ -55,7 +55,7 @@ Monitoring data products:
 * growth measurement
 * debugging metrics
 
-{{< img src="monitoring_systems.png" alt="Monitoring systems" >}}
+![Monitoring systems](monitoring_systems.png)
 
 ## Additional Resources
 
