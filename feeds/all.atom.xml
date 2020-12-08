@@ -2,9 +2,83 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-11-30T23:35:10Z</updated>
+  <updated>2020-12-08T01:59:28Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Crash Course Into API-Related Terminology</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/" hreflang="en"/>
+    <published>2020-12-08T01:59:28Z</published>
+    <updated>2020-12-08T01:59:28Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-12-08:/articles/2020/12/07/crash-course-into-api-related-terminology/</id>
+    
+    <summary type="html">Anyone trying to dive into the world of APIs is doomed to be confused by conflicting terminology. In this post I&amp;amp;rsquo;m gonna touch upon the main definitions and processes. I already tried it once during lunch&amp;amp;amp;learn session at work, but the time has come to revisit that old presentation in the written form.</summary>
+    <content type="html">&lt;p&gt;Anyone trying to dive into the world of APIs is doomed to be confused by conflicting terminology. In this post I&amp;rsquo;m gonna touch upon the main definitions and processes. I already tried it once during &lt;a href=&#34;https://www.aviskase.com/articles/2020/03/08/hmms-february/&#34; class=&#34;internal&#34;&gt;lunch&amp;amp;learn session at work&lt;/a&gt;, but the time has come to revisit &lt;a href=&#34;https://github.com/aviskase/trucs/blob/master/api_salad.pdf&#34; class=&#34;external&#34;&gt;that old presentation&lt;/a&gt; in the written form.&lt;/p&gt;
+&lt;p&gt;One last note: the basis for my definitions goes from &lt;a href=&#34;https://github.com/openapi-contrib/glossary&#34; class=&#34;external&#34;&gt;OpenAPI Glossary&lt;/a&gt; started by &lt;a href=&#34;https://philsturgeon.com/&#34; class=&#34;external&#34;&gt;Phil Sturgeon&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;main-definitions&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#main-definitions&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Main definitions&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Specification&lt;/strong&gt; is some standard or RFC or whatever describing a particular format or protocol.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt; (aka: data model) is a metadata describing the data type, formats, and validation rules. Schema can be defined for content body, header, path or query parameters, etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hypermedia controls&lt;/strong&gt; is an easier way to say &lt;strong&gt;HATEOAS&lt;/strong&gt;. What&amp;rsquo;s that? It&amp;rsquo;s a special affordance that allows a client to traverse API without hardcoding links. The simplest example would be including pagination links in the response data. E.g., a client asked to get collection of items &amp;mdash; the server responded with first N items and a link to the next page of results &amp;mdash; the client can use the link to get the next page without constructing a link on their own.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;items&amp;#34;&lt;/span&gt;: [
+        {&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;},
+        {&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;}
+    ],
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;links&amp;#34;&lt;/span&gt;: {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;next&amp;#34;&lt;/span&gt;: { &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;href&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/api/items?cursor=ae12fb2&amp;#34;&lt;/span&gt; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt; (aka: definition, contract) is a metadata about API, its endpoints, resources, operations, headers, parameters, and etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;API description document&lt;/strong&gt; is a file that contains API description. It is usually written with a particular format from specifications like OpenAPI, WSDL, RAML.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;API documentation&lt;/strong&gt; is a collection of information pieces that allows clients to successfully use an API. It includes, &lt;em&gt;but not limited to,&lt;/em&gt; an API reference documentation (which is often generated from description document). Other important pieces are: tutorials, concept explanations, registration helpers, SDKs.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;specifications-some-of-them&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#specifications-some-of-them&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Specifications (some of them)&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;There are &lt;em&gt;tons&lt;/em&gt; of API-related specifications. I&amp;rsquo;ll cover only some.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.openapis.org/&#34; class=&#34;external&#34;&gt;OpenAPI&lt;/a&gt;&lt;/strong&gt; is used to describe both the service model and the request/response body &lt;em&gt;kinda&lt;/em&gt; based on JSON Schema. It was called Swagger before being donated to Linux Foundation. You probably noticed that this created a sore spot: people still call it Swagger, perhaps, because &amp;ldquo;OpenAPI&amp;rdquo; is a bit mouthful. Anyway, know that Swagger is just a part of the  SwaggerHub branding of tooling like Swagger Editor or SwaggerUI.&lt;/p&gt;
+&lt;div class=&#34;admonition warning&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;You may stumble upon people using the word &amp;ldquo;swagger&amp;rdquo; even in weirder situations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;as a synonym for &amp;ldquo;API&amp;rdquo;: &amp;ldquo;We developed swagger for creating users!&amp;rdquo;, &amp;ldquo;Use this swagger to export files!&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;as a synonym for response body: &amp;ldquo;We make a request and the swagger we got back…&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://json-schema.org/&#34; class=&#34;external&#34;&gt;JSON Schema&lt;/a&gt;&lt;/strong&gt; is for describing an instance of JSON data. OpenAPI was using an extended subset of it, but this was fixed in OAS 3.1, and now they are fully compatible. Why does it matter? Well, JSON Schema have additional tooling for client-side validations or HATEOAS support.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://jsonapi.org/&#34; class=&#34;external&#34;&gt;JSON: API&lt;/a&gt;&lt;/strong&gt; is an anti-bikeshedding spefication for building APIs. Imagine not inventing your own guidelines for naming and other patterns! A notable feature is  ingrained support for HATEOAS.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.asyncapi.com/&#34; class=&#34;external&#34;&gt;AsyncAPI&lt;/a&gt;&lt;/strong&gt; is like OpenAPI but for event-driven architectures. Think Kafka, AMQP, WebSocket.&lt;/p&gt;
+&lt;p&gt;Notable mentions: &lt;a href=&#34;https://grpc.io/&#34; class=&#34;external&#34;&gt;gRPC&lt;/a&gt;, &lt;a href=&#34;https://graphql.org/&#34; class=&#34;external&#34;&gt;GraphQL&lt;/a&gt;, &lt;a href=&#34;https://www.odata.org/&#34; class=&#34;external&#34;&gt;OData&lt;/a&gt;, &lt;a href=&#34;http://stateless.co/hal_specification.html&#34; class=&#34;external&#34;&gt;HAL&lt;/a&gt;, &lt;a href=&#34;https://github.com/kevinswiber/siren&#34; class=&#34;external&#34;&gt;Siren&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;processes&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#processes&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Processes&lt;/h2&gt;&lt;/div&gt;&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;api-first-vs-api-design-first-vs-api-code-first&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#api-first-vs-api-design-first-vs-api-code-first&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;API-first vs. API design-first vs. API code-first&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Read &lt;a href=&#34;https://stoplight.io/blog/is-api-planning-the-same-thing-as-api-design/&#34; class=&#34;external&#34;&gt;this article for more details&lt;/a&gt;. Here is a TL;DR.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;API-first&lt;/strong&gt; is about how you approach your API as a product: not an afterthought on top of already created system, but thought through right from the start. The good example came recently from &lt;a href=&#34;https://obsidian.md/&#34; class=&#34;external&#34;&gt;Obsidian&amp;rsquo;s devs&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For the developer the biggest issue is migrating an existing app that wasn&amp;rsquo;t designed with plugin/API in mind. Having experienced this first hand with our previous product, we designed Obsidian from the ground up with a plugin API from the first version.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;API design-first&lt;/strong&gt; means prototyping and testing a design before any coding is started. &lt;strong&gt;API code-first&lt;/strong&gt; (or implementation-first) means having some code written even at the the design stage. Often though, a more restricted definition is used and it&amp;rsquo;s about the source of truth: description doc or code.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Design-first: &amp;ldquo;we write description doc first and then implement&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Code-first: &amp;ldquo;we annotate code and generate a description doc from these annotations&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beware, as I said, this is a more restricted definition! The article I&amp;rsquo;ve linked uses a broader one.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;description-doc-validation-vs-linting-vs-preprocessing&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#description-doc-validation-vs-linting-vs-preprocessing&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Description doc validation vs. linting vs. preprocessing&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;API description doc is often written in machine-readable format, thus, we can manipulate it and check for errors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Validation&lt;/strong&gt; checks that description doc conforms to some specification.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Linting&lt;/strong&gt;  checks custom rules like style. For example: check that all paths are lowercase.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Preprocessing&lt;/strong&gt; allows transforming the doc based on additional rules before using it in code or documentation generation. For example, hiding some endpoints from the published version or injecting descriptions from markdown files.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;ref&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#ref&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;$ref&lt;/code&gt;&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;When working with OpenAPI or JSON Schema you will stumble upon &lt;code&gt;$ref&lt;/code&gt;&amp;rsquo;s a great deal. These are pointers to JSON structures in different locations: inside the same file or to some other file:&lt;/p&gt;
+&lt;p&gt;For example, this reference points to the schema from the other file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
+&lt;span style=&#34;color:#ff79c6&#34;&gt;application/json&lt;/span&gt;:
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;schema&lt;/span&gt;:
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;type&lt;/span&gt;: object
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;properties&lt;/span&gt;:
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;data&lt;/span&gt;:
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;$ref&lt;/span&gt;: ../components/schemas/Users/User.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;References help with structuring schemas, separating them into reusable pieces.&lt;/p&gt;
+&lt;p&gt;The process of looking for value of &lt;code&gt;$ref&lt;/code&gt; is called &lt;strong&gt;resolution&lt;/strong&gt; (or lookup). Not all tools and libraries play well with multi-file resolutions, so you may want to do one of these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Bundling&lt;/strong&gt; (aka: external inlining) replaces &lt;code&gt;$ref&lt;/code&gt;&amp;rsquo;s to external files with internal references. This creates one file that is easier to share.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dereferencing&lt;/strong&gt; (aka: internal inlining) replaces &lt;code&gt;$ref&lt;/code&gt;&amp;rsquo;s to external or internal data with actual data. The resulting file will have no &lt;code&gt;$ref&lt;/code&gt;&amp;rsquo;s, but will be noticeably bigger.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;This post was triggered by discussion with &lt;a href=&#34;https://unremarkabletester.com/&#34; class=&#34;external&#34;&gt;Areti Panou&lt;/a&gt; in &lt;a href=&#34;https://www.angryweasel.com/ABTesting/&#34; class=&#34;external&#34;&gt;AB Testing podcast&amp;rsquo;s slack&lt;/a&gt;. I hope it will help you!&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Hmms: November</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/30/hmms-november/" hreflang="en"/>
@@ -39,9 +113,9 @@ The 2020 state of DevOps report is there! I haven&amp;amp;rsquo;t even read it y
 &lt;p&gt;[&amp;hellip;] design pressure from the bottom up.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;And, I don&amp;rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&amp;hellip; even those who don&amp;rsquo;t play games know the biggest game in that genre ;)&lt;/p&gt;
-
+&lt;p&gt;
 &lt;img src=&#34;/articles/2020/11/30/hmms-november/floss.gif&#34; alt=&#34;Floss dance&#34;&gt;
-
+&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;blog-progress&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#blog-progress&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Blog progress&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I have a bunch of articles in draft stage, but none got published this month, because I accidentally &lt;a href=&#34;https://www.youtube.com/channel/UCjUKyZccRzEiawqx2ysFrlQ&#34; class=&#34;external&#34;&gt;became a youtuber&lt;/a&gt; (Russian-only for now). Yay&amp;hellip; Had to learn how to use all the tools, write scripts, and what not. I do love learning, but, jeez, this one takes time.&lt;/p&gt;</content>
   </entry>
   <entry>
@@ -530,7 +604,7 @@ Pig replies: &amp;amp;ldquo;Hm, maybe, what would we call it?</summary>
 Perhaps I should try to be more consistent and always write literature notes. Alas, my current graph looks like that (obviously, I didn&amp;amp;rsquo;t have time to transfer older notes from other systems):</summary>
     <content type="html">&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;oops-i-have-nothing-to-share&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#oops-i-have-nothing-to-share&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Oops, I Have Nothing to Share&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Since &lt;a href=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/&#34; class=&#34;internal&#34;&gt;migrating to Obsidian&lt;/a&gt; for knowledge management, I&amp;rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.&lt;/p&gt;
 &lt;p&gt;Perhaps I should try to be more consistent and always write &lt;a href=&#34;https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017&#34; class=&#34;external&#34;&gt;literature notes&lt;/a&gt;. Alas, my current graph looks like that (obviously, I didn&amp;rsquo;t have time to transfer older notes from other systems):&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -538,7 +612,7 @@ Perhaps I should try to be more consistent and always write literature notes. Al
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png&#34; alt=&#34;Obsidian graph view as of July 2020&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;In general, my topics of interests for this month were:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;jobs to be done framework&lt;/li&gt;
@@ -565,7 +639,7 @@ HandwrittenI was more into handwriting during school and university, and there a
     <content type="html">&lt;p&gt;As a knowledge worker, I spend a lot of time searching and experimenting with approaches for knowledge capture and storage. Currently, I play with the new shiny app, so I figured it&amp;rsquo;s a perfect moment to systemize and reflect on tools and techniques I used until now.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;handwritten&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#handwritten&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Handwritten&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.&lt;/p&gt;
 &lt;p&gt;One of the last examples from English&amp;amp;French practice:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -573,10 +647,10 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.jpg&#34; alt=&#34;Old handwritten notebook&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Don&amp;rsquo;t get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn&amp;rsquo;t that atrocious, perhaps I&amp;rsquo;d be more into bullet journals and scrapbooks, but alas, it still doesn&amp;rsquo;t make them useful for anything else besides creativity outbursts.&lt;/p&gt;
 &lt;p&gt;Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for &lt;a href=&#34;https://adventofcode.com/&#34; class=&#34;external&#34;&gt;advent of code&lt;/a&gt;.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -584,9 +658,9 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.jpg&#34; alt=&#34;Untranslatable scribbles&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Though, I prefer &lt;a href=&#34;https://getrocketbook.com/&#34; class=&#34;external&#34;&gt;Rocketbook&lt;/a&gt;, because it&amp;rsquo;s like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -594,10 +668,10 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.jpg&#34; alt=&#34;Brainstorming in Rocketbook&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;digital&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#digital&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Digital&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;If handwritten notes are useless, digital ones are too chaotic, because I experimented with too many formats.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;non-structured&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#non-structured&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Non-structured&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;The first iterations were a transposition of handwritten notes into digital via &lt;em&gt;Google Docs.&lt;/em&gt;&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -605,14 +679,14 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png&#34; alt=&#34;Notes in the Google Docs&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;They are as ineffective as the real notebooks. Type once and forget.&lt;/p&gt;
 &lt;p&gt;The direct opposite are &lt;em&gt;plain text notes&lt;/em&gt; in &lt;a href=&#34;https://www.sublimetext.com/&#34; class=&#34;external&#34;&gt;Sublime&lt;/a&gt; with &lt;a href=&#34;https://github.com/aziz/PlainNotes&#34; class=&#34;external&#34;&gt;PlainNotes&lt;/a&gt; plugin. I use them almost every day for:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;transient notes like &amp;ldquo;did this during the smoke test&amp;rdquo;&lt;/li&gt;
 &lt;li&gt;common copy pastes&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -620,7 +694,7 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png&#34; alt=&#34;Sublime with PlainNotes&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;mind-maps&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#mind-maps&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Mind Maps&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;At some point I learned about &lt;em&gt;mind mapping&lt;/em&gt; and tried almost all installable applications for that, including:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.xmind.net/&#34; class=&#34;external&#34;&gt;XMind&lt;/a&gt;: UX is great, but features in the free tier are meh, especially in the last versions. Likes to eat memory.&lt;/li&gt;
@@ -628,7 +702,7 @@ HandwrittenI was more into handwriting during school and university, and there a
 &lt;li&gt;&lt;a href=&#34;https://www.mindomo.com/&#34; class=&#34;external&#34;&gt;Mindomo&lt;/a&gt;: my latest selection, not free, yet has feature no one else has (more on that later).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;As of now I have an assortment of mind maps in various formats, like &lt;a href=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/&#34; class=&#34;internal&#34;&gt;Freeplane&lt;/a&gt; or XMind:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -636,7 +710,7 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png&#34; alt=&#34;XMind mind map overview&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;outliners&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#outliners&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Outliners&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;After that realization I discovered &lt;em&gt;outliners:&lt;/em&gt; think of them as a marriage between mind maps and bullet lists. You can follow the same tree-like structure and fold/unfold branches, yet with more capabilities for formatting and longer text.&lt;/p&gt;
 &lt;p&gt;The most well advertised outliner is &lt;a href=&#34;https://workflowy.com/&#34; class=&#34;external&#34;&gt;WorkFlowy&lt;/a&gt;, but I never tried it, because I&amp;rsquo;m an awful human being and prefer free stuff xD So the next best alternatives are &lt;a href=&#34;https://dynalist.io/&#34; class=&#34;external&#34;&gt;Dynalist&lt;/a&gt; and &lt;a href=&#34;https://checkvist.com/&#34; class=&#34;external&#34;&gt;Checkvist&lt;/a&gt;. Both are fine. There are hundreds of others, some of them are open source and/or crazy and/or vim-like outliners, but as UX junkie, I used those two the most. The reasons to stop were:&lt;/p&gt;
@@ -655,7 +729,7 @@ HandwrittenI was more into handwriting during school and university, and there a
 &lt;li&gt;&lt;a href=&#34;https://www.onenote.com/&#34; class=&#34;external&#34;&gt;OneNote&lt;/a&gt;: I heard it&amp;rsquo;s fine if you are Windows user. Well, I am not :)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://keep.google.com/&#34; class=&#34;external&#34;&gt;Google Keep&lt;/a&gt;: perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -663,7 +737,7 @@ HandwrittenI was more into handwriting during school and university, and there a
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png&#34; alt=&#34;Google Keep with transient lists&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;zettels&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#zettels&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Zettels&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Ok, that&amp;rsquo;s a wrong term, but it encapsulates what differs from common notebooks the best. &lt;a href=&#34;https://en.wikipedia.org/wiki/Zettelkasten&#34; class=&#34;external&#34;&gt;Zettelkasten&lt;/a&gt; is a note-taking method that relies on linking. Overly simplified process is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;create basic and the smallest possible notes (one concept per note)&lt;/li&gt;
@@ -737,15 +811,15 @@ I really liked the article by Daniel Jarjoura on communications.</summary>
 &lt;p&gt;Thus, I made some decision:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; I left RST and MoT (and &lt;a href=&#34;https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one&#34; class=&#34;external&#34;&gt;its abolished sister group&lt;/a&gt;) slack communities. Stayed only in the ABT, because it&amp;rsquo;s smaller and more enjoyable.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Won&amp;rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS &#43; ABT podcast is more than enough.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.webp&#34; type=&#34;image/webp&#34;&gt;
     
-    &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png&#34; alt=&#34;45 RSS feeds in &amp;#34;Testing&amp;#34; category&#34; defer&gt;
+    &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png&#34; alt=&#34;45 RSS feeds in &amp;amp;ldquo;Testing&amp;amp;rdquo; category&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; Won&amp;rsquo;t save articles into reading queue &amp;ldquo;just in case&amp;rdquo;, if it&amp;rsquo;s obvious from the title and the first paragraph that the author is repeating themselves.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; Change &amp;ldquo;About me&amp;rdquo; page to be less role specific. I wrote it a long time ago.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; Do I contribute to the same noise? Perhaps. Can&amp;rsquo;t promise, but I&amp;rsquo;ll try not to. Obviously, these &lt;em&gt;Hmms&lt;/em&gt; aren&amp;rsquo;t really original content, but &lt;a href=&#34;https://eugeneyan.com/writing/reading-note-taking-writing/&#34; class=&#34;external&#34;&gt;written reflection is a great way to process information&lt;/a&gt;, sorry!&lt;/p&gt;
@@ -914,7 +988,7 @@ Insomnia is easy to use on Linux, has plugins, and UI is clean and simple.&lt;/p
 while others contain everything related to the particular client use case or event (i.e., cross-service).&lt;/p&gt;
 &lt;p&gt;Our first examples: get current weather and forecast for Montreal. OpenWeatherMap API requires an API key,
 so you need to add it to the query parameters for each request.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -922,7 +996,7 @@ so you need to add it to the query parameters for each request.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png&#34; alt=&#34;Insomnia: basic interface&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;environments&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#environments&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Environments&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Too much duplication, isn&amp;rsquo;t it?&lt;/p&gt;
 &lt;p&gt;Welcome to environments. Insomnia supports multi-layered variable assignments:&lt;/p&gt;
 &lt;ul&gt;
@@ -939,7 +1013,7 @@ to all requests in the folder.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ok, so for this API let&amp;rsquo;s do like this. &lt;code&gt;https://api.openweathermap.org/data/2.5&lt;/code&gt; can go into base,
 because we have access only to one server.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -947,9 +1021,9 @@ because we have access only to one server.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png&#34; alt=&#34;Insomnia: base environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;An API key is perfect for the sub environment.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -957,9 +1031,9 @@ because we have access only to one server.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png&#34; alt=&#34;Insomnia: sub environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&amp;ldquo;Montreal&amp;rdquo;&lt;/em&gt; is stored as a folder-level value, just for the sake of example.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -967,9 +1041,9 @@ because we have access only to one server.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png&#34; alt=&#34;Insomnia: folder-level environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Then, our requests will look like (use &lt;code&gt;{{var_name}}&lt;/code&gt; to access variable):&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -977,12 +1051,12 @@ because we have access only to one server.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png&#34; alt=&#34;Insomnia: requests with variables from environments&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;You might notice that we still have to fill out the API key query parameter for each request. Kinda boring.
 That&amp;rsquo;s where plugins can help, in this case, it&amp;rsquo;s &lt;code&gt;insomnia-plugin-defaults&lt;/code&gt;.
 Just go into &lt;em&gt;Preferences &amp;gt; Plugins&lt;/em&gt; and type its name to install.
 This plugin allows us to set default headers and/or query parameters in the environments.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -990,9 +1064,9 @@ This plugin allows us to set default headers and/or query parameters in the envi
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png&#34; alt=&#34;Insomnia: environment setup with query param defaults&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;And now we can remove it from requests:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1000,12 +1074,12 @@ This plugin allows us to set default headers and/or query parameters in the envi
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png&#34; alt=&#34;Insomnia: requests with default query params&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;response-querying&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#response-querying&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Response querying&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;The response for the forecast API is big. What if we want to check all returned values for
 weather descriptions? We can do it by using JSONPath response filtering.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;$.list[*].weather[*].description&lt;/code&gt; means &lt;em&gt;&amp;lsquo;Get descriptions from each element of &lt;code&gt;weather&lt;/code&gt;
 array that is a property of elements in the &lt;code&gt;list&lt;/code&gt; array&amp;rsquo;&lt;/em&gt;.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1013,13 +1087,13 @@ array that is a property of elements in the &lt;code&gt;list&lt;/code&gt; array&
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png&#34; alt=&#34;Insomnia: querying response using JSONPath&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;generating-values&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#generating-values&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Generating values&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Sometimes we want to use random values. Insomnia has embedded
 &lt;a href=&#34;https://support.insomnia.rest/article/40-template-tags&#34; class=&#34;external&#34;&gt;template tags&lt;/a&gt; for that, like timestamp and UUID. For other
 cases plugins come to the rescue yet again: &lt;code&gt;insomnia-plugin-random&lt;/code&gt; uses &lt;a href=&#34;https://chancejs.com/&#34; class=&#34;external&#34;&gt;Chance&lt;/a&gt; library
 which gives you tons of options.&lt;/p&gt;
 &lt;p&gt;Here is how to generate random latitude and longitude coordinates:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1027,8 +1101,8 @@ which gives you tons of options.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png&#34; alt=&#34;Insomnia: random value generation&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
-&lt;figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1036,12 +1110,12 @@ which gives you tons of options.&lt;/p&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png&#34; alt=&#34;Insomnia: usage of generated values in the request&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;BTW, use &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;Ctrl&lt;/kbd&gt;&lt;span&gt;&#43;&lt;/span&gt;&lt;kbd&gt;Space&lt;/kbd&gt;&lt;/span&gt;
  shortcut for the fastest template tag autocomplete.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;reusing-response-values&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#reusing-response-values&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reusing response values&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Another commonly used feature is sending a request with values from the response of another request.
 In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JSONPath if you want to grab a value from the response body:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1049,8 +1123,8 @@ In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JS
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png&#34; alt=&#34;Insomnia: pulling values from previous response&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
-&lt;figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1058,7 +1132,7 @@ In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JS
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png&#34; alt=&#34;Insomnia: request with pulled values&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Pretty simple, huh?&lt;/p&gt;
 &lt;p&gt;There are other useful features and no one stops you from writing a plugin if you miss anything. But, s&amp;rsquo;il te plaît,
 don&amp;rsquo;t try to turn it into a complex automation solution. That&amp;rsquo;s what programming languages are for.&lt;/p&gt;</content>
@@ -1071,10 +1145,11 @@ don&amp;rsquo;t try to turn it into a complex automation solution. That&amp;rsqu
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-31:/articles/2020/03/31/hmms-march/</id>
     
     <summary type="html">Coronavirus-free edition!
-Top X Videos and Readings      Erik Wilde started a video series about API design, and the last one covers pros and cons of exposing system APIs.
+Top X Videos and Readings   
+  Erik Wilde started a video series about API design, and the last one covers pros and cons of exposing system APIs.
   Tyk explains why you shouldn&amp;amp;rsquo;t write our own API gateway. I particularly liked this part:</summary>
     <content type="html">&lt;p&gt;Coronavirus-free edition!&lt;/p&gt;
-&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;top-x-videos-and-readings&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#top-x-videos-and-readings&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Top X Videos and Readings&lt;/h2&gt;&lt;/div&gt;&lt;figure&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;top-x-videos-and-readings&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#top-x-videos-and-readings&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Top X Videos and Readings&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1082,7 +1157,7 @@ Top X Videos and Readings      Erik Wilde started a video series about API desig
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg&#34; alt=&#34;Meme: APIs, APIs everywhere&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Erik Wilde started a video series about API design,
@@ -1482,7 +1557,7 @@ swagger_spec_validator.common.SwaggerValidationError: (&amp;#34;Path parameter &
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;zally&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#zally&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Zally&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/zalando/zally&#34; class=&#34;external&#34;&gt;Zally&lt;/a&gt; is a linter from Zalando, which is famous for its open-sourced &lt;a href=&#34;https://opensource.zalando.com/restful-api-guidelines/&#34; class=&#34;external&#34;&gt;API guidelines&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&amp;rsquo;m sure it&amp;rsquo;s an excellent tool, but not for us.&lt;/p&gt;
 &lt;p&gt;BTW, it has nice UI:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1490,7 +1565,7 @@ swagger_spec_validator.common.SwaggerValidationError: (&amp;#34;Path parameter &
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png&#34; alt=&#34;Zally web UI with violations highlighting and links&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;speccy&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#speccy&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Speccy&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Welcome to JavaScript galore. &lt;a href=&#34;https://github.com/wework/speccy&#34; class=&#34;external&#34;&gt;Speccy&lt;/a&gt; and all next linters are run using node.js. Even though I&amp;rsquo;m not a fan of JS, it&amp;rsquo;s easy to use.&lt;/p&gt;
 &lt;p&gt;So, back to Speccy. It was a popular tool once, but won&amp;rsquo;t work in our company:&lt;/p&gt;
 &lt;ul&gt;
@@ -1643,7 +1718,7 @@ Testing CommunitiesWhen I decided to become a tester, the first-ever topic I enc
 &lt;/ul&gt;
 &lt;p&gt;But there are some disappointments. Let&amp;rsquo;s start with the objective one: keyboard.&lt;/p&gt;
 &lt;p&gt;This is my old keyboard: it has Numpad, all keys, and even separate volume controls.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1651,9 +1726,9 @@ Testing CommunitiesWhen I decided to become a tester, the first-ever topic I enc
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.jpg&#34; alt=&#34;Lenovo G560 keyboard&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;This is the new one:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1661,7 +1736,7 @@ Testing CommunitiesWhen I decided to become a tester, the first-ever topic I enc
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.jpg&#34; alt=&#34;Dell XPS15 keyboard&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn&amp;rsquo;t even consider that there wouldn&amp;rsquo;t be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but &lt;a href=&#34;https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592&#34; class=&#34;external&#34;&gt;people complained about it on the Dell forum&lt;/a&gt;. You, guys, I hate you. You&amp;rsquo;re exactly like &lt;a href=&#34;https://xkcd.com/1172/&#34; class=&#34;external&#34;&gt;from that XKCD comic strip&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Next disappointment is a display. Beware, this will be unexpected&amp;hellip; I don&amp;rsquo;t like HiDPI. I&amp;rsquo;m so accustomed to shitty displays, that better ones feel wrong and uncomfortable. Colors and images are fine, but text, yikes. Letters are not crisp enough, there is something smudgy about them.&lt;/p&gt;
 &lt;p&gt;I can already hear that it&amp;rsquo;s because I&amp;rsquo;m on Linux. NOPE. This laptop came with Windows 10 (I left it in a dual boot), but the text is blurry too. Even more, I think Linux actually does better jobs with antialiasing, because old Windows apps look particularly horrible.&lt;/p&gt;
@@ -1938,7 +2013,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     <content type="html">&lt;p&gt;This is part two of a two-parter. Check out &lt;a href=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/&#34; class=&#34;internal&#34;&gt;part one&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;empirical-methods&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#empirical-methods&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Empirical Methods&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;The distinction between analytical and empirical methods is that the latter investigates how real users will use the product.&lt;/p&gt;
 &lt;p&gt;But don&amp;rsquo;t assume that empirical methods are by default better than analytical: both are important because they discover different problems. &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf&#34; class=&#34;external&#34;&gt;This research&lt;/a&gt; showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding UX and runtime specific issues.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1946,7 +2021,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png&#34; alt=&#34;Barchart with comparison of different issue types found via different methods&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;monitoring&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#monitoring&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Monitoring&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Monitoring is used to gather usage statistics. For web services, it&amp;rsquo;s rather easy. For instance, you can discover that one API endpoint is never called. Hence, you should consider the causes: is it missing in the documentation or not needed to anyone? Monitoring also helps to map scenarios: what kind of requests, to which services, and in what order happen most often.&lt;/p&gt;
 &lt;p&gt;And don&amp;rsquo;t forget to monitor not only successful requests but also failures. Imagine, some business errors are stockpiling: maybe you need to reconsider API design or error handling?&lt;/p&gt;
 &lt;p&gt;Another thing to monitor is data volumes. Analysts from the project I worked on assumed that  type A documents should be more common than type B documents, so the service was better optimized for the first type. It was quite a surprise when we did a simple SQL count and found out that the number of type A documents were 600 thousand, while type B accounted for 80 million. After that discovery, we had to prioritize tasks related to service B way higher.&lt;/p&gt;
@@ -1984,7 +2059,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     
 &lt;/div&gt;
 &lt;p&gt;We can also combine personas with cognitive dimensions. Create &lt;a href=&#34;https://en.wikipedia.org/wiki/Radar_chart&#34; class=&#34;external&#34;&gt;a radar chart&lt;/a&gt; with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona&amp;rsquo;s expectations. This chart is great for comparing how existing API corresponds to user values.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -1992,11 +2067,11 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png&#34; alt=&#34;Radar chart with comparison of developer expectations vs current state of API&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn&amp;rsquo;t satisfy these criteria.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;summing-up&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#summing-up&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summing Up&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Readers comfortable with GUI usability testing would say: &amp;ldquo;That&amp;rsquo;s exactly the same stuff!&amp;rdquo;. And you&amp;rsquo;re right, there is nothing supernatural about API usability. Even though it&amp;rsquo;s called an &lt;em&gt;application programming&lt;/em&gt; interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That&amp;rsquo;s why almost everything applied for GUI usability evaluation is reusable for API with some adjustments.&lt;/p&gt;
 &lt;p&gt;Now, what about &lt;em&gt;the best method?&lt;/em&gt;  None, apply them all! &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf&#34; class=&#34;external&#34;&gt;According to this research&lt;/a&gt;, each method can identify unique issues.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2004,7 +2079,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png&#34; alt=&#34;Venn diagram showing how different methods overlap in finding different issues&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;If you are tight on resources, I suggest using the least expensive methods: heuristics, cognitive dimensions, walkthrough, and support tickets. Even the simplest techniques can drive API improvements.&lt;/p&gt;
 &lt;p&gt;Someone would argue that API usability is not that important: &amp;ldquo;we don&amp;rsquo;t have time for that, it&amp;rsquo;s a dev thingy.&amp;rdquo; But developers created &lt;a href=&#34;https://github.com/google/styleguide&#34; class=&#34;external&#34;&gt;style guides&lt;/a&gt; not just to be fancy; this serves to accelerate the achievement of shippable quality. We care about hidden code quality, therefore we need to care about externally visible code like APIs even more.&lt;/p&gt;</content>
   </entry>
@@ -2065,7 +2140,7 @@ There was a time when every new tester came to me during the onboarding and aske
 &lt;/ul&gt;
 &lt;p&gt;Here is an example for domain correspondence. Service main entity was a house. Common apartment building can have several entryways, each leading to set of apartments. But in Kaliningrad this doesn&amp;rsquo;t apply: a typical address there can look like &amp;ldquo;2-4 Green Street,&amp;rdquo; where entryways are house 2 and house 4. This bizarre (and initially unknown) domain model broke the whole logic behind API design. For instance, we had to allow users to add house-level metering devices to entryways if it&amp;rsquo;s actually a house.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;cognitive-walkthrough&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#cognitive-walkthrough&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cognitive Walkthrough&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2073,7 +2148,7 @@ There was a time when every new tester came to me during the onboarding and aske
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png&#34; alt=&#34;Cognitive walkthrough example&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;You can combine this method with heuristics. When we analyzed services, we found out that there were  problems with the consistency: when you sent a request to create an entity, some services responded with entity version id, while others provided root id. Moreover, most of the services required entity id for creation of other entities, and again, it could be either root or version id. It didn&amp;rsquo;t look that bad, until we tried walking through a business scenario:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create an entitling document&lt;/li&gt;
@@ -2272,7 +2347,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;xmlxsd-editors&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#xmlxsd-editors&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;XML&amp;amp;XSD Editors&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are &lt;a href=&#34;https://www.oxygenxml.com/&#34; class=&#34;external&#34;&gt;Oxygen&lt;/a&gt; (cross-platform) and &lt;a href=&#34;https://www.altova.com/&#34; class=&#34;external&#34;&gt;Altova&lt;/a&gt; (Windows-only); both are not free. These are feature-heavy applications used by analysts.&lt;/p&gt;
 &lt;p&gt;I routinely use three features: XSD visualization, XML generation, and XML validation.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;XSD visualization&lt;/strong&gt; is helpful to easily spot schema elements, attributes, and restrictions. For example, &lt;code&gt;CheckTextRequest&lt;/code&gt; has a required &lt;code&gt;text&lt;/code&gt; element, whereas all three attributes are optional. In addition, attribute &lt;code&gt;option&lt;/code&gt; has a default value &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2280,7 +2355,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.png&#34; alt=&#34;XSD visualization in Oxygen&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Visualization is handy when there are lots of types and restrictions. If you need only this feature and you don&amp;rsquo;t want to buy apps, you can check
 &lt;a href=&#34;http://stackoverflow.com/questions/2486758/how-to-visualize-an-xml-schema&#34; class=&#34;external&#34;&gt;free alternatives&lt;/a&gt; like JDeveloper.&lt;/p&gt;
 &lt;p&gt;You can use &lt;strong&gt;XML generation&lt;/strong&gt; to quickly create examples of messages based on supplied XSD. I use is for exploration and experimentation on possible XMLs and checking how restrictions are applied.&lt;/p&gt;
@@ -2437,7 +2512,7 @@ Do this: Mark as read
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;unreliability&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#unreliability&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Unreliability&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Service is reliable if it works when it&amp;rsquo;s expected to be working and provides timely feedback in case of any problems.&lt;/p&gt;
 &lt;p&gt;Worst performance problems I encountered were with export services. One of them was working perfectly fine until the biggest organization in the system started using it and crashing application servers. Hot-fixes after hot-fixes, optimizations, new version; nothing helped. And we couldn&amp;rsquo;t disable that service or completely rewrite its public API because of contractual obligations.&lt;/p&gt;
 &lt;p&gt;So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like this:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2445,7 +2520,7 @@ Do this: Mark as read
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png&#34; alt=&#34;API status table&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;And beware, this page should not on the same infrastructure as the services it&amp;rsquo;s showing! It would be quite embarrassing if &lt;a href=&#34;https://twitter.com/awscloud/status/836656664635846656&#34; class=&#34;external&#34;&gt;it goes down at the same time your services go down&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;crappy-usability&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#crappy-usability&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Crappy Usability&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;When we hear the word &amp;ldquo;usability&amp;rdquo;, we usually think about GUI: buttons and dialogs. I think GUI usability is somewhat overrated: even in the ugliest app you can guess your way by trial and error. With API it won&amp;rsquo;t work:&lt;/p&gt;
 &lt;ul&gt;
@@ -2465,7 +2540,7 @@ Do this: Mark as read
 &lt;ul&gt;
 &lt;li&gt;Service works fine, but error messages are not that informative? Users won&amp;rsquo;t understand how to fix an error (and probably will open a support ticket, so you&amp;rsquo;ll needlessly spend time resolving non-existing issue).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2473,7 +2548,7 @@ Do this: Mark as read
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png&#34; alt=&#34;Unhelpful error message&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;You have UI and API? Don&amp;rsquo;t forget to check they correspond to each other. The most common problem is when constraints on UI fields don&amp;rsquo;t match same fields in API: for example, UI can accept maximum 50 characters for the name and API only 20, which leads to errors when trying to export anything created on UI.&lt;/p&gt;
@@ -2858,10 +2933,9 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     <updated>2018-03-19T00:00:00Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2018-03-19:/articles/2018/03/19/mega-mind-map-version-2/</id>
     
-    <summary type="html">My not-so-mega mind map has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &amp;amp;ldquo;Exploratory Software Testing&amp;amp;rdquo; by James A. Whittaker.
-    </summary>
+    <summary type="html">My not-so-mega mind map has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &amp;amp;ldquo;Exploratory Software Testing&amp;amp;rdquo; by James A. Whittaker.</summary>
     <content type="html">&lt;p&gt;My &lt;a href=&#34;https://github.com/aviskase/mega-mind-map&#34; class=&#34;external&#34;&gt;not-so-mega mind map&lt;/a&gt; has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &amp;ldquo;Exploratory Software Testing&amp;rdquo; by James A. Whittaker.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2869,7 +2943,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png&#34; alt=&#34;Mega mind map version 2&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;</content>
+&lt;/figure&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Testers in This World</title>
@@ -2885,7 +2959,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;ideal-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#ideal-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Ideal World of Software Development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Imagine an ideal world of software development. Scope is clear. Everything is done on time in relaxed manner without rush. Everybody is motivated to create the best product. Everybody has happy life outside of work. No stress. Users are eager to help too. And all these aren&amp;rsquo;t just for one product, but true for all software in the world. Great, isn&amp;rsquo;t it?&lt;/p&gt;
 &lt;p&gt;Now, when I&amp;rsquo;m thinking about this &lt;em&gt;ideal&lt;/em&gt; world, I can&amp;rsquo;t find a place for testers in it. There is just no place for bugs. Developers and analysts have all the time to design and build a product without real bugs. Remember, they don&amp;rsquo;t have just a time, they&amp;rsquo;re also motivated, so they definitively test product. They do it themselves&amp;hellip; so there is no need for a &lt;em&gt;separate&lt;/em&gt; role of a tester.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s visualize this tester-less world as a perfect disk:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2893,9 +2967,9 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.png&#34; alt=&#34;Ideal world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;real-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#real-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Real World of Software Development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2903,9 +2977,9 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.png&#34; alt=&#34;Real world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;testers-in-the-real-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#testers-in-the-real-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Testers in the Real World of Software Development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;And that&amp;rsquo;s where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2913,10 +2987,10 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.png&#34; alt=&#34;Real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;All products are distorted in different ways, that&amp;rsquo;s why you can see testers doing all kind of things. Some are just &amp;ldquo;manual monkeys.&amp;rdquo; On a different extreme are those who automate test cases that are written by others. Most are somewhere in between. There are projects where testers have a hat of analytic. Or support. Or both. Or PM. Someone, maybe gurus, don&amp;rsquo;t test at all: they mentor a team to test themselves, control that quality is efficiently insured by others.&lt;/p&gt;
 &lt;p&gt;Here is a fun fact. That patched version is still a lie. Testers are also not perfect. Thus, our world looks more like this:&lt;/p&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2924,7 +2998,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.png&#34; alt=&#34;Even more real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;We can&amp;rsquo;t patch all holes. But we are here to try.&lt;/p&gt;</content>
   </entry>
   <entry>
@@ -2946,7 +3020,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
 &lt;li&gt;APV aka ДПЗ (Actions / Parameters / Values)&lt;/li&gt;
 &lt;li&gt;Value analysis&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -2954,7 +3028,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.jpg&#34; alt=&#34;Mega mind map version 1&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;</content>
+&lt;/figure&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Enabling L2TP/IPSec in Ubuntu</title>
@@ -3264,7 +3338,7 @@ The course is concise and comprehensive. Here are some notes I&amp;amp;rsquo;ve 
 &lt;li&gt;growth measurement&lt;/li&gt;
 &lt;li&gt;debugging metrics&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure&gt;
+&lt;p&gt;&lt;figure&gt;
   &lt;picture&gt;
     
     &lt;source srcset=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.webp&#34; type=&#34;image/webp&#34;&gt;
@@ -3272,7 +3346,7 @@ The course is concise and comprehensive. Here are some notes I&amp;amp;rsquo;ve 
     &lt;img src=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.png&#34; alt=&#34;Monitoring systems&#34; defer&gt;
 	&lt;/picture&gt;
 	
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;additional-resources&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#additional-resources&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Additional Resources&lt;/h2&gt;&lt;/div&gt;&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;notable-books&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#notable-books&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notable Books&lt;/h3&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://itrevolution.com/books/phoenix-project-devops-book/&#34; class=&#34;external&#34;&gt;The Phoenix Project&lt;/a&gt; (by Gene Kim, Kevin Behr, George Spafford) &amp;mdash; a novel about IT, DevOps, and helping your business win&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley-ebook/dp/B003YMNVC0&#34; class=&#34;external&#34;&gt;Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation&lt;/a&gt; (by Jez Humble, David Farley) &amp;mdash; the principles and technical practices that enable rapid, incremental delivery of high quality, valuable new functionality to users&lt;/li&gt;
