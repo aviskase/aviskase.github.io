@@ -1,7 +1,6 @@
 ---
 title: "Crash Course Into API-Related Terminology"
-date: 2020-12-05T19:37:28-05:00
-draft: true
+date: 2020-12-07T20:59:28-05:00
 ---
 
  Anyone trying to dive into the world of APIs is doomed to be confused by conflicting terminology. In this post I'm gonna touch upon the main definitions and processes. I already tried it once during [lunch&learn session at work]({{< ref 2020-03-08-hmms-february >}}), but the time has come to revisit [that old presentation](https://github.com/aviskase/trucs/blob/master/api_salad.pdf) in the written form.
