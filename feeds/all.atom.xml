@@ -2,9 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-12-08T01:59:28Z</updated>
+  <updated>2020-12-21T03:26:21Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt;: Intro</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/20/using-openapi-cli-intro/" hreflang="en"/>
+    <published>2020-12-21T03:26:21Z</published>
+    <updated>2020-12-21T03:26:21Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-12-21:/articles/2020/12/20/using-openapi-cli-intro/</id>
+    
+    <summary type="html">Before we jump into the usage of this mysterious tool with way too generic name, let me give you an introduction.
+There are many tools for supporting API design via OpenAPI description documents. You can check the list here.
+The most common tasks are:
+ dereferencing linting reference documentation preview and/or generation  I talked about dereferencing not long ago.</summary>
+    <content type="html">&lt;p&gt;Before we jump into the usage of this mysterious tool with way too generic name, let me give you an introduction.&lt;/p&gt;
+&lt;p&gt;There are many tools for supporting API design via OpenAPI description documents. You can check &lt;a href=&#34;https://openapi.tools/&#34; class=&#34;external&#34;&gt;the list here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The most common tasks are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dereferencing&lt;/li&gt;
+&lt;li&gt;linting&lt;/li&gt;
+&lt;li&gt;reference documentation preview and/or generation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I talked about dereferencing &lt;a href=&#34;https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/#ref&#34; class=&#34;internal&#34;&gt;not long ago&lt;/a&gt;. In short, it&amp;rsquo;s needed to produce a final OpenAPI description doc from more DRY and granular schemas. You can &lt;a href=&#34;https://stoplight.io/blog/keeping-openapi-dry-and-portable/&#34; class=&#34;external&#34;&gt;read more about the process here&lt;/a&gt;. One of the tools that can help you is &lt;a href=&#34;https://github.com/APIDevTools/json-schema-ref-parser&#34; class=&#34;external&#34;&gt;&lt;code&gt;json-schema-ref-parser&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/#description-doc-validation-vs-linting-vs-preprocessing&#34; class=&#34;internal&#34;&gt;Linting&lt;/a&gt; is used to check OpenAPI description doc for errors and style guide violations. &lt;a href=&#34;https://stoplight.io/spectral&#34; class=&#34;external&#34;&gt;Spectral&lt;/a&gt; comes to mind; Arnaud Lauret has a great talk about &lt;a href=&#34;https://apihandyman.io/the-augmented-api-design-reviewer/&#34; class=&#34;external&#34;&gt;using it for design reviews&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://swagger.io/tools/swagger-ui/&#34; class=&#34;external&#34;&gt;SwaggerUI&lt;/a&gt; is the most common choice for reference documentation generation. If you need something more aesthetically pleasing you can try &lt;a href=&#34;https://redoc.ly/redoc&#34; class=&#34;external&#34;&gt;Redoc&lt;/a&gt; or &lt;a href=&#34;https://mrin9.github.io/RapiDoc/&#34; class=&#34;external&#34;&gt;RapiDoc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;But there is a tool that combines all of these and more: welcome to &lt;code&gt;openapi-cli&lt;/code&gt; (&lt;a href=&#34;https://github.com/Redocly/openapi-cli&#34; class=&#34;external&#34;&gt;GitHub&lt;/a&gt;, &lt;a href=&#34;https://redoc.ly/openapi-cli&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). It supports both OpenAPI 2 (fka Swagger) and OpenAPI 3; support for 3.1 is coming soon. At the time of the writing, the tool&amp;rsquo;s version 1 is still in beta phase, so keep it in mind. But I&amp;rsquo;m fairly confident in using it anyway. Why? Two reasons.&lt;/p&gt;
+&lt;p&gt;First of all, it&amp;rsquo;s developed by the same team as the famous Redoc, so you already know how reference docs look like =) Redoc &lt;em&gt;is&lt;/em&gt; famous. You cannot read a book or attend a conference without seeing it mentioned by someone. A lot of people use it, so it would make sense for a &lt;code&gt;openapi-cli&lt;/code&gt; to be developed further.&lt;/p&gt;
+&lt;p&gt;The second reason is stated on the team&amp;rsquo;s site: &lt;em&gt;&amp;ldquo;built because we needed it&amp;rdquo;&lt;/em&gt;. All tools developed by Redocly are used in the other company of its founder, Adam Altman, &lt;a href=&#34;https://www.rebilly.com/&#34; class=&#34;external&#34;&gt;Rebilly&lt;/a&gt;. These tools weren&amp;rsquo;t created in vacuum; they are constantly dogfooded by the developers whose &lt;em&gt;primary business is making good APIs&lt;/em&gt;. By the way, check their &lt;a href=&#34;https://github.com/Rebilly/api-definitions&#34; class=&#34;external&#34;&gt;api definitions&lt;/a&gt; for an inspiration on how to structure description doc development.&lt;/p&gt;
+&lt;p&gt;So, in this series of articles I&amp;rsquo;m gonna write about my experience of using &lt;code&gt;openapi-cli&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We gonna go through themes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;using &lt;code&gt;openapi-cli&lt;/code&gt; for API exploration&lt;/li&gt;
+&lt;li&gt;basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results)&lt;/li&gt;
+&lt;li&gt;advanced topic: custom linting rules&lt;/li&gt;
+&lt;li&gt;advanced topic: preprocessing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And while I&amp;rsquo;m writing next posts (hehe), install and play with it!&lt;/p&gt;
+&lt;p&gt;P.S. It&amp;rsquo;s a pity that Redocly team isn&amp;rsquo;t very active about advertising themselves. While everyone knows and praises Redoc, &lt;code&gt;openapi-cli&lt;/code&gt; isn&amp;rsquo;t that well-known. Maybe the team wants to finish the beta first? Anyway, I was using it for almost a year, and I think it&amp;rsquo;s time to break the silence and give it some public love!&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Crash Course Into API-Related Terminology</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/" hreflang="en"/>
