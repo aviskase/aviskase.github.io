@@ -2,9 +2,54 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-12-21T03:26:21Z</updated>
+  <updated>2020-12-30T14:35:16Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Hmms: 2020</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/30/hmms-2020/" hreflang="en"/>
+    <published>2020-12-30T14:35:16Z</published>
+    <updated>2020-12-30T14:35:16Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-12-30:/articles/2020/12/30/hmms-2020/</id>
+    
+    <summary type="html">Usually it&amp;amp;rsquo;s monthly collection of things that got me thinking hmming. But this is the end of the year, let&amp;amp;rsquo;s do a little retrospective.
+RetroWhat happened this year:
+ My title switched from &amp;amp;ldquo;tester&amp;amp;rdquo; to &amp;amp;ldquo;engineer&amp;amp;rdquo;. Yay? Had a great time at ASC 2020 conference. Yes, it&amp;amp;rsquo;s not my first conference, but this one left a good long-lasting aftertaste.</summary>
+    <content type="html">&lt;p&gt;Usually it&amp;rsquo;s monthly collection of things that got me &lt;del&gt;thinking&lt;/del&gt; hmming. But this is the end of the year, let&amp;rsquo;s do a little retrospective.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;retro&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#retro&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Retro&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;What happened this year:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;My title switched &lt;a href=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/#no-longer-a-tester&#34; class=&#34;internal&#34;&gt;from &amp;ldquo;tester&amp;rdquo; to &amp;ldquo;engineer&amp;rdquo;&lt;/a&gt;. Yay?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2020/09/15/conference-notes-asc-2020/&#34; class=&#34;internal&#34;&gt;Had a great time at ASC 2020 conference&lt;/a&gt;. Yes, it&amp;rsquo;s not my first conference, but this one left a good long-lasting aftertaste.&lt;/li&gt;
+&lt;li&gt;I ported blog &lt;a href=&#34;https://www.aviskase.com/articles/2020/10/04/from-pelican-to-hugo/&#34; class=&#34;internal&#34;&gt;from pelican to hugo&lt;/a&gt; and &lt;a href=&#34;https://www.aviskase.com/articles/2020/10/18/blog-redesign-phase-1/&#34; class=&#34;internal&#34;&gt;started a redesign&lt;/a&gt;. Still much to do and polish, but at least the base is sound.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/&#34; class=&#34;internal&#34;&gt;Joined Obsidian community&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;As a consequence, I &lt;strong&gt;unwillingly&lt;/strong&gt; created &lt;a href=&#34;https://www.aviskase.com/articles/2020/11/03/hmms-october/#hi-youtube&#34; class=&#34;internal&#34;&gt;a YouTube channel in Russian&lt;/a&gt;. It&amp;rsquo;s cool to learn new skills (audio cleaning, video editing), but to be honest, content creation in Russian isn&amp;rsquo;t exactly a lucrative or professionally valuable hobby. Still, I cannot say no to people asking to teach or explain something: knowledge sharing is one of the biggest values to me.&lt;/li&gt;
+&lt;li&gt;Finished Finnish tree on Duolingo. Don&amp;rsquo;t ask why, I, person living in Quebec, learn Finnish. I just want to! &lt;em&gt;Se on täydellinen kieli&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What didn&amp;rsquo;t happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2020/06/02/hmms-may/&#34; class=&#34;internal&#34;&gt;Bought a graphic tablet&lt;/a&gt; but didn&amp;rsquo;t do any drawing lessons. Though, I do use it for YouTube.&lt;/li&gt;
+&lt;li&gt;The guitar is collecting dust &lt;em&gt;again&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Didn&amp;rsquo;t go to Kazakhstan.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2020 taught many not to make plans, good thing I never was much of the &amp;ldquo;goals&amp;rdquo; person anyway. Still, here are my themes for 2021:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At least once be a conference speaker or &lt;a href=&#34;https://www.aviskase.com/articles/2020/05/02/hmms-april/#fam0us&#34; class=&#34;internal&#34;&gt;a podcast guest&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Content creation: stable every other week, either this blog or Russian YouTube channel (or maybe English?). Concentrate more on tutorials.&lt;/li&gt;
+&lt;li&gt;Guitar. Must. Be. Conquered. To make the promise more realistic, I hereby vow to start daily lessons as soon as I finish levelling &lt;a href=&#34;https://www.aviskase.com/articles/2020/02/01/hmms-january/#gaming&#34; class=&#34;internal&#34;&gt;my main in ESO to CP 810&lt;/a&gt; (yup, I&amp;rsquo;m still playing it).&lt;/li&gt;
+&lt;li&gt;Begin drawing lessons in the 2nd half of the year. Luckily, there was &lt;a href=&#34;https://habr.com/ru/post/534538/&#34; class=&#34;external&#34;&gt;a great post on Habr&lt;/a&gt; about it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You may notice almost an absence of professional goals. Typical end-of-year posts often contain promises to read more or learn new professional skills/tools. But my to-read/to-watch/to-learn queue is on the opposite side: it must be scaled down occasionally; I&amp;rsquo;m definitely not one of those people who seems to have an endless fountain of energy to do everything (aksi, talking about ya here).&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;advent-of-code&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#advent-of-code&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Advent of code&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;This was the first time I did &lt;a href=&#34;https://adventofcode.com/&#34; class=&#34;external&#34;&gt;Advent of code&lt;/a&gt; with the devs from work: nice to compare with normal people and not &lt;em&gt;reddit stars&lt;/em&gt;. Cannot express how happy I&amp;rsquo;m to be &lt;a href=&#34;https://github.com/aviskase/advent-of-code/tree/master/2020&#34; class=&#34;external&#34;&gt;back to Python&lt;/a&gt;, it&amp;rsquo;s so readable and clear after JS/TS madness.&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;
+  &lt;picture&gt;
+    
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.webp&#34; type=&#34;image/webp&#34;&gt;
+    
+    &lt;img src=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png&#34; alt=&#34;Advent of Code easter egg: using itertools&#34; defer&gt;
+	&lt;/picture&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt;: Intro</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/20/using-openapi-cli-intro/" hreflang="en"/>
