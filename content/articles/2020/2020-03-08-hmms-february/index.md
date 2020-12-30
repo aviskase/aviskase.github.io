@@ -7,7 +7,7 @@ og_image: og_h_february.png
 
 It's March already, time to summarize February!
 
-# APIs Trainings
+## APIs Trainings
 
 I did a small company-wide training about APIs. Here is [the main deck](https://github.com/aviskase/trucs/blob/master/api101.pdf)
 and [supplementary deck](https://github.com/aviskase/trucs/blob/master/api_salad.pdf) left from dev lunch&learn. 
@@ -19,7 +19,7 @@ and they felt a bit lost. Which is a great reminder that by being constantly in 
 understands how immense APIs' power and impact are.
 
 
-# Readings
+## Readings
 
 [Government of Canada published standards on APIs](https://www.canada.ca/en/government/system/digital-government/modern-emerging-technologies/government-canada-standards-apis.html).
 Not perfect, but it's great to see not only corporates showing their development practices but also the public sector.
@@ -31,7 +31,7 @@ While ["Why we need to get rid of thought leaders"](https://www.a-sisyphean-task
 article by Adam Knight makes interesting points, I actually hoped it to cover "the leaders" problem. And this segues us
 to the next section...
 
-# Leaders and Their Followers
+## Leaders and Their Followers
 
 Perhaps I'm stating the obvious fact, but here it is: do not ever assume that appreciating content created
 by the person correlates with wanting to be/stay a part of their community. Because true meanings are shown in 
