@@ -2,9 +2,125 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2020-12-30T14:35:16Z</updated>
+  <updated>2021-01-10T19:28:31Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt; for API exploration</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2021/01/10/using-openapi-cli-for-api-exploration/" hreflang="en"/>
+    <published>2021-01-10T19:28:31Z</published>
+    <updated>2021-01-10T19:28:31Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2021-01-10:/articles/2021/01/10/using-openapi-cli-for-api-exploration/</id>
+    
+    <summary type="html">As promised, let&amp;amp;rsquo;s dive into the usage of openapi-cli. The first topic is semi-non-technical: API exploration. You might be interested if:
+ you&amp;amp;rsquo;re a tech writer you&amp;amp;rsquo;re a tester you don&amp;amp;rsquo;t know what the heck API exploration is  What is API explorationI use this term akin to exploratory testing. You can search for works of Cem Kaner, James Bach, Michael Bolton, Elisabeth Hendrickson, James Whittaker, but beware, that&amp;amp;rsquo;s a nice little serpentarium of a field.</summary>
+    <content type="html">&lt;p&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2020/12/20/using-openapi-cli-intro/&#34; class=&#34;internal&#34;&gt;As promised&lt;/a&gt;, let&amp;rsquo;s dive into the usage of &lt;code&gt;openapi-cli&lt;/code&gt;. The first topic is semi-non-technical: API exploration. You might be interested if:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you&amp;rsquo;re a tech writer&lt;/li&gt;
+&lt;li&gt;you&amp;rsquo;re a tester&lt;/li&gt;
+&lt;li&gt;you don&amp;rsquo;t know what the heck API exploration is&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;what-is-api-exploration&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#what-is-api-exploration&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;What is API exploration&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I use this term akin to &lt;em&gt;exploratory testing&lt;/em&gt;. You can search for works of Cem Kaner, James Bach, Michael Bolton, Elisabeth Hendrickson, James Whittaker, but beware, that&amp;rsquo;s a nice little serpentarium of a field.&lt;/p&gt;
+&lt;p&gt;In the simplest words, it is a process of learning something about API I don&amp;rsquo;t know or have a limited information about. That&amp;rsquo;s it. The main contexts for this activity are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Necessity&lt;/strong&gt;. I want to use some API.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Curiosity&lt;/strong&gt;. Just looking at how other APIs are done.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Assessment&lt;/strong&gt;. I need to check APIs for certain characteristics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many ways to perform exploration, countless tools and sources to use. In this article I&amp;rsquo;ll be looking only at OpenAPI description documents, because that&amp;rsquo;s where &lt;code&gt;openapi-cli&lt;/code&gt; comes handy.&lt;/p&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;When exploring unknown APIs, I run a globally installed package: &lt;code&gt;npm i -g @redocly/openapi-cli&lt;/code&gt;. Then it is accessible in the terminal as &lt;code&gt;openapi &amp;lt;args&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-stats&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-stats&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi stats&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Gathers some basic statistics for an OpenAPI description document. Can be in &amp;ldquo;stylish&amp;rdquo; format (as in the example below) or in JSON.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi stats http://localhost:8888/api/v1/swagger.json
+Document: http://localhost:8888/api/v1/swagger.json stats:
+
+🚗 References: 12 
+📦 External Documents: 0 
+📈 Schemas: 12 
+👉 Parameters: 9 
+🔗 Links: 0 
+➡️ Path Items: 4 
+👷 Operations: 7 
+🔖 Tags: 1 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nothing useful for me at the moment. The only use case that comes to mind is when you have a bunch of documents for an &lt;strong&gt;assessment&lt;/strong&gt; and you&amp;rsquo;re not sure where to start. Then, you can check stats for each doc and proceed with the smallest one.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-preview-docs&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-preview-docs&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi preview-docs&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;This command is the primary reason I have &lt;code&gt;openapi-cli&lt;/code&gt; installed as a global package: I use it all the time. The command accepts path or link to the existing OpenAPI description document and starts a local HTTP server with the generated Redoc reference doc.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi preview-docs  http://localhost/api/v1/swagger.json
+Using Redoc community edition.
+Login with openapi-cli login or use an enterprise license key to preview with the premium docs.
+
+
+🔎  Preview server running at http://127.0.0.1:8080
+
+👀  Watching http://localhost/api/v1/swagger.json and all related resources for changes
+
+
+Bundling...
+
+Created a bundle for http://localhost/api/v1/swagger.json successfully
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Why you&amp;rsquo;d want that?&lt;/p&gt;
+&lt;p&gt;First, sometimes there is just an OpenAPI description document and nothing else. No documentation whatsoever. Rare, but I do stumble upon this with internal APIs.&lt;/p&gt;
+&lt;p&gt;The second reason is when there are some reference docs, but they don&amp;rsquo;t fit you.&lt;/p&gt;
+&lt;p&gt;For example, it&amp;rsquo;s a SwaggerUI, and you don&amp;rsquo;t like it, or the description doc has advanced features like &lt;code&gt;oneOf&lt;/code&gt; or &lt;code&gt;discriminator&lt;/code&gt;. In such case, SwaggerUI cannot generate fancy form-based presentation, so you have to read bare model definitions.&lt;/p&gt;
+&lt;p&gt;Or perhaps you have special needs. Lorna Jane Mitchell in her presentation on &lt;a href=&#34;https://lornajane.net/resource/delightful-sdks-with-openapi&#34; class=&#34;external&#34;&gt;Delightful SDKs&lt;/a&gt; mentions that she often generates her own local reference docs because official documentations aren&amp;rsquo;t &lt;em&gt;accessible&lt;/em&gt;. AFAIK, she uses Redoc and made several pull requests specifically for better accessibility support.&lt;/p&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;You can generate reference docs with &lt;a href=&#34;https://www.npmjs.com/package/redoc-cli&#34; class=&#34;external&#34;&gt;&lt;code&gt;redoc-cli&lt;/code&gt;&lt;/a&gt;, but I prefer using &lt;code&gt;openapi-cli&lt;/code&gt; as a one-stop shop. The difference is when you want to generate static HTML with your theme: right now you have to use a small hack &lt;a href=&#34;https://github.com/Redocly/openapi-cli/issues/133&#34; class=&#34;external&#34;&gt;from this issue&lt;/a&gt;.&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-split&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-split&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi split&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Reading a big OpenAPI description doc is cumbersome. Especially when you need to jump back and forth between references.&lt;/p&gt;
+&lt;p&gt;Split for the rescue! It&amp;rsquo;s an opposite of the &lt;a href=&#34;https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/#ref&#34; class=&#34;internal&#34;&gt;bundling operation&lt;/a&gt; and separates references into several files. Though, it&amp;rsquo;s a bit smarter; for example, it splits paths into separate files too.&lt;/p&gt;
+&lt;div class=&#34;admonition warning&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;admonition-title&#34;&gt;Warning&lt;/p&gt;
+        &lt;p&gt;This command doesn&amp;rsquo;t support OpenAPI 2.&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;p&gt;Let&amp;rsquo;s split a description doc into &lt;code&gt;out&lt;/code&gt; directory: &lt;code&gt;openapi split --outDir out openapi.json&lt;/code&gt;. Here is a sample result:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;~/out 
+➜ tree
+.
+├── components
+│   ├── parameters
+│   │   ├── pageNumber.yaml
+│   │   ├── pageSize.yaml
+│   │   └── resourceId.yaml
+│   ├── requestBodies
+│   │   ├── User.yaml
+│   ├── responses
+│   │   ├── Error.yaml
+│   │   ├── Forbidden.yaml
+│   │   ├── Ok.yaml
+│   │   └── Unauthorized.yaml
+│   └── schemas
+│       ├── Id.yaml
+│       ├── ResourceId.yaml
+│       ├── UserCollection.yaml
+│       └── User.yaml
+├── openapi.yaml
+└── paths
+    ├── users@{id}.yaml
+    └── users.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another reason to use split is when you&amp;rsquo;re not just exploring API, but you plan to work on it. For example, when you&amp;rsquo;re switching from annotations-driven to handcrafted approach; &lt;em&gt;split creates a good starting point for refactoring&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-lint&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-lint&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi lint&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;You may want to do &lt;a href=&#34;https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/#description-doc-validation-vs-linting-vs-preprocessing&#34; class=&#34;internal&#34;&gt;linting&lt;/a&gt; in &lt;strong&gt;assessment&lt;/strong&gt; or &lt;strong&gt;curiosity&lt;/strong&gt; contexts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Assessment:
+&lt;ul&gt;
+&lt;li&gt;Is this old API at least valid per OpenAPI standard or it&amp;rsquo;s complete garbage?&lt;/li&gt;
+&lt;li&gt;We came up with new API guidelines. Do our existing APIs conform to it? How many don&amp;rsquo;t?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Curiosity:
+&lt;ul&gt;
+&lt;li&gt;I wonder how many APIs out there follow this rule? Is it common and should we apply it in our API?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As you can see, the biggest benefits of &lt;code&gt;openapi lint&lt;/code&gt; come when you use custom rules and configurations. This topic I&amp;rsquo;ll be covering in later articles, stay tuned.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;If you want to read more about OpenAPI-based API exploration, I recommend &lt;a href=&#34;https://apihandyman.io/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/&#34; class=&#34;external&#34;&gt;Arnaud Lauret&amp;rsquo;s series of articles about &lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Hmms: 2020</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/30/hmms-2020/" hreflang="en"/>
