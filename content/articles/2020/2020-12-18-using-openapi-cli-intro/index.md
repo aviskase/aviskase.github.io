@@ -31,7 +31,7 @@ So, in this series of articles I'm gonna write about my experience of using `ope
 
 We gonna go through themes:
 
-- using `openapi-cli` for API exploration
+- [using `openapi-cli` for API exploration]({{< ref "2021-01-10-using-openapi-cli-for-api-exploration" >}})
 - basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results)
 - advanced topic: custom linting rules
 - advanced topic: preprocessing

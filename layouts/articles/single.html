@@ -21,7 +21,17 @@
 
 <article>
     {{ .Content }}
+
+    {{- if .Params.see_also }}
+    <hr/>
+    <p>See also:</p>
+    <ul>{{ range .Params.see_also }}
+        <li><a href="{{ . }}">{{ with $.Site.GetPage . }}{{ .Title }}{{ end }}</a></li>
+    {{ end }}</ul>
+    {{ end }}
 </article>
+
+
 
 <div class="page-navigation">
 

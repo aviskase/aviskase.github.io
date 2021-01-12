@@ -4,6 +4,7 @@ Date: 2020-04-22T01:06:01.497569
 Tags: api, tools, practical
 Category: Testing
 og_image: og_using_insomnia_for_exploration.png
+see_also: ["2020-12-18-using-openapi-cli-intro"]
 ---
 
 One of the tools I use almost daily is [Insomnia](https://insomnia.rest/).
