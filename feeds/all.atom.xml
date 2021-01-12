@@ -194,7 +194,7 @@ The most common tasks are:
 &lt;p&gt;So, in this series of articles I&amp;rsquo;m gonna write about my experience of using &lt;code&gt;openapi-cli&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;We gonna go through themes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;using &lt;code&gt;openapi-cli&lt;/code&gt; for API exploration&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2021/01/10/using-openapi-cli-for-api-exploration/&#34; class=&#34;internal&#34;&gt;using &lt;code&gt;openapi-cli&lt;/code&gt; for API exploration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results)&lt;/li&gt;
 &lt;li&gt;advanced topic: custom linting rules&lt;/li&gt;
 &lt;li&gt;advanced topic: preprocessing&lt;/li&gt;
