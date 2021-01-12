@@ -26,7 +26,7 @@
     <hr/>
     <p>See also:</p>
     <ul>{{ range .Params.see_also }}
-        <li><a href="{{ . }}">{{ with $.Site.GetPage . }}{{ .Title }}{{ end }}</a></li>
+        {{ with $.Site.GetPage . }}<li><a class="internal" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></li>{{ end }}
     {{ end }}</ul>
     {{ end }}
 </article>
