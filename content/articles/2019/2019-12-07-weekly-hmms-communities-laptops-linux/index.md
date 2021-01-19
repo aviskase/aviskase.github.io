@@ -7,7 +7,7 @@ og_image: og_wh_4.png
 
 This time, the proper title would be "Weekly Arghs."
 
-## Testing Communities
+## Testing communities
 
 When I decided to become a tester, the first-ever topic I encountered was ~~discussions~~ rants about "ISO/IEC/IEEE 29119 Software Testing" set of standards. I was fresh out of the university, so I couldn't have legal access to these documents, and naturally, I sided with opponents. Good or bad (mostly bad), I don't care: if you wish to have guidelines or standards for the profession, it must be freely accessible to everyone. The end.
 

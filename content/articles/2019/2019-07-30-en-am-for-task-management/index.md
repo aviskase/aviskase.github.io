@@ -10,7 +10,7 @@ I'm an infrequent blogger, so how weird it is that my last post was about RTM? I
 
 Marvin is still young, yet powerful. He has some problems and rough corners, but development couple (yes, just 2 persons!) is the most responsive and creative force I've seen. I'm still learning and tweaking my system there, but I want to describe the first working iteration to be able to improve and compare later.
 
-## Enabled Strategies
+## Enabled strategies
 
 Strategies are like extensions: add more to have more abilities.
 
@@ -94,7 +94,7 @@ Because these are essential, I'll explain their usage later.
 
 - Reward Tasks --- awesome feature which I've never used. Dunno why. 
 
-## Planning and Scheduling Cycle
+## Planning and scheduling cycle
 
 My PS cycle has three phases:
 
@@ -106,21 +106,21 @@ My PS cycle has three phases:
 
 Notice difference between planning and scheduling? This is because AM has a bit head-scratching at first, but really powerful distinction between these processes. In short, *planning* is about assigning *start date* and *end date* ("soft deadline") and *scheduling* is about assigning a *do date* ("when should I do this task"). Also, there can be a *due date*, it's not quite clear is it planning or scheduling category. I think both, because I use **Auto-schedule Due Tasks** strategy. For example, if something is due tomorrow, this task will have a do date = today.
 
-### Monthly Planning
+### Monthly planning
 
 I have a recurring task *Plan tasks for the next month*, which is setup to run monthly on the 31st day. To complete this task I go to **Planning > Monthly** and plan tasks **only** for the next month while working from *Master List*. I don't want to overplan too much into the future.  What can be changed is maybe I should work from some smart list, but so far I don't have too many tasks in ML.
 
-### Weekly Planning
+### Weekly planning
 
 This is a **Weekly Review** strategy with checklist scheduled to be done on Sundays. Checklist is a combination of weekly planning and everyday review stuff.
 
-#### Reformulate Task Names Left in Today Pool
+#### Reformulate task names left in today pool
 
 Done on: Daily view
 
 This is a part from Jedi techniques, which goal is to rename tasks you didn't complete for some reason. That way the next day they will look "fresher" or more inviting to you.
 
-#### Review Calendars for 2 Weeks Ahead: Add Tasks If Needed
+#### Review calendars for 2 weeks ahead: add tasks if needed
 
 Done on: external sites, tasks are added to inbox
 
@@ -140,7 +140,7 @@ Basically, it's something that is not really actionable, but has a day and durat
 
 Right now what I use is a **Custom Sidebar** with links to my google and outlook calendars.
 
-#### Reflect on Completed Week: Do I Need to Do More?
+#### Reflect on completed week: do I need to do more?
 
 Done on: Archive, tasks are added to inbox
 
@@ -148,7 +148,7 @@ Go to **Archive** and check what was done this week. It's a bit cumbersome, beca
 
 Other way is to click through daily views, but for me it's too many clicks)
 
-#### Review Start Dates for Backburner Tasks (Smartlist)
+#### Review start dates for backburner tasks (smartlist)
 
 Done one: Master List,  work from smartlist
 
@@ -158,7 +158,7 @@ I use backburner only for tasks which are **dependent** on others or with **star
 
 So, in order to keep backburner in check, I review it once in week. Now that I think about it, maybe I should have an alert about tasks which does not have start date and are not dependent, but are in backburner...? But more on alerts later =)
 
-#### Review All Projects: Add New Tasks If Needed (Smartlist)
+#### Review all projects: add new tasks if needed (smartlist)
 
 Done on: Master List, work from smartlist
 
@@ -166,7 +166,7 @@ Done on: Master List, work from smartlist
 
 I had to create a smart list to show all projects, because I wanted to see backburner's too.
 
-#### Recall This Day: Write down Everything Missed (Triggers/ Backwards-Day-Recall)
+#### Recall this day: write down everything missed (triggers/ backwards-day-recall)
 
 Done on: **Sidebar**, tasks added to inbox
 
@@ -180,23 +180,23 @@ Triggers are things which can be used to recall what was forgotten. For example,
 
 Backwards day recall is a technique also used to recall things. You sit down and try to remember today in detail in backwards: from now to the morning.
 
-#### Empty Inboxes: Paper, GMail, Outlook, Joplin, AM
+#### Empty inboxes: paper, GMail, Outlook, Joplin, AM
 
 Categorize everything and clean up all inboxes I can have. First go with paper notes, then emails (gmail + outlook), then note taking application (for now it's Joplin), and finally AM category *Inbox*
 
 If you see something that should be planned for this month, set it right away.
 
-#### Plan Tasks for the Next Week (Selecting from This Month)
+#### Plan tasks for the next week (selecting from this month)
 
 Done on: **Planning > Weekly**, working from *This month* list
 
 Because everything was planned for *this month*, I can just bring relevant tasks to next week.
 
-#### Schedule Tasks for Monday by Checking Next Week List
+#### Schedule tasks for Monday by checking next week list
 
 Done on: Daily view for tomorrow, working from *This week* list
 
-### Daily Scheduling
+### Daily scheduling
 
 Because there is no "Daily review" strategy yet, I have a recurring task for that. It repeats every Wed and Fri, just because I'm still getting accustomed to always do it. When I'm ready, it will be repeated every day except for Sunday, where weekly review is done.
 
@@ -270,7 +270,7 @@ I use **Smart List Day Alerts** strategy for finding and fixing potential planni
 
 * tag *ping* (1 day) --- reminds me ask someone everyday if s/he finished the task
 
-### Occasional Tasks
+### Occasional tasks
 
 I was not able to setup this correctly in AM yet, so I'm using some hacks around it. Basically, these are tasks which I want to do every 15-40 days, without specifying exact day. One of the tasks is *Productivity system review*. It has a note with questions which I ask while going through all my tasks and projects:
 
@@ -286,7 +286,7 @@ I was not able to setup this correctly in AM yet, so I'm using some hacks around
 
 Goal is to remove or reformulate tasks.
 
-## Ending Thoughts
+## Ending thoughts
 
 Of course this is just a small part of AM experience. I like being able to create work sessions for working on projects in pomodorro-style chunks. Templates are awesome and I use them for mindful book reading projects (reading, making notes, transferring them to Joplin). Gamification abilities are cute and I will explore them more, when I'll be more comfortable and less procrastinating.
 

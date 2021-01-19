@@ -5,7 +5,7 @@ Category: Weekly Hmms
 og_image: og_wh_5.png
 ---
 
-## Advent Of Code
+## Advent of code
 Last week I forgot to mention that I started solving the [Advent of Code](https://adventofcode.com/) challenges. This is my first year, so I don't even try to have elegant solutions. Old trusty Python, [lists' and dicts' galore](https://github.com/aviskase/advent-of-code).
 
 The reason is simple: the goal is to go through all 25 days. Being consistent is not easy, and today I had to solve two days because of yesterday's Christmas party.

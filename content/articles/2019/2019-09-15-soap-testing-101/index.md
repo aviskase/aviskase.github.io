@@ -97,7 +97,7 @@ And response:
 
 Read details about SOAP on [w3schools](https://www.w3schools.com/xml/xml_soap.asp).
 
-### SOAP Extensions
+### SOAP extensions
 
 Occasionally you'll bump into SOAP extensions with names like `WS-`. One of the most common is [WS-Security](https://en.wikipedia.org/wiki/WS-Security) which is used for encryption and digital signatures. Often it's combined with WS-Policy for managing service access rights.
 
@@ -118,7 +118,7 @@ Extension can be complex and intimidating. You can skip learning about them in d
 
 SOAP is a serious business: all this theory and standards. And XMLs tend to be *huge*. You *can,* but you *don't want* to use tools like notepad and cURL for daily work. But don't worry, there are tools to make life easier with SOAP.  
 
-### XML&XSD Editors
+### XML&XSD editors
 
 As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are [Oxygen](https://www.oxygenxml.com/) (cross-platform) and [Altova](https://www.altova.com/) (Windows-only); both are not free. These are feature-heavy applications used by analysts.
 
@@ -142,23 +142,23 @@ Testing SOAP services almost always means using [SoapUI](https://www.soapui.org/
 
 I've come up with eight possible levels of SoapUI mastery.
 
-#### Level 1: Sending Requests
+#### Level 1: sending requests
 
 Learn how to create a project based on WSDL. SoapUI can generate all requests for you; all you need to do is to check their correctness and click a "Send" button. After getting used to send valid requests you'll need to start creating invalid ones to get expected error messages.
 
-#### Level 2: Using "Test Suites" and "Test Cases"
+#### Level 2: using "Test suites" and "Test cases"
 
 Start writing mini-autotests. Tests suites and test cases allow creating automation scenarios, prepare test data, and automatically assert responses. At first you can use them simply for organization. For example, if you filed an issue, you'd want to quickly check its fix and for that you can have a separate test suite with requests specific to each issue.
 
-#### Level 3: Writing Assertions
+#### Level 3: writing assertions
 
 After using cases for some time, you'll want to make them automatically asserted to mark valid responses as green and invalid ones as red. SoapUI has lots of assertion types, but the simplest ones are `Contains` and `Not Contains` which you can use to check existence of some string in the response. These assertions also support regular expressions.
 
-#### Level 4: Using XPath and/or XQuery in Assertions
+#### Level 4: using XPath and/or XQuery in assertions
 
 [XPath](https://www.w3schools.com/xml/xpath_intro.asp) is a familiar thing for those who work on UI automation with Selenium.  In short, XPath is used to search for elements inside XML-document. [XQuery](https://www.w3schools.com/xml/xquery_intro.asp) is a similar technology which can use XPath "inside"; this language is way more powerful and SQL-like. Both can be used in assertions and will make checks more robust and precise.
 
-#### Level 5: Writing Complex Checks with Special Steps
+#### Level 5: writing complex checks with special steps
 
 Test cases can contain several requests and other special steps, which can form a user flow (for example, a scenario "create entity → export entity"). Some of those steps are:
 
@@ -168,7 +168,7 @@ Test cases can contain several requests and other special steps, which can form 
 * `Run TestCase` (help to reuse common test cases)
 
 
-#### Level 6: Using Groovy Scripts
+#### Level 6: using Groovy scripts
 
 SoapUI supports writing scripts in Groovy language. The simplest idea is to generate data embedding Groovy via `${=}` inside a request body. For example:
 
@@ -178,11 +178,11 @@ SoapUI supports writing scripts in Groovy language. The simplest idea is to gene
 More complex scripts can be used in separate steps and assertions.  At some point you'll notice you tend to write everything inside script step instead of steps from level 5.
 
 
-#### Level 7: Using MockServices
+#### Level 7: using MockServices
 
 SoapUI can generate mock objects based on WSDL. It's a crude service simulation which you can use to write and debug test cases before they are actually available for testing. Also, you can use them in place of temporarily down services.
 
-#### Level 8: God-Mode
+#### Level 8: god-mode
 
 You recognize differences between free and pro versions of SoapUI. You use SoapUI as a library from code. You use plugins and run test cases via CLI and/or CI. Your tests cases are elegant and easy to support. You know all the angles! I envy you.
 
@@ -190,7 +190,7 @@ You recognize differences between free and pro versions of SoapUI. You use SoapU
 Or not. Presently I don't use any GUI tools for API testing except for exploratory sessions. 
 {{< /note >}} 
 
-### Testing with Code
+### Testing with code
 
 At some point you'll have a feeling that it's more efficient to use programming languages for writing tests. That's fine. SoapUI is a GUI application and has its drawbacks; some of them are resolved with pro version, while others require huge and brittle scripting hacks. 
 

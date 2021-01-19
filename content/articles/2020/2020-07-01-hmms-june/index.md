@@ -7,7 +7,7 @@ og_image: og_h_june.png
 
 Time for the list of things I found interesting/amusing this month. 
 
-## Link Soup
+## Link soup
 
 Let's start with the good news: [OpenAPI 3.1.0 RC is out!](https://www.openapis.org/blog/2020/06/18/openapi-3-1-0-rc0-its-here). Webhooks and reconciliation with JSON Schema are the highlights of the version. I hope tooling support won't lag this time.
 
@@ -21,7 +21,7 @@ Cool little apps I was recommended:
 - For knowledge management: [Obsidian](https://obsidian.md/) (more about it in the next article)
 
 
-## Positioning Change
+## Positioning change
 
 And, finally, the regular column "I kinda don't like testers." This month I tracked all testers-centric communities and articles to determine how useful these sources of information are for me. The result was as expected: noise to signal ratio was appalling. I'm tired of:
 
@@ -46,6 +46,6 @@ Thus, I made some decision:
 
 **5.** Do I contribute to the same noise? Perhaps. Can't promise, but I'll try not to. Obviously, these _Hmms_ aren't really original content, but [written reflection is a great way to process information](https://eugeneyan.com/writing/reading-note-taking-writing/), sorry!
 
-## P.S. The Saddest YouTube's Recommendation
+## P.S. the saddest YouTube's recommendation
 
 YouTube recommended me to rewatch [the opening sequence to the "Valerian and the City of a Thousand Planets"](https://www.youtube.com/watch?v=q6oTziHKM_c). The movie is forgettable, but this small part is a masterful tearjerker, _especially now._

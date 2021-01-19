@@ -15,7 +15,7 @@ Remark in the parentheses is a bit stupid. It was discussed in the [AB Testing e
 
 It looks like there are two main themes in that article.
 
-## Theme One: Finding a Job as a Tester
+## Theme one: finding a job as a tester
 
 A bit of a background: when I was writing that piece, I was in depression. That's a different story about development culture and its effect on one's mind, but I'll write about it sometime later. So, depression. And a bit of worrying about getting the first job locally in Canada.
 
@@ -26,7 +26,7 @@ Now, the question is, do I *want* to work in such companies? **No.**
 If I would want to continue as a tester-generalist, without specializing in some future-proof niches like pentest or perftest (at least, they seem to be future-proof), a sweet spot would be companies closer on a way to the "tester-less" transformation, but still needing some help on that way. Will there be enough such companies? Probably, yes. Getting position will be definitely harder but not impossible.
 
 
-## Theme Two: Clay Metaphor
+## Theme two: clay metaphor
 
 Nowadays I agree even more with the metaphor I came up with in that article. Yes, we are a clay or a sealing foam. We, testers, should help others in improving quality. That means that our work is immensely context-dependent: different organizations need different "holes" to seal. 
 

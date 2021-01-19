@@ -35,7 +35,7 @@ Now, if we go even further, _what is a native pronunciation?_ Standard American?
 
 Obvious point with the same examples as before. But that's English, the de-facto new Latin. Let me tell you an anecdote from Russian. I was born in the Northern Kazakhstan in the city on the border with Russia. You'd imagine not many vocabulary differences. Yet, the moment you cross the border everyone can tell that you're from Kazakhstan just by one extremely common word: _"sotka"_ (contraction for "a cell phone"). In Russia they use _"mobilka"_ (contraction from "a mobile phone"). This reminds me of "smoke" vs "sanity" testing a lot.
 
-## Words Origins
+## Words origins
 
 Some words with the same spelling can have completely distinct origins. For example, _"bear"_:
 
@@ -48,7 +48,7 @@ People tend to make wrong assumptions about modern spelling and pronunciation. W
 
 By the way, in Russian _"тестер"_ while being direct calque of "tester" is a name for devices like multimeter. Electrical engineers coined this term in Russian earlier than our role was invented (so we are named "тестировщик" ~ "testist"). It's quite funny considering how much emphasize is there on testing being human activity. 
 
-## Evolution of Languages
+## Evolution of languages
 
 All aforementioned are just smaller parts of overall language evolution. For some reason we are accustomed to perceive a language as something stagnant and with rigid unchanging rules. Maybe because it's easier to teach like that in school? And nothing can be further from true because languages are perpetually in flux, either for historical or geographical reasons. Before it was happening naturally without many obstacles, but now we have schools, official authorities like Académie française, and beloved grammar-nazis. 
 

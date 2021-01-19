@@ -8,7 +8,7 @@ og_image: og_how-to-test-api-usability-part-2.png
 
 This is part two of a two-parter. Check out [part one]({{< ref "2019-10-13-how-to-test-api-usability-part-1" >}}).
 
-## Empirical Methods
+## Empirical methods
 
 The distinction between analytical and empirical methods is that the latter investigates how real users will use the product.
 
@@ -23,7 +23,7 @@ And don't forget to monitor not only successful requests but also failures. Imag
 
 Another thing to monitor is data volumes. Analysts from the project I worked on assumed that  type A documents should be more common than type B documents, so the service was better optimized for the first type. It was quite a surprise when we did a simple SQL count and found out that the number of type A documents were 600 thousand, while type B accounted for 80 million. After that discovery, we had to prioritize tasks related to service B way higher.
 
-### Support Tickets
+### Support tickets
 
 If you have a support team, you're in luck: analyze tickets, pick out those related to usability, and identify the most serious issues. Previously I [wrote about accidental Cyrillic symbols instead of English in service schema]({{< ref "2019-09-02-your-api-is-your-public-image" >}}): these problems resurfaced specifically via support.
 
@@ -32,7 +32,7 @@ Moreover, support tickets offer insight into the most common tools and workflows
 ### Surveys
 Not everyone has a support service. Or perhaps it doesn't give enough information. In that case, surveying API users is helpful. There is no point in giving examples: this topic is highly contextual. But you can start with the basics: "What do you like?", "What do you don't like?", and "What would you like to change?".
 
-### User Sessions
+### User sessions
 User sessions are the most expensive and cumbersome usability evaluation method. You need to find people based on a typical user profile, give them some tasks, watch the process, and analyze results.
 
 Each company administers sessions in its own way. [Some perform remote sessions][usability-dropbox], [others invite developers on site][pamelafox]. In both cases developers can use their own laptops and favorite IDEs: first, it's closer to real-world conditions, second, it minimizes stress from an unknown environment.
@@ -74,7 +74,7 @@ We can also combine personas with cognitive dimensions. Create [a radar chart](h
 
 Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn't satisfy these criteria.
 
-## Summing Up
+## Summing up
 
 Readers comfortable with GUI usability testing would say: "That's exactly the same stuff!". And you're right, there is nothing supernatural about API usability. Even though it's called an _application programming_ interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That's why almost everything applied for GUI usability evaluation is reusable for API with some adjustments.
 

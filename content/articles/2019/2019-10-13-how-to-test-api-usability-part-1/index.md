@@ -16,11 +16,11 @@ Today (hopefully) no one doubts the necessity of usability testing of GUI. Yet, 
 
 For testing API usability we can use methods developed in the field of HCI; same as used for GUI. Generally, these methods can be divided into two categories: analytical and empirical.
 
-## Analytical Methods
+## Analytical methods
 
 Analytical methods involve exploration based on some expert knowledge. Loosely speaking, you and/or the whole dev team try to evaluate and find hypothetical usability problems without users input.
 
-### Heuristic Evaluation
+### Heuristic evaluation
 
 Easiest way is to use heuristics. There are no strict lists of what criteria you should check; all depends on what kind of API you have (e.g., library or REST service).
 
@@ -50,7 +50,7 @@ Next example is about error handling. One service I tested had a very common err
 
 There are other, more "serious" heuristics for API. Often they target specific technical details. You need to be able to code to understand them. For example, [criteria from Joshua Bloch][bloch]. Or [a usability research made by Microsoft][ms-constructor] to determine which constructor is better: default constructor with setters and getters or constructor with required parameters. Results showed that the first method was more preferable; this became a heuristic for library design.
 
-### Cognitive Dimensions
+### Cognitive dimensions
 
 These are distinct criteria used predominately for evaluating usability of notations, user interfaces, and programming languages --- or, generally speaking, information artifacts. In my view, they intersect with some heuristics, but there is a difference: heuristics are contextually selected by some experts, whereas cognitive dimensions are more or less stable set of principles. You can read about the main set described by Thomas R.G. Green and Marian Petre [in the Wikipedia](https://en.wikipedia.org/wiki/Cognitive_dimensions_of_notations).
 
@@ -71,7 +71,7 @@ Some companies customize cognitive dimensions for their needs, like [a framework
 
 Here is an example for domain correspondence. Service main entity was a house. Common apartment building can have several entryways, each leading to set of apartments. But in Kaliningrad this doesn't apply: a typical address there can look like "2-4 Green Street," where entryways are house 2 and house 4. This bizarre (and initially unknown) domain model broke the whole logic behind API design. For instance, we had to allow users to add house-level metering devices to entryways if it's actually a house.
 
-### Cognitive Walkthrough
+### Cognitive walkthrough
 
 While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.
 
@@ -90,7 +90,7 @@ In existing API workflow you had to do it in 3 steps  instead of 2:
 
 This middle step is objectively unnecessary and generates additional server load. Here, using cognitive walkthrough, we also detected an inconsistency with heuristic "minimal working code size."
 
-### API Peer Review
+### API peer review
 
 Heuristics and walkthroughs are great methods, but they could be quite subjective. For better objectivity you'd better use group evaluations, where several persons analyze API. You can read about how and why this method can find usability problems which are rarely found by empirical methods in [this Microsoft paper][ms-group].
 

@@ -34,11 +34,11 @@ Let's talk about public APIs a bit more. For some companies providing APIs is th
 
 If you publish public API with bad documentation, versioning mess, and tons of functional issues, make no mistake, external developer can (and maybe should!) assume that all your system is developed is such manner. Will they build their services around *such* system and attract new users? Nope. Will they persuade their bosses and friends against using and/or buying your product? Probably. Don't forget that people who are not so tech-y value developers' opinions a lot. And of course, those developers could also give your a bad reputation by complaining on social networks or forums. Therefore, before publishing even the tiniest API, you should think about its quality.
 
-## Four Ways to Fuck up a Public API
+## Four ways to fuck up a public API
 
 There are different techniques for assessing API quality (for example, [hierarchy of needs](http://apiux.com/2013/05/29/api-hierarchy-needs/)). Let's talk about four main ways to be an awful API:
 
-### Broken Functionality
+### Broken functionality
 
 Sounds banal, but a service should work. And it should provide functionality it was created for. On one of my projects, there was an embarrassing situation with an export. We tested API with different objects under various conditions, but only with the small number of objects. All was fine until we found a bug on export with lots of data. The thing is that the key purpose for this service was to provide an ability to do massive exports, therefore, the service didn't fulfill its main reason for existence.
 
@@ -61,7 +61,7 @@ So, what if your service experiences problems? How external users will learn abo
 
 And beware, this page should not on the same infrastructure as the services it's showing! It would be quite embarrassing if [it goes down at the same time your services go down](https://twitter.com/awscloud/status/836656664635846656).
 
-### Crappy Usability
+### Crappy usability
 
 When we hear the word "usability", we usually think about GUI: buttons and dialogs. I think GUI usability is somewhat overrated: even in the ugliest app you can guess your way by trial and error. With API it won't work:
 
@@ -85,7 +85,7 @@ Cyrillic `Р/р`  (pronounced like "r") looks exactly like Latin `P/p`.
 * Don't forget about versionning (in API and its documentation). The older your services are, more careful you should be with incompatible changes. Documentation should always be up-to-date: sounds obvious, but we had a big fuck up when someone accidentally published documentation for upcoming API version and external developers started trying to use these new features, didn't find them, and bombed support team with "nothing works again" tickets.
 
 
-### Security Holes
+### Security holes
 
 When you publish API you also increase a potential attack surface for hackers. First of all, think about authorization and authentication processes. Typically, there are special access tokens for API users. Maybe simple developers' tokens will be enough for your case, maybe you'll need to use flows like OAuth. In some cases you should sign requests and responses.
 

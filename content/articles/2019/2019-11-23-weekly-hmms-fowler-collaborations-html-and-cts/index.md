@@ -7,13 +7,13 @@ og_image: og_wh_2.png
 
 New week, new hmms!
 
-## Martin Fowler and Exploratory Testing
+## Martin Fowler and exploratory testing
 
 _All_ testers' slack groups, forums, and blogs erupted this week with the tidings of joy: [Martin Fowler wrote a post about exploratory testing](https://martinfowler.com/bliki/ExploratoryTesting.html). Of course, it seems a bit _late_ and _cursory,_ but at least now we have _a very respected source_ to point to. 
 
 ## Collaborations
 
-### Mob Programming
+### Mob programming
 
 Finally found time to read a ["Mob Programming Guidebook" by Maaret Pyhäjärvi](https://mobprogrammingguidebook.xyz/). I'm not entirely sure about applying it at the moment, but it looks like an interesting method for knowledge sharing facilitation.
 
@@ -30,11 +30,11 @@ And contributions style roles can be reused as hats in other activities:
 * rear admiral (helping designated navigator do better and learn)
 * archivist (improving team visibility)
 
-### Tips for Code Review
+### Tips for code review
 
 Google Testing blog is still alive and has posted a nice [short guide about being a good code reviewer](https://testing.googleblog.com/2019/11/code-health-respectful-reviews-useful.html). The best thing is that there are not only tips for reviewers but also _for authors._ Likewise, they could and should be applied for issue reports and other communications.
 
-## Validation for Email Inputs
+## Validation for email inputs
 
 Standards are weird. We had a tiny funny problem this week with an OpenAPI spec and a `format: email.` The context:
 
@@ -49,7 +49,7 @@ The dev who worked on fixing the bug noticed an interesting behavior. If you use
 
 Chrome does not complain about internationalized values. And it means that Firefox implemented HTML5 spec _too well,_ introducing a confusing behavior. Oops.
 
-## Carpal Tunnel Syndrome 
+## Carpal tunnel syndrome 
 
 I wasn't diagnosed with CTS (yet), but my posture at home is awful, so my right hand _hurts._ I don't have a proper desk and usually I sit with a laptop at a _round table._ Thus, there is not enough room to position a "mouse" hand.
 

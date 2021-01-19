@@ -10,7 +10,7 @@ and leaves no time to do more thematic writing. Of course, there are other reaso
 I had a cold (TWICE!) and being ill isn't the best motivation ever. 
 
 
-## Knowledge Bits
+## Knowledge bits
 
 I didn't read or watch much, but some of the interesting findings were:
 
@@ -21,7 +21,7 @@ I didn't read or watch much, but some of the interesting findings were:
 * Great summary about [pair programming by Birgitta Böckeler and Nina Siessegger](https://martinfowler.com/articles/on-pair-programming.html).
 * A very old article [by Robert L. Glass on fundamental software engineering facts](https://pdfs.semanticscholar.org/7eee/629b22cd3db63296cac13a0c37cb0a7235f6.pdf). Perhaps some of the facts are questionable, but "Reviews and inspections" section is awesome.
 
-## Work Things
+## Work things
 
 The company I work for was recognized as one of [Montreal's top employers](https://reviews.canadastop100.com/top-employer-netgovern). 
 While I'm quite skeptical of such ratings and rewards, I know for sure that _we are better than some other winners._ 

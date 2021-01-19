@@ -16,18 +16,18 @@ As I am not qualified to give an opinion on automation topics (because I don't h
 > Sometimes, testers use programming skills to help their testing. Sometimes, that code automates some application functionality. That's it.
 
 
-### Testing: Failing to Succeed
+### Testing: failing to succeed
 There is a very famous concept called "Orders of Ignorance" introduced by Phillip Glen Armour ([more here](https://www.researchgate.net/publication/27293624_The_five_orders_of_ignorance)). Chapter's idea is that mostly tests are done on 0OI level, but we should never forget about 2OI test. 0OI is a lack of ignorance (I know) and 2OI is a lack of awareness (I don't know what I don't know).
 
 > 0OI tests are _knowledge-proving_ tests, while 2OI tests are _knowledge-acquiring_ tests.
 
-### The Robots are Taking Over
+### The robots are taking over
 > Humans fail when they don't use automation to solve problems impossible or impractical for manual efforts.
 
 
 > Automation fails when it tries to do or verify something that's more suited for a human evaluation.
 
-### To Automate ...?
+### To automate ...?
 > _Good_ testers test first --- or at the very least they think of tests first. 
 
 > _Great_ testers first think about how they're going to approach a testing problem, then figure out what's suitable for automation, and what's not suitable. 
@@ -37,7 +37,7 @@ There is a very famous concept called "Orders of Ignorance" introduced by Philli
 
 Alan's heuristic when to automate: "I'm Bored"
 
-### The Coding Tester
+### The coding tester
 Summary:
 
 * the role of a coder-tester _is not_ to automate everything
@@ -46,12 +46,12 @@ Summary:
 * programming knowledge _does not_ destroy "a proper tester angle"
 * background similar to customer's _does not_ make you a customer
 
-### GUI Shmooey
+### GUI shmooey
 > For 95% of all software applications, directly automating the GUI is a waste of time. 
 
 > For the record, I typed 99% above first, then chickened out.
 
-### Design for GUI Automation
+### Design for GUI automation
 Alan's main points for disliking GUI automation:
 
 * It's (typically) fragile --- tests tend to break / stop working / work unsuccessfully often
@@ -63,7 +63,7 @@ Alan's main points for disliking GUI automation:
 
 > I like GUI automation is in stress or performance issues.
 
-### It's (probably) a Design Problem
+### It's (probably) a design problem
 
 * Record & Playback automation is a non-starter
 * Basic verification that would be hit by anyone walking through the basics of the application isn't worth automation
@@ -74,15 +74,15 @@ Alan's main points for disliking GUI automation:
 * There is always a better alternative to Sleep statements
 * UI is fragile, its testability should designed
 
-### In the Middle
+### In the middle
 Alan's brainstorming technique: first spend a reasonable amount of time focusing on the extremes --- because often, some great ideas for "the middle" comes out of that brainstorming. 
 
-### Test Design for Automation
+### Test design for automation
 > The first step --- and most important --- is to think how you're going to test.
 
 > From that initial test design effort, you can deduce what aspects of testing could be accomplished more efficiently with automation (and without).
 
-### Orchestrating Test Automation
+### Orchestrating test automation
 > Designing good tests is one of the hardest tasks in software development.
 
 ### LOL --- UR AUTOMASHUN SUCKZ!
@@ -99,7 +99,7 @@ Your tests don't suck:
     * when bug is fixed, it's checked automatically
     * generation of "Test Result Report"
 
-### Musings on Test Design
+### Musings on test design
 > Some tests can only be run via some sort of test automation.
 
 > Some tests can only be done via human interaction.
@@ -110,7 +110,7 @@ Your tests don't suck:
 
 > There is only testing
 
-### Beyond Regression Tests & Testing with Code
+### Beyond regression tests & testing with code
 > Useful tests are tests that provide new information. 
 
 > An automation strategy that only performs regression testing is short-sighted and incomplete.
@@ -123,7 +123,7 @@ How to make test useful:
 * scaled fault injection 
 * fuzzing
 
-### More on Test Design
+### More on test design
 > Test Design ideas are _endless._
 
 

@@ -46,7 +46,7 @@ The direct opposite are _plain text notes_ in [Sublime](https://www.sublimetext.
 
 ![Sublime with PlainNotes](km_sublime.png)
 
-### Mind Maps
+### Mind maps
 At some point I learned about _mind mapping_ and tried almost all installable applications for that, including:
 
 - [XMind](https://www.xmind.net/): UX is great, but features in the free tier are meh, especially in the last versions. Likes to eat memory.
@@ -109,7 +109,7 @@ There are apps that simplify the process, like [Obsidian](https://obsidian.md/).
 
 I've started slowly migrating my non-work notes there, and it's hard. You get used to rigid hierarchies based on folders. You don't have to stop using them, but it makes sense with approaches like [@nickmilo's](https://github.com/nickmilo/IMF-v3) (which I follow loosely).
 
-## Non-Text Content
+## Non-text content
 
 Only digital:
 

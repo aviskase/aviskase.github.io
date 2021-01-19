@@ -6,7 +6,7 @@ draft: false
 
 [As I mentioned in one of the last articles]({{<ref 2020-08-30-remembering-javascript-and-typescript>}}) I was planning to migrate this blog from [Pelican](https://github.com/getpelican/pelican) to other static site generator.
 
-## Why and Where
+## Why and where
 
 Reasons:
 
@@ -29,7 +29,7 @@ As you have guessed by the title, I went with Hugo because:
 - I'm more interested in fast builds than loading
 - I heard that Go is the dumbest language in the world, might as well experience some of it xD
 
-## Migration Shenanigans
+## Migration shenanigans
 
 Pelican and Hugo have a very different template format. Rewriting took most of the time, but as you can see, there are no visual changes. I also had to write Atom feed template almost from scratch and test it to make sure that `id`'s are the same and the whole feed won't be completely regenerated (like it happened the last migration.)
 
@@ -44,7 +44,7 @@ Second problem was the markdown sources. They had special Pelican front matter f
 Third problem was images. The simple solution would be to set them all to `static` folder, but it's not a recommended approach because you wouldn't be able to use image processing features. Thus, you should go with `assets` or [page bundles](https://gohugo.io/content-management/page-bundles/). I prefer bundles because they create a clear distinction where each image belongs to. 
 
 
-## Changes to the Site
+## Changes to the site
 
 While I was trying to preserve as much as I could, there are some _intentional_ changes:
 

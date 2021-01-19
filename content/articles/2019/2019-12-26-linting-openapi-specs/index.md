@@ -11,13 +11,13 @@ Last yearly company retrospective showed that we want to be better at knowledge 
 I've started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, _testers are part of the dev team, duh_). Also, it's an opportunity to organize my brain, so I'll be posting notes here for future reference. One thing though, **these posts are not supposed to be comprehensive:** there is only information applicable to my team!
 
 
-## Validation vs. Linting
+## Validation vs. linting
 Anyone remotely familiar with coding knows that validators and linters are important for successful development. Shortly, validators check "does X conform to the standards/specification," whereas linters complain about style and design issues. Usually, tools combine both in some way.
 
 Here I'll cover linters for OpenAPI description documents. But you can use linting for everything, from obvious source code files to shell scripts or markdown documents.
 
 
-## Why We Need a Linter for OpenAPI Description Docs
+## Why we need a linter for OpenAPI description docs
 
 We've started writing style guidelines for our APIs. Usually, I am that nitpicky person to review description docs; but I am lazy. _I choose to automate myself out of the job._ I don't want to spend time checking for obvious style violations like capitalization or error definitions. And by the way, it would speed up the process.
 
@@ -31,7 +31,7 @@ Because of that, our current requirements for the linter are:
 
 
 
-## Current Implicit Validation
+## Current implicit validation
 
 Right now we have description docs validation during integration tests, where we use [bravado](https://github.com/Yelp/bravado) library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses [swagger_spec_validator](https://github.com/Yelp/swagger_spec_validator). Here is a small script to show how it's typical _exceptional_ output looks like.
 
@@ -110,7 +110,7 @@ So, back to Speccy. It was a popular tool once, but won't work in our company:
 * no support for OpenAPI 2
 * is (was?) developed by WeWork. Ouch.
 
-## IBM OpenAPI Validator
+## IBM OpenAPI validator
 [The next candidate is from IBM](https://github.com/IBM/openapi-validator). Respectable origin.  I like how it reports problems with the exact origins of errors:
 
 ```text

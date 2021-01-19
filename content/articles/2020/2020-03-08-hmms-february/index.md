@@ -7,7 +7,7 @@ og_image: og_h_february.png
 
 It's March already, time to summarize February!
 
-## APIs Trainings
+## APIs trainings
 
 I did a small company-wide training about APIs. Here is [the main deck](https://github.com/aviskase/trucs/blob/master/api101.pdf)
 and [supplementary deck](https://github.com/aviskase/trucs/blob/master/api_salad.pdf) left from dev lunch&learn. 
@@ -31,7 +31,7 @@ While ["Why we need to get rid of thought leaders"](https://www.a-sisyphean-task
 article by Adam Knight makes interesting points, I actually hoped it to cover "the leaders" problem. And this segues us
 to the next section...
 
-## Leaders and Their Followers
+## Leaders and their followers
 
 Perhaps I'm stating the obvious fact, but here it is: do not ever assume that appreciating content created
 by the person correlates with wanting to be/stay a part of their community. Because true meanings are shown in 

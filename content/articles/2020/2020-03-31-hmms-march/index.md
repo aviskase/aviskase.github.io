@@ -7,7 +7,7 @@ og_image: og_h_march.png
 
 Coronavirus-free edition!
 
-## Top X Videos and Readings
+## Top X videos and readings
 
 ![Meme: APIs, APIs everywhere](apis_meme.jpg)
 
@@ -44,7 +44,7 @@ What's funny is that if you read that article carefully you won't find any menti
 None. There are tech writers, advocates, but no testers whatsoever. In fact, in any non-Postman induced article about API
 there are no presence of testers. _And it's totally fine._
 
-## Remote Work
+## Remote work
 
 Sorry, it's not totally coronavirus-free edition. Almost everyone works remotely now, so there is an avalanche of 
 articles about how to work from home. The company I dearly love even decided to offer _a payed_ conference (frack you).

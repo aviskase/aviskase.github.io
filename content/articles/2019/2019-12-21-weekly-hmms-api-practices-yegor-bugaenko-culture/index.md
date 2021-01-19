@@ -5,7 +5,7 @@ Category: Weekly Hmms
 og_image: og_wh_6.png
 ---
 
-## API Practices If You Hate Your Customers
+## API practices if you hate your customers
 A fun [article from ACM Queue magazine](https://queue.acm.org/detail.cfm?ref=rss&id=3375635) about how to alienate
 customers from using your API. I like an ["anti-tutorial" form](https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/), 
 it is easier to recall bad patterns and behaviors.
@@ -28,7 +28,7 @@ Once we tried to research our competitors and we couldn't find even screenshots.
 a potential customer is supposed to evaluate your product if you hide **everything**?
 
 
-## Yegor Bugaenko on QA vs Testing
+## Yegor Bugaenko on QA vs testing
 
 Yegor Bugaenko presented ["Quality Assurance vs. Testing" on QA Fest 2019](https://www.youtube.com/watch?v=jZitXMQaXvE).
 
@@ -44,7 +44,7 @@ number of bugs logged. I also was annoyed by his notion that testers should not 
 My practice shows that working with dev together and fixing bugs as we go is way more productive and requires less time. 
 Perhaps, his ideas works in XDSD, where everyone is expendable, but I hope others won't borrow them into normal agile teams.
 
-## Cultures and Sci-Fi
+## Cultures and sci-fi
 
 Speaking of teams.
 

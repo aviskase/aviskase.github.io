@@ -13,7 +13,7 @@ This post initializes a series of weekly ponderings, interesting links, and othe
 
 Oh, and if you have no idea what `__init__` is, that's [from Python](https://docs.python.org/3/reference/datamodel.html#object.__init__).
 
-## Write the Docs Podcast: Episode 25
+## "Write the Docs" podcast: episode 25
 
 I've just started plunging in and out tech writers' media, and so far it keeps amusing me. [WTD #25](https://podcast.writethedocs.org/2019/10/20/episode-25-how-devs-use-api-documentation-andrew-head/) is interesting for two things.
 
@@ -21,7 +21,7 @@ First, this episode covers research on how developers use API documentation. Unl
 
 Second, I noticed again that we, testers, and API tech writers have a common identity crisis: given enough time, developers can do our work. One guy from the podcast sounded relieved when he heard that not all the docs and comments in Google are written by devs. Maybe Alan and Brent should pitch modern testing principles to tech writers too?
 
-## Read the Damn Code
+## Read the damn code
 
 This week testing slack group had an almost holy war about testers looking at code. The consensus seemed to be "access to code is awesome," nevertheless, there were other opinions:
 

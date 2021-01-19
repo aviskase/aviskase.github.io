@@ -9,7 +9,7 @@ To assume I could push anything on Fridays was too optimistic. Thus, I'll commit
 
 Let's start.
 
-## SaaS Valuations
+## SaaS valuations
 
 My current company, [NetGovern](https://www.netgovern.com/), operates with an open-book management mindset. Apart from other information, all employees know company finances so we can better understand what is our real position and where we plan to go next. 
 
@@ -22,7 +22,7 @@ I've created a [mind map](https://www.mindomo.com/mindmap/saas-company-valuation
 <iframe width="500" height="500" src="https://www.mindomo.com/outline/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" frameborder="0" allowfullscreen>Your browser does not support frames. <a href="https://www.mindomo.com/outline/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" target="_blank">View</a> this map on its original site. It was created using <a href="https://www.mindomo.com" target="_blank">Mindomo</a>.</iframe>
 
 
-## Some Tech Writers Avoid the Word "Writer" in Their Titles
+## Some tech writers avoid the word "writer" in their titles
 
 The last myth from [the podcast "10 myths about API documentation"](https://idratherbewriting.com/blog/ten-myths-about-api-documentation/) is: _people will respect you more if the word "writer" isn't in your job title._
 

@@ -35,7 +35,7 @@ For web services, the most valuable sources are RFC, API description and schema 
 - [gRPC](https://grpc.io/)
 - [GraphQL](https://graphql.org/)
 
-## Dev Experience
+## Dev experience
 
 Barebone foundation is important, but let's add some meat. While you can try to speculate about practical differences between GraphQL and REST+HTTP/2, you'll learn faster from those who develop and use APIs as their career. I'm talking about developers, of course. For some inexplicable reason, some so-called "professionals" still perpetuate a myth about testers not being able to understand devs' books and articles, so prove those haters wrong!
 
@@ -50,7 +50,7 @@ I [like API usability]({{< ref "2019-10-13-how-to-test-api-usability-part-1" >}}
 
 By the way, there is a term in HCI: developer's experience. DX is like UX, but when a user is a developer. 
 
-## Tech Writers
+## Tech writers
 
 I insist that without proper documentation an otherwise perfect API is still a shit. And who knows about docs better than technical writers? APIs are a hot topic for them, simply because that's higher-paying field.
 
@@ -59,7 +59,7 @@ I insist that without proper documentation an otherwise perfect API is still a s
 
 On the side note, it's curious from the tester's viewpoint that tech writers have the same holy war about how "technical" they should be. Cute, isn't it?
 
-## Vendors and Companies
+## Vendors and companies
 
 Almost all IT companies now have blogs and even conferences, and those prove to be an excellent source. I'd suggest paying attention to:
 

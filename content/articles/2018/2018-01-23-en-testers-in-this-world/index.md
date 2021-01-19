@@ -10,7 +10,7 @@ Every tester saw those articles: "Testing is dead", "Manual testing is dead", "T
 Disclaimer: these thoughts are mine and I don't have a goal to promote or impose them on other people. As a normal human being I do understand that my opinion may change with new experience and knowledge. This article contains a documented reflection on my experience so far. Probably it'll be fun to read in 10-20 years (if I'll still be a tester) xD
 
 ---
-## Ideal World of Software Development
+## Ideal world of software development
 Imagine an ideal world of software development. Scope is clear. Everything is done on time in relaxed manner without rush. Everybody is motivated to create the best product. Everybody has happy life outside of work. No stress. Users are eager to help too. And all these aren't just for one product, but true for all software in the world. Great, isn't it? 
 
 
@@ -21,13 +21,13 @@ Let's visualize this tester-less world as a perfect disk:
 ![Ideal world of development](world_1.png)
 
 
-## Real World of Software Development
+## Real world of software development
 
 But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.
 
 ![Real world of development](world_2.png)
 
-## Testers in the Real World of Software Development
+## Testers in the real world of software development
 
 And that's where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.
 

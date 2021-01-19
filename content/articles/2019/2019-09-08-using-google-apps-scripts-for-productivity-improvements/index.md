@@ -8,7 +8,7 @@ Category: Productivity
 Google Apps Scripts are probably the most useful automation tools I've used. They can be used as "excel macros" for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task management.
 
 
-## Mark All Emails as Read
+## Mark all emails as read
 
 If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on [the script by Mike Crittenden](https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/). 
 
@@ -25,7 +25,7 @@ Do this: Mark as read
 But it was effective for cleaning up.
 
 
-## Tasks Recurring Randomly for Amazing Marvin
+## Tasks recurring randomly for Amazing Marvin
 
 I use Amazing Marvin for task&project management and currently it doesn't support randomly recurring items. In fact, no app I've tried supports that. It's a shame, because there could be several use cases for that: "spontaneous" cleaning&organizing, fun activities, ideas review.
 
@@ -36,7 +36,7 @@ Script ensures the task will be created at some point during this range, just ma
 {{< gist aviskase c986a50fd0d2a24f98302201fcdc9fd7 >}}
 
 
-## Create a Task When New Package Release Is Available on PyPI
+## Create a task when new package release is available on PyPI
 
 I have a weird project which can start only after a particular release of one python package. It's not very urgent, so no hurry, but I don't want to check for releases manually. 
 
