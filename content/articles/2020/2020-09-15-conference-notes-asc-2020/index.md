@@ -1,5 +1,5 @@
 ---
-Title: "Conference Notes: ASC 2020"
+Title: "Conference notes: ASC 2020"
 Date: 2020-09-15T23:15:49.599595
 Tags: api, conference
 Category: Other

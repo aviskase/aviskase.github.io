@@ -1,5 +1,5 @@
 ---
-Title: "Weekly Hmms: Fowler, Collaborations, HTML, and CTS"
+Title: "Weekly hmms: Fowler, collaborations, HTML, and CTS"
 Date: 2019-11-23T02:45:30.579833
 Category: Weekly Hmms
 og_image: og_wh_2.png

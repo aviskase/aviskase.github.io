@@ -1,5 +1,5 @@
 ---
-Title: "Coverage Metrics"
+Title: "Coverage metrics"
 Date: 2016-05-02
 Tags: thoughts
 Category: Testing

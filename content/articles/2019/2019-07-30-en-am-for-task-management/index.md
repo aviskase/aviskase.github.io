@@ -1,5 +1,5 @@
 ---
-Title: "Amazing Marvin for Task Management"
+Title: "Amazing Marvin for task management"
 Date: 2019-07-30
 Tags: 
 - practical

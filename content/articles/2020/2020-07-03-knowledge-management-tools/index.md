@@ -1,5 +1,5 @@
 ---
-Title: "Knowledge Management Tools"
+Title: "Knowledge management tools"
 Date: 2020-07-03T19:50:58.535336
 Tags: practical, tools
 Category: Productivity

@@ -1,5 +1,5 @@
 ---
-Title: "Mega Mind Map: Version #2"
+Title: "Mega mind map: version #2"
 Date: 2018-03-19
 Tags: practical
 Category: Testing

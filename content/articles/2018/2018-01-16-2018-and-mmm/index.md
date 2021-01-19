@@ -1,5 +1,5 @@
 ---
-Title: "2018 and Mega Mind Map"
+Title: "2018 and mega mind map"
 Date: 2018-01-06
 Tags: practical
 Category: Testing

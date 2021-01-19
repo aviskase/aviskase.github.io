@@ -1,5 +1,5 @@
 ---
-Title: "A Tester’s Guide on Hunting for API Related Sources"
+Title: "A tester’s guide on hunting for API related sources"
 Date: 2019-10-26T16:52:40.751554
 Tags: api
 Category: Testing

@@ -1,5 +1,5 @@
 ---
-Title: "Postmortem: Borking Ubuntu (Again)"
+Title: "Postmortem: borking Ubuntu (again)"
 Date: 2020-08-20T22:41:32.330195
 Tags: linux
 Category: Other

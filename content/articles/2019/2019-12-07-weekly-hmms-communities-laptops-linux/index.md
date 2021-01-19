@@ -1,5 +1,5 @@
 ---
-Title: "Weekly Hmms: Communities, Laptops & Linux"
+Title: "Weekly hmms: communities, laptops & Linux"
 Date: 2019-12-07T23:50:35.051627
 Category: Weekly Hmms
 og_image: og_wh_4.png

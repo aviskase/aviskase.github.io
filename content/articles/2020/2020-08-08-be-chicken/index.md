@@ -1,5 +1,5 @@
 ---
-Title: Be Chicken!
+Title: Be chicken!
 Date: 2020-08-08T23:42:54.998711
 Tags: processes, organizational culture
 Category: Other

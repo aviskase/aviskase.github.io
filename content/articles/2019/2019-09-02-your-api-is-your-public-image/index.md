@@ -1,5 +1,5 @@
 ---
-Title: "Your API Is Your Public Image"
+Title: "Your API is your public image"
 Date: 2019-09-02
 Tags: api
 Category: Testing

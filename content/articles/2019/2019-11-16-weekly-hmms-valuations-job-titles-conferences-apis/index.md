@@ -1,5 +1,5 @@
 ---
-Title: "Weekly Hmms: Valuations, Job Titles, Conferences, APIs"
+Title: "Weekly hmms: valuations, job titles, conferences, APIs"
 Date: 2019-11-16T02:53:21.061386
 Category: Weekly Hmms
 og_image: og_wh_1.png

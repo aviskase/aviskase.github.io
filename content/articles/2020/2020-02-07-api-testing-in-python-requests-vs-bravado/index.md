@@ -1,5 +1,5 @@
 ---
-Title: "API Testing in Python: requests vs bravado"
+Title: "API testing in Python: requests vs bravado"
 Date: 2020-02-07T23:40:44.958491
 Tags: api, practical, tools
 Category: Testing

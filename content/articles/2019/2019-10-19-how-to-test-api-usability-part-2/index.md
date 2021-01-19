@@ -1,5 +1,5 @@
 ---
-Title: "How to Test API Usability: Part 2"
+Title: "How to test API usability: part 2"
 Date: 2019-10-19
 Tags: api, usability
 Category: Testing

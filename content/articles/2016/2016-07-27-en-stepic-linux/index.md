@@ -1,5 +1,5 @@
 ---
-Title: 'Notes for Course "Intro to Linux"'
+Title: 'Notes for course "Intro to Linux"'
 Date: 2016-07-27
 Tags: linux, course, practical
 Category: Other

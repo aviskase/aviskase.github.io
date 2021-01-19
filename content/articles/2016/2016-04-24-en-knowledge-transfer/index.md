@@ -1,5 +1,5 @@
 ---
-Title: "Testing Knowledge Transfer (outline)"
+Title: "Testing knowledge transfer (outline)"
 Date: 2016-04-24
 Tags: thoughts
 Category: Testing

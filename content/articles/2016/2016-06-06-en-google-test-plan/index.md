@@ -1,5 +1,5 @@
 ---
-Title: "Test Planning: Questions by Google (outline)"
+Title: "Test planning: questions by Google (outline)"
 Date: 2016-06-06
 Tags: practical
 Category: Testing

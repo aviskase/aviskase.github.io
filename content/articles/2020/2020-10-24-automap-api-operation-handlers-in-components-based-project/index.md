@@ -1,5 +1,5 @@
 ---
-title: "Automap API Operation Handlers in Components-Based Project"
+title: "Automap API operation handlers in components-based project"
 date: 2020-10-25T22:05:10-04:00
 Modified: 2020-10-28T23:10:10-04:00
 draft: false

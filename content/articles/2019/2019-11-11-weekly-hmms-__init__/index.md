@@ -1,5 +1,5 @@
 ---
-Title: "Weekly Hmms: \\_\\_init\\_\\_"
+Title: "Weekly hmms: \\_\\_init\\_\\_"
 slug: "weekly-hmms-__init__"
 Date: 2019-11-11T03:40:16.585286
 Category: Weekly Hmms

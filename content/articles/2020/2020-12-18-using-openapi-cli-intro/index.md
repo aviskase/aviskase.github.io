@@ -1,5 +1,5 @@
 ---
-title: "Using `openapi-cli`: Intro"
+title: "Using `openapi-cli`: intro"
 date: 2020-12-20T22:26:21-05:00
 ---
 

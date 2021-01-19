@@ -1,5 +1,5 @@
 ---
-Title: "New Domain"
+Title: "New domain"
 Date: 2019-09-24
 Category: Other
 Tags: writing

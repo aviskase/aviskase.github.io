@@ -1,5 +1,5 @@
 ---
-Title: Robust APIs Are Weird
+Title: Robust APIs are weird
 Date: 2020-06-18T00:30:59.650913
 Category: Other
 Tags: api

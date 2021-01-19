@@ -1,5 +1,5 @@
 ---
-Title: "Weekly Hmms: API Practices, Yegor Bugaenko, Culture"
+Title: "Weekly hmms: API practices, Yegor Bugaenko, culture"
 Date: 2019-12-21T19:33:46.298723
 Category: Weekly Hmms
 og_image: og_wh_6.png

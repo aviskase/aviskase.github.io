@@ -1,12 +1,12 @@
 ---
-title: "Crash Course Into API-Related Terminology"
+title: "Crash course into API-related terminology"
 date: 2020-12-07T20:59:28-05:00
 see_also: ["2019-10-26-a-testers-guide-on-hunting-for-api-related-sources"]
 ---
 
- Anyone trying to dive into the world of APIs is doomed to be confused by conflicting terminology. In this post I'm gonna touch upon the main definitions and processes. I already tried it once during [lunch&learn session at work]({{< ref 2020-03-08-hmms-february >}}), but the time has come to revisit [that old presentation](https://github.com/aviskase/trucs/blob/master/api_salad.pdf) in the written form.
+Anyone trying to dive into the world of APIs is doomed to be confused by conflicting terminology. In this post I'm gonna touch upon the main definitions and processes. I already tried it once during [lunch&learn session at work]({{< ref 2020-03-08-hmms-february >}}), but the time has come to revisit [that old presentation](https://github.com/aviskase/trucs/blob/master/api_salad.pdf) in the written form.
  
- One last note: the basis for my definitions goes from [OpenAPI Glossary](https://github.com/openapi-contrib/glossary) started by [Phil Sturgeon](https://philsturgeon.com/).
+One last note: the basis for my definitions goes from [OpenAPI Glossary](https://github.com/openapi-contrib/glossary) started by [Phil Sturgeon](https://philsturgeon.com/).
  
 
 ## Main definitions

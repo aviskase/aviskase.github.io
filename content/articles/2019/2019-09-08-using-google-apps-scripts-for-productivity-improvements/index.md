@@ -1,5 +1,5 @@
 ---
-Title: "Using Google Apps Scripts for Productivity Improvements"
+Title: "Using Google Apps scripts for productivity improvements"
 Date: 2019-09-08
 Tags: practical
 Category: Productivity

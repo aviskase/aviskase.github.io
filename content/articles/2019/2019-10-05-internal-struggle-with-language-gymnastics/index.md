@@ -1,5 +1,5 @@
 ---
-Title: "Internal Struggle with Language Gymnastics"
+Title: "Internal struggle with language gymnastics"
 Date: 2019-10-05
 Tags: thoughts
 Category: Testing
