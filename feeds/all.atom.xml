@@ -2,9 +2,166 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2021-01-10T19:28:31Z</updated>
+  <updated>2021-02-01T01:57:57Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt; during API design: part one</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/" hreflang="en"/>
+    <published>2021-02-01T01:57:57Z</published>
+    <updated>2021-02-01T01:57:57Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2021-02-01:/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/</id>
+    
+    <summary type="html">Obviously, API design is much more than writing OpenAPI description doc. First of all, should it even be OpenAPI-based? If yes, using openapi-cli will make your life a bit easier.
+Example APILet&amp;amp;rsquo;s imagine you&amp;amp;rsquo;ve been asked to create an API for Stargate Network and you already did some preliminary analysis.</summary>
+    <content type="html">&lt;p&gt;Obviously, API design is much more than writing OpenAPI description doc. First of all, should it even be OpenAPI-based? If yes, using &lt;code&gt;openapi-cli&lt;/code&gt; will make your life a bit easier.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;example-api&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#example-api&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example API&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s imagine you&amp;rsquo;ve been asked to create an API for &lt;a href=&#34;https://stargate.fandom.com/wiki/Stargate_Network&#34; class=&#34;external&#34;&gt;Stargate Network&lt;/a&gt; and you already did some &lt;a href=&#34;https://tyk.io/api-design-methodologies/&#34; class=&#34;external&#34;&gt;preliminary analysis&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Stargate network consists of points in space identifiable via special addresses. When you dial an address (like a phone number), a wormhole is established between your gate and a gate at the address. Gates are physical objects, so they can be destroyed or moved to another address.&lt;/p&gt;
+&lt;p&gt;First, resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Address
+&lt;ul&gt;
+&lt;li&gt;Id&lt;/li&gt;
+&lt;li&gt;Is the address accessible? Can we dial it?&lt;/li&gt;
+&lt;li&gt;last known position in human terms (some addresses aren&amp;rsquo;t fixed points in space)&lt;/li&gt;
+&lt;li&gt;Symbols used to dial it
+&lt;ul&gt;
+&lt;li&gt;in galaxy and out of galaxy addresses&lt;/li&gt;
+&lt;li&gt;unique address if it assigned to the gate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Available gates at this address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Stargate
+&lt;ul&gt;
+&lt;li&gt;Id&lt;/li&gt;
+&lt;li&gt;Environment: is it located above the surface, underwater, on the surface, or inside the ship?&lt;/li&gt;
+&lt;li&gt;State: is the gate functional, destroyed, or buried?&lt;/li&gt;
+&lt;li&gt;Address id&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Next, operations. Nothing fancy, the bare minimum:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;List all addresses&lt;/li&gt;
+&lt;li&gt;Get address info&lt;/li&gt;
+&lt;li&gt;Add new gate info&lt;/li&gt;
+&lt;li&gt;Get gate info&lt;/li&gt;
+&lt;li&gt;Update gate info&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;Don&amp;rsquo;t forget, not all APIs should be OpenAPI-based. If I needed to design a real Stargate system, I would go with a combo of something like GraphQL for lookup and event-based APIs for anything else (perhaps described with AsyncAPI).&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;p&gt;Let&amp;rsquo;s create a place to store our OpenAPI description doc: YAML-based, multi-file git repo. You can read more about &lt;a href=&#34;https://redoc.ly/docs/resources/openapi-decisions/&#34; class=&#34;external&#34;&gt;why&amp;rsquo;s in the Redocly docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples&#34; class=&#34;external&#34;&gt;The example repo is on the GitHub&lt;/a&gt;. At each step of the tutorial you&amp;rsquo;ll see links to commits as &lt;code&gt;Commit &amp;lt;commit_hash&amp;gt;.&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;repository-structure&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#repository-structure&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Repository structure&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;We&amp;rsquo;re gonna use &lt;a href=&#34;https://github.com/Redocly/create-openapi-repo&#34; class=&#34;external&#34;&gt;&lt;code&gt;create-openapi-repo&lt;/code&gt;&lt;/a&gt; to generate the initial structure and then tweak it a bit. Run &lt;code&gt;npx create-openapi-repo&lt;/code&gt; inside a directory where you want to generate API structure. One caveat to keep in mind: this tool will attempt to initialize a git repository and make a commit. &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/e5b40a5d3474eec48e236d170c15ee6faf37f631&#34; class=&#34;external&#34;&gt;Commit e5b40a5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;
+  &lt;picture&gt;
+    
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.webp&#34; type=&#34;image/webp&#34;&gt;
+    
+    &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.png&#34; alt=&#34;Output of create-openapi-repo tool&#34; defer&gt;
+	&lt;/picture&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s explore the generated files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docs&lt;/code&gt; directory contains HTML template for reference doc. I&amp;rsquo;m deleting it, because I don&amp;rsquo;t need any custom template at the moment.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.gitignore&lt;/code&gt; set up to ignore our beloved &lt;code&gt;node_modules&lt;/code&gt; and &lt;code&gt;dist&lt;/code&gt; directory used for generating the final OpenAPI description doc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.redocly.yaml&lt;/code&gt; is a configuration file for &lt;code&gt;openapi-cli&lt;/code&gt;. Because I removed &lt;code&gt;docs&lt;/code&gt; directory, I also need to remove &lt;code&gt;referenceDocs.htmlTemplate&lt;/code&gt; option here.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t forget to update the &lt;code&gt;LICENSE&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;package.json&lt;/code&gt; set up with the most common actions.&lt;/li&gt;
+&lt;li&gt;Take your time to read &lt;code&gt;README.md&lt;/code&gt;. It explains what actions are available and provides a sample contribution guidelines. In the real project, you probably don&amp;rsquo;t want to have &lt;em&gt;all guidelines&lt;/em&gt; there in one file.&lt;/li&gt;
+&lt;li&gt;And last, but not least, &lt;code&gt;openapi&lt;/code&gt; directory. This is where your API definitions live. Almost all subdirectories have a relevant &lt;code&gt;README.md&lt;/code&gt; explaining why these particular files were created as well as showing you other alternatives. I don&amp;rsquo;t want to copy-paste them here, so, go ahead and explore ;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, let&amp;rsquo;s rewind the time. Stargate Network API contract is defined, &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/c2b8d1172129e00903d3d1bd4cbb90f2bf03b51f&#34; class=&#34;external&#34;&gt;commit c2b8d11&lt;/a&gt;. For more information about keeping your structure &lt;em&gt;DRY&lt;/em&gt; read &lt;a href=&#34;https://mux.com/blog/an-adventure-in-openapi-v3-api-code-generation/&#34; class=&#34;external&#34;&gt;this&lt;/a&gt; and &lt;a href=&#34;https://stoplight.io/blog/keeping-openapi-dry-and-portable/&#34; class=&#34;external&#34;&gt;this&lt;/a&gt;. If you&amp;rsquo;re interested in reading/watching about it from me, just ping!&lt;/p&gt;
+&lt;div class=&#34;admonition warning&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;The definitions are not state of art, even for this shallow design. Some problems with it were added consciously to simplify the example, others for fixing in later articles.&lt;/p&gt;
+&lt;p&gt;And I&amp;rsquo;m not even talking about how many details are omitted lore-wise!&lt;/p&gt;
+
+    
+&lt;/div&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;preview&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#preview&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Preview&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;In the &lt;code&gt;package.json&lt;/code&gt; file there is already an action for previewing the docs: &lt;code&gt;openapi preview-docs&lt;/code&gt;. To execute it, run in the terminal &lt;code&gt;npm run start&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This starts a server with the generated Redoc reference documentation (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#preview-docs&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). It watches changes from the disk; usually I keep it running while writing definitions and use it like a UI of &lt;a href=&#34;https://stoplight.io/studio/&#34; class=&#34;external&#34;&gt;Stoplight Studio&lt;/a&gt; or &lt;a href=&#34;https://insomnia.rest/products/designer/&#34; class=&#34;external&#34;&gt;Insomnia Designer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As you may (or may not) know, you can customize how Redoc looks like. This is done with&lt;code&gt;referenceDocs&lt;/code&gt; section in &lt;code&gt;.redocly.yaml&lt;/code&gt; (&lt;a href=&#34;https://redoc.ly/docs/cli/configuration/reference-docs/&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). Beware, some options are available only for premium edition.&lt;/p&gt;
+&lt;p&gt;Options can be divided into two categories: those that affect a theme (colors, fonts) and those for disabling or enabling certain features. For example, &lt;code&gt;requiredPropsFirst: true&lt;/code&gt; will display required properties before others:&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;
+  &lt;picture&gt;
+    
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.webp&#34; type=&#34;image/webp&#34;&gt;
+    
+    &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.png&#34; alt=&#34;Comparison of property display with requiredPropsFirst equal to false or true&#34; defer&gt;
+	&lt;/picture&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/c873f1593825256a58991e71cc9ec968d892c3b5&#34; class=&#34;external&#34;&gt;at commit c873f15&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;linting&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#linting&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Linting&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;From time to time you should lint with &lt;code&gt;openapi lint&lt;/code&gt; (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#lint&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). Let&amp;rsquo;s execute &lt;code&gt;npm run test&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run test
+
+&amp;gt; stargate-network@1.0.0 test /home/aviskase/Projects/openapi-cli-examples
+&amp;gt; openapi lint
+
+validating /home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml...
+[1] openapi/openapi.yaml:1:1 at #/
+
+Servers must be present.
+
+ 1 | openapi: 3.0.3
+ 2 | info:
+ … | &amp;lt; 30 more lines &amp;gt;
+33 |       $ref: components/securitySchemes/api_key.yaml
+34 |
+
+Error was generated by the no-empty-servers rule.
+
+
+/home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml: validated in 27ms
+
+❌ Validation failed with 1 error.
+run with `--generate-ignore-file` to add all problems to ignore file.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Oops! We have an error! Wait a second, &lt;a href=&#34;https://redoc.ly/docs/cli/built-in-rules/#no-empty-servers&#34; class=&#34;external&#34;&gt;&lt;code&gt;no-empty-servers&lt;/code&gt;&lt;/a&gt; rule complains that we must have &lt;code&gt;servers&lt;/code&gt; defined. But &lt;a href=&#34;http://spec.openapis.org/oas/v3.0.3.html#openapi-object&#34; class=&#34;external&#34;&gt;OpenAPI specification doesn&amp;rsquo;t state this as a required field&lt;/a&gt;, so our description doc is valid. Where does this error come from?&lt;/p&gt;
+&lt;p&gt;When &lt;code&gt;.redocly.yaml&lt;/code&gt; was generated, it included &lt;code&gt;lint&lt;/code&gt; section:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;lint:
+  extends:
+    - recommended
+  rules:
+    no-unused-components: warning
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;no-empty-servers&lt;/code&gt; comes from extending recommended set of rules. If it&amp;rsquo;s too strict, you may want to change to &lt;code&gt;minimal&lt;/code&gt;. Or change it to &lt;code&gt;all&lt;/code&gt; to get even more errors.&lt;/p&gt;
+&lt;p&gt;I prefer keeping recommended rules and explicitly disabling unneeded ones. &lt;a href=&#34;https://redoc.ly/docs/cli/configuration/lint/&#34; class=&#34;external&#34;&gt;Per docs&lt;/a&gt; you need to set &lt;code&gt;no-empty-servers: off&lt;/code&gt; in &lt;code&gt;rules&lt;/code&gt; section, &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/ee2e3ffb2009deefb69d75dd14febbbb90192148&#34; class=&#34;external&#34;&gt;commit ee2e3ff&lt;/a&gt;. Or you can change severity to &lt;code&gt;warning&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can read more about other built-in rules &lt;a href=&#34;https://redoc.ly/docs/cli/built-in-rules/&#34; class=&#34;external&#34;&gt;in the docs&lt;/a&gt;. In the later article I&amp;rsquo;ll show how to add your own custom rules.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;bundling&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#bundling&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Bundling&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Most of the tools require single-file OpenAPI doc. That&amp;rsquo;s where bundling comes in. The &lt;code&gt;package.json&lt;/code&gt;  is preconfigured with the script to run &lt;code&gt;openapi bundle -o dist&lt;/code&gt; which will save a generated file to the &lt;code&gt;dist&lt;/code&gt; directory. Usually it&amp;rsquo;s enough, but in some cases you may want to run with &lt;code&gt;--derefenreced&lt;/code&gt; flag to produce a file with internally inlined definitions (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#bundle&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run build
+
+&amp;gt; stargate-network@1.0.0 build /home/aviskase/Projects/openapi-cli-examples
+&amp;gt; openapi bundle -o dist
+
+bundling /home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml...
+📦 Created a bundle for /home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml at dist.yaml 28ms.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hmm, what just happened? Instead of &lt;code&gt;./dist/&amp;lt;filename&amp;gt;.yaml&lt;/code&gt; we&amp;rsquo;ve got &lt;code&gt;./dist.yaml&lt;/code&gt;. Why?&lt;/p&gt;
+&lt;p&gt;Well, this is kinda bug or feature situation. If you &lt;a href=&#34;https://github.com/Redocly/openapi-cli/blob/8eeab11ca73902a0e7dcee2375981119f65eb4eb/packages/cli/src/utils.ts#L234&#34; class=&#34;external&#34;&gt;check the code&lt;/a&gt;, this looks like an intended behavior, but nevertheless confusing. In short, if you have &lt;strong&gt;only one&lt;/strong&gt; API definition, &lt;code&gt;-o&lt;/code&gt; seems to be expecting file path. If you have &lt;strong&gt;multiple&lt;/strong&gt; API definitions (more about that in the upcoming part two), this option can point to directory.&lt;/p&gt;
+&lt;p&gt;In our example we have one API definition, so to fix we should change the script either to &lt;code&gt;-o dist/openapi&lt;/code&gt; or to &lt;code&gt;-o dist/openapi.yaml&lt;/code&gt;. Both will work the same, as long as &lt;code&gt;--ext&lt;/code&gt; equals to &lt;code&gt;yaml&lt;/code&gt; by default. If you want to generate file in JSON format, you can use &lt;code&gt;-o dist/openapi --ext json&lt;/code&gt; or  &lt;code&gt;-o dist/openapi.json&lt;/code&gt;. If you want both formats, you need to run commands separately, see &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/a4e1e234dc5fd11741c3f09564a8c5ee0932c098&#34; class=&#34;external&#34;&gt;at commit a4e1e23&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;generating-reference-doc&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#generating-reference-doc&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Generating reference doc&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;One of the features that &lt;a href=&#34;https://github.com/Redocly/openapi-cli/issues/133&#34; class=&#34;external&#34;&gt;&lt;code&gt;openapi-cli&lt;/code&gt; doesn&amp;rsquo;t have&lt;/a&gt;, but I need all the time is to generate static Redoc html file. Yes, you&amp;rsquo;d want to invest in better solutions and processes at some point, but at smaller scale it&amp;rsquo;s ok to send a simple HTML file when someone from non-dev team wants to see the latest or prototype API thingy.&lt;/p&gt;
+&lt;p&gt;First, we need to install &lt;code&gt;redoc-cli&lt;/code&gt; via &lt;code&gt;npm i redoc-cli&lt;/code&gt;. Then, add a new script to &lt;code&gt;package.json&lt;/code&gt; to generate an HTML file inside &lt;code&gt;dist&lt;/code&gt; directory:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;redoc-cli bundle dist/openapi.yaml -o dist/redoc.html&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After running &lt;code&gt;npm run docs&lt;/code&gt; and opening the generated file you&amp;rsquo;ll notice that all our custom options are gone. You see, &lt;code&gt;redoc-cli&lt;/code&gt; doesn&amp;rsquo;t support &lt;code&gt;.redocly.yaml&lt;/code&gt; configuration file. To fix this, add &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/blob/ad6dacc3464a5800c408ce53aaa5f23bb701600a/plugins/prepareOptions.js&#34; class=&#34;external&#34;&gt;&lt;code&gt;prepareOptions.js&lt;/code&gt;&lt;/a&gt; which reads &lt;code&gt;referenceDocs&lt;/code&gt; from &lt;code&gt;.redocly.yaml&lt;/code&gt; and saves it to &lt;code&gt;.redoc.json&lt;/code&gt; Next, modify &lt;code&gt;docs&lt;/code&gt; script to run preparation script and use &lt;code&gt;.redoc.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;node plugins/prepareOptions.js &amp;amp;&amp;amp; redoc-cli bundle dist/openapi.yaml -o dist/redoc.html --options .redoc.json&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/ad6dacc3464a5800c408ce53aaa5f23bb701600a&#34; class=&#34;external&#34;&gt;at commit ad6dacc&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;imho&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#imho&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;IMHO&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Personally, I prefer different names for scripts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;preview&lt;/code&gt; instead of &lt;code&gt;start&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lint&lt;/code&gt; instead of &lt;code&gt;test&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundle&lt;/code&gt; instead of &lt;code&gt;build&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;build&lt;/code&gt; for &lt;code&gt;npm run lint &amp;amp;&amp;amp; npm run bundle &amp;amp;&amp;amp; npm run docs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, all I do is jump between &lt;code&gt;npm run preview&lt;/code&gt; and &lt;code&gt;npm run build&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/51c078e4913cae9f1a323e2a8be625287e343dd2&#34; class=&#34;external&#34;&gt;at commit 51c078e&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That&amp;rsquo;s it for today. In the part two, I&amp;rsquo;ll show how to manage multiple definitions per repository.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt; for API exploration</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2021/01/10/using-openapi-cli-for-api-exploration/" hreflang="en"/>
