@@ -99,11 +99,12 @@ Example APILet&amp;amp;rsquo;s imagine you&amp;amp;rsquo;ve been asked to create
 &lt;p&gt;Let&amp;rsquo;s create a place to store our OpenAPI description doc: YAML-based, multi-file git repo. You can read more about &lt;a href=&#34;https://redoc.ly/docs/resources/openapi-decisions/&#34; class=&#34;external&#34;&gt;why&amp;rsquo;s in the Redocly docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples&#34; class=&#34;external&#34;&gt;The example repo is on the GitHub&lt;/a&gt;. At each step of the tutorial you&amp;rsquo;ll see links to commits as &lt;code&gt;Commit &amp;lt;commit_hash&amp;gt;.&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;repository-structure&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#repository-structure&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Repository structure&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;We&amp;rsquo;re gonna use &lt;a href=&#34;https://github.com/Redocly/create-openapi-repo&#34; class=&#34;external&#34;&gt;&lt;code&gt;create-openapi-repo&lt;/code&gt;&lt;/a&gt; to generate the initial structure and then tweak it a bit. Run &lt;code&gt;npx create-openapi-repo&lt;/code&gt; inside a directory where you want to generate API structure. One caveat to keep in mind: this tool will attempt to initialize a git repository and make a commit. &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/e5b40a5d3474eec48e236d170c15ee6faf37f631&#34; class=&#34;external&#34;&gt;Commit e5b40a5&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu7d57596270b7696f2b8b84448070eccd_129657_1517x582_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.png&#34; alt=&#34;Output of create-openapi-repo tool&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -130,11 +131,12 @@ Example APILet&amp;amp;rsquo;s imagine you&amp;amp;rsquo;ve been asked to create
 &lt;p&gt;This starts a server with the generated Redoc reference documentation (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#preview-docs&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). It watches changes from the disk; usually I keep it running while writing definitions and use it like a UI of &lt;a href=&#34;https://stoplight.io/studio/&#34; class=&#34;external&#34;&gt;Stoplight Studio&lt;/a&gt; or &lt;a href=&#34;https://insomnia.rest/products/designer/&#34; class=&#34;external&#34;&gt;Insomnia Designer&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As you may (or may not) know, you can customize how Redoc looks like. This is done with&lt;code&gt;referenceDocs&lt;/code&gt; section in &lt;code&gt;.redocly.yaml&lt;/code&gt; (&lt;a href=&#34;https://redoc.ly/docs/cli/configuration/reference-docs/&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). Beware, some options are available only for premium edition.&lt;/p&gt;
 &lt;p&gt;Options can be divided into two categories: those that affect a theme (colors, fonts) and those for disabling or enabling certain features. For example, &lt;code&gt;requiredPropsFirst: true&lt;/code&gt; will display required properties before others:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu69bdac1b5e8f9744325b681df1e2e84d_152272_2080x729_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.png&#34; alt=&#34;Comparison of property display with requiredPropsFirst equal to false or true&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -354,11 +356,12 @@ RetroWhat happened this year:
 &lt;/ul&gt;
 &lt;p&gt;You may notice almost an absence of professional goals. Typical end-of-year posts often contain promises to read more or learn new professional skills/tools. But my to-read/to-watch/to-learn queue is on the opposite side: it must be scaled down occasionally; I&amp;rsquo;m definitely not one of those people who seems to have an endless fountain of energy to do everything (aksi, talking about ya here).&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;advent-of-code&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#advent-of-code&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Advent of code&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;This was the first time I did &lt;a href=&#34;https://adventofcode.com/&#34; class=&#34;external&#34;&gt;Advent of code&lt;/a&gt; with the devs from work: nice to compare with normal people and not &lt;em&gt;reddit stars&lt;/em&gt;. Cannot express how happy I&amp;rsquo;m to be &lt;a href=&#34;https://github.com/aviskase/advent-of-code/tree/master/2020&#34; class=&#34;external&#34;&gt;back to Python&lt;/a&gt;, it&amp;rsquo;s so readable and clear after JS/TS madness.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu9d52b6327b290172b4e8d6badca78555_124321_782x635_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png&#34; alt=&#34;Advent of Code easter egg: using itertools&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -608,7 +611,7 @@ For example, the typical layers-based layout would be:
 &lt;p&gt;This behavior isn&amp;rsquo;t compatible with the components-base layout, since there is no such thing as base directory: each handler lives in the separate directory. Fortunately, you can customize default behavior with &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/#%EF%B8%8F-operationhandlers-optional&#34; class=&#34;external&#34;&gt;custom resolver&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;For example, custom resolver I wrote:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;operationHandlers&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-    basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; path.join(__dirname, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;components&amp;#39;&lt;/span&gt;),
+    basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; path.join(&lt;span style=&#34;color:#bd93f9&#34;&gt;__&lt;/span&gt;dirname, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;components&amp;#39;&lt;/span&gt;),
     resolver&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; string, route, apiDoc) =&amp;gt; {
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; pathKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.openApiRoute.substring(route.basePath.length);
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; schema &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; apiDoc.paths[pathKey][route.method.toLowerCase()];
@@ -999,11 +1002,12 @@ Pig replies: &amp;amp;ldquo;Hm, maybe, what would we call it?</summary>
 Perhaps I should try to be more consistent and always write literature notes. Alas, my current graph looks like that (obviously, I didn&amp;amp;rsquo;t have time to transfer older notes from other systems):</summary>
     <content type="html">&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;oops-i-have-nothing-to-share&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#oops-i-have-nothing-to-share&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Oops, I have nothing to share&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Since &lt;a href=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/&#34; class=&#34;internal&#34;&gt;migrating to Obsidian&lt;/a&gt; for knowledge management, I&amp;rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.&lt;/p&gt;
 &lt;p&gt;Perhaps I should try to be more consistent and always write &lt;a href=&#34;https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017&#34; class=&#34;external&#34;&gt;literature notes&lt;/a&gt;. Alas, my current graph looks like that (obviously, I didn&amp;rsquo;t have time to transfer older notes from other systems):&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hua4ff3e2cfd110b6ba07989c28888d4ad_49328_639x596_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png&#34; alt=&#34;Obsidian graph view as of July 2020&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1034,43 +1038,47 @@ HandwrittenI was more into handwriting during school and university, and there a
     <content type="html">&lt;p&gt;As a knowledge worker, I spend a lot of time searching and experimenting with approaches for knowledge capture and storage. Currently, I play with the new shiny app, so I figured it&amp;rsquo;s a perfect moment to systemize and reflect on tools and techniques I used until now.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;handwritten&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#handwritten&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Handwritten&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.&lt;/p&gt;
 &lt;p&gt;One of the last examples from English&amp;amp;French practice:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu966eabb7042cba590489bc15c71caa08_405591_1000x750_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.jpg&#34; alt=&#34;Old handwritten notebook&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Don&amp;rsquo;t get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn&amp;rsquo;t that atrocious, perhaps I&amp;rsquo;d be more into bullet journals and scrapbooks, but alas, it still doesn&amp;rsquo;t make them useful for anything else besides creativity outbursts.&lt;/p&gt;
 &lt;p&gt;Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for &lt;a href=&#34;https://adventofcode.com/&#34; class=&#34;external&#34;&gt;advent of code&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes_hu6f30cc9bd7ddf0d65891d4c3af252265_77155_300x400_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.jpg&#34; alt=&#34;Untranslatable scribbles&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Though, I prefer &lt;a href=&#34;https://getrocketbook.com/&#34; class=&#34;external&#34;&gt;Rocketbook&lt;/a&gt;, because it&amp;rsquo;s like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hueb28916bbd75b1bfd9acc9a71b4e419c_202967_1000x750_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.jpg&#34; alt=&#34;Brainstorming in Rocketbook&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;digital&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#digital&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Digital&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;If handwritten notes are useless, digital ones are too chaotic, because I experimented with too many formats.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;non-structured&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#non-structured&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Non-structured&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;The first iterations were a transposition of handwritten notes into digital via &lt;em&gt;Google Docs.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hufa58e120375260f0cde684b8fe8fce22_58824_1304x381_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png&#34; alt=&#34;Notes in the Google Docs&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1081,11 +1089,12 @@ HandwrittenI was more into handwriting during school and university, and there a
 &lt;li&gt;transient notes like &amp;ldquo;did this during the smoke test&amp;rdquo;&lt;/li&gt;
 &lt;li&gt;common copy pastes&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu11c88f6b4f8e4d4566211d83825cf277_32652_834x494_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png&#34; alt=&#34;Sublime with PlainNotes&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1097,11 +1106,12 @@ HandwrittenI was more into handwriting during school and university, and there a
 &lt;li&gt;&lt;a href=&#34;https://www.mindomo.com/&#34; class=&#34;external&#34;&gt;Mindomo&lt;/a&gt;: my latest selection, not free, yet has feature no one else has (more on that later).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;As of now I have an assortment of mind maps in various formats, like &lt;a href=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/&#34; class=&#34;internal&#34;&gt;Freeplane&lt;/a&gt; or XMind:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu9c32adda7f2c091cd2c5509224b7043c_84994_564x394_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png&#34; alt=&#34;XMind mind map overview&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1124,11 +1134,12 @@ HandwrittenI was more into handwriting during school and university, and there a
 &lt;li&gt;&lt;a href=&#34;https://www.onenote.com/&#34; class=&#34;external&#34;&gt;OneNote&lt;/a&gt;: I heard it&amp;rsquo;s fine if you are Windows user. Well, I am not :)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://keep.google.com/&#34; class=&#34;external&#34;&gt;Google Keep&lt;/a&gt;: perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hub3cedfb4d79ea0809104fd94b53e170b_40871_920x261_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png&#34; alt=&#34;Google Keep with transient lists&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1206,11 +1217,12 @@ I really liked the article by Daniel Jarjoura on communications.</summary>
 &lt;p&gt;Thus, I made some decision:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; I left RST and MoT (and &lt;a href=&#34;https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one&#34; class=&#34;external&#34;&gt;its abolished sister group&lt;/a&gt;) slack communities. Stayed only in the ABT, because it&amp;rsquo;s smaller and more enjoyable.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Won&amp;rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS &#43; ABT podcast is more than enough.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu2a62ebfcb3418706af0af2941b59b141_14367_353x237_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png&#34; alt=&#34;45 RSS feeds in &amp;amp;ldquo;Testing&amp;amp;rdquo; category&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1383,11 +1395,12 @@ Insomnia is easy to use on Linux, has plugins, and UI is clean and simple.&lt;/p
 while others contain everything related to the particular client use case or event (i.e., cross-service).&lt;/p&gt;
 &lt;p&gt;Our first examples: get current weather and forecast for Montreal. OpenWeatherMap API requires an API key,
 so you need to add it to the query parameters for each request.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_huead573a8756e44bcf75d98811835f592_124055_1920x570_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png&#34; alt=&#34;Insomnia: basic interface&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1408,41 +1421,45 @@ to all requests in the folder.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ok, so for this API let&amp;rsquo;s do like this. &lt;code&gt;https://api.openweathermap.org/data/2.5&lt;/code&gt; can go into base,
 because we have access only to one server.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hua4b6f39ac643996f900fee14788163f0_37132_1038x300_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png&#34; alt=&#34;Insomnia: base environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;An API key is perfect for the sub environment.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu726d4745e1ebe860d9fc791057f0b867_34864_1011x300_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png&#34; alt=&#34;Insomnia: sub environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&amp;ldquo;Montreal&amp;rdquo;&lt;/em&gt; is stored as a folder-level value, just for the sake of example.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hub445a22ecd8e9713ba2be35b1026d80b_33058_1137x313_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png&#34; alt=&#34;Insomnia: folder-level environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Then, our requests will look like (use &lt;code&gt;{{var_name}}&lt;/code&gt; to access variable):&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hua0c381ec8ae72d32013b0fc09b58aeea_72498_1200x430_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png&#34; alt=&#34;Insomnia: requests with variables from environments&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1451,21 +1468,23 @@ because we have access only to one server.&lt;/p&gt;
 That&amp;rsquo;s where plugins can help, in this case, it&amp;rsquo;s &lt;code&gt;insomnia-plugin-defaults&lt;/code&gt;.
 Just go into &lt;em&gt;Preferences &amp;gt; Plugins&lt;/em&gt; and type its name to install.
 This plugin allows us to set default headers and/or query parameters in the environments.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu2a51f86aff89648f713e07b2827abf03_48228_1021x459_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png&#34; alt=&#34;Insomnia: environment setup with query param defaults&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;And now we can remove it from requests:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hubab8ca579e73ea44132c477fceb39822_63604_1146x376_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png&#34; alt=&#34;Insomnia: requests with default query params&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1474,11 +1493,12 @@ This plugin allows us to set default headers and/or query parameters in the envi
 weather descriptions? We can do it by using JSONPath response filtering.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;$.list[*].weather[*].description&lt;/code&gt; means &lt;em&gt;&amp;lsquo;Get descriptions from each element of &lt;code&gt;weather&lt;/code&gt;
 array that is a property of elements in the &lt;code&gt;list&lt;/code&gt; array&amp;rsquo;&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu749a941adcfe38452b5e14edfe466a64_109722_704x868_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png&#34; alt=&#34;Insomnia: querying response using JSONPath&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1488,20 +1508,22 @@ array that is a property of elements in the &lt;code&gt;list&lt;/code&gt; array&
 cases plugins come to the rescue yet again: &lt;code&gt;insomnia-plugin-random&lt;/code&gt; uses &lt;a href=&#34;https://chancejs.com/&#34; class=&#34;external&#34;&gt;Chance&lt;/a&gt; library
 which gives you tons of options.&lt;/p&gt;
 &lt;p&gt;Here is how to generate random latitude and longitude coordinates:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu42eb8436ef1f5b1e7af4f8a0c2589b0d_39735_1083x675_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png&#34; alt=&#34;Insomnia: random value generation&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu25d0cfcc0e4bd98897b5c1a3118eb575_78802_1247x401_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png&#34; alt=&#34;Insomnia: usage of generated values in the request&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1510,20 +1532,22 @@ which gives you tons of options.&lt;/p&gt;
  shortcut for the fastest template tag autocomplete.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;reusing-response-values&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#reusing-response-values&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reusing response values&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Another commonly used feature is sending a request with values from the response of another request.
 In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JSONPath if you want to grab a value from the response body:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hubc9562b6464e2e291fc3734b9c92956a_66487_1088x857_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png&#34; alt=&#34;Insomnia: pulling values from previous response&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_huff2b9c149b03061dcf937123bbaa4b75_78338_1178x388_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png&#34; alt=&#34;Insomnia: request with pulled values&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1540,15 +1564,16 @@ don&amp;rsquo;t try to turn it into a complex automation solution. That&amp;rsqu
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-31:/articles/2020/03/31/hmms-march/</id>
     
     <summary type="html">Coronavirus-free edition!
-Top X videos and readings   
+Top X videos and readings    
   Erik Wilde started a video series about API design, and the last one covers pros and cons of exposing system APIs.
   Tyk explains why you shouldn&amp;amp;rsquo;t write our own API gateway. I particularly liked this part:</summary>
     <content type="html">&lt;p&gt;Coronavirus-free edition!&lt;/p&gt;
-&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;top-x-videos-and-readings&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#top-x-videos-and-readings&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Top X videos and readings&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;figure&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;top-x-videos-and-readings&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#top-x-videos-and-readings&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Top X videos and readings&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_huca170f4c56b9fffaac286dc25e85d456_94188_735x500_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg&#34; alt=&#34;Meme: APIs, APIs everywhere&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1952,11 +1977,12 @@ swagger_spec_validator.common.SwaggerValidationError: (&amp;#34;Path parameter &
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;zally&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#zally&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Zally&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/zalando/zally&#34; class=&#34;external&#34;&gt;Zally&lt;/a&gt; is a linter from Zalando, which is famous for its open-sourced &lt;a href=&#34;https://opensource.zalando.com/restful-api-guidelines/&#34; class=&#34;external&#34;&gt;API guidelines&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&amp;rsquo;m sure it&amp;rsquo;s an excellent tool, but not for us.&lt;/p&gt;
 &lt;p&gt;BTW, it has nice UI:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu89ad4f628f615cee6a6a367e8ea01c4e_97054_1314x695_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png&#34; alt=&#34;Zally web UI with violations highlighting and links&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2113,21 +2139,23 @@ Testing communitiesWhen I decided to become a tester, the first-ever topic I enc
 &lt;/ul&gt;
 &lt;p&gt;But there are some disappointments. Let&amp;rsquo;s start with the objective one: keyboard.&lt;/p&gt;
 &lt;p&gt;This is my old keyboard: it has Numpad, all keys, and even separate volume controls.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu7103f81b0bac2c90aa84d23e3ec1b381_72090_752x461_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.jpg&#34; alt=&#34;Lenovo G560 keyboard&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;This is the new one:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hud55af38982e5546e9dc1c41a4737eebd_171642_775x500_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.jpg&#34; alt=&#34;Dell XPS15 keyboard&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2408,11 +2436,12 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     <content type="html">&lt;p&gt;This is part two of a two-parter. Check out &lt;a href=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/&#34; class=&#34;internal&#34;&gt;part one&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;empirical-methods&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#empirical-methods&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Empirical methods&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;The distinction between analytical and empirical methods is that the latter investigates how real users will use the product.&lt;/p&gt;
 &lt;p&gt;But don&amp;rsquo;t assume that empirical methods are by default better than analytical: both are important because they discover different problems. &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf&#34; class=&#34;external&#34;&gt;This research&lt;/a&gt; showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding UX and runtime specific issues.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_huc3592e0d261c0d603c1362608bc29a04_10983_441x232_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png&#34; alt=&#34;Barchart with comparison of different issue types found via different methods&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2454,11 +2483,12 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
     
 &lt;/div&gt;
 &lt;p&gt;We can also combine personas with cognitive dimensions. Create &lt;a href=&#34;https://en.wikipedia.org/wiki/Radar_chart&#34; class=&#34;external&#34;&gt;a radar chart&lt;/a&gt; with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona&amp;rsquo;s expectations. This chart is great for comparing how existing API corresponds to user values.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu461e5d787a4fa64fc65e79b4a35177ba_35949_286x286_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png&#34; alt=&#34;Radar chart with comparison of developer expectations vs current state of API&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2466,11 +2496,12 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
 &lt;p&gt;Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn&amp;rsquo;t satisfy these criteria.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;summing-up&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#summing-up&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summing up&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Readers comfortable with GUI usability testing would say: &amp;ldquo;That&amp;rsquo;s exactly the same stuff!&amp;rdquo;. And you&amp;rsquo;re right, there is nothing supernatural about API usability. Even though it&amp;rsquo;s called an &lt;em&gt;application programming&lt;/em&gt; interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That&amp;rsquo;s why almost everything applied for GUI usability evaluation is reusable for API with some adjustments.&lt;/p&gt;
 &lt;p&gt;Now, what about &lt;em&gt;the best method?&lt;/em&gt;  None, apply them all! &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf&#34; class=&#34;external&#34;&gt;According to this research&lt;/a&gt;, each method can identify unique issues.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu99fb22af3f108385a6c53063d53e3513_23102_457x207_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png&#34; alt=&#34;Venn diagram showing how different methods overlap in finding different issues&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2535,11 +2566,12 @@ There was a time when every new tester came to me during the onboarding and aske
 &lt;/ul&gt;
 &lt;p&gt;Here is an example for domain correspondence. Service main entity was a house. Common apartment building can have several entryways, each leading to set of apartments. But in Kaliningrad this doesn&amp;rsquo;t apply: a typical address there can look like &amp;ldquo;2-4 Green Street,&amp;rdquo; where entryways are house 2 and house 4. This bizarre (and initially unknown) domain model broke the whole logic behind API design. For instance, we had to allow users to add house-level metering devices to entryways if it&amp;rsquo;s actually a house.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;cognitive-walkthrough&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#cognitive-walkthrough&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cognitive walkthrough&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hucf44db6a2892b2831f76d1825a1f5316_40674_442x200_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png&#34; alt=&#34;Cognitive walkthrough example&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2742,11 +2774,12 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;xmlxsd-editors&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#xmlxsd-editors&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;XML&amp;amp;XSD editors&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are &lt;a href=&#34;https://www.oxygenxml.com/&#34; class=&#34;external&#34;&gt;Oxygen&lt;/a&gt; (cross-platform) and &lt;a href=&#34;https://www.altova.com/&#34; class=&#34;external&#34;&gt;Altova&lt;/a&gt; (Windows-only); both are not free. These are feature-heavy applications used by analysts.&lt;/p&gt;
 &lt;p&gt;I routinely use three features: XSD visualization, XML generation, and XML validation.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;XSD visualization&lt;/strong&gt; is helpful to easily spot schema elements, attributes, and restrictions. For example, &lt;code&gt;CheckTextRequest&lt;/code&gt; has a required &lt;code&gt;text&lt;/code&gt; element, whereas all three attributes are optional. In addition, attribute &lt;code&gt;option&lt;/code&gt; has a default value &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_huaa17ea1e9ca9d008b12aee7f1bd8511b_16509_391x284_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.png&#34; alt=&#34;XSD visualization in Oxygen&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2907,11 +2940,12 @@ Do this: Mark as read
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;unreliability&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#unreliability&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Unreliability&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Service is reliable if it works when it&amp;rsquo;s expected to be working and provides timely feedback in case of any problems.&lt;/p&gt;
 &lt;p&gt;Worst performance problems I encountered were with export services. One of them was working perfectly fine until the biggest organization in the system started using it and crashing application servers. Hot-fixes after hot-fixes, optimizations, new version; nothing helped. And we couldn&amp;rsquo;t disable that service or completely rewrite its public API because of contractual obligations.&lt;/p&gt;
 &lt;p&gt;So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like this:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hufdb7540244ef7780496cfbba1ed5434c_101541_616x279_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png&#34; alt=&#34;API status table&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2935,11 +2969,12 @@ Do this: Mark as read
 &lt;ul&gt;
 &lt;li&gt;Service works fine, but error messages are not that informative? Users won&amp;rsquo;t understand how to fix an error (and probably will open a support ticket, so you&amp;rsquo;ll needlessly spend time resolving non-existing issue).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu81ce616e61ffc978cfe25a90f3ebba43_24613_565x241_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png&#34; alt=&#34;Unhelpful error message&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3330,11 +3365,12 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
     
     <summary type="html">My not-so-mega mind map has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &amp;amp;ldquo;Exploratory Software Testing&amp;amp;rdquo; by James A. Whittaker.</summary>
     <content type="html">&lt;p&gt;My &lt;a href=&#34;https://github.com/aviskase/mega-mind-map&#34; class=&#34;external&#34;&gt;not-so-mega mind map&lt;/a&gt; has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &amp;ldquo;Exploratory Software Testing&amp;rdquo; by James A. Whittaker.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu116af588c1f8e9dc66e665512d81e3f1_804916_1182x2858_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png&#34; alt=&#34;Mega mind map version 2&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3354,42 +3390,46 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;ideal-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#ideal-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Ideal world of software development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Imagine an ideal world of software development. Scope is clear. Everything is done on time in relaxed manner without rush. Everybody is motivated to create the best product. Everybody has happy life outside of work. No stress. Users are eager to help too. And all these aren&amp;rsquo;t just for one product, but true for all software in the world. Great, isn&amp;rsquo;t it?&lt;/p&gt;
 &lt;p&gt;Now, when I&amp;rsquo;m thinking about this &lt;em&gt;ideal&lt;/em&gt; world, I can&amp;rsquo;t find a place for testers in it. There is just no place for bugs. Developers and analysts have all the time to design and build a product without real bugs. Remember, they don&amp;rsquo;t have just a time, they&amp;rsquo;re also motivated, so they definitively test product. They do it themselves&amp;hellip; so there is no need for a &lt;em&gt;separate&lt;/em&gt; role of a tester.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s visualize this tester-less world as a perfect disk:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hue891f741282783cff478f4964b8fe7a4_17195_302x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.png&#34; alt=&#34;Ideal world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;real-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#real-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Real world of software development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu52b7143d2443b37c0f18ce7b9fa22928_15081_295x295_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.png&#34; alt=&#34;Real world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;testers-in-the-real-world-of-software-development&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#testers-in-the-real-world-of-software-development&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Testers in the real world of software development&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;And that&amp;rsquo;s where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu8b77470e9ad8e254e810cd0179da3a1e_32421_413x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.png&#34; alt=&#34;Real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;All products are distorted in different ways, that&amp;rsquo;s why you can see testers doing all kind of things. Some are just &amp;ldquo;manual monkeys.&amp;rdquo; On a different extreme are those who automate test cases that are written by others. Most are somewhere in between. There are projects where testers have a hat of analytic. Or support. Or both. Or PM. Someone, maybe gurus, don&amp;rsquo;t test at all: they mentor a team to test themselves, control that quality is efficiently insured by others.&lt;/p&gt;
 &lt;p&gt;Here is a fun fact. That patched version is still a lie. Testers are also not perfect. Thus, our world looks more like this:&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu3a317744b05fce60f4bc9761dc3eaca5_28895_326x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.png&#34; alt=&#34;Even more real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3415,11 +3455,12 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
 &lt;li&gt;APV aka ДПЗ (Actions / Parameters / Values)&lt;/li&gt;
 &lt;li&gt;Value analysis&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu658e96a9d946f60ef47e18e9848f827a_277794_1603x2402_resize_q75_h2_box.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.jpg&#34; alt=&#34;Mega mind map version 1&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3733,11 +3774,12 @@ The course is concise and comprehensive. Here are some notes I&amp;amp;rsquo;ve 
 &lt;li&gt;growth measurement&lt;/li&gt;
 &lt;li&gt;debugging metrics&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;figure&gt;
+&lt;p&gt;
+&lt;figure&gt;
   &lt;picture&gt;
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.webp&#34; type=&#34;image/webp&#34;&gt;
     
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu54ef27e82d2f48967dcaf8478459fe1e_32928_653x283_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.png&#34; alt=&#34;Monitoring systems&#34; defer&gt;
 	&lt;/picture&gt;
 	
