@@ -2,14 +2,11 @@
 {{ if in $src ".gif" }}
 <img src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }}>
 {{ else }}
-{{- $type_arr := split $src "." -}}
-{{- $srcbase := index $type_arr 0 -}}
-{{- $srcend := index $type_arr 1 -}}
 <figure>
   <picture>
-    {{/*  {{ if (fileExists "./{{$srcbase}}.webp") -}}  */}}
-    <source srcset="{{ replace $src.Permalink $srcend "webp" }}" type="image/webp">
-    {{/*  {{- end }}  */}}
+    {{ $resizeOptions := printf "%dx%d webp" $src.Width $src.Height }}
+    {{ $webpImg := $src.Resize $resizeOptions }}
+    <source srcset="{{ $webpImg.Permalink }}" type="image/webp">
     <img src="{{ $src.Permalink }}" alt="{{ .Text }}" defer>
 	</picture>
 	{{ with .Title }}
