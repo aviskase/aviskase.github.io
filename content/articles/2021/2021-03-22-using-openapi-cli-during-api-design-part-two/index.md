@@ -5,7 +5,7 @@ draft: false
 see_also: []
 ---
 
-Part 1 showed the basics of using `openapi-cli` for a single-definition project. Let's see how it works for multi-definition projects.
+[Part one]({{< ref "2021-01-31-using-openapi-cli-during-api-design-part-one" >}}) showed the basics of using `openapi-cli` for a single-definition project. Let's see how it works for multi-definition projects.
 
 ## Multi-what?
 

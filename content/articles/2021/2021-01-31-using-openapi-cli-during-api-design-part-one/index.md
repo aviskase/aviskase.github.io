@@ -180,4 +180,4 @@ See [at commit 51c078e](https://github.com/aviskase/openapi-cli-examples/tree/51
 
 ---
 
-That's it for today. In the part two, I'll show how to manage multiple definitions per repository.
+That's it for today. In the [part two]({{< ref "2021-03-22-using-openapi-cli-during-api-design-part-two" >}}), I'll show how to manage multiple definitions per repository.
