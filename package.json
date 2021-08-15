@@ -1,15 +1,14 @@
 {
     "scripts": {
-        "watch": "gulp watch",
-        "build": "gulp build"
+        "watch": "env MODE=development hugo server -D --watch --i18n-warnings --path-warnings --disableFastRender",
+        "clean": "rm -rf ./output",
+        "build:hugo": "env MODE=production NODE_ENV=production hugo -e \"production\" --minify --debug --i18n-warnings --path-warnings",
+        "build": "npm run clean & npm run build:hugo"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^3.1.3",
         "autoprefixer": "^10.2.6",
         "commander": "^6.2.1",
-        "del": "^6.0.0",
-        "gulp": "^4.0.2",
-        "gulp-shell": "^0.8.0",
         "postcss": "^8.3.0",
         "postcss-cli": "^8.3.1",
         "postcss-font-magician": "^3.0.0",
