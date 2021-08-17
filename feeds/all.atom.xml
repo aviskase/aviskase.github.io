@@ -2,9 +2,114 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2021-03-23T04:30:57Z</updated>
+  <updated>2021-08-17T03:44:37Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt;: custom preprocessing</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/" hreflang="en"/>
+    <published>2021-08-17T03:44:37Z</published>
+    <updated>2021-08-17T03:44:37Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2021-08-17:/articles/2021/08/16/using-openapi-cli-custom-preprocessing/</id>
+    
+    <summary type="html">The key feature of openapi-cli is its extensibility. There are three ways to extend it: preprocessors, rules, and decorators. In comparison, Spectral supports only custom rules.
+In this tutorial, we&amp;amp;rsquo;ll start with preprocessors. They are used to transform OpenAPI description document before validation and linting. Mind you, documentation says they should be avoided, because custom preprocessors tend to be error prone.</summary>
+    <content type="html">&lt;p&gt;The key feature of &lt;code&gt;openapi-cli&lt;/code&gt; is its extensibility. There are three ways to extend it: &lt;a href=&#34;https://redoc.ly/docs/cli/custom-rules/&#34; class=&#34;external&#34;&gt;preprocessors, rules, and decorators&lt;/a&gt;. In comparison, &lt;a href=&#34;https://meta.stoplight.io/docs/spectral&#34; class=&#34;external&#34;&gt;Spectral&lt;/a&gt; supports only custom rules.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we&amp;rsquo;ll start with &lt;strong&gt;preprocessors&lt;/strong&gt;. They are used to transform OpenAPI description document &lt;em&gt;before&lt;/em&gt; validation and linting. Mind you, documentation says they should be avoided, because custom preprocessors tend to be error prone.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;example-extensible-enumerations&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#example-extensible-enumerations&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example: extensible enumerations&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;In our Stargate Network API there is a &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/blob/bb95d479cc184221b38ff5d5371767f0b3f32f74/openapi/components/schemas/Stargate.yaml&#34; class=&#34;external&#34;&gt;&lt;code&gt;Stargate.yaml&lt;/code&gt; schema&lt;/a&gt; with two properties defined with enumerations: &lt;code&gt;state&lt;/code&gt; and &lt;code&gt;environment&lt;/code&gt;. We might think that we captured all potential values, but we can&amp;rsquo;t be sure.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://opensource.zalando.com/restful-api-guidelines/#112&#34; class=&#34;external&#34;&gt;Zalando API guidelines&lt;/a&gt; and &lt;a href=&#34;https://livebook.manning.com/book/the-design-of-web-apis/chapter-9/table9.1&#34; class=&#34;external&#34;&gt;The Design of Web APIs by Arnaud Lauret&lt;/a&gt; warn us that enumerations can cause API compatibility breaks, especially with outputs.&lt;/p&gt;
+&lt;p&gt;Imagine the scenario. We generated SDK for the initial version of the API, and the generator was smart enough to use enumerations in the selected programming language. Some time later we push a new API version where &lt;code&gt;environment&lt;/code&gt; can also be &lt;code&gt;STAR&lt;/code&gt;. Customers, who are still on the first version of the SDK, won&amp;rsquo;t be able to process API responses containing this value, because most probably their clients will crash with something-something-uprocessable-entity exceptions.&lt;/p&gt;
+&lt;p&gt;Thus, similarly to Zalando, we will use a custom &lt;a href=&#34;https://spec.openapis.org/oas/v3.0.3.html#specification-extensions&#34; class=&#34;external&#34;&gt;vendor extension&lt;/a&gt; to document possible values. I&amp;rsquo;m calling it &lt;code&gt;x-aviskase-enum&lt;/code&gt; just in case not to introduce conflicts with other extensions. &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/fa78766d7ea2cd245740373efb951bffe7b2facf&#34; class=&#34;external&#34;&gt;Commit fa78766&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;surfacing-values-in-the-documentation&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#surfacing-values-in-the-documentation&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Surfacing values in the documentation&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Oops, now there is no way to see known values in the generated reference docs. The manual fix is to add these values to the &lt;code&gt;description&lt;/code&gt;. But this is too cumbersome, especially if you&amp;rsquo;ll ever want to change presentation format.&lt;/p&gt;
+&lt;p&gt;Preprocessor for the rescue! What we want it to do:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Find all properties with &lt;code&gt;x-aviskase-enum&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;Grab the list of values, format them nicely, and add it to the &lt;code&gt;description&lt;/code&gt;. Make sure not to overwrite existing description if it&amp;rsquo;s already present!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;adding-a-preprocessor&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#adding-a-preprocessor&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Adding a preprocessor&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s create a preprocessor first &lt;code&gt;./plugins/preprocessors/add-enum-to-description.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; AddEnumToDescription;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/visitors&amp;#39;).Oas3Preprocessor } */&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; AddEnumToDescription(options) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; vendorExtension &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; options.vendorExtension &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;x-enum&amp;#39;&lt;/span&gt;;
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    Schema(schema) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (schema[vendorExtension]) {
+        schema.description &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; appendToDescription(schema[vendorExtension], schema.description);
+      }
+    },
+  };
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; appendToDescription(values, description) {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; additionalDescription &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`Possible values: &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;values.map(v =&amp;gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`\`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;v&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;\``&lt;/span&gt;).join(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;, &amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;;
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (description) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;description&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;\n\n&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;additionalDescription&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;;
+  }
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; additionalDescription;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What&amp;rsquo;s happening here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We export a preprocessor function &lt;code&gt;AddEnumToDescription&lt;/code&gt; that accepts configuration &lt;code&gt;options&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vendorExtension&lt;/code&gt; option is used to define extension name for extensible enumeration. If not provided, it equals to &lt;code&gt;x-enum&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;All &lt;code&gt;openapi-cli&lt;/code&gt; preprocessors should return a &lt;em&gt;visitor&lt;/em&gt;. In our case, we specifically indicate to take into account only schema nodes.&lt;/li&gt;
+&lt;li&gt;If a schema has defined extensible enumeration property, we update its description with formatted list of values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;admonition warning&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12.01&#34; y2=&#34;16&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;admonition-title&#34;&gt;Warning&lt;/p&gt;
+        &lt;p&gt;Per documentation, for type support you can use &lt;code&gt;import(&#39;@redocly/openapi-cli&#39;).Oas3Preprocessor}&lt;/code&gt;.  It never worked for me, so I use a &amp;ldquo;full path&amp;rdquo; &lt;code&gt;import(&#39;@redocly/openapi-core/src/visitors&#39;).Oas3Preprocessor&lt;/code&gt;.&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;enabling-our-preprocessor-via-custom-plugin&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#enabling-our-preprocessor-via-custom-plugin&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Enabling our preprocessor via custom plugin&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s keep our preprocessor (and the future ones) bundled inside one plugin via &lt;code&gt;./plugins/custom-preprocessors.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; AddEnumToDescription &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./preprocessors/add-enum-to-description&amp;#39;&lt;/span&gt;);
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; id &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;custom-preprocessors&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/config/config&amp;#39;).PreprocessorsConfig } */&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; preprocessors &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  oas3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;add-x-enum-to-description&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; AddEnumToDescription,
+  },
+};
+
+module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  id,
+  preprocessors,
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here we defined plugin&amp;rsquo;s &lt;code&gt;id&lt;/code&gt; and a mapping between preprocessor&amp;rsquo;s name (&lt;code&gt;add-x-enum-to-description&lt;/code&gt;) and its implementation.&lt;/p&gt;
+&lt;p&gt;Then we need to add this custom plugin to the &lt;code&gt;.redocly.yaml&lt;/code&gt; and to enable the preprocessor:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
+&lt;span style=&#34;color:#ff79c6&#34;&gt;lint&lt;/span&gt;:
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;plugins&lt;/span&gt;:
+    - &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./plugins/custom-preprocessors.js&amp;#39;&lt;/span&gt;
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;preprocessors&lt;/span&gt;:
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;custom-preprocessors/add-x-enum-to-description&lt;/span&gt;:
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;vendorExtension&lt;/span&gt;: x-aviskase-enum
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The final result is in &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/665492641fa119292d2ef7aa2c6bd4a87266ff9b&#34; class=&#34;external&#34;&gt;commit 6654926&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;how-it-looks-in-the-docs&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#how-it-looks-in-the-docs&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How it looks in the docs&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Now, when we render a reference documentation, we can see all values with simple markdown formatting.&lt;/p&gt;
+&lt;p&gt;
+&lt;figure&gt;
+  &lt;picture&gt;
+    
+    
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu0c23a21c68146543c289aaa72aeaae18_43182_1445x324_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;img src=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render.png&#34; alt=&#34;Redoc with modified descriptions for extensible enumerations&#34; defer&gt;
+	&lt;/picture&gt;
+	
+&lt;/figure&gt;&lt;/p&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;circle cx=&#34;12&#34; cy=&#34;12&#34; r=&#34;10&#34;&gt;&lt;/circle&gt;&lt;line x1=&#34;12&#34; y1=&#34;16&#34; x2=&#34;12&#34; y2=&#34;12&#34;&gt;&lt;/line&gt;&lt;line x1=&#34;12&#34; y1=&#34;8&#34; x2=&#34;12.01&#34; y2=&#34;8&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;By the way, can you spot operations where we could have left normal &lt;code&gt;enum&lt;/code&gt; and why?&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;why-use-a-preprocessor-here&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#why-use-a-preprocessor-here&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Why use a preprocessor here?&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;As mentioned before, preprocessors might be brittle. We could have used decorator instead. I&amp;rsquo;ll show you the reason in the next article, but here is a sneak peek: we want to be able to &lt;em&gt;lint&lt;/em&gt; modified descriptions!&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt; during API design: part two</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2021/03/23/using-openapi-cli-during-api-design-part-two/" hreflang="en"/>
@@ -397,7 +502,7 @@ The most common tasks are:
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2021/01/10/using-openapi-cli-for-api-exploration/&#34; class=&#34;internal&#34;&gt;using &lt;code&gt;openapi-cli&lt;/code&gt; for API exploration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results) (&lt;a href=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/&#34; class=&#34;internal&#34;&gt;part 1&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://www.aviskase.com/articles/2021/03/23/using-openapi-cli-during-api-design-part-two/&#34; class=&#34;internal&#34;&gt;part 2&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;advanced topic: preprocessing&lt;/li&gt;
+&lt;li&gt;advanced topic: &lt;a href=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/&#34; class=&#34;internal&#34;&gt;preprocessing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;advanced topic: custom linting rules&lt;/li&gt;
 &lt;li&gt;advanced topic: decorators&lt;/li&gt;
 &lt;/ul&gt;
