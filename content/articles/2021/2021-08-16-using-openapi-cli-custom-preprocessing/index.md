@@ -110,9 +110,9 @@ Now, when we render a reference documentation, we can see all values with simple
 
 ![Redoc with modified descriptions for extensible enumerations](x_enum_render.png)
 
-{{< note title="" >}}
+{{< cta >}}
 By the way, can you spot operations where we could have left normal `enum` and why?
-{{< /note >}}
+{{< /cta >}}
 
 ## Why use a preprocessor here?
 As mentioned before, preprocessors might be brittle. We could have used decorator instead. I'll show you the reason in the next article, but here is a sneak peek: we want to be able to _lint_ modified descriptions!

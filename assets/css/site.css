@@ -268,14 +268,18 @@ article .admonition {
     padding: $bleed-padding;
 
     &.warning {
-        border-left: 0.3rem solid hsl(37deg, 100%, 50%);
-        background-color: hsla(52deg, 100%, 50%, 0.25);
+        border-left: 0.3rem solid hsl(340deg, 95%, 50%);
+        background-color: hsla(340deg, 95%, 43%, 0.1);
     }
 
     &.note {
         border-left: 0.3rem solid hsl(245deg, 100%, 60%);
         background-color: hsl(210deg, 55%, 92%);
+    }
 
+    &.cta {
+        border-left: 0.3rem solid hsl(37deg, 100%, 50%);
+        background-color: hsla(52deg, 100%, 50%, 0.25);
     }
 }
 
@@ -294,11 +298,15 @@ article p.admonition-title {
     border-radius: 50%;
 
     .warning & {
-        color: hsl(37deg, 100%, 50%);
+        color: hsl(340deg, 95%, 50%);
     }
 
     .note & {
         color: hsl(245deg, 100%, 60%);
+    }
+
+    .cta & {
+        color: hsl(37deg, 100%, 50%);
     }
 }
 
