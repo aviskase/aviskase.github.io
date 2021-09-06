@@ -34,7 +34,7 @@ We gonna go through themes:
 - [using `openapi-cli` for API exploration]({{< ref "2021-01-10-using-openapi-cli-for-api-exploration" >}})
 - basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results) ([part 1]({{< ref "2021-01-31-using-openapi-cli-during-api-design-part-one" >}}) & [part 2]({{< ref "2021-03-22-using-openapi-cli-during-api-design-part-two" >}}))
 - advanced topic: [preprocessing]({{< ref "2021-08-16-using-openapi-cli-custom-preprocessing" >}})
-- advanced topic: custom linting rules
+- advanced topic: custom linting rules ([part 1]({{< ref "2021-09-06-using-openapi-cli-custom-rules" >}}))
 - advanced topic: decorators
 
 And while I'm writing next posts (hehe), install and play with it!

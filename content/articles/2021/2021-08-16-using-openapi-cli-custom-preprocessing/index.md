@@ -115,4 +115,4 @@ By the way, can you spot operations where we could have left normal `enum` and w
 {{< /cta >}}
 
 ## Why use a preprocessor here?
-As mentioned before, preprocessors might be brittle. We could have used decorator instead. I'll show you the reason in the next article, but here is a sneak peek: we want to be able to _lint_ modified descriptions!
+As mentioned before, preprocessors might be brittle. We could have used decorator instead. I'll show you the reason in the next article, but here is a sneak peek: we want to be able to [_lint_ modified descriptions]({{< ref "2021-09-06-using-openapi-cli-custom-rules" >}})!
