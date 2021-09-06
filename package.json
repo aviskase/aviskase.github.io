@@ -3,7 +3,7 @@
         "watch": "env MODE=development hugo server -D --watch --i18n-warnings --path-warnings --disableFastRender",
         "clean": "rm -rf ./output",
         "build:hugo": "env MODE=production NODE_ENV=production hugo -e \"production\" --minify --debug --i18n-warnings --path-warnings",
-        "build": "npm run clean & npm run build:hugo"
+        "build": "npm run clean && npm run build:hugo"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^3.1.3",
