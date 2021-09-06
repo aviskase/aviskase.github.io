@@ -2,9 +2,195 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2021-08-17T03:44:37Z</updated>
+  <updated>2021-09-06T20:35:43Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt;: custom rules</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2021/09/06/using-openapi-cli-custom-rules/" hreflang="en"/>
+    <published>2021-09-06T20:35:43Z</published>
+    <updated>2021-09-06T20:35:43Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2021-09-06:/articles/2021/09/06/using-openapi-cli-custom-rules/</id>
+    
+    <summary type="html">If you&amp;amp;rsquo;re planning to lint OpenAPI description documents (you should!), always check whether a linter supports adding custom rules. And I mean not just changing severity or disabling predefined rules, but actually adding new ones specific to your API standards.
+openapi-cli, as any respectable OpenAPI linter, allows that. The process is very similar to adding preprocessors.</summary>
+    <content type="html">&lt;p&gt;If you&amp;rsquo;re planning to &lt;a href=&#34;https://www.aviskase.com/articles/2020/12/07/crash-course-into-api-related-terminology/#description-doc-validation-vs-linting-vs-preprocessing&#34; class=&#34;internal&#34;&gt;lint OpenAPI description documents&lt;/a&gt; (you should!), always check whether a linter supports adding custom rules. And I mean not just &lt;a href=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/&#34; class=&#34;internal&#34;&gt;changing severity or disabling predefined rules&lt;/a&gt;, but actually adding new ones specific to your API standards.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;openapi-cli&lt;/code&gt;, as any respectable OpenAPI linter, &lt;a href=&#34;https://redoc.ly/docs/cli/custom-rules/&#34; class=&#34;external&#34;&gt;allows that&lt;/a&gt;. The process is very similar to &lt;a href=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/&#34; class=&#34;internal&#34;&gt;adding preprocessors&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;example-enforcing-case-style&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#example-enforcing-case-style&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example: enforcing case style&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s look at our previous enumeration example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;state&lt;/span&gt;:
+	&lt;span style=&#34;color:#ff79c6&#34;&gt;type&lt;/span&gt;: string
+	&lt;span style=&#34;color:#ff79c6&#34;&gt;nullable&lt;/span&gt;: &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+	&lt;span style=&#34;color:#ff79c6&#34;&gt;x-aviskase-enum&lt;/span&gt;:
+	  - OK
+	  - DESTROYED
+	  - BURIED
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Typically, there are guidelines for case style of enumeration values. Imagine that our rule is: all values in enumerations and extensible enumerations MUST be &lt;code&gt;CAPITAL_CASE&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;adding-a-rule&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#adding-a-rule&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Adding a rule&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;First, here is our rule file &lt;code&gt;./plugins/rules/uppercase-schema-enums.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; UppercaseSchemaEnums;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/visitors&amp;#39;).Oas3Rule } */&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; UppercaseSchemaEnums(options) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; enumProperties &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;enum&amp;#39;&lt;/span&gt;, ...(options.enumLikeProperties &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; [])];
+  
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    Schema&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+      skip(node) {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; node.type &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;;
+      },
+      enter(node, { report, location }) {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; prop &lt;span style=&#34;color:#ff79c6&#34;&gt;of&lt;/span&gt; enumProperties) {
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (node[prop] &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;undefined&lt;/span&gt;) {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (node[prop].some(s =&amp;gt; s &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; s.toUpperCase())) {
+              &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; report({ message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`All enum values should be uppercase`&lt;/span&gt;, location&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; location.child(prop) });
+            }
+          }
+        }
+      }
+    }
+  };  
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Export a rule function &lt;code&gt;UppercaseSchemaEnums&lt;/code&gt; that can be configured with enumeration-like properties in addition to the standard &lt;code&gt;enum&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;All rules (like preprocessors) should return a &lt;em&gt;visitor&lt;/em&gt;. We use &lt;code&gt;Schema&lt;/code&gt; visitor with two methods:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;skip&lt;/code&gt; method to ensure that we check enumerations only for properties with &lt;code&gt;type: string&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;normal &lt;code&gt;enter&lt;/code&gt; method to check the rule&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;To report a problem we use the second argument of &lt;code&gt;enter&lt;/code&gt; method: context. It&amp;rsquo;s &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment&#34; class=&#34;external&#34;&gt;destructured&lt;/a&gt; to &lt;code&gt;report&lt;/code&gt; and &lt;code&gt;location&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;report&lt;/code&gt; is a function to report a problem (duh!)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location&lt;/code&gt; has several properties and methods, in our example we use &lt;code&gt;location.child()&lt;/code&gt; to ask reporter to pinpoint the problem to the node&amp;rsquo;s child location. Thus, the problem will be pointed to &lt;code&gt;state.x-aviskase-enum&lt;/code&gt; instead of simply &lt;code&gt;state&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;enabling-the-rule-via-a-custom-plugin&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#enabling-the-rule-via-a-custom-plugin&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Enabling the rule via a custom plugin&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Similarly to the preprocessor plugin, we keep all custom rules bundled as a plugin in &lt;code&gt;./plugins/custom-rules.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; UppercaseSchemaEnums &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./rules/uppercase-schema-enums&amp;#39;&lt;/span&gt;);
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; id &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;custom-rules&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/config/config&amp;#39;).CustomRulesConfig } */&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; rules &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  oas3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;uppercase-schema-enums&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; UppercaseSchemaEnums,
+  },
+};
+
+module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  id,
+  rules,
+};
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, enable the plugin and configure the rule in the &lt;code&gt;.redocly.yaml&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;plugins&lt;/span&gt;:
+    - &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./plugins/custom-preprocessors.js&amp;#39;&lt;/span&gt;
+    - &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./plugins/custom-rules.js&amp;#39;&lt;/span&gt;
+...
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;rules&lt;/span&gt;:
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;custom-rules/uppercase-schema-enums&lt;/span&gt;:
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;severity&lt;/span&gt;: error
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;enumLikeProperties&lt;/span&gt;:
+        - x-aviskase-enum
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The final result is in &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/45a99c7f3cfa8e1725ebccc601280f948c637910&#34; class=&#34;external&#34;&gt;commit 45a99c7&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;example-checking-description-property-style&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#example-checking-description-property-style&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example: checking &lt;code&gt;description&lt;/code&gt; property style&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s add one more housekeeping rule: all &lt;code&gt;description&lt;/code&gt; properties should start with a capital letter and end with a punctuation mark.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; DescriptionStyle;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/visitors&amp;#39;).Oas3Rule } */&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; DescriptionStyle() {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    Info&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Server&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(), 
+    ServerVariable&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    PathItem&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Operation&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(), 
+    ExternalDocs&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Parameter&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    RequestBody&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Response&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Example&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Header&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Tag&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    Schema&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+    SecurityScheme&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; checkStyle(),
+  };  
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; checkStyle(attribute &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;description&amp;#39;&lt;/span&gt;) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    skip(node) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;typeof&lt;/span&gt; node[attribute] &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;;
+    },
+    enter(node, { report, location, type }) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loc &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; location.child([attribute]);
+
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; content &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; node[attribute].trim();
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (content.length &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;){
+        report({message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`The &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;type.name&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt; description should not be empty string.`&lt;/span&gt;, location&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; loc});
+      }
+
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; firstChar &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; content.slice(&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;);
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (firstChar &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; firstChar.toLocaleUpperCase()){
+        report({message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`The &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;type.name&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt; description should start with capital letter.`&lt;/span&gt;, location&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; loc});
+      }
+
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; lastChar &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; content.slice(&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;);
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;([&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;!&amp;#39;&lt;/span&gt;].includes(lastChar))) {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; suggest &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&amp;#34;&amp;lt;...&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;content.slice(&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;)&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;.&amp;#34;`&lt;/span&gt;;
+        report({message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`The &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;type.name&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt; description should end with punctuation.`&lt;/span&gt;, location&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;loc, suggest&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [suggest]});
+      }
+    }
+  };
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt; property can be present &lt;a href=&#34;https://spec.openapis.org/oas/v3.0.3.html&#34; class=&#34;external&#34;&gt;in several objects&lt;/a&gt;. Thus, we target several visitors at once.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;report&lt;/code&gt; can also show suggestions: here we show a possible fix for the punctuation problem.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Don&amp;rsquo;t forget to enable it in &lt;code&gt;.redocly.yaml&lt;/code&gt;. Here is what we have after adding the rule and fixing &lt;em&gt;most&lt;/em&gt; of the errors: &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/33e6a46e39c5237746448d8fcc9e3b8924b7d176&#34; class=&#34;external&#34;&gt;commit 33e6a46&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;But there are still two errors to fix:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;validating /openapi/gates.yaml...
+&lt;span style=&#34;color:#ff79c6&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#ff79c6&#34;&gt;]&lt;/span&gt; openapi/components/schemas/Stargate.yaml:10:5 at &lt;span style=&#34;color:#6272a4&#34;&gt;#/properties/state/description&lt;/span&gt;
+
+The Schema description should end with punctuation.
+
+Did you mean: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;lt;...&amp;gt;, `BURIED`.&amp;#34;&lt;/span&gt; ?
+
+ &lt;span style=&#34;color:#bd93f9&#34;&gt;8&lt;/span&gt; |     - nullable: &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;true&lt;/span&gt;
+ &lt;span style=&#34;color:#bd93f9&#34;&gt;9&lt;/span&gt; | state:
+&lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt; |   type: string
+&lt;span style=&#34;color:#bd93f9&#34;&gt;11&lt;/span&gt; |   nullable: &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;true&lt;/span&gt;
+ … |   &amp;lt; &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt; more lines &amp;gt;
+&lt;span style=&#34;color:#bd93f9&#34;&gt;16&lt;/span&gt; | environment:
+&lt;span style=&#34;color:#bd93f9&#34;&gt;17&lt;/span&gt; |   type: string
+&lt;span style=&#34;color:#bd93f9&#34;&gt;18&lt;/span&gt; |   description: Last known place where gate is situated.
+
+Error was generated by the custom-rules/description-style rule.
+
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;[&lt;/span&gt;2&lt;span style=&#34;color:#ff79c6&#34;&gt;]&lt;/span&gt; openapi/components/schemas/Stargate.yaml:18:18 at &lt;span style=&#34;color:#6272a4&#34;&gt;#/properties/environment/description&lt;/span&gt;
+
+The Schema description should end with punctuation.
+
+Did you mean: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;lt;...&amp;gt;DE_OBJECT`.&amp;#34;&lt;/span&gt; ?
+
+&lt;span style=&#34;color:#bd93f9&#34;&gt;16&lt;/span&gt; | environment:
+&lt;span style=&#34;color:#bd93f9&#34;&gt;17&lt;/span&gt; |   type: string
+&lt;span style=&#34;color:#bd93f9&#34;&gt;18&lt;/span&gt; |   description: Last known place where gate is situated.
+&lt;span style=&#34;color:#bd93f9&#34;&gt;19&lt;/span&gt; |   nullable: &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color:#bd93f9&#34;&gt;20&lt;/span&gt; |   x-aviskase-enum:
+
+Error was generated by the custom-rules/description-style rule.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hmm, looks confusing. Thanks to &lt;code&gt;suggest&lt;/code&gt; we can at least see that something was added to the original description&amp;hellip; Oh, right, that was our preprocessor! That&amp;rsquo;s why I suggested to use it in the first place: if we were to modify descriptions via decorators, the rule wouldn&amp;rsquo;t be able to catch this problem.&lt;/p&gt;
+&lt;p&gt;Finally, to make linter passing, we need to fix the preprocessor plugin code &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/81a43321ae607fd20afd5abe4922fc86fa0fcce0&#34; class=&#34;external&#34;&gt;commit 81a4332&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;admonition cta&#34;&gt;
+    &lt;div class=&#34;admonition-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;28&#34; height=&#34;28&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke=&#34;currentColor&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;2&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34; /&gt;&lt;/svg&gt;&lt;/div&gt;
+        &lt;p&gt;Rules are cooler than preprocessors and decorators: they support nested visitors. I&amp;rsquo;ll cover this concept in the next article. Until then, try to come up with an example where the uppercase rule in its current form might have undesired behavior.&lt;/p&gt;
+    
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt;: custom preprocessing</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/" hreflang="en"/>
@@ -27,7 +213,7 @@ In this tutorial, we&amp;amp;rsquo;ll start with preprocessors. They are used to
 &lt;li&gt;Grab the list of values, format them nicely, and add it to the &lt;code&gt;description&lt;/code&gt;. Make sure not to overwrite existing description if it&amp;rsquo;s already present!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;adding-a-preprocessor&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#adding-a-preprocessor&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Adding a preprocessor&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s create a preprocessor first &lt;code&gt;./plugins/preprocessors/add-enum-to-description.js&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
 &lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; AddEnumToDescription;
 
 &lt;span style=&#34;color:#6272a4&#34;&gt;/** @type { import(&amp;#39;@redocly/openapi-core/src/visitors&amp;#39;).Oas3Preprocessor } */&lt;/span&gt;
@@ -66,7 +252,7 @@ In this tutorial, we&amp;amp;rsquo;ll start with preprocessors. They are used to
     
 &lt;/div&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;enabling-our-preprocessor-via-custom-plugin&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#enabling-our-preprocessor-via-custom-plugin&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Enabling our preprocessor via custom plugin&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s keep our preprocessor (and the future ones) bundled inside one plugin via &lt;code&gt;./plugins/custom-preprocessors.js&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//@ts-check
 &lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; AddEnumToDescription &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./preprocessors/add-enum-to-description&amp;#39;&lt;/span&gt;);
 &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; id &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;custom-preprocessors&amp;#39;&lt;/span&gt;;
 
@@ -83,7 +269,7 @@ module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here we defined plugin&amp;rsquo;s &lt;code&gt;id&lt;/code&gt; and a mapping between preprocessor&amp;rsquo;s name (&lt;code&gt;add-x-enum-to-description&lt;/code&gt;) and its implementation.&lt;/p&gt;
 &lt;p&gt;Then we need to add this custom plugin to the &lt;code&gt;.redocly.yaml&lt;/code&gt; and to enable the preprocessor:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
 &lt;span style=&#34;color:#ff79c6&#34;&gt;lint&lt;/span&gt;:
   &lt;span style=&#34;color:#ff79c6&#34;&gt;plugins&lt;/span&gt;:
     - &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./plugins/custom-preprocessors.js&amp;#39;&lt;/span&gt;
@@ -98,7 +284,7 @@ module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu0c23a21c68146543c289aaa72aeaae18_43182_1445x324_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu0c23a21c68146543c289aaa72aeaae18_43182_1445x324_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render.png&#34; alt=&#34;Redoc with modified descriptions for extensible enumerations&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -109,7 +295,7 @@ module.exports &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
     
 &lt;/div&gt;
 
-&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;why-use-a-preprocessor-here&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#why-use-a-preprocessor-here&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Why use a preprocessor here?&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;As mentioned before, preprocessors might be brittle. We could have used decorator instead. I&amp;rsquo;ll show you the reason in the next article, but here is a sneak peek: we want to be able to &lt;em&gt;lint&lt;/em&gt; modified descriptions!&lt;/p&gt;</content>
+&lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;why-use-a-preprocessor-here&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#why-use-a-preprocessor-here&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Why use a preprocessor here?&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;As mentioned before, preprocessors might be brittle. We could have used decorator instead. I&amp;rsquo;ll show you the reason in the next article, but here is a sneak peek: we want to be able to &lt;a href=&#34;https://www.aviskase.com/articles/2021/09/06/using-openapi-cli-custom-rules/&#34; class=&#34;internal&#34;&gt;&lt;em&gt;lint&lt;/em&gt; modified descriptions&lt;/a&gt;!&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Using &amp;lt;code&amp;gt;openapi-cli&amp;lt;/code&amp;gt; during API design: part two</title>
@@ -124,14 +310,14 @@ Multi-what?By multi-definition project I mean a project with several OpenAPI des
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;multi-what&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#multi-what&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Multi-what?&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;By multi-definition project I mean a project with several OpenAPI description documents. For example, it can be useful if you want to keep contracts for all services in one place. Then, you can reuse common schemas between definitions.&lt;/p&gt;
 &lt;p&gt;Another use case is keeping parts of your APIs hidden from the final description document (internal and external APIs). This approach will mostly work only if separation is on path-level (&lt;a href=&#34;https://redoc.ly/docs/resources/hide-apis/&#34; class=&#34;external&#34;&gt;see more here&lt;/a&gt;).&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;configuration&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#configuration&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Configuration&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;In our small Stargate API example we are splitting gates and addresses APIs into two description docs (&lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/commit/18f1bdb2de458859b93c1c99a6400567a2cb9442&#34; class=&#34;external&#34;&gt;commit&lt;/a&gt;). Next step is to change &lt;a href=&#34;https://redoc.ly/docs/cli/configuration/#apidefinitions&#34; class=&#34;external&#34;&gt;configuration file&lt;/a&gt;, so that &lt;code&gt;openapi-cli&lt;/code&gt; would know that we have two definitions (&lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/commit/47c4a4947b9827509a02c52550f036a139dccf36&#34; class=&#34;external&#34;&gt;commit&lt;/a&gt;).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;apiDefinitions:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;apiDefinitions:
   gates: openapi/gates.yaml
   addresses: openapi/addresses.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But now we need to fix our scripts in the &lt;code&gt;package.json&lt;/code&gt; so that we could work with both definitions!&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;preview&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#preview&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Preview&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;If you simply run &lt;code&gt;openapi preview-docs&lt;/code&gt; as we did before, it will start server only for the first definition in config file (in our case: gates).
 To preview a specific definition, you need to pass a definition label from configuration file: &lt;code&gt;openapi preview-docs addresses&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;But what if we want to preview both definitions? The simple fix will be adding separate scripts to run each definition on different ports:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;scripts&amp;#34;: {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;scripts&amp;#34;: {
 	&amp;#34;preview:gates&amp;#34;: &amp;#34;openapi preview-docs -p 8080 gates&amp;#34;,
 	&amp;#34;preview:addresses&amp;#34;: &amp;#34;openapi preview-docs -p 8081 addresses&amp;#34;,
 	...
@@ -140,7 +326,7 @@ To preview a specific definition, you need to pass a definition label from confi
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;linting&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#linting&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Linting&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Nothing to change here! &lt;code&gt;openapi lint&lt;/code&gt; without any definition labels will check all of them.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;bundling&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#bundling&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Bundling&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Remember how we had to use &lt;code&gt;-o dist/openapi&lt;/code&gt; to properly generate bundled desciption doc for single-definition project? Now we should simply leave it as &lt;code&gt;-o dist&lt;/code&gt;. This will generate &lt;code&gt;dist/gates.yaml&lt;/code&gt; and &lt;code&gt;dist/addresses.yaml&lt;/code&gt; based on definitions labels.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;generating-reference-docs&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#generating-reference-docs&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Generating reference docs&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;To generate static reference docs we should split &lt;code&gt;npm run docs&lt;/code&gt; into separate scripts to target each definition:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;scripts&amp;#34;: {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;scripts&amp;#34;: {
 	...
 	&amp;#34;docs:gates&amp;#34;: &amp;#34;node plugins/prepareOptions.js &amp;amp;&amp;amp; redoc-cli bundle dist/gates.yaml -o dist/redoc-gates.html --options .redoc.json&amp;#34;,
 	&amp;#34;docs:addresses&amp;#34;: &amp;#34;node plugins/prepareOptions.js &amp;amp;&amp;amp; redoc-cli bundle dist/addresses.yaml -o dist/redoc-addresses.html --options .redoc.json&amp;#34;,
@@ -210,7 +396,7 @@ Example APILet&amp;amp;rsquo;s imagine you&amp;amp;rsquo;ve been asked to create
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu7d57596270b7696f2b8b84448070eccd_129657_1517x582_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu7d57596270b7696f2b8b84448070eccd_129657_1517x582_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.png&#34; alt=&#34;Output of create-openapi-repo tool&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -242,14 +428,14 @@ Example APILet&amp;amp;rsquo;s imagine you&amp;amp;rsquo;ve been asked to create
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu69bdac1b5e8f9744325b681df1e2e84d_152272_2080x729_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu69bdac1b5e8f9744325b681df1e2e84d_152272_2080x729_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.png&#34; alt=&#34;Comparison of property display with requiredPropsFirst equal to false or true&#34; defer&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;See &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/c873f1593825256a58991e71cc9ec968d892c3b5&#34; class=&#34;external&#34;&gt;at commit c873f15&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;linting&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#linting&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Linting&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;From time to time you should lint with &lt;code&gt;openapi lint&lt;/code&gt; (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#lint&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;). Let&amp;rsquo;s execute &lt;code&gt;npm run test&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run test
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run test
 
 &amp;gt; stargate-network@1.0.0 test /home/aviskase/Projects/openapi-cli-examples
 &amp;gt; openapi lint
@@ -274,7 +460,7 @@ Error was generated by the no-empty-servers rule.
 run with `--generate-ignore-file` to add all problems to ignore file.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Oops! We have an error! Wait a second, &lt;a href=&#34;https://redoc.ly/docs/cli/built-in-rules/#no-empty-servers&#34; class=&#34;external&#34;&gt;&lt;code&gt;no-empty-servers&lt;/code&gt;&lt;/a&gt; rule complains that we must have &lt;code&gt;servers&lt;/code&gt; defined. But &lt;a href=&#34;http://spec.openapis.org/oas/v3.0.3.html#openapi-object&#34; class=&#34;external&#34;&gt;OpenAPI specification doesn&amp;rsquo;t state this as a required field&lt;/a&gt;, so our description doc is valid. Where does this error come from?&lt;/p&gt;
 &lt;p&gt;When &lt;code&gt;.redocly.yaml&lt;/code&gt; was generated, it included &lt;code&gt;lint&lt;/code&gt; section:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;lint:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;lint:
   extends:
     - recommended
   rules:
@@ -283,7 +469,7 @@ run with `--generate-ignore-file` to add all problems to ignore file.
 &lt;p&gt;I prefer keeping recommended rules and explicitly disabling unneeded ones. &lt;a href=&#34;https://redoc.ly/docs/cli/configuration/lint/&#34; class=&#34;external&#34;&gt;Per docs&lt;/a&gt; you need to set &lt;code&gt;no-empty-servers: off&lt;/code&gt; in &lt;code&gt;rules&lt;/code&gt; section, &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/ee2e3ffb2009deefb69d75dd14febbbb90192148&#34; class=&#34;external&#34;&gt;commit ee2e3ff&lt;/a&gt;. Or you can change severity to &lt;code&gt;warning&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;You can read more about other built-in rules &lt;a href=&#34;https://redoc.ly/docs/cli/built-in-rules/&#34; class=&#34;external&#34;&gt;in the docs&lt;/a&gt;. In the later article I&amp;rsquo;ll show how to add your own custom rules.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;bundling&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#bundling&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Bundling&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Most of the tools require single-file OpenAPI doc. That&amp;rsquo;s where bundling comes in. The &lt;code&gt;package.json&lt;/code&gt;  is preconfigured with the script to run &lt;code&gt;openapi bundle -o dist&lt;/code&gt; which will save a generated file to the &lt;code&gt;dist&lt;/code&gt; directory. Usually it&amp;rsquo;s enough, but in some cases you may want to run with &lt;code&gt;--derefenreced&lt;/code&gt; flag to produce a file with internally inlined definitions (&lt;a href=&#34;https://redoc.ly/docs/cli/commands/#bundle&#34; class=&#34;external&#34;&gt;docs&lt;/a&gt;).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run build
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ npm run build
 
 &amp;gt; stargate-network@1.0.0 build /home/aviskase/Projects/openapi-cli-examples
 &amp;gt; openapi bundle -o dist
@@ -295,9 +481,9 @@ bundling /home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml...
 &lt;p&gt;In our example we have one API definition, so to fix we should change the script either to &lt;code&gt;-o dist/openapi&lt;/code&gt; or to &lt;code&gt;-o dist/openapi.yaml&lt;/code&gt;. Both will work the same, as long as &lt;code&gt;--ext&lt;/code&gt; equals to &lt;code&gt;yaml&lt;/code&gt; by default. If you want to generate file in JSON format, you can use &lt;code&gt;-o dist/openapi --ext json&lt;/code&gt; or  &lt;code&gt;-o dist/openapi.json&lt;/code&gt;. If you want both formats, you need to run commands separately, see &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/a4e1e234dc5fd11741c3f09564a8c5ee0932c098&#34; class=&#34;external&#34;&gt;at commit a4e1e23&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;generating-reference-doc&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#generating-reference-doc&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Generating reference doc&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;One of the features that &lt;a href=&#34;https://github.com/Redocly/openapi-cli/issues/133&#34; class=&#34;external&#34;&gt;&lt;code&gt;openapi-cli&lt;/code&gt; doesn&amp;rsquo;t have&lt;/a&gt;, but I need all the time is to generate static Redoc html file. Yes, you&amp;rsquo;d want to invest in better solutions and processes at some point, but at smaller scale it&amp;rsquo;s ok to send a simple HTML file when someone from non-dev team wants to see the latest or prototype API thingy.&lt;/p&gt;
 &lt;p&gt;First, we need to install &lt;code&gt;redoc-cli&lt;/code&gt; via &lt;code&gt;npm i redoc-cli&lt;/code&gt;. Then, add a new script to &lt;code&gt;package.json&lt;/code&gt; to generate an HTML file inside &lt;code&gt;dist&lt;/code&gt; directory:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;redoc-cli bundle dist/openapi.yaml -o dist/redoc.html&amp;#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;redoc-cli bundle dist/openapi.yaml -o dist/redoc.html&amp;#34;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After running &lt;code&gt;npm run docs&lt;/code&gt; and opening the generated file you&amp;rsquo;ll notice that all our custom options are gone. You see, &lt;code&gt;redoc-cli&lt;/code&gt; doesn&amp;rsquo;t support &lt;code&gt;.redocly.yaml&lt;/code&gt; configuration file. To fix this, add &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/blob/ad6dacc3464a5800c408ce53aaa5f23bb701600a/plugins/prepareOptions.js&#34; class=&#34;external&#34;&gt;&lt;code&gt;prepareOptions.js&lt;/code&gt;&lt;/a&gt; which reads &lt;code&gt;referenceDocs&lt;/code&gt; from &lt;code&gt;.redocly.yaml&lt;/code&gt; and saves it to &lt;code&gt;.redoc.json&lt;/code&gt; Next, modify &lt;code&gt;docs&lt;/code&gt; script to run preparation script and use &lt;code&gt;.redoc.json&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;node plugins/prepareOptions.js &amp;amp;&amp;amp; redoc-cli bundle dist/openapi.yaml -o dist/redoc.html --options .redoc.json&amp;#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&amp;#34;docs&amp;#34;: &amp;#34;node plugins/prepareOptions.js &amp;amp;&amp;amp; redoc-cli bundle dist/openapi.yaml -o dist/redoc.html --options .redoc.json&amp;#34;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;https://github.com/aviskase/openapi-cli-examples/tree/ad6dacc3464a5800c408ce53aaa5f23bb701600a&#34; class=&#34;external&#34;&gt;at commit ad6dacc&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;imho&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#imho&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;IMHO&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Personally, I prefer different names for scripts:&lt;/p&gt;
 &lt;ul&gt;
@@ -340,7 +526,7 @@ bundling /home/aviskase/Projects/openapi-cli-examples/openapi/openapi.yaml...
     
 &lt;/div&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-stats&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-stats&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi stats&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Gathers some basic statistics for an OpenAPI description document. Can be in &amp;ldquo;stylish&amp;rdquo; format (as in the example below) or in JSON.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi stats http://localhost:8888/api/v1/swagger.json
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi stats http://localhost:8888/api/v1/swagger.json
 Document: http://localhost:8888/api/v1/swagger.json stats:
 
 🚗 References: 12 
@@ -353,7 +539,7 @@ Document: http://localhost:8888/api/v1/swagger.json stats:
 🔖 Tags: 1 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nothing useful for me at the moment. The only use case that comes to mind is when you have a bunch of documents for an &lt;strong&gt;assessment&lt;/strong&gt; and you&amp;rsquo;re not sure where to start. Then, you can check stats for each doc and proceed with the smallest one.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;openapi-preview-docs&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#openapi-preview-docs&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;openapi preview-docs&lt;/code&gt;&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;This command is the primary reason I have &lt;code&gt;openapi-cli&lt;/code&gt; installed as a global package: I use it all the time. The command accepts path or link to the existing OpenAPI description document and starts a local HTTP server with the generated Redoc reference doc.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi preview-docs  http://localhost/api/v1/swagger.json
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;➜ openapi preview-docs  http://localhost/api/v1/swagger.json
 Using Redoc community edition.
 Login with openapi-cli login or use an enterprise license key to preview with the premium docs.
 
@@ -384,7 +570,7 @@ Created a bundle for http://localhost/api/v1/swagger.json successfully
     
 &lt;/div&gt;
 &lt;p&gt;Let&amp;rsquo;s split a description doc into &lt;code&gt;out&lt;/code&gt; directory: &lt;code&gt;openapi split --outDir out openapi.json&lt;/code&gt;. Here is a sample result:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;~/out 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;~/out 
 ➜ tree
 .
 ├── components
@@ -467,7 +653,7 @@ RetroWhat happened this year:
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu9d52b6327b290172b4e8d6badca78555_124321_782x635_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu9d52b6327b290172b4e8d6badca78555_124321_782x635_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png&#34; alt=&#34;Advent of Code easter egg: using itertools&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -504,7 +690,7 @@ The most common tasks are:
 &lt;li&gt;&lt;a href=&#34;https://www.aviskase.com/articles/2021/01/10/using-openapi-cli-for-api-exploration/&#34; class=&#34;internal&#34;&gt;using &lt;code&gt;openapi-cli&lt;/code&gt; for API exploration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;basic API doc structuring and preparation (dereferencing, previewing, linting, handing off results) (&lt;a href=&#34;https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/&#34; class=&#34;internal&#34;&gt;part 1&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://www.aviskase.com/articles/2021/03/23/using-openapi-cli-during-api-design-part-two/&#34; class=&#34;internal&#34;&gt;part 2&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;advanced topic: &lt;a href=&#34;https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/&#34; class=&#34;internal&#34;&gt;preprocessing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;advanced topic: custom linting rules&lt;/li&gt;
+&lt;li&gt;advanced topic: custom linting rules (&lt;a href=&#34;https://www.aviskase.com/articles/2021/09/06/using-openapi-cli-custom-rules/&#34; class=&#34;internal&#34;&gt;part 1&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;advanced topic: decorators&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;And while I&amp;rsquo;m writing next posts (hehe), install and play with it!&lt;/p&gt;
@@ -523,7 +709,7 @@ The most common tasks are:
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;main-definitions&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#main-definitions&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Main definitions&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Specification&lt;/strong&gt; is some standard or RFC or whatever describing a particular format or protocol.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt; (aka: data model) is a metadata describing the data type, formats, and validation rules. Schema can be defined for content body, header, path or query parameters, etc.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Hypermedia controls&lt;/strong&gt; is an easier way to say &lt;strong&gt;HATEOAS&lt;/strong&gt;. What&amp;rsquo;s that? It&amp;rsquo;s a special affordance that allows a client to traverse API without hardcoding links. The simplest example would be including pagination links in the response data. E.g., a client asked to get collection of items &amp;mdash; the server responded with first N items and a link to the next page of results &amp;mdash; the client can use the link to get the next page without constructing a link on their own.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
     &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;items&amp;#34;&lt;/span&gt;: [
         {&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;},
         {&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;}
@@ -568,7 +754,7 @@ The most common tasks are:
 &lt;p&gt;&lt;strong&gt;Preprocessing&lt;/strong&gt; allows transforming the doc based on additional rules before using it in code or documentation generation. For example, hiding some endpoints from the published version or injecting descriptions from markdown files.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;ref&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#ref&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;code&gt;$ref&lt;/code&gt;&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;When working with OpenAPI or JSON Schema you will stumble upon &lt;code&gt;$ref&lt;/code&gt;&amp;rsquo;s a great deal. These are pointers to JSON structures in different locations: inside the same file or to some other file:&lt;/p&gt;
 &lt;p&gt;For example, this reference points to the schema from the other file.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;...
 &lt;span style=&#34;color:#ff79c6&#34;&gt;application/json&lt;/span&gt;:
   &lt;span style=&#34;color:#ff79c6&#34;&gt;schema&lt;/span&gt;:
     &lt;span style=&#34;color:#ff79c6&#34;&gt;type&lt;/span&gt;: object
@@ -686,7 +872,7 @@ For example, the typical layers-based layout would be:
 . ├── common │ └── utils.ts ├── routers │ ├── locations.</summary>
     <content type="html">&lt;p&gt;&lt;a href=&#34;https://github.com/goldbergyoni/nodebestpractices&#34; class=&#34;external&#34;&gt;Node.js best practices repo&lt;/a&gt; is the most comprehensive list of style guides and architectural tips for Node.js apps I&amp;rsquo;ve seen. The very first of them is about &lt;a href=&#34;https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md&#34; class=&#34;external&#34;&gt;structuring projects based on components instead of layers&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example, the typical layers-based layout would be:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
 ├── common
 │   └── utils.ts
 ├── routers
@@ -697,7 +883,7 @@ For example, the typical layers-based layout would be:
 │   └── users.service.ts
 └── index.ts
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In comparison, this is a components-based layout:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;.
 ├── common
 │   └── utils.ts
 ├── components
@@ -717,7 +903,7 @@ For example, the typical layers-based layout would be:
 &lt;/ul&gt;
 &lt;p&gt;This behavior isn&amp;rsquo;t compatible with the components-base layout, since there is no such thing as base directory: each handler lives in the separate directory. Fortunately, you can customize default behavior with &lt;a href=&#34;https://github.com/cdimascio/express-openapi-validator/#%EF%B8%8F-operationhandlers-optional&#34; class=&#34;external&#34;&gt;custom resolver&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;For example, custom resolver I wrote:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;operationHandlers&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;operationHandlers&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
     basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; path.join(&lt;span style=&#34;color:#bd93f9&#34;&gt;__&lt;/span&gt;dirname, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;components&amp;#39;&lt;/span&gt;),
     resolver&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (basePath&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; string, route, apiDoc) =&amp;gt; {
         &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; pathKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; route.openApiRoute.substring(route.basePath.length);
@@ -842,7 +1028,7 @@ Why and whereReasons:
 &lt;/ul&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;migration-shenanigans&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#migration-shenanigans&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Migration shenanigans&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Pelican and Hugo have a very different template format. Rewriting took most of the time, but as you can see, there are no visual changes. I also had to write Atom feed template almost from scratch and test it to make sure that &lt;code&gt;id&lt;/code&gt;&amp;rsquo;s are the same and the whole feed won&amp;rsquo;t be completely regenerated (like it happened the last migration.)&lt;/p&gt;
 &lt;p&gt;But Hugo templates are way more flexible than Pelican&amp;rsquo;s. What I had to do with plugins was achieved with core features. I also fell in love with &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34; class=&#34;external&#34;&gt;shortcodes&lt;/a&gt; and &lt;a href=&#34;https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks&#34; class=&#34;external&#34;&gt;markdown render hooks&lt;/a&gt; which allow further customizations. For example, I used to have a Pelican plugin that detects links to external resources and adds a special &lt;code&gt;external&lt;/code&gt; CSS class to them. Now the whole plugin is replaced with one link render hook that I can easily customize as I want later:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go-html-template&#34; data-lang=&#34;go-html-template&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Destination&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;|&lt;/span&gt; safeURL &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; strings&lt;span style=&#34;color:#50fa7b&#34;&gt;.HasPrefix&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Destination&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;external&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;end&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Text&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;|&lt;/span&gt; safeHTML &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go-html-template&#34; data-lang=&#34;go-html-template&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Destination&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;|&lt;/span&gt; safeURL &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; strings&lt;span style=&#34;color:#50fa7b&#34;&gt;.HasPrefix&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Destination&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;external&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;end&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;{{&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;.Text&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;|&lt;/span&gt; safeHTML &lt;span style=&#34;color:#ff79c6&#34;&gt;}}&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Second problem was the markdown sources. They had special Pelican front matter format, not compatible with any supported by Hugo (YAML, TOML, JSON, Org). Yikes. Same for &lt;code&gt;!!! note&lt;/code&gt; admonition syntax, &lt;code&gt;kbd&lt;/code&gt; auto-detection (all replaced by shortcode), and internal links. I don&amp;rsquo;t have too much content, so most of the work was done via &lt;code&gt;grep&lt;/code&gt; and manually replacing stuff.&lt;/p&gt;
 &lt;p&gt;Third problem was images. The simple solution would be to set them all to &lt;code&gt;static&lt;/code&gt; folder, but it&amp;rsquo;s not a recommended approach because you wouldn&amp;rsquo;t be able to use image processing features. Thus, you should go with &lt;code&gt;assets&lt;/code&gt; or &lt;a href=&#34;https://gohugo.io/content-management/page-bundles/&#34; class=&#34;external&#34;&gt;page bundles&lt;/a&gt;. I prefer bundles because they create a clear distinction where each image belongs to.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;changes-to-the-site&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#changes-to-the-site&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Changes to the site&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;While I was trying to preserve as much as I could, there are some &lt;em&gt;intentional&lt;/em&gt; changes:&lt;/p&gt;
@@ -1114,7 +1300,7 @@ Perhaps I should try to be more consistent and always write literature notes. Al
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hua4ff3e2cfd110b6ba07989c28888d4ad_49328_639x596_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hua4ff3e2cfd110b6ba07989c28888d4ad_49328_639x596_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png&#34; alt=&#34;Obsidian graph view as of July 2020&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1185,7 +1371,7 @@ HandwrittenI was more into handwriting during school and university, and there a
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hufa58e120375260f0cde684b8fe8fce22_58824_1304x381_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hufa58e120375260f0cde684b8fe8fce22_58824_1304x381_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png&#34; alt=&#34;Notes in the Google Docs&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1201,7 +1387,7 @@ HandwrittenI was more into handwriting during school and university, and there a
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu11c88f6b4f8e4d4566211d83825cf277_32652_834x494_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu11c88f6b4f8e4d4566211d83825cf277_32652_834x494_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png&#34; alt=&#34;Sublime with PlainNotes&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1218,7 +1404,7 @@ HandwrittenI was more into handwriting during school and university, and there a
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu9c32adda7f2c091cd2c5509224b7043c_84994_564x394_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu9c32adda7f2c091cd2c5509224b7043c_84994_564x394_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png&#34; alt=&#34;XMind mind map overview&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1246,7 +1432,7 @@ HandwrittenI was more into handwriting during school and university, and there a
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hub3cedfb4d79ea0809104fd94b53e170b_40871_920x261_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hub3cedfb4d79ea0809104fd94b53e170b_40871_920x261_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png&#34; alt=&#34;Google Keep with transient lists&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1329,7 +1515,7 @@ I really liked the article by Daniel Jarjoura on communications.</summary>
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu2a62ebfcb3418706af0af2941b59b141_14367_353x237_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu2a62ebfcb3418706af0af2941b59b141_14367_353x237_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png&#34; alt=&#34;45 RSS feeds in &amp;amp;ldquo;Testing&amp;amp;rdquo; category&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1354,14 +1540,14 @@ Of course, you do! With server-side enabled validation based on a schema, you ne
 &lt;p&gt;The problem is that JSON and XML are different beasts. Assuming at face value that whatever is defined in schema should be blindly validated &lt;strong&gt;can be wrong.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Let me explain why. And don&amp;rsquo;t worry, I did the same mistake.&lt;/p&gt;
 &lt;p&gt;Here is a simple XML:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;item&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Ring of the Wild Hunt&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;tugrik&amp;gt;&lt;/span&gt;10&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/tugrik&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Take &lt;em&gt;a good look at&lt;/em&gt; &lt;code&gt;tugrik&lt;/code&gt; element. Without XSD you wouldn&amp;rsquo;t know the expected type. While it looks like something numeric, you can&amp;rsquo;t be sure. Maybe it&amp;rsquo;s a string like a &lt;code&gt;name&lt;/code&gt;?&lt;/p&gt;
 &lt;p&gt;Addition of XSD clarifies that &lt;code&gt;tugrik&lt;/code&gt; expects decimal value:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;xs:schema&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:xs=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;targetNamespace=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;https://www.w3schools.com&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;https://www.w3schools.com&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;elementFormDefault=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;qualified&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;item&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -1375,14 +1561,14 @@ Of course, you do! With server-side enabled validation based on a schema, you ne
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/xs:schema&amp;gt;&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, let&amp;rsquo;s convert the same document to JSON.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
 	&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;item&amp;#34;&lt;/span&gt;: {
 		&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Ring of the Wild Hunt&amp;#34;&lt;/span&gt;,
 		&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;tugrik&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Oh no, you say, that looks wrong! We know that &lt;code&gt;tugrik&lt;/code&gt; is a number, so make it so:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
 	&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;item&amp;#34;&lt;/span&gt;: {
 		&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Ring of the Wild Hunt&amp;#34;&lt;/span&gt;,
 		&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;#34;tugrik&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
@@ -1391,7 +1577,7 @@ Of course, you do! With server-side enabled validation based on a schema, you ne
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Yet by doing that, now we don&amp;rsquo;t even need any JSON Schema to guess the type. No pesky little quotes &amp;mdash; it&amp;rsquo;s a number!&lt;/p&gt;
 &lt;p&gt;Perhaps you see where this is going. XML documents are plain-text. Each element&amp;rsquo;s value is a simple string that frameworks cast into proper types using XSD.&lt;/p&gt;
 &lt;p&gt;So, if &lt;code&gt;tugrik&lt;/code&gt; is defined as decimal field:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;float(&amp;#34;10&amp;#34;) == 10.0
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;float(&amp;#34;10&amp;#34;) == 10.0
 float(&amp;#34;10.0&amp;#34;) == 10.0
 float(&amp;#34;blah&amp;#34;) --&amp;gt; Exception
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Maybe there is a trimming in between too, so &lt;code&gt;float(&amp;quot;  10  &amp;quot;.trim()) == 10.0&lt;/code&gt;.&lt;/p&gt;
@@ -1400,7 +1586,7 @@ float(&amp;#34;blah&amp;#34;) --&amp;gt; Exception
 &lt;p&gt;JSONs are not plain-text. They already have some rudimentary types visible just by looking at them. If you add JSON Schema on top and use any &lt;em&gt;not overly robust&lt;/em&gt; validator, the behavior will be different.&lt;/p&gt;
 &lt;p&gt;Because the simplest way to validate a JSON document is first to consume it with some common library that guesses types almost like we do: &amp;ldquo;does it have quotes around? string!&amp;rdquo; And only then, with already cast value, to compare its type with whatever is defined in a schema.&lt;/p&gt;
 &lt;p&gt;(Yes, yes, I do oversimplify internals)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;x = parse(&amp;lt;json&amp;gt;) 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;x = parse(&amp;lt;json&amp;gt;) 
 assert typeof(x) == &amp;#39;float&amp;#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;then for:&lt;/p&gt;
 &lt;ul&gt;
@@ -1507,7 +1693,7 @@ so you need to add it to the query parameters for each request.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_huead573a8756e44bcf75d98811835f592_124055_1920x570_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_huead573a8756e44bcf75d98811835f592_124055_1920x570_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png&#34; alt=&#34;Insomnia: basic interface&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1533,7 +1719,7 @@ because we have access only to one server.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hua4b6f39ac643996f900fee14788163f0_37132_1038x300_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hua4b6f39ac643996f900fee14788163f0_37132_1038x300_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png&#34; alt=&#34;Insomnia: base environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1544,7 +1730,7 @@ because we have access only to one server.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu726d4745e1ebe860d9fc791057f0b867_34864_1011x300_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu726d4745e1ebe860d9fc791057f0b867_34864_1011x300_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png&#34; alt=&#34;Insomnia: sub environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1555,7 +1741,7 @@ because we have access only to one server.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hub445a22ecd8e9713ba2be35b1026d80b_33058_1137x313_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hub445a22ecd8e9713ba2be35b1026d80b_33058_1137x313_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png&#34; alt=&#34;Insomnia: folder-level environment&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1566,7 +1752,7 @@ because we have access only to one server.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hua0c381ec8ae72d32013b0fc09b58aeea_72498_1200x430_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hua0c381ec8ae72d32013b0fc09b58aeea_72498_1200x430_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png&#34; alt=&#34;Insomnia: requests with variables from environments&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1580,7 +1766,7 @@ This plugin allows us to set default headers and/or query parameters in the envi
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu2a51f86aff89648f713e07b2827abf03_48228_1021x459_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu2a51f86aff89648f713e07b2827abf03_48228_1021x459_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png&#34; alt=&#34;Insomnia: environment setup with query param defaults&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1591,7 +1777,7 @@ This plugin allows us to set default headers and/or query parameters in the envi
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hubab8ca579e73ea44132c477fceb39822_63604_1146x376_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hubab8ca579e73ea44132c477fceb39822_63604_1146x376_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png&#34; alt=&#34;Insomnia: requests with default query params&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1605,7 +1791,7 @@ array that is a property of elements in the &lt;code&gt;list&lt;/code&gt; array&
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu749a941adcfe38452b5e14edfe466a64_109722_704x868_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu749a941adcfe38452b5e14edfe466a64_109722_704x868_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png&#34; alt=&#34;Insomnia: querying response using JSONPath&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1620,7 +1806,7 @@ which gives you tons of options.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu42eb8436ef1f5b1e7af4f8a0c2589b0d_39735_1083x675_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu42eb8436ef1f5b1e7af4f8a0c2589b0d_39735_1083x675_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png&#34; alt=&#34;Insomnia: random value generation&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1630,7 +1816,7 @@ which gives you tons of options.&lt;/p&gt;
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu25d0cfcc0e4bd98897b5c1a3118eb575_78802_1247x401_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu25d0cfcc0e4bd98897b5c1a3118eb575_78802_1247x401_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png&#34; alt=&#34;Insomnia: usage of generated values in the request&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1644,7 +1830,7 @@ In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JS
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hubc9562b6464e2e291fc3734b9c92956a_66487_1088x857_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hubc9562b6464e2e291fc3734b9c92956a_66487_1088x857_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png&#34; alt=&#34;Insomnia: pulling values from previous response&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1654,7 +1840,7 @@ In Insomnia you should use &lt;code&gt;Response&lt;/code&gt; template tag and JS
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_huff2b9c149b03061dcf937123bbaa4b75_78338_1178x388_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_huff2b9c149b03061dcf937123bbaa4b75_78338_1178x388_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png&#34; alt=&#34;Insomnia: request with pulled values&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -1802,14 +1988,14 @@ project you should use &lt;code&gt;projects/{identifier}&lt;/code&gt; endpoint w
 &lt;p&gt;The next commonly used piece is authorization. All calls to API require &lt;code&gt;Authorization&lt;/code&gt; header with your API key.
 But sometimes you want to pass additional headers, so your framework should support that as well.&lt;/p&gt;
 &lt;p&gt;This is an example class I wrote:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; requests
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; requests
 
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;APITestProject&lt;/span&gt;:
     endpoint &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;https://api.testproject.io/v2&amp;#39;&lt;/span&gt;
     auth_headers &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {}
 
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; __init__(self, api_key&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;None):
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; __init__(self, api_key&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;None&lt;/span&gt;):
         &lt;span style=&#34;color:#6272a4&#34;&gt;# Sometimes we don&amp;#39;t want to authorize requests&lt;/span&gt;
         &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; api_key:
             self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;auth_headers &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Authorization&amp;#39;&lt;/span&gt;: api_key}
@@ -1820,16 +2006,16 @@ But sometimes you want to pass additional headers, so your framework should supp
             &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {&lt;span style=&#34;color:#ff79c6&#34;&gt;**&lt;/span&gt;self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;auth_headers, &lt;span style=&#34;color:#ff79c6&#34;&gt;**&lt;/span&gt;headers}
         &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;auth_headers
 
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;get_specific_project&lt;/span&gt;(self, identifier, headers&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;None):
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; requests&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;get(f&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;{self.endpoint}/projects/{identifier}&amp;#39;&lt;/span&gt;, headers&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;_construct_headers(headers))
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;get_specific_project&lt;/span&gt;(self, identifier, headers&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;None&lt;/span&gt;):
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; requests&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;{&lt;/span&gt;self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;endpoint&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;/projects/&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;{&lt;/span&gt;identifier&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&lt;/span&gt;, headers&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;_construct_headers(headers))
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now it’s time to write simple tests. I use &lt;em&gt;pytest&lt;/em&gt; as a test runner because of its versatility and pluggability.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pytest
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pytest
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; requests_client.api_testproject &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; APITestProject
 
 
-@pytest.fixture(scope&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;)
+@pytest&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;fixture(scope&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;)
 &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;api&lt;/span&gt;(api_key):
     &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; APITestProject(api_key)
 
@@ -1882,7 +2068,7 @@ Currently, it’s based on Open API 2.0, or, as many people still call it, Swagg
 generate a documentation UI with &amp;ldquo;Try out&amp;rdquo; capabilities, and it also can be used for client generation. Personally, I
 ended up using &lt;a href=&#34;https://github.com/Yelp/bravado&#34; class=&#34;external&#34;&gt;bravado&lt;/a&gt; library for this task.&lt;/p&gt;
 &lt;p&gt;Here is how our small class will look with bravado:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; json
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; json
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; pathlib &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Path
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; bravado.client &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; SwaggerClient
@@ -1894,7 +2080,7 @@ ended up using &lt;a href=&#34;https://github.com/Yelp/bravado&#34; class=&#34;e
     swagger_spec &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;https://api.testproject.io/docs/v2/swagger.json&amp;#39;&lt;/span&gt;
     swagger_file &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; Path(__file__)&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;parent &lt;span style=&#34;color:#ff79c6&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;swagger.json&amp;#39;&lt;/span&gt;
 
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; __init__(self, api_key&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;None):
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; __init__(self, api_key&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;None&lt;/span&gt;):
         http_client &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; RequestsClient()
         &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; api_key:
             http_client&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;set_api_key(self&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;host, api_key, param_name&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Authorization&amp;#39;&lt;/span&gt;, param_in&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;header&amp;#39;&lt;/span&gt;)
@@ -1912,13 +2098,13 @@ response validation, which can help find dynamic problems. For example, if the d
 the response should be an integer, yet you received a string, you’ll get an exception even if there were no explicit
 assertions for that field in the test. Of course, you can disable all validations, though, I wouldn&amp;rsquo;t recommend that.&lt;/p&gt;
 &lt;p&gt;So, let’s go back to the tests and see how they look with bravado based client:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pytest
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pytest
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; bravado.exception &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; HTTPNotFound, HTTPNotAcceptable
 
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; bravado_client.api_testproject &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; APITestProject
 
 
-@pytest.fixture(scope&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;)
+@pytest&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;fixture(scope&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;)
 &lt;span style=&#34;color:#ff79c6&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;api&lt;/span&gt;(api_key):
     &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; APITestProject(api_key)&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;client
 
@@ -2032,7 +2218,7 @@ I&amp;amp;rsquo;ve started to use them for API related topics. Tools, terminolog
 &lt;li&gt;has a future: development is active and there is at least the possibility of OpenAPI 3 support&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;current-implicit-validation&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#current-implicit-validation&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Current implicit validation&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;Right now we have description docs validation during integration tests, where we use &lt;a href=&#34;https://github.com/Yelp/bravado&#34; class=&#34;external&#34;&gt;bravado&lt;/a&gt; library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses &lt;a href=&#34;https://github.com/Yelp/swagger_spec_validator&#34; class=&#34;external&#34;&gt;swagger_spec_validator&lt;/a&gt;. Here is a small script to show how it&amp;rsquo;s typical &lt;em&gt;exceptional&lt;/em&gt; output looks like.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; argparse
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; argparse
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; pathlib &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Path
 &lt;span style=&#34;color:#ff79c6&#34;&gt;from&lt;/span&gt; swagger_spec_validator &lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; validate_spec_url
 
@@ -2044,7 +2230,7 @@ parser&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;add_argument(
 )
 p &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; parser&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;parse_args()
 validate_spec_url(p&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;openapi_spec)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ python validate.py  api.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ python validate.py  api.json
 Traceback (most recent call last):
   File &amp;#34;&amp;lt;...&amp;gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&amp;#34;, line 24, in wrapper
     return method(*args, **kwargs)
@@ -2088,7 +2274,7 @@ swagger_spec_validator.common.SwaggerValidationError: (&amp;#34;Path parameter &
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu89ad4f628f615cee6a6a367e8ea01c4e_97054_1314x695_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu89ad4f628f615cee6a6a367e8ea01c4e_97054_1314x695_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png&#34; alt=&#34;Zally web UI with violations highlighting and links&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2100,7 +2286,7 @@ swagger_spec_validator.common.SwaggerValidationError: (&amp;#34;Path parameter &
 &lt;li&gt;is (was?) developed by WeWork. Ouch.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;ibm-openapi-validator&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#ibm-openapi-validator&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;IBM OpenAPI validator&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/IBM/openapi-validator&#34; class=&#34;external&#34;&gt;The next candidate is from IBM&lt;/a&gt;. Respectable origin.  I like how it reports problems with the exact origins of errors:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ npx ibm-openapi-validator -e api.json
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ npx ibm-openapi-validator -e api.json
 npx: installed 244 in 5.108s
 
 errors
@@ -2121,7 +2307,7 @@ errors
 &lt;li&gt;the most flexible, adding new rules is easy (&lt;a href=&#34;https://github.com/openapi-contrib/style-guides&#34; class=&#34;external&#34;&gt;examples&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The one smallish problem I see is that the CLI report is not as fun as IBM&amp;rsquo;s, just line numbers.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ npx @stoplight/spectral lint -DF error api.json
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;➜ npx @stoplight/spectral lint -DF error api.json
 OpenAPI 2.0 (Swagger) detected
 
 /&amp;lt;...&amp;gt;/api.json
@@ -2547,7 +2733,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_huc3592e0d261c0d603c1362608bc29a04_10983_441x232_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_huc3592e0d261c0d603c1362608bc29a04_10983_441x232_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png&#34; alt=&#34;Barchart with comparison of different issue types found via different methods&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2594,7 +2780,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu461e5d787a4fa64fc65e79b4a35177ba_35949_286x286_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu461e5d787a4fa64fc65e79b4a35177ba_35949_286x286_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png&#34; alt=&#34;Radar chart with comparison of developer expectations vs current state of API&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2607,7 +2793,7 @@ But don&amp;amp;rsquo;t assume that empirical methods are by default better than
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu99fb22af3f108385a6c53063d53e3513_23102_457x207_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu99fb22af3f108385a6c53063d53e3513_23102_457x207_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png&#34; alt=&#34;Venn diagram showing how different methods overlap in finding different issues&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2677,7 +2863,7 @@ There was a time when every new tester came to me during the onboarding and aske
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hucf44db6a2892b2831f76d1825a1f5316_40674_442x200_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hucf44db6a2892b2831f76d1825a1f5316_40674_442x200_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png&#34; alt=&#34;Cognitive walkthrough example&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2822,7 +3008,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;p&gt;Testing SOAP services is not drastically different from any other API testing, but you need to learn some specifics and use better suited tools. This article will provide a small checklist of know-hows and skills which you can use as a guide for getting started and improving your work.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;theory&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#theory&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Theory&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;SOAP is a protocol, so you need to read about the protocol itself as well as standards and other protocols it uses and, when the time comes, about its extensions.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;xml&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#xml&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;XML&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;XML is a markup language similar to HTML. Every message sent via SOAP is a XML-document, where you can easily identify how data are structured.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;note&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;to&amp;gt;&lt;/span&gt;aviskase&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/to&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;from&amp;gt;&lt;/span&gt;universe&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/from&amp;gt;&lt;/span&gt;
@@ -2831,7 +3017,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/note&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can read about XML in details on &lt;a href=&#34;https://www.w3schools.com/xml/default.asp&#34; class=&#34;external&#34;&gt;w3schools&lt;/a&gt;. Pay attention to &lt;a href=&#34;https://www.w3schools.com/xml/xml_namespaces.asp&#34; class=&#34;external&#34;&gt;namespaces&lt;/a&gt; (name conflict resolution method for XML elements), they are used in SOAP a lot.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;xsd&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#xsd&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;XSD&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;It&amp;rsquo;s quite handy to have standardized description of possible XML-documents and to be able to validate them. For that we use XML Schema Definition (or XSD). Two key XSD features for a tester are data type definitions and an ability to restrict possible values. For instance, element &lt;code&gt;body&lt;/code&gt; from the previous example can be set as optional and with a maximum string length of 255.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;...
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;...
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;xs:element&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;minOccurs=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;xs:simpleType&amp;gt;&lt;/span&gt;
     &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;xs:restriction&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;base=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;xs:string&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -2845,7 +3031,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;wsdl&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#wsdl&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;WSDL&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://www.w3schools.com/xml/xml_wsdl.asp&#34; class=&#34;external&#34;&gt;WSDL&lt;/a&gt; is used for describing web services. WSDL-documents contain information about service location and available methods (operations); every operation has descriptions of request and response parameters. Sometimes XSD can be embedded inside WSDL, but that&amp;rsquo;s not always the case. WSDL-document is a bit of &lt;em&gt;magic.&lt;/em&gt; You can generate it from classes implementing the server and then use it to generate classes for a client. So don&amp;rsquo;t forget to check that WSDL-document is accurate and accessible to users.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;soap&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#soap&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SOAP&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;SOAP has two versions: 1.1 or 1.2. Novice tester might not bother about differences between them. Just make sure you know which version is used in your system (and sometimes it could be both). SOAP describes message formats and details for handling particular messages. For example, some header elements can be used in the services where messages are transferred between several intermediates before reaching a destination.&lt;/p&gt;
 &lt;p&gt;Here is a request example of operation &lt;code&gt;checkText&lt;/code&gt; from Yandex Speller API:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soapenv:Envelope&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:soapenv=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://schemas.xmlsoap.org/soap/envelope/&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:spel=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://speller.yandex.net/services/spellservice&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soapenv:Envelope&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:soapenv=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://schemas.xmlsoap.org/soap/envelope/&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:spel=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://speller.yandex.net/services/spellservice&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soapenv:Header/&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soapenv:Body&amp;gt;&lt;/span&gt;
     &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;spel:CheckTextRequest&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;lang=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -2854,7 +3040,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/soapenv:Body&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/soapenv:Envelope&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And response:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soap:Envelope&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:xsd=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:soap=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://schemas.xmlsoap.org/soap/envelope/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soap:Envelope&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:xsd=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns:soap=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://schemas.xmlsoap.org/soap/envelope/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;soap:Body&amp;gt;&lt;/span&gt;
     &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;CheckTextResponse&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://speller.yandex.net/services/spellservice&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
       &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;SpellResult&amp;gt;&lt;/span&gt;
@@ -2869,7 +3055,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read details about SOAP on &lt;a href=&#34;https://www.w3schools.com/xml/xml_soap.asp&#34; class=&#34;external&#34;&gt;w3schools&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;soap-extensions&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#soap-extensions&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SOAP extensions&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;Occasionally you&amp;rsquo;ll bump into SOAP extensions with names like &lt;code&gt;WS-&lt;/code&gt;. One of the most common is &lt;a href=&#34;https://en.wikipedia.org/wiki/WS-Security&#34; class=&#34;external&#34;&gt;WS-Security&lt;/a&gt; which is used for encryption and digital signatures. Often it&amp;rsquo;s combined with WS-Policy for managing service access rights.&lt;/p&gt;
 &lt;p&gt;Example of WS-Security usage:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;wsse:UsernameToken&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;wsu:Id=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uuid_faf0159a-6b13-4139-a6da-cb7b4100c10c&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;wsse:UsernameToken&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;wsu:Id=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uuid_faf0159a-6b13-4139-a6da-cb7b4100c10c&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;wsse:Username&amp;gt;&lt;/span&gt;Alice&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/wsse:Username&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;wsse:Password&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Type=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;6S3P2EWNP3lQf&#43;9VC3emNoT57oQ=&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/wsse:Password&amp;gt;&lt;/span&gt;
   &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;wsse:Nonce&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;EncodingType=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;YF6j8V/CAqi&#43;1nRsGLRbuZhi&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/wsse:Nonce&amp;gt;&lt;/span&gt;
@@ -2885,7 +3071,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_huaa17ea1e9ca9d008b12aee7f1bd8511b_16509_391x284_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_huaa17ea1e9ca9d008b12aee7f1bd8511b_16509_391x284_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.png&#34; alt=&#34;XSD visualization in Oxygen&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -2923,7 +3109,7 @@ First I though about fancy-schmancy .me or .io. Or maybe aviska.se. But I went w
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h3 id=&#34;testing-with-code&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#testing-with-code&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Testing with code&lt;/h3&gt;&lt;/div&gt;&lt;p&gt;At some point you&amp;rsquo;ll have a feeling that it&amp;rsquo;s more efficient to use programming languages for writing tests. That&amp;rsquo;s fine. SoapUI is a GUI application and has its drawbacks; some of them are resolved with pro version, while others require huge and brittle scripting hacks.&lt;/p&gt;
 &lt;p&gt;There are tons of libraries for working with SOAP in any language. For example, there are &lt;a href=&#34;http://axis.apache.org/axis2/java/core/&#34; class=&#34;external&#34;&gt;Axis2&lt;/a&gt; for Java (good examples are in the articles at &lt;a href=&#34;https://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html&#34; class=&#34;external&#34;&gt;IBM developerWorks&lt;/a&gt;), &lt;a href=&#34;https://bitbucket.org/jurko/suds/&#34; class=&#34;external&#34;&gt;suds&lt;/a&gt; or &lt;a href=&#34;http://docs.python-zeep.org/en/latest/&#34; class=&#34;external&#34;&gt;zeep&lt;/a&gt; for Python, or &lt;a href=&#34;https://github.com/jwagenleitner/groovy-wslite&#34; class=&#34;external&#34;&gt;groovy-wslite&lt;/a&gt; for Groovy.&lt;/p&gt;
 &lt;p&gt;Here is an example of request made to YandexSpeller API using groovy-wslite:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-groovy&#34; data-lang=&#34;groovy&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; wslite.soap.*
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-groovy&#34; data-lang=&#34;groovy&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; wslite.soap.*
 &lt;span style=&#34;color:#8be9fd&#34;&gt;def&lt;/span&gt; client &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; SOAPClient&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://speller.yandex.net/services/spellservice?WSDL&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
 &lt;span style=&#34;color:#8be9fd&#34;&gt;def&lt;/span&gt; response &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; client&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;send&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;SOAPAction:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://speller.yandex.net/services/spellservice/checkText&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
   body &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
@@ -2969,7 +3155,7 @@ Mark all emails as readIf you ever got bothered by all archived and still unread
 &lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/aviskase/634dba0b10f5cd0bad3f41709ed3e41c.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;I don&amp;rsquo;t really need it right now, because I have a filter which marks &lt;em&gt;all&lt;/em&gt; incoming emails as read right away:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Matches: larger:1
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Matches: larger:1
 Do this: Mark as read
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But it was effective for cleaning up.&lt;/p&gt;
 &lt;div class=&#34;relative header-wrapper&#34;&gt;&lt;h2 id=&#34;tasks-recurring-randomly-for-amazing-marvin&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#tasks-recurring-randomly-for-amazing-marvin&#34; class=&#34;header-link&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; style=&#34;display: inline-block; vertical-align: middle;&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;&gt;&lt;/path&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tasks recurring randomly for Amazing Marvin&lt;/h2&gt;&lt;/div&gt;&lt;p&gt;I use Amazing Marvin for task&amp;amp;project management and currently it doesn&amp;rsquo;t support randomly recurring items. In fact, no app I&amp;rsquo;ve tried supports that. It&amp;rsquo;s a shame, because there could be several use cases for that: &amp;ldquo;spontaneous&amp;rdquo; cleaning&amp;amp;organizing, fun activities, ideas review.&lt;/p&gt;
@@ -3051,7 +3237,7 @@ Do this: Mark as read
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hufdb7540244ef7780496cfbba1ed5434c_101541_616x279_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hufdb7540244ef7780496cfbba1ed5434c_101541_616x279_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png&#34; alt=&#34;API status table&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3080,7 +3266,7 @@ Do this: Mark as read
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu81ce616e61ffc978cfe25a90f3ebba43_24613_565x241_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu81ce616e61ffc978cfe25a90f3ebba43_24613_565x241_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png&#34; alt=&#34;Unhelpful error message&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3476,7 +3662,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu116af588c1f8e9dc66e665512d81e3f1_804916_1182x2858_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu116af588c1f8e9dc66e665512d81e3f1_804916_1182x2858_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png&#34; alt=&#34;Mega mind map version 2&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3501,7 +3687,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hue891f741282783cff478f4964b8fe7a4_17195_302x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hue891f741282783cff478f4964b8fe7a4_17195_302x302_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.png&#34; alt=&#34;Ideal world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3512,7 +3698,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu52b7143d2443b37c0f18ce7b9fa22928_15081_295x295_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu52b7143d2443b37c0f18ce7b9fa22928_15081_295x295_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.png&#34; alt=&#34;Real world of development&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3523,7 +3709,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu8b77470e9ad8e254e810cd0179da3a1e_32421_413x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu8b77470e9ad8e254e810cd0179da3a1e_32421_413x302_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.png&#34; alt=&#34;Real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3535,7 +3721,7 @@ I&amp;amp;rsquo;ve been using RTM for several years. First, with free account, l
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu3a317744b05fce60f4bc9761dc3eaca5_28895_326x302_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu3a317744b05fce60f4bc9761dc3eaca5_28895_326x302_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.png&#34; alt=&#34;Even more real world of development with testers&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -3585,7 +3771,7 @@ The biggest problem for me is LT2PT/IPSec. There is an excellent article on how 
 &lt;p&gt;The biggest problem for me is LT2PT/IPSec. There is &lt;a href=&#34;http://blog.z-proj.com/enabling-l2tp-over-ipsec-on-ubuntu-16-04/&#34; class=&#34;external&#34;&gt;an excellent article&lt;/a&gt; on how to enable it using &lt;code&gt;network-manager-l2tp&lt;/code&gt;. But as on-line articles have a tendency to be removed, I want to save these instructions here.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Install the prerequisites:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apt install \  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apt install \  
 intltool \  
 libtool \  
 network-manager-dev \  
@@ -3603,25 +3789,25 @@ libglib2.0-dev \
 xl2tpd \  
 strongswan  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Get network-manager-l2tp:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;git clone https://github.com/nm-l2tp/network-manager-l2tp.git  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;git clone https://github.com/nm-l2tp/network-manager-l2tp.git  
 cd network-manager-l2tp  
 autoreconf -fi  
 intltoolize  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configure the build:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;./configure \
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;./configure \
   --disable-static --prefix=/usr \
   --sysconfdir=/etc --libdir=/usr/lib/x86_64-linux-gnu \
   --libexecdir=/usr/lib/NetworkManager \
   --localstatedir=/var \
   --with-pppd-plugin-dir=/usr/lib/pppd/2.4.7
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;make  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;make  
 sudo make install 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Remove AppArmor settings for IPSec:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apparmor_parser -R /etc/apparmor.d/usr.lib.ipsec.charon  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apparmor_parser -R /etc/apparmor.d/usr.lib.ipsec.charon  
 sudo apparmor_parser -R /etc/apparmor.d/usr.lib.ipsec.stroke  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Replace x2ltpd with libpcap:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apt remove xl2tpd  
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sudo apt remove xl2tpd  
 sudo apt install libpcap0.8-dev
 
 wget https://github.com/xelerance/xl2tpd/archive/v1.3.6/xl2tpd-1.3.6.tar.gz  
@@ -3782,11 +3968,11 @@ The book is about automation in testing, but not how to do it &amp;amp;mdash; it
 &lt;p&gt;And now as usual, some notes to not to forget. If something looks like a magic: read books or watch some course!&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Run program in background:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;program &amp;amp;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;program &amp;amp;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check if link is available:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;wget --spider somelink
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;wget --spider somelink
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Download files by links from a text file:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;wget -i some-textfile
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;wget -i some-textfile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Using arguments in scripts:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;$#&lt;/code&gt; &amp;mdash; number of arguments&lt;/li&gt;
@@ -3795,9 +3981,9 @@ The book is about automation in testing, but not how to do it &amp;amp;mdash; it
 &lt;li&gt;&lt;code&gt;$2&lt;/code&gt; &amp;mdash; the second argument&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;How much space does something occupy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;du [--max-depth &amp;lt;depth&amp;gt; -h] &amp;lt;path&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;du [--max-depth &amp;lt;depth&amp;gt; -h] &amp;lt;path&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create several directories / files at once:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;mkdir {dir1,dir2,dir3,dir4}
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;mkdir {dir1,dir2,dir3,dir4}
 touch {fileA,fileB}.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;tmux &amp;mdash; terminal multiplexor&lt;/p&gt;
 &lt;ul&gt;
@@ -3885,7 +4071,7 @@ The course is concise and comprehensive. Here are some notes I&amp;amp;rsquo;ve 
   &lt;picture&gt;
     
     
-    &lt;source srcset=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu54ef27e82d2f48967dcaf8478459fe1e_32928_653x283_resize_q75_h2_box_2.webp&#34; type=&#34;image/webp&#34;&gt;
+    &lt;source srcset=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu54ef27e82d2f48967dcaf8478459fe1e_32928_653x283_resize_q75_h2_box_3.webp&#34; type=&#34;image/webp&#34;&gt;
     &lt;img src=&#34;https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.png&#34; alt=&#34;Monitoring systems&#34; defer&gt;
 	&lt;/picture&gt;
 	
@@ -4084,16 +4270,16 @@ It&amp;amp;rsquo;s really easy. Firefox can open them (of course, if Shockwave p
     <content type="html">&lt;p&gt;Sometimes people use Jing to record videos for bug reports. This pest is saving them as SWF file. So, here is a simple note on how to open these videos in Linux.&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s really easy. Firefox can open them (of course, if Shockwave plugin is present). Just download that nasty video and open it in FF, all&amp;rsquo;s done.&lt;/p&gt;
 &lt;p&gt;But there is a catch. I don&amp;rsquo;t know how it&amp;rsquo;s on Windows, but for Linux you should edit mime types. In order to do that you should create a file &lt;code&gt;~/.mime.types&lt;/code&gt; with this content:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;application/x-shockwave-flash  swf swfl
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;application/x-shockwave-flash  swf swfl
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&amp;rsquo;s all! This way is the easiest, because it works only for the owner of the home directory, where the file was created.&lt;/p&gt;
 &lt;p&gt;But if you want, you can make this setting global. But be careful, because everything will be reset after an upgrade. You should open the file:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo nano /usr/share/mime/packages/freedesktop.org.xml
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo nano /usr/share/mime/packages/freedesktop.org.xml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and replace this string:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;mime-type type=&amp;#34;application/vnd.adobe.flash.movie&amp;#34;&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;mime-type type=&amp;#34;application/vnd.adobe.flash.movie&amp;#34;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;with this one:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;mime-type type=&amp;#34;application/x-shockwave-flash&amp;#34;&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;mime-type type=&amp;#34;application/x-shockwave-flash&amp;#34;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then execute:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo update-mime-database /usr/share/mime
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo update-mime-database /usr/share/mime
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
   </entry>
 </feed>
