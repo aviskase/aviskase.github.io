@@ -1,183 +1,79 @@
-<!doctype html><html lang=en prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
-<head>
-<title>aviskase</title>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta charset=utf-8>
-<meta property="og:title" content="Lunch&Learn: linting OpenAPI description docs">
-<meta property="og:description" content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
-I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh).">
-<meta name=description content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
-I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh).">
-<meta property="og:url" content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/">
-<link rel=canonical href=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/><meta property="og:type" content="article">
-<meta property="og:image" content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/feature.png">
-<meta property="og:image:height" content="630">
-<meta property="og:image:width" content="1200">
-<meta property="article:published_time" content="2019-12-26T19:21:00+00:00">
-<meta property="article:modified_time" content="2019-12-26T19:21:00+00:00"><meta property="og:site_name" content="aviskase">
-<meta property="article:author" content="https://www.aviskase.com/pages/about/">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/feature.png">
-<meta name=twitter:title content="Lunch&Learn: linting OpenAPI description docs">
-<meta name=twitter:description content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
-I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh).">
-<meta name=twitter:site content="@aviskase">
-<meta name=generator content="Hugo 0.88.1">
-<link rel=stylesheet href="/css/main.min.2fd237831c1d0b67afc11b740de349fe3fdc59f7f440bc19494cc2ab2ae2e61c.css" integrity="sha256-L9I3gxwdC2evwRt0DeNJ/j/cWff0QLwZSUzCqyri5hw=">
-</head>
-<body>
-<div class="min-h-screen grid grid-rows-mainLayout"><header>
-<nav class="bg-gradient-to-b from-bgdark to-bglight relative lowercase">
-<div class="pb-12 pt-6 max-w-normal flex flex-wrap items-center normal:items-baseline justify-between mx-6 normal:mx-auto">
-<a class="text-primary font-bold text-24" href=/>aviskase</a>
+<!doctype html><html lang=en prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><head><title>aviskase</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><meta property="og:title" content="Lunch&amp;Learn: linting OpenAPI description docs"><meta property="og:description" content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
+I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh)."><meta name=description content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
+I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh)."><meta property="og:url" content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/"><link rel=canonical href=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/><meta property="og:type" content="article"><meta property="og:image" content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/feature.png"><meta property="og:image:height" content="630"><meta property="og:image:width" content="1200"><meta property="article:published_time" content="2019-12-26T19:21:00+00:00"><meta property="article:modified_time" content="2019-12-26T19:21:00+00:00"><meta property="og:site_name" content="aviskase"><meta property="article:author" content="https://www.aviskase.com/pages/about/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/feature.png"><meta name=twitter:title content="Lunch&amp;Learn: linting OpenAPI description docs"><meta name=twitter:description content="Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;Learn, kinda like Google&rsquo;s Testing on the Toilet: short non-mandatory meeting during the lunchtime (30min) with shared recording later.
+I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, testers are part of the dev team, duh)."><meta name=twitter:site content="@aviskase"><meta name=generator content="Hugo 0.121.0"><link rel=stylesheet href="/css/main.min.6645250db727d9beadb1f5ee68b4460fcd5f20ae413c7a5d6450197e04e5f63f.css" integrity="sha256-ZkUlDbcn2b6tsfXuaLRGD81fIK5BPHpdZFAZfgTl9j8="></head><body><div class="min-h-screen grid grid-rows-mainLayout"><header><nav class="bg-gradient-to-b from-bgdark to-bglight relative lowercase"><div class="pb-12 pt-6 max-w-normal flex flex-wrap items-center normal:items-baseline justify-between mx-6 normal:mx-auto"><a class="text-primary font-bold text-24" href=/>aviskase</a>
 <input id=nav-toggle type=checkbox>
-<label id=show-button for=nav-toggle class="flex items-center normal:hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg>
-</label>
-<label id=hide-button for=nav-toggle class="items-center hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg>
-</label>
-<ul id=nav-menu class="font-semibold text-16 hidden normal:flex mt-3 normal:mt-0 space-y-3 normal:space-y-0 normal:space-x-4.5 w-full normal:w-auto">
-<li><a href=/>Home</a></li>
-<li><a href=/pages/about/>About</a></li>
-<li><a href=/pages/archive/>Archive</a></li>
-<li><a href=/feeds/all.atom.xml>RSS</a></li>
-</ul>
-</div>
-<div class=shape-divider><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 0V46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5C438.64 32.43 512.34 53.67 583 72.05c69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 12e2 52.47V0z" opacity=".25" class="shape-fill"/><path d="M0 0V15.81C13 36.92 27.64 56.86 47.69 72.05 99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z" opacity=".5" class="shape-fill"/><path d="M0 0V5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" class="shape-fill"/></svg>
-</div>
-</nav>
-</header>
-<main>
-<div class=title-hero>
-<h1>Lunch&Learn: linting OpenAPI description docs</h1>
-<div class=article-meta>
-<div class=normal:justify-self-end>26 Dec 2019
-</div>
-<div class="hidden normal:block">&nbsp;—&nbsp;</div>
-<div class="relative normal:justify-self-start">
-<svg class="inline relative" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>&nbsp;5&nbsp;mins</span>
-</div>
-</div>
-</div>
-<article>
-<p>Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&Learn, kinda like Google&rsquo;s <a href=https://testing.googleblog.com/2007/01/introducing-testing-on-toilet.html class=external>Testing on the Toilet</a>: short non-mandatory meeting during the lunchtime (30min) with shared recording later.</p>
-<p>I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, <em>testers are part of the dev team, duh</em>). Also, it&rsquo;s an opportunity to organize my brain, so I&rsquo;ll be posting notes here for future reference. One thing though, <strong>these posts are not supposed to be comprehensive:</strong> there is only information applicable to my team!</p>
-<div class="relative header-wrapper"><h2 id=validation-vs-linting><a href=#validation-vs-linting class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Validation vs. linting</h2></div><p>Anyone remotely familiar with coding knows that validators and linters are important for successful development. Shortly, validators check &ldquo;does X conform to the standards/specification,&rdquo; whereas linters complain about style and design issues. Usually, tools combine both in some way.</p>
-<p>Here I&rsquo;ll cover linters for OpenAPI description documents. But you can use linting for everything, from obvious source code files to shell scripts or markdown documents.</p>
-<div class="relative header-wrapper"><h2 id=why-we-need-a-linter-for-openapi-description-docs><a href=#why-we-need-a-linter-for-openapi-description-docs class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Why we need a linter for OpenAPI description docs</h2></div><p>We&rsquo;ve started writing style guidelines for our APIs. Usually, I am that nitpicky person to review description docs; but I am lazy. <em>I choose to automate myself out of the job.</em> I don&rsquo;t want to spend time checking for obvious style violations like capitalization or error definitions. And by the way, it would speed up the process.</p>
-<p>Because of that, our current requirements for the linter are:</p>
-<ul>
-<li>easy to set up and run locally (so that devs and testers could use it without pain)</li>
-<li>can be run via Jenkins</li>
-<li>possible to customize with our own rules</li>
-<li>support for OpenAPI 2</li>
-<li>has a future: development is active and there is at least the possibility of OpenAPI 3 support</li>
-</ul>
-<div class="relative header-wrapper"><h2 id=current-implicit-validation><a href=#current-implicit-validation class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Current implicit validation</h2></div><p>Right now we have description docs validation during integration tests, where we use <a href=https://github.com/Yelp/bravado class=external>bravado</a> library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses <a href=https://github.com/Yelp/swagger_spec_validator class=external>swagger_spec_validator</a>. Here is a small script to show how it&rsquo;s typical <em>exceptional</em> output looks like.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>import</span> argparse
-<span style=color:#ff79c6>from</span> pathlib <span style=color:#ff79c6>import</span> Path
-<span style=color:#ff79c6>from</span> swagger_spec_validator <span style=color:#ff79c6>import</span> validate_spec_url
-
-
-parser <span style=color:#ff79c6>=</span> argparse<span style=color:#ff79c6>.</span>ArgumentParser()
-parser<span style=color:#ff79c6>.</span>add_argument(
-    <span style=color:#f1fa8c>&#34;openapi_spec&#34;</span>,
-    <span style=color:#8be9fd;font-style:italic>type</span><span style=color:#ff79c6>=</span><span style=color:#ff79c6>lambda</span> p: Path(p)<span style=color:#ff79c6>.</span>absolute()<span style=color:#ff79c6>.</span>as_uri()
-)
-p <span style=color:#ff79c6>=</span> parser<span style=color:#ff79c6>.</span>parse_args()
-validate_spec_url(p<span style=color:#ff79c6>.</span>openapi_spec)
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>➜ python validate.py  api.json
-Traceback (most recent call last):
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 24, in wrapper
-    return method(*args, **kwargs)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&#34;, line 60, in validate_spec_url
-    validator.validate_spec(spec_json, spec_url)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 170, in validate_spec
-    validate_apis(apis, bound_deref)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 376, in validate_apis
-    validate_unresolvable_path_params(api_name, all_path_params)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 602, in validate_unresolvable_path_params
-    raise SwaggerValidationError(msg)
-swagger_spec_validator.common.SwaggerValidationError: Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &#34;validate.py&#34;, line 12, in &lt;module&gt;
-    validate_spec_url(p.openapi_spec)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 29, in wrapper
-    sys.exc_info()[2])
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/six.py&#34;, line 695, in reraise
-    raise value.with_traceback(tb)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 24, in wrapper
-    return method(*args, **kwargs)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&#34;, line 60, in validate_spec_url
-    validator.validate_spec(spec_json, spec_url)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 170, in validate_spec
-    validate_apis(apis, bound_deref)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 376, in validate_apis
-    validate_unresolvable_path_params(api_name, all_path_params)
-  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 602, in validate_unresolvable_path_params
-    raise SwaggerValidationError(msg)
-swagger_spec_validator.common.SwaggerValidationError: (&#34;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&#34;, SwaggerValidationError(&#34;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&#34;))
-</code></pre></div><p>Also, bravado performs bits of contract testing: by default, it validates incoming responses against description docs.</p>
-<p>It serves us nice, but feedback is slow. At least we know when our spec is blatantly broken (beloved duplication of <code>operationId</code>s).</p>
-<div class="relative header-wrapper"><h2 id=zally><a href=#zally class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Zally</h2></div><p><a href=https://github.com/zalando/zally class=external>Zally</a> is a linter from Zalando, which is famous for its open-sourced <a href=https://opensource.zalando.com/restful-api-guidelines/ class=external>API guidelines</a>.</p>
-<p>It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&rsquo;m sure it&rsquo;s an excellent tool, but not for us.</p>
-<p>BTW, it has nice UI:</p>
-<p>
-<figure>
-<picture>
-<source srcset=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu89ad4f628f615cee6a6a367e8ea01c4e_97054_1314x695_resize_q75_h2_box_3.webp type=image/webp>
-<img src=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png alt="Zally web UI with violations highlighting and links" defer>
-</picture>
-</figure></p>
-<div class="relative header-wrapper"><h2 id=speccy><a href=#speccy class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Speccy</h2></div><p>Welcome to JavaScript galore. <a href=https://github.com/wework/speccy class=external>Speccy</a> and all next linters are run using node.js. Even though I&rsquo;m not a fan of JS, it&rsquo;s easy to use.</p>
-<p>So, back to Speccy. It was a popular tool once, but won&rsquo;t work in our company:</p>
-<ul>
-<li>no support for OpenAPI 2</li>
-<li>is (was?) developed by WeWork. Ouch.</li>
-</ul>
-<div class="relative header-wrapper"><h2 id=ibm-openapi-validator><a href=#ibm-openapi-validator class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>IBM OpenAPI validator</h2></div><p><a href=https://github.com/IBM/openapi-validator class=external>The next candidate is from IBM</a>. Respectable origin. I like how it reports problems with the exact origins of errors:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>➜ npx ibm-openapi-validator -e api.json
-npx: installed 244 in 5.108s
-
-errors
-
-  Message :   PUT and POST operations must have a non-empty `consumes` field.
-  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.consumes
-  Line    :   20
-
-  Message :   operationIds must be unique
-  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.operationId
-  Line    :   20
-
-...
-</code></pre></div><p>Unfortunately, it&rsquo;s not customizable enough. You can only tweak existing rules, change severity, or disable them.</p>
-<div class="relative header-wrapper"><h2 id=spectral><a href=#spectral class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Spectral</h2></div><p>And the last one, <a href=https://stoplight.io/p/docs/gh/stoplightio/spectral class=external>Spectral</a>. As far as I know, a clear winner:</p>
-<ul>
-<li>core devs are also contributors to OpenAPI and JSON Schema</li>
-<li>the most flexible, adding new rules is easy (<a href=https://github.com/openapi-contrib/style-guides class=external>examples</a>)</li>
-</ul>
-<p>The one smallish problem I see is that the CLI report is not as fun as IBM&rsquo;s, just line numbers.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>➜ npx @stoplight/spectral lint -DF error api.json
-OpenAPI 2.0 (Swagger) detected
-
-/&lt;...&gt;/api.json
-  3972:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
-  4024:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
-  5029:17  error  oas2-valid-definition-example  `example` property type should be object
- 11602:26  error  no-$ref-siblings               $ref cannot be placed next to any other properties
-
-...
-</code></pre></div><p>You can either use Stoplight Studio or integrate with your IDE of choice to click lazily on an error to go to its source: I did with Sublime and SublimeLinter plugin, worked fine. PyCharm (and other IDEAs) are ok too.</p>
-</article>
-<div class=page-navigation>
-<a class=prev href=https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/ title="Weekly hmms: API practices, Yegor Bugaenko, culture"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5m7 10-5-5 5-5"/></svg>older</a>
+<label id=show-button for=nav-toggle class="flex items-center normal:hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg></label><label id=hide-button for=nav-toggle class="items-center hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg></label><ul id=nav-menu class="font-semibold text-16 hidden normal:flex mt-3 normal:mt-0 space-y-3 normal:space-y-0 normal:space-x-4.5 w-full normal:w-auto"><li><a href=/>Home</a></li><li><a href=/pages/about/>About</a></li><li><a href=/pages/archive/>Archive</a></li><li><a href=/feeds/all.atom.xml>RSS</a></li></ul></div><div class=shape-divider><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 0V46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5C438.64 32.43 512.34 53.67 583 72.05c69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 12e2 52.47V0z" opacity=".25" class="shape-fill"/><path d="M0 0V15.81C13 36.92 27.64 56.86 47.69 72.05 99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z" opacity=".5" class="shape-fill"/><path d="M0 0V5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" class="shape-fill"/></svg></div></nav></header><main><div class=title-hero><h1>Lunch&amp;Learn: linting OpenAPI description docs</h1><div class=article-meta><div class=normal:justify-self-end>26 Dec 2019</div><div class="hidden normal:block">&nbsp;—&nbsp;</div><div class="relative normal:justify-self-start"><svg class="inline relative" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>&nbsp;5&nbsp;mins</span></div></div></div><article><p>Last yearly company retrospective showed that we want to be better at knowledge sharing. One of the suggested formats is Lunch&amp;Learn, kinda like Google&rsquo;s <a href=https://testing.googleblog.com/2007/01/introducing-testing-on-toilet.html class=external>Testing on the Toilet</a>: short non-mandatory meeting during the lunchtime (30min) with shared recording later.</p><p>I&rsquo;ve started to use them for API related topics. Tools, terminology, and other small but important things that would be beneficial to most of the development team (FYI, <em>testers are part of the dev team, duh</em>). Also, it&rsquo;s an opportunity to organize my brain, so I&rsquo;ll be posting notes here for future reference. One thing though, <strong>these posts are not supposed to be comprehensive:</strong> there is only information applicable to my team!</p><div class="relative header-wrapper"><h2 id=validation-vs-linting><a href=#validation-vs-linting class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Validation vs. linting</h2></div><p>Anyone remotely familiar with coding knows that validators and linters are important for successful development. Shortly, validators check &ldquo;does X conform to the standards/specification,&rdquo; whereas linters complain about style and design issues. Usually, tools combine both in some way.</p><p>Here I&rsquo;ll cover linters for OpenAPI description documents. But you can use linting for everything, from obvious source code files to shell scripts or markdown documents.</p><div class="relative header-wrapper"><h2 id=why-we-need-a-linter-for-openapi-description-docs><a href=#why-we-need-a-linter-for-openapi-description-docs class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Why we need a linter for OpenAPI description docs</h2></div><p>We&rsquo;ve started writing style guidelines for our APIs. Usually, I am that nitpicky person to review description docs; but I am lazy. <em>I choose to automate myself out of the job.</em> I don&rsquo;t want to spend time checking for obvious style violations like capitalization or error definitions. And by the way, it would speed up the process.</p><p>Because of that, our current requirements for the linter are:</p><ul><li>easy to set up and run locally (so that devs and testers could use it without pain)</li><li>can be run via Jenkins</li><li>possible to customize with our own rules</li><li>support for OpenAPI 2</li><li>has a future: development is active and there is at least the possibility of OpenAPI 3 support</li></ul><div class="relative header-wrapper"><h2 id=current-implicit-validation><a href=#current-implicit-validation class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Current implicit validation</h2></div><p>Right now we have description docs validation during integration tests, where we use <a href=https://github.com/Yelp/bravado class=external>bravado</a> library for client generation. By default, it has some validation on doc load, and if the doc is invalid, bravado will complain. Internally it uses <a href=https://github.com/Yelp/swagger_spec_validator class=external>swagger_spec_validator</a>. Here is a small script to show how it&rsquo;s typical <em>exceptional</em> output looks like.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> argparse
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> pathlib <span style=color:#ff79c6>import</span> Path
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> swagger_spec_validator <span style=color:#ff79c6>import</span> validate_spec_url
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>parser <span style=color:#ff79c6>=</span> argparse<span style=color:#ff79c6>.</span>ArgumentParser()
+</span></span><span style=display:flex><span>parser<span style=color:#ff79c6>.</span>add_argument(
+</span></span><span style=display:flex><span>    <span style=color:#f1fa8c>&#34;openapi_spec&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#8be9fd;font-style:italic>type</span><span style=color:#ff79c6>=</span><span style=color:#ff79c6>lambda</span> p: Path(p)<span style=color:#ff79c6>.</span>absolute()<span style=color:#ff79c6>.</span>as_uri()
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>p <span style=color:#ff79c6>=</span> parser<span style=color:#ff79c6>.</span>parse_args()
+</span></span><span style=display:flex><span>validate_spec_url(p<span style=color:#ff79c6>.</span>openapi_spec)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>➜ python validate.py  api.json
+</span></span><span style=display:flex><span>Traceback (most recent call last):
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 24, in wrapper
+</span></span><span style=display:flex><span>    return method(*args, **kwargs)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&#34;, line 60, in validate_spec_url
+</span></span><span style=display:flex><span>    validator.validate_spec(spec_json, spec_url)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 170, in validate_spec
+</span></span><span style=display:flex><span>    validate_apis(apis, bound_deref)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 376, in validate_apis
+</span></span><span style=display:flex><span>    validate_unresolvable_path_params(api_name, all_path_params)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 602, in validate_unresolvable_path_params
+</span></span><span style=display:flex><span>    raise SwaggerValidationError(msg)
+</span></span><span style=display:flex><span>swagger_spec_validator.common.SwaggerValidationError: Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>During handling of the above exception, another exception occurred:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Traceback (most recent call last):
+</span></span><span style=display:flex><span>  File &#34;validate.py&#34;, line 12, in &lt;module&gt;
+</span></span><span style=display:flex><span>    validate_spec_url(p.openapi_spec)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 29, in wrapper
+</span></span><span style=display:flex><span>    sys.exc_info()[2])
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/six.py&#34;, line 695, in reraise
+</span></span><span style=display:flex><span>    raise value.with_traceback(tb)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/common.py&#34;, line 24, in wrapper
+</span></span><span style=display:flex><span>    return method(*args, **kwargs)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/util.py&#34;, line 60, in validate_spec_url
+</span></span><span style=display:flex><span>    validator.validate_spec(spec_json, spec_url)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 170, in validate_spec
+</span></span><span style=display:flex><span>    validate_apis(apis, bound_deref)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 376, in validate_apis
+</span></span><span style=display:flex><span>    validate_unresolvable_path_params(api_name, all_path_params)
+</span></span><span style=display:flex><span>  File &#34;&lt;...&gt;/venv/lib/python3.7/site-packages/swagger_spec_validator/validator20.py&#34;, line 602, in validate_unresolvable_path_params
+</span></span><span style=display:flex><span>    raise SwaggerValidationError(msg)
+</span></span><span style=display:flex><span>swagger_spec_validator.common.SwaggerValidationError: (&#34;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&#34;, SwaggerValidationError(&#34;Path parameter &#39;tenantID&#39; used is not documented on &#39;/{tenantID}/administrators/&#39;&#34;))
+</span></span></code></pre></div><p>Also, bravado performs bits of contract testing: by default, it validates incoming responses against description docs.</p><p>It serves us nice, but feedback is slow. At least we know when our spec is blatantly broken (beloved duplication of <code>operationId</code>s).</p><div class="relative header-wrapper"><h2 id=zally><a href=#zally class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Zally</h2></div><p><a href=https://github.com/zalando/zally class=external>Zally</a> is a linter from Zalando, which is famous for its open-sourced <a href=https://opensource.zalando.com/restful-api-guidelines/ class=external>API guidelines</a>.</p><p>It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&rsquo;m sure it&rsquo;s an excellent tool, but not for us.</p><p>BTW, it has nice UI:</p><p><figure><picture><source srcset=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu89ad4f628f615cee6a6a367e8ea01c4e_97054_1314x695_resize_q75_h2_box_3.webp type=image/webp><img src=https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png alt="Zally web UI with violations highlighting and links" defer></picture></figure></p><div class="relative header-wrapper"><h2 id=speccy><a href=#speccy class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Speccy</h2></div><p>Welcome to JavaScript galore. <a href=https://github.com/wework/speccy class=external>Speccy</a> and all next linters are run using node.js. Even though I&rsquo;m not a fan of JS, it&rsquo;s easy to use.</p><p>So, back to Speccy. It was a popular tool once, but won&rsquo;t work in our company:</p><ul><li>no support for OpenAPI 2</li><li>is (was?) developed by WeWork. Ouch.</li></ul><div class="relative header-wrapper"><h2 id=ibm-openapi-validator><a href=#ibm-openapi-validator class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>IBM OpenAPI validator</h2></div><p><a href=https://github.com/IBM/openapi-validator class=external>The next candidate is from IBM</a>. Respectable origin. I like how it reports problems with the exact origins of errors:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>➜ npx ibm-openapi-validator -e api.json
+</span></span><span style=display:flex><span>npx: installed 244 in 5.108s
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>errors
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Message :   PUT and POST operations must have a non-empty `consumes` field.
+</span></span><span style=display:flex><span>  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.consumes
+</span></span><span style=display:flex><span>  Line    :   20
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Message :   operationIds must be unique
+</span></span><span style=display:flex><span>  Path    :   paths./{tenantID}/saml/{SAMLApplicationID}/metadata.xml.post.operationId
+</span></span><span style=display:flex><span>  Line    :   20
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><p>Unfortunately, it&rsquo;s not customizable enough. You can only tweak existing rules, change severity, or disable them.</p><div class="relative header-wrapper"><h2 id=spectral><a href=#spectral class=header-link><svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></a>Spectral</h2></div><p>And the last one, <a href=https://stoplight.io/p/docs/gh/stoplightio/spectral class=external>Spectral</a>. As far as I know, a clear winner:</p><ul><li>core devs are also contributors to OpenAPI and JSON Schema</li><li>the most flexible, adding new rules is easy (<a href=https://github.com/openapi-contrib/style-guides class=external>examples</a>)</li></ul><p>The one smallish problem I see is that the CLI report is not as fun as IBM&rsquo;s, just line numbers.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>➜ npx @stoplight/spectral lint -DF error api.json
+</span></span><span style=display:flex><span>OpenAPI 2.0 (Swagger) detected
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>/&lt;...&gt;/api.json
+</span></span><span style=display:flex><span>  3972:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
+</span></span><span style=display:flex><span>  4024:24  error  operation-operationId-unique   Every operation must have a unique `operationId`.
+</span></span><span style=display:flex><span>  5029:17  error  oas2-valid-definition-example  `example` property type should be object
+</span></span><span style=display:flex><span> 11602:26  error  no-$ref-siblings               $ref cannot be placed next to any other properties
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><p>You can either use Stoplight Studio or integrate with your IDE of choice to click lazily on an error to go to its source: I did with Sublime and SublimeLinter plugin, worked fine. PyCharm (and other IDEAs) are ok too.</p></article><div class=page-navigation><a class=prev href=https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/ title="Weekly hmms: API practices, Yegor Bugaenko, culture"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5m7 10-5-5 5-5"/></svg>older</a>
 <span class=separator>&nbsp; &#183; &nbsp; &#183; &nbsp; &#183; &nbsp;</span>
-<a class=next href=https://www.aviskase.com/articles/2020/02/01/hmms-january/ title="Hmms: January">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
-</div>
-</main><footer class="justify-center flex w-full py-4 text-16">
-<a class="border-b-2 border-transparent hover:border-primary" href=mailto:aviskase@gmail.com>Yuliya Bagriy</a><span> &#183; 2021 &#183; </span><a class="border-b-2 border-transparent hover:border-primary" href=https://www.aviskase.com/pages/i-dont-track-you/>No tracking</a>
-</footer></div>
-</body>
-</html>
+<a class=next href=https://www.aviskase.com/articles/2020/02/01/hmms-january/ title="Hmms: January">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a></div></main><footer class="justify-center flex w-full py-4 text-16"><a class="border-b-2 border-transparent hover:border-primary" href=mailto:aviskase@gmail.com>Yuliya Bagriy</a><span> &#183; 2023 &#183; </span><a class="border-b-2 border-transparent hover:border-primary" href=https://www.aviskase.com/pages/i-dont-track-you/>No tracking</a></footer></div></body></html>

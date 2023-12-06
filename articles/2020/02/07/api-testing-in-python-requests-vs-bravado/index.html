@@ -1,257 +1,140 @@
-<!doctype html><html lang=en prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
-<head>
-<title>aviskase</title>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta charset=utf-8>
-<meta property="og:title" content="API testing in Python: requests vs bravado">
-<meta property="og:description" content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone.">
-<meta name=description content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone.">
-<meta property="og:url" content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/">
-<link rel=canonical href=https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/><meta property="og:type" content="article">
-<meta property="og:image" content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/feature.png">
-<meta property="og:image:height" content="630">
-<meta property="og:image:width" content="1200">
-<meta property="article:published_time" content="2020-02-07T23:40:44+00:00">
-<meta property="article:modified_time" content="2020-02-07T23:40:44+00:00"><meta property="og:site_name" content="aviskase">
-<meta property="article:author" content="https://www.aviskase.com/pages/about/">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/feature.png">
-<meta name=twitter:title content="API testing in Python: requests vs bravado">
-<meta name=twitter:description content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone.">
-<meta name=twitter:site content="@aviskase">
-<meta name=generator content="Hugo 0.88.1">
-<link rel=stylesheet href="/css/main.min.2fd237831c1d0b67afc11b740de349fe3fdc59f7f440bc19494cc2ab2ae2e61c.css" integrity="sha256-L9I3gxwdC2evwRt0DeNJ/j/cWff0QLwZSUzCqyri5hw=">
-</head>
-<body>
-<div class="min-h-screen grid grid-rows-mainLayout"><header>
-<nav class="bg-gradient-to-b from-bgdark to-bglight relative lowercase">
-<div class="pb-12 pt-6 max-w-normal flex flex-wrap items-center normal:items-baseline justify-between mx-6 normal:mx-auto">
-<a class="text-primary font-bold text-24" href=/>aviskase</a>
+<!doctype html><html lang=en prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><head><title>aviskase</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><meta property="og:title" content="API testing in Python: requests vs bravado"><meta property="og:description" content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone."><meta name=description content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone."><meta property="og:url" content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/"><link rel=canonical href=https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/><meta property="og:type" content="article"><meta property="og:image" content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/feature.png"><meta property="og:image:height" content="630"><meta property="og:image:width" content="1200"><meta property="article:published_time" content="2020-02-07T23:40:44+00:00"><meta property="article:modified_time" content="2020-02-07T23:40:44+00:00"><meta property="og:site_name" content="aviskase"><meta property="article:author" content="https://www.aviskase.com/pages/about/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.aviskase.com/articles/2020/02/07/api-testing-in-python-requests-vs-bravado/feature.png"><meta name=twitter:title content="API testing in Python: requests vs bravado"><meta name=twitter:description content="This article is written as a result of collaboration with TestProject. While many of you know me as a GUI-driven tools hater, that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing that matters. There are no best practices and there are no best tools for everyone."><meta name=twitter:site content="@aviskase"><meta name=generator content="Hugo 0.121.0"><link rel=stylesheet href="/css/main.min.6645250db727d9beadb1f5ee68b4460fcd5f20ae413c7a5d6450197e04e5f63f.css" integrity="sha256-ZkUlDbcn2b6tsfXuaLRGD81fIK5BPHpdZFAZfgTl9j8="></head><body><div class="min-h-screen grid grid-rows-mainLayout"><header><nav class="bg-gradient-to-b from-bgdark to-bglight relative lowercase"><div class="pb-12 pt-6 max-w-normal flex flex-wrap items-center normal:items-baseline justify-between mx-6 normal:mx-auto"><a class="text-primary font-bold text-24" href=/>aviskase</a>
 <input id=nav-toggle type=checkbox>
-<label id=show-button for=nav-toggle class="flex items-center normal:hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg>
-</label>
-<label id=hide-button for=nav-toggle class="items-center hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg>
-</label>
-<ul id=nav-menu class="font-semibold text-16 hidden normal:flex mt-3 normal:mt-0 space-y-3 normal:space-y-0 normal:space-x-4.5 w-full normal:w-auto">
-<li><a href=/>Home</a></li>
-<li><a href=/pages/about/>About</a></li>
-<li><a href=/pages/archive/>Archive</a></li>
-<li><a href=/feeds/all.atom.xml>RSS</a></li>
-</ul>
-</div>
-<div class=shape-divider><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 0V46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5C438.64 32.43 512.34 53.67 583 72.05c69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 12e2 52.47V0z" opacity=".25" class="shape-fill"/><path d="M0 0V15.81C13 36.92 27.64 56.86 47.69 72.05 99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z" opacity=".5" class="shape-fill"/><path d="M0 0V5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" class="shape-fill"/></svg>
-</div>
-</nav>
-</header>
-<main>
-<div class=title-hero>
-<h1>API testing in Python: requests vs bravado</h1>
-<div class=article-meta>
-<div class=normal:justify-self-end>7 Feb 2020
-</div>
-<div class="hidden normal:block">&nbsp;—&nbsp;</div>
-<div class="relative normal:justify-self-start">
-<svg class="inline relative" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>&nbsp;7&nbsp;mins</span>
-</div>
-</div>
-</div>
-<article>
-<div class="admonition note">
-<div class=admonition-icon><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
-<p>This article is written as a result of collaboration with <a href=https://testproject.io/ class=external>TestProject</a>.
+<label id=show-button for=nav-toggle class="flex items-center normal:hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg></label><label id=hide-button for=nav-toggle class="items-center hidden"><svg class="h-8 w-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg></label><ul id=nav-menu class="font-semibold text-16 hidden normal:flex mt-3 normal:mt-0 space-y-3 normal:space-y-0 normal:space-x-4.5 w-full normal:w-auto"><li><a href=/>Home</a></li><li><a href=/pages/about/>About</a></li><li><a href=/pages/archive/>Archive</a></li><li><a href=/feeds/all.atom.xml>RSS</a></li></ul></div><div class=shape-divider><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 0V46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5C438.64 32.43 512.34 53.67 583 72.05c69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 12e2 52.47V0z" opacity=".25" class="shape-fill"/><path d="M0 0V15.81C13 36.92 27.64 56.86 47.69 72.05 99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z" opacity=".5" class="shape-fill"/><path d="M0 0V5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" class="shape-fill"/></svg></div></nav></header><main><div class=title-hero><h1>API testing in Python: requests vs bravado</h1><div class=article-meta><div class=normal:justify-self-end>7 Feb 2020</div><div class="hidden normal:block">&nbsp;—&nbsp;</div><div class="relative normal:justify-self-start"><svg class="inline relative" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>&nbsp;7&nbsp;mins</span></div></div></div><article><div class="admonition note"><div class=admonition-icon><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><p>This article is written as a result of collaboration with <a href=https://testproject.io/ class=external>TestProject</a>.
 While many of you know me as <a href=https://www.aviskase.com/articles/2019/11/25/why-i-dont-use-postman/ class=external>a GUI-driven tools hater</a>,
 that&rsquo;s just my preference, so if something works for you and your company, that&rsquo;s the only thing
-that matters. There are no best practices and there are no best tools for everyone.</p>
-<p>What I really admire the TestProject team for is their strategy of creating a knowledge-sharing community.
-And their product has a totally free usage tier. You don&rsquo;t see such combo often.</p>
-</div>
-<p>API testing is not an uncommon topic and you can find a gazillion of articles about it. If you check tutorials in
+that matters. There are no best practices and there are no best tools for everyone.</p><p>What I really admire the TestProject team for is their strategy of creating a knowledge-sharing community.
+And their product has a totally free usage tier. You don&rsquo;t see such combo often.</p></div><p>API testing is not an uncommon topic and you can find a gazillion of articles about it. If you check tutorials in
 Java or JavaScript, you’ll notice that they use a plethora of diverse libraries. Yet for Python
 <a href=https://www.dowen.me.uk/Automated-rest-api-testing-with-python/ class=external>tutorials</a> are usually based on general-purpose
-<a href=https://requests.kennethreitz.org class=external>requests</a> library. In this article, I would like to suggest a different approach.</p>
-<p>Warning: all code examples are written and checked in Python 3.7.
-<a href=https://github.com/aviskase/testproject-api-example class=external>You can find the source code here</a>.</p>
-<p>TestProject has an API based <a href=https://api.testproject.io/docs/v2/ class=external>on OpenAPI 2.0 specification</a>.
-I’ll use it as an example. If you want to try yourself, don’t forget to create an API key!</p>
-<p>Let’s start with the plain old <em>requests</em> first. But before diving into coding, I suggest <strong>thinking</strong> about what your
-framework should be capable of. Don’t spend too much time on the design though, premature overengineering is harmful.</p>
-<p>TestProject API is structured around different resources and methods. For example, to get information about a specific
+<a href=https://requests.kennethreitz.org class=external>requests</a> library. In this article, I would like to suggest a different approach.</p><p>Warning: all code examples are written and checked in Python 3.7.
+<a href=https://github.com/aviskase/testproject-api-example class=external>You can find the source code here</a>.</p><p>TestProject has an API based <a href=https://api.testproject.io/docs/v2/ class=external>on OpenAPI 2.0 specification</a>.
+I’ll use it as an example. If you want to try yourself, don’t forget to create an API key!</p><p>Let’s start with the plain old <em>requests</em> first. But before diving into coding, I suggest <strong>thinking</strong> about what your
+framework should be capable of. Don’t spend too much time on the design though, premature overengineering is harmful.</p><p>TestProject API is structured around different resources and methods. For example, to get information about a specific
 project you should use <code>projects/{identifier}</code> endpoint with method GET. You’ll probably soon get tired writing
-<code>request.get(&lt;params>)</code> all the time, so let’s create a custom function (or method).</p>
-<p>The next commonly used piece is authorization. All calls to API require <code>Authorization</code> header with your API key.
-But sometimes you want to pass additional headers, so your framework should support that as well.</p>
-<p>This is an example class I wrote:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>import</span> requests
-
-
-<span style=color:#ff79c6>class</span> <span style=color:#50fa7b>APITestProject</span>:
-    endpoint <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;https://api.testproject.io/v2&#39;</span>
-    auth_headers <span style=color:#ff79c6>=</span> {}
-
-    <span style=color:#ff79c6>def</span> __init__(self, api_key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
-        <span style=color:#6272a4># Sometimes we don&#39;t want to authorize requests</span>
-        <span style=color:#ff79c6>if</span> api_key:
-            self<span style=color:#ff79c6>.</span>auth_headers <span style=color:#ff79c6>=</span> {<span style=color:#f1fa8c>&#39;Authorization&#39;</span>: api_key}
-
-    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>_construct_headers</span>(self, headers):
-        <span style=color:#6272a4># Allows to combine authorization header with per-request custom headers</span>
-        <span style=color:#ff79c6>if</span> <span style=color:#8be9fd;font-style:italic>isinstance</span>(headers, <span style=color:#8be9fd;font-style:italic>dict</span>):
-            <span style=color:#ff79c6>return</span> {<span style=color:#ff79c6>**</span>self<span style=color:#ff79c6>.</span>auth_headers, <span style=color:#ff79c6>**</span>headers}
-        <span style=color:#ff79c6>return</span> self<span style=color:#ff79c6>.</span>auth_headers
-
-    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>get_specific_project</span>(self, identifier, headers<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
-        <span style=color:#ff79c6>return</span> requests<span style=color:#ff79c6>.</span>get(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#39;</span><span style=color:#f1fa8c>{</span>self<span style=color:#ff79c6>.</span>endpoint<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>/projects/</span><span style=color:#f1fa8c>{</span>identifier<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#39;</span>, headers<span style=color:#ff79c6>=</span>self<span style=color:#ff79c6>.</span>_construct_headers(headers))
-
-</code></pre></div><p>Now it’s time to write simple tests. I use <em>pytest</em> as a test runner because of its versatility and pluggability.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>import</span> pytest
-
-<span style=color:#ff79c6>from</span> requests_client.api_testproject <span style=color:#ff79c6>import</span> APITestProject
-
-
-@pytest<span style=color:#ff79c6>.</span>fixture(scope<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;module&#39;</span>)
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>api</span>(api_key):
-    <span style=color:#ff79c6>return</span> APITestProject(api_key)
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project</span>(api, existing_project):
-    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(existing_project)
-    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>200</span>
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_nonexisting_project</span>(api):
-    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(<span style=color:#f1fa8c>&#39;iZyZmrbAAkuHyqdB3O6fHd&#39;</span>)
-    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>404</span>
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project_accept_html</span>(api, existing_project):
-    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(existing_project, headers<span style=color:#ff79c6>=</span>{<span style=color:#f1fa8c>&#39;Accept&#39;</span>: <span style=color:#f1fa8c>&#39;text/html&#39;</span>})
-    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>406</span>
-
-</code></pre></div><p>If you are not familiar with pytest fixtures, you can read about them in
-<a href=https://docs.pytest.org/en/latest/fixture.html class=external>the official documentation</a>. In short, here I have three fixtures:</p>
-<ul>
-<li><code>api_key</code> — defined in <code>conftest.py</code> and returns a string with my API key</li>
-<li><code>existing_project</code> — defined in <code>conftest.py</code> and returns a string with id of one of my project</li>
-<li><code>api</code> — constructs a default client for API using an API key</li>
-</ul>
-<p>Tests are pretty straightforward:</p>
-<ul>
-<li>Retrieve information about the existing project.</li>
-<li>Attempt to get information using non-existing project id.</li>
-<li>Attempt to retrieve information about the existing project while asking to send information in the HTML format.</li>
-</ul>
-<p>They assert only responses’ status codes (not the best tests ever). But take a look at the last test. At the time
+<code>request.get(&lt;params>)</code> all the time, so let’s create a custom function (or method).</p><p>The next commonly used piece is authorization. All calls to API require <code>Authorization</code> header with your API key.
+But sometimes you want to pass additional headers, so your framework should support that as well.</p><p>This is an example class I wrote:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> requests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>APITestProject</span>:
+</span></span><span style=display:flex><span>    endpoint <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;https://api.testproject.io/v2&#39;</span>
+</span></span><span style=display:flex><span>    auth_headers <span style=color:#ff79c6>=</span> {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> __init__(self, api_key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Sometimes we don&#39;t want to authorize requests</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> api_key:
+</span></span><span style=display:flex><span>            self<span style=color:#ff79c6>.</span>auth_headers <span style=color:#ff79c6>=</span> {<span style=color:#f1fa8c>&#39;Authorization&#39;</span>: api_key}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>_construct_headers</span>(self, headers):
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Allows to combine authorization header with per-request custom headers</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> <span style=color:#8be9fd;font-style:italic>isinstance</span>(headers, <span style=color:#8be9fd;font-style:italic>dict</span>):
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>return</span> {<span style=color:#ff79c6>**</span>self<span style=color:#ff79c6>.</span>auth_headers, <span style=color:#ff79c6>**</span>headers}
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> self<span style=color:#ff79c6>.</span>auth_headers
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>get_specific_project</span>(self, identifier, headers<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> requests<span style=color:#ff79c6>.</span>get(<span style=color:#f1fa8c>f</span><span style=color:#f1fa8c>&#39;</span><span style=color:#f1fa8c>{</span>self<span style=color:#ff79c6>.</span>endpoint<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>/projects/</span><span style=color:#f1fa8c>{</span>identifier<span style=color:#f1fa8c>}</span><span style=color:#f1fa8c>&#39;</span>, headers<span style=color:#ff79c6>=</span>self<span style=color:#ff79c6>.</span>_construct_headers(headers))
+</span></span></code></pre></div><p>Now it’s time to write simple tests. I use <em>pytest</em> as a test runner because of its versatility and pluggability.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> pytest
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> requests_client.api_testproject <span style=color:#ff79c6>import</span> APITestProject
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>@pytest.fixture(scope<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;module&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>api</span>(api_key):
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> APITestProject(api_key)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project</span>(api, existing_project):
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(existing_project)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>200</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_nonexisting_project</span>(api):
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(<span style=color:#f1fa8c>&#39;iZyZmrbAAkuHyqdB3O6fHd&#39;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>404</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project_accept_html</span>(api, existing_project):
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>get_specific_project(existing_project, headers<span style=color:#ff79c6>=</span>{<span style=color:#f1fa8c>&#39;Accept&#39;</span>: <span style=color:#f1fa8c>&#39;text/html&#39;</span>})
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>406</span>
+</span></span></code></pre></div><p>If you are not familiar with pytest fixtures, you can read about them in
+<a href=https://docs.pytest.org/en/latest/fixture.html class=external>the official documentation</a>. In short, here I have three fixtures:</p><ul><li><code>api_key</code> — defined in <code>conftest.py</code> and returns a string with my API key</li><li><code>existing_project</code> — defined in <code>conftest.py</code> and returns a string with id of one of my project</li><li><code>api</code> — constructs a default client for API using an API key</li></ul><p>Tests are pretty straightforward:</p><ul><li>Retrieve information about the existing project.</li><li>Attempt to get information using non-existing project id.</li><li>Attempt to retrieve information about the existing project while asking to send information in the HTML format.</li></ul><p>They assert only responses’ status codes (not the best tests ever). But take a look at the last test. At the time
 of writing the only officially supported response content types were: <code>application/json</code>, <code>text/json</code>, <code>text/plain</code>, and
 <code>application/json-patch+json</code>. Though, if you take a careful look at the description doc, you’ll notice that
 <code>application/xml</code> is supported too. Anyway, with <code>Accept: text/html</code> you’d expect server to respond with
 <code>406 Not Acceptable</code>. Yet, that’s not the case: the current version responds with 200 code and plain text json body.
 It&rsquo;s not a serious issue, but it&rsquo;s worth exploring because it means that there are places where server capabilities
 don&rsquo;t match the published description doc. I suspect it&rsquo;s a sign of a design-first approach (which I like!), but it can
-be hard to manage.</p>
-<p>As you noticed, for creating API tests using requests library we need to write a lot of boilerplate code:</p>
-<ul>
-<li>Wrappers for headers and query string managements.</li>
-<li>Methods/functions written in business terms rather than GET/POST/etc way.</li>
-<li>Constructing endpoints path (concatenating the main URL with paths, ids, and query parameters).</li>
-</ul>
-<p>Basically, you create a whole API client. And we haven’t even touched data models. Oh, if only this could be
+be hard to manage.</p><p>As you noticed, for creating API tests using requests library we need to write a lot of boilerplate code:</p><ul><li>Wrappers for headers and query string managements.</li><li>Methods/functions written in business terms rather than GET/POST/etc way.</li><li>Constructing endpoints path (concatenating the main URL with paths, ids, and query parameters).</li></ul><p>Basically, you create a whole API client. And we haven’t even touched data models. Oh, if only this could be
 simplified and automated, right? And it can! Welcome to the brave <em>old</em> world of client generation based on API
 description docs. TestProject doesn&rsquo;t just provide endpoints but also has a description doc to describe their API.
 Currently, it’s based on Open API 2.0, or, as many people still call it, Swagger. This description doc is used to
 generate a documentation UI with &ldquo;Try out&rdquo; capabilities, and it also can be used for client generation. Personally, I
-ended up using <a href=https://github.com/Yelp/bravado class=external>bravado</a> library for this task.</p>
-<p>Here is how our small class will look with bravado:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>import</span> json
-<span style=color:#ff79c6>from</span> pathlib <span style=color:#ff79c6>import</span> Path
-
-<span style=color:#ff79c6>from</span> bravado.client <span style=color:#ff79c6>import</span> SwaggerClient
-<span style=color:#ff79c6>from</span> bravado.requests_client <span style=color:#ff79c6>import</span> RequestsClient
-
-
-<span style=color:#ff79c6>class</span> <span style=color:#50fa7b>APITestProject</span>:
-    host <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;api.testproject.io&#39;</span>
-    swagger_spec <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;https://api.testproject.io/docs/v2/swagger.json&#39;</span>
-    swagger_file <span style=color:#ff79c6>=</span> Path(__file__)<span style=color:#ff79c6>.</span>parent <span style=color:#ff79c6>/</span> <span style=color:#f1fa8c>&#39;swagger.json&#39;</span>
-
-    <span style=color:#ff79c6>def</span> __init__(self, api_key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
-        http_client <span style=color:#ff79c6>=</span> RequestsClient()
-        <span style=color:#ff79c6>if</span> api_key:
-            http_client<span style=color:#ff79c6>.</span>set_api_key(self<span style=color:#ff79c6>.</span>host, api_key, param_name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;Authorization&#39;</span>, param_in<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;header&#39;</span>)
-        <span style=color:#6272a4># Usually I&#39;ll use `from_url` generation, but current version of specification is not valid OpenAPI 2.0</span>
-        <span style=color:#6272a4># self.client = SwaggerClient.from_url(self.swagger_spec, http_client=http_client)</span>
-        swagger_spec <span style=color:#ff79c6>=</span> json<span style=color:#ff79c6>.</span>load(self<span style=color:#ff79c6>.</span>swagger_file<span style=color:#ff79c6>.</span>open())
-        self<span style=color:#ff79c6>.</span>client <span style=color:#ff79c6>=</span> SwaggerClient<span style=color:#ff79c6>.</span>from_spec(swagger_spec, http_client<span style=color:#ff79c6>=</span>http_client)
-
-</code></pre></div><p>There are two ways to generate a client with bravado: pointing either to URL where description doc is hosted or to
+ended up using <a href=https://github.com/Yelp/bravado class=external>bravado</a> library for this task.</p><p>Here is how our small class will look with bravado:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> json
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> pathlib <span style=color:#ff79c6>import</span> Path
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> bravado.client <span style=color:#ff79c6>import</span> SwaggerClient
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> bravado.requests_client <span style=color:#ff79c6>import</span> RequestsClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>APITestProject</span>:
+</span></span><span style=display:flex><span>    host <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;api.testproject.io&#39;</span>
+</span></span><span style=display:flex><span>    swagger_spec <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;https://api.testproject.io/docs/v2/swagger.json&#39;</span>
+</span></span><span style=display:flex><span>    swagger_file <span style=color:#ff79c6>=</span> Path(__file__)<span style=color:#ff79c6>.</span>parent <span style=color:#ff79c6>/</span> <span style=color:#f1fa8c>&#39;swagger.json&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>def</span> __init__(self, api_key<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+</span></span><span style=display:flex><span>        http_client <span style=color:#ff79c6>=</span> RequestsClient()
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>if</span> api_key:
+</span></span><span style=display:flex><span>            http_client<span style=color:#ff79c6>.</span>set_api_key(self<span style=color:#ff79c6>.</span>host, api_key, param_name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;Authorization&#39;</span>, param_in<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;header&#39;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># Usually I&#39;ll use `from_url` generation, but current version of specification is not valid OpenAPI 2.0</span>
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># self.client = SwaggerClient.from_url(self.swagger_spec, http_client=http_client)</span>
+</span></span><span style=display:flex><span>        swagger_spec <span style=color:#ff79c6>=</span> json<span style=color:#ff79c6>.</span>load(self<span style=color:#ff79c6>.</span>swagger_file<span style=color:#ff79c6>.</span>open())
+</span></span><span style=display:flex><span>        self<span style=color:#ff79c6>.</span>client <span style=color:#ff79c6>=</span> SwaggerClient<span style=color:#ff79c6>.</span>from_spec(swagger_spec, http_client<span style=color:#ff79c6>=</span>http_client)
+</span></span></code></pre></div><p>There are two ways to generate a client with bravado: pointing either to URL where description doc is hosted or to
 the local file. The example uses local file because bravado doesn&rsquo;t just simply generate client, but also can
 perform validation, and unfortunately at the time of writing TestProject API description doc contains some invalid
 attributes. But that’s a great thing! Even though developers should be using linters to check for such problems, it
 is still a good idea to recheck during integration tests. Another nice feature is that bravado performs requests and
 response validation, which can help find dynamic problems. For example, if the description doc says that the field in
 the response should be an integer, yet you received a string, you’ll get an exception even if there were no explicit
-assertions for that field in the test. Of course, you can disable all validations, though, I wouldn&rsquo;t recommend that.</p>
-<p>So, let’s go back to the tests and see how they look with bravado based client:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>import</span> pytest
-<span style=color:#ff79c6>from</span> bravado.exception <span style=color:#ff79c6>import</span> HTTPNotFound, HTTPNotAcceptable
-
-<span style=color:#ff79c6>from</span> bravado_client.api_testproject <span style=color:#ff79c6>import</span> APITestProject
-
-
-@pytest<span style=color:#ff79c6>.</span>fixture(scope<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;module&#39;</span>)
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>api</span>(api_key):
-    <span style=color:#ff79c6>return</span> APITestProject(api_key)<span style=color:#ff79c6>.</span>client
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project</span>(api, existing_project):
-    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(projectId<span style=color:#ff79c6>=</span>existing_project)<span style=color:#ff79c6>.</span>response()
-    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>metadata<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>200</span>
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_nonexisting_project</span>(api):
-    <span style=color:#ff79c6>with</span> pytest<span style=color:#ff79c6>.</span>raises(HTTPNotFound):
-        api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(projectId<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;iZyZmrbAAkuHyqdB3O6fHd&#39;</span>)<span style=color:#ff79c6>.</span>response()
-
-
-<span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project_accept_html</span>(api, existing_project):
-    <span style=color:#ff79c6>with</span> pytest<span style=color:#ff79c6>.</span>raises(HTTPNotAcceptable):
-        api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(
-            projectId<span style=color:#ff79c6>=</span>existing_project,
-            _request_options<span style=color:#ff79c6>=</span>{<span style=color:#f1fa8c>&#39;headers&#39;</span>: {<span style=color:#f1fa8c>&#39;Accept&#39;</span>: <span style=color:#f1fa8c>&#39;text/html&#39;</span>}}
-        )<span style=color:#ff79c6>.</span>response()
-
-</code></pre></div><p>Did you notice magic there? I don’t need to write code with GETs anymore. Bravado generates resources and methods
+assertions for that field in the test. Of course, you can disable all validations, though, I wouldn&rsquo;t recommend that.</p><p>So, let’s go back to the tests and see how they look with bravado based client:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#ff79c6>import</span> pytest
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> bravado.exception <span style=color:#ff79c6>import</span> HTTPNotFound, HTTPNotAcceptable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>from</span> bravado_client.api_testproject <span style=color:#ff79c6>import</span> APITestProject
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>@pytest.fixture(scope<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;module&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>api</span>(api_key):
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> APITestProject(api_key)<span style=color:#ff79c6>.</span>client
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project</span>(api, existing_project):
+</span></span><span style=display:flex><span>    response <span style=color:#ff79c6>=</span> api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(projectId<span style=color:#ff79c6>=</span>existing_project)<span style=color:#ff79c6>.</span>response()
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>assert</span> response<span style=color:#ff79c6>.</span>metadata<span style=color:#ff79c6>.</span>status_code <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>200</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_nonexisting_project</span>(api):
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>with</span> pytest<span style=color:#ff79c6>.</span>raises(HTTPNotFound):
+</span></span><span style=display:flex><span>        api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(projectId<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;iZyZmrbAAkuHyqdB3O6fHd&#39;</span>)<span style=color:#ff79c6>.</span>response()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>test_get_specific_project_accept_html</span>(api, existing_project):
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>with</span> pytest<span style=color:#ff79c6>.</span>raises(HTTPNotAcceptable):
+</span></span><span style=display:flex><span>        api<span style=color:#ff79c6>.</span>Projects<span style=color:#ff79c6>.</span>Projects_GetProject(
+</span></span><span style=display:flex><span>            projectId<span style=color:#ff79c6>=</span>existing_project,
+</span></span><span style=display:flex><span>            _request_options<span style=color:#ff79c6>=</span>{<span style=color:#f1fa8c>&#39;headers&#39;</span>: {<span style=color:#f1fa8c>&#39;Accept&#39;</span>: <span style=color:#f1fa8c>&#39;text/html&#39;</span>}}
+</span></span><span style=display:flex><span>        )<span style=color:#ff79c6>.</span>response()
+</span></span></code></pre></div><p>Did you notice magic there? I don’t need to write code with GETs anymore. Bravado generates resources and methods
 for them automagically. Usually, they are based on tag and <code>operationId</code>, so for getting a specific project:
 <code>tag=Projects</code> and <code>operationId=Projects_GetProject</code>. Another difference is that bravado throws an exception if the
-response code is not 2xx. In my view, <code>HTTPNotAcceptable</code> is more readable than a number 406.</p>
-<p>Now it’s time to check how using client generation library helps to improve on a barebone approach with requests:</p>
-<ul>
-<li>No need for custom headers and query string management, it’s already written by library developers.
-With bravado you can have default headers for each request as well as per request custom headers.</li>
-<li>Methods/functions are generated and sound more domain-specific (though, it depends on how accurate was
-naming of operationIds).</li>
-<li>The only endpoint you should worry about is where the description doc is hosted, or, if using the local file,
-the <code>host</code> attribute.</li>
-</ul>
-<p>Don’t forget, all magic comes with a price. Client generators are not perfect for everyone:</p>
-<ul>
-<li>Autogeneration is useless for constantly changing APIs. Though, it’s considered a bad practice,
-because real customers also use client generators and each breaking change is a pain for them.</li>
-<li>Sometimes you want to make invalid requests. In some cases, you can simply turn off request validation,
-but usually making real fuzzy tests is easier with general-purpose HTTP libraries.</li>
-<li>Not your code. There could be bugs. Be careful when selecting a library, it’s better to be open source with
-fresh contributions. Also, pay attention to supported specifications: bravado does not support OpenAPI 3.0 =(</li>
-</ul>
-<p>The world of API related tools and libraries is enormous. Some people prefer GUI-driven tools like Postman or
+response code is not 2xx. In my view, <code>HTTPNotAcceptable</code> is more readable than a number 406.</p><p>Now it’s time to check how using client generation library helps to improve on a barebone approach with requests:</p><ul><li>No need for custom headers and query string management, it’s already written by library developers.
+With bravado you can have default headers for each request as well as per request custom headers.</li><li>Methods/functions are generated and sound more domain-specific (though, it depends on how accurate was
+naming of operationIds).</li><li>The only endpoint you should worry about is where the description doc is hosted, or, if using the local file,
+the <code>host</code> attribute.</li></ul><p>Don’t forget, all magic comes with a price. Client generators are not perfect for everyone:</p><ul><li>Autogeneration is useless for constantly changing APIs. Though, it’s considered a bad practice,
+because real customers also use client generators and each breaking change is a pain for them.</li><li>Sometimes you want to make invalid requests. In some cases, you can simply turn off request validation,
+but usually making real fuzzy tests is easier with general-purpose HTTP libraries.</li><li>Not your code. There could be bugs. Be careful when selecting a library, it’s better to be open source with
+fresh contributions. Also, pay attention to supported specifications: bravado does not support OpenAPI 3.0 =(</li></ul><p>The world of API related tools and libraries is enormous. Some people prefer GUI-driven tools like Postman or
 TestProject, others prefer to code. Next time you’ll be writing automation, don’t feel restricted to common generic
-libraries and consider different alternatives.</p>
-</article>
-<div class=page-navigation>
-<a class=prev href=https://www.aviskase.com/articles/2020/02/01/hmms-january/ title="Hmms: January"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5m7 10-5-5 5-5"/></svg>older</a>
+libraries and consider different alternatives.</p></article><div class=page-navigation><a class=prev href=https://www.aviskase.com/articles/2020/02/01/hmms-january/ title="Hmms: January"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5m7 10-5-5 5-5"/></svg>older</a>
 <span class=separator>&nbsp; &#183; &nbsp; &#183; &nbsp; &#183; &nbsp;</span>
-<a class=next href=https://www.aviskase.com/articles/2020/03/08/hmms-february/ title="Hmms: February">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
-</div>
-</main><footer class="justify-center flex w-full py-4 text-16">
-<a class="border-b-2 border-transparent hover:border-primary" href=mailto:aviskase@gmail.com>Yuliya Bagriy</a><span> &#183; 2021 &#183; </span><a class="border-b-2 border-transparent hover:border-primary" href=https://www.aviskase.com/pages/i-dont-track-you/>No tracking</a>
-</footer></div>
-</body>
-</html>
+<a class=next href=https://www.aviskase.com/articles/2020/03/08/hmms-february/ title="Hmms: February">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a></div></main><footer class="justify-center flex w-full py-4 text-16"><a class="border-b-2 border-transparent hover:border-primary" href=mailto:aviskase@gmail.com>Yuliya Bagriy</a><span> &#183; 2023 &#183; </span><a class="border-b-2 border-transparent hover:border-primary" href=https://www.aviskase.com/pages/i-dont-track-you/>No tracking</a></footer></div></body></html>
