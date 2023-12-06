@@ -3,27 +3,37 @@ name: deploy with hugo
 on:
   push:
     branches:
-      - source  # Set a branch to deploy
+      - source 
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      
+      - name: Read .env
+        run: |
+          . ./.env
+          echo "HUGO_VERSION=${HUGO_VERSION}" >> $GITHUB_ENV          
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.88.1'
+          hugo-version: '${{ env.HUGO_VERSION }}'
           extended: true
       
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          check-latest: true
       
       - name: Install dependencies
         run: npm ci

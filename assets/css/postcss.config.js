@@ -6,7 +6,7 @@ module.exports = {
             path: [themeDir]
         }), 
         require('postcss-simple-vars'),
-        require('postcss-nested'),
+        require('tailwindcss/nesting'),
         require('tailwindcss')(themeDir + 'assets/css/tailwind.config.js'),
         require('postcss-font-magician')({ 
             custom: {

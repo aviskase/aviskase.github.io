@@ -22,7 +22,7 @@ mainSections = ["posts"]
 # date = ["Date", ":default"]
 # lastmod = ["Modified", ":default"]
 
-[Social]
+[params.social]
 email = "aviskase@gmail.com"
 twitter = "aviskase"
 

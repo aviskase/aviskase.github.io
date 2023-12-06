@@ -4,7 +4,7 @@ module.exports = {
   // === Removing unused css === //
 
   // 1. Provide an array of paths to all of your template files using the purge option
-  purge: [
+  content: [
     themeDir + 'layouts/**/*.html',
     themeDir + 'content/**/*.html',
     'layouts/**/*.html',
@@ -46,6 +46,5 @@ module.exports = {
       }
     },
   },
-  variants: {},
   plugins: [],
 }

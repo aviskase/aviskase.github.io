@@ -14,9 +14,9 @@
     {{ end }}
 
     {{- $styles := resources.Get "css/main.css" | postCSS (dict "config" "./assets/css/postcss.config.js") -}}
-    {{- if getenv "MODE" | eq .Site.Data.enval.dev -}}
+    {{- if hugo.Environment | ne "production" -}}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-    {{else if getenv "MODE" | eq .Site.Data.enval.prod }}
+    {{ else }}
     {{- $styles := $styles| minify | fingerprint | resources.PostProcess -}}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
     {{ end }}
