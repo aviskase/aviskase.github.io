@@ -1,0 +1,79 @@
+@font-face {
+  font-display: swap; 
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/nunito-v14-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/nunito-v14-italic.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/nunito-v14-600.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/nunito-v14-700.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/nunito-v14-700italic.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Bellota';
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/Bellota-BoldItalic.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/JetBrainsMono-Italic.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/JetBrainsMono-BoldItalic.woff2') format('woff2'); 
+}

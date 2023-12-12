@@ -8,8 +8,8 @@
         <li><div class="lowercase mb-3 yearmonth">/&nbsp;{{ $firstArticle.Date.Format "January 2006" }}&nbsp;/</div></li>
         <ul class="mb-16">{{ range .Pages }}
             <li>
-                <a class="flex hover:text-primary mb-3" href="{{ .Permalink }}">
-                    <div class="w-12 text-primary">{{ .Date.Day }}</div>
+                <a class="flex hover:text-blue-500 mb-3" href="{{ .Permalink }}">
+                    <div class="w-12 text-blue-500">{{ .Date.Day }}</div>
                     <div class="">{{ .Title | markdownify }}</div>
                 </a>
             </li>

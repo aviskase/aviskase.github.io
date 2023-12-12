@@ -5,20 +5,16 @@
 }
 
 ::selection {
-	background-color: var(--color-primary);
+	background-color: theme(colors.blue.500);
 	color: white;
 }
 
-$max-bleed-width: 80.5rem;
-$bleed-padding: 2.25rem;
-
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text-default);
-    font-family: $font-primary;
+    background-color: theme(colors.white);
+    color: theme(colors.slate.950);
+    font-family: theme(fontFamily.sans);
     font-size: 1.8rem;
     line-height: 1.77;
-
 }
 
 article {
@@ -72,10 +68,6 @@ input#nav-toggle:checked~#nav-menu {
     @apply block;
 }
 
-#show-button svg, #hide-button svg {
-    fill: var(--color-text-default);
-}
-
 
 .shape-divider {
     position: absolute;
@@ -95,13 +87,7 @@ input#nav-toggle:checked~#nav-menu {
 }
 
 .shape-divider .shape-fill {
-    fill: #FFFFFF;
-}
-
-footer {
-    margin-top: 6rem;
-    border-top: 2px solid;
-    border-image: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white) 1;
+    fill: theme(colors.white);
 }
 
 
@@ -121,8 +107,8 @@ article > p {
 }
 
 article em {
-    color: var(--color-primary);
-    font-family: $font-em;
+    color: theme(colors.blue.500);
+    font-family: theme(fontFamily.serif);
     font-style: italic;
     letter-spacing: -0.25px;
     font-weight: bold;
@@ -134,14 +120,14 @@ article a {
 
 article a.external {
     text-decoration: none;
-    background-image: linear-gradient(var(--color-primary), var(--color-primary));
+    background-image: linear-gradient(theme(colors.blue.500), theme(colors.blue.500));
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: 100% 0.2rem;
     transition: background .3s;
 
     &:hover, &:focus {
-        background-image: linear-gradient(var(--color-bgdark), var(--color-bgdark));
+        background-image: linear-gradient(theme(colors.amber.300), theme(colors.amber.300));
         background-size: 100% 100%;
     }
 }
@@ -157,18 +143,18 @@ article a.internal {
     }
 
     &::before, &::after {
-        color: var(--color-primary);
+        color: theme(colors.blue.500);
         font-size: 1.05em;
     }
 
     &:hover, &:focus {
-        color: var(--color-primary);
+        color: theme(colors.blue.500);
     }
 }
 
 article hr {
     border: 0;
-    background: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-bgdark), white);
+    background: radial-gradient(circle, theme(colors.blue.500) 0%, theme(colors.blue.400) 50%, theme(colors.amber.300), white);
     height: 0.1rem;
     margin-bottom: 5.6rem; 
     margin-top: 5.6rem; 
@@ -176,17 +162,17 @@ article hr {
 
 
 article p > code, article li > code, article td > code {
-    font-family: $font-mono;
+    font-family: theme(fontFamily.mono);
     font-size: 0.8em;
     border-radius: 0.3rem;
     padding: 0.2rem 0.6rem;
     margin: 0.1rem 0px;
     display: inline-block;
-    background-color: var(--color-bg-code);
+    background-color: theme(colors.slate.200);
 }
 
 a code, h1 code, h2 code, h3 code, h4 code, article th > code {
-    font-family: $font-mono;
+    font-family: theme(fontFamily.mono);
     font-size: 0.9em;
 
     &::after, &::before {
@@ -195,15 +181,15 @@ a code, h1 code, h2 code, h3 code, h4 code, article th > code {
 }
 
 article p kbd, article li kbd {
-    font-family: $font-mono;
+    font-family: theme(fontFamily.mono);
     font-size: 0.8em;
     border-radius: 0.3rem;
     padding: 0 0.6rem;
     margin: 0.1rem 0px;
     display: inline-block;
-    background-color: var(--color-bg-code);
+    background-color: theme(colors.slate.200);
     border-style: solid;
-    border-color: gray;
+    border-color: theme(colors.slate.500);
     border-width: 1px 1px 2px 1px;
 }
 
@@ -225,13 +211,13 @@ article .highlight {
     margin: 2.4rem 0 2.4rem;
 
     border-radius: 0.6rem;
-    padding: $bleed-padding;
+    padding: theme(spacing.bleed);
     background-color: #282a36;
     overflow: auto;
 }
 
 article .highlight code {
-    font-family: $font-mono;
+    font-family: theme(fontFamily.mono);
     font-size: 0.8em;
 }
 
@@ -241,10 +227,10 @@ article blockquote {
     width: 100%;
     margin: 2.4rem 0 2.4rem;
 
-    background-color: #f5f6f9;
+    background-color: theme(colors.slate.200);
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
-    border-left: 0.3rem solid var(--color-text-default);
-    padding: $bleed-padding;
+    border-left: 0.3rem solid theme(colors.slate.500);
+    padding: theme(spacing.bleed);
 }
 
 article blockquote p, article blockquote, article .admonition {
@@ -265,21 +251,21 @@ article .admonition {
     margin: 2.4rem 0 2.4rem;
     position: relative;
     border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
-    padding: $bleed-padding;
+    padding: theme(spacing.bleed);
 
     &.warning {
-        border-left: 0.3rem solid hsl(340deg, 95%, 50%);
-        background-color: hsla(340deg, 95%, 43%, 0.1);
+        border-left: 0.3rem solid theme(colors.rose.500);
+        background-color: theme(colors.rose.100);
     }
 
     &.note {
-        border-left: 0.3rem solid hsl(245deg, 100%, 60%);
-        background-color: hsl(210deg, 55%, 92%);
+        border-left: 0.3rem solid theme(colors.indigo.500);
+        background-color: theme(colors.indigo.100);
     }
 
     &.cta {
-        border-left: 0.3rem solid hsl(37deg, 100%, 50%);
-        background-color: hsla(52deg, 100%, 50%, 0.25);
+        border-left: 0.3rem solid theme(colors.yellow.500);
+        background-color: theme(colors.yellow.100);
     }
 }
 
@@ -294,27 +280,27 @@ article p.admonition-title {
     left: 0px;
     transform: translate(-50%, -50%);
     padding: 0.6rem;
-    background: var(--color-bg);
+    background: theme(colors.white);
     border-radius: 50%;
 
     .warning & {
-        color: hsl(340deg, 95%, 50%);
+        color: theme(colors.rose.500);
     }
 
     .note & {
-        color: hsl(245deg, 100%, 60%);
+        color: theme(colors.indigo.500);
     }
 
     .cta & {
-        color: hsl(37deg, 100%, 50%);
+        color: theme(colors.yellow.500);
     }
 }
 
 
 @screen normal {
     article .highlight, article blockquote, article .gist, article .admonition {
-        width: $max-bleed-width;
-        margin: 2.4rem -$bleed-padding 2.4rem;
+        width: 80.5rem;
+        margin: 2.4rem theme(spacing.bleed-negative) 2.4rem;
     }
 }
 
@@ -347,7 +333,7 @@ article ul > li {
 article ol > li:before {
     content: counters(counts, '.') '.';
     font-weight: bolder;
-    color: var(--color-primary);
+    color: theme(colors.blue.500);
     display: table-cell;
     padding-right: 1.5rem;
 }
@@ -359,7 +345,7 @@ article li ol li:last-child, article li ol, article li ul li:last-child, article
 
 article ul > li:before {
     content: '→';
-    color: var(--color-primary);
+    color: theme(colors.blue.500);
     font-weight: bolder;
     position: absolute;
     top: 0;
@@ -375,7 +361,6 @@ article ul ul, article ul ol, article ol ul, article ol ol {
 h2 {
     font-size: 3rem;
     line-height: 4rem;
-    color: var(--color-tertiary);
     margin-bottom: 3.2rem;
     margin-top: 5.6rem;
 }
@@ -417,7 +402,7 @@ article figure > * {
 
 .article-meta {
     font-size: 2rem;
-    color: #5a6072;
+    color: theme(colors.slate.500);
     margin-top: 2rem;
 
     & svg {
@@ -440,7 +425,7 @@ article table:not([class]) {
 
 article table:not([class]) thead {
     font-weight: bold;
-    background-color: var(--color-bgdark);
+    background-color: theme(colors.amber.300);
 }
 
 article table:not([class]) thead th {
@@ -457,7 +442,7 @@ article table:not([class]) thead th:last-child {
 }
 
 article table:not([class]) tbody tr {
-    border-bottom: 1px solid var(--color-bgdark);
+    border-bottom: 1px solid theme(colors.amber.300);
 } 
 
 article table:not([class]) tbody td {
@@ -475,7 +460,7 @@ article table:not([class]) tbody td:last-child {
 
 .yearmonth {
     font-size: 2rem;
-    color: #5a6072;
+    color: theme(colors.slate.500);
 }
 
 .header-link {
@@ -520,14 +505,14 @@ article table:not([class]) tbody td:last-child {
         & > svg {
             position: relative;
             display: inline;
-            color: var(--color-primary);
+            color: theme(colors.blue.500);
             font-size: 1.3em;
             margin: 0.5rem;
         }
     }
 
     & .separator {
-        color: var(--color-primary);
+        color: theme(colors.blue.500);
     }
 }
 
@@ -536,15 +521,17 @@ article table:not([class]) tbody td:last-child {
     font-size: 1.6rem;
     /* justify-content: right; */
 
+
+    
     & a {
         border-radius: 0.6rem;
         padding: 0.2rem;
-        background: linear-gradient(120deg, var(--color-primary), var(--color-secondary), var(--color-bgdark), var(--color-secondary), var(--color-primary)) var(--x, 0)/200%;
-        color: var(--color-tertiary);
+        background: linear-gradient(120deg, theme(colors.blue.500), theme(colors.blue.400), theme(colors.yellow.200), theme(colors.blue.400), theme(colors.blue.500)) var(--x, 0)/200%;
+        color: theme(colors.blue.800);
         transition: 0.5s ease;
 
         &:hover {
-            color: var(--color-primary);
+            color: theme(colors.blue.500);
             --x: 100%;
 
             /* & span {
@@ -555,7 +542,7 @@ article table:not([class]) tbody td:last-child {
         & span {
             padding: 0.5rem 2rem;
             align-items: center;
-            background: var(--color-bg);
+            background: theme(colors.white);
             border-radius: 0.3rem;
             display: flex;
             justify-content: center;

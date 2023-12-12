@@ -1,3 +1,3 @@
-<footer class="justify-center flex w-full py-4 text-16">
-    <a class="border-b-2 border-transparent hover:border-primary" href="mailto:{{ .Site.Params.social.email }}">{{ .Site.Params.firstname }} {{ .Site.Params.lastname }}</a><span> &middot; {{ now.Format "2006" }} &middot; </span><a  class="border-b-2 border-transparent hover:border-primary" href="{{ ref . "pages/i-dont-track-you" }}">No tracking</a>
+<footer class="justify-center flex w-full pt-6 pb-4 text-16 bg-amber-300 mt-12">
+    <a class="border-b-2 border-transparent hover:border-blue-500" href="mailto:{{ .Site.Params.social.email }}">{{ .Site.Params.firstname }} {{ .Site.Params.lastname }}</a><span>&nbsp;&middot;&nbsp;{{ now.Format "2006" }}&nbsp;&middot;&nbsp;</span><a  class="border-b-2 border-transparent hover:border-blue-500" href="{{ ref . "pages/i-dont-track-you" }}">No tracking</a>
 </footer>

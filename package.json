@@ -1,5 +1,7 @@
 {
     "scripts": {
+        "dev": "hugo server",
+        "preview": "hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --watch --forceSyncStatic -e production --minify",
         "watch": "hugo server --environment staging -D --watch --printI18nWarnings --printPathWarnings --disableFastRender",
         "clean": "rm -rf ./output",
         "build:hugo": "env NODE_ENV=production hugo -e \"production\" --minify --logLevel debug --printI18nWarnings --printPathWarnings",
@@ -11,8 +13,6 @@
         "commander": "^11.1.0",
         "postcss": "^8.4.32",
         "postcss-cli": "^11.0.0",
-        "postcss-import": "^15.1.0",
-        "postcss-simple-vars": "^7.0.1",
         "tailwindcss": "^3.3.6"
     },
     "browserslist": [
