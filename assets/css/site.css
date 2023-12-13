@@ -433,14 +433,6 @@ article table:not([class]) thead th {
     padding: 0.75em;
 }
 
-article table:not([class]) thead th:first-child {
-    padding-left: 0;
-}
-
-article table:not([class]) thead th:last-child {
-    padding-right: 0;
-}
-
 article table:not([class]) tbody tr {
     border-bottom: 1px solid theme(colors.amber.300);
 } 
@@ -450,13 +442,6 @@ article table:not([class]) tbody td {
     padding: 0.75em;
 }
 
-article table:not([class]) tbody td:first-child {
-    padding-left: 0;
-}
-
-article table:not([class]) tbody td:last-child {
-    padding-right: 0;
-}
 
 .yearmonth {
     font-size: 2rem;
