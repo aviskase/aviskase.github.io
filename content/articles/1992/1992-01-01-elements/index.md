@@ -119,7 +119,7 @@ This is a simple cta.
 
 ---
 
-### Code and `Syntax` Highlighting
+### Code and `Code` Highlighting
 
 This is an `Inline code` sample. And some {{<kbd Ctrl b>}} or {{<kbd "1">}}
 
