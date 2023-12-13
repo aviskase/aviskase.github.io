@@ -1,1 +1,1 @@
-<a href="{{ .Destination | safeURL }}" class="{{ if strings.HasPrefix .Destination "http" }}external{{ else }}internal{{ end }}">{{ .Text | safeHTML }}</a>
+<a href="{{ .Destination | safeURL }}" class="{{ if or (strings.HasPrefix .Destination "http") (strings.HasPrefix .Destination "mailto:") }}external{{ else }}internal{{ end }}">{{ .Text | safeHTML }}</a>
