@@ -99,6 +99,9 @@ Unordered:
 - List item
 - List item
 
+Next list:
+1. List item
+2. List item
 
 ---
 
@@ -111,6 +114,9 @@ With _some_ lists and [link A](https://google.com) and [link B](../test):
 
 - a
 - b
+
+1. a
+2. b
 {{< /warning >}}
 
 {{< note >}}

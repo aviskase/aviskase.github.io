@@ -320,8 +320,8 @@ article ul {
     margin-bottom: 2.4rem;
 }
 
+
 article ol > li {
-    counter-increment: counts;
     display: table;
 }
 
@@ -331,11 +331,17 @@ article ul > li {
 
 
 article ol > li:before {
-    content: counters(counts, '.') '.';
+    counter-increment: counts;
+    content: counter(counts)'. ';
     font-weight: bolder;
     color: theme(colors.blue.500);
     display: table-cell;
     padding-right: 1.5rem;
+}
+
+
+article ol ol > li:before {
+    content: counters(counts, '.') '.';
 }
 
 article li ol li:last-child, article li ol, article li ul li:last-child, article li ul {
