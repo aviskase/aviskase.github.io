@@ -104,25 +104,13 @@ Unordered:
 
 ### Admonitions
 
-{{< warning title="" >}}
-This is a simple warning.
-{{< /warning >}}
-
 {{< warning >}}
 This is a simple warning.
 {{< /warning >}}
 
-{{< note title="" >}}
-This is a simple note.
-{{< /note >}}
-
 {{< note >}}
 This is a simple note.
 {{< /note >}}
-
-{{< cta title="" >}}
-This is a simple cta.
-{{< /cta >}}
 
 {{< cta >}}
 This is a simple cta.
