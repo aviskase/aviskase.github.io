@@ -106,14 +106,19 @@ Unordered:
 
 {{< warning >}}
 This is a simple warning.
+
+With _some_ lists and [link A](https://google.com) and [link B](../test):
+
+- a
+- b
 {{< /warning >}}
 
 {{< note >}}
-This is a simple note.
+This is a simple note with [link A](https://google.com) and [link B](../test).
 {{< /note >}}
 
 {{< cta >}}
-This is a simple cta.
+This is a _simple_ cta.
 {{< /cta >}}
 
 
