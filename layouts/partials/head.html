@@ -1,5 +1,16 @@
 <head>
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    {{ if or (eq site.BaseURL "/") (eq site.BaseURL "http://localhost:1313/") }}
+    {{ else }}
+    <base href="{{ .Permalink }}" />
+    {{ end }}
+
+    {{ $title := site.Title }}
+    {{ if .Params.title }}
+    {{ $title =  .Params.title | .RenderString | plainify }}
+    {{ $title = printf "%s | %s" $title site.Title }}
+    {{ end }}
+
+    <title>{{ $title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
 
