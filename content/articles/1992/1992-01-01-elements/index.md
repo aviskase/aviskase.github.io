@@ -164,7 +164,13 @@ print s
 
 ### Image
 
-![Monitoring systems](600x400.png)
+![Local image](600x400.png "With title")
+
+
+![External image](https://placehold.co/300x200.png)
+
+
+![GIF test](test-homer-simpson.gif "Local GIF")
 
 ---
 

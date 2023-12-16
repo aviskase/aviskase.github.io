@@ -1,6 +1,8 @@
 {{- $src := .Page.Resources.GetMatch (printf "*%s*" .Destination) -}}
-{{ if in $src ".gif" }}
-<img src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }}>
+{{ if or (hasPrefix .Destination "http://" ) (hasPrefix .Destination "https://" ) }}
+<img src="{{.Destination}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
+{{ else if hasSuffix $src ".gif" }}
+<img src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
 {{ else }}
 <figure>
   <picture>
