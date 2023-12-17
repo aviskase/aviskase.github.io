@@ -118,40 +118,6 @@ article a {
     cursor: pointer;
 }
 
-article a.external {
-    text-decoration: none;
-    background-image: linear-gradient(theme(colors.blue.500), theme(colors.blue.500));
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 0.2rem;
-    transition: background .3s;
-
-    &:hover, &:focus {
-        background-image: linear-gradient(theme(colors.amber.300), theme(colors.amber.300));
-        background-size: 100% 100%;
-    }
-}
-
-article a.internal {
-    transition: color .3s;
-    
-    &::before {
-        content: "[[";
-    }
-    &::after {
-        content: "]]";
-    }
-
-    &::before, &::after {
-        color: theme(colors.blue.500);
-        font-size: 1.05em;
-    }
-
-    &:hover, &:focus {
-        color: theme(colors.blue.500);
-    }
-}
-
 article hr {
     border: 0;
     background: radial-gradient(circle, theme(colors.blue.500) 0%, theme(colors.blue.400) 50%, theme(colors.amber.300), white);
