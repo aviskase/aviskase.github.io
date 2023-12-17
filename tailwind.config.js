@@ -11,6 +11,11 @@ module.exports = {
       '19': '1.9rem',
       '24': '2.4rem'
     },
+    fontFamily: {
+      'mono': '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      'sans': 'Nunito, Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      'serif': ['Bellota', ...defaultTheme.fontFamily.serif],
+    },
     extend: {
       gridTemplateRows: {
         mainLayout: 'auto 1fr auto'
@@ -26,11 +31,6 @@ module.exports = {
         'r32': '3.2rem',
         'bleed': '2.25rem',
         'bleed-negative': '-2.25rem',
-      },
-      fontFamily: {
-        'mono': '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-        'sans': 'Nunito, Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
-        'serif': ['Bellota', ...defaultTheme.fontFamily.serif],
       }
     },
   },
