@@ -6,10 +6,13 @@
         {
             "label": "Add draft",
             "type": "shell",
-            "presentation": {"reveal": "never"},
-            "command": "node invoke.js draft --title '${input:postTitle}'"
-        },
-        
+            "presentation": {
+                "reveal": "always",
+                "clear": true
+            },
+            "command": "node invoke.js draft --title '${input:postTitle}'",
+            "problemMatcher": []
+        }
     ],
     "inputs": [
         {
