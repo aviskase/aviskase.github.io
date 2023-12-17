@@ -1,18 +1,19 @@
 {{- $src := .Page.Resources.GetMatch (printf "*%s*" .Destination) -}}
+{{- $img_class := "my-[3.2rem] mx-auto rounded" -}}
 {{ if or (hasPrefix .Destination "http://" ) (hasPrefix .Destination "https://" ) }}
-<img src="{{.Destination}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
+<img class="{{ $img_class }}" src="{{.Destination}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
 {{ else if hasSuffix $src ".gif" }}
-<img src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
+<img class="{{ $img_class }}" src="{{$src.RelPermalink}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
 {{ else }}
-<figure>
-  <picture>
+<figure class="my-[3.2rem]">
+  <picture class="my-0">
     {{ $resizeOptions := printf "%dx%d webp" $src.Width $src.Height }}
     {{ $webpImg := $src.Resize $resizeOptions }}
     <source srcset="{{ $webpImg.Permalink }}" type="image/webp">
-    <img src="{{ $src.Permalink }}" alt="{{ .Text }}" defer>
+    <img class="{{ $img_class }}" src="{{ $src.Permalink }}" alt="{{ .Text }}" defer>
 	</picture>
 	{{ with .Title }}
-    <figcaption>
+  <figcaption class="my-0">
     <p class="caption">{{ . }}</p>
 	</figcaption>
 	{{ end }}
