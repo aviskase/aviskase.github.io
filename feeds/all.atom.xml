@@ -2276,7 +2276,7 @@ which gives you tons of options.&lt;/p&gt;
 	&lt;/picture&gt;
 	
 &lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;BTW, use &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;Ctrl&lt;/kbd&gt;&lt;span&gt;&#43;&lt;/span&gt;&lt;kbd&gt;Space&lt;/kbd&gt;&lt;/span&gt;
+&lt;p&gt;BTW, use &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;Ctrl&lt;/kbd&gt;&lt;span class=&#34;py-0 px-1&#34;&gt;&#43;&lt;/span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;Space&lt;/kbd&gt;&lt;/span&gt;
  shortcut for the fastest template tag autocomplete.&lt;/p&gt;
 
 &lt;div class=&#34;relative group/header&#34;&gt;&lt;h2 id=&#34;reusing-response-values&#34; class=&#34;&#34;&gt;&lt;a href=&#34;#reusing-response-values&#34; class=&#34;hidden pointer-events-none header-link focus:opacity-75 group-hover/header:opacity-75 normal:text-inherit normal:block normal:absolute normal:opacity-0 normal:left-0 normal:text-[0.75em] normal:translate-x-[-125%] normal:translate-y-[-2px] normal:scroll-mt-[128px] normal:transition-opacity normal:duration-300&#34;&gt;
@@ -5256,24 +5256,24 @@ The book is about automation in testing, but not how to do it &amp;amp;mdash; it
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;touch {fileA,fileB}.txt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;tmux &amp;mdash; terminal multiplexor&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Go to commands mode: &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;Ctrl&lt;/kbd&gt;&lt;span&gt;&#43;&lt;/span&gt;&lt;kbd&gt;b&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Go to commands mode: &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;Ctrl&lt;/kbd&gt;&lt;span class=&#34;py-0 px-1&#34;&gt;&#43;&lt;/span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;b&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Create new window: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;c&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Create new window: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;c&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Create vertical split: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;%&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Create vertical split: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;%&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Create horizontal split: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;&#34;&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Create horizontal split: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;&#34;&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Go to window number 1 &amp;hellip; 9: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;1&lt;/kbd&gt;&lt;/span&gt;
- &amp;hellip; &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;9&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Go to window number 1 &amp;hellip; 9: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;1&lt;/kbd&gt;&lt;/span&gt;
+ &amp;hellip; &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;9&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Go to next window: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;n&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Go to next window: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;n&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Go to previous window: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;p&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Go to previous window: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;p&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Close window or split: commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;x&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Close window or split: commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;x&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
-&lt;li&gt;Detach (temporal exit): commands mode and &lt;span class=&#34;keys&#34;&gt;&lt;kbd&gt;d&lt;/kbd&gt;&lt;/span&gt;
+&lt;li&gt;Detach (temporal exit): commands mode and &lt;span&gt;&lt;kbd class=&#34;font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 &#34;&gt;d&lt;/kbd&gt;&lt;/span&gt;
 &lt;/li&gt;
 &lt;li&gt;Return to tmux: &lt;code&gt;tmux attach / tmux a&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;List all running tmux: &lt;code&gt;tmux list-sessions&lt;/code&gt;&lt;/li&gt;
