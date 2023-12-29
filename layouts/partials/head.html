@@ -6,11 +6,10 @@
 
     {{ $title := site.Title }}
     {{ if .Params.title }}
-    {{ $title =  .Params.title | .RenderString | plainify }}
-    {{ $title = printf "%s | %s" $title site.Title }}
+    {{ $title = printf "%s | %s" .Params.title site.Title }}
     {{ end }}
 
-    <title>{{ $title }}</title>
+    <title>{{ partial "func/MakeTitle" (dict "title" $title "isVisible" false ) }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
 

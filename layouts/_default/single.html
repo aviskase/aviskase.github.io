@@ -1,5 +1,5 @@
 {{ define "content" }}
-<div class="title-hero"><h1>{{ .Title | markdownify }}</h1></div>
+<div class="title-hero"><h1>{{ partial "func/MakeTitle" (dict "title" .Title ) }}</h1></div>
 <article>
     {{ .Content }}
 </article>

@@ -1,0 +1,15 @@
+{{ $title := default "" .title }}
+{{ $isVisible := default true .isVisible -}}
+
+{{ if eq $title "" }}
+  {{ errorf "The MakeTitle partial requires a title parameter." }}
+{{ else }}
+  {{ if $isVisible}}
+    {{ $title = $title | markdownify }}
+  {{ else }}
+    {{ $title = $title | markdownify | plainify | safeHTML | htmlUnescape }}
+  {{ end }}
+{{ end }}
+{{/*  markdownify | htmlEscape  */}}
+{{/*  .RenderString | plainify  */}}
+{{ return $title }}

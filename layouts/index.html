@@ -7,7 +7,7 @@
             <li>
                 <a class="flex hover:text-blue-500 mb-3" href="{{ .Permalink }}">
                     <div class="w-12 text-blue-500">{{ .Date.Day }}</div>
-                    <div class="">{{ .Title | markdownify }}</div>
+                    <div class="">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</div>
                 </a>
             </li>
         {{ end }}</ul>

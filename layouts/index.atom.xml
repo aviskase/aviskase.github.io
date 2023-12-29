@@ -19,7 +19,7 @@
   {{- end }}
   {{- range $pages }}
   <entry>
-    <title>{{ .Title | markdownify | htmlEscape }}</title>
+    <title>{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false) }}</title>
     <link rel="alternate" href="{{ .Permalink }}" hreflang="{{ $.Site.LanguageCode }}"/>
     <published>{{ dateFormat "2006-01-02T15:04:05Z" .Date.UTC | safeHTML }}</published>
     <updated>{{ dateFormat "2006-01-02T15:04:05Z" .Lastmod.UTC | safeHTML }}</updated>
@@ -27,8 +27,8 @@
     {{- $link :=  urls.Parse .Permalink -}}
     <id>tag:{{ $url.Host }},{{ dateFormat "2006-01-02" .Date.UTC | safeHTML }}:{{ $link.Path }}</id>
     {{/*<id>tag:www.aviskase.com,2020-09-15:/articles/2020/09/15/conference-notes-asc-2020/</id>*/}}
-    <summary type="html">{{ .Summary | htmlEscape }}</summary>
-    <content type="html">{{ trim .Content "\n" }}</content>
+    <summary type="html">{{ printf "<![CDATA[%s]]>" .Summary | safeHTML }}</summary>
+    <content type="html">{{ printf "<![CDATA[%s]]>" .Content | safeHTML }}</content>
   </entry>
   {{- end }}
 </feed>
