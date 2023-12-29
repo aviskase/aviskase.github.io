@@ -3,4 +3,9 @@
 @tailwind utilities;
 
 @import './fonts.css';
+
+html {
+  font-size: 62.5%;
+}
+
 @import './site.css';

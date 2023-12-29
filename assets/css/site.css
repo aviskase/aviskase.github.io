@@ -1,22 +1,4 @@
 
-
-:root{
-    font-size: 62.5%;
-}
-
-::selection {
-	background-color: theme(colors.blue.500);
-	color: white;
-}
-
-body {
-    background-color: theme(colors.white);
-    color: theme(colors.slate.950);
-    font-family: theme(fontFamily.sans);
-    font-size: 1.8rem;
-    line-height: 1.77;
-}
-
 article {
     max-width: calc(100vw - 3rem);
     margin: 0 1.5rem;
@@ -50,46 +32,6 @@ article {
         margin-right: 3rem;
     }
 }
-
-
-input#nav-toggle {
-    @apply hidden;
-}
-  
-input#nav-toggle:checked~label#show-button {
-    @apply hidden;
-}
-
-input#nav-toggle:checked~label#hide-button {
-    @apply flex;
-}
-
-input#nav-toggle:checked~#nav-menu {
-    @apply block;
-}
-
-
-.shape-divider {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.shape-divider svg {
-    position: relative;
-    display: block;
-    width: calc(198% + 1.3px);
-    height: 37px;
-}
-
-.shape-divider .shape-fill {
-    fill: theme(colors.white);
-}
-
 
 h1, h2, h3, h4, h5, h6, strong {
     @apply font-bold;
