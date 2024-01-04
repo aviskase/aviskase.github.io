@@ -230,23 +230,6 @@ article h2 + *, article h3 + *, article h4 + *, article hr + * {
     margin-bottom: 0;
 }
 
-.article-meta {
-    font-size: 2rem;
-    color: theme(colors.slate.500);
-    margin-top: 2rem;
-
-    & svg {
-        bottom: 0.125em;
-    }
-}
-
-@screen normal {
-    .article-meta {
-        display: grid;
-        grid-template-columns: 1fr 5rem 1fr;
-    }
-}
-
 article table:not([class]) {
     font-size: 1.6rem;
     line-height: 1.5em;
