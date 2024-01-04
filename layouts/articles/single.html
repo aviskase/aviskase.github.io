@@ -3,9 +3,7 @@
 {{- $pages := where site.RegularPages "Section" .Section -}}
 {{- $prev := $pages.ByDate.Reverse.Prev . -}}
 {{- $next := $pages.ByDate.Reverse.Next . -}}
-<div class="title-hero">
-    <h1>{{ partial "func/MakeTitle" (dict "title" .Title ) }}</h1>
-</div>
+{{ partial "title" . }}
 
 <div class="text-left mx-6 normal:text-center normal:mx-12">
     <div class="text-[2rem] text-slate-500 normal:grid normal:grid-cols-[1fr_5rem_1fr]">

@@ -1,5 +1,5 @@
 {{ define "content" }}
-<div class="title-hero"><h1>{{ partial "func/MakeTitle" (dict "title" .Title ) }}</h1></div>
+{{ partial "title" . }}
 <section class="normal:max-w-4xl mx-6 mt-12 normal:mx-auto">
     <ul>{{ range (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
         {{- $firstArticle := index .Pages 0 -}}

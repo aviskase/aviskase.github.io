@@ -10,6 +10,4 @@
     {{ $title = $title | markdownify | plainify | safeHTML | htmlUnescape }}
   {{ end }}
 {{ end }}
-{{/*  markdownify | htmlEscape  */}}
-{{/*  .RenderString | plainify  */}}
 {{ return $title }}

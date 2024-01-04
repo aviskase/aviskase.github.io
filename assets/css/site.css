@@ -14,25 +14,6 @@ article {
 }
 
 
-.title-hero {
-    @apply text-left;
-    @apply mx-6;
-    @apply mt-24;
-    @apply mb-8;
-}
-
-.title-hero h1 {
-    font-size: 4.8rem;
-    line-height: 1;
-}
-
-@screen normal {
-    .title-hero {
-        @apply text-center;
-        @apply mx-12;
-    }
-}
-
 h1, h2, h3, h4, h5, h6, strong {
     @apply font-bold;
  }
