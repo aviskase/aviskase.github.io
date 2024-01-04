@@ -5,7 +5,10 @@
 {{- $next := $pages.ByDate.Reverse.Next . -}}
 <div class="title-hero">
     <h1>{{ partial "func/MakeTitle" (dict "title" .Title ) }}</h1>
-    <div class="text-[2rem] text-slate-500 mt-8 normal:grid normal:grid-cols-[1fr_5rem_1fr]">
+</div>
+
+<div class="text-left mx-6 normal:text-center normal:mx-12">
+    <div class="text-[2rem] text-slate-500 normal:grid normal:grid-cols-[1fr_5rem_1fr]">
         <div class="normal:justify-self-end">{{ .Date.Format "2 Jan 2006" }}
         {{- if ne .Lastmod .Date }}
         (upd: {{ .Lastmod.Format "2 Jan 2006" }})
@@ -17,7 +20,6 @@
         </div>
     </div>
 </div>
-
 <article>
     {{ .Content }}
 

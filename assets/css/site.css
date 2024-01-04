@@ -1,23 +1,24 @@
 
 article {
     max-width: calc(100vw - 3rem);
-    margin: 0 1.5rem;
+    @apply mt-20;
+    @apply mb-0;
+    @apply mx-6;
 }
 
 @screen normal {
     article {
         max-width: 76rem;
-        margin: 0 auto;
+        @apply mx-auto;
     }
 }
 
 
 .title-hero {
     @apply text-left;
-    margin-top: 6rem;
-    margin-bottom: 4.5rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    @apply mx-6;
+    @apply mt-24;
+    @apply mb-8;
 }
 
 .title-hero h1 {
@@ -28,8 +29,7 @@ article {
 @screen normal {
     .title-hero {
         @apply text-center;
-        margin-left: 3rem;
-        margin-right: 3rem;
+        @apply mx-12;
     }
 }
 
