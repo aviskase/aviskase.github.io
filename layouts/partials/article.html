@@ -1,0 +1,11 @@
+<article class="mt-20 mb-0 mx-6 normal:mx-auto normal:max-w-normal">
+  {{ .Content }}
+
+  {{- if .Params.see_also }}
+  <hr/>
+  <p>See also:</p>
+  <ul>{{ range .Params.see_also }}
+      {{ with $.Site.GetPage . }}<li><a class="internal" href="{{ .Permalink }}">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</a></li>{{ end }}
+  {{ end }}</ul>
+  {{ end }}
+</article>
