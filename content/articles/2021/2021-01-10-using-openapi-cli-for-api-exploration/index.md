@@ -22,9 +22,9 @@ In the simplest words, it is a process of learning something about API I don't k
 
 There are many ways to perform exploration, countless tools and sources to use. In this article I'll be looking only at OpenAPI description documents, because that's where `openapi-cli` comes handy.
 
-{{< note title="" >}}
+{{< callout >}}
 When exploring unknown APIs, I run a globally installed package: `npm i -g @redocly/openapi-cli`. Then it is accessible in the terminal as `openapi <args>`. 
-{{< /note >}}
+{{< /callout >}}
 
 ## `openapi stats`
 Gathers some basic statistics for an OpenAPI description document. Can be in "stylish" format (as in the example below) or in JSON.
@@ -75,9 +75,9 @@ For example, it's a SwaggerUI, and you don't like it, or the description doc has
 Or perhaps you have special needs. Lorna Jane Mitchell in her presentation on [Delightful SDKs](https://lornajane.net/resource/delightful-sdks-with-openapi) mentions that she often generates her own local reference docs because official documentations aren't *accessible*. AFAIK, she uses Redoc and made several pull requests specifically for better accessibility support.
 
 
-{{< note title="" >}}
+{{< callout >}}
 You can generate reference docs with [`redoc-cli`](https://www.npmjs.com/package/redoc-cli), but I prefer using `openapi-cli` as a one-stop shop. The difference is when you want to generate static HTML with your theme: right now you have to use a small hack [from this issue](https://github.com/Redocly/openapi-cli/issues/133).
-{{< /note >}}
+{{< /callout >}}
 
 ## `openapi split`
 Reading a big OpenAPI description doc is cumbersome. Especially when you need to jump back and forth between references.
@@ -85,9 +85,9 @@ Reading a big OpenAPI description doc is cumbersome. Especially when you need to
 Split for the rescue! It's an opposite of the [bundling operation]({{< ref "2020-12-05-crash-course-into-api-related-terminology#ref" >}}) and separates references into several files. Though, it's a bit smarter; for example, it splits paths into separate files too. 
 
 
-{{< warning >}}
+{{< callout type="warning" >}}
 This command doesn't support OpenAPI 2.
-{{< /warning >}}
+{{< /callout >}}
 
 Let's split a description doc into `out` directory: `openapi split --outDir out openapi.json`. Here is a sample result:
 

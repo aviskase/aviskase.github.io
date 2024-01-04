@@ -108,7 +108,7 @@ Next list:
 
 ### Admonitions
 
-{{< warning >}}
+{{< callout type="warning" >}}
 This is a simple warning.
 
 With _some_ lists and [link A](https://google.com) and [link B](../test):
@@ -118,15 +118,15 @@ With _some_ lists and [link A](https://google.com) and [link B](../test):
 
 1. a
 2. b
-{{< /warning >}}
+{{< /callout >}}
 
-{{< note >}}
+{{< callout >}}
 This is a simple note with [link A](https://google.com) and [link B](../test).
-{{< /note >}}
+{{< /callout >}}
 
-{{< cta >}}
+{{< callout type="cta" >}}
 This is a _simple_ cta.
-{{< /cta >}}
+{{< /callout >}}
 
 
 ---

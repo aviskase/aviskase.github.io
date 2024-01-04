@@ -63,9 +63,9 @@ What's happening here:
 - All `openapi-cli` preprocessors should return a _visitor_. In our case, we specifically indicate to take into account only schema nodes.
 - If a schema has defined extensible enumeration property, we update its description with formatted list of values.
 
-{{< warning >}}
+{{< callout type="warning" >}}
 Per documentation, for type support you can use `import('@redocly/openapi-cli').Oas3Preprocessor}`.  It never worked for me, so I use a "full path" `import('@redocly/openapi-core/src/visitors').Oas3Preprocessor`.
-{{< /warning >}}
+{{< /callout >}}
 
 ### Enabling our preprocessor via custom plugin
 Let's keep our preprocessor (and the future ones) bundled inside one plugin via `./plugins/custom-preprocessors.js`:
@@ -110,9 +110,9 @@ Now, when we render a reference documentation, we can see all values with simple
 
 ![Redoc with modified descriptions for extensible enumerations](x_enum_render.png)
 
-{{< cta >}}
+{{< callout type="cta" >}}
 By the way, can you spot operations where we could have left normal `enum` and why?
-{{< /cta >}}
+{{< /callout >}}
 
 ## Why use a preprocessor here?
 As mentioned before, preprocessors might be brittle. We could have used decorator instead. I'll show you the reason in the next article, but here is a sneak peek: we want to be able to [_lint_ modified descriptions]({{< ref "2021-09-06-using-openapi-cli-custom-rules" >}})!

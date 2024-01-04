@@ -26,11 +26,11 @@ Tailwind CSS has [a plugin for typography](https://tailwindcss-typography.netlif
 For layout I used `grid` and `flexbox`. Last time I did any CSS these two weren't a common thing; you had to do a million of `div`'s with `float`'s and other weird things. I also wanted to use `grid` for minor bleeding elements [how it was described here](https://joshwcomeau.com/css/full-bleed/), but I didn't like the result: vertical margins don't collapse when you apply grid to child elements.
 
 
-{{<note title="">}}
+{{< callout >}}
 BTW, [raindrop.io](https://raindrop.io/) helped tremendously with gathering links and sources. I completely migrated there from [Pocket](http://getpocket.com/). 
 
 It has a similar "save for later" experience, but also supports collections and comments. For example, for this project I created a collection "blog redesign" and added a comment for each link saved there to remember later why it was saved in the first place.
-{{</note>}}
+{{< /callout >}}
 
 Additional resources:
 

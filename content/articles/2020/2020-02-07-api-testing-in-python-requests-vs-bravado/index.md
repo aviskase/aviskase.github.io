@@ -7,7 +7,7 @@ og_image: og_requests-vs-bravado.png
 ---
 
 
-{{< note >}}
+{{< callout >}}
 This article is written as a result of collaboration with [TestProject](https://testproject.io/). 
 While many of you know me as [a GUI-driven tools hater]({{< ref "2019-11-25-why-i-dont-use-postman" >}}), 
 that's just my preference, so if something works for you and your company, that's the only thing 
@@ -15,7 +15,7 @@ that matters. There are no best practices and there are no best tools for everyo
 
 What I really admire the TestProject team for is their strategy of creating a knowledge-sharing community.
 And their product has a totally free usage tier. You don't see such combo often.
-{{< /note >}}
+{{< /callout >}}
 
 API testing is not an uncommon topic and you can find a gazillion of articles about it. If you check tutorials in 
 Java or JavaScript, you’ll notice that they use a plethora of diverse libraries. Yet for Python 

@@ -69,9 +69,9 @@ operationHandlers: {
 }
 ```
 
-{{< warning title="" >}}
+{{< callout type="warning" >}}
 The code was updated after the fix [#426](https://github.com/cdimascio/express-openapi-validator/issues/426). Should be a valid example as of version v4.3.6.
-{{< /warning >}}
+{{< /callout >}}
 
 
 It assumes several things about the project's structure:

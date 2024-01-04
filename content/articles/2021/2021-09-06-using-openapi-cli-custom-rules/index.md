@@ -208,6 +208,6 @@ Hmm, looks confusing. Thanks to `suggest` we can at least see that something was
 
 Finally, to make linter passing, we need to fix the preprocessor plugin code [commit 81a4332](https://github.com/aviskase/openapi-cli-examples/tree/81a43321ae607fd20afd5abe4922fc86fa0fcce0).
 
-{{< cta >}}
+{{< callout type="cta" >}}
 Rules are cooler than preprocessors and decorators: they support nested visitors. I'll cover this concept in the next article. Until then, try to come up with an example where the uppercase rule in its current form might have undesired behavior.
-{{< /cta >}}
+{{< /callout >}}

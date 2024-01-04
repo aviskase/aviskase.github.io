@@ -36,9 +36,9 @@ Next, operations. Nothing fancy, the bare minimum:
 - Get gate info
 - Update gate info
 
-{{< note title="">}}
+{{< callout >}}
 Don't forget, not all APIs should be OpenAPI-based. If I needed to design a real Stargate system, I would go with a combo of something like GraphQL for lookup and event-based APIs for anything else (perhaps described with AsyncAPI). 
-{{< /note >}} 
+{{< /callout >}} 
 
 
 Let's create a place to store our OpenAPI description doc: YAML-based, multi-file git repo. You can read more about [why's in the Redocly docs](https://redoc.ly/docs/resources/openapi-decisions/).
@@ -63,11 +63,11 @@ Let's explore the generated files:
  
 Now, let's rewind the time. Stargate Network API contract is defined, [commit c2b8d11](https://github.com/aviskase/openapi-cli-examples/tree/c2b8d1172129e00903d3d1bd4cbb90f2bf03b51f). For more information about keeping your structure *DRY* read [this](https://mux.com/blog/an-adventure-in-openapi-v3-api-code-generation/) and [this](https://stoplight.io/blog/keeping-openapi-dry-and-portable/). If you're interested in reading/watching about it from me, just ping!
 
-{{< warning title="">}}
+{{< callout type="warning" >}}
 The definitions are not state of art, even for this shallow design. Some problems with it were added consciously to simplify the example, others for fixing in later articles. 
 
 And I'm not even talking about how many details are omitted lore-wise! 
-{{< /warning >}} 
+{{< /callout >}} 
 
 ## Preview
 In the `package.json` file there is already an action for previewing the docs: `openapi preview-docs`. To execute it, run in the terminal `npm run start`. 

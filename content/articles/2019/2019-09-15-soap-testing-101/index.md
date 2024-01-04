@@ -7,9 +7,9 @@ Category: Testing
 
 **Disclaimer:** this is a translation of [the article](https://quality-lab.ru/blog/soap-api-testing/) written 2 years ago for a corporate blog. I didn't do a word-for-word translation because the original article went through an editor, whose style was not that close to mine. Too watered down and "official." Also, some examples don't make sense in English. Still, I didn't update it too radically. Bear in mind, at the moment of the writing I was testing SOAP services and Excel-based import/export at big government project, so most of the examples relate to that experience.  
 
-{{< note >}}
+{{< callout >}}
 Sometimes you'll see a block like that. It will contain my current thoughts on the subject or comments.
-{{< /note >}}
+{{< /callout >}}
 
 ---
 
@@ -186,9 +186,9 @@ SoapUI can generate mock objects based on WSDL. It's a crude service simulation 
 
 You recognize differences between free and pro versions of SoapUI. You use SoapUI as a library from code. You use plugins and run test cases via CLI and/or CI. Your tests cases are elegant and easy to support. You know all the angles! I envy you.
 
-{{< note >}}
+{{< callout >}}
 Or not. Presently I don't use any GUI tools for API testing except for exploratory sessions. 
-{{< /note >}} 
+{{< /callout >}} 
 
 ### Testing with code
 
@@ -215,11 +215,11 @@ assert '1' == response.CheckTextResponse.SpellResult.error.@code.text()
 
 As far as I know there are no high-level test frameworks for SOAP (similar to Rest-assured), but there is an interesting framework called [karate](https://github.com/intuit/karate) where you can describe test cases for SOAP and REST in Cucumber / Gherkin style.
 
-{{< note >}}
+{{< callout >}}
 I don't do any Groovy programming anymore, so no idea how groovy-wslite fares. In fact, I don't do SOAP testing now, so my knowledge about libraries can be outdated.
 
 Plus, I avoid anything cucumber-ish =) 
-{{< /note >}}
+{{< /callout >}}
 
 ---
 

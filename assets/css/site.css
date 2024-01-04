@@ -124,72 +124,21 @@ article blockquote {
     padding: theme(spacing.bleed);
 }
 
-article blockquote p, article blockquote, article .admonition {
+article blockquote p, article blockquote {
     font-size: 1.7rem;
 }
 
-article blockquote p, article .admonition p {
+article blockquote p {
     margin-bottom: 1.6rem;
 }
 
 
-article blockquote > :last-child, article .admonition > :last-child {
+article blockquote > :last-child {
     margin-bottom: 0px !important;
 }
 
-article .admonition {
-    width: 100%;
-    margin: 2.4rem 0 2.4rem;
-    position: relative;
-    border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
-    padding: theme(spacing.bleed);
-
-    &.warning {
-        border-left: 0.3rem solid theme(colors.rose.500);
-        background-color: theme(colors.rose.100);
-    }
-
-    &.note {
-        border-left: 0.3rem solid theme(colors.indigo.500);
-        background-color: theme(colors.indigo.100);
-    }
-
-    &.cta {
-        border-left: 0.3rem solid theme(colors.yellow.500);
-        background-color: theme(colors.yellow.100);
-    }
-}
-
-article p.admonition-title {
-    font-weight: bolder;
-    margin-bottom: 2rem;
-}
-
-.admonition-icon {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    transform: translate(-50%, -50%);
-    padding: 0.6rem;
-    background: theme(colors.white);
-    border-radius: 50%;
-
-    .warning & {
-        color: theme(colors.rose.500);
-    }
-
-    .note & {
-        color: theme(colors.indigo.500);
-    }
-
-    .cta & {
-        color: theme(colors.yellow.500);
-    }
-}
-
-
 @screen normal {
-    article .highlight, article blockquote, article .gist, article .admonition {
+    article .highlight, article blockquote, article .gist {
         width: 80.5rem;
         margin: 2.4rem theme(spacing.bleed-negative) 2.4rem;
     }

@@ -64,9 +64,9 @@ Typical developers' personas:
 * **Pragmatic developers** are more common and work both in deductive and inductive manners. Typically they code desktop and mobile apps in Java or C#.
 * **Opportunistic developers** concentrate on solving business problems in an exploratory and inductive fashion. Guess what language they prefer? JavaScript.
 
-{{< warning title="" >}} 
+{{< callout type="warning" >}} 
 Now, I want to point out that the aforementioned language discrimination is not my invention. If you're lucky, perhaps you'll find the original article by Visual Studio usability expert, where these quirky definitions were introduced. Unfortunately, I was able to get only [its first page in the Wayback Machine][visual-studio], so you have to take my word for it. Nevertheless, I hope this example can encourage you to create your own personas. 
-{{< /warning >}} 
+{{< /callout >}} 
 
 We can also combine personas with cognitive dimensions. Create [a radar chart](https://en.wikipedia.org/wiki/Radar_chart) with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona's expectations. This chart is great for comparing how existing API corresponds to user values. 
 

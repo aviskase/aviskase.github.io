@@ -7,9 +7,9 @@ Category: Testing
 
 **Disclaimer:** this is a translation of [the article](https://quality-lab.ru/blog/your-api-is-your-public-face/) written 2 years ago for a corporate blog. I didn't do a word-for-word translation because the original article went through an editor, whose style was not that close to mine. Too watered down and "official." Also, some examples don't make sense in English. Still, I didn't update it too radically. Bear in mind, at the moment of the writing I was testing SOAP services and Excel-based import/export at big government project, so most of the examples relate to that experience.  
 
-{{< note >}}
+{{< callout >}}
 Sometimes you'll see a block like that. It will contain my current thoughts on the subject or comments.
-{{< /note >}}
+{{< /callout >}}
 
 ---
 
@@ -72,9 +72,9 @@ When we hear the word "usability", we usually think about GUI: buttons and dialo
 
 > Your developers drink too much and it impairs their accuracy. There is an epic fail in a scheme with the name of the element `Pressure`: the first letter is a Cyrillic character and it breaks all client code generation.
 
-{{< note >}}
+{{< callout >}}
 Cyrillic `Р/р`  (pronounced like "r") looks exactly like Latin `P/p`. 
-{{< /note >}}
+{{< /callout >}}
 
 * Service works fine, but error messages are not that informative? Users won't understand how to fix an error (and probably will open a support ticket, so you'll needlessly spend time resolving non-existing issue).
 

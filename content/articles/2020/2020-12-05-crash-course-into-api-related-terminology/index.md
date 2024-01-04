@@ -41,12 +41,12 @@ There are *tons* of API-related specifications. I'll cover only some.
 
 **[OpenAPI](https://www.openapis.org/)** is used to describe both the service model and the request/response body *kinda* based on JSON Schema. It was called Swagger before being donated to Linux Foundation. You probably noticed that this created a sore spot: people still call it Swagger, perhaps, because "OpenAPI" is a bit mouthful. Anyway, know that Swagger is just a part of the  SwaggerHub branding of tooling like Swagger Editor or SwaggerUI. 
 
-{{< warning title="" >}}
+{{< callout type="warning" >}}
 You may stumble upon people using the word "swagger" even in weirder situations:
 
 - as a synonym for "API": "We developed swagger for creating users!", "Use this swagger to export files!" 
 - as a synonym for response body: "We make a request and the swagger we got back…"
-{{< /warning >}}
+{{< /callout >}}
 
 
 **[JSON Schema](https://json-schema.org/)** is for describing an instance of JSON data. OpenAPI was using an extended subset of it, but this was fixed in OAS 3.1, and now they are fully compatible. Why does it matter? Well, JSON Schema have additional tooling for client-side validations or HATEOAS support.
