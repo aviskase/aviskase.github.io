@@ -237,10 +237,4 @@ article table:not([class]) tbody td {
 }
 
 
-.yearmonth {
-    font-size: 2rem;
-    color: theme(colors.slate.500);
-}
-
-
 
