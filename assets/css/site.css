@@ -278,28 +278,6 @@ article table:not([class]) tbody td {
     color: theme(colors.slate.500);
 }
 
-.page-navigation {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5rem;
-    max-width: max-content;
-
-    & a {
-        position: relative;
-
-        & > svg {
-            position: relative;
-            display: inline;
-            color: theme(colors.blue.500);
-            font-size: 1.3em;
-            margin: 0.5rem;
-        }
-    }
-
-    & .separator {
-        color: theme(colors.blue.500);
-    }
-}
 
 .see_more {
     display: flex;

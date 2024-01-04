@@ -32,18 +32,18 @@
 
 
 
-<div class="page-navigation">
+<div class="mx-auto max-w-max mt-[5rem]">
 
     {{ with $prev }}
-    <a class="prev" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
+    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-[1.3em] m-2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
     {{ end }}
 
     {{ if and $prev $next }}
-    <span class="separator">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+    <span class="text-blue-500">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
     {{ end }}
 
     {{ with $next }}
-    <a class="next" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
+    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-[1.3em] m-2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
     {{ end }}
 </div>
 {{ end }}
