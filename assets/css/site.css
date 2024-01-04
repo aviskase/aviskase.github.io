@@ -279,42 +279,4 @@ article table:not([class]) tbody td {
 }
 
 
-.see_more {
-    display: flex;
-    font-size: 1.6rem;
-    /* justify-content: right; */
-
-
-    
-    & a {
-        border-radius: 0.6rem;
-        padding: 0.2rem;
-        background: linear-gradient(120deg, theme(colors.blue.500), theme(colors.blue.400), theme(colors.yellow.200), theme(colors.blue.400), theme(colors.blue.500)) var(--x, 0)/200%;
-        color: theme(colors.blue.800);
-        transition: 0.5s ease;
-
-        &:hover {
-            color: theme(colors.blue.500);
-            --x: 100%;
-
-            /* & span {
-                 background: transparent; 
-            } */
-        }
-
-        & span {
-            padding: 0.5rem 2rem;
-            align-items: center;
-            background: theme(colors.white);
-            border-radius: 0.3rem;
-            display: flex;
-            justify-content: center;
-            height: 100%;
-            /* transition: background .5s ease; */
-            width: 100%;
-        }
-    }
-
-}
-
 
