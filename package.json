@@ -1,7 +1,6 @@
 {
     "scripts": {
-        "dev": "hugo server --buildDrafts",
-        "preview": "hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --watch --forceSyncStatic -e production --minify",
+        "preview": "hugo server --buildDrafts --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --watch --forceSyncStatic -e production --minify",
         "watch": "hugo server --environment staging -D --watch --printI18nWarnings --printPathWarnings --disableFastRender",
         "clean": "rm -rf ./output",
         "build:hugo": "env NODE_ENV=production hugo -e \"production\" --minify --logLevel debug --printI18nWarnings --printPathWarnings",

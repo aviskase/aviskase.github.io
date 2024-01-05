@@ -7,141 +7,103 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 article > p {
-    font-size: 1.8rem;
-    line-height: 3.2rem;
-    margin-bottom: 2.4rem; 
-    margin-top: 2.4rem; 
+    @apply text-[1.8rem] leading-[3.2rem] my-[2.4rem];
 }
 
 article em {
-    color: theme(colors.blue.500);
-    font-family: theme(fontFamily.serif);
-    font-style: italic;
-    letter-spacing: -0.25px;
-    font-weight: bold;
+    @apply text-blue-500 font-serif italic font-bold tracking-tight;
 }
 
 article a {
-    cursor: pointer;
+    @apply cursor-pointer;
 }
 
 article hr {
-    border: 0;
+    @apply h-px my-[5.6rem] border-0;
     background: radial-gradient(circle, theme(colors.blue.500) 0%, theme(colors.blue.400) 50%, theme(colors.amber.300), white);
-    height: 0.1rem;
-    margin-bottom: 5.6rem; 
-    margin-top: 5.6rem; 
 }
 
 
 article p > code, article li > code, article td > code {
-    font-family: theme(fontFamily.mono);
-    font-size: 0.8em;
-    border-radius: 0.3rem;
-    padding: 0.2rem 0.6rem;
-    margin: 0.1rem 0px;
-    display: inline-block;
-    background-color: theme(colors.slate.200);
+    @apply text-[0.8em] font-mono inline-block bg-slate-200 py-[0.2rem] px-[0.6rem] my-[0.1rem] mx-0 rounded-[0.3rem];
 }
 
 a code, h1 code, h2 code, h3 code, h4 code, article th > code {
-    font-family: theme(fontFamily.mono);
-    font-size: 0.9em;
+    @apply text-[0.9em] font-mono;
 
     &::after, &::before {
-        content: "`";
+        @apply content-['`'];
     }
 }
 
 article .gist {
-    width: 100%;
-    margin: 2.4rem 0 2.4rem;
+    @apply w-full my-[2.4rem] mx-0;
 }
 
 article .gist .gist-file {
-    margin-bottom: 0;
+    @apply mb-0;
 }
 
 article .highlight {
-    width: 100%;
-    margin: 2.4rem 0 2.4rem;
-
-    border-radius: 0.6rem;
-    padding: theme(spacing.bleed);
-    background-color: #282a36;
-    overflow: auto;
+    @apply w-full my-[2.4rem] mx-0 p-bleed overflow-auto rounded-[0.6rem] bg-[#282a36];
 }
 
 article .highlight code {
-    font-family: theme(fontFamily.mono);
-    font-size: 0.8em;
+    @apply text-[0.8em] font-mono;
 }
 
 
 
 article blockquote {
-    width: 100%;
-    margin: 2.4rem 0 2.4rem;
-
-    background-color: theme(colors.slate.200);
-    border-radius: 0.3rem 0.6rem 0.6rem 0.3rem;
-    border-left: 0.3rem solid theme(colors.slate.500);
-    padding: theme(spacing.bleed);
+    @apply w-full my-[2.4rem] mx-0 p-bleed bg-slate-200 rounded-l-[0.3rem] rounded-r-[0.6rem] border-l-[0.3rem] border-slate-500;
 }
 
 article blockquote p, article blockquote {
-    font-size: 1.7rem;
+    @apply text-[1.7rem];
 }
 
 article blockquote p {
-    margin-bottom: 1.6rem;
+    @apply mb-[1.6rem];
 }
 
 
 article blockquote > :last-child {
-    margin-bottom: 0px !important;
+    @apply !mb-0;
 }
 
 @screen normal {
     article .highlight, article blockquote, article .gist {
-        width: 80.5rem;
-        margin: 2.4rem theme(spacing.bleed-negative) 2.4rem;
+        @apply w-[80.5rem] my-[2.4rem] mx-bleed-negative;
     }
 }
 
 article li {
-    position: relative;
-    margin-bottom: 1.2rem;
+    @apply relative mb-[1.2rem];
 }
 
 article ol {
+    @apply my-[2.4rem];
     counter-reset: counts 0;
-    margin-top: 2.4rem;
-    margin-bottom: 2.4rem;
 }
 
 article ul {
-    margin-top: 2.4rem;
-    margin-bottom: 2.4rem;
+    @apply my-[2.4rem];
 }
 
 
 article ol > li {
-    display: table;
+    @apply table;
 }
 
 article ul > li {
-    padding-left: 2.4rem;
+    @apply pl-[2.4rem];
 }
 
 
 article ol > li:before {
+    @apply text-blue-500 font-bold table-cell pr-6;
     counter-increment: counts;
     content: counter(counts)'. ';
-    font-weight: bolder;
-    color: theme(colors.blue.500);
-    display: table-cell;
-    padding-right: 1.5rem;
 }
 
 
@@ -150,74 +112,55 @@ article ol ol > li:before {
 }
 
 article li ol li:last-child, article li ol, article li ul li:last-child, article li ul {
-    margin: 0;
+    @apply m-0;
 }
 
 
 article ul > li:before {
-    content: '→';
-    color: theme(colors.blue.500);
-    font-weight: bolder;
-    position: absolute;
-    top: 0;
-    left: 0;
+    @apply content-['→'] text-blue-500 font-bold absolute top-0 left-0;
 }
 
 article ul ul, article ul ol, article ol ul, article ol ol {
-    margin-top: 1.2rem;
-    /* margin-bottom: 1.5rem; */
+    @apply mt-[1.2rem];
 }
 
 
 h2 {
-    font-size: 3rem;
-    line-height: 4rem;
-    margin-bottom: 3.2rem;
-    margin-top: 5.6rem;
+    @apply text-[3rem] leading-[4rem] mt-[5.6rem] mb-[3.2rem];
 }
 
 
 h3 {
-    font-size: 2.4rem;
-    line-height: 3.6rem;
-    margin-bottom: 1.6rem;
-    margin-top: 4rem;
+    @apply text-[2.4rem] leading-[3.6rem] mt-16 mb-[1.6rem];
 }
 
 
 h4 {
-    font-size: 1.8rem;
-    line-height: 2.8rem;
-    margin-bottom: 0.8rem;
+    @apply text-[1.8rem] leading-[2.8rem] mb-[0.8rem];
 }
 
 article h2 + *, article h3 + *, article h4 + *, article hr + * {
-    margin-bottom: 0;
+    @apply mb-0;
 }
 
 article table:not([class]) {
-    font-size: 1.6rem;
-    line-height: 1.5em;
-    width: 100%;
+    @apply text-[1.6rem] leading-[1.5em] w-full;
 }
 
 article table:not([class]) thead {
-    font-weight: bold;
-    background-color: theme(colors.amber.300);
+    @apply font-bold bg-amber-300;
 }
 
 article table:not([class]) thead th {
-    vertical-align: bottom;
-    padding: 0.75em;
+    @apply align-bottom p-[0.75em];
 }
 
 article table:not([class]) tbody tr {
-    border-bottom: 1px solid theme(colors.amber.300);
+    @apply border border-solid border-amber-300;
 } 
 
 article table:not([class]) tbody td {
-    vertical-align: top; 
-    padding: 0.75em;
+    @apply align-top p-3;
 }
 
 
