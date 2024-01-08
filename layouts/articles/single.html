@@ -5,34 +5,34 @@
 {{- $next := $pages.ByDate.Reverse.Next . -}}
 {{ partial "title" . }}
 
-<div class="text-left mx-6 normal:text-center normal:mx-12">
-    <div class="text-[2rem] text-slate-500 normal:grid normal:grid-cols-[1fr_5rem_1fr]">
-        <div class="normal:justify-self-end">{{ .Date.Format "2 Jan 2006" }}
+<div class="text-left md:text-center mb-10">
+    <div class="text-xl text-slate-500 md:grid md:grid-cols-[1fr_5rem_1fr]">
+        <div class="md:justify-self-end">{{ .Date.Format "2 Jan 2006" }}
         {{- if ne .Lastmod .Date }}
         (upd: {{ .Lastmod.Format "2 Jan 2006" }})
         {{ end }}
         </div>
-        <div class="hidden normal:block">&nbsp;—&nbsp;</div>
-        <div class="relative normal:justify-self-start">
-            <svg class="inline relative bottom-[0.125em]" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>&nbsp;{{- if gt .ReadingTime 1 }}{{ .ReadingTime }}&nbsp;mins{{ else }}1&nbsp;min{{ end -}}</span>
+        <div class="hidden md:block">&nbsp;—&nbsp;</div>
+        <div class="relative md:justify-self-start">
+            <svg class="inline relative bottom-0.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>&nbsp;{{- if gt .ReadingTime 1 }}{{ .ReadingTime }}&nbsp;mins{{ else }}1&nbsp;min{{ end -}}</span>
         </div>
     </div>
 </div>
 {{ partial "article" . }}
 
 
-<div class="mx-auto max-w-max mt-[5rem]">
+<div class="mx-auto max-w-max mt-16 md:text-lg">
 
     {{ with $prev }}
-    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-[1.3em] m-2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
+    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-2xl md:text-3xl m-2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
     {{ end }}
 
     {{ if and $prev $next }}
-    <span class="text-blue-500">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+    <span class="text-blue-500 font-bold">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
     {{ end }}
 
     {{ with $next }}
-    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-[1.3em] m-2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
+    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-2xl md:text-3xl m-2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
     {{ end }}
 </div>
 {{ end }}

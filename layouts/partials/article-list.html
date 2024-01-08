@@ -6,14 +6,14 @@
     {{- range $pages -}}
     {{- $firstArticle := index .Pages 0 -}}
     <li>
-        <div class="lowercase mb-3 text-slate-500 text-[2rem]">/&nbsp;{{ $firstArticle.Date.Format "January 2006"
+        <div class="lowercase mb-3 text-slate-500 text-xl">/&nbsp;{{ $firstArticle.Date.Format "January 2006"
             }}&nbsp;/</div>
     </li>
-    <ul class="mb-16">
+    <ul class="mb-12">
         {{- range .Pages -}}
         <li>
             <a class="flex hover:text-blue-500 mb-3" href="{{ .Permalink }}">
-                <div class="w-12 text-blue-500">{{ .Date.Day }}</div>
+                <div class="w-8 text-blue-500">{{ .Date.Day }}</div>
                 <div class="">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</div>
             </a>
         </li>

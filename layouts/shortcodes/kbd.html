@@ -1,1 +1,1 @@
-<span>{{ delimit (apply .Params "printf" "<kbd class=\"font-mono text-[0.8em] rounded-md py-0 px-2 my-0.5 mx-0 inline-block border-slate-500 border-solid bg-slate-200 border-x border-t border-b-2 \">%s</kbd>" "." ) "<span class=\"py-0 px-1\">+</span>" | safeHTML }}</span>
+<span>{{ delimit (apply .Params "printf" "<kbd>%s</kbd>" "." ) "<span class=\"py-0 px-1\">+</span>" | safeHTML }}</span>

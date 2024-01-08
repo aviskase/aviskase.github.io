@@ -1,20 +1,13 @@
 {{/* Available callout types: note, warning, cta */}}
 {{- $calloutType := .Get "type" | default "note" -}}
-{{- $color := "indigo" -}}
-{{- if eq $calloutType "note" }}
-  {{- $color = "indigo" -}}
-{{- else if eq $calloutType "warning" }}
-  {{- $color = "rose" -}}
-{{- else if eq $calloutType "cta" -}}
-  {{- $color = "yellow" -}}
-{{- else -}}
+{{- if not (or (eq $calloutType "note") (eq $calloutType "warning") (eq $calloutType "cta")) -}}
   {{ errorf "Unknown callout type." }}
 {{- end -}}
 {{/* Check for single vs multiple paragraphs */}}
 {{- $raw := .Inner | $.Page.RenderString | chomp -}}
 {{- $isBlock := findRE "<[h|p][^>]*>" $raw -}}
-<div class="text-[1.7rem] w-full relative p-bleed mx-0 my-10 rounded-l-[0.3rem] rounded-r-[0.6rem] border-l-[0.3rem] border-solid border-{{- $color -}}-500 bg-{{- $color -}}-100 [&>p]:mb-[1.6rem] last:[&>*]:!mb-0 normal:w-[80.5rem] normal:my-10 normal:mx-bleed-negative">
-  <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 p-[0.6rem] bg-white rounded-[50%] text-{{- $color -}}-500">
+<div class="callout {{ $calloutType }}">
+  <div class="callout-icon">
   {{- if eq $calloutType "warning" }}
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
   {{- else if eq $calloutType "cta" -}}
