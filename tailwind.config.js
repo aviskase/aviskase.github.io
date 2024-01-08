@@ -127,8 +127,10 @@ module.exports = {
     },
     extend: {
       // TODO: use variables for colors - theme
-      // TODO: better styling for title & info
+      // TODO: better styling for old/new
       // TODO: better styling for listing
+      // TODO: footer
+      // TODO: header
       typography: (theme) => ({
         DEFAULT: {
           css: {
