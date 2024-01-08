@@ -24,15 +24,15 @@
 <div class="mx-auto max-w-max mt-16 md:text-lg">
 
     {{ with $prev }}
-    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-2xl md:text-3xl m-2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
+    <a class="relative  hover:text-blue-500 focus:text-blue-500 transition-colors duration-300 " href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-xl md:text-2xl mx-2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>older</a>
     {{ end }}
 
     {{ if and $prev $next }}
-    <span class="text-blue-500 font-bold">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
+    <span class="text-blue-500 font-bold md:mx-2">&nbsp; &middot; &nbsp; &middot; &nbsp; &middot; &nbsp;</span>
     {{ end }}
 
     {{ with $next }}
-    <a class="relative" href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-2xl md:text-3xl m-2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
+    <a class="relative  hover:text-blue-500 focus:text-blue-500 transition-colors duration-300 " href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative inline text-blue-500 text-xl md:text-2xl mx-2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg></a>
     {{ end }}
 </div>
 {{ end }}
