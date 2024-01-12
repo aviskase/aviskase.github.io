@@ -4,7 +4,7 @@
     <body class="selection:bg-blue-500 selection:text-white bg-white">
         <div class="min-h-screen flex flex-col">
             {{- partial "header.html" . -}}
-            <main class="flex-1 w-full px-6 pb-12 md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pb-28">
+            <main class="flex-1 w-full px-6 md:max-w-3xl md:mx-auto lg:max-w-4xl">
             {{ block "content" . }}{{ end }}
             </main>
             {{- partial "footer.html" . -}}
