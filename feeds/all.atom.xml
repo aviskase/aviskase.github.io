@@ -2,9 +2,42 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2023-12-15T05:10:48Z</updated>
+  <updated>2024-01-26T04:59:46Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Open Banking: Canada vs Kazakhstan</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/01/25/open-banking-canada-vs-kazakhstan/" hreflang="en"/>
+    <published>2024-01-26T04:59:46Z</published>
+    <updated>2024-01-26T04:59:46Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-01-26:/articles/2024/01/25/open-banking-canada-vs-kazakhstan/</id>
+    
+    <summary type="html"><![CDATA[As I was skimming through The API Changelog issue 2024.04, my eye caught:
+Kazakhstan&rsquo;s National Bank and other entities published a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.]]></summary>
+    <content type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">The API Changelog issue 2024.04</a>, my eye caught:</p>
+<blockquote>
+<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>
+</blockquote>
+<p>Cool. Let&rsquo;s read the report.</p>
+<blockquote>
+<p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p>
+</blockquote>
+<blockquote>
+<p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p>
+</blockquote>
+<p>Yup, Halyk Bank isn&rsquo;t mentioned, so it&rsquo;s just a really early pilot. Even more, no Kaspi Bank. It&rsquo;s like doing something in Canada without involving <a href="https://en.wikipedia.org/wiki/Big_Five_banks_of_Canada" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">Big Five</a>. Well, they have 2 more years, so, good luck.</p>
+<p>Hmm. Speaking of. What about Canada?</p>
+<p>Despite Canada&rsquo;s reputation for bad information disclosure approaches, I do enjoy the content available on <code>canada.ca</code>. Including <a href="https://www.canada.ca/en/financial-consumer-agency/services/banking/open-banking.html" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">what&rsquo;s up with open banking</a>. It&rsquo;s a long page, but all you need is the first sentence:</p>
+<blockquote>
+<p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p>
+</blockquote>
+<p>Ouch. Is there any progress, though? According to <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/open-banking-implementation/2023-fes-policy-statement-consumer-driven-banking.html" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">2023 Fall Economic Statement: Policy Statement on Consumer-Driven Banking</a>:</p>
+<blockquote>
+<p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p>
+</blockquote>
+<p>Same year, different goals. Kazakhstan is planning to finish implementing (doubt it), whereas Canada is planning to finish with laws and paperwork (doubt it too). Let&rsquo;s put a reminder and check on them both in 2025?</p>
+]]></content>
+  </entry>
   <entry>
     <title>The Navy’s IT challenges</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2023/12/15/the-navys-it-challenges/" hreflang="en"/>
