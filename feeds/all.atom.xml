@@ -2,9 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2024-01-26T04:59:46Z</updated>
+  <updated>2024-02-24T03:18:00Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Two (ten) years of February</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/02/23/two-ten-years-of-february/" hreflang="en"/>
+    <published>2024-02-24T03:18:00Z</published>
+    <updated>2024-02-24T03:18:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-02-24:/articles/2024/02/23/two-ten-years-of-february/</id>
+    
+    <summary type="html"><![CDATA[Today I&rsquo;d like to share this bit about my great-grand father Bagriy Ivan:
+The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest. Four shylyans were killed then:
+Antoniuk Volodymyr - born in 1923. Bagriy Ivan - born in 1911. Voznyi Ivan - born in 1905.]]></summary>
+    <content type="html"><![CDATA[<p>Today I&rsquo;d like to share <a href="http://www.zbarazh-library.com.ua/writen/history/UPA.pdf" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">this bit about my great-grand father Bagriy Ivan</a>:</p>
+<blockquote>
+<p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
+Four shylyans were killed then:</p>
+<ul>
+<li>Antoniuk Volodymyr - born in 1923.</li>
+<li>Bagriy Ivan - born in 1911.</li>
+<li>Voznyi Ivan - born in 1905.</li>
+<li>Hulovskyi Vasyl - born in 1918.</li>
+</ul>
+</blockquote>
+<p>Nineteen fifty-two. By that time, Ivan&rsquo;s wife and son (my grandfather) had already been exiled to Kazakhstan.</p>
+<p>One can write a lengthy eloquent essay about never surrendering, believing in independence, and so on. I won&rsquo;t.</p>
+<p>Слава Україні. Героям слава.</p>
+]]></content>
+  </entry>
   <entry>
     <title>Open Banking: Canada vs Kazakhstan</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2024/01/25/open-banking-canada-vs-kazakhstan/" hreflang="en"/>
