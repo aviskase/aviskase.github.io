@@ -10,7 +10,7 @@ summaryLength = 50
 
 [params]
 description = "A blog by Yuliya Bagriy aka aviskase about testing, APIs, and other techy thingies."
-images = ["site-feature.png"]
+images = ["logo.png"]
 title = "aviskase"
 username = "aviskase"
 firstname = "Yuliya"

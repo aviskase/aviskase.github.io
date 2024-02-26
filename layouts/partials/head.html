@@ -15,7 +15,6 @@
 
     {{ if ne .Kind "404" }}
     {{ partial "opengraph.html" . }}
-    {{/*  {{ template "_internal/twitter_cards.html" . }}  */}}
     {{ end }}
     {{ hugo.Generator }}
 
