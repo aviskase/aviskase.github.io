@@ -24,7 +24,7 @@ mainSections = ["posts"]
 
 [params.social]
 email = "aviskase@gmail.com"
-twitter = "aviskase"
+twitter_creator = "@aviskase"
 
 [outputs]
 # Output HTML, and ATOM on Home
