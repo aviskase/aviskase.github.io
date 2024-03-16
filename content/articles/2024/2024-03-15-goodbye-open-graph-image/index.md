@@ -19,7 +19,7 @@ When you see a link on almost all social platforms or messengers, you usually se
 <meta name="twitter:image" content="<link>">
 ```
 
-See those image properties? Per specifications they are **required** tags. The minimum size is 200×200 pixels; the recommended size is 1200×630 pixels.
+See those image properties? Per specifications they are **required**. The minimum size is 200×200 pixels; the recommended size is 1200×630 pixels.
 
 The goal is to have a nice link preview. Fine. If the article already has a relevant image, why not? The problem is, not all articles have them, so people improvise:
 
