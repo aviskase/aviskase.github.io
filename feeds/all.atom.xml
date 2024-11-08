@@ -2,9 +2,43 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2024-03-16T14:35:00Z</updated>
+  <updated>2024-11-08T04:52:06Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Switching to cyber</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/11/07/switching-to-cyber/" hreflang="en"/>
+    <published>2024-11-08T04:52:06Z</published>
+    <updated>2024-11-08T04:52:06Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-11-08:/articles/2024/11/07/switching-to-cyber/</id>
+    
+    <summary type="html"><![CDATA[<p>I don&rsquo;t think pivoting to another career path less than a month before maternity leave is a normal (and smart) thing to do, but here we are.</p>
+<p>Finished:</p>
+<ul>
+<li><a href="https://overthewire.org/wargames/bandit/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">OverTheWire wargame: Bandit</a></li>
+<li><a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-AKHBGNGXH6.png" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">TryHackMe: Cyber Security 101 learning path</a></li>
+</ul>
+<p>In progress:</p>]]></summary>
+    <content type="html"><![CDATA[<p>I don&rsquo;t think pivoting to another career path less than a month before maternity leave is a normal (and smart) thing to do, but here we are.</p>
+<p>Finished:</p>
+<ul>
+<li><a href="https://overthewire.org/wargames/bandit/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">OverTheWire wargame: Bandit</a></li>
+<li><a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-AKHBGNGXH6.png" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">TryHackMe: Cyber Security 101 learning path</a></li>
+</ul>
+<p>In progress:</p>
+<ul>
+<li><a href="https://overthewire.org/wargames/natas/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">OverTheWire wargame: Natas</a></li>
+<li>TryHackMe: Jr Penetration Tester learning path</li>
+<li>HackTheBox: Lab &amp; Academy introductory stuff</li>
+<li><a href="https://cybersecurity.bsy.fel.cvut.cz/docs/about/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">CTU MOOC Introduction to security</a></li>
+</ul>
+<p>&hellip; and joined <a href="https://hackfest.ca/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">Hackfest</a> discord (local community).</p>
+<p>Why? I was a tester once. Then, API developer/advocate/whatever. Shortly after my previous maternity leave, our company was acquired (again) and I had to do even more pure developer work. React, of all the things! Not a fan. So, that was the first time I had a thought about switching to something less developer-ish.</p>
+<p>Second, since 2022 I&rsquo;ve picked up a bunch of peculiar interests, like <a href="https://www.youtube.com/watch?v=27wWRszlZWU" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">Canadian defense procurement shenanigans</a>. Or knowing that CAF does cyber something under hunt-forward operations REASSURANCE (Latvia) and UNIFIER (Ukraine). Yeah, my LinkedIn sponsored job ads look weird now.</p>
+<p>Third, after our office was layed off, I took a look at the job market and it wasn&rsquo;t that inspiring. Meh. I should (and could) have started way earlier though, but it hit me only now. Specifically, I was hit by CTU MOOC in <a href="https://buttondown.com/grugq/archive/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">the grugq&rsquo;s newsletter</a>. Learning that the local community isn&rsquo;t one and a half anonymous sad person but very very active and huge was an additional boost.</p>
+<p>At this moment I haven&rsquo;t even decided yet at what path to take: pentesting (nod to my testing time) or security engineer (nod to the developer time). For sure not SOC, even though it is probably an easier position to find. But I have time. Though, I recall being brain-dead for a year last time I had a baby, so, that&rsquo;s gonna be a really funny experience.</p>
+]]></content>
+  </entry>
   <entry>
     <title>Goodbye, og:image</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2024/03/16/goodbye-ogimage/" hreflang="en"/>
