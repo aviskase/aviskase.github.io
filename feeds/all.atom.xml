@@ -522,7 +522,7 @@ Four shylyans were killed then:</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu9370951611690197926.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_78bb03db39baa63b.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render.png" alt="Redoc with modified descriptions for extensible enumerations" defer>
 	</picture>
 	
@@ -676,7 +676,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu12054594018965230055.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu_7e93f6a1a355bc56.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.png" alt="Output of create-openapi-repo tool" defer>
 	</picture>
 	
@@ -709,7 +709,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu9150255185689010804.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu_6b261e2f49bb40f9.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.png" alt="Comparison of property display with requiredPropsFirst equal to false or true" defer>
 	</picture>
 	
@@ -1013,7 +1013,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu11813672139392634902.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu_85d3b8f2d942191e.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png" alt="Advent of Code easter egg: using itertools" defer>
 	</picture>
 	
@@ -1269,11 +1269,8 @@ To preview a specific definition, you need to pass a definition label from confi
 <p>One of the recurring theme in the API domain is <a href="https://increment.com/apis/how-low-code-api-integrations/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">low&ndash; and no-code API solutions</a>, so-called <em>democratization of APIs</em>. Common examples are <a href="https://ifttt.com/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">IFTTT</a> and <a href="https://zapier.com/" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">Zapier</a>.</p>
 <p>Yesterday I stumbled upon this video by Curtis McHale:</p>
 
-
-    
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/mfK3M9GHfZ0?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
-      ></iframe>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/mfK3M9GHfZ0?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>It shows a very specific productivity workflow for iOS, but the curious thing is how much of it is automated by glueing together different apps via <a href="https://support.apple.com/en-ca/guide/shortcuts/welcome/ios" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">shortcuts</a>. More eloquent writer could conjure the whole essay, but my thoughts so far are:</p>
@@ -1291,11 +1288,8 @@ To preview a specific definition, you need to pass a definition label from confi
 ">knowledge management systems</a> in the <a href="https://obsidian.md/community" class="bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]">Obsidian discord&rsquo;s</a> #russian channel, I decided to record a video to show mine.</p>
 <p>It&rsquo;s in Russian and it&rsquo;s bad xD</p>
 
-
-    
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/n5klioVz7FM?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
-      ></iframe>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/n5klioVz7FM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>Jeez, <em>this was hard</em>. Rerecording, cleaning up, cutting bits, and constantly, constantly hearing yourself in the process. And I didn&rsquo;t even try to do anything fancy, just plain screen cast with editing out all the &ldquo;eeeehm&rdquo;. I&rsquo;ll probably have to do the same in English, and the very thought terrifies me: it was painful enough to hear me speak in my native language. Guess how horrible will be that with the accent.</p>
@@ -1788,7 +1782,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hu8094199773841854266.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_9bc3d4b0c561fa28.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png" alt="Obsidian graph view as of July 2020" defer>
 	</picture>
 	
@@ -1841,7 +1835,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu13137737375096810539.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_474efbcfcfd35482.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.jpg" alt="Old handwritten notebook" defer>
 	</picture>
 	
@@ -1853,7 +1847,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes_hu10671746300460593470.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes_hu_74ced862f51e9a06.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.jpg" alt="Untranslatable scribbles" defer>
 	</picture>
 	
@@ -1864,7 +1858,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu7041490496210265153.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_2ad1c8b2937b2623.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.jpg" alt="Brainstorming in Rocketbook" defer>
 	</picture>
 	
@@ -1884,7 +1878,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu17954551154731474462.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_11e8d1e5b8ee4a3e.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png" alt="Notes in the Google Docs" defer>
 	</picture>
 	
@@ -1900,7 +1894,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu4821790319132219107.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu_decce16aefa8e880.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png" alt="Sublime with PlainNotes" defer>
 	</picture>
 	
@@ -1922,7 +1916,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu15548076838612635709.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu_7ecaaaffcc714c83.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png" alt="XMind mind map overview" defer>
 	</picture>
 	
@@ -1958,7 +1952,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hu7597548926287526888.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hu_b8645d07b302c7ed.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png" alt="Google Keep with transient lists" defer>
 	</picture>
 	
@@ -2065,7 +2059,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu16719031399248944102.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu_a99b6a2c1031af7.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category" defer>
 	</picture>
 	
@@ -2280,7 +2274,7 @@ so you need to add it to the query parameters for each request.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu13571107800654859749.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_d488b90d1560a01a.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png" alt="Insomnia: basic interface" defer>
 	</picture>
 	
@@ -2310,7 +2304,7 @@ because we have access only to one server.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu967323280867185681.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_be2a89ecaff1d6d7.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png" alt="Insomnia: base environment" defer>
 	</picture>
 	
@@ -2321,7 +2315,7 @@ because we have access only to one server.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu7176328840009260833.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu_9aa2c78def955108.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png" alt="Insomnia: sub environment" defer>
 	</picture>
 	
@@ -2332,7 +2326,7 @@ because we have access only to one server.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu18017720356901226146.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_d53fd851ff9a216b.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png" alt="Insomnia: folder-level environment" defer>
 	</picture>
 	
@@ -2343,7 +2337,7 @@ because we have access only to one server.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu1308626106319942276.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_4856ba5779b1bf35.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png" alt="Insomnia: requests with variables from environments" defer>
 	</picture>
 	
@@ -2357,7 +2351,7 @@ This plugin allows us to set default headers and/or query parameters in the envi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu13845563787324375993.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_156124a7c7cfa256.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png" alt="Insomnia: environment setup with query param defaults" defer>
 	</picture>
 	
@@ -2368,7 +2362,7 @@ This plugin allows us to set default headers and/or query parameters in the envi
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu6986358383163437930.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_70dce02822aa04c4.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png" alt="Insomnia: requests with default query params" defer>
 	</picture>
 	
@@ -2386,7 +2380,7 @@ array that is a property of elements in the <code>list</code> array&rsquo;</em>.
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu17979945490628766764.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu_4e3acf9bf438928d.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png" alt="Insomnia: querying response using JSONPath" defer>
 	</picture>
 	
@@ -2405,7 +2399,7 @@ which gives you tons of options.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu12381856641623832241.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_146e69de675cca6a.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png" alt="Insomnia: random value generation" defer>
 	</picture>
 	
@@ -2415,7 +2409,7 @@ which gives you tons of options.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu15660869340336541232.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_860f80608e3f96a.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png" alt="Insomnia: usage of generated values in the request" defer>
 	</picture>
 	
@@ -2433,7 +2427,7 @@ In Insomnia you should use <code>Response</code> template tag and JSONPath if yo
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu1520948915033833725.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_6467d274a70787cb.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png" alt="Insomnia: pulling values from previous response" defer>
 	</picture>
 	
@@ -2443,7 +2437,7 @@ In Insomnia you should use <code>Response</code> template tag and JSONPath if yo
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu8855644404883462568.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_a084006d768ad54c.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png" alt="Insomnia: request with pulled values" defer>
 	</picture>
 	
@@ -2470,7 +2464,7 @@ don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu13229097982380154489.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
 	</picture>
 	
@@ -2493,7 +2487,7 @@ I particularly liked this part:</p>]]></summary>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu13229097982380154489.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
 	</picture>
 	
@@ -2958,7 +2952,7 @@ Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for 
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu2682312627683805023.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_a0d9b5d0165b8cf6.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png" alt="Zally web UI with violations highlighting and links" defer>
 	</picture>
 	
@@ -3179,7 +3173,7 @@ probably never consider how it affects existing canon.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu14456863796118609968.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_23e350250a8ae445.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.jpg" alt="Lenovo G560 keyboard" defer>
 	</picture>
 	
@@ -3190,7 +3184,7 @@ probably never consider how it affects existing canon.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu10910225530400659624.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_7dfe503e98e253e2.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.jpg" alt="Dell XPS15 keyboard" defer>
 	</picture>
 	
@@ -3617,7 +3611,7 @@ probably never consider how it affects existing canon.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_hu2391116665159472627.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_hu_d93a77afd3a5923d.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png" alt="Barchart with comparison of different issue types found via different methods" defer>
 	</picture>
 	
@@ -3683,7 +3677,7 @@ probably never consider how it affects existing canon.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu3091947346510474851.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu_e51a108765ca9be0.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png" alt="Radar chart with comparison of developer expectations vs current state of API" defer>
 	</picture>
 	
@@ -3700,7 +3694,7 @@ probably never consider how it affects existing canon.</p>
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu1855512388614765158.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu_266cb1bea6bc0cdb.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png" alt="Venn diagram showing how different methods overlap in finding different issues" defer>
 	</picture>
 	
@@ -3786,7 +3780,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hu1563830899712024874.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hu_b6307984cb5f96a7.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png" alt="Cognitive walkthrough example" defer>
 	</picture>
 	
@@ -4049,7 +4043,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_hu10729633755816028478.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_hu_5955796806578d58.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.png" alt="XSD visualization in Oxygen" defer>
 	</picture>
 	
@@ -4280,7 +4274,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hu11971910985276672202.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hu_c6ce3654a14f5b54.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png" alt="API status table" defer>
 	</picture>
 	
@@ -4310,7 +4304,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu9065905591248337430.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu_f199ea986f899f94.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png" alt="Unhelpful error message" defer>
 	</picture>
 	
@@ -4820,7 +4814,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu17247444718598669219.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_64d5395312397fd0.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png" alt="Mega mind map version 2" defer>
 	</picture>
 	
@@ -4831,7 +4825,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu17247444718598669219.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_64d5395312397fd0.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png" alt="Mega mind map version 2" defer>
 	</picture>
 	
@@ -4861,7 +4855,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hu6233766376807086096.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hu_7782e830fd85324c.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.png" alt="Ideal world of development" defer>
 	</picture>
 	
@@ -4876,7 +4870,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu8558978813632460801.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu_b940df64b09555da.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.png" alt="Real world of development" defer>
 	</picture>
 	
@@ -4891,7 +4885,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu8633935464993824570.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu_375cc522fff8ce78.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.png" alt="Real world of development with testers" defer>
 	</picture>
 	
@@ -4903,7 +4897,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu5770297687279124679.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu_893cd1a021cb17b5.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.png" alt="Even more real world of development with testers" defer>
 	</picture>
 	
@@ -4935,7 +4929,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu3749709794121507567.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_9f7994874c9c6167.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.jpg" alt="Mega mind map version 1" defer>
 	</picture>
 	
@@ -5331,7 +5325,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <picture>
     
     
-    <source srcset="https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu6634930580161807046.webp" type="image/webp">
+    <source srcset="https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu_3729a9c379662ade.webp" type="image/webp">
     <img class="mx-auto rounded" src="https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.png" alt="Monitoring systems" defer>
 	</picture>
 	
