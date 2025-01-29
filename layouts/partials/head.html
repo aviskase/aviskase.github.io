@@ -23,11 +23,9 @@
     {{ end }}
 
     {{/* styles */}}
-    {{ $options := dict "inlineImports" true }}
     {{- $styles := resources.Get "css/main.css" -}}
-    {{ $styles = $styles | css.PostCSS $options }}
     {{- if hugo.IsProduction -}}
-    {{- $styles = $styles| minify | fingerprint | resources.PostProcess -}}
+    {{- $styles = $styles | toCSS | minify | fingerprint -}}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
     {{ else }}
     <link rel="stylesheet" href="{{ $styles.RelPermalink }}">

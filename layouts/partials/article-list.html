@@ -1,20 +1,21 @@
-{{- $pages := (where site.RegularPages "Type" "eq" "articles").GroupByDate "2006-01" -}}
+{{- $pages := (where site.RegularPages "Type" "eq" "articles") -}}
 {{- if .IsHome -}}
-{{- $pages = first 4 $pages -}}
+{{- $pages = first 7 $pages -}}
 {{- end -}}
-<div class="flex flex-col gap-y-10">
+{{- $pages = $pages.GroupByDate "2006" -}}
+<div class="article-list">
     {{- range $pages -}}
     {{- $firstArticle := index .Pages 0 -}}
     <div>
-        <div class="lowercase text-slate-500 text-lg md:text-xl mb-2">
-            /&nbsp;{{ $firstArticle.Date.Format "January 2006"}}&nbsp;/
+        <div class="article-list-header">
+            /&nbsp;{{ $firstArticle.Date.Format "2006"}}&nbsp;/
         </div>
 
-        <div class="flex flex-col gap-y-2">
+        <div class="article-list-range">
             {{- range .Pages -}}
-            <a class="prose prose-slate md:prose-lg flex gap-x-2 hover:text-blue-500" href="{{ .Permalink }}">
-                <span class="flex-none text-blue-500 w-6 text-end">{{ .Date.Day }}</span>
-                <span class="flex-1">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</span>
+            <a href="{{ .Permalink }}">
+                <span class="article-list-date">{{ .Date.Format "2006-01-01" }}</span>
+                <span class="article-list-title">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</span>
             </a>
             {{- end -}}
         </div>

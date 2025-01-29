@@ -5,6 +5,9 @@ draft: true
 date: 1992-01-01T00:00:00
 lastmod: 1992-02-02T00:00:00
 see_also: ["2020-04-22-using-insomnia-for-api-exploration"]
+categories:
+- writeup
+- it
 ---
 
 Here is an example of headings. You can use this heading by the following markdown rules. For example: use `#` for heading 1 and use `######` for heading 6.

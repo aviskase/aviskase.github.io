@@ -1,6 +1,6 @@
 {{ define "content" }}
-<section class="mt-12 md:mx-auto md:max-w-prose ">
+<section>
     {{ partial "article-list" . }}
-    <div class="flex mt-8 md:mt-10"><a class="p-0.5 rounded-md bg-[linear-gradient(120deg,theme(colors.blue.500),theme(colors.blue.400),theme(colors.amber.300),theme(colors.blue.400),theme(colors.blue.500))] bg-left hover:bg-right bg-[length:200%] transition-all duration-500 text-slate-700 hover:text-blue-500" href="{{ ref . "pages/archive" }}"><span class="bg-white rounded flex w-full h-full items-center justify-center py-2 px-8 ">see more</span></a></div>
+    <div class="see-more"><a href="{{ ref . "pages/archive" }}">see more →</a></div>
 </section>
 {{ end }}

@@ -122,8 +122,6 @@ module.exports = {
   theme: {
     fontFamily: {
       'mono': '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      'sans': 'Nunito, Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      'serif': ['Bellota', ...defaultTheme.fontFamily.serif],
     },
     extend: {
       // TODO: use variables for colors - theme
@@ -162,7 +160,6 @@ module.exports = {
             },
             em: {
               color: theme('colors.blue.500'),
-              fontFamily: theme('fontFamily.serif').join(', '),
               letterSpacing: '-0.025em',
             },
             a: { 

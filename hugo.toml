@@ -3,10 +3,14 @@ languageCode = "en"
 title = "aviskase"
 buildFuture = true
 # canonifyURLs = true
-disableKinds = ["taxonomy", "term", "section"]
+disableKinds = ["section"]
 enableEmoji = true
 publishDir = "output"
 summaryLength = 50
+
+[taxonomies]
+  category = 'categories'
+
 
 [params]
 description = "A blog by Yuliya Bagriy aka aviskase about testing, APIs, and other techy thingies."
