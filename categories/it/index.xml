@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>it on aviskase</title><link>https://www.aviskase.com/categories/it/</link><description>Recent content in it on aviskase</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 09 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.aviskase.com/categories/it/index.xml" rel="self" type="application/rss+xml"/><item><title>List of articles and videos on API and web services testing</title><link>https://www.aviskase.com/articles/2016/01/09/list-of-articles-and-videos-on-api-and-web-services-testing/</link><pubDate>Sat, 09 Jan 2016 00:00:00 +0000</pubDate><guid>https://www.aviskase.com/articles/2016/01/09/list-of-articles-and-videos-on-api-and-web-services-testing/</guid><description>&lt;p>There was a great list on now discontinued site &lt;code>qahelp.net&lt;/code>. I managed to save it through yandex cache (even google cache and web archive couldn&amp;rsquo;t help).&lt;/p>
+&lt;h2 id="difference-between-api-and-web-services" >
+ &lt;a href="#difference-between-api-and-web-services">Difference between API and web services&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://stackoverflow.com/questions/808421/api-vs-webservice" class="external-link">API vs Web Service&lt;/a>, &lt;a href="http://programmers.stackexchange.com/questions/38691/difference-between-web-api-and-web-service" class="external-link">Difference between web API and web service&lt;/a>, &lt;a href="http://www.differencebetween.net/technology/internet/difference-between-api-and-web-service/#ixzz3l5QC4tYj" class="external-link">Difference between API and web service&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://readwrite.com/2013/09/19/api-defined/" class="external-link">What APIs Are And Why They’re Important&lt;/a> &amp;mdash; Brian Proffitt&lt;/li>
+&lt;li>&lt;a href="http://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html#N10144" class="external-link">What are web services&lt;/a> (section) &amp;mdash; Nicholas Chase&lt;/li>
+&lt;li>&lt;a href="https://www.cl.cam.ac.uk/~ib249/teaching/Lecture1.handout.pdf" class="external-link">Introduction to Web Services&lt;/a> (PDF) &amp;mdash; Ioannis G. Baltopoulos&lt;/li>
+&lt;/ul>
+&lt;h2 id="soap-and-rest" >
+ &lt;a href="#soap-and-rest">SOAP and REST&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://www.ibm.com/developerworks/webservices/tutorials/ws-understand-web-services1/ws-understand-web-services1.html#N10278" class="external-link">Understanding SOAP&lt;/a> (section) &amp;mdash; Nicholas Chase&lt;/li>
+&lt;li>&lt;a href="http://www.restapitutorial.com/lessons/whatisrest.html" class="external-link">What is REST?&lt;/a> (video) &amp;mdash; Todd Fredrich&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/apis/understanding-soap-and-rest-basics/" class="external-link">Understanding SOAP and REST Basics And Differences&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;li>&lt;a href="http://www.infoq.com/articles/webber-rest-workflow/" class="external-link">How to GET a cup of coffee&lt;/a> &amp;mdash; Jim Webber, Savas Parastatidis &amp;amp; Ian Robinson&lt;/li>
+&lt;/ul>
+&lt;h2 id="api-and-web-services-testing" >
+ &lt;a href="#api-and-web-services-testing">API and web services testing&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.udemy.com/api-testing/" class="external-link">API Testing: Why it matters and how to do it&lt;/a> &amp;mdash; Michael Churchman&lt;/li>
+&lt;li>&lt;a href="http://testingisbelieving.blogspot.co.uk/2013/11/johnny-mnemonic-iceovermad.html" class="external-link">Johnny mnemonic &amp;mdash; ICEOVERMAD&lt;/a> &amp;mdash; Ash Winter&lt;/li>
+&lt;li>&lt;a href="http://www.soapui.org/testing-dojo/welcome-to-the-dojo/overview.html" class="external-link">The API Testing Dojo&lt;/a> &amp;mdash; Smart Bear&lt;/li>
+&lt;li>&lt;a href="http://qxf2.com/blog/api-testing-ui-tools-postman" class="external-link">API Testing: UI Tools&lt;/a> &amp;mdash; Avinash Shetty&lt;/li>
+&lt;li>&lt;a href="http://qxf2.com/blog/api-testing-developer-tools" class="external-link">API Testing: Developer Tools&lt;/a> &amp;mdash; Avinash Shetty&lt;/li>
+&lt;li>&lt;a href="http://weekendtesting.com/?p=3898" class="external-link">WTEU-53 &amp;mdash; An introduction to API Testing&lt;/a> &amp;mdash; Amy Phillips&lt;/li>
+&lt;li>&lt;a href="http://blog.eviltester.com/2015/01/some-api-testing-basic-introductory.html" class="external-link">Some API Testing Basic Introductory Notes and Tools&lt;/a> &amp;mdash; Alan Richardson&lt;/li>
+&lt;/ul>
+&lt;h2 id="deep-dive-into-rest-api" >
+ &lt;a href="#deep-dive-into-rest-api">Deep dive into REST API&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://blog.octo.com/en/design-a-rest-api/" class="external-link">How to design a REST API&lt;/a> &amp;mdash; Antoine Chantalou, Jérémy Buisson, Mohamed Kissa, Florent Jaby, Nicolas Laurent, Augustin Grimprel, Benoit Lafontaine&lt;/li>
+&lt;li>&lt;a href="http://toddfredrich.com/commoditization-of-the-user-interface.html" class="external-link">The commoditization of the user interface&lt;/a> &amp;mdash; Todd Friedrich&lt;/li>
+&lt;li>&lt;a href="http://toddfredrich.com/restexpress-api-application-layers.html" class="external-link">REST API application layers&lt;/a> &amp;mdash; Todd Friedrich&lt;/li>
+&lt;li>&lt;a href="http://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling" class="external-link">REST API design: Resource modeling&lt;/a> &amp;mdash; Prakash Subramaniam&lt;/li>
+&lt;li>&lt;a href="http://martinfowler.com/articles/richardsonMaturityModel.html" class="external-link">Richardson maturity model&lt;/a> &amp;mdash; Martin Fowler&lt;/li>
+&lt;/ul>
+&lt;h2 id="api-security-testing" >
+ &lt;a href="#api-security-testing">API security testing&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://blog.smartbear.com/readyapi/api-security-testing-how-to-hack-an-api-and-get-away-with-it-part-1-of-3/" class="external-link">How to Hack an API and Get Away with It (Part 1 of 3)&lt;/a> &amp;mdash; Ole Lensmar&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/readyapi/api-security-testing-how-to-hack-an-api-and-get-away-with-it-part-2-of-3/" class="external-link">How to Hack an API and Get Away with It (Part 2 of 3)&lt;/a> &amp;mdash; Ole Lensmar&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/readyapi/api-security-testing-how-to-hack-an-api-and-get-away-with-it-part-3-of-3/" class="external-link">How to Hack an API and Get Away with It (Part 3 of 3)&lt;/a> &amp;mdash; Ole Lensmar&lt;/li>
+&lt;li>&lt;a href="http://weekendtesting.com/?p=4033" class="external-link">WTEU-56 &amp;mdash; Security testing for APIs&lt;/a> &amp;mdash; Dan Billing&lt;/li>
+&lt;/ul>
+&lt;h2 id="service-virtualization" >
+ &lt;a href="#service-virtualization">Service virtualization&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://smartbear.com/all-resources/articles/what-is-service-virtualization" class="external-link">What is service virtualization&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/readyapi/hardening-your-application-against-api-failures-with-api-virtualization/" class="external-link">Hardening Your Application Against API Failures with API Virtualization&lt;/a> &amp;mdash; Lorinda Brandon&lt;/li>
+&lt;li>&lt;a href="http://www.stickyminds.com/article/4-ways-boost-your-test-process-service-virtualization" class="external-link">4 Ways to Boost Your Test Process with Service Virtualization&lt;/a> &amp;mdash; Bas Dijkstra&lt;/li>
+&lt;/ul>
+&lt;h2 id="introduction-to-microservices" >
+ &lt;a href="#introduction-to-microservices">Introduction to microservices&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://martinfowler.com/articles/microservices.html" class="external-link">Microservices&lt;/a> &amp;mdash; Martin Fowler&lt;/li>
+&lt;li>&lt;a href="https://www.nginx.com/blog/introduction-to-microservices/" class="external-link">Introduction to microservices&lt;/a> &amp;mdash; Chris Richardson&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/microservices/delving-into-the-microservices-architecture/" class="external-link">Delving into the Microservices Architecture&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;li>&lt;a href="https://blog.yourkarma.com/building-microservices-at-karma" class="external-link">How we build microservices at Karma&lt;/a> &amp;mdash; Stefan Borsje&lt;/li>
+&lt;li>&lt;a href="http://www.javaworld.com/article/2863409/soa/why-2015-will-be-the-year-of-microservices.html" class="external-link">Why 2015 will be the year of microservices&lt;/a> &amp;mdash; Eric Knorr&lt;/li>
+&lt;/ul>
+&lt;h2 id="microservices-testing" >
+ &lt;a href="#microservices-testing">Microservices testing&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="http://martinfowler.com/articles/microservice-testing/" class="external-link">Testing Strategies in a Microservice Architecture&lt;/a> &amp;mdash; Toby Clemson et al.&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/apm/performance-issue-considerations-for-microservices-apis/" class="external-link">Performance Issue Considerations for Microservices APIs&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;li>&lt;a href="http://blog.xebialabs.com/2014/12/31/8-questions-need-ask-microservices-containers-docker-2015/" class="external-link">8 Questions You Need to Ask About Microservices, Containers &amp;amp; Docker in 2015&lt;/a> &amp;mdash; Andrew Phillips&lt;/li>
+&lt;li>&lt;a href="http://www.infoq.com/presentations/integration-tests-scam" class="external-link">Integration tests are a scam&lt;/a> &amp;mdash; JB Rainsberger&lt;/li>
+&lt;li>&lt;a href="https://prezi.com/09emobpvigo2/throw-away-your-integration-tests/" class="external-link">Throw away your integration tests&lt;/a> (slides) &amp;mdash; Beth Skurrie&lt;/li>
+&lt;/ul>
+&lt;h2 id="more-on-api" >
+ &lt;a href="#more-on-api">More on API&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;del>&lt;!-- raw HTML omitted -->What is API management &amp;mdash; A Brief Primer&lt;!-- raw HTML omitted --> &amp;mdash; Navdeep Sidhu&lt;/del> &lt;em>Upd. resource is no more available&lt;/em>&lt;/li>
+&lt;li>&lt;a href="http://www.infoq.com/research/api-management" class="external-link">API management platform capabilities&lt;/a> &amp;mdash; Jeevak Kasarkod&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/iot-2/the-api-is-the-invisible-hand-behind-the-internet-of-things" class="external-link">The API is the Invisible Hand Behind the Internet of Things&lt;/a> &amp;mdash; Jennifer Riggins&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/apis/hypermedia-apis/working-with-hypermedia-apis" class="external-link">Working with Hypermedia APIs&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;li>&lt;a href="http://blog.smartbear.com/iot-2/testing-challenges-associated-with-machine-learning-apis" class="external-link">Testing Challenges Associated with Machine Learning APIs&lt;/a> &amp;mdash; John Mueller&lt;/li>
+&lt;/ul></description></item></channel></rss>
