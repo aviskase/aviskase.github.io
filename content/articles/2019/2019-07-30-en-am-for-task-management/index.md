@@ -3,7 +3,7 @@ Title: "Amazing Marvin for task management"
 Date: 2019-07-30
 Tags: 
 - practical
-Category: Productivity
+categories: [kaleidoscope]
 ---
 
 I'm an infrequent blogger, so how weird it is that my last post was about RTM? I was a loyal RTM user for quite a time... Well, I have a new love now. His name is [Marvin](https://www.amazingmarvin.com/). 

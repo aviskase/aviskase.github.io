@@ -2,7 +2,7 @@
 Title: Be chicken!
 Date: 2020-08-08T23:42:54.998711
 Tags: processes, organizational culture
-Category: Other
+categories: [it, kaleidoscope]
 og_image: og_be_chicken.png
 ---
 

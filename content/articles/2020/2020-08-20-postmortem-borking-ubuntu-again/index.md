@@ -2,7 +2,7 @@
 Title: "Postmortem: borking Ubuntu (again)"
 Date: 2020-08-20T22:41:32.330195
 Tags: linux
-Category: Other
+categories: [it]
 og_image: og_postmortem_ubuntu.png
 ---
 

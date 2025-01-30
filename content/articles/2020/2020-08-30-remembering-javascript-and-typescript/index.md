@@ -2,7 +2,7 @@
 Title: Remembering JavaScript and TypeScript
 Date: 2020-08-30T20:46:02.150242
 Tags: javascript, typescript
-Category: Other
+categories: [it]
 og_image: og_remembering_js_and_ts.png
 ---
 
