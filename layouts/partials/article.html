@@ -1,11 +1,11 @@
-<article class="prose prose-slate prose-invert md:mx-auto md:prose-lg">
+<article>
   {{ .Content }}
 
   {{- if .Params.see_also }}
   <hr/>
   <p>See also:</p>
   <ul>{{ range .Params.see_also }}
-      {{ with $.Site.GetPage . }}<li><a class="{{ partial "internal-link-classes" . }}" href="{{ .Permalink }}">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</a></li>{{ end }}
+      {{ with $.Site.GetPage . }}<li><a class="internal-link" href="{{ .Permalink }}">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</a></li>{{ end }}
   {{ end }}</ul>
   {{ end }}
 </article>

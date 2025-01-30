@@ -1,7 +1,1 @@
-<a href="{{ .Destination | safeURL }}" class="
-{{- if or (strings.HasPrefix .Destination "http") (strings.HasPrefix .Destination "mailto:") -}}
-bg-gradient-to-b from-blue-500 to-blue-500 bg-left-bottom bg-no-repeat bg-[length:100%_0.1rem] transition-[background] duration-300 hover:bg-gradient-to-b hover:from-amber-300 hover:to-amber-300 hover:bg-[length:100%_100%]
-{{- else -}}
-{{ partial "internal-link-classes" . }}
-{{- end -}}
-">{{ .Text | safeHTML }}</a>
+<a href="{{ .Destination | safeURL }}" class="{{- if or (strings.HasPrefix .Destination "http") (strings.HasPrefix .Destination "mailto:") -}}external-link{{- else -}}internal-link{{- end -}}">{{ .Text | safeHTML }}</a>

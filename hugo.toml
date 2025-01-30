@@ -7,6 +7,7 @@ disableKinds = ["section"]
 enableEmoji = true
 publishDir = "output"
 summaryLength = 50
+capitalizeListTitles = false
 
 [taxonomies]
   category = 'categories'
@@ -66,7 +67,7 @@ taskList = true
 typographer = true
 
 [markup.highlight]
-style = "dracula"
+style = "catppuccin-mocha"
 guessSyntax = true
 
 

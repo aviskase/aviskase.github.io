@@ -2,12 +2,10 @@
 <html lang="{{ .Site.Language.Lang }}" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
     {{ partial "head.html" . }}
     <body>
-        <div class="container">
             {{- partial "header.html" . -}}
             <main>
             {{ block "content" . }}{{ end }}
             </main>
             {{- partial "footer.html" . -}}
-        </div>
     </body>
 </html>

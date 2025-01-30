@@ -1,6 +1,5 @@
 <h{{ .Level }} id="{{ .Anchor | safeURL }}" >
-  <a class="group relative" href="#{{ .Anchor | safeURL }}">
-    <span class="hidden md:group-hover:inline absolute -left-5">#</span>
+  <a href="#{{ .Anchor | safeURL }}">
     {{- .Text | safeHTML -}}
   </a>
 </h{{ .Level }}>
