@@ -150,15 +150,20 @@ code::after, code::before {
   content: "`"
 }
 
-p > code, li > code {
+p > code, li > code, .kbd {
   background-color: var(--background-colour);
   border: 1px dotted var(--ctp-mocha-blue);
-  border-bottom: 2px solid var(--ctp-mocha-blue);
   color: var(--ctp-mocha-blue);
   border-radius: 2px;
   overflow-wrap: anywhere;
   padding-inline: .5rem;
 }
+
+.kbd {
+  border-bottom: 2px solid var(--ctp-mocha-blue);
+}
+
+
 
 p > code::after, li > code::after,
 pre > code::after, pre > code::before,
