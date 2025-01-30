@@ -326,3 +326,21 @@ blockquote::before {
 .highlight pre {
 margin: 1ch;
 }
+
+
+article ol {
+  counter-reset: counts 0;
+}
+
+article ol > li:before {
+  counter-increment: counts;
+  content: counter(counts)'. ';
+}
+
+article ol ul > li:before {
+  content: '';
+}
+
+article ol ol > li:before {
+  content: counters(counts, '.') '.';
+}
