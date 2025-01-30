@@ -3,6 +3,7 @@ title: "The Navy's IT challenges"
 date: 2023-12-15T00:10:48-05:00
 draft: false
 see_also: []
+categories: [kaleidoscope, it]
 ---
 
 Can't stop thinking about one line from the recent [Paul Well's interview with Vice Admiral Angus Topshee](https://paulwells.substack.com/p/a-generational-challenge-in-naval), the Commander of the Royal Canadian Navy.

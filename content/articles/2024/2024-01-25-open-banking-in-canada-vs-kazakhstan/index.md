@@ -3,6 +3,7 @@ date: 2024-01-25T23:59:46-05:00
 title: "Open Banking: Canada vs Kazakhstan"
 draft: false
 see_also: []
+categories: [kaleidoscope, it]
 ---
 
 As I was skimming through [The API Changelog issue 2024.04](https://apichangelog.substack.com/p/2024-04), my eye caught:

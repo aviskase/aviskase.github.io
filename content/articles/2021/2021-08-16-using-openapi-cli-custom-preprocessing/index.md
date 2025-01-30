@@ -1,7 +1,7 @@
 ---
 title: "Using `openapi-cli`: custom preprocessing"
 date: 2021-08-16T23:44:37-04:00
-see_also: []
+categories: [it]
 draft: false
 ---
 

@@ -3,6 +3,7 @@ title: "Automap API operation handlers in components-based project"
 date: 2020-10-25T22:05:10-04:00
 Modified: 2020-10-28T23:10:10-04:00
 draft: false
+categories: [it]
 ---
 
 [Node.js best practices repo](https://github.com/goldbergyoni/nodebestpractices) is the most comprehensive list of style guides and architectural tips for Node.js apps I've seen. The very first of them is about [structuring projects based on components instead of layers](https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md).

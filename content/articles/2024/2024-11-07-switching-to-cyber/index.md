@@ -3,6 +3,7 @@ date: 2024-11-07T23:52:06-05:00
 title: "Switching to cyber"
 draft: false
 see_also: []
+categories: [it]
 ---
 
 I don't think pivoting to another career path less than a month before maternity leave is a normal (and smart) thing to do, but here we are. 

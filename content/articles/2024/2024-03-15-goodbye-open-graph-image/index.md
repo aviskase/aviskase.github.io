@@ -2,6 +2,7 @@
 date: "2024-03-16T14:35:00"
 draft: false
 title: "Goodbye, `og:image`"
+categories: [kaleidoscope, it]
 ---
 
 When you see a link on almost all social platforms or messengers, you usually see a card preview with a title, an almost invisible summary, and an image. These cards are generated based on twitter and Open Graph HTML tags that look something like this:

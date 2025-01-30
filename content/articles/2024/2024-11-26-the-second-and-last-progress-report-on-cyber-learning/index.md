@@ -3,6 +3,7 @@ date: 2024-11-27T23:30:28-05:00
 title: "The second (and probably last this year) progress report on cyber learning"
 draft: false
 see_also: []
+categories: [it]
 ---
 
 As I'm approching my due date (literally today), here is what I've done so far:

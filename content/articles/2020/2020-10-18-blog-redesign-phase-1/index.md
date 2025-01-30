@@ -2,6 +2,7 @@
 title: "Blog redesign: phase 1"
 date: 2020-10-18T20:09:15-04:00
 draft: false
+categories: [kaleidoscope]
 ---
 
 

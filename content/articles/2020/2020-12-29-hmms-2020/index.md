@@ -1,6 +1,7 @@
 ---
 title: "Hmms: 2020"
 date: 2020-12-30T09:35:16-05:00
+categories: [kaleidoscope, it]
 ---
 
 Usually it's monthly collection of things that got me ~~thinking~~ hmming. But this is the end of the year, let's do a little retrospective.

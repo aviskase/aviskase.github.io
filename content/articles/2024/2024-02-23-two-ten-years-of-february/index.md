@@ -3,6 +3,7 @@ date: 2024-02-23T22:18:00-05:00
 title: "Two (ten) years of February"
 draft: false
 see_also: []
+categories: [kaleidoscope]
 ---
 
 Today I'd like to share [this bit about my great-grand father Bagriy Ivan](http://www.zbarazh-library.com.ua/writen/history/UPA.pdf):

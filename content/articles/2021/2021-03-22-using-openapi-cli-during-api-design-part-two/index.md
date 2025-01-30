@@ -2,7 +2,7 @@
 title: "Using `openapi-cli` during API design: part two"
 date: 2021-03-23T00:30:57-04:00
 draft: false
-see_also: []
+categories: [it]
 ---
 
 [Part one]({{< ref "2021-01-31-using-openapi-cli-during-api-design-part-one" >}}) showed the basics of using `openapi-cli` for a single-definition project. Let's see how it works for multi-definition projects.

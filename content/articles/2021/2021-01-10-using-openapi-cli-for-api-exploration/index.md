@@ -2,6 +2,7 @@
 title: "Using `openapi-cli` for API exploration"
 date: 2021-01-10T14:28:31-05:00
 see_also: ["2020-04-22-using-insomnia-for-api-exploration"]
+categories: [it]
 ---
 
 [As promised]({{< ref "2020-12-18-using-openapi-cli-intro" >}}), let's dive into the usage of `openapi-cli`. The first topic is semi-non-technical: API exploration. You might be interested if:

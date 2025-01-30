@@ -1,6 +1,7 @@
 ---
 title: "Hmms: November"
 date: 2020-11-30T18:35:10-05:00
+categories: [kaleidoscope, it]
 ---
 
 Monthly collection of things that got me ~~thinking~~ hmming.

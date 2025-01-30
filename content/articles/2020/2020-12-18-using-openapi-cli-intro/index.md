@@ -1,6 +1,7 @@
 ---
 title: "Using `openapi-cli`: intro"
 date: 2020-12-20T22:26:21-05:00
+categories: [it]
 ---
 
 Before we jump into the usage of this mysterious tool with way too generic name, let me give you an introduction.

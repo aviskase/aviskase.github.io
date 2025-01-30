@@ -1,7 +1,7 @@
 ---
 title: "Using `openapi-cli`: custom rules"
 date: 2021-09-06T16:35:43-04:00
-see_also: []
+categories: [it]
 draft: false
 ---
 

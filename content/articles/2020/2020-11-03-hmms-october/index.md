@@ -2,6 +2,7 @@
 title: "Hmms: October"
 date: 2020-11-03T22:33:09-05:00
 draft: false
+categories: [kaleidoscope, it]
 ---
 
 Monthly collection of things that got me ~~thinking~~ _hmming_.
