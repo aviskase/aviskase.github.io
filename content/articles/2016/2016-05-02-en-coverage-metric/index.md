@@ -2,7 +2,7 @@
 Title: "Coverage metrics"
 Date: 2016-05-02
 Tags: thoughts
-Category: Testing
+categories: [it]
 ---
 
 There are two strange metrics on the project where I work: how much is tested and how much works. Every time I should update these two numbers my head explodes. I don't like them at all.

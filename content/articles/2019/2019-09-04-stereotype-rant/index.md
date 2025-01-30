@@ -2,7 +2,7 @@
 Title: "Stereotype Rant"
 Date: 2019-09-04
 Tags: thoughts
-Category: Testing
+categories: [it]
 ---
 
 We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that's totally fine: I myself prefer these to dry corporate pitches. But it's a real shame when you see a post like this from a test agency: 

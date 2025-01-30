@@ -2,7 +2,7 @@
 Title: "How to test API usability: part 2"
 Date: 2019-10-19
 Tags: api, usability
-Category: Testing
+categories: [it]
 og_image: og_how-to-test-api-usability-part-2.png
 ---
 

@@ -2,7 +2,7 @@
 Title: "Why I don't use Postman"
 Date: 2019-11-25T01:20:58.916485
 Tags: API, tools, thoughts
-Category: Testing
+categories: [it]
 og_image: og_why-i-dont-use-postman.png
 ---
 

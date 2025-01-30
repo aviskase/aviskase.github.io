@@ -2,7 +2,7 @@
 Title: Using Insomnia for API exploration
 Date: 2020-04-22T01:06:01.497569
 Tags: api, tools, practical
-Category: Testing
+categories: [it]
 og_image: og_using_insomnia_for_exploration.png
 see_also: ["2020-12-18-using-openapi-cli-intro"]
 ---

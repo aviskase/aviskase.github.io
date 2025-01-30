@@ -2,7 +2,7 @@
 Title: "A tester’s guide on hunting for API related sources"
 Date: 2019-10-26T16:52:40.751554
 Tags: api
-Category: Testing
+categories: [it]
 og_image: og_a-testers-guide-on-hunting-for-api-related-sources.png
 see_also: ["2020-12-05-crash-course-into-api-related-terminology"]
 ---

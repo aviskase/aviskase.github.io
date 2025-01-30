@@ -2,7 +2,7 @@
 Title: "Achievement unlocked: RSTA"
 Date: 2019-09-30
 Tags: course
-Category: Testing
+categories: [it]
 ---
 
 Landscape of testing related courses is problematic. On one hand, there are _lots_ of courses. On the other hand, there are _few_ courses _I would consider._ Either they are lackluster and certificate-centered, or entry-level-only, or mind-bogglingly expensive. And about the last bit. Many say that if a company provide a training budget, costs don't matter. Well, maybe if that company is one of [FAANG](https://en.wikipedia.org/wiki/Facebook,_Apple,_Amazon,_Netflix_and_Google), you can think so. But I work in a small one and I don't want to throw its (our?) money away.

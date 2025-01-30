@@ -4,7 +4,7 @@ Date: 2019-08-26
 Tags: 
 - thoughts
 Modified: 2019-09-17
-Category: Testing
+categories: [it]
 ---
 
 Recently I've remembered [my old article]({{< ref "2018-01-23-en-testers-in-this-world" >}}) and wondered, how much my thoughts  have changed and how they align to the principles of context-driven and modern testing (and yes, I don't see them as contradicting each other).

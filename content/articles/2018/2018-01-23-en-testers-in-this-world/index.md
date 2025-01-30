@@ -2,7 +2,7 @@
 Title: "Testers in this world" 
 Date: 2018-01-23
 Tags: thoughts
-Category: Testing
+categories: [it]
 ---
 
 Every tester saw those articles: "Testing is dead", "Manual testing is dead", "Testing is not dead", "Automation is not testing", "Company XXX has no testers and is happy about it", etc. They might get on nerves. I love my craft, but sometimes something is nibbling at the back of my mind. Something that keeps me wondering: maybe I should move to a different role? So, I unscrambled this "something" and found an explanation why these thoughts are there and why I won't leave testing =)

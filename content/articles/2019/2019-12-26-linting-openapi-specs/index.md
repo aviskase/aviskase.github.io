@@ -2,7 +2,7 @@
 Title: "Lunch&Learn: linting OpenAPI description docs"
 Date: 2019-12-26T19:21:00.564483
 Tags: api, practical, tools
-Category: Testing
+categories: [it]
 og_image: og_linting_openapi_dd.png
 ---
 

@@ -2,7 +2,7 @@
 Title: "2018 and mega mind map"
 Date: 2018-01-06
 Tags: practical
-Category: Testing
+categories: [it]
 ---
 
 Well, it's been a while. I don't want to make so called "new year resolutions", but it's better to add a repeating task in the RTM to write something here xD

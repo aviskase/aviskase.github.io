@@ -2,7 +2,7 @@
 Title: "Internal struggle with language gymnastics"
 Date: 2019-10-05
 Tags: thoughts
-Category: Testing
+categories: [it]
 ---
 
 During the RSTA class I asked a question about language and communications:

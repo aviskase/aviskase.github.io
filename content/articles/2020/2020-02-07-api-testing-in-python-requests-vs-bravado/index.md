@@ -2,7 +2,7 @@
 Title: "API testing in Python: requests vs bravado"
 Date: 2020-02-07T23:40:44.958491
 Tags: api, practical, tools
-Category: Testing
+categories: [it]
 og_image: og_requests-vs-bravado.png
 ---
 
