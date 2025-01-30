@@ -1,7 +1,7 @@
 ---
 Title: "Weekly hmms: watching, reading, learning"
 Date: 2019-11-30T19:13:56.428065
-Category: Weekly Hmms
+categories: [it]
 og_image: og_wh_3.png
 ---
 

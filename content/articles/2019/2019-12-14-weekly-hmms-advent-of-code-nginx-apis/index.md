@@ -1,7 +1,7 @@
 ---
 Title: "Weekly hmms: advent of code, NGINX, APIs"
 Date: 2019-12-14T22:32:58.016726
-Category: Weekly Hmms
+categories: [it]
 og_image: og_wh_5.png
 ---
 

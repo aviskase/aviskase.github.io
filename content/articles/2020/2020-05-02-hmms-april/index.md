@@ -1,7 +1,7 @@
 ---
 Title: "Hmms: April"
 Date: 2020-05-02T23:43:38.628615
-Category: Hmms
+categories: [it, kaleidoscope]
 og_image: og_h_april.png
 ---
 

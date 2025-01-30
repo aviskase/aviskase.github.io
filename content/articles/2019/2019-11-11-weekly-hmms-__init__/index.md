@@ -3,7 +3,7 @@ Title: >-
   Weekly hmms: \_\_init\_\_
 slug: "weekly-hmms-__init__"
 Date: 2019-11-11T03:40:16.585286
-Category: Weekly Hmms
+categories: [it]
 og_image: og_wh_0.png
 ---
 

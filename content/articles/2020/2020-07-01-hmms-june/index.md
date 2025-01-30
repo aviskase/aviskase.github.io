@@ -1,7 +1,7 @@
 ---
 Title: "Hmms: June"
 Date: 2020-07-01T19:10:45.230121
-Category: Hmms
+categories: [it, kaleidoscope]
 og_image: og_h_june.png
 ---
 

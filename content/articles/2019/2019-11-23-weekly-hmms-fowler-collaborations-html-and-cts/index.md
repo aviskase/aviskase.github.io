@@ -1,7 +1,7 @@
 ---
 Title: "Weekly hmms: Fowler, collaborations, HTML, and CTS"
 Date: 2019-11-23T02:45:30.579833
-Category: Weekly Hmms
+categories: [it, kaleidoscope]
 og_image: og_wh_2.png
 ---
 

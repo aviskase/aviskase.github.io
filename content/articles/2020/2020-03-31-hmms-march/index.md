@@ -1,7 +1,7 @@
 ---
 Title: "Hmms: March"
 Date: 2020-03-31T20:24:05.379368
-Category: Hmms
+categories: [it, kaleidoscope]
 og_image: og_h_march.png
 ---
 
