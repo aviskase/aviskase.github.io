@@ -385,3 +385,12 @@ hr, hr::after {
   color: var(--ctp-mocha-subtext0);
   border-color: var(--ctp-mocha-subtext0);
 }
+
+
+.gist {
+  filter: invert(1) hue-rotate(180deg) brightness(1);
+}
+
+.gist .gist-meta {
+  margin-top: 0;
+}
