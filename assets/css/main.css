@@ -355,3 +355,28 @@ article ol ul > li:before {
 article ol ol > li:before {
   content: counters(counts, '.') '.';
 }
+
+
+img {
+  border: 2px solid var(--ctp-mocha-subtext0);
+}
+
+picture img {
+  margin-top: 0;
+}
+
+figcaption {
+  border: 2px solid var(--ctp-mocha-subtext0);
+  border-top: 2px dashed var(--ctp-mocha-subtext0);
+  caption-side: bottom;
+  color: var(--ctp-mocha-subtext0);
+  font-style: normal;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-top: 0;
+}
+
+figcaption p {
+  margin-bottom: calc(var(--line-height)*0.5);
+}

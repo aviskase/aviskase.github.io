@@ -1,5 +1,5 @@
 {{- $src := .Page.Resources.GetMatch (printf "*%s*" .Destination) -}}
-{{- $img_class := "mx-auto rounded" -}}
+{{- $img_class := "" -}}
 {{ if or (hasPrefix .Destination "http://" ) (hasPrefix .Destination "https://" ) }}
 <img class="{{ $img_class }}" src="{{.Destination}}" {{ with .Text }}alt="{{.}}"{{ else }}alt=""{{ end }} {{ with .Title }}title="{{.}}"{{ end }}>
 {{ else if hasSuffix $src ".gif" }}
@@ -13,7 +13,7 @@
     <img class="{{ $img_class }}" src="{{ $src.Permalink }}" alt="{{ .Text }}" defer>
 	</picture>
 	{{ with .Title }}
-  <figcaption class="text-center">
+  <figcaption>
     <p class="caption">{{ . }}</p>
 	</figcaption>
 	{{ end }}
