@@ -11,13 +11,9 @@ Monthly collection of things that got me ~~thinking~~ _hmming_.
 
 - I was reading ["Patterns for Managing Source Code Branches"](https://martinfowler.com/articles/branching-patterns.html) (which in itself is a great piece) when I saw 
 [MediaWiki's discussion about moving to GitLab](https://www.mediawiki.org/wiki/GitLab_consultation#Outcome). Guess what, they used Fowler's article as a basis for definitions in the discussion. It's curious how some persons' outputs instantly become almost a "standard."
-
 - Uncle Bob [explained SOLID yet again](http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html). What got my attention was how _simple_ was his explanation.
-
 - No, I didn't switch to [JuliaMono font](https://cormullion.github.io/pages/2020-07-26-JuliaMono/), but please check it out if you need a font with an enormous range of characters.
-
 - And take a look at draft for extending [HTTP `SEARCH` method's semantics](https://tools.ietf.org/html/draft-snell-search-method-02). Perhaps, one day we will forget about `GET` and `POST` queries?
-
 - This tweet perfectly captures [my feelings about new Google redesign](https://twitter.com/fredericl/status/1320764737576030215).
 
 ## No-code API platforms

@@ -24,7 +24,6 @@ The second one has a nice quotable passage:
 Started reading: 
 
 * [The Design of Web APIs](https://www.manning.com/books/the-design-of-web-apis) by Arnaud Lauret. I've got a hard copy, yay!
-
 * [Universal Principles of Design](https://www.amazon.ca/Universal-Principles-Design-William-Lidwell/dp/1592530079) by William Lidwell, Kritina Holden, and Jill Butler. There is a newer shorter edition, but I decided to try out the original one first. It was available in the local library, but I had to wait almost two months in the request queue: the book is old yet still relevant.
 
 

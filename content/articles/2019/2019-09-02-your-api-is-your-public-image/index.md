@@ -81,7 +81,6 @@ Cyrillic `Р/р`  (pronounced like "r") looks exactly like Latin `P/p`.
 ![Unhelpful error message](bad_error_message.png)
 
 * You have UI and API? Don't forget to check they correspond to each other. The most common problem is when constraints on UI fields don't match same fields in API: for example, UI can accept maximum 50 characters for the name and API only 20, which leads to errors when trying to export anything created on UI.
-
 * Don't forget about versionning (in API and its documentation). The older your services are, more careful you should be with incompatible changes. Documentation should always be up-to-date: sounds obvious, but we had a big fuck up when someone accidentally published documentation for upcoming API version and external developers started trying to use these new features, didn't find them, and bombed support team with "nothing works again" tickets.
 
 

@@ -13,17 +13,14 @@ Coronavirus-free edition!
 
 - Erik Wilde started a video series about API design, 
 and [the last one](https://www.youtube.com/watch?v=qc_DF01qgZg) covers pros and cons of exposing system APIs.
+- Tyk explains [why you shouldn't write our own API gateway](https://tyk.io/considerations-before-building-your-own-api-gateway/). I particularly liked this part:
 
-- Tyk explains [why you shouldn't write our own API gateway](https://tyk.io/considerations-before-building-your-own-api-gateway/).
-I particularly liked this part:
 > Another chose to build their own API gateway because no offerings existed that would operate in their 
 > preferred Windows-based server environment. 
 > I haven’t heard from them since as they still haven’t shipped their product --- a full year later.
 
-- Adidas has awesome API guidelines and recently they've published [their API training for PMs](https://github.com/adidas/api-pm-training).
-If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
+- Adidas has awesome API guidelines and recently they've published [their API training for PMs](https://github.com/adidas/api-pm-training). If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
 business-y for me to comprehend without hands-on experience.
-
 - Almost non-API topic. Why you should always carefully read RFCs and standards: in this case,
 [what is the proper input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/).
 
@@ -35,8 +32,7 @@ it came to me that I'm (at least partially) not a tester. I mean, I knew it, but
 So, what does DX specialist do?
 
 - API design 
-- QA. Clarification: not the obvious "I'm capable of sending requests" part, but more about contract testing, linting, 
-style guides, and docs.
+- QA. Clarification: not the obvious "I'm capable of sending requests" part, but more about contract testing, linting, style guides, and docs.
 - Tooling
 - Developer relations
 

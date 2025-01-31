@@ -19,79 +19,44 @@ Strategies are like extensions: add more to have more abilities.
 Because these are essential, I'll explain their usage later.
 
 - Category Context (big square, also beneath title, show full path)
-
 - Task Notes
-
 - Labels
-
 - Timers
-
 - Backburner (no setup)
-
 - Planning Ahead
-
 - Smart Lists
-
 - Custom Sidebar
-
 - Top Mini List
-
 - Custom Sections
-
 - Dependencies
-
 - End Dates (show end dates below the task)
-
 - Start Dates
-
 - Work Session Scheduler
-
 - Saved Items (Templates)
-
 - Smart List Day Alerts
-
 - Auto-schedule Due Tasks (cutoff = 1 day)
-
 - Staleness Warning (period = 40 days)
-
 - Email to Marvin
-
 - Zapier Integration
-
 - Review Date
-
 - Weekly Review
 
 ### Extras
 
 - Eat that Frog (just 2 frog levels) --- nice to have, but I don't use it as intended (I tend to assign a frog to the bad tasks, but I don't do them first)
-
 - Task Reminders (create automatically) --- very important feature, but less powerful than in RTM for now (cannot create multiple reminders). Though, I have a feeling that with proper review system I actually don't need reminders that much now.
-
 - Duration Estimates --- I'm experimenting with having estimates for all tasks, but so far don't feel it increases productivity.
-
 - Time Tracking (show > in title) --- goes hand in hand with duration estimates, feels needed but not essential
-
 - Beat The Clock --- same as time tracking, still experimenting with it
-
 - Project Focus Picker --- just started to use it; at least it works as an "eye  bugger" to push me to work on project
-
 - Suggested Task --- never used it really, but something about it feels good ><
-
 - The Wall --- using it occasionally, would like to have block division by section
-
 - Day Progress Bar --- I don't know why I enabled it 
-
 - Procrastination Count (default) --- important but not essential
-
 - Missing Next Steps Warning --- important, but not very used much at the moment
-
 - Day Note (with archive) --- nice to have, but I'm not very good at keeping a habit to write (as can be guessed by this blog updates frequency)
-
 - Calendar, Calendar Sync, All-Day Items, Top Mini List --- I'll have a whole calendar workflow moved to AM as soon as these will work with Google Calendar and Outlook. Until then, I have to go to calendars.
-
 - Dashboard --- I like it, but not sure that I need it
-
 - Reward Tasks --- awesome feature which I've never used. Dunno why. 
 
 ## Planning and scheduling cycle
@@ -99,9 +64,7 @@ Because these are essential, I'll explain their usage later.
 My PS cycle has three phases:
 
 - Monthly planning
-
 - Weekly planning
-
 - Daily scheduling
 
 Notice difference between planning and scheduling? This is because AM has a bit head-scratching at first, but really powerful distinction between these processes. In short, *planning* is about assigning *start date* and *end date* ("soft deadline") and *scheduling* is about assigning a *do date* ("when should I do this task"). Also, there can be a *due date*, it's not quite clear is it planning or scheduling category. I think both, because I use **Auto-schedule Due Tasks** strategy. For example, if something is due tomorrow, this task will have a do date = today.
@@ -125,17 +88,13 @@ This is a part from Jedi techniques, which goal is to rename tasks you didn't co
 Done on: external sites, tasks are added to inbox
 
 - birthdays
-
 - special all day events like holidays
-
 - work meetings
 
 Basically, it's something that is not really actionable, but has a day and duration. This is what I want to do in AM in the future, when calendar sync works better:
 
 - **Smart list** with all calendar events in the next 2 weeks (to use for weekly planning)
-
 - **Top Mini List** strategy showing upcoming birthdays in the next 3 days
-
 - Depending on how AM will show calendar events (probably as tasks which have to be completed, which is a bit unnecessary for me), maybe all of them should be shown in **Top Mini List**
 
 Right now what I use is a **Custom Sidebar** with links to my google and outlook calendars.
@@ -173,7 +132,6 @@ Done on: **Sidebar**, tasks added to inbox
 Two links in Sidebar:
 
 * link to mind map containing triggers
-
 * link to timer set for 20m
 
 Triggers are things which can be used to recall what was forgotten. For example, one of the subtrees in my mindmap contains all types of utilities or all kinds of cleaning which could be done.
@@ -203,13 +161,9 @@ Because there is no "Daily review" strategy yet, I have a recurring task for tha
 Checklist is a subset of weekly review:
 
 - reformulate
-
 - reflect on Completed Today
-
 - recall this day
-
 - empty inboxes
-
 - schedule tasks for the next day
 
 ## Extras
@@ -219,17 +173,11 @@ Checklist is a subset of weekly review:
 Main:
 
 * Inbox
-
 * Work
-
 * Household --- tasks related to house or family
-
 * Hobbies  --- anything related to my hobbies, learning, and reading
-
 * Reputation --- quite new for me, this is for tasks related to my *external image*. Participating in open source projects, buying birthday gifts, writing blog, answering some emails. Sometimes there is no clear distinction between hobbies and this category, so it's fluid.
-
 * Health
-
 * Productivity --- tasks like everyday review or cleaning up overflown inboxes. I suppose calendar sync will go there too.
 
 ### Sections
@@ -237,13 +185,9 @@ Main:
 I use **Custom Sections** strategies:
 
 - Morning
-
 - Work --- linked to smartlist which finds all tasks/projects `in #Work`
-
 - Outside --- linked to smartlist which finds all tasks/projects which `has @outside` label
-
 - Evening
-
 - Bonus
 
 Morning and Evening tasks are essentials, while Bonus ones are nice to do. Outside tasks are for stuff where I need to go somewhere, like shopping errands. I'm still not hard set on these categories, except for Work, this one will definitely stay.
@@ -253,11 +197,8 @@ Morning and Evening tasks are essentials, while Bonus ones are nice to do. Outsi
 I use **Smart List Day Alerts** strategy for finding and fixing potential planning problems.
 
 - New items pulled from backburner --- reminder to check items with `*new`
-
 - Stale --- review items with `*stale`
-
 - To review (waiting or pinged) --- some tasks are ready to review)
-
 - This week unestimated --- add estimation for all tasks, smartlist: `Tasks, no time estimate, &thisWeek scheduleDate today == ||`
 
 
@@ -267,7 +208,6 @@ I use **Smart List Day Alerts** strategy for finding and fixing potential planni
 **Review date** strategy is not the best name for my usage. I use it for tasks which are not done by me. 
 
 * tag *waiting* (3 day) --- for long waiting tasks
-
 * tag *ping* (1 day) --- reminds me ask someone everyday if s/he finished the task
 
 ### Occasional tasks
@@ -275,13 +215,9 @@ I use **Smart List Day Alerts** strategy for finding and fixing potential planni
 I was not able to setup this correctly in AM yet, so I'm using some hacks around it. Basically, these are tasks which I want to do every 15-40 days, without specifying exact day. One of the tasks is *Productivity system review*. It has a note with questions which I ask while going through all my tasks and projects:
 
 1. Is it really mine? Maybe delegate?
-
 2. Is there any real profit from this task?
-
 3. Maybe it's possible to do some other task so that this one becomes obsolete?
-
 4. Is there any easier way to do it?
-
 5. Do I really still need to do it?
 
 Goal is to remove or reformulate tasks.

@@ -29,11 +29,8 @@ Too much duplication, isn't it?
 Welcome to environments. Insomnia supports multi-layered variable assignments:
 
 * Base environment: values are accessible regardless of which environment is selected.
-
 * Sub environments: you can create as many as you want. Especially useful for testing APIs on different servers.
-
-* Folder-level environment: requests can be grouped by folders and sometimes it makes sense to assign specific values
-to all requests in the folder.
+* Folder-level environment: requests can be grouped by folders and sometimes it makes sense to assign specific values to all requests in the folder.
 
 
 Ok, so for this API let's do like this. `https://api.openweathermap.org/data/2.5` can go into base,
