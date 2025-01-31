@@ -380,3 +380,8 @@ figcaption {
 figcaption p {
   margin-bottom: calc(var(--line-height)*0.5);
 }
+
+hr, hr::after {
+  color: var(--ctp-mocha-subtext0);
+  border-color: var(--ctp-mocha-subtext0);
+}
