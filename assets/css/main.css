@@ -266,6 +266,7 @@ blockquote::before {
 
 .article-nav-new, .article-nav-old {
   flex-grow:1;
+  width: 0;
 }
 .article-nav-old a {
   position: relative;
