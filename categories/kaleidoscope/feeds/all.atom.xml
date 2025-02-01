@@ -1,0 +1,1614 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>kaleidoscope on aviskase</title>
+  <id>https://www.aviskase.com/</id>
+  <updated>2024-03-16T14:35:00Z</updated>
+  <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/kaleidoscope/feeds/all.atom.xml" hreflang="en"/>
+  <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/kaleidoscope/" hreflang="en"/>
+  <entry>
+    <title>Goodbye, og:image</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/03/16/goodbye-ogimage/" hreflang="en"/>
+    <published>2024-03-16T14:35:00Z</published>
+    <updated>2024-03-16T14:35:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-03-16:/articles/2024/03/16/goodbye-ogimage/</id>
+    
+    <summary type="html"><![CDATA[<p>When you see a link on almost all social platforms or messengers, you usually see a card preview with a title, an almost invisible summary, and an image. These cards are generated based on twitter and Open Graph HTML tags that look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:url&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;url&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:title&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;title&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:description&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;description&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:image&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;link&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:card&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;summary_large_image&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:url&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;url&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:title&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;title&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:description&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;description&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:image&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;link&gt;&#34;</span>&gt;
+</span></span></code></pre></div><p>See those image properties? Per specifications they are <strong>required</strong>. The minimum size is 200×200 pixels; the recommended size is 1200×630 pixels.</p>]]></summary>
+    <content type="html"><![CDATA[<p>When you see a link on almost all social platforms or messengers, you usually see a card preview with a title, an almost invisible summary, and an image. These cards are generated based on twitter and Open Graph HTML tags that look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:url&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;url&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:title&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;title&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:description&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;description&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;og:image&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;link&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:card&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;summary_large_image&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">property</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:url&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;url&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:title&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;title&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:description&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;description&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">meta</span> <span style="color:#89b4fa">name</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;twitter:image&#34;</span> <span style="color:#89b4fa">content</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;&lt;link&gt;&#34;</span>&gt;
+</span></span></code></pre></div><p>See those image properties? Per specifications they are <strong>required</strong>. The minimum size is 200×200 pixels; the recommended size is 1200×630 pixels.</p>
+<p>The goal is to have a nice link preview. Fine. If the article already has a relevant image, why not? The problem is, not all articles have them, so people improvise:</p>
+<ul>
+<li>Find some semi-relevant stock image.</li>
+<li>Ask somebody to create one. That&rsquo;s for fancy websites.</li>
+<li>Generate image using Midjourney or whatever &ldquo;AI&rdquo; you prefer.</li>
+<li>Generate image using article title (I used to do that).</li>
+</ul>
+<p>First three are eye candy solutions. Last one is basically duplicating already displayed information.</p>
+<p>So, we are trying to conform to some arbitrary standards imposed by social media platforms. These images are there to drive engagement. To be attention grabs. And no one likes to read nowadays, right? Thus, one could argue that continuing this practice is in the best interest of content creators. However, if this is the goal&hellip;</p>
+<p>Boobs. Just make an image with the boobs. You can even add some article-relevant background. If you&rsquo;re creating the image solely because &ldquo;Facebook says so&rdquo;, why limit yourself to half-measures? Drive your SEO by ░C░O░N░T░E░N░T░ ░I░N░ ░B░I░O░.</p>
+<hr>
+<p>Anyway, yeah, no Open Graph images here anymore.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Two (ten) years of February</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/02/23/two-ten-years-of-february/" hreflang="en"/>
+    <published>2024-02-24T03:18:00Z</published>
+    <updated>2024-02-24T03:18:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-02-24:/articles/2024/02/23/two-ten-years-of-february/</id>
+    
+    <summary type="html"><![CDATA[<p>Today I&rsquo;d like to share <a href="http://www.zbarazh-library.com.ua/writen/history/UPA.pdf" class="external-link">this bit about my great-grand father Bagriy Ivan</a>:</p>
+<blockquote>
+<p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
+Four shylyans were killed then:</p>
+<ul>
+<li>Antoniuk Volodymyr - born in 1923.</li>
+<li>Bagriy Ivan - born in 1911.</li>
+<li>Voznyi Ivan - born in 1905.</li>
+<li>Hulovskyi Vasyl - born in 1918.</li>
+</ul>
+</blockquote>
+<p>Nineteen fifty-two. By that time, Ivan&rsquo;s wife and son (my grandfather) had already been exiled to Kazakhstan.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Today I&rsquo;d like to share <a href="http://www.zbarazh-library.com.ua/writen/history/UPA.pdf" class="external-link">this bit about my great-grand father Bagriy Ivan</a>:</p>
+<blockquote>
+<p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
+Four shylyans were killed then:</p>
+<ul>
+<li>Antoniuk Volodymyr - born in 1923.</li>
+<li>Bagriy Ivan - born in 1911.</li>
+<li>Voznyi Ivan - born in 1905.</li>
+<li>Hulovskyi Vasyl - born in 1918.</li>
+</ul>
+</blockquote>
+<p>Nineteen fifty-two. By that time, Ivan&rsquo;s wife and son (my grandfather) had already been exiled to Kazakhstan.</p>
+<p>One can write a lengthy eloquent essay about never surrendering, believing in independence, and so on. I won&rsquo;t.</p>
+<p>Слава Україні. Героям слава.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Open Banking: Canada vs Kazakhstan</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2024/01/25/open-banking-canada-vs-kazakhstan/" hreflang="en"/>
+    <published>2024-01-26T04:59:46Z</published>
+    <updated>2024-01-26T04:59:46Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-01-26:/articles/2024/01/25/open-banking-canada-vs-kazakhstan/</id>
+    
+    <summary type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+<blockquote>
+<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>]]></summary>
+    <content type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+<blockquote>
+<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>
+</blockquote>
+<p>Cool. Let&rsquo;s read the report.</p>
+<blockquote>
+<p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p>
+</blockquote>
+<blockquote>
+<p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p>
+</blockquote>
+<p>Yup, Halyk Bank isn&rsquo;t mentioned, so it&rsquo;s just a really early pilot. Even more, no Kaspi Bank. It&rsquo;s like doing something in Canada without involving <a href="https://en.wikipedia.org/wiki/Big_Five_banks_of_Canada" class="external-link">Big Five</a>. Well, they have 2 more years, so, good luck.</p>
+<p>Hmm. Speaking of. What about Canada?</p>
+<p>Despite Canada&rsquo;s reputation for bad information disclosure approaches, I do enjoy the content available on <code>canada.ca</code>. Including <a href="https://www.canada.ca/en/financial-consumer-agency/services/banking/open-banking.html" class="external-link">what&rsquo;s up with open banking</a>. It&rsquo;s a long page, but all you need is the first sentence:</p>
+<blockquote>
+<p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p>
+</blockquote>
+<p>Ouch. Is there any progress, though? According to <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/open-banking-implementation/2023-fes-policy-statement-consumer-driven-banking.html" class="external-link">2023 Fall Economic Statement: Policy Statement on Consumer-Driven Banking</a>:</p>
+<blockquote>
+<p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p>
+</blockquote>
+<p>Same year, different goals. Kazakhstan is planning to finish implementing (doubt it), whereas Canada is planning to finish with laws and paperwork (doubt it too). Let&rsquo;s put a reminder and check on them both in 2025?</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>The Navy’s IT challenges</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2023/12/15/the-navys-it-challenges/" hreflang="en"/>
+    <published>2023-12-15T05:10:48Z</published>
+    <updated>2023-12-15T05:10:48Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2023-12-15:/articles/2023/12/15/the-navys-it-challenges/</id>
+    
+    <summary type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+<blockquote>
+<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+<blockquote>
+<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>
+</blockquote>
+<p><em>Specific IT challenges</em>, eh?</p>
+<p>I guess most of the people skim through this line. Whatever, it&rsquo;s just a pretext. But for me it sounds bizarrely specific. So, here some of my musings about it.</p>
+<p>Those problems with internal communications. It got me curious, how really it&rsquo;s even done in the military. &ldquo;Army-wide&rdquo; emails? Slack, Zoom, Teams? IRC? The answer is <a href="https://www.reddit.com/r/CanadianForces/comments/11hy76u/scs_whaaaatsappp/" class="external-link">all of these</a>. Total chaos. I especially like the comment mentioning using Facebook Messenger, because, c&rsquo;mon! At least, no WeChat. I hope. I also hope they have less problems accessing their Top Secret Network stuff, <a href="https://www.canada.ca/content/dam/di-id/documents/rpt/rapporteur/Independent-Special-Rapporteur%20-Report-eng.pdf" class="external-link">not like our ministers [page 27]</a>.</p>
+<p>While we already established that, in fact, it&rsquo;s way easier to just publicly share YouTube video than send a file or a private link, I highly doubt it was the main reason. Thus, I wonder, why IT was selected as a pretext. Why. Is it something on admiral&rsquo;s mind? Or is it a common &ldquo;enemy&rdquo; that always gets blamed and everyone nods understandingly? Is IT a dog that ate the homework in government offices? &#x1f644;</p>
+<hr>
+<p>Yeah, I&rsquo;m back. Kinda. No promises.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: 2020</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/12/30/hmms-2020/" hreflang="en"/>
+    <published>2020-12-30T14:35:16Z</published>
+    <updated>2020-12-30T14:35:16Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-12-30:/articles/2020/12/30/hmms-2020/</id>
+    
+    <summary type="html"><![CDATA[<p>Usually it&rsquo;s monthly collection of things that got me <del>thinking</del> hmming. But this is the end of the year, let&rsquo;s do a little retrospective.</p>
+<h2 id="retro" >
+  <a href="#retro">Retro</a>
+</h2>
+<p>What happened this year:</p>
+<ul>
+<li>My title switched <a href="https://www.aviskase.com/articles/2020/08/04/hmms-july/#no-longer-a-tester" class="internal-link">from &ldquo;tester&rdquo; to &ldquo;engineer&rdquo;</a>. Yay?</li>
+<li><a href="https://www.aviskase.com/articles/2020/09/15/conference-notes-asc-2020/" class="internal-link">Had a great time at ASC 2020 conference</a>. Yes, it&rsquo;s not my first conference, but this one left a good long-lasting aftertaste.</li>
+<li>I ported blog <a href="https://www.aviskase.com/articles/2020/10/04/from-pelican-to-hugo/" class="internal-link">from pelican to hugo</a> and <a href="https://www.aviskase.com/articles/2020/10/18/blog-redesign-phase-1/" class="internal-link">started a redesign</a>. Still much to do and polish, but at least the base is sound.</li>
+<li><a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">Joined Obsidian community</a>.</li>
+<li>As a consequence, I <strong>unwillingly</strong> created <a href="https://www.aviskase.com/articles/2020/11/03/hmms-october/#hi-youtube" class="internal-link">a YouTube channel in Russian</a>. It&rsquo;s cool to learn new skills (audio cleaning, video editing), but to be honest, content creation in Russian isn&rsquo;t exactly a lucrative or professionally valuable hobby. Still, I cannot say no to people asking to teach or explain something: knowledge sharing is one of the biggest values to me.</li>
+<li>Finished Finnish tree on Duolingo. Don&rsquo;t ask why, I, person living in Quebec, learn Finnish. I just want to! <em>Se on täydellinen kieli</em>.</li>
+</ul>
+<p>What didn&rsquo;t happen:</p>]]></summary>
+    <content type="html"><![CDATA[<p>Usually it&rsquo;s monthly collection of things that got me <del>thinking</del> hmming. But this is the end of the year, let&rsquo;s do a little retrospective.</p>
+<h2 id="retro" >
+  <a href="#retro">Retro</a>
+</h2>
+<p>What happened this year:</p>
+<ul>
+<li>My title switched <a href="https://www.aviskase.com/articles/2020/08/04/hmms-july/#no-longer-a-tester" class="internal-link">from &ldquo;tester&rdquo; to &ldquo;engineer&rdquo;</a>. Yay?</li>
+<li><a href="https://www.aviskase.com/articles/2020/09/15/conference-notes-asc-2020/" class="internal-link">Had a great time at ASC 2020 conference</a>. Yes, it&rsquo;s not my first conference, but this one left a good long-lasting aftertaste.</li>
+<li>I ported blog <a href="https://www.aviskase.com/articles/2020/10/04/from-pelican-to-hugo/" class="internal-link">from pelican to hugo</a> and <a href="https://www.aviskase.com/articles/2020/10/18/blog-redesign-phase-1/" class="internal-link">started a redesign</a>. Still much to do and polish, but at least the base is sound.</li>
+<li><a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">Joined Obsidian community</a>.</li>
+<li>As a consequence, I <strong>unwillingly</strong> created <a href="https://www.aviskase.com/articles/2020/11/03/hmms-october/#hi-youtube" class="internal-link">a YouTube channel in Russian</a>. It&rsquo;s cool to learn new skills (audio cleaning, video editing), but to be honest, content creation in Russian isn&rsquo;t exactly a lucrative or professionally valuable hobby. Still, I cannot say no to people asking to teach or explain something: knowledge sharing is one of the biggest values to me.</li>
+<li>Finished Finnish tree on Duolingo. Don&rsquo;t ask why, I, person living in Quebec, learn Finnish. I just want to! <em>Se on täydellinen kieli</em>.</li>
+</ul>
+<p>What didn&rsquo;t happen:</p>
+<ul>
+<li><a href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" class="internal-link">Bought a graphic tablet</a> but didn&rsquo;t do any drawing lessons. Though, I do use it for YouTube.</li>
+<li>The guitar is collecting dust <em>again</em>.</li>
+<li>Didn&rsquo;t go to Kazakhstan.</li>
+</ul>
+<p>2020 taught many not to make plans, good thing I never was much of the &ldquo;goals&rdquo; person anyway. Still, here are my themes for 2021:</p>
+<ul>
+<li>At least once be a conference speaker or <a href="https://www.aviskase.com/articles/2020/05/02/hmms-april/#fam0us" class="internal-link">a podcast guest</a>.</li>
+<li>Content creation: stable every other week, either this blog or Russian YouTube channel (or maybe English?). Concentrate more on tutorials.</li>
+<li>Guitar. Must. Be. Conquered. To make the promise more realistic, I hereby vow to start daily lessons as soon as I finish levelling <a href="https://www.aviskase.com/articles/2020/02/01/hmms-january/#gaming" class="internal-link">my main in ESO to CP 810</a> (yup, I&rsquo;m still playing it).</li>
+<li>Begin drawing lessons in the 2nd half of the year. Luckily, there was <a href="https://habr.com/ru/post/534538/" class="external-link">a great post on Habr</a> about it.</li>
+</ul>
+<p>You may notice almost an absence of professional goals. Typical end-of-year posts often contain promises to read more or learn new professional skills/tools. But my to-read/to-watch/to-learn queue is on the opposite side: it must be scaled down occasionally; I&rsquo;m definitely not one of those people who seems to have an endless fountain of energy to do everything (aksi, talking about ya here).</p>
+<h2 id="advent-of-code" >
+  <a href="#advent-of-code">Advent of code</a>
+</h2>
+<p>This was the first time I did <a href="https://adventofcode.com/" class="external-link">Advent of code</a> with the devs from work: nice to compare with normal people and not <em>reddit stars</em>. Cannot express how happy I&rsquo;m to be <a href="https://github.com/aviskase/advent-of-code/tree/master/2020" class="external-link">back to Python</a>, it&rsquo;s so readable and clear after JS/TS madness.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu_85d3b8f2d942191e.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png" alt="Advent of Code easter egg: using itertools" defer>
+	</picture>
+	
+</figure></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: November</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/30/hmms-november/" hreflang="en"/>
+    <published>2020-11-30T23:35:10Z</published>
+    <updated>2020-11-30T23:35:10Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-11-30:/articles/2020/11/30/hmms-november/</id>
+    
+    <summary type="html"><![CDATA[<p>Monthly collection of things that got me <del>thinking</del> hmming.</p>
+<h2 id="awards-and-reports" >
+  <a href="#awards-and-reports">Awards and reports</a>
+</h2>
+<p>Time for <a href="https://www.thoughtworks.com/radar" class="external-link">ThoughtWorks Technology Radar</a>. One of the themes is democratizing programming which is tightly coupled with <a href="https://www.aviskase.com/articles/2020/11/03/hmms-october/" class="internal-link">democratization of APIs I mentioned in the last hmms</a>.</p>
+<p><a href="https://puppet.com/resources/report/2020-state-of-devops-report/" class="external-link">The 2020 state of DevOps report</a> is there! I haven&rsquo;t even read it yet =)</p>]]></summary>
+    <content type="html"><![CDATA[<p>Monthly collection of things that got me <del>thinking</del> hmming.</p>
+<h2 id="awards-and-reports" >
+  <a href="#awards-and-reports">Awards and reports</a>
+</h2>
+<p>Time for <a href="https://www.thoughtworks.com/radar" class="external-link">ThoughtWorks Technology Radar</a>. One of the themes is democratizing programming which is tightly coupled with <a href="https://www.aviskase.com/articles/2020/11/03/hmms-october/" class="internal-link">democratization of APIs I mentioned in the last hmms</a>.</p>
+<p><a href="https://puppet.com/resources/report/2020-state-of-devops-report/" class="external-link">The 2020 state of DevOps report</a> is there! I haven&rsquo;t even read it yet =)</p>
+<p>This year was the first time I attended <a href="https://devportalawards.org/winners" class="external-link">DevPortal Awards</a>. While there is a certain feeling of  <em>being too narrow</em> (seriously, handful of portals getting several awards for several years?), it&rsquo;s still useful for getting inspirations apart from usual &ldquo;check Stripe docs!&rdquo;</p>
+<p>In non-tech world, <a href="http://www.worldvaluessurvey.org/photos/cultural_map_2020.jpg" class="external-link">the Inglehart-Welzel World Cultural Map</a> is all rad. There is no data point for Canada at the moment, but I&rsquo;d guesstimate somewhere close to Great Britain and New Zealand. The most valuable thing is checking the dynamics between current and previous maps. For example, most of the red zone countries moved right, but the jump made by Belarus and Ukraine was bigger than by Russia; this seems to correlate with political and social events I know.</p>
+<h2 id="helpful-guides" >
+  <a href="#helpful-guides">Helpful guides</a>
+</h2>
+<ul>
+<li><a href="https://martinfowler.com/articles/agile-threat-modelling.html" class="external-link">A guide to threat modelling for developers</a></li>
+<li><a href="https://martinfowler.com/articles/dont-compare-averages.html" class="external-link">Don&rsquo;t compare averages</a></li>
+<li><a href="https://jvns.ca/blog/answer-questions-well/" class="external-link">How to answer questions in a helpful way</a></li>
+<li><a href="https://thegooddocsproject.dev/" class="external-link">The Good Docs Project</a> with templates to make good docs.</li>
+</ul>
+<h2 id="weird-recommendation" >
+  <a href="#weird-recommendation">Weird recommendation</a>
+</h2>
+<p><a href="https://www.youtube.com/playlist?list=PLBitIgZ_UvGFNHPFlRg4834gYBmbYmdr7" class="external-link">Watch this playlist</a> (3 videos at the time of writing). You may think &ldquo;wtf, Yuliya, this is some bullshit video game essays&rdquo;. Yes, it is.</p>
+<p>But it is also one of the best videos explaining modern testing principles, agile, and lean. Damn, this could be on par with some TED talks. It also explains the appeal of APIs: modding in games is the similar concept to publishing APIs; you never know what users come up with.</p>
+<p>How about some quotes:</p>
+<blockquote>
+<p>Early access is your <em>release</em>.</p>
+</blockquote>
+<blockquote>
+<p>With <em>rapid iterations</em> DayZ mod evolved as the features were added based on <em>what people wanted</em> rather than what developer and publisher thought people wanted.</p>
+</blockquote>
+<blockquote>
+<p>[&hellip;] design pressure from the bottom up.</p>
+</blockquote>
+<p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
+<p>
+<img class="" src="/articles/2020/11/30/hmms-november/floss.gif" alt="Floss dance" >
+</p>
+<h2 id="blog-progress" >
+  <a href="#blog-progress">Blog progress</a>
+</h2>
+<p>I have a bunch of articles in draft stage, but none got published this month, because I accidentally <a href="https://www.youtube.com/channel/UCjUKyZccRzEiawqx2ysFrlQ" class="external-link">became a youtuber</a> (Russian-only for now). Yay&hellip; Had to learn how to use all the tools, write scripts, and what not. I do love learning, but, jeez, this one takes time.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: October</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/11/03/hmms-october/" hreflang="en"/>
+    <published>2020-11-04T03:33:09Z</published>
+    <updated>2020-11-04T03:33:09Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-11-04:/articles/2020/11/03/hmms-october/</id>
+    
+    <summary type="html"><![CDATA[<p>Monthly collection of things that got me <del>thinking</del> <em>hmming</em>.</p>
+<h2 id="links-lunch" >
+  <a href="#links-lunch">Links lunch</a>
+</h2>
+<ul>
+<li>I was reading <a href="https://martinfowler.com/articles/branching-patterns.html" class="external-link">&ldquo;Patterns for Managing Source Code Branches&rdquo;</a> (which in itself is a great piece) when I saw
+<a href="https://www.mediawiki.org/wiki/GitLab_consultation#Outcome" class="external-link">MediaWiki&rsquo;s discussion about moving to GitLab</a>. Guess what, they used Fowler&rsquo;s article as a basis for definitions in the discussion. It&rsquo;s curious how some persons&rsquo; outputs instantly become almost a &ldquo;standard.&rdquo;</li>
+<li>Uncle Bob <a href="http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html" class="external-link">explained SOLID yet again</a>. What got my attention was how <em>simple</em> was his explanation.</li>
+<li>No, I didn&rsquo;t switch to <a href="https://cormullion.github.io/pages/2020-07-26-JuliaMono/" class="external-link">JuliaMono font</a>, but please check it out if you need a font with an enormous range of characters.</li>
+<li>And take a look at draft for extending <a href="https://tools.ietf.org/html/draft-snell-search-method-02" class="external-link">HTTP <code>SEARCH</code> method&rsquo;s semantics</a>. Perhaps, one day we will forget about <code>GET</code> and <code>POST</code> queries?</li>
+<li>This tweet perfectly captures <a href="https://twitter.com/fredericl/status/1320764737576030215" class="external-link">my feelings about new Google redesign</a>.</li>
+</ul>
+<h2 id="no-code-api-platforms" >
+  <a href="#no-code-api-platforms">No-code API platforms</a>
+</h2>
+<p>One of the recurring theme in the API domain is <a href="https://increment.com/apis/how-low-code-api-integrations/" class="external-link">low&ndash; and no-code API solutions</a>, so-called <em>democratization of APIs</em>. Common examples are <a href="https://ifttt.com/" class="external-link">IFTTT</a> and <a href="https://zapier.com/" class="external-link">Zapier</a>.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Monthly collection of things that got me <del>thinking</del> <em>hmming</em>.</p>
+<h2 id="links-lunch" >
+  <a href="#links-lunch">Links lunch</a>
+</h2>
+<ul>
+<li>I was reading <a href="https://martinfowler.com/articles/branching-patterns.html" class="external-link">&ldquo;Patterns for Managing Source Code Branches&rdquo;</a> (which in itself is a great piece) when I saw
+<a href="https://www.mediawiki.org/wiki/GitLab_consultation#Outcome" class="external-link">MediaWiki&rsquo;s discussion about moving to GitLab</a>. Guess what, they used Fowler&rsquo;s article as a basis for definitions in the discussion. It&rsquo;s curious how some persons&rsquo; outputs instantly become almost a &ldquo;standard.&rdquo;</li>
+<li>Uncle Bob <a href="http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html" class="external-link">explained SOLID yet again</a>. What got my attention was how <em>simple</em> was his explanation.</li>
+<li>No, I didn&rsquo;t switch to <a href="https://cormullion.github.io/pages/2020-07-26-JuliaMono/" class="external-link">JuliaMono font</a>, but please check it out if you need a font with an enormous range of characters.</li>
+<li>And take a look at draft for extending <a href="https://tools.ietf.org/html/draft-snell-search-method-02" class="external-link">HTTP <code>SEARCH</code> method&rsquo;s semantics</a>. Perhaps, one day we will forget about <code>GET</code> and <code>POST</code> queries?</li>
+<li>This tweet perfectly captures <a href="https://twitter.com/fredericl/status/1320764737576030215" class="external-link">my feelings about new Google redesign</a>.</li>
+</ul>
+<h2 id="no-code-api-platforms" >
+  <a href="#no-code-api-platforms">No-code API platforms</a>
+</h2>
+<p>One of the recurring theme in the API domain is <a href="https://increment.com/apis/how-low-code-api-integrations/" class="external-link">low&ndash; and no-code API solutions</a>, so-called <em>democratization of APIs</em>. Common examples are <a href="https://ifttt.com/" class="external-link">IFTTT</a> and <a href="https://zapier.com/" class="external-link">Zapier</a>.</p>
+<p>Yesterday I stumbled upon this video by Curtis McHale:</p>
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/mfK3M9GHfZ0?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p>It shows a very specific productivity workflow for iOS, but the curious thing is how much of it is automated by glueing together different apps via <a href="https://support.apple.com/en-ca/guide/shortcuts/welcome/ios" class="external-link">shortcuts</a>. More eloquent writer could conjure the whole essay, but my thoughts so far are:</p>
+<ul>
+<li>I, &ldquo;lots-of-code&rdquo; person, wouldn&rsquo;t come up with such workflow. My routine automation tend to be one-to-one connections, whereas presented shortcut covers many apps.</li>
+<li>UI-based automation mechanisms are limited but provide inspiration via affordances (<a href="https://medium.com/swlh/for-a-more-creative-brain-embrace-constraints-5a588c8a8619" class="external-link">see also</a>).</li>
+<li>Having a native OS mechanism enables the widest possible audience.</li>
+<li>Services with apps shouldn&rsquo;t limit integration capabilities only to web APIs; custom URL schemes are perfect for local app-to-app interactions.</li>
+</ul>
+<h2 id="hi-youtube" >
+  <a href="#hi-youtube">Hi, YouTube</a>
+</h2>
+<p>One day, as we were talking about our <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">knowledge management systems</a> in the <a href="https://obsidian.md/community" class="external-link">Obsidian discord&rsquo;s</a> #russian channel, I decided to record a video to show mine.</p>
+<p>It&rsquo;s in Russian and it&rsquo;s bad xD</p>
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/n5klioVz7FM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p>Jeez, <em>this was hard</em>. Rerecording, cleaning up, cutting bits, and constantly, constantly hearing yourself in the process. And I didn&rsquo;t even try to do anything fancy, just plain screen cast with editing out all the &ldquo;eeeehm&rdquo;. I&rsquo;ll probably have to do the same in English, and the very thought terrifies me: it was painful enough to hear me speak in my native language. Guess how horrible will be that with the accent.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Blog redesign: phase 1</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/10/18/blog-redesign-phase-1/" hreflang="en"/>
+    <published>2020-10-19T00:09:15Z</published>
+    <updated>2020-10-19T00:09:15Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-10-19:/articles/2020/10/18/blog-redesign-phase-1/</id>
+    
+    <summary type="html"><![CDATA[<p><a href="https://www.aviskase.com/articles/2020/10/04/from-pelican-to-hugo/" class="internal-link">After migrating to Hugo</a>, I decided to do a redesign to freshen up colors and introduce <a href="https://gohugo.io/hugo-pipes/" class="external-link">Hugo Pipes</a>.</p>
+<p><em>Oh boi.</em> First phase took the entire week.</p>
+<h2 id="planning" >
+  <a href="#planning">Planning</a>
+</h2>
+<p>For planning and progress tracking, I used <a href="https://github.com/aviskase/aviskase.github.io/projects/1" class="external-link">a GitHub project</a>. This is a basic Kanban board with two &ldquo;To do&rdquo; columns per phase. The first phase was about making a base dirty skeleton, whereas the second phase will add bells and whistles.</p>]]></summary>
+    <content type="html"><![CDATA[<p><a href="https://www.aviskase.com/articles/2020/10/04/from-pelican-to-hugo/" class="internal-link">After migrating to Hugo</a>, I decided to do a redesign to freshen up colors and introduce <a href="https://gohugo.io/hugo-pipes/" class="external-link">Hugo Pipes</a>.</p>
+<p><em>Oh boi.</em> First phase took the entire week.</p>
+<h2 id="planning" >
+  <a href="#planning">Planning</a>
+</h2>
+<p>For planning and progress tracking, I used <a href="https://github.com/aviskase/aviskase.github.io/projects/1" class="external-link">a GitHub project</a>. This is a basic Kanban board with two &ldquo;To do&rdquo; columns per phase. The first phase was about making a base dirty skeleton, whereas the second phase will add bells and whistles.</p>
+<p>GitHub project&rsquo;s cards can have automated transitions between columns, for example, if you close the issue, it will go to &ldquo;Done.&rdquo; Unfortunately, when you work from branch, issues won&rsquo;t be closed by commits until you merge the develop branch in to the main one. In my case the main branch is used for output hosting, so redesign branch won&rsquo;t be merged there, thus, I had to close issues by hand. Meh.</p>
+<h2 id="rd" >
+  <a href="#rd">R&amp;D</a>
+</h2>
+<p>From the Hugo docs I learned about <a href="https://tailwindcss.com/" class="external-link">Tailwind CSS</a> and <a href="https://postcss.org/" class="external-link">PostCSS</a>. Tailwind CSS is kinda like Bootstrap, but without imposed styling; basically, a Lego constructor of utility classes. PostCSS is a tool for transforming CSS with various plugins like LESS/Sass-style syntaxes, autoprefixer, purger, etc. <a href="https://github.com/diegosanchezp/blog-portfolio" class="external-link">This repo</a> and <a href="https://github.com/leonardofaria/bento" class="external-link">this one</a> show how to integrate those tools into Hugo.</p>
+<p>Design inspiration came when I stumbled upon <a href="https://joshwcomeau.com/" class="external-link">Joshua Comeau&rsquo;s blog</a>. Yeah, I&rsquo;ve imitated <em>a lot</em> of its typography and color choices xD It also provided some tutorials, for example, <a href="https://joshwcomeau.com/css/styling-ordered-lists-with-css-counters/" class="external-link">how to style ordered lists</a>. I spent some time trying to find a similar free humanist sans-serif font, <a href="https://fonts.google.com/specimen/Nunito" class="external-link">Nunito</a> seems close, readable, and has Cyrillic characters (just in case). As for a monospaced font, the choice was obvious: <a href="https://www.jetbrains.com/lp/mono/" class="external-link">JetBrains Mono</a>.</p>
+<p>Tailwind CSS has <a href="https://tailwindcss-typography.netlify.app/" class="external-link">a plugin for typography</a>; I didn&rsquo;t use it, but copied <code>18rem</code> based margins, line-heights, and font sizes for some elements.</p>
+<p>For layout I used <code>grid</code> and <code>flexbox</code>. Last time I did any CSS these two weren&rsquo;t a common thing; you had to do a million of <code>div</code>&rsquo;s with <code>float</code>&rsquo;s and other weird things. I also wanted to use <code>grid</code> for minor bleeding elements <a href="https://joshwcomeau.com/css/full-bleed/" class="external-link">how it was described here</a>, but I didn&rsquo;t like the result: vertical margins don&rsquo;t collapse when you apply grid to child elements.</p>
+<div class="callout note"><p>BTW, <a href="https://raindrop.io/" class="external-link">raindrop.io</a> helped tremendously with gathering links and sources. I completely migrated there from <a href="http://getpocket.com/" class="external-link">Pocket</a>.</p>
+<p>It has a similar &ldquo;save for later&rdquo; experience, but also supports collections and comments. For example, for this project I created a collection &ldquo;blog redesign&rdquo; and added a comment for each link saved there to remember later why it was saved in the first place.</p></div>
+<p>Additional resources:</p>
+<ul>
+<li><a href="https://iconsvg.xyz/" class="external-link">SVG icons</a></li>
+<li><a href="https://toolness.github.io/accessible-color-matrix/" class="external-link">Tool for checking color palette&rsquo;s accessibility</a></li>
+<li><a href="https://stackoverflow.com/questions/11799236/should-i-use-px-or-rem-value-units-in-my-css/43131958#43131958" class="external-link">Use <code>em</code> for media queries and <code>rem</code> for everything else</a></li>
+<li><a href="http://pxtoem.com/" class="external-link"><code>px</code> to <code>em</code>/<code>rem</code> converter</a></li>
+</ul>
+<h2 id="next-steps" >
+  <a href="#next-steps">Next steps</a>
+</h2>
+<p>Basic sections for next work are:</p>
+<ul>
+<li>Bringing back old features: external vs. internal links, older/newer links.</li>
+<li>New features: dark theme, automatic generation of Open Graph image, header-level links.</li>
+<li>Cleaning up: splitting CSS into components, using plugin for <code>font-face</code> generation, gathering all hard-coded values into variables.</li>
+<li>Fixing bugs: display of <code>code</code> elements in links and headers (yup, you can spot it in this article) and others.</li>
+</ul>
+<p>I also think about ditching Tailwind CSS at this point. It&rsquo;s great for rapid prototyping, but it quickly became a mess of styling split between inline classes and the style sheet.</p>
+<p>And one more thing. I no longer like the selected color palette, lol. Links are too bright, block quotes are weird, the header is too cheesy. People say there are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors. I think &ldquo;choosing colors&rdquo; is the &ldquo;naming&rdquo; equivalent in design.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: August</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/09/01/hmms-august/" hreflang="en"/>
+    <published>2020-09-01T00:33:03Z</published>
+    <updated>2020-09-01T00:33:03Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-09-01:/articles/2020/09/01/hmms-august/</id>
+    
+    <summary type="html"><![CDATA[<p>This month&rsquo;s hmms were supposed to be easy peasy to do: just grab all new notes created in Obsidian, curate a bit, and, voilà, done. I even wrote <a href="https://pypi.org/project/obsidian-progress-report/" class="external-link">a small python tool</a>.</p>
+<p>Yeah, right. I keep forgetting that it&rsquo;s almost impossible to get file&rsquo;s <em>creation date</em> on Linux. There is <a href="https://unix.stackexchange.com/a/131347" class="external-link">a hacky way</a> for ext4, but in my case it didn&rsquo;t work: according to the script, almost all notes were created on Aug 18 o_O. Ok, lesson learned, now my notes will have yaml front matter with creation date =(</p>]]></summary>
+    <content type="html"><![CDATA[<p>This month&rsquo;s hmms were supposed to be easy peasy to do: just grab all new notes created in Obsidian, curate a bit, and, voilà, done. I even wrote <a href="https://pypi.org/project/obsidian-progress-report/" class="external-link">a small python tool</a>.</p>
+<p>Yeah, right. I keep forgetting that it&rsquo;s almost impossible to get file&rsquo;s <em>creation date</em> on Linux. There is <a href="https://unix.stackexchange.com/a/131347" class="external-link">a hacky way</a> for ext4, but in my case it didn&rsquo;t work: according to the script, almost all notes were created on Aug 18 o_O. Ok, lesson learned, now my notes will have yaml front matter with creation date =(</p>
+<p>After sifting through files manually, looks like these were the resources that grabbed my attention the most:</p>
+<ul>
+<li>Several articles by Marty Cagan:
+<ul>
+<li><a href="https://svpg.com/missionaries-vs-mercenaries/" class="external-link">&ldquo;Missionaries vs. Mercenaries&rdquo;</a></li>
+<li><a href="https://svpg.com/product-vs-feature-teams/" class="external-link">&ldquo;Product vs. Feature Teams&rdquo;</a></li>
+<li><a href="https://svpg.com/product-team-faq/" class="external-link">&ldquo;Product Team FAQ&rdquo;</a></li>
+<li><a href="https://svpg.com/four-big-risks/" class="external-link">&ldquo;The Four Big Risks&rdquo;</a></li>
+<li><a href="https://svpg.com/team-objectives-overview/" class="external-link">&ldquo;Team Objectives – Overview&rdquo;</a></li>
+</ul>
+</li>
+<li><a href="https://www.jrothman.com/mpd/2020/07/estimates-anchor-expectations-forecasts-include-uncertainty/" class="external-link">&ldquo;Estimates Anchor Expectations; Forecasts Include Uncertainty&rdquo;</a> by Johanna Rothman hits right! Don&rsquo;t like being language police, but some words do hinder understanding.</li>
+<li><a href="https://www.industrialempathy.com/posts/design-docs-at-google/" class="external-link">&ldquo;Design Docs at Google&rdquo;</a> by Malte Ubl.</li>
+<li><a href="https://pkglobal.com/blog/2020/06/api-interface-quadrant/" class="external-link">&ldquo;What is your API IQ?&rdquo;</a> by Lou Powell.</li>
+<li><a href="http://calmerthanyouare.org/2015/03/19/betteridges-law.html" class="external-link">&ldquo;Is Betteridge&rsquo;s law of headlines correct?&rdquo;</a> by Mats Linander. Just one more example of &ldquo;rule of thumb&rdquo; being incorrect.</li>
+<li><a href="https://www.youtube.com/watch?v=DGcs4tyey18" class="external-link">Andy Matuschak&rsquo;s livestream of his note-writing session</a>. This is for hardcore people. You know the meme with one big doggo and one smol doggo? Well, I felt quite smol watching Andy&rsquo;s thought process. <em>So deep.</em></li>
+<li>Have you seen <a href="https://maggieappleton.com/" class="external-link">Maggie Appleton&rsquo; blog</a>? She is an awesome illustrator, but she also started publishing articles in the form of &ldquo;digital garden&rdquo;. Looks like it&rsquo;s becoming <a href="https://www.christopherbiscardi.com/what-is-a-digital-garden" class="external-link">a trend</a>.</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Be chicken!</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/08/08/be-chicken/" hreflang="en"/>
+    <published>2020-08-08T23:42:54Z</published>
+    <updated>2020-08-08T23:42:54Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-08-08:/articles/2020/08/08/be-chicken/</id>
+    
+    <summary type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+<blockquote>
+<p>A Pig and a Chicken are walking down the road.</p>
+<p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
+<p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>]]></summary>
+    <content type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+<blockquote>
+<p>A Pig and a Chicken are walking down the road.</p>
+<p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
+<p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>
+<p>The Chicken responds: &ldquo;How about &lsquo;ham-n-eggs&rsquo;?&rdquo;</p>
+<p>The Pig thinks for a moment and says: &ldquo;No thanks. I&rsquo;d be committed, but you&rsquo;d only be involved.&rdquo;</p>
+</blockquote>
+<p>I bet I won&rsquo;t say anything new or profound, but it always weirds me out that the pig is considered somewhat more important than the chicken. Oh, right, because <em>it must die</em> to be useful.</p>
+<p>Well, I grew up in the 90s in Kazakhstan. Like many people we were relying on our village relatives for food, so ham and egg production is not an elegant metaphor but a real-life experience for me.</p>
+<p>Growing pigs is a <em>slow process</em> with a big <em>one-time payoff</em>. It&rsquo;s not free: you need to feed them and clean the place.  And you&rsquo;d better have a pair of pigs so that the production could be at least somewhat renewable. One committed pig is a splendid feast in the short term and hunger in the long term. Don&rsquo;t forget an emotional cost: pigs don&rsquo;t die by themselves. You will hear it. You will <em>smell</em> it.</p>
+<p>Chicken produces eggs <em>continuously</em>. You don&rsquo;t even need a rooster. Feeding is less involved, and you may practice a free-range approach to optimize costs. With a rooster, eggs can be fertilized, and production might grow even more.</p>
+<p>Thus, in my opinion, <strong>chicken-style contributors are better for a project</strong>. They bring <em>sustainability</em>. They create small <del>eggs</del>  incremental improvements. They are the force of kaizen.</p>
+<p>Whereas pigs are one-time Big Bang doers. An external contractor who came in, said you need to redo the entire workflow, got their paycheck, and left. That new employee who said: &ldquo;let&rsquo;s rewrite the system from scratch!&rdquo;. Don&rsquo;t get me wrong, sometimes big changes are healthy and bring value, but they are also riskier. You need to have a bunch of chickens to support the process.</p>
+<p>Another possible consequence for pigs is burnout. You did something big and you can&rsquo;t do anything else anymore. Oops.</p>
+<p>I often gravitate towards pig&rsquo;s tendencies since it&rsquo;s easier. It&rsquo;s also better for CV and performance evaluations, isn&rsquo;t it? ;) But in the end, as some say: we prefer being generalists; the same way I&rsquo;d say: let&rsquo;s be chickens who oink occasionally.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: July</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/08/04/hmms-july/" hreflang="en"/>
+    <published>2020-08-04T22:26:40Z</published>
+    <updated>2020-08-04T22:26:40Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-08-04:/articles/2020/08/04/hmms-july/</id>
+    
+    <summary type="html"><![CDATA[<h2 id="oops-i-have-nothing-to-share" >
+  <a href="#oops-i-have-nothing-to-share">Oops, I have nothing to share</a>
+</h2>
+<p>Since <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">migrating to Obsidian</a> for knowledge management, I&rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.</p>
+<p>Perhaps I should try to be more consistent and always write <a href="https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017" class="external-link">literature notes</a>. Alas, my current graph looks like that (obviously, I didn&rsquo;t have time to transfer older notes from other systems):</p>]]></summary>
+    <content type="html"><![CDATA[<h2 id="oops-i-have-nothing-to-share" >
+  <a href="#oops-i-have-nothing-to-share">Oops, I have nothing to share</a>
+</h2>
+<p>Since <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">migrating to Obsidian</a> for knowledge management, I&rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.</p>
+<p>Perhaps I should try to be more consistent and always write <a href="https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017" class="external-link">literature notes</a>. Alas, my current graph looks like that (obviously, I didn&rsquo;t have time to transfer older notes from other systems):</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_9bc3d4b0c561fa28.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png" alt="Obsidian graph view as of July 2020" defer>
+	</picture>
+	
+</figure></p>
+<p>In general, my topics of interests for this month were:</p>
+<ul>
+<li>jobs to be done framework</li>
+<li>jobs stories vs. user stories</li>
+<li>characters vs. personas</li>
+<li><a href="https://tyk.io/api-design-methodologies/" class="external-link">API design approaches</a></li>
+<li>relearning basic Lean &amp; Kanban principles like value stream mapping or my beloved 3Ms</li>
+</ul>
+<h2 id="no-longer-a-tester" >
+  <a href="#no-longer-a-tester">No longer a tester</a>
+</h2>
+<p>My official title has changed to engineer. But don&rsquo;t expect me to stop whining about testers&rsquo; community; I still talk to them xD</p>
+<p>Anyway, title change was a cumbersome thing. On one hand, <em>I don&rsquo;t care that much</em>. As long as people know me and understand that I&rsquo;m that weird glue person who just pokes into every process where waste is evident, I&rsquo;m fine. On the other hand, title matters for stupid things like initial introduction to the new team or hierarchical structures. Would I prefer something less generic than &ldquo;engineer&rdquo; that may accidentally focus on &ldquo;implementer&rdquo; hat instead of the &ldquo;analyst/designer&rdquo;? Yup. Did I have imperfect titles before? Yup. So, whatever.</p>
+<h2 id="first-learnings-from-wearing-implementer-hat" >
+  <a href="#first-learnings-from-wearing-implementer-hat">First learnings from wearing implementer hat</a>
+</h2>
+<p>I am mostly Python coder, though I have some almost forgotten experience with C++ and Java. But now I need to work with Typescript/Node.js code and it&rsquo;s been&hellip; interesting. The biggest problem coming from Python is that in JS there are a million ways to do the same thing which for me results in endless googling about what way is more idiomatic and recommended. The entire ecosystem around TS, JS, and Node seems to be more confusing. But, no arguments here, type system in TS is nuts. Like an additional language.</p>
+<p>I also enjoy working in Visual Studio Code, especially with its automagic connection inside docker containers. This blog is written in the PyCharm, but now I consider switching to VSCode because it has more markdown plugins.</p>
+<p>Another dev thingy: the blog was built using Travis CI. Recently I&rsquo;ve switched to GitHub Actions, and it was fairly easy to do. I&rsquo;d suggest to anyone who wants to learn DevOps-ish stuff to experiment on GitHub, since it&rsquo;s all in one place and their docs are user friendly.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Knowledge management tools</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" hreflang="en"/>
+    <published>2020-07-03T19:50:58Z</published>
+    <updated>2020-07-03T19:50:58Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-07-03:/articles/2020/07/03/knowledge-management-tools/</id>
+    
+    <summary type="html"><![CDATA[<p>As a knowledge worker, I spend a lot of time searching and experimenting with approaches for knowledge capture and storage. Currently, I play with the new shiny app, so I figured it&rsquo;s a perfect moment to systemize and reflect on tools and techniques I used until now.</p>
+<h2 id="handwritten" >
+  <a href="#handwritten">Handwritten</a>
+</h2>
+<p>I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.</p>]]></summary>
+    <content type="html"><![CDATA[<p>As a knowledge worker, I spend a lot of time searching and experimenting with approaches for knowledge capture and storage. Currently, I play with the new shiny app, so I figured it&rsquo;s a perfect moment to systemize and reflect on tools and techniques I used until now.</p>
+<h2 id="handwritten" >
+  <a href="#handwritten">Handwritten</a>
+</h2>
+<p>I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.</p>
+<p>One of the last examples from English&amp;French practice:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_474efbcfcfd35482.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.jpg" alt="Old handwritten notebook" defer>
+	</picture>
+	
+</figure></p>
+<p>Don&rsquo;t get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn&rsquo;t that atrocious, perhaps I&rsquo;d be more into bullet journals and scrapbooks, but alas, it still doesn&rsquo;t make them useful for anything else besides creativity outbursts.</p>
+<p>Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for <a href="https://adventofcode.com/" class="external-link">advent of code</a>.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes_hu_74ced862f51e9a06.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.jpg" alt="Untranslatable scribbles" defer>
+	</picture>
+	
+</figure></p>
+<p>Though, I prefer <a href="https://getrocketbook.com/" class="external-link">Rocketbook</a>, because it&rsquo;s like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_2ad1c8b2937b2623.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.jpg" alt="Brainstorming in Rocketbook" defer>
+	</picture>
+	
+</figure></p>
+<h2 id="digital" >
+  <a href="#digital">Digital</a>
+</h2>
+<p>If handwritten notes are useless, digital ones are too chaotic, because I experimented with too many formats.</p>
+<h3 id="non-structured" >
+  <a href="#non-structured">Non-structured</a>
+</h3>
+<p>The first iterations were a transposition of handwritten notes into digital via <em>Google Docs.</em></p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_11e8d1e5b8ee4a3e.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png" alt="Notes in the Google Docs" defer>
+	</picture>
+	
+</figure></p>
+<p>They are as ineffective as the real notebooks. Type once and forget.</p>
+<p>The direct opposite are <em>plain text notes</em> in <a href="https://www.sublimetext.com/" class="external-link">Sublime</a> with <a href="https://github.com/aziz/PlainNotes" class="external-link">PlainNotes</a> plugin. I use them almost every day for:</p>
+<ul>
+<li>transient notes like &ldquo;did this during the smoke test&rdquo;</li>
+<li>common copy pastes</li>
+</ul>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu_decce16aefa8e880.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png" alt="Sublime with PlainNotes" defer>
+	</picture>
+	
+</figure></p>
+<h3 id="mind-maps" >
+  <a href="#mind-maps">Mind maps</a>
+</h3>
+<p>At some point I learned about <em>mind mapping</em> and tried almost all installable applications for that, including:</p>
+<ul>
+<li><a href="https://www.xmind.net/" class="external-link">XMind</a>: UX is great, but features in the free tier are meh, especially in the last versions. Likes to eat memory.</li>
+<li><a href="https://www.freeplane.org/wiki/index.php/Home" class="external-link">Freeplane</a>: ugly. Very ugly. Unbearably ugly. But free, fast, and has tons of features.</li>
+<li><a href="https://www.mindomo.com/" class="external-link">Mindomo</a>: my latest selection, not free, yet has feature no one else has (more on that later).</li>
+</ul>
+<p>As of now I have an assortment of mind maps in various formats, like <a href="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/" class="internal-link">Freeplane</a> or XMind:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu_7ecaaaffcc714c83.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png" alt="XMind mind map overview" defer>
+	</picture>
+	
+</figure></p>
+<p>I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes.</p>
+<h3 id="outliners" >
+  <a href="#outliners">Outliners</a>
+</h3>
+<p>After that realization I discovered <em>outliners:</em> think of them as a marriage between mind maps and bullet lists. You can follow the same tree-like structure and fold/unfold branches, yet with more capabilities for formatting and longer text.</p>
+<p>The most well advertised outliner is <a href="https://workflowy.com/" class="external-link">WorkFlowy</a>, but I never tried it, because I&rsquo;m an awful human being and prefer free stuff xD So the next best alternatives are <a href="https://dynalist.io/" class="external-link">Dynalist</a> and <a href="https://checkvist.com/" class="external-link">Checkvist</a>. Both are fine. There are hundreds of others, some of them are open source and/or crazy and/or vim-like outliners, but as UX junkie, I used those two the most. The reasons to stop were:</p>
+<ul>
+<li>opposite of mind maps: hard to capture, easy to reference</li>
+<li>web-based</li>
+</ul>
+<p>That&rsquo;s why I moved to <a href="https://www.mindomo.com/" class="external-link">Mindomo</a>, because it has a killer feature: switch between mind map and outline view.</p>
+<h3 id="notebooks" >
+  <a href="#notebooks">Notebooks</a>
+</h3>
+<p>Around the same time as I discovered mind mapping, I saw the need for having long form note storage. Yeah, yeah, Evernote rules the stage. I had it, but the web version became slower and slower, and there was no Linux client, so I played with others. It&rsquo;s hard to remember their names though, I bet I tested more than a dozen.</p>
+<p>For example, <a href="https://simplenote.com/" class="external-link">Simplenote</a>. Nice, but very basic.</p>
+<p>Or extremely Chinese <a href="https://www.wiz.cn/" class="external-link">WizNote</a>.</p>
+<p>The last one ditched just a month ago was <a href="https://joplinapp.org/" class="external-link">Joplin</a>. It&rsquo;s very good, I do recommend it: open source, supports markdown, has a web clipper and an Android app with WebDAV sync. If all you need is more or less suitable Evernote alternative, it&rsquo;s ok. Spoilers: <em>I needed more.</em></p>
+<p>Before we go to the last section, notable mentions:</p>
+<ul>
+<li>LaTeX and RST formats: used them for a while, but Markdown is way easier and better supported.</li>
+<li><a href="https://www.onenote.com/" class="external-link">OneNote</a>: I heard it&rsquo;s fine if you are Windows user. Well, I am not :)</li>
+<li><a href="https://keep.google.com/" class="external-link">Google Keep</a>: perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:</li>
+</ul>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hu_b8645d07b302c7ed.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png" alt="Google Keep with transient lists" defer>
+	</picture>
+	
+</figure></p>
+<h3 id="zettels" >
+  <a href="#zettels">Zettels</a>
+</h3>
+<p>Ok, that&rsquo;s a wrong term, but it encapsulates what differs from common notebooks the best. <a href="https://en.wikipedia.org/wiki/Zettelkasten" class="external-link">Zettelkasten</a> is a note-taking method that relies on linking. Overly simplified process is:</p>
+<ul>
+<li>create basic and the smallest possible notes (one concept per note)</li>
+<li>link notes with each other</li>
+<li>group notes thematically</li>
+</ul>
+<p>There are different variations and similar methods, but all of them are based on ability to form concept maps (non-hierarchical storage). Checkout <a href="https://notes.andymatuschak.org/About_these_notes" class="external-link">Andy Matuschak&rsquo;s notes</a> for example.</p>
+<p>The most crucial part is to trace links and backlinks for each note:</p>
+<ul>
+<li>links: note A links to notes B, C, D</li>
+<li>backlinks: note A is linked from notes E, F, J</li>
+</ul>
+<p>Usually it&rsquo;s easy to add links, but cumbersome to add backlinks, because as soon as you link A to B you need to open B and add a link to A. That&rsquo;s a wiki approach.</p>
+<p>There are apps that simplify the process, like <a href="https://obsidian.md/" class="external-link">Obsidian</a>. It has other neat features: link visualization with a graph, note/file transclusion (aka &ldquo;embedding&rdquo;), and tagging.</p>
+<p>I&rsquo;ve started slowly migrating my non-work notes there, and it&rsquo;s hard. You get used to rigid hierarchies based on folders. You don&rsquo;t have to stop using them, but it makes sense with approaches like <a href="https://github.com/nickmilo/IMF-v3" class="external-link">@nickmilo&rsquo;s</a> (which I follow loosely).</p>
+<h2 id="non-text-content" >
+  <a href="#non-text-content">Non-text content</a>
+</h2>
+<p>Only digital:</p>
+<ul>
+<li><a href="https://inkscape.org/" class="external-link">Inkscape</a>: my go-to drawing app since I&rsquo;m better with vector graphics.</li>
+<li><a href="https://krita.org" class="external-link">Krita</a>: when I learn how to draw with my graphic tablet xD</li>
+<li><a href="https://excalidraw.com/" class="external-link">Excalidraw</a>: discovered via Obsidian&rsquo;s Discord. Will use it for graphs.</li>
+<li>LibreOffice Impress: not a drawing app, but for those situations when I need a presentation.</li>
+<li><a href="https://shutter-project.org/" class="external-link">Shutter</a>: screenshots with annotations, more than enough for everyday usage. Or <a href="https://getsharex.com/" class="external-link">ShareX</a> when on Windows.</li>
+<li><a href="https://www.maartenbaert.be/simplescreenrecorder/" class="external-link">SimpleScreenRecorder</a> for short screencasts. People who use GIF for that: <em>burn in hell.</em></li>
+</ul>
+<h2 id="summary" >
+  <a href="#summary">Summary</a>
+</h2>
+<p>Let&rsquo;s summarize. Handwritten notes:</p>
+<ul>
+<li>use whiteboarding format (can easily &ldquo;edit&rdquo; by cleaning)</li>
+<li>transient, not for long-term storage</li>
+<li>for generating ideas or designs</li>
+<li>for small tasks during the day</li>
+</ul>
+<p>One important exception is recipes. All are handwritten on small cards and stored in the box. The reason is to pull one out and stick to the fridge with a magnet. I don&rsquo;t have much recipes anyway, so searching and storage aren&rsquo;t a problem.</p>
+<p>For digital:</p>
+<ul>
+<li>Mindomo when I <em>really</em> want a mind map. Something tells me I won&rsquo;t.</li>
+<li>Sublime PlainNotes for transient notes and copy pastes.</li>
+<li>Google Keep for semi-transient lists and inbox.</li>
+<li>Obsidian for anything else, except overly work related (I prefer to experiment with it more on the free tier before paying for commercial license).</li>
+</ul>
+<p>And for non-text content, imagine the entire section <em>transcluded</em> here ;)</p>
+<p>The last important bit: almost all my data is backed up in some way. Google Disk, Yandex.Drive, and OneDrive. I once lost a hard drive with my end-of-semester projects and 300GB of carefully collected music (which I never recovered). Make backups. And backup some backups.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: June</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/07/01/hmms-june/" hreflang="en"/>
+    <published>2020-07-01T19:10:45Z</published>
+    <updated>2020-07-01T19:10:45Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-07-01:/articles/2020/07/01/hmms-june/</id>
+    
+    <summary type="html"><![CDATA[<p>Time for the list of things I found interesting/amusing this month.</p>
+<h2 id="link-soup" >
+  <a href="#link-soup">Link soup</a>
+</h2>
+<p>Let&rsquo;s start with the good news: <a href="https://www.openapis.org/blog/2020/06/18/openapi-3-1-0-rc0-its-here" class="external-link">OpenAPI 3.1.0 RC is out!</a>. Webhooks and reconciliation with JSON Schema are the highlights of the version. I hope tooling support won&rsquo;t lag this time.</p>
+<p>I really liked <a href="https://techleadership.substack.com/p/chance-meetings-asynchronous-collaboration" class="external-link">the article by Daniel Jarjoura</a> on communications. For example, I didn&rsquo;t know that crowd brainstorming is proved to be less effective.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Time for the list of things I found interesting/amusing this month.</p>
+<h2 id="link-soup" >
+  <a href="#link-soup">Link soup</a>
+</h2>
+<p>Let&rsquo;s start with the good news: <a href="https://www.openapis.org/blog/2020/06/18/openapi-3-1-0-rc0-its-here" class="external-link">OpenAPI 3.1.0 RC is out!</a>. Webhooks and reconciliation with JSON Schema are the highlights of the version. I hope tooling support won&rsquo;t lag this time.</p>
+<p>I really liked <a href="https://techleadership.substack.com/p/chance-meetings-asynchronous-collaboration" class="external-link">the article by Daniel Jarjoura</a> on communications. For example, I didn&rsquo;t know that crowd brainstorming is proved to be less effective.</p>
+<p>Cool little apps I was recommended:</p>
+<ul>
+<li>For drawing: <a href="https://excalidraw.com/" class="external-link">Excalidraw</a></li>
+<li>For text expansion: <a href="https://espanso.org/" class="external-link">Espanso</a></li>
+<li>For knowledge management: <a href="https://obsidian.md/" class="external-link">Obsidian</a> (more about it in the next article)</li>
+</ul>
+<h2 id="positioning-change" >
+  <a href="#positioning-change">Positioning change</a>
+</h2>
+<p>And, finally, the regular column &ldquo;I kinda don&rsquo;t like testers.&rdquo; This month I tracked all testers-centric communities and articles to determine how useful these sources of information are for me. The result was as expected: noise to signal ratio was appalling. I&rsquo;m tired of:</p>
+<ul>
+<li>Rehashing of the same ideas <em>by the same authors</em> for years.</li>
+<li>Questions that will never pass <a href="https://stackoverflow.com/help/how-to-ask" class="external-link">Stack Overflow filter</a>.</li>
+<li>&ldquo;Should testers learn to code?&rdquo; debate specifically.</li>
+<li>Being overly dramatic about the slightest differences in opinion. The schools of testing, yadda-yadda.</li>
+<li>Over-glorifying the tester&rsquo;s role and knowledge (common in certain groups).</li>
+<li>Jokes and memes about us (testers) vs. them (devs) (typical amongst juniors and junior oriented resources).</li>
+</ul>
+<p>Thus, I made some decision:</p>
+<p><strong>1.</strong> I left RST and MoT (and <a href="https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one" class="external-link">its abolished sister group</a>) slack communities. Stayed only in the ABT, because it&rsquo;s smaller and more enjoyable.</p>
+<p><strong>2.</strong> Won&rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS + ABT podcast is more than enough.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu_a99b6a2c1031af7.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category" defer>
+	</picture>
+	
+</figure></p>
+<p><strong>3.</strong> Won&rsquo;t save articles into reading queue &ldquo;just in case&rdquo;, if it&rsquo;s obvious from the title and the first paragraph that the author is repeating themselves.</p>
+<p><strong>4.</strong> Change &ldquo;About me&rdquo; page to be less role specific. I wrote it a long time ago.</p>
+<p><strong>5.</strong> Do I contribute to the same noise? Perhaps. Can&rsquo;t promise, but I&rsquo;ll try not to. Obviously, these <em>Hmms</em> aren&rsquo;t really original content, but <a href="https://eugeneyan.com/writing/reading-note-taking-writing/" class="external-link">written reflection is a great way to process information</a>, sorry!</p>
+<h2 id="ps-the-saddest-youtubes-recommendation" >
+  <a href="#ps-the-saddest-youtubes-recommendation">P.S. the saddest YouTube&rsquo;s recommendation</a>
+</h2>
+<p>YouTube recommended me to rewatch <a href="https://www.youtube.com/watch?v=q6oTziHKM_c" class="external-link">the opening sequence to the &ldquo;Valerian and the City of a Thousand Planets&rdquo;</a>. The movie is forgettable, but this small part is a masterful tearjerker, <em>especially now.</em></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: May</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/06/02/hmms-may/" hreflang="en"/>
+    <published>2020-06-02T20:33:43Z</published>
+    <updated>2020-06-02T20:33:43Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-06-02:/articles/2020/06/02/hmms-may/</id>
+    
+    <summary type="html"><![CDATA[<p>This was a slow month in the sense of discovering new.</p>
+<p>I finished the <a href="https://learn.particular.net/courses/adsd-online" class="external-link">&ldquo;Advanced Distributed Systems Design&rdquo; course</a>.
+CQRS, DDD, messaging patterns: doesn&rsquo;t sound like this course is in any way helpful for testers.
+Yet being <em>just a tester</em> is dull. Exploring such courses helps to diminish the hardest
+<a href="https://wiki.c2.com/?OrdersOfIgnorance" class="external-link">order of ignorance</a> &ldquo;I don&rsquo;t know what I don&rsquo;t know&rdquo;. And as I&rsquo;m wearing an
+API designer hat more and more, learning about broader architectural stuff is essential.</p>]]></summary>
+    <content type="html"><![CDATA[<p>This was a slow month in the sense of discovering new.</p>
+<p>I finished the <a href="https://learn.particular.net/courses/adsd-online" class="external-link">&ldquo;Advanced Distributed Systems Design&rdquo; course</a>.
+CQRS, DDD, messaging patterns: doesn&rsquo;t sound like this course is in any way helpful for testers.
+Yet being <em>just a tester</em> is dull. Exploring such courses helps to diminish the hardest
+<a href="https://wiki.c2.com/?OrdersOfIgnorance" class="external-link">order of ignorance</a> &ldquo;I don&rsquo;t know what I don&rsquo;t know&rdquo;. And as I&rsquo;m wearing an
+API designer hat more and more, learning about broader architectural stuff is essential.</p>
+<p>Another &ldquo;merging the trenches&rdquo; experience was
+<a href="https://blogs.mulesoft.com/dev/design-dev/intentional-api-consumer-experience/" class="external-link">an article about using user types and personas for API design</a>.
+Personas are a nifty tool for any team, but for me, it&rsquo;s been difficult to apply them consistently.
+This is something I still need to learn and practice.</p>
+<p><em>In these uncertain times, uncertainty is certain ©.</em> Right before the quarantine, I ordered a book
+<a href="http://shop.oreilly.com/product/0636920201755.do" class="external-link">Continuous API Management</a>. Well, it arrived. Today. On the
+serious note, I&rsquo;m happy to start reading it, though I could have it finished in e-book format
+while waiting xD</p>
+<p>And a small off-topic, my other purchase this month was a drawing tablet
+<a href="https://www.huion.com/pen_tablet/Inspiroy/H640P.html" class="external-link">Huion H640P</a>. The good thing about it is that there are
+proper drivers for Linux. And it&rsquo;s cheap =) Bad thing is that I&rsquo;ve just upgraded to Ubuntu 20.04 with 5.4 kernel
+that is buggy and prevents these drivers from being installed. Oopsie. So, I&rsquo;m waiting until 5.6 kernel is stable
+enough or  5.4 is fixed to fully dive into e-drawing. At the very least I&rsquo;d like to draw doodles and diagrams with it,
+and maybe, MAYBE, actually learn to draw.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: April</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/05/02/hmms-april/" hreflang="en"/>
+    <published>2020-05-02T23:43:38Z</published>
+    <updated>2020-05-02T23:43:38Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-05-02:/articles/2020/05/02/hmms-april/</id>
+    
+    <summary type="html"><![CDATA[<h2 id="learning" >
+  <a href="#learning">Learning</a>
+</h2>
+<p>One of the good things to emerge during the corona times is more educational opportunities.</p>
+<p>For example, you can (and perhaps should) check the
+<a href="https://learn.particular.net/courses/adsd-online" class="external-link">&ldquo;Advanced Distributed Systems Design&rdquo; course</a> by Udi Dahan.</p>
+<p>Another way to satisfy knowledge thirst is to attend a virtual conference:</p>
+<ul>
+<li><a href="https://apithedocs.org/" class="external-link">API The Docs</a> hosts bite-sized virtual events with discussion opportunities.</li>
+<li><a href="https://www.asyncapiconf.com/" class="external-link">AsyncAPI</a> has finished already, but you can watch it on YouTube.</li>
+<li><a href="https://www.onlinetestconf.com/" class="external-link">OnlineTestConf</a> is soon. I&rsquo;m particularly excited about
+&ldquo;The Lessons we can Learn from the Aviation Industry&rdquo; by Conor Fitzgerald.</li>
+</ul>
+<h2 id="new-font" >
+  <a href="#new-font">New font</a>
+</h2>
+<p>Any &ldquo;IT person&rdquo; should have a favorite monospaced font. Except for those weirdos who prefer non-monospaced.
+I wasn&rsquo;t very original in this matter and used <a href="https://github.com/tonsky/FiraCode" class="external-link">Fira Code</a> because it has
+ligatures and proper support for Cyrillic.</p>]]></summary>
+    <content type="html"><![CDATA[<h2 id="learning" >
+  <a href="#learning">Learning</a>
+</h2>
+<p>One of the good things to emerge during the corona times is more educational opportunities.</p>
+<p>For example, you can (and perhaps should) check the
+<a href="https://learn.particular.net/courses/adsd-online" class="external-link">&ldquo;Advanced Distributed Systems Design&rdquo; course</a> by Udi Dahan.</p>
+<p>Another way to satisfy knowledge thirst is to attend a virtual conference:</p>
+<ul>
+<li><a href="https://apithedocs.org/" class="external-link">API The Docs</a> hosts bite-sized virtual events with discussion opportunities.</li>
+<li><a href="https://www.asyncapiconf.com/" class="external-link">AsyncAPI</a> has finished already, but you can watch it on YouTube.</li>
+<li><a href="https://www.onlinetestconf.com/" class="external-link">OnlineTestConf</a> is soon. I&rsquo;m particularly excited about
+&ldquo;The Lessons we can Learn from the Aviation Industry&rdquo; by Conor Fitzgerald.</li>
+</ul>
+<h2 id="new-font" >
+  <a href="#new-font">New font</a>
+</h2>
+<p>Any &ldquo;IT person&rdquo; should have a favorite monospaced font. Except for those weirdos who prefer non-monospaced.
+I wasn&rsquo;t very original in this matter and used <a href="https://github.com/tonsky/FiraCode" class="external-link">Fira Code</a> because it has
+ligatures and proper support for Cyrillic.</p>
+<p>Any &ldquo;IT person&rdquo; should also have a favorite IDE. Mine is PyCharm by JetBrains. Recently an amazing thing has happened:
+JetBrains released their own monospaced font, <a href="https://www.jetbrains.com/lp/mono/" class="external-link">JetBrains Mono</a>. The key feature is
+an increased height of lowercase letters. Love it!</p>
+<h2 id="fam0us" >
+  <a href="#fam0us">Fam0us</a>
+</h2>
+<p>I participated in <a href="https://www.angryweasel.com/ABTesting/abt-343-yuliya-bagriy-aviskase/" class="external-link">the podcast hosted by Alan Page</a>.</p>
+<p>In retrospect, I should have &ldquo;rehearsed&rdquo; a bit more. For example, I somehow was able to forget the phrase
+<em>open-book management.</em>  Or some answers could be more laconic and concise. Nevertheless, it was a great experience.</p>
+<h2 id="visible-work" >
+  <a href="#visible-work">Visible work</a>
+</h2>
+<p>I slowly write <a href="https://netgovern.github.io/api-guidelines" class="external-link">our API guidelines</a>. Still work in progress,
+but it&rsquo;s cool to have bits of your work visible and perhaps at some point serving others.
+My admiration for companies who published their guidelines in the same matter
+grew immensely: Adidas, PayPal, Heroku, Microsoft, Zalando, etc. It really helps to be able to see real artifacts and
+not just generic NDA-sanitized dev blog posts.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: March</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/03/31/hmms-march/" hreflang="en"/>
+    <published>2020-03-31T20:24:05Z</published>
+    <updated>2020-03-31T20:24:05Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-31:/articles/2020/03/31/hmms-march/</id>
+    
+    <summary type="html"><![CDATA[<p>Coronavirus-free edition!</p>
+<h2 id="top-x-videos-and-readings" >
+  <a href="#top-x-videos-and-readings">Top X videos and readings</a>
+</h2>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
+	</picture>
+	
+</figure></p>
+<ul>
+<li>Erik Wilde started a video series about API design,
+and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
+<li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
+</ul>
+<blockquote>
+<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+preferred Windows-based server environment.
+I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Coronavirus-free edition!</p>
+<h2 id="top-x-videos-and-readings" >
+  <a href="#top-x-videos-and-readings">Top X videos and readings</a>
+</h2>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
+	</picture>
+	
+</figure></p>
+<ul>
+<li>Erik Wilde started a video series about API design,
+and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
+<li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
+</ul>
+<blockquote>
+<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+preferred Windows-based server environment.
+I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>
+</blockquote>
+<ul>
+<li>Adidas has awesome API guidelines and recently they&rsquo;ve published <a href="https://github.com/adidas/api-pm-training" class="external-link">their API training for PMs</a>. If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
+business-y for me to comprehend without hands-on experience.</li>
+<li>Almost non-API topic. Why you should always carefully read RFCs and standards: in this case,
+<a href="https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/" class="external-link">what is the proper input type for numbers</a>.</li>
+</ul>
+<h2 id="testing-vs-dx" >
+  <a href="#testing-vs-dx">Testing vs DX</a>
+</h2>
+<p>While I was reading <a href="https://nordicapis.com/why-your-api-needs-a-dedicated-developer-experience-team/" class="external-link">an article about DX teams</a>,
+it came to me that I&rsquo;m (at least partially) not a tester. I mean, I knew it, but I didn&rsquo;t have a proper name for that.</p>
+<p>So, what does DX specialist do?</p>
+<ul>
+<li>API design</li>
+<li>QA. Clarification: not the obvious &ldquo;I&rsquo;m capable of sending requests&rdquo; part, but more about contract testing, linting, style guides, and docs.</li>
+<li>Tooling</li>
+<li>Developer relations</li>
+</ul>
+<p>What&rsquo;s funny is that if you read that article carefully you won&rsquo;t find any mentions of testers.
+None. There are tech writers, advocates, but no testers whatsoever. In fact, in any non-Postman induced article about API
+there are no presence of testers. <em>And it&rsquo;s totally fine.</em></p>
+<h2 id="remote-work" >
+  <a href="#remote-work">Remote work</a>
+</h2>
+<p>Sorry, it&rsquo;s not totally coronavirus-free edition. Almost everyone works remotely now, so there is an avalanche of
+articles about how to work from home. The company I dearly love even decided to offer <em>a payed</em> conference (frack you).</p>
+<p>I&rsquo;ve started my career as a fully remote worker and was there for three years. Next two years I was working from home
+at least one day a week, often more. One would say I have immense amount of tips and tricks to share, but <em>I don&rsquo;t</em>.
+Because I&rsquo;ve never been accustomed to the office work in the first place. I had to learn how to work NOT from home.</p>
+<p>All the sad things aside, it&rsquo;s curious how much this experience can change companies in the positive way.
+Some didn&rsquo;t even consider before that their work can be done remotely. Perhaps we will see a surge of remote-friendly
+and/or flexible hours positions (which are rare at the moment)?</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: February</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/03/08/hmms-february/" hreflang="en"/>
+    <published>2020-03-08T00:35:17Z</published>
+    <updated>2020-03-08T00:35:17Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-03-08:/articles/2020/03/08/hmms-february/</id>
+    
+    <summary type="html"><![CDATA[<p>It&rsquo;s March already, time to summarize February!</p>
+<h2 id="apis-trainings" >
+  <a href="#apis-trainings">APIs trainings</a>
+</h2>
+<p>I did a small company-wide training about APIs. Here is <a href="https://github.com/aviskase/trucs/blob/master/api101.pdf" class="external-link">the main deck</a>
+and <a href="https://github.com/aviskase/trucs/blob/master/api_salad.pdf" class="external-link">supplementary deck</a> left from dev lunch&amp;learn.
+Anyone is free to use it and if you have questions just ping me somewhere. They don&rsquo;t have notes, so can be pretty
+cryptic, but I am inclined to continue improving them to use for new hires.</p>]]></summary>
+    <content type="html"><![CDATA[<p>It&rsquo;s March already, time to summarize February!</p>
+<h2 id="apis-trainings" >
+  <a href="#apis-trainings">APIs trainings</a>
+</h2>
+<p>I did a small company-wide training about APIs. Here is <a href="https://github.com/aviskase/trucs/blob/master/api101.pdf" class="external-link">the main deck</a>
+and <a href="https://github.com/aviskase/trucs/blob/master/api_salad.pdf" class="external-link">supplementary deck</a> left from dev lunch&amp;learn.
+Anyone is free to use it and if you have questions just ping me somewhere. They don&rsquo;t have notes, so can be pretty
+cryptic, but I am inclined to continue improving them to use for new hires.</p>
+<p>The most important feedback was from members of marketing and tech writing teams. I failed to properly address &ldquo;why&rsquo;s&rdquo;
+and they felt a bit lost. Which is a great reminder that by being constantly in the &ldquo;dev soup,&rdquo; you falsely assume that everyone
+understands how immense APIs&rsquo; power and impact are.</p>
+<h2 id="readings" >
+  <a href="#readings">Readings</a>
+</h2>
+<p><a href="https://www.canada.ca/en/government/system/digital-government/modern-emerging-technologies/government-canada-standards-apis.html" class="external-link">Government of Canada published standards on APIs</a>.
+Not perfect, but it&rsquo;s great to see not only corporates showing their development practices but also the public sector.</p>
+<p>Curity suggested a simple <a href="https://curity.io/resources/architect/api-security/the-api-security-maturity-model/" class="external-link">&ldquo;API security maturity model</a>.
+All models are wrong, but some are useful, including this one.</p>
+<p>While <a href="https://www.a-sisyphean-task.com/2020/01/why-we-need-to-get-rid-of-thought.html?goal=0_02cca1920b-49fb91397f-289479173&amp;mc_cid=49fb91397f&amp;mc_eid=8933fe8877" class="external-link">&ldquo;Why we need to get rid of thought leaders&rdquo;</a>
+article by Adam Knight makes interesting points, I actually hoped it to cover &ldquo;the leaders&rdquo; problem. And this segues us
+to the next section&hellip;</p>
+<h2 id="leaders-and-their-followers" >
+  <a href="#leaders-and-their-followers">Leaders and their followers</a>
+</h2>
+<p>Perhaps I&rsquo;m stating the obvious fact, but here it is: do not ever assume that appreciating content created
+by the person correlates with wanting to be/stay a part of their community. Because true meanings are shown in
+<a href="https://www.ted.com/talks/derek_sivers_how_to_start_a_movement/transcript?language=en" class="external-link">the interactions between the leader and the followers</a>.</p>
+<p>As I still have respect and hope for innovations from those people, I will keep it general. There are two communities,
+both sparkled by well-known persons. I was eager to join both and quickly enough found them almost at odds. And
+while one is chill and mildly sarcastic about it, the other keeps being almost aggressive. The biggest
+problem with the second community <em>for me</em> is that the most vocal followers act as non-debatable intellectuals
+who paint everything in absolutes and this behavior is <em>supported by their leaders.</em>  Well. You never know until you
+dive in.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hmms: January</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2020/02/01/hmms-january/" hreflang="en"/>
+    <published>2020-02-01T23:16:38Z</published>
+    <updated>2020-02-01T23:16:38Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-02-01:/articles/2020/02/01/hmms-january/</id>
+    
+    <summary type="html"><![CDATA[<p>Hi! Weekly hmms are transformed into monthly hmms, mostly because writing mandatory weekly posts is too cumbersome
+and leaves no time to do more thematic writing. Of course, there are other reasons too. Almost all winter holidays
+I had a cold (TWICE!) and being ill isn&rsquo;t the best motivation ever.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Hi! Weekly hmms are transformed into monthly hmms, mostly because writing mandatory weekly posts is too cumbersome
+and leaves no time to do more thematic writing. Of course, there are other reasons too. Almost all winter holidays
+I had a cold (TWICE!) and being ill isn&rsquo;t the best motivation ever.</p>
+<h2 id="knowledge-bits" >
+  <a href="#knowledge-bits">Knowledge bits</a>
+</h2>
+<p>I didn&rsquo;t read or watch much, but some of the interesting findings were:</p>
+<ul>
+<li><a href="https://servicemesh.io/" class="external-link">A good site&amp;article about service meshes</a> Be wary though, the author is quite opinionated.</li>
+<li><a href="https://www.youtube.com/watch?v=O8Hx4tFW4PU" class="external-link">&ldquo;Crafting effective 1:1s for distributed teams&rdquo;</a> talk by Spencer Norman.</li>
+<li><a href="https://phil.tech/api/2019/12/28/modern-web-api-frameworks/" class="external-link">What Phil Sturgeon expects from modern Web API frameworks</a>. He expects a lot =)</li>
+<li>Great summary about <a href="https://martinfowler.com/articles/on-pair-programming.html" class="external-link">pair programming by Birgitta Böckeler and Nina Siessegger</a>.</li>
+<li>A very old article <a href="https://pdfs.semanticscholar.org/7eee/629b22cd3db63296cac13a0c37cb0a7235f6.pdf" class="external-link">by Robert L. Glass on fundamental software engineering facts</a>. Perhaps some of the facts are questionable, but &ldquo;Reviews and inspections&rdquo; section is awesome.</li>
+</ul>
+<h2 id="work-things" >
+  <a href="#work-things">Work things</a>
+</h2>
+<p>The company I work for was recognized as one of <a href="https://reviews.canadastop100.com/top-employer-netgovern" class="external-link">Montreal&rsquo;s top employers</a>.
+While I&rsquo;m quite skeptical of such ratings and rewards, I know for sure that <em>we are better than some other winners.</em></p>
+<h2 id="gaming" >
+  <a href="#gaming">Gaming</a>
+</h2>
+<p>Ouch. Even though I was near computers from birth, I never was a gamer. I played only:</p>
+<ul>
+<li>old Tomb Raiders (up until missions with driving: I suck at it),</li>
+<li>Lineage2 (started playing because classmates were talking about it, but it&rsquo;s impossible to solo there)</li>
+<li>Dofus / Wakfu (to learn French)</li>
+</ul>
+<p>Strictly speaking, my approach is more of a &ldquo;watcher.&rdquo; I watched my father play Wolfenstein, Doom, and Quake. And I&rsquo;m
+subscribed to <a href="https://www.youtube.com/user/SovietWomble" class="external-link">SovietWomble channel</a>. BTW, it&rsquo;s really awesome, once you watch
+one or two videos and understand relationships between Soviet, Cy, and others, you&rsquo;d perceive these videos not as some
+gaming stream cuts, but as a real-life sitcom. Honestly, way funnier than TBBT.</p>
+<p>Recently I&rsquo;ve read an article about space/volume perception. Usually, you learn how to properly calculate your own
+&ldquo;body volume&rdquo; and other objects&rsquo; during childhood. In my case, it didn&rsquo;t work out well, so I still have trouble navigating
+narrow spaces. Combined with slow conscious reaction time it&rsquo;s a no-no for driving. Yet, apparently, computer games
+prove to be very effective in improving volume perception and reaction times for adults.</p>
+<p>I also wanted to do something other than watching YouTube during the braindead moments. So, I&rsquo;ve decided to find a
+solo-friendly game, with a big open world, not hardcore,
+and preferable MMO: even though I prefer to play by myself, there is something comforting in seeing real people
+around and occasionally helping others (or receiving help). The perfect choice is The Elder Scrolls Online. The other
+recommended game is Star Wars: The Old Republic, but it&rsquo;s too much Star Wars today. And TES has great lore.
+Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for people interested in sci-fi &amp; fantasy genres.</p>
+<p>FYI, I play on the PC NA server ;)</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Weekly hmms: API practices, Yegor Bugaenko, culture</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/" hreflang="en"/>
+    <published>2019-12-21T19:33:46Z</published>
+    <updated>2019-12-21T19:33:46Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-21:/articles/2019/12/21/weekly-hmms-api-practices-yegor-bugaenko-culture/</id>
+    
+    <summary type="html"><![CDATA[<h2 id="api-practices-if-you-hate-your-customers" >
+  <a href="#api-practices-if-you-hate-your-customers">API practices if you hate your customers</a>
+</h2>
+<p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
+customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
+it is easier to recall bad patterns and behaviors.</p>
+<blockquote>
+<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
+Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
+my answer would not be good enough for whoever was judging my application.
+In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo;
+A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor SWAT teams,
+but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p>]]></summary>
+    <content type="html"><![CDATA[<h2 id="api-practices-if-you-hate-your-customers" >
+  <a href="#api-practices-if-you-hate-your-customers">API practices if you hate your customers</a>
+</h2>
+<p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
+customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
+it is easier to recall bad patterns and behaviors.</p>
+<blockquote>
+<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
+Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
+my answer would not be good enough for whoever was judging my application.
+In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo;
+A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor SWAT teams,
+but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p>
+</blockquote>
+<p>This particular quote hit hard:</p>
+<blockquote>
+<p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
+to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p>
+</blockquote>
+<p>Once we tried to research our competitors and we couldn&rsquo;t find even screenshots. How the hell
+a potential customer is supposed to evaluate your product if you hide <strong>everything</strong>?</p>
+<h2 id="yegor-bugaenko-on-qa-vs-testing" >
+  <a href="#yegor-bugaenko-on-qa-vs-testing">Yegor Bugaenko on QA vs testing</a>
+</h2>
+<p>Yegor Bugaenko presented <a href="https://www.youtube.com/watch?v=jZitXMQaXvE" class="external-link">&ldquo;Quality Assurance vs. Testing&rdquo; on QA Fest 2019</a>.</p>
+<p>And I am disappointed.</p>
+<p>For those who don&rsquo;t know Yegor, he is famous for controversial <a href="https://www.xdsd.org/" class="external-link">eXtremely Distributed Software Development</a>
+methodology. One of the ideas is to pay only for closed tasks.</p>
+<p>So, I grabbed popcorn and expected blood and gore. Didn&rsquo;t happen, it was dull, except for one or two topics.
+The talk started with an obvious difference between QA and testing and moved to explain the importance of
+quantitative metrics to measure tester&rsquo;s productivity. Unfortunately, he suggested the most stupid metric ever: the
+number of bugs logged. I also was annoyed by his notion that testers should not talk to devs much and must log every issue.
+My practice shows that working with dev together and fixing bugs as we go is way more productive and requires less time.
+Perhaps, his ideas works in XDSD, where everyone is expendable, but I hope others won&rsquo;t borrow them into normal agile teams.</p>
+<h2 id="cultures-and-sci-fi" >
+  <a href="#cultures-and-sci-fi">Cultures and sci-fi</a>
+</h2>
+<p>Speaking of teams.</p>
+<p>Prelude: I&rsquo;m a fan of space sci-fi series. Not a nerd, but I watched my share:</p>
+<ul>
+<li>Star Trek: TOS (bits), TNG, DS9, Voyager, Enterprise</li>
+<li>LEXX</li>
+<li>Battlestar Galactica (with spin-offs, except Caprica)</li>
+<li>Firefly</li>
+<li>Babylon 5 (and all spin-offs)</li>
+<li>Farscape</li>
+<li>Andromeda</li>
+<li>Stargate SG-1 (in progress)</li>
+</ul>
+<p>As you may notice, there is no Expanse, Orville, or new Star Treks (Discovery, Short Trek). We watch only
+finished stuff. I hope to avoid spoilers, but it&rsquo;s impossible with the new Star Treks. Also, I doubt I would even
+want to watch them (mushroom drives? horrid Klingons??).</p>
+<p>This week I stumbled upon a <a href="https://www.youtube.com/watch?v=rnlxugk3Qb0" class="external-link">comparison between TNG and Short Trek</a>.
+How this is related to teams and culture? Well, the basic problem is the same for both series: a crew member with a quirky
+behavior who doesn&rsquo;t fit a team.</p>
+<p>TNG solved the problem by trying to help Lieutenant Barclay to overcome his anxiety and integrate into the team.
+While he remained awkward for the rest of the series, some of his quirks were channeled into a productive direction and
+helped to save the crew numerous times.</p>
+<p>Short Trek&rsquo;s approach was&hellip; different. Edward Larkin died and was called an idiot by his <em>&ldquo;competent&rdquo;</em> captain.
+Just watch it. The captain wanted to transfer that scientist even <em>before he made a mistake.</em> Show defenders say that
+it&rsquo;s just a comedy, but these series are not marketed as a parody show.  It&rsquo;s a canon now. Which means,
+that obnoxious and demeaning conduct of the captain is considered ok in that universe. No one reprimanded her for
+causing an ecological disaster, and she never showed any remorse for the &ldquo;idiot&rsquo;s&rdquo; death.</p>
+<p>I understand that showrunners are just money hoarders and want to have a comedy because it&rsquo;s profitable. They
+probably never consider how it affects existing canon.</p>
+<p>Still. I wonder, what this <em>modern</em> approach tells about our society?</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Weekly hmms: communities, laptops &amp; Linux</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/" hreflang="en"/>
+    <published>2019-12-07T23:50:35Z</published>
+    <updated>2019-12-07T23:50:35Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-12-07:/articles/2019/12/07/weekly-hmms-communities-laptops-linux/</id>
+    
+    <summary type="html"><![CDATA[<p>This time, the proper title would be &ldquo;Weekly Arghs.&rdquo;</p>
+<h2 id="testing-communities" >
+  <a href="#testing-communities">Testing communities</a>
+</h2>
+<p>When I decided to become a tester, the first-ever topic I encountered was <del>discussions</del> rants about &ldquo;ISO/IEC/IEEE 29119 Software Testing&rdquo; set of standards. I was fresh out of the university, so I couldn&rsquo;t have legal access to these documents, and naturally, I sided with opponents. Good or bad (mostly bad), I don&rsquo;t care: if you wish to have guidelines or standards for the profession, it must be freely accessible to everyone. The end.</p>]]></summary>
+    <content type="html"><![CDATA[<p>This time, the proper title would be &ldquo;Weekly Arghs.&rdquo;</p>
+<h2 id="testing-communities" >
+  <a href="#testing-communities">Testing communities</a>
+</h2>
+<p>When I decided to become a tester, the first-ever topic I encountered was <del>discussions</del> rants about &ldquo;ISO/IEC/IEEE 29119 Software Testing&rdquo; set of standards. I was fresh out of the university, so I couldn&rsquo;t have legal access to these documents, and naturally, I sided with opponents. Good or bad (mostly bad), I don&rsquo;t care: if you wish to have guidelines or standards for the profession, it must be freely accessible to everyone. The end.</p>
+<p>But that&rsquo;s not the thing I want to talk about. It&rsquo;s just an example of my first deep dive into testing: it was a sign of what to come. Basically, everything is dividing our community: terminology, schools of thoughts, views. Dammit, testing in itself is a tiny thingy, we mostly reuse and apply knowledge and methods from other fields. Nevertheless, we keep constantly bickering with each other.</p>
+<p>I&rsquo;m not a saint either. I rant, joke, correct, discuss, persuade, and roll my eyes. Maybe it comes with the profession. Or it&rsquo;s a normal thing for any community. What amazes me, that this much concentration of disagreements exists around the pettiest and smallish topics. Sometimes people even talk about the same ideas but with different examples, and it results in confrontations (direct or indirect).</p>
+<p>Giving recent cases wouldn&rsquo;t be humanly correct in regard to individuals involved. Let&rsquo;s just say: I participate in several slack workspaces. And it&rsquo;s quite common to a discussion in one to provoke posts in others with opposite reactions like &ldquo;good work&rdquo; and &ldquo;it drives me insane.&rdquo;</p>
+<p>Though, I want to quote one:</p>
+<blockquote>
+<p>Testing vs Checking is like Russian revolution &mdash; senseless and merciless.</p>
+</blockquote>
+<p>You can replace &ldquo;testing vs checking&rdquo; with whatever you want, and it will hold true to a lot of prevalent discussions.</p>
+<h2 id="laptops--linux" >
+  <a href="#laptops--linux">Laptops &amp; Linux</a>
+</h2>
+<p>I&rsquo;ve got a new laptop: Dell XPS15 7590. My old one is a Lenovo G560, almost 9 years old. It served me well, but it&rsquo;s got too hard to keep even just Pycharm and Firefox running side by side. I squeezed every last bit out if it: maxing out memory to 8GB, adding SSD, using Fedora with a lighter desktop environment (XFCE). Still, its time has come.</p>
+<p>XPS is a good choice for several reasons:</p>
+<ul>
+<li>extensible: I&rsquo;ll be able to add more memory (32GB), change SSD or WiFi card, add HDD (but with a smaller battery)</li>
+<li>Linux friendly</li>
+<li>good battery</li>
+<li>there was an awesome discount which is significant because I didn&rsquo;t want to go wild with work budget</li>
+</ul>
+<p>But there are some disappointments. Let&rsquo;s start with the objective one: keyboard.</p>
+<p>This is my old keyboard: it has Numpad, all keys, and even separate volume controls.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_23e350250a8ae445.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.jpg" alt="Lenovo G560 keyboard" defer>
+	</picture>
+	
+</figure></p>
+<p>This is the new one:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_7dfe503e98e253e2.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.jpg" alt="Dell XPS15 keyboard" defer>
+	</picture>
+	
+</figure></p>
+<p>I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn&rsquo;t even consider that there wouldn&rsquo;t be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but <a href="https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592" class="external-link">people complained about it on the Dell forum</a>. You, guys, I hate you. You&rsquo;re exactly like <a href="https://xkcd.com/1172/" class="external-link">from that XKCD comic strip</a>.</p>
+<p>Next disappointment is a display. Beware, this will be unexpected&hellip; I don&rsquo;t like HiDPI. I&rsquo;m so accustomed to shitty displays, that better ones feel wrong and uncomfortable. Colors and images are fine, but text, yikes. Letters are not crisp enough, there is something smudgy about them.</p>
+<p>I can already hear that it&rsquo;s because I&rsquo;m on Linux. NOPE. This laptop came with Windows 10 (I left it in a dual boot), but the text is blurry too. Even more, I think Linux actually does better jobs with antialiasing, because old Windows apps look particularly horrible.</p>
+<p>Maybe someone will say that I should try 4k or Mac with Retina. Thanks, but no. I saw those displays too. First, I don&rsquo;t understand, why people keep using them without any scaling: font size is unbearably small. Second, I still don&rsquo;t like it.</p>
+<p>So yeah, completely subjective feelings with physical problems: my eyes are way more strained now. Habits die hard.</p>
+<p>Oh, and I also switched from XFCE to Gnome, and this drives me crazy even more. My first  Linux was Ubuntu with Gnome 2, and, surprisingly, UX in XFCE is closer to it than in Gnome 3. I&rsquo;m too lazy to reinstall again, so, I guess, I&rsquo;ll try to relearn.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Weekly hmms: Fowler, collaborations, HTML, and CTS</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/11/23/weekly-hmms-fowler-collaborations-html-and-cts/" hreflang="en"/>
+    <published>2019-11-23T02:45:30Z</published>
+    <updated>2019-11-23T02:45:30Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-11-23:/articles/2019/11/23/weekly-hmms-fowler-collaborations-html-and-cts/</id>
+    
+    <summary type="html"><![CDATA[<p>New week, new hmms!</p>
+<h2 id="martin-fowler-and-exploratory-testing" >
+  <a href="#martin-fowler-and-exploratory-testing">Martin Fowler and exploratory testing</a>
+</h2>
+<p><em>All</em> testers&rsquo; slack groups, forums, and blogs erupted this week with the tidings of joy: <a href="https://martinfowler.com/bliki/ExploratoryTesting.html" class="external-link">Martin Fowler wrote a post about exploratory testing</a>. Of course, it seems a bit <em>late</em> and <em>cursory,</em> but at least now we have <em>a very respected source</em> to point to.</p>]]></summary>
+    <content type="html"><![CDATA[<p>New week, new hmms!</p>
+<h2 id="martin-fowler-and-exploratory-testing" >
+  <a href="#martin-fowler-and-exploratory-testing">Martin Fowler and exploratory testing</a>
+</h2>
+<p><em>All</em> testers&rsquo; slack groups, forums, and blogs erupted this week with the tidings of joy: <a href="https://martinfowler.com/bliki/ExploratoryTesting.html" class="external-link">Martin Fowler wrote a post about exploratory testing</a>. Of course, it seems a bit <em>late</em> and <em>cursory,</em> but at least now we have <em>a very respected source</em> to point to.</p>
+<h2 id="collaborations" >
+  <a href="#collaborations">Collaborations</a>
+</h2>
+<h3 id="mob-programming" >
+  <a href="#mob-programming">Mob programming</a>
+</h3>
+<p>Finally found time to read a <a href="https://mobprogrammingguidebook.xyz/" class="external-link">&ldquo;Mob Programming Guidebook&rdquo; by Maaret Pyhäjärvi</a>. I&rsquo;m not entirely sure about applying it at the moment, but it looks like an interesting method for knowledge sharing facilitation.</p>
+<p>And contributions style roles can be reused as hats in other activities:</p>
+<ul>
+<li>driver (intelligent input device)</li>
+<li>sponsor (supporting others from a unique position)</li>
+<li>nose (noticing things about the code)</li>
+<li>navigator (translating ideas into code)</li>
+<li>researcher (having better information available)</li>
+<li>automationist (recognizing repetition)</li>
+<li>conductor (enhancing others contributions)</li>
+<li>mobber (always contributing in different  ways)</li>
+<li>rear admiral (helping designated navigator do better and learn)</li>
+<li>archivist (improving team visibility)</li>
+</ul>
+<h3 id="tips-for-code-review" >
+  <a href="#tips-for-code-review">Tips for code review</a>
+</h3>
+<p>Google Testing blog is still alive and has posted a nice <a href="https://testing.googleblog.com/2019/11/code-health-respectful-reviews-useful.html" class="external-link">short guide about being a good code reviewer</a>. The best thing is that there are not only tips for reviewers but also <em>for authors.</em> Likewise, they could and should be applied for issue reports and other communications.</p>
+<h2 id="validation-for-email-inputs" >
+  <a href="#validation-for-email-inputs">Validation for email inputs</a>
+</h2>
+<p>Standards are weird. We had a tiny funny problem this week with an OpenAPI spec and a <code>format: email.</code> The context:</p>
+<ul>
+<li>SwaggerUI generates <code>input</code> fields, and with this format it will have <code>type=email</code>.</li>
+<li>When I don&rsquo;t care about cross-browser stuff, I use Chrome.</li>
+<li>Our middleware seems to validate email formats, somewhere very deep in dependencies.</li>
+<li>We also have a custom validation.</li>
+</ul>
+<p>First, I checked a request with a garbage email. It failed on the middleware layer. Then I checked an email with non-ASCII characters, but our validation failed. That meant that validation in middleware was passing; therefore, its validation checks were better than ours.</p>
+<p>The dev who worked on fixing the bug noticed an interesting behavior. If you use Firefox to open SwaggerUI, it will add a red highlighting for an email input field when a value contains non-ASCII characters. According to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email" class="external-link">MDN docs</a>, this is a known problem due to <a href="https://github.com/whatwg/html/issues/4562" class="external-link">HTML5 issue</a>. The specification proposes using a simple regex for validation!</p>
+<p>Chrome does not complain about internationalized values. And it means that Firefox implemented HTML5 spec <em>too well,</em> introducing a confusing behavior. Oops.</p>
+<h2 id="carpal-tunnel-syndrome" >
+  <a href="#carpal-tunnel-syndrome">Carpal tunnel syndrome</a>
+</h2>
+<p>I wasn&rsquo;t diagnosed with CTS (yet), but my posture at home is awful, so my right hand <em>hurts.</em> I don&rsquo;t have a proper desk and usually I sit with a laptop at a <em>round table.</em> Thus, there is not enough room to position a &ldquo;mouse&rdquo; hand.</p>
+<p>A year ago I bought a cheap <a href="https://www.amazon.ca/Anker-Wireless-Vertical-Ergonomic-Optical/dp/B00FGI2QVC" class="external-link">Anker vertical mouse</a>. It&rsquo;s great, even with my shitty habits I have had no pain. But it&rsquo;s wired, and soon I&rsquo;ll need a wireless one. Logitech is always my first choice in this case because it doesn&rsquo;t drain batteries too fast. Unfortunately, their only vertical mouse is unreasonably expensive, so I&rsquo;ve decided to experiment with their <a href="https://www.amazon.ca/Logitech-910-001799-M570-Wireless-Trackball/dp/B0043T7FXE/" class="external-link">M570 trackball</a>.</p>
+<p>It&rsquo;s cool that you don&rsquo;t need to move your hand at all, but <em>the pain has returned:</em> it looks like vertical mouse works better for small spaces. For a trackball, you should be able to lay down your hand somewhere fully. Though, the more expensive trackball model can be vertically adjusted. Anyway, I&rsquo;ll get a real own desk soon, will see how it goes.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Weekly hmms: valuations, job titles, conferences, APIs</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/11/16/weekly-hmms-valuations-job-titles-conferences-apis/" hreflang="en"/>
+    <published>2019-11-16T02:53:21Z</published>
+    <updated>2019-11-16T02:53:21Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-11-16:/articles/2019/11/16/weekly-hmms-valuations-job-titles-conferences-apis/</id>
+    
+    <summary type="html"><![CDATA[<p>To assume I could push anything on Fridays was too optimistic. Thus, I&rsquo;ll commit to Saturdays.</p>
+<p>Let&rsquo;s start.</p>
+<h2 id="saas-valuations" >
+  <a href="#saas-valuations">SaaS valuations</a>
+</h2>
+<p>My current company, <a href="https://www.netgovern.com/" class="external-link">NetGovern</a>, operates with an open-book management mindset. Apart from other information, all employees know company finances so we can better understand what is our real position and where we plan to go next.</p>]]></summary>
+    <content type="html"><![CDATA[<p>To assume I could push anything on Fridays was too optimistic. Thus, I&rsquo;ll commit to Saturdays.</p>
+<p>Let&rsquo;s start.</p>
+<h2 id="saas-valuations" >
+  <a href="#saas-valuations">SaaS valuations</a>
+</h2>
+<p>My current company, <a href="https://www.netgovern.com/" class="external-link">NetGovern</a>, operates with an open-book management mindset. Apart from other information, all employees know company finances so we can better understand what is our real position and where we plan to go next.</p>
+<p>It&rsquo;s tough to wrap your head around balance sheets or cash flows, especially for me: I was born in 1992, a year after Kazakhstan declared independence from the Soviet Union. Suddenly, generations raised in the planned economy plunged into the free market (didn&rsquo;t go well). I&rsquo; came from the culture of mixed and uncertain economic literacy, hence, all these stocks, investing, growth rates and margins don&rsquo;t flow naturally into my brain.</p>
+<p>Nevertheless, I don&rsquo;t shy away from these topics because <strong>learning anything is the best hobby.</strong> This week, we read a paper explaining how to valuate typical SaaS companies (how to calculate a price).</p>
+<p>I&rsquo;ve created a <a href="https://www.mindomo.com/mindmap/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" class="external-link">mind map</a> (or an <a href="https://www.mindomo.com/outline/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" class="external-link">outline</a>, Mindomo supports both at the same time) with the main info:</p>
+<iframe width="500" height="500" src="https://www.mindomo.com/outline/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" frameborder="0" allowfullscreen>Your browser does not support frames. <a href="https://www.mindomo.com/outline/saas-company-valuation-59d6caef92ab298681a766bc9aa5f367" target="_blank">View</a> this map on its original site. It was created using <a href="https://www.mindomo.com" target="_blank">Mindomo</a>.</iframe>
+<h2 id="some-tech-writers-avoid-the-word-writer-in-their-titles" >
+  <a href="#some-tech-writers-avoid-the-word-writer-in-their-titles">Some tech writers avoid the word &ldquo;writer&rdquo; in their titles</a>
+</h2>
+<p>The last myth from <a href="https://idratherbewriting.com/blog/ten-myths-about-api-documentation/" class="external-link">the podcast &ldquo;10 myths about API documentation&rdquo;</a> is: <em>people will respect you more if the word &ldquo;writer&rdquo; isn&rsquo;t in your job title.</em></p>
+<p>Insecure tech writers prefer to call themselves:</p>
+<ul>
+<li>Information developers</li>
+<li>User assistance developers</li>
+<li>Information strategists</li>
+<li>Content strategists</li>
+<li>Technical communications professionals</li>
+<li>Content engineers</li>
+</ul>
+<p>First, these are so funny. Second, the testing field has the same tendency. My official job title is &ldquo;QA &amp; escalations analyst,&rdquo; whatever this means. Testers don&rsquo;t avoid the word &ldquo;test,&rdquo; but they do try to shoehorn hardcoreness with words &ldquo;developer,&rdquo; &ldquo;engineer,&rdquo; or &ldquo;analyst.&rdquo;</p>
+<h2 id="onlinetestconf" >
+  <a href="#onlinetestconf">OnlineTestConf</a>
+</h2>
+<p>It&rsquo;s not a secret that I&rsquo;m not a fan of testing-only conferences. Not rolling your eyes is impossible when you see mind-blowing prices for the STAR conference and find there <em>popular</em> workshops like &ldquo;Learning Git.&rdquo; Pass.</p>
+<p>Still, I checkout out some occasionally. Heisenbug is amazing. But most of the talks are in Russian, sorry folks.</p>
+<p>The next available conference is <a href="https://www.onlinetestconf.com/" class="external-link">OnlineTestConf</a>, December 3rd-4th 2019. The previous one was passable, this one seems to have a similar structure. Still, nothing beats free and online. There will be big names, yet what caught my eye was the &ldquo;Adidas Testing Platform&rdquo; talk. Adidas API guidelines are awesome, and learning more about their processes would be cool.</p>
+<h2 id="me-and-apis" >
+  <a href="#me-and-apis">Me and APIs</a>
+</h2>
+<p>Should this be a regular rubric? Perhaps.</p>
+<p>Though <strong>I love APIs,</strong> my knowledge is unsatisfactory and insufficient to be confident in <em>my new undertaking: writing API design guidelines.</em> Without this document, your APIs will soon become an inconsistent mess. You need to have conventions on even the most basic stuff like capitalization or pluralization. We should have created this doc a year ago; doing consolidation and standardization will require painful fixing of existing clients, but better sooner than later.</p>
+<p>As I said, I&rsquo;m not an expert on API design. And I&rsquo;m not a good writer either. I&rsquo;m a tester whose job description is to <em>find ways to improve quality.</em> Next months will be fun: doing research, poking devs with sticks, and asking stupid questions in the &ldquo;APIs You Won&rsquo;t Hate&rdquo; slack group.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>New domain</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/09/24/new-domain/" hreflang="en"/>
+    <published>2019-09-24T00:00:00Z</published>
+    <updated>2019-09-24T00:00:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-09-24:/articles/2019/09/24/new-domain/</id>
+    
+    <summary type="html"><![CDATA[<p>Yay, I&rsquo;ve bought my own domain!</p>
+<p>First I though about fancy-schmancy <code>.me</code> or <code>.io</code>. Or maybe <code>aviska.se</code>. But I went with simple aviskase.com. Not that I am particularly invested into SEO and stuff, but all the articles recommend to be boring. Also, I used <em>comparable products</em> heuristic: most of the blogs I am subscribed to have the same dull TLD.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Yay, I&rsquo;ve bought my own domain!</p>
+<p>First I though about fancy-schmancy <code>.me</code> or <code>.io</code>. Or maybe <code>aviska.se</code>. But I went with simple aviskase.com. Not that I am particularly invested into SEO and stuff, but all the articles recommend to be boring. Also, I used <em>comparable products</em> heuristic: most of the blogs I am subscribed to have the same dull TLD.</p>
+<p>BTW, if anyone ever was subscribed to RSS, sorry for whole new regeneration =(</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Using Google Apps scripts for productivity improvements</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/" hreflang="en"/>
+    <published>2019-09-08T00:00:00Z</published>
+    <updated>2019-09-08T00:00:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-09-08:/articles/2019/09/08/using-google-apps-scripts-for-productivity-improvements/</id>
+    
+    <summary type="html"><![CDATA[<p>Google Apps Scripts are probably the most useful automation tools I&rsquo;ve used. They can be used as &ldquo;excel macros&rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task management.</p>
+<h2 id="mark-all-emails-as-read" >
+  <a href="#mark-all-emails-as-read">Mark all emails as read</a>
+</h2>
+<p>If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Google Apps Scripts are probably the most useful automation tools I&rsquo;ve used. They can be used as &ldquo;excel macros&rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task management.</p>
+<h2 id="mark-all-emails-as-read" >
+  <a href="#mark-all-emails-as-read">Mark all emails as read</a>
+</h2>
+<p>If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>
+<script src="https://gist.github.com/aviskase/634dba0b10f5cd0bad3f41709ed3e41c.js"></script>
+
+<p>I don&rsquo;t really need it right now, because I have a filter which marks <em>all</em> incoming emails as read right away:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Matches: larger:1
+</span></span><span style="display:flex;"><span>Do this: Mark as read
+</span></span></code></pre></div><p>But it was effective for cleaning up.</p>
+<h2 id="tasks-recurring-randomly-for-amazing-marvin" >
+  <a href="#tasks-recurring-randomly-for-amazing-marvin">Tasks recurring randomly for Amazing Marvin</a>
+</h2>
+<p>I use Amazing Marvin for task&amp;project management and currently it doesn&rsquo;t support randomly recurring items. In fact, no app I&rsquo;ve tried supports that. It&rsquo;s a shame, because there could be several use cases for that: &ldquo;spontaneous&rdquo; cleaning&amp;organizing, fun activities, ideas review.</p>
+<p>If you are able to import tasks (for example, via email), you can check this script. The most important thing is a <code>TASKS</code> list. Each item should have <code>range_start</code> and <code>range_end</code>. For example, <code>range_start = 2</code> and <code>range_end = 9</code> mean that task will be created in ranges from two to nine days after last created date. E.g. if the last time task with this <code>id</code> was created on September 10, next task will be created sometime between September 12 and September 19.</p>
+<p>Script ensures the task will be created at some point during this range, just make sure it&rsquo;s triggered to run daily.</p>
+<script src="https://gist.github.com/aviskase/c986a50fd0d2a24f98302201fcdc9fd7.js"></script>
+
+<h2 id="create-a-task-when-new-package-release-is-available-on-pypi" >
+  <a href="#create-a-task-when-new-package-release-is-available-on-pypi">Create a task when new package release is available on PyPI</a>
+</h2>
+<p>I have a weird project which can start only after a particular release of one python package. It&rsquo;s not very urgent, so no hurry, but I don&rsquo;t want to check for releases manually.</p>
+<p>This script checks RSS for the package on <a href="https://libraries.io/" class="external-link">libraries.io</a> and if there is a new version available, it will send email to AM to create a task.</p>
+<script src="https://gist.github.com/aviskase/079fda60adaa0c74e37c84089e4bb1ae.js"></script>
+
+<hr>
+<p>I didn&rsquo;t go into details about how to setup these scripts, so if you have any questions, feel free to comment.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Lasha Tumbai or rm -rf RU</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/08/08/lasha-tumbai-or-rm-rf-ru/" hreflang="en"/>
+    <published>2019-08-08T23:51:52Z</published>
+    <updated>2019-08-08T23:51:52Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-08-08:/articles/2019/08/08/lasha-tumbai-or-rm-rf-ru/</id>
+    
+    <summary type="html"><![CDATA[<p>Just a quick note: I&rsquo;ve switched to Pelican site generator, because ruby-shuby decided not to work. Unfortunately, switching and preserving multi-language support is cumbersome. So, I&rsquo;ve decided to ditch RU version. For what it&rsquo;s worth, I moved to Canada and no longer really interested in trying to &ldquo;promote&rdquo; myself in Russian speaking communities.</p>]]></summary>
+    <content type="html"><![CDATA[<p>Just a quick note: I&rsquo;ve switched to Pelican site generator, because ruby-shuby decided not to work. Unfortunately, switching and preserving multi-language support is cumbersome. So, I&rsquo;ve decided to ditch RU version. For what it&rsquo;s worth, I moved to Canada and no longer really interested in trying to &ldquo;promote&rdquo; myself in Russian speaking communities.</p>
+<p>Yeah, yeah, &ldquo;promote&rdquo;, &mdash; written by a person who hasn&rsquo;t write <em>anything</em> for ages. Right.</p>
+<p>Whoever read this blog in Russian, sorry. And, actually, I know that there were more traffic from CIS than from any other region &gt;&lt; But, two languages makes it too complicated and procrastinating to write in consistent manner <em>(hysterical laugh).</em></p>
+<p>Зыс ис зе энд.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Amazing Marvin for task management</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2019/07/30/amazing-marvin-for-task-management/" hreflang="en"/>
+    <published>2019-07-30T00:00:00Z</published>
+    <updated>2019-07-30T00:00:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-07-30:/articles/2019/07/30/amazing-marvin-for-task-management/</id>
+    
+    <summary type="html"><![CDATA[<p>I&rsquo;m an infrequent blogger, so how weird it is that my last post was about RTM? I was a loyal RTM user for quite a time&hellip; Well, I have a new love now. His name is <a href="https://www.amazingmarvin.com/" class="external-link">Marvin</a>.</p>
+<p>Marvin is still young, yet powerful. He has some problems and rough corners, but development couple (yes, just 2 persons!) is the most responsive and creative force I&rsquo;ve seen. I&rsquo;m still learning and tweaking my system there, but I want to describe the first working iteration to be able to improve and compare later.</p>]]></summary>
+    <content type="html"><![CDATA[<p>I&rsquo;m an infrequent blogger, so how weird it is that my last post was about RTM? I was a loyal RTM user for quite a time&hellip; Well, I have a new love now. His name is <a href="https://www.amazingmarvin.com/" class="external-link">Marvin</a>.</p>
+<p>Marvin is still young, yet powerful. He has some problems and rough corners, but development couple (yes, just 2 persons!) is the most responsive and creative force I&rsquo;ve seen. I&rsquo;m still learning and tweaking my system there, but I want to describe the first working iteration to be able to improve and compare later.</p>
+<h2 id="enabled-strategies" >
+  <a href="#enabled-strategies">Enabled strategies</a>
+</h2>
+<p>Strategies are like extensions: add more to have more abilities.</p>
+<h2 id="essential" >
+  <a href="#essential">Essential</a>
+</h2>
+<p>Because these are essential, I&rsquo;ll explain their usage later.</p>
+<ul>
+<li>Category Context (big square, also beneath title, show full path)</li>
+<li>Task Notes</li>
+<li>Labels</li>
+<li>Timers</li>
+<li>Backburner (no setup)</li>
+<li>Planning Ahead</li>
+<li>Smart Lists</li>
+<li>Custom Sidebar</li>
+<li>Top Mini List</li>
+<li>Custom Sections</li>
+<li>Dependencies</li>
+<li>End Dates (show end dates below the task)</li>
+<li>Start Dates</li>
+<li>Work Session Scheduler</li>
+<li>Saved Items (Templates)</li>
+<li>Smart List Day Alerts</li>
+<li>Auto-schedule Due Tasks (cutoff = 1 day)</li>
+<li>Staleness Warning (period = 40 days)</li>
+<li>Email to Marvin</li>
+<li>Zapier Integration</li>
+<li>Review Date</li>
+<li>Weekly Review</li>
+</ul>
+<h3 id="extras" >
+  <a href="#extras">Extras</a>
+</h3>
+<ul>
+<li>Eat that Frog (just 2 frog levels) &mdash; nice to have, but I don&rsquo;t use it as intended (I tend to assign a frog to the bad tasks, but I don&rsquo;t do them first)</li>
+<li>Task Reminders (create automatically) &mdash; very important feature, but less powerful than in RTM for now (cannot create multiple reminders). Though, I have a feeling that with proper review system I actually don&rsquo;t need reminders that much now.</li>
+<li>Duration Estimates &mdash; I&rsquo;m experimenting with having estimates for all tasks, but so far don&rsquo;t feel it increases productivity.</li>
+<li>Time Tracking (show &gt; in title) &mdash; goes hand in hand with duration estimates, feels needed but not essential</li>
+<li>Beat The Clock &mdash; same as time tracking, still experimenting with it</li>
+<li>Project Focus Picker &mdash; just started to use it; at least it works as an &ldquo;eye  bugger&rdquo; to push me to work on project</li>
+<li>Suggested Task &mdash; never used it really, but something about it feels good &gt;&lt;</li>
+<li>The Wall &mdash; using it occasionally, would like to have block division by section</li>
+<li>Day Progress Bar &mdash; I don&rsquo;t know why I enabled it</li>
+<li>Procrastination Count (default) &mdash; important but not essential</li>
+<li>Missing Next Steps Warning &mdash; important, but not very used much at the moment</li>
+<li>Day Note (with archive) &mdash; nice to have, but I&rsquo;m not very good at keeping a habit to write (as can be guessed by this blog updates frequency)</li>
+<li>Calendar, Calendar Sync, All-Day Items, Top Mini List &mdash; I&rsquo;ll have a whole calendar workflow moved to AM as soon as these will work with Google Calendar and Outlook. Until then, I have to go to calendars.</li>
+<li>Dashboard &mdash; I like it, but not sure that I need it</li>
+<li>Reward Tasks &mdash; awesome feature which I&rsquo;ve never used. Dunno why.</li>
+</ul>
+<h2 id="planning-and-scheduling-cycle" >
+  <a href="#planning-and-scheduling-cycle">Planning and scheduling cycle</a>
+</h2>
+<p>My PS cycle has three phases:</p>
+<ul>
+<li>Monthly planning</li>
+<li>Weekly planning</li>
+<li>Daily scheduling</li>
+</ul>
+<p>Notice difference between planning and scheduling? This is because AM has a bit head-scratching at first, but really powerful distinction between these processes. In short, <em>planning</em> is about assigning <em>start date</em> and <em>end date</em> (&ldquo;soft deadline&rdquo;) and <em>scheduling</em> is about assigning a <em>do date</em> (&ldquo;when should I do this task&rdquo;). Also, there can be a <em>due date</em>, it&rsquo;s not quite clear is it planning or scheduling category. I think both, because I use <strong>Auto-schedule Due Tasks</strong> strategy. For example, if something is due tomorrow, this task will have a do date = today.</p>
+<h3 id="monthly-planning" >
+  <a href="#monthly-planning">Monthly planning</a>
+</h3>
+<p>I have a recurring task <em>Plan tasks for the next month</em>, which is setup to run monthly on the 31st day. To complete this task I go to <strong>Planning &gt; Monthly</strong> and plan tasks <strong>only</strong> for the next month while working from <em>Master List</em>. I don&rsquo;t want to overplan too much into the future.  What can be changed is maybe I should work from some smart list, but so far I don&rsquo;t have too many tasks in ML.</p>
+<h3 id="weekly-planning" >
+  <a href="#weekly-planning">Weekly planning</a>
+</h3>
+<p>This is a <strong>Weekly Review</strong> strategy with checklist scheduled to be done on Sundays. Checklist is a combination of weekly planning and everyday review stuff.</p>
+<h4 id="reformulate-task-names-left-in-today-pool" >
+  <a href="#reformulate-task-names-left-in-today-pool">Reformulate task names left in today pool</a>
+</h4>
+<p>Done on: Daily view</p>
+<p>This is a part from Jedi techniques, which goal is to rename tasks you didn&rsquo;t complete for some reason. That way the next day they will look &ldquo;fresher&rdquo; or more inviting to you.</p>
+<h4 id="review-calendars-for-2-weeks-ahead-add-tasks-if-needed" >
+  <a href="#review-calendars-for-2-weeks-ahead-add-tasks-if-needed">Review calendars for 2 weeks ahead: add tasks if needed</a>
+</h4>
+<p>Done on: external sites, tasks are added to inbox</p>
+<ul>
+<li>birthdays</li>
+<li>special all day events like holidays</li>
+<li>work meetings</li>
+</ul>
+<p>Basically, it&rsquo;s something that is not really actionable, but has a day and duration. This is what I want to do in AM in the future, when calendar sync works better:</p>
+<ul>
+<li><strong>Smart list</strong> with all calendar events in the next 2 weeks (to use for weekly planning)</li>
+<li><strong>Top Mini List</strong> strategy showing upcoming birthdays in the next 3 days</li>
+<li>Depending on how AM will show calendar events (probably as tasks which have to be completed, which is a bit unnecessary for me), maybe all of them should be shown in <strong>Top Mini List</strong></li>
+</ul>
+<p>Right now what I use is a <strong>Custom Sidebar</strong> with links to my google and outlook calendars.</p>
+<h4 id="reflect-on-completed-week-do-i-need-to-do-more" >
+  <a href="#reflect-on-completed-week-do-i-need-to-do-more">Reflect on completed week: do I need to do more?</a>
+</h4>
+<p>Done on: Archive, tasks are added to inbox</p>
+<p>Go to <strong>Archive</strong> and check what was done this week. It&rsquo;s a bit cumbersome, because it shows tasks per month and not per week. In RTM I&rsquo;ve used a smart list for that, but AM does not support searching completed tasks (yet).</p>
+<p>Other way is to click through daily views, but for me it&rsquo;s too many clicks)</p>
+<h4 id="review-start-dates-for-backburner-tasks-smartlist" >
+  <a href="#review-start-dates-for-backburner-tasks-smartlist">Review start dates for backburner tasks (smartlist)</a>
+</h4>
+<p>Done one: Master List,  work from smartlist</p>
+<p><strong>Smartlist</strong>: <code>any start date, on backburner</code></p>
+<p>I use backburner only for tasks which are <strong>dependent</strong> on others or with <strong>start date</strong> in the future. I try to be very strict with start dates and set them only if it really makes sense, for example: getting a vaccine boost shot in Dec 2028 has a start date in Sept 2028, because I don&rsquo;t want this task to pollute my planning all these years. Another use for start dates is for sub-project, like 3-day long learning session, which is part of a project without start date (because I want to do some preparatory tasks before session starts).</p>
+<p>So, in order to keep backburner in check, I review it once in week. Now that I think about it, maybe I should have an alert about tasks which does not have start date and are not dependent, but are in backburner&hellip;? But more on alerts later =)</p>
+<h4 id="review-all-projects-add-new-tasks-if-needed-smartlist" >
+  <a href="#review-all-projects-add-new-tasks-if-needed-smartlist">Review all projects: add new tasks if needed (smartlist)</a>
+</h4>
+<p>Done on: Master List, work from smartlist</p>
+<p><strong>Smartlist</strong>: Projects</p>
+<p>I had to create a smart list to show all projects, because I wanted to see backburner&rsquo;s too.</p>
+<h4 id="recall-this-day-write-down-everything-missed-triggers-backwards-day-recall" >
+  <a href="#recall-this-day-write-down-everything-missed-triggers-backwards-day-recall">Recall this day: write down everything missed (triggers/ backwards-day-recall)</a>
+</h4>
+<p>Done on: <strong>Sidebar</strong>, tasks added to inbox</p>
+<p>Two links in Sidebar:</p>
+<ul>
+<li>link to mind map containing triggers</li>
+<li>link to timer set for 20m</li>
+</ul>
+<p>Triggers are things which can be used to recall what was forgotten. For example, one of the subtrees in my mindmap contains all types of utilities or all kinds of cleaning which could be done.</p>
+<p>Backwards day recall is a technique also used to recall things. You sit down and try to remember today in detail in backwards: from now to the morning.</p>
+<h4 id="empty-inboxes-paper-gmail-outlook-joplin-am" >
+  <a href="#empty-inboxes-paper-gmail-outlook-joplin-am">Empty inboxes: paper, GMail, Outlook, Joplin, AM</a>
+</h4>
+<p>Categorize everything and clean up all inboxes I can have. First go with paper notes, then emails (gmail + outlook), then note taking application (for now it&rsquo;s Joplin), and finally AM category <em>Inbox</em></p>
+<p>If you see something that should be planned for this month, set it right away.</p>
+<h4 id="plan-tasks-for-the-next-week-selecting-from-this-month" >
+  <a href="#plan-tasks-for-the-next-week-selecting-from-this-month">Plan tasks for the next week (selecting from this month)</a>
+</h4>
+<p>Done on: <strong>Planning &gt; Weekly</strong>, working from <em>This month</em> list</p>
+<p>Because everything was planned for <em>this month</em>, I can just bring relevant tasks to next week.</p>
+<h4 id="schedule-tasks-for-monday-by-checking-next-week-list" >
+  <a href="#schedule-tasks-for-monday-by-checking-next-week-list">Schedule tasks for Monday by checking next week list</a>
+</h4>
+<p>Done on: Daily view for tomorrow, working from <em>This week</em> list</p>
+<h3 id="daily-scheduling" >
+  <a href="#daily-scheduling">Daily scheduling</a>
+</h3>
+<p>Because there is no &ldquo;Daily review&rdquo; strategy yet, I have a recurring task for that. It repeats every Wed and Fri, just because I&rsquo;m still getting accustomed to always do it. When I&rsquo;m ready, it will be repeated every day except for Sunday, where weekly review is done.</p>
+<p>Checklist is a subset of weekly review:</p>
+<ul>
+<li>reformulate</li>
+<li>reflect on Completed Today</li>
+<li>recall this day</li>
+<li>empty inboxes</li>
+<li>schedule tasks for the next day</li>
+</ul>
+<h2 id="extras-1" >
+  <a href="#extras-1">Extras</a>
+</h2>
+<h3 id="categories" >
+  <a href="#categories">Categories</a>
+</h3>
+<p>Main:</p>
+<ul>
+<li>Inbox</li>
+<li>Work</li>
+<li>Household &mdash; tasks related to house or family</li>
+<li>Hobbies  &mdash; anything related to my hobbies, learning, and reading</li>
+<li>Reputation &mdash; quite new for me, this is for tasks related to my <em>external image</em>. Participating in open source projects, buying birthday gifts, writing blog, answering some emails. Sometimes there is no clear distinction between hobbies and this category, so it&rsquo;s fluid.</li>
+<li>Health</li>
+<li>Productivity &mdash; tasks like everyday review or cleaning up overflown inboxes. I suppose calendar sync will go there too.</li>
+</ul>
+<h3 id="sections" >
+  <a href="#sections">Sections</a>
+</h3>
+<p>I use <strong>Custom Sections</strong> strategies:</p>
+<ul>
+<li>Morning</li>
+<li>Work &mdash; linked to smartlist which finds all tasks/projects <code>in #Work</code></li>
+<li>Outside &mdash; linked to smartlist which finds all tasks/projects which <code>has @outside</code> label</li>
+<li>Evening</li>
+<li>Bonus</li>
+</ul>
+<p>Morning and Evening tasks are essentials, while Bonus ones are nice to do. Outside tasks are for stuff where I need to go somewhere, like shopping errands. I&rsquo;m still not hard set on these categories, except for Work, this one will definitely stay.</p>
+<h3 id="alerts" >
+  <a href="#alerts">Alerts</a>
+</h3>
+<p>I use <strong>Smart List Day Alerts</strong> strategy for finding and fixing potential planning problems.</p>
+<ul>
+<li>New items pulled from backburner &mdash; reminder to check items with <code>*new</code></li>
+<li>Stale &mdash; review items with <code>*stale</code></li>
+<li>To review (waiting or pinged) &mdash; some tasks are ready to review)</li>
+<li>This week unestimated &mdash; add estimation for all tasks, smartlist: <code>Tasks, no time estimate, &amp;thisWeek scheduleDate today == ||</code></li>
+</ul>
+<h3 id="review" >
+  <a href="#review">Review</a>
+</h3>
+<p><strong>Review date</strong> strategy is not the best name for my usage. I use it for tasks which are not done by me.</p>
+<ul>
+<li>tag <em>waiting</em> (3 day) &mdash; for long waiting tasks</li>
+<li>tag <em>ping</em> (1 day) &mdash; reminds me ask someone everyday if s/he finished the task</li>
+</ul>
+<h3 id="occasional-tasks" >
+  <a href="#occasional-tasks">Occasional tasks</a>
+</h3>
+<p>I was not able to setup this correctly in AM yet, so I&rsquo;m using some hacks around it. Basically, these are tasks which I want to do every 15-40 days, without specifying exact day. One of the tasks is <em>Productivity system review</em>. It has a note with questions which I ask while going through all my tasks and projects:</p>
+<ol>
+<li>Is it really mine? Maybe delegate?</li>
+<li>Is there any real profit from this task?</li>
+<li>Maybe it&rsquo;s possible to do some other task so that this one becomes obsolete?</li>
+<li>Is there any easier way to do it?</li>
+<li>Do I really still need to do it?</li>
+</ol>
+<p>Goal is to remove or reformulate tasks.</p>
+<h2 id="ending-thoughts" >
+  <a href="#ending-thoughts">Ending thoughts</a>
+</h2>
+<p>Of course this is just a small part of AM experience. I like being able to create work sessions for working on projects in pomodorro-style chunks. Templates are awesome and I use them for mindful book reading projects (reading, making notes, transferring them to Joplin). Gamification abilities are cute and I will explore them more, when I&rsquo;ll be more comfortable and less procrastinating.</p>
+<p>I&rsquo;ve noticed that features which were very important to me in RTM, like tagging, are not so needed here. Here you can have categories, sections, do/due/end dates, projects to achieve similar goals. This granularity and specificity are the most awesome aspect of AM!</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Remember The Milk for task management</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2018/03/20/remember-the-milk-for-task-management/" hreflang="en"/>
+    <published>2018-03-20T00:00:00Z</published>
+    <updated>2018-03-20T00:00:00Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2018-03-20:/articles/2018/03/20/remember-the-milk-for-task-management/</id>
+    
+    <summary type="html"><![CDATA[<p>Today I received a letter from <a href="https://www.rememberthemilk.com/" class="external-link">Remember The Milk</a> that I had won a free year of Pro. That&rsquo;s great, yet I feel a bit sad because somehow everyone talks about every other todo app and not RTM.</p>
+<p>I&rsquo;ve been using RTM for several years. First, with free account, later with Pro. And it&rsquo;s a <em>second</em> time I won a Pro :) RTM is great. For me, four killer features are:</p>]]></summary>
+    <content type="html"><![CDATA[<p>Today I received a letter from <a href="https://www.rememberthemilk.com/" class="external-link">Remember The Milk</a> that I had won a free year of Pro. That&rsquo;s great, yet I feel a bit sad because somehow everyone talks about every other todo app and not RTM.</p>
+<p>I&rsquo;ve been using RTM for several years. First, with free account, later with Pro. And it&rsquo;s a <em>second</em> time I won a Pro :) RTM is great. For me, four killer features are:</p>
+<ul>
+<li>Start dates and due dates</li>
+<li>Very customizable repeat options</li>
+<li>Really smart add syntax (you can input everything as one-liner and all task fields will be populated)</li>
+<li>Smart lists (basically, it&rsquo;s saved searches with operators like <code>tag:</code> and logic control with <code>AND</code>/<code>OR</code>/<code>NOT</code>/parentheses)</li>
+</ul>
+<p>You can implement any imaginable task management system with it. I use <a href="http://blog.rememberthemilk.com/post/172085635648/tips-tricks-tuesday-combining-organization" class="external-link">a setup based on M. Dorofeev&rsquo;s approach</a>.  Of course, specialized apps are probably a bit easier if you strictly follow rules of one &ldquo;true&rdquo; system, but with RTM you can do the heck you want any time you want. There is a bizarre development fashion to &ldquo;box&rdquo; users with constraints, to give no options. And for me RTM is a breeze of sane air of freedom.</p>
+]]></content>
+  </entry>
+</feed>
