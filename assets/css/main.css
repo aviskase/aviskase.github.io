@@ -394,3 +394,35 @@ hr, hr::after {
 .gist .gist-meta {
   margin-top: 0;
 }
+
+.home h2:first-child {
+  margin-top: 0;
+}
+
+.home h2 {
+  margin-bottom: 0;
+  background-color: var(--ctp-mocha-surface0);
+}
+
+.home h2::before {  content: "░ "; }
+
+.home .article-list {
+  margin-top: 0;
+}
+
+.home .lucide-rss {
+  position: relative;
+  top: 0.15rem;
+}
+
+.home .rss-link {
+  padding-left: 1ch;
+}
+
+.title > * {
+  display: inline-block;
+}
+
+.title .rss-link {
+  padding-left: 1ch;
+}

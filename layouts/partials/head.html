@@ -19,7 +19,7 @@
     {{ hugo.Generator }}
 
     {{ with .OutputFormats.Get "ATOM" }}
-    <link href="{{ .RelPermalink }}" rel="alternate" type="application/atom+xml" title="{{ $.Site.Title }} Full Atom Feed" />
+    <link href="{{ .RelPermalink }}" rel="alternate" type="application/atom+xml" title="{{ $.Site.Title }} Atom Feed" />
     {{ end }}
 
     {{/* styles */}}
