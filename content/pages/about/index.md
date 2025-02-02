@@ -5,7 +5,7 @@ menu:
         weight: 200
 ---
 
-Hi, I'm Yuliya Bagriy. Yeah, too many y's, but that's an official transliteration from Russian; if you have trouble spelling it without mistakes, so do I =) My nickname is **aviskase**, and you can find me nearly everywhere using it.
+Hi, I'm Yuliya Bagriy. Yeah, too many y's, but that's an official transliteration from Russian; if you have trouble spelling it without mistakes, so do I =) My nickname is **aviskase**, and you can find me nearly everywhere using it, for example, on [mastodon](https://infosec.exchange/@aviskase)
 
 My interests vary:
 
