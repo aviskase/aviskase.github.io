@@ -7,19 +7,7 @@
         "build": "npm run clean && npm run build:hugo"
     },
     "devDependencies": {
-        "@fullhuman/postcss-purgecss": "^5.0.0",
-        "@tailwindcss/typography": "^0.5.10",
-        "autoprefixer": "^10.4.16",
         "commander": "^11.1.0",
-        "postcss": "^8.4.32",
-        "postcss-cli": "^11.0.0",
-        "slug": "^8.2.3",
-        "tailwindcss": "^3.3.6"
-    },
-    "browserslist": [
-        "last 1 version",
-        "> 1%",
-        "maintained node versions",
-        "not dead"
-    ]
+        "slug": "^8.2.3"
+    }
 }
