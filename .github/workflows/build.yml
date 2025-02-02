@@ -27,19 +27,8 @@ jobs:
           hugo-version: '${{ steps.hugo-version.outputs.HUGO_VERSION }}'
           extended: true
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22.x'
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-          check-latest: true
-      
-      - name: Install dependencies
-        run: npm ci
-
       - name: Build
-        run: npm run build
+        run: ./hehugo.sh build
 
       - name: Deploy
         if: success()

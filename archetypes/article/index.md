@@ -8,5 +8,6 @@ title: "{{ replace (replace .Name "-" " ") (now.Format "2006 01 02 ") "" | title
 {{- end }}
 draft: true
 see_also: []
+categories: []
 ---
 
