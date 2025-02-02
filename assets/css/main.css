@@ -425,4 +425,6 @@ hr, hr::after {
 
 .title .rss-link {
   padding-left: 1ch;
+  position: relative;
+  top: 3px;
 }
