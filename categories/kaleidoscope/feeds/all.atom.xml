@@ -2,9 +2,54 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>kaleidoscope on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2024-03-16T14:35:00Z</updated>
+  <updated>2025-02-02T05:00:59Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/kaleidoscope/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/kaleidoscope/" hreflang="en"/>
+  <entry>
+    <title>Blog status update</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/02/blog-status-update/" hreflang="en"/>
+    <published>2025-02-02T05:00:59Z</published>
+    <updated>2025-02-02T05:00:59Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-02:/articles/2025/02/02/blog-status-update/</id>
+    
+    <summary type="html"><![CDATA[<p>I needed to add a separate section on the blog for CTF writeups and couldn&rsquo;t help rewamping a bunch of things:</p>
+<ul>
+<li>Dark mode redesign inspired by <a href="https://owickstrom.github.io/the-monospace-web/" class="external-link">monospace web</a> and <a href="https://johnnydecimal.com/" class="external-link">Johnny.Decimal</a>
+<ul>
+<li>Still need to iron out the color scheme and add a light option.</li>
+<li>Also ditched all the Tailwind stuff. Back to basic CSS.</li>
+</ul>
+</li>
+<li>Added categories. They are kinda like broad tags where some posts can have several categories assigned. Current selection is:
+<ul>
+<li>IT: everything IT / computer science / digital related.</li>
+<li>Kaleidoscope: basically &ldquo;other&rdquo;. Non-IT topics like productivity, PKM, and general blah-blah. I might as well embrace &ldquo;just post everything&rdquo; approach like <a href="https://curtismchale.ca/" class="external-link">Curtis McHale</a>.</li>
+<li>Writeups: for CTF writeups, duh.</li>
+</ul>
+</li>
+<li>Each category generates its own RSS feed for those who don&rsquo;t want to get all the content.</li>
+</ul>
+<p>That&rsquo;s it. Next posts will be my first writeups.</p>]]></summary>
+    <content type="html"><![CDATA[<p>I needed to add a separate section on the blog for CTF writeups and couldn&rsquo;t help rewamping a bunch of things:</p>
+<ul>
+<li>Dark mode redesign inspired by <a href="https://owickstrom.github.io/the-monospace-web/" class="external-link">monospace web</a> and <a href="https://johnnydecimal.com/" class="external-link">Johnny.Decimal</a>
+<ul>
+<li>Still need to iron out the color scheme and add a light option.</li>
+<li>Also ditched all the Tailwind stuff. Back to basic CSS.</li>
+</ul>
+</li>
+<li>Added categories. They are kinda like broad tags where some posts can have several categories assigned. Current selection is:
+<ul>
+<li>IT: everything IT / computer science / digital related.</li>
+<li>Kaleidoscope: basically &ldquo;other&rdquo;. Non-IT topics like productivity, PKM, and general blah-blah. I might as well embrace &ldquo;just post everything&rdquo; approach like <a href="https://curtismchale.ca/" class="external-link">Curtis McHale</a>.</li>
+<li>Writeups: for CTF writeups, duh.</li>
+</ul>
+</li>
+<li>Each category generates its own RSS feed for those who don&rsquo;t want to get all the content.</li>
+</ul>
+<p>That&rsquo;s it. Next posts will be my first writeups.</p>
+]]></content>
+  </entry>
   <entry>
     <title>Goodbye, og:image</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2024/03/16/goodbye-ogimage/" hreflang="en"/>
