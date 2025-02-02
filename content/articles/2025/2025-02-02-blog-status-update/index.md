@@ -6,7 +6,7 @@ see_also: []
 categories: [kaleidoscope]
 ---
 
-I needed to add a separate section on the blog for CTF writeups and couldn't help rewamping a bunch of things:
+I needed to add a separate section on the blog for CTF writeups and couldn't help revamping a bunch of things:
 
 - Dark mode redesign inspired by [monospace web](https://owickstrom.github.io/the-monospace-web/) and [Johnny.Decimal](https://johnnydecimal.com/)
     - Still need to iron out the color scheme and add a light option.
