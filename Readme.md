@@ -2,5 +2,5 @@
 
 This repository is the source code of the personal website [aviskase.com](https://www.aviskase.com/), built with *Hugo*.
 
-Theme is hugely based on [the-plain theme](https://github.com/heiswayi/the-plain).
+Theme is hugely based on [the-monospace-web](https://github.com/owickstrom/the-monospace-web).
 
