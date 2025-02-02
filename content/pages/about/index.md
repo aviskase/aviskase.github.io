@@ -10,10 +10,11 @@ Hi, I'm Yuliya Bagriy. Yeah, too many y's, but that's an official transliteratio
 My interests vary:
 
 - IT stuff, including, but not limited to:
-    - testing
+    - cybersecurity
     - APIs
+    - testing
     - development in general
-    - consumer-oriented Linux (yup, no hardcoreness)
+    - consumer-oriented Linux 
 - system and process control/management/improvement 
 - math and statistics in particular
 - genetics
