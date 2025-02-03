@@ -202,6 +202,10 @@ blockquote::before {
   position: relative;
 }
 
+.callout > :first-child {
+  margin-top: var(--line-height);
+}
+
 .callout.note::before {
   content: "note";
   position: absolute;
@@ -244,6 +248,15 @@ blockquote::before {
   padding: 0 0.4rem;
 }
 
+.callout.info::before {
+  content: "info";
+  position: absolute;
+  background-color: var(--ctp-mocha-base);
+  top: -1rem;
+  left: 0.8rem;
+  padding: 0 0.4rem;
+}
+
 .callout.see-also::before {
   content: "see also";
   position: absolute;
@@ -253,7 +266,6 @@ blockquote::before {
   padding: 0 0.4rem;
 }
 
-/* / */
 
 .article-nav {
   border: 2px solid var(--ctp-mocha-yellow);

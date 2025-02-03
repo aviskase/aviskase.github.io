@@ -1,6 +1,6 @@
-{{/* Available callout types: note, warning, cta */}}
+{{/* Available callout types: note, warning, cta, info */}}
 {{- $calloutType := .Get "type" | default "note" -}}
-{{- if not (or (eq $calloutType "note") (eq $calloutType "warning") (eq $calloutType "cta")) -}}
+{{- if not (or (eq $calloutType "note") (eq $calloutType "warning") (eq $calloutType "cta") (eq $calloutType "info")) -}}
   {{ errorf "Unknown callout type." }}
 {{- end -}}
 {{/* Check for single vs multiple paragraphs */}}
