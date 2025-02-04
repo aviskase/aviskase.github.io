@@ -1,6 +1,6 @@
 ---
-Title: "Coverage metrics"
-Date: 2016-05-02
+title: "Coverage metrics"
+date: 2016-05-02
 Tags: thoughts
 categories: [it]
 ---

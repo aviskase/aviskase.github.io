@@ -1,6 +1,6 @@
 ---
-Title: "Weekly hmms: valuations, job titles, conferences, APIs"
-Date: 2019-11-16T02:53:21.061386
+title: "Weekly hmms: valuations, job titles, conferences, APIs"
+date: 2019-11-16T02:53:21.061386
 categories: [it, kaleidoscope]
 og_image: og_wh_1.png
 ---

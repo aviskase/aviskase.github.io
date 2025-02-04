@@ -1,6 +1,6 @@
 ---
-Title: "Enabling L2TP/IPSec in Ubuntu" 
-Date: 2017-03-19
+title: "Enabling L2TP/IPSec in Ubuntu" 
+date: 2017-03-19
 Tags: linux, practical
 categories: [it]
 slug: enabling-l2tpipsec-in-ubuntu

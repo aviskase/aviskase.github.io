@@ -1,6 +1,6 @@
 ---
-Title: "Using Google Apps scripts for productivity improvements"
-Date: 2019-09-08
+title: "Using Google Apps scripts for productivity improvements"
+date: 2019-09-08
 Tags: practical
 categories: [kaleidoscope]
 ---

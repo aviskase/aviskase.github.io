@@ -1,6 +1,6 @@
 ---
-Title: "Remember The Milk for task management"
-Date: 2018-03-20
+title: "Remember The Milk for task management"
+date: 2018-03-20
 Tags: practical
 categories: [kaleidoscope]
 ---

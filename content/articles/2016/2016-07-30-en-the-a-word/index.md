@@ -1,6 +1,6 @@
 ---
-Title: "Thoughts on \"The 'A' Word\""
-Date: 2016-07-30
+title: "Thoughts on \"The 'A' Word\""
+date: 2016-07-30
 Tags: thoughts, book
 categories: [it]
 ---

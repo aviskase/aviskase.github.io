@@ -1,6 +1,6 @@
 ---
-Title: "How to watch SWF in Linux"
-Date: 2015-12-23
+title: "How to watch SWF in Linux"
+date: 2015-12-23
 Tags: linux, practical
 categories: [it]
 ---

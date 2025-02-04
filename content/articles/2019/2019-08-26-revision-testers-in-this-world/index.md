@@ -1,6 +1,6 @@
 ---
-Title: "Revision: testers in this world"
-Date: 2019-08-26
+title: "Revision: testers in this world"
+date: 2019-08-26
 Tags: 
 - thoughts
 Modified: 2019-09-17

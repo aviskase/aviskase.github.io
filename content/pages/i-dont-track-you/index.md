@@ -1,5 +1,5 @@
 ---
-Title: I don't track you
+title: I don't track you
 ---
 
 When you visit this website, I don't track you.

@@ -1,6 +1,6 @@
 ---
-Title: "Mega mind map: version #2"
-Date: 2018-03-19
+title: "Mega mind map: version #2"
+date: 2018-03-19
 Tags: practical
 categories: [it]
 slug: "mega-mind-map-version-2"

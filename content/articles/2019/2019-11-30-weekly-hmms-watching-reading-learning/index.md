@@ -1,6 +1,6 @@
 ---
-Title: "Weekly hmms: watching, reading, learning"
-Date: 2019-11-30T19:13:56.428065
+title: "Weekly hmms: watching, reading, learning"
+date: 2019-11-30T19:13:56.428065
 categories: [it]
 og_image: og_wh_3.png
 ---

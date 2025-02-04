@@ -1,5 +1,5 @@
 ---
-Title: About
+title: About
 menu: 
     main:
         weight: 200

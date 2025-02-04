@@ -1,6 +1,6 @@
 ---
-Title: "Knowledge management tools"
-Date: 2020-07-03T19:50:58.535336
+title: "Knowledge management tools"
+date: 2020-07-03T19:50:58.535336
 Tags: practical, tools
 categories: [kaleidoscope]
 og_image: og_knowledge_management_tools.png

@@ -1,6 +1,6 @@
 ---
-Title: "List of articles and videos on API and web services testing"
-Date: 2016-01-09
+title: "List of articles and videos on API and web services testing"
+date: 2016-01-09
 Tags: api
 categories: it
 ---

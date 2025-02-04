@@ -1,6 +1,6 @@
 ---
-Title: "Amazing Marvin for task management"
-Date: 2019-07-30
+title: "Amazing Marvin for task management"
+date: 2019-07-30
 Tags: 
 - practical
 categories: [kaleidoscope]

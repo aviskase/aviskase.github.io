@@ -1,6 +1,6 @@
 ---
-Title: 'Course "Intro to DevOps" by Udacity'
-Date: 2016-07-17
+title: 'Course "Intro to DevOps" by Udacity'
+date: 2016-07-17
 Tags: devops, course
 categories: [it]
 ---

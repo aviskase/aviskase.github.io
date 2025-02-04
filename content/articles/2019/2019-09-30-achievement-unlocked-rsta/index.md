@@ -1,6 +1,6 @@
 ---
-Title: "Achievement unlocked: RSTA"
-Date: 2019-09-30
+title: "Achievement unlocked: RSTA"
+date: 2019-09-30
 Tags: course
 categories: [it]
 ---

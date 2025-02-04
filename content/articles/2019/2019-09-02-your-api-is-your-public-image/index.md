@@ -1,6 +1,6 @@
 ---
-Title: "Your API is your public image"
-Date: 2019-09-02
+title: "Your API is your public image"
+date: 2019-09-02
 Tags: api
 categories: [it]
 ---

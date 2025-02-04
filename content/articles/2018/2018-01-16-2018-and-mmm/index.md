@@ -1,6 +1,6 @@
 ---
-Title: "2018 and mega mind map"
-Date: 2018-01-06
+title: "2018 and mega mind map"
+date: 2018-01-06
 Tags: practical
 categories: [it]
 ---

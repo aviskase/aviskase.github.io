@@ -1,6 +1,6 @@
 ---
-Title: "Hmms: July"
-Date: 2020-08-04T22:26:40.958045
+title: "Hmms: July"
+date: 2020-08-04T22:26:40.958045
 categories: [it, kaleidoscope]
 og_image: og_h_july.png
 ---

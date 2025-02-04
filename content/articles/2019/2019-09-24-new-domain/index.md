@@ -1,6 +1,6 @@
 ---
-Title: "New domain"
-Date: 2019-09-24
+title: "New domain"
+date: 2019-09-24
 categories: [kaleidoscope]
 Tags: writing
 ---

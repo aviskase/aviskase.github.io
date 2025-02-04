@@ -1,6 +1,6 @@
 ---
-Title: "Stereotype Rant"
-Date: 2019-09-04
+title: "Stereotype Rant"
+date: 2019-09-04
 Tags: thoughts
 categories: [it]
 ---

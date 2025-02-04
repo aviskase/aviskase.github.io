@@ -1,6 +1,6 @@
 ---
-Title: "Testers in this world" 
-Date: 2018-01-23
+title: "Testers in this world" 
+date: 2018-01-23
 Tags: thoughts
 categories: [it]
 ---

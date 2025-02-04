@@ -1,6 +1,6 @@
 ---
-Title: Using Insomnia for API exploration
-Date: 2020-04-22T01:06:01.497569
+title: Using Insomnia for API exploration
+date: 2020-04-22T01:06:01.497569
 Tags: api, tools, practical
 categories: [it]
 og_image: og_using_insomnia_for_exploration.png

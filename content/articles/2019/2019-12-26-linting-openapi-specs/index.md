@@ -1,6 +1,6 @@
 ---
-Title: "Lunch&Learn: linting OpenAPI description docs"
-Date: 2019-12-26T19:21:00.564483
+title: "Lunch&Learn: linting OpenAPI description docs"
+date: 2019-12-26T19:21:00.564483
 Tags: api, practical, tools
 categories: [it]
 og_image: og_linting_openapi_dd.png

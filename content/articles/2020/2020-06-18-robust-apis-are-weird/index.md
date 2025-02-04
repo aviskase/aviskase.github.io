@@ -1,6 +1,6 @@
 ---
-Title: Robust APIs are weird
-Date: 2020-06-18T00:30:59.650913
+title: Robust APIs are weird
+date: 2020-06-18T00:30:59.650913
 categories: [it]
 Tags: api
 og_image: og_robust_apis_are_weird.png

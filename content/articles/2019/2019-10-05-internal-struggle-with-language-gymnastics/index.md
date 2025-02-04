@@ -1,6 +1,6 @@
 ---
-Title: "Internal struggle with language gymnastics"
-Date: 2019-10-05
+title: "Internal struggle with language gymnastics"
+date: 2019-10-05
 Tags: thoughts
 categories: [it]
 ---

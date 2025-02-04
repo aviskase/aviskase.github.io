@@ -1,6 +1,6 @@
 ---
-Title: "SOAP testing 101"
-Date: 2019-09-15
+title: "SOAP testing 101"
+date: 2019-09-15
 Tags: api
 categories: [it]
 ---

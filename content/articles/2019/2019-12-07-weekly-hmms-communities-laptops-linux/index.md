@@ -1,6 +1,6 @@
 ---
-Title: "Weekly hmms: communities, laptops & Linux"
-Date: 2019-12-07T23:50:35.051627
+title: "Weekly hmms: communities, laptops & Linux"
+date: 2019-12-07T23:50:35.051627
 categories: [it, kaleidoscope]
 og_image: og_wh_4.png
 ---

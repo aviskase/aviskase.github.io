@@ -1,6 +1,6 @@
 ---
-Title: "Lasha Tumbai or rm -rf RU"
-Date: 2019-08-08 23:51:52
+title: "Lasha Tumbai or rm -rf RU"
+date: 2019-08-08 23:51:52
 Tags: 
 - writing
 categories: [kaleidoscope]

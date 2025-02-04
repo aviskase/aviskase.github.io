@@ -1,6 +1,6 @@
 ---
-Title: "Thoughts on \"Dear Evil Tester\""
-Date: 2016-05-09
+title: "Thoughts on \"Dear Evil Tester\""
+date: 2016-05-09
 Tags: book, thoughts
 categories: [it]
 ---
