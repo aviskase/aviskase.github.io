@@ -449,3 +449,8 @@ hr, hr::after {
   position: relative;
   top: 3px;
 }
+
+
+.tree ul li:last-child {
+  padding-left: calc(1.5ch + 2px);
+}
