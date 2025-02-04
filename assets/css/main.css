@@ -72,6 +72,15 @@ footer a:link, footer a:visited, footer span {
   color: var(--ctp-mocha-subtext0);
 }
 
+footer a::before {
+  content: " · ";
+}
+
+footer svg {
+  fill: var(--ctp-mocha-subtext0);
+  vertical-align: middle;
+}
+
 h1 {
   margin: 0;
 }
