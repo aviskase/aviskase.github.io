@@ -8,19 +8,28 @@
 {{- $pages = $pages.GroupByDate "2006" -}}
 <div class="article-list">
     {{- range $pages -}}
-    {{- $firstArticle := index .Pages 0 -}}
-    <ul class="tree">
-        <li class="article-list-header">
-            {{ $firstArticle.Date.Format "2006"}}
-        </li>
-        <ul class="article-list-range">
-            {{- range .Pages -}}
-            <li><a href="{{ .Permalink }}">
-                <span class="article-list-date">{{ .Date.Format "2006-01-01" }}</span>
-                <span class="article-list-title">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</span>
-            </a></li>
+        {{- $firstArticle := index .Pages 0 -}}
+        <ul class="tree">
+            <li class="article-list-header">
+                {{ $firstArticle.Date.Format "2006"}}
+            {{- $MonthPages := .Pages.GroupByDate "2006-01" -}}
+            <ul>
+            {{- range $MonthPages -}}
+                {{- $firstArticle := index .Pages 0 -}}
+                <li>{{ $firstArticle.Date.Format "January"}}
+
+                    <ul class="article-list-range">
+                        {{- range .Pages -}}
+                        <li><a href="{{ .Permalink }}">
+                            <span class="article-list-title">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</span>
+                        </a></li>
+                        {{- end -}}
+                    </ul>
+                    </li>
+                </li>
             {{- end -}}
+
+        </ul></li>
         </ul>
-    </ul>
     {{- end -}}
 </div>
