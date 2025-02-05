@@ -103,26 +103,30 @@
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-02-24:/articles/2024/02/23/two-ten-years-of-february/</id>
     
     <summary type="html"><![CDATA[<p>Today I&rsquo;d like to share <a href="http://www.zbarazh-library.com.ua/writen/history/UPA.pdf" class="external-link">this bit about my great-grand father Bagriy Ivan</a>:</p>
+
 <blockquote>
-<p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
+    <p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
 Four shylyans were killed then:</p>
 <ul>
 <li>Antoniuk Volodymyr - born in 1923.</li>
 <li>Bagriy Ivan - born in 1911.</li>
 <li>Voznyi Ivan - born in 1905.</li>
 <li>Hulovskyi Vasyl - born in 1918.</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>Nineteen fifty-two. By that time, Ivan&rsquo;s wife and son (my grandfather) had already been exiled to Kazakhstan.</p>]]></summary>
     <content type="html"><![CDATA[<p>Today I&rsquo;d like to share <a href="http://www.zbarazh-library.com.ua/writen/history/UPA.pdf" class="external-link">this bit about my great-grand father Bagriy Ivan</a>:</p>
+
 <blockquote>
-<p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
+    <p>The last bunker in our region was destroyed by the NKVD in 1952 in the Lubianets forest.
 Four shylyans were killed then:</p>
 <ul>
 <li>Antoniuk Volodymyr - born in 1923.</li>
 <li>Bagriy Ivan - born in 1911.</li>
 <li>Voznyi Ivan - born in 1905.</li>
 <li>Hulovskyi Vasyl - born in 1918.</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>Nineteen fifty-two. By that time, Ivan&rsquo;s wife and son (my grandfather) had already been exiled to Kazakhstan.</p>
 <p>One can write a lengthy eloquent essay about never surrendering, believing in independence, and so on. I won&rsquo;t.</p>
 <p>Слава Україні. Героям слава.</p>
@@ -136,24 +140,35 @@ Four shylyans were killed then:</p>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-01-26:/articles/2024/01/25/open-banking-canada-vs-kazakhstan/</id>
     
     <summary type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+
 <blockquote>
-<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>]]></summary>
+    <p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>]]></summary>
     <content type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+
 <blockquote>
-<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p></blockquote>
+    <p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>
+</blockquote>
 <p>Cool. Let&rsquo;s read the report.</p>
+
 <blockquote>
-<p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p></blockquote>
+    <p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p>
+</blockquote>
+
 <blockquote>
-<p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p></blockquote>
+    <p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p>
+</blockquote>
 <p>Yup, Halyk Bank isn&rsquo;t mentioned, so it&rsquo;s just a really early pilot. Even more, no Kaspi Bank. It&rsquo;s like doing something in Canada without involving <a href="https://en.wikipedia.org/wiki/Big_Five_banks_of_Canada" class="external-link">Big Five</a>. Well, they have 2 more years, so, good luck.</p>
 <p>Hmm. Speaking of. What about Canada?</p>
 <p>Despite Canada&rsquo;s reputation for bad information disclosure approaches, I do enjoy the content available on <code>canada.ca</code>. Including <a href="https://www.canada.ca/en/financial-consumer-agency/services/banking/open-banking.html" class="external-link">what&rsquo;s up with open banking</a>. It&rsquo;s a long page, but all you need is the first sentence:</p>
+
 <blockquote>
-<p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p></blockquote>
+    <p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p>
+</blockquote>
 <p>Ouch. Is there any progress, though? According to <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/open-banking-implementation/2023-fes-policy-statement-consumer-driven-banking.html" class="external-link">2023 Fall Economic Statement: Policy Statement on Consumer-Driven Banking</a>:</p>
+
 <blockquote>
-<p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p></blockquote>
+    <p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p>
+</blockquote>
 <p>Same year, different goals. Kazakhstan is planning to finish implementing (doubt it), whereas Canada is planning to finish with laws and paperwork (doubt it too). Let&rsquo;s put a reminder and check on them both in 2025?</p>
 ]]></content>
   </entry>
@@ -165,13 +180,16 @@ Four shylyans were killed then:</p>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2023-12-15:/articles/2023/12/15/the-navys-it-challenges/</id>
     
     <summary type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+
 <blockquote>
-<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+    <p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
 <p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>]]></summary>
     <content type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+
 <blockquote>
-<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
-<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p></blockquote>
+    <p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>
+</blockquote>
 <p><em>Specific IT challenges</em>, eh?</p>
 <p>I guess most of the people skim through this line. Whatever, it&rsquo;s just a pretext. But for me it sounds bizarrely specific. So, here some of my musings about it.</p>
 <p>Those problems with internal communications. It got me curious, how really it&rsquo;s even done in the military. &ldquo;Army-wide&rdquo; emails? Slack, Zoom, Teams? IRC? The answer is <a href="https://www.reddit.com/r/CanadianForces/comments/11hy76u/scs_whaaaatsappp/" class="external-link">all of these</a>. Total chaos. I especially like the comment mentioning using Facebook Messenger, because, c&rsquo;mon! At least, no WeChat. I hope. I also hope they have less problems accessing their Top Secret Network stuff, <a href="https://www.canada.ca/content/dam/di-id/documents/rpt/rapporteur/Independent-Special-Rapporteur%20-Report-eng.pdf" class="external-link">not like our ministers [page 27]</a>.</p>
@@ -280,12 +298,18 @@ Four shylyans were killed then:</p>
 <p><a href="https://www.youtube.com/playlist?list=PLBitIgZ_UvGFNHPFlRg4834gYBmbYmdr7" class="external-link">Watch this playlist</a> (3 videos at the time of writing). You may think &ldquo;wtf, Yuliya, this is some bullshit video game essays&rdquo;. Yes, it is.</p>
 <p>But it is also one of the best videos explaining modern testing principles, agile, and lean. Damn, this could be on par with some TED talks. It also explains the appeal of APIs: modding in games is the similar concept to publishing APIs; you never know what users come up with.</p>
 <p>How about some quotes:</p>
+
 <blockquote>
-<p>Early access is your <em>release</em>.</p></blockquote>
+    <p>Early access is your <em>release</em>.</p>
+</blockquote>
+
 <blockquote>
-<p>With <em>rapid iterations</em> DayZ mod evolved as the features were added based on <em>what people wanted</em> rather than what developer and publisher thought people wanted.</p></blockquote>
+    <p>With <em>rapid iterations</em> DayZ mod evolved as the features were added based on <em>what people wanted</em> rather than what developer and publisher thought people wanted.</p>
+</blockquote>
+
 <blockquote>
-<p>[&hellip;] design pressure from the bottom up.</p></blockquote>
+    <p>[&hellip;] design pressure from the bottom up.</p>
+</blockquote>
 <p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
 <p>
 <img class="" src="/articles/2020/11/30/hmms-november/floss.gif" alt="Floss dance" >
@@ -448,17 +472,20 @@ Four shylyans were killed then:</p>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-08-08:/articles/2020/08/08/be-chicken/</id>
     
     <summary type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+
 <blockquote>
-<p>A Pig and a Chicken are walking down the road.</p>
+    <p>A Pig and a Chicken are walking down the road.</p>
 <p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
 <p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>]]></summary>
     <content type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+
 <blockquote>
-<p>A Pig and a Chicken are walking down the road.</p>
+    <p>A Pig and a Chicken are walking down the road.</p>
 <p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
 <p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>
 <p>The Chicken responds: &ldquo;How about &lsquo;ham-n-eggs&rsquo;?&rdquo;</p>
-<p>The Pig thinks for a moment and says: &ldquo;No thanks. I&rsquo;d be committed, but you&rsquo;d only be involved.&rdquo;</p></blockquote>
+<p>The Pig thinks for a moment and says: &ldquo;No thanks. I&rsquo;d be committed, but you&rsquo;d only be involved.&rdquo;</p>
+</blockquote>
 <p>I bet I won&rsquo;t say anything new or profound, but it always weirds me out that the pig is considered somewhat more important than the chicken. Oh, right, because <em>it must die</em> to be useful.</p>
 <p>Well, I grew up in the 90s in Kazakhstan. Like many people we were relying on our village relatives for food, so ham and egg production is not an elegant metaphor but a real-life experience for me.</p>
 <p>Growing pigs is a <em>slow process</em> with a big <em>one-time payoff</em>. It&rsquo;s not free: you need to feed them and clean the place.  And you&rsquo;d better have a pair of pigs so that the production could be at least somewhat renewable. One committed pig is a splendid feast in the short term and hunger in the long term. Don&rsquo;t forget an emotional cost: pigs don&rsquo;t die by themselves. You will hear it. You will <em>smell</em> it.</p>
@@ -892,8 +919,9 @@ not just generic NDA-sanitized dev blog posts.</p>
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
 <li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
 </ul>
+
 <blockquote>
-<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+    <p>Another chose to build their own API gateway because no offerings existed that would operate in their
 preferred Windows-based server environment.
 I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>]]></summary>
     <content type="html"><![CDATA[<p>Coronavirus-free edition!</p>
@@ -915,10 +943,12 @@ I haven’t heard from them since as they still haven’t shipped their product 
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
 <li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
 </ul>
+
 <blockquote>
-<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+    <p>Another chose to build their own API gateway because no offerings existed that would operate in their
 preferred Windows-based server environment.
-I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p></blockquote>
+I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>
+</blockquote>
 <ul>
 <li>Adidas has awesome API guidelines and recently they&rsquo;ve published <a href="https://github.com/adidas/api-pm-training" class="external-link">their API training for PMs</a>. If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
 business-y for me to comprehend without hands-on experience.</li>
@@ -1071,8 +1101,9 @@ Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for 
 <p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
 customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
 it is easier to recall bad patterns and behaviors.</p>
+
 <blockquote>
-<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+    <p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
 Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
 Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
 my answer would not be good enough for whoever was judging my application.
@@ -1085,18 +1116,22 @@ but as a precaution my code editor has been themed in dark purple with white hig
 <p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
 customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
 it is easier to recall bad patterns and behaviors.</p>
+
 <blockquote>
-<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+    <p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
 Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
 Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
 my answer would not be good enough for whoever was judging my application.
 In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo;
 A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor SWAT teams,
-but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p></blockquote>
+but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p>
+</blockquote>
 <p>This particular quote hit hard:</p>
+
 <blockquote>
-<p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
-to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p></blockquote>
+    <p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
+to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p>
+</blockquote>
 <p>Once we tried to research our competitors and we couldn&rsquo;t find even screenshots. How the hell
 a potential customer is supposed to evaluate your product if you hide <strong>everything</strong>?</p>
 <h2 id="yegor-bugaenko-on-qa-vs-testing" >
@@ -1167,8 +1202,10 @@ probably never consider how it affects existing canon.</p>
 <p>I&rsquo;m not a saint either. I rant, joke, correct, discuss, persuade, and roll my eyes. Maybe it comes with the profession. Or it&rsquo;s a normal thing for any community. What amazes me, that this much concentration of disagreements exists around the pettiest and smallish topics. Sometimes people even talk about the same ideas but with different examples, and it results in confrontations (direct or indirect).</p>
 <p>Giving recent cases wouldn&rsquo;t be humanly correct in regard to individuals involved. Let&rsquo;s just say: I participate in several slack workspaces. And it&rsquo;s quite common to a discussion in one to provoke posts in others with opposite reactions like &ldquo;good work&rdquo; and &ldquo;it drives me insane.&rdquo;</p>
 <p>Though, I want to quote one:</p>
+
 <blockquote>
-<p>Testing vs Checking is like Russian revolution &mdash; senseless and merciless.</p></blockquote>
+    <p>Testing vs Checking is like Russian revolution &mdash; senseless and merciless.</p>
+</blockquote>
 <p>You can replace &ldquo;testing vs checking&rdquo; with whatever you want, and it will hold true to a lot of prevalent discussions.</p>
 <h2 id="laptops--linux" >
   <a href="#laptops--linux">Laptops &amp; Linux</a>

