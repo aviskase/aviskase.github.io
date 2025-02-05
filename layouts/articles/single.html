@@ -9,12 +9,12 @@
 <table class="article-props">
     <tr>
         <th class="width-min">published</th>
-        <td class="width-auto">{{ .Date.Format "2006-01-01" }}</td>
+        <td class="width-auto">{{ .Date.Format "2006-01-02" }}</td>
     </tr>
     {{- if ne .Lastmod .Date }}
     <tr>
         <th class="width-min">updated</th>
-        <td class="width-auto">{{ .Lastmod.Format "2006-01-01" }}</td>
+        <td class="width-auto">{{ .Lastmod.Format "2006-01-02" }}</td>
     </tr>
     {{ end }}
     <tr>
