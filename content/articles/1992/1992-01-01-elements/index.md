@@ -1,13 +1,14 @@
 ---
-title: >-
-    It's a "check" \_\_with\_\_ some' `not-code` & test
+title: "It's a \"check\" \\_\\_with\\_\\_ some' `not-code` & test"
 draft: true
-date: 1992-01-01T00:00:00
-lastmod: 1992-02-02T00:00:00
-see_also: ["2020-04-22-using-insomnia-for-api-exploration"]
+date: "1992-01-01T00:00:00"
+lastmod: "1992-02-02T00:00:00"
+see_also:
+    - "2020-04-22-using-insomnia-for-api-exploration"
 categories:
-- writeups
-- it
+    - "writeups"
+    - "it"
+slug: "its-a-check-with-some-not-code-test"
 ---
 
 Here is an example of headings. You can use this heading by the following markdown rules. For example: use `#` for heading 1 and use `######` for heading 6.
@@ -47,7 +48,7 @@ Strike through uses two tildes. ~~Scratch this.~~
 
 [I'm a reference-style link][Arbitrary case-insensitive reference text]
 
-[I'm a relative reference to a repository file](../blob/master/TEST)
+[I'm a relative reference to a repository file](../../2016/2016-05-02-en-coverage-metric/index.md)
 
 [You can use numbers for reference-style link definitions][1]
 

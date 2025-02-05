@@ -1,9 +1,12 @@
 ---
-date: 2025-02-03T12:12:54-05:00
+date: "2025-02-03T12:12:54-05:00"
 title: "Writeup: TryHackMe Lo-Fi"
 draft: false
 see_also: []
-categories: [it, writeups]
+categories:
+    - "it"
+    - "writeups"
+slug: "writeup-tryhackme-lo-fi"
 ---
 
 {{< callout type="info" >}}

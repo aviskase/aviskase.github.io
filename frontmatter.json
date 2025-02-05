@@ -1,0 +1,125 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.quoteStringValues": true,
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": true,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Slug",
+          "name": "slug",
+          "type": "slug",
+          "required": true
+        },
+        {
+          "title": "Publishing date",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true,
+          "required": true
+        },
+        {
+          "title": "Updated",
+          "name": "lastmod",
+          "type": "datetime",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories",
+          "required": true
+        },
+        {
+          "title": "See also",
+          "name": "see_also",
+          "type": "contentRelationship",
+          "multiple": true,
+          "contentTypeName": "default",
+          "contentTypeValue": "path"
+        }
+
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "hugo",
+  "frontMatter.content.publicFolder": "static",
+  "frontMatter.preview.host": "http://localhost:1313",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "articles",
+      "path": "[[workspace]]/content/articles/",
+      "previewPath": "articles/{{date|yyyy/MM/dd}}",
+      "filePrefix": "{{date|yyyy/yyyy-MM-dd}}",
+      "contentTypes": ["default"]
+    },
+    {
+      "title": "pages",
+      "path": "[[workspace]]/content/pages"
+    }
+  ],
+  "frontMatter.framework.startCommand": "hugo server --buildDrafts --disableFastRender --navigateToChanged --watch --forceSyncStatic -e production --minify",
+  "frontMatter.content.snippets": {
+    "kbd": {
+      "description": "example: \"Ctrl b\"",
+      "body": "{{<kbd [[text]] >}}",
+      "fields": [
+        {
+          "name": "text",
+          "title": "text",
+          "type": "string",
+          "single": true,
+          "default": ""
+        }
+      ]
+    },
+    "internal link": {
+      "description": "",
+      "openingTags": "--",
+      "closingTags": "--",
+      "body": "[--name--]({{< ref \"--filename--\" >}})",
+      "fields": [
+        {
+          "name": "filename",
+          "title": "filename",
+          "type": "string",
+          "single": true,
+          "default": ""
+        },
+        {
+          "name": "name",
+          "title": "name",
+          "type": "string",
+          "single": true
+        }
+      ]
+    },
+    "writeup": {
+      "description": "",
+      "body": [
+        "> [!info]",
+        "> - [ROOM_NAME](LINK)",
+        "> - Difficulty: TODO",
+        "> - Platform: TODO",
+        "> ",
+        "> TODO"
+      ],
+      "fields": []
+    }
+  }
+}

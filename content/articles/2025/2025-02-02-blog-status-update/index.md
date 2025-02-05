@@ -1,9 +1,11 @@
 ---
-date: 2025-02-02T00:00:59-05:00
+date: "2025-02-02T00:00:59-05:00"
 title: "Blog status update"
 draft: false
 see_also: []
-categories: [kaleidoscope]
+categories:
+    - "kaleidoscope"
+slug: "blog-status-update"
 ---
 
 I needed to add a separate section on the blog for CTF writeups and couldn't help revamping a bunch of things:

@@ -1,9 +1,7 @@
 ---
 title: "Revision: testers in this world"
 date: 2019-08-26
-Tags: 
-- thoughts
-Modified: 2019-09-17
+lastmod: 2019-09-17
 categories: [it]
 ---
 
