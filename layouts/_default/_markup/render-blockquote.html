@@ -1,0 +1,12 @@
+{{ if eq .Type "alert" }}
+{{- if not (or (eq .AlertType "note") (eq .AlertType "warning") (eq .AlertType "cta") (eq .AlertType "info")) -}}
+  {{ errorf "Unknown callout type." }}
+{{- end -}}
+<div class="callout {{ .AlertType }}">
+    {{ .Text }}
+</div>
+{{ else }}
+<blockquote>
+    {{ .Text }}
+</blockquote>
+{{ end }}

@@ -132,6 +132,29 @@ This is a _simple_ cta.
 {{< /callout >}}
 
 
+### Native admonitions
+
+> [!warning]
+> This is a simple warning.
+> 
+> With _some_ lists and [link A](https://google.com) and [link B](../test):
+> 
+> - a
+> - b
+> 
+> 1. a
+> 2. b
+
+> [!note]
+> This is a simple note with [link A](https://google.com) and [link B](../test).
+
+> [!info]
+> Test info.
+
+> [!cta]
+> Test cta.
+
+
 ---
 
 ### Code and `Code` Highlighting
