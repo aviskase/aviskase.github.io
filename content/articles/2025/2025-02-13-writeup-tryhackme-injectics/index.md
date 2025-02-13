@@ -70,8 +70,8 @@ Here are the default credentials that will be added:
 
 | Email                     | Password 	              |
 |---------------------------|-------------------------|
-| superadmin@injectics.thm  | superSecurePasswd101    |
-| dev@injectics.thm         | devPasswd123            |
+| superadmin@injectics.thm  | REDACTED                |
+| dev@injectics.thm         | REDACTED                |
 
 Please let me know if there are any further updates or changes needed.
 
