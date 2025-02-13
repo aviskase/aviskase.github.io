@@ -45,6 +45,17 @@
 <li>SQL injections</li>
 <li>Server-side template injection</li>
 </ul>
+<div class="callout toc">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#bypassing-authentication-sqli">Bypassing authentication: SQLi</a></li>
+    <li><a href="#resetting-users-sqli">Resetting users: SQLi</a></li>
+    <li><a href="#getting-the-first-flag">Getting the first flag</a></li>
+    <li><a href="#reading-hidden-flag-file-rce-via-ssti">Reading hidden flag file: RCE via SSTI</a></li>
+  </ol>
+</nav>
+</div>  
 <h2 id="information-gathering" >
   <a href="#information-gathering">Information gathering</a>
 </h2>
