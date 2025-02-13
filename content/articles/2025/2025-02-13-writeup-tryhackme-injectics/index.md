@@ -23,6 +23,8 @@ This room acts as a final challenge for the advanced injection attacks module. V
 - SQL injections
 - Server-side template injection
 
+{{< toc >}}
+
 ## Information gathering
 
 I didn't go for the port scanning because it was evident that our focus was to find injection points in the web application.  

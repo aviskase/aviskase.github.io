@@ -90,7 +90,7 @@ a.external-link {
   color: var(--ctp-mocha-blue);
 }
 
-a.external-link:hover, .article-list a:hover, .article-props a:hover {
+a.external-link:hover, .article-list a:hover, .article-props a:hover, .toc a:hover {
   background: var(--ctp-mocha-blue);
   color: var(--ctp-mocha-base);
 }
@@ -224,6 +224,21 @@ blockquote::before {
   left: 0.8rem;
   padding: 0 0.4rem;
 }
+
+.callout.toc::before {
+  content: "table of contents";
+  position: absolute;
+  color: var(--ctp-mocha-yellow);
+  background-color: var(--ctp-mocha-base);
+  top: -1rem;
+  left: 0.8rem;
+  padding: 0 0.4rem;
+}
+
+.callout.toc {
+  border-color: var(--ctp-mocha-yellow);
+}
+
 
 .callout.warning {
   border-color: var(--ctp-mocha-red);

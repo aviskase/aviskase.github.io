@@ -54,7 +54,6 @@
           "contentTypeName": "default",
           "contentTypeValue": "path"
         }
-
       ]
     }
   ],
@@ -67,7 +66,9 @@
       "path": "[[workspace]]/content/articles/",
       "previewPath": "articles/{{date|yyyy/MM/dd}}",
       "filePrefix": "{{date|yyyy/yyyy-MM-dd}}",
-      "contentTypes": ["default"]
+      "contentTypes": [
+        "default"
+      ]
     },
     {
       "title": "pages",
@@ -118,7 +119,11 @@
         "> - Difficulty: TODO",
         "> - Platform: TODO",
         "> ",
-        "> TODO"
+        "> TODO",
+        "",
+        "DESCRIPTION AND LIST OF VULN",
+        "",
+        "{{< toc >}}"
       ],
       "fields": []
     }
