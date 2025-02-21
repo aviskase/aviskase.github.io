@@ -4,6 +4,7 @@ date: "2025-02-13T04:47:13.438Z"
 slug: "writeup-tryhackme-injectics"
 categories:
     - "writeups"
+    - "it"
 ---
 
 > [!info]
