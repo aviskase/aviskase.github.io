@@ -4,7 +4,6 @@ date: "2025-02-23T15:23:50.648Z"
 slug: "three-eleven-years-of-february"
 categories:
     - "kaleidoscope"
-draft: true
 ---
 
 Last year the feeling was of a quiet annoyance: "we stand together" was all about _standing_, not _winning_. This year, well, I'm pissed. Angry, osti de calisse de tabarnak. 
@@ -15,4 +14,4 @@ Ukraine will win, of course. That's just [how it works](../../2024/2024-02-23-tw
 
 As, for, unexpectedly, Canada, I'm less optimistic. How ironic that I moved from Northern Kazakhstan bordering crazy annexation-hungry country to Canada... also bordering crazy annexation-hungry country. 
 
-🇺🇦 🏴󠁣󠁡󠁱󠁣󠁿 🇨🇦  
+🇺🇦 ⚜️ 🇨🇦  
