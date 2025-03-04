@@ -371,7 +371,9 @@ blockquote::before {
 }
 
 .highlight pre {
-margin: 1ch;
+  margin: 1ch;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
 }
 
 
