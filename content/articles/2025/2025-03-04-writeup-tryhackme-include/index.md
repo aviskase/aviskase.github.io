@@ -1,7 +1,6 @@
 ---
 title: "Writeup: TryHackMe Include"
-date: "2025-03-04T21:51:41.464Z"
-draft: true
+date: "2025-03-05T16:35:52.771Z"
 slug: "writeup-tryhackme-include"
 categories:
     - "it"
@@ -23,7 +22,7 @@ categories:
 
 This room acts as a final challenge for the advanced server-side attacks module. Vulnerabilities explored:
 
-- Broken object property level authorization
+- Broken object property level authorization (BOPLA)
 - Information disclosure
 - SSRF
 - LFI2RCE via log poisoning
@@ -63,11 +62,11 @@ Here, I almost missed the big "Sign In using guest/guest" phrase.
 
 ## Privilege escalation via mass assignment vulnerability
 
-After logging in with guest credentials we are presented with several profiles. Current user profile exposes a lot of properties which can be considered an excessive data exposure part of [broken object property level authorization](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) vulnerability. There is a form which allows adding new properties.
+Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered [an excessive data exposure part of BOPLA](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/) vulnerability. And there is a form which allows adding new properties.
 
 ![Screenshot of user profile](ctf_include_profile.png)
 
-The form is vulnerable to the mass assignment attack, so I used it to escalate current user privileges to administrator by changing value of `isAdmin` property.
+The form is vulnerable to the BOPLA's mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of `isAdmin` property.
 
 ![Screenshot of the form set to isAdmin and true values](ctf_include_admin_form.png)
 
@@ -76,7 +75,7 @@ The form is vulnerable to the mass assignment attack, so I used it to escalate c
 
 ## Getting admin credentials via SSRF
 
-After successful privilege escalation, profile has two new links: "API" and "Settings".
+After successful privilege escalation, the page has two new links: "API" and "Settings".
 
 ![Screenshot of the page with new links](ctf_include_profile_admin.png)
 
@@ -87,29 +86,29 @@ API Dashboard
 
 Below is a list of important APIs accessible to admins with sample requests and responses:
 
-    Internal API
+Internal API
 
-    GET http://127.0.0.1:5000/internal-api HTTP/1.1
-    Host: 127.0.0.1:5000
+GET http://127.0.0.1:5000/internal-api HTTP/1.1
+Host: 127.0.0.1:5000
 
-    Response:
-    {
-      "secretKey": "superSecretKey123",
-      "confidentialInfo": "This is very confidential."
-    }
+Response:
+{
+    "secretKey": "superSecretKey123",
+    "confidentialInfo": "This is very confidential."
+}
 
-    Get Admins API
+Get Admins API
 
-    GET http://127.0.0.1:5000/getAllAdmins101099991 HTTP/1.1
-    Host: 127.0.0.1:5000
+GET http://127.0.0.1:5000/getAllAdmins101099991 HTTP/1.1
+Host: 127.0.0.1:5000
 
-    Response:
-    {
-        "ReviewAppUsername": "admin",
-        "ReviewAppPassword": "xxxxxx",
-        "SysMonAppUsername": "administrator",
-        "SysMonAppPassword": "xxxxxxxxx",
-    }
+Response:
+{
+    "ReviewAppUsername": "admin",
+    "ReviewAppPassword": "xxxxxx",
+    "SysMonAppUsername": "administrator",
+    "SysMonAppPassword": "xxxxxxxxx",
+}
 ```
 
 "Settings" page allows changing banner image by providing URL.
@@ -120,7 +119,7 @@ This page is vulnerable to SSRF attack. Instead of image URL I provided credenti
 
 ![Screenshot of form set to credentials API url](ctf_include_banner_ssrf.png)
 
-Response is included on the page in base64 encoded format:
+The page includes the response in base64 encoded format:
 
 ![Screenshot of the page displaying result of SSRF](ctf_include_ssrf_response.png)
 
@@ -141,7 +140,7 @@ With these credentials I logged into SysMon app and got the first flag.
 ![Screenshot of the dashboard with displayed flag](ctf_include_sysmon_dashboard.png)
 
 
-## LFI2RCE Via log poisoning
+## LFI2RCE via log poisoning
 
 Profile picture on the dashboard has a curious `src`:
 
@@ -158,7 +157,7 @@ $ ffuf -r -c -request req -request-proto 'http' -w /usr/share/wordlists/seclists
 ....//....//....//....//....//....//....//....//....//etc/passwd [Status: 200, Size: 2231, Words: 20, Lines: 42, Duration: 100ms]
 ```
 
-Since the second flag is found on the file system, I guessed that I need to achieve LFI2RCE. Initially, I unsuccessfully attempted Apache log poisoning.
+Since the second flag is found on the file system, I guessed I needed to achieve LFI2RCE. Initially, I unsuccessfully attempted Apache log poisoning.
 
 Remembering that there was a mail server, I tried [mail log poisoning](https://swisskyrepo.github.io/PayloadsAllTheThings/File%20Inclusion/LFI-to-RCE/#rce-via-mail). First, I confirmed that the file `/var/log/mail.log` can be accessed.
 
@@ -185,7 +184,7 @@ Now we can use `cmd` parameter to run commands on the system.
 
 ## Second flag
 
-While it's possible to [start a reverse shell and get access to the whole system](https://jaxafed.github.io/posts/tryhackme_include/#log-poisoning-to-rce), I simply listed files:
+While it's possible to [start a reverse shell and get access to the entire system](https://jaxafed.github.io/posts/tryhackme_include/#log-poisoning-to-rce), I simply listed files:
 
 ```
 http://MACHINE_IP:50000/profile.php?img=....//....//....//....//....//....//....//....//....//var/log/mail.log&cmd=ls 
