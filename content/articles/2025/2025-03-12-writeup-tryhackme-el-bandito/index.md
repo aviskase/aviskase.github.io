@@ -1,7 +1,6 @@
 ---
 title: "Writeup: TryHackMe El Bandito"
-date: "2025-03-12T20:34:53.641Z"
-draft: true
+date: "2025-03-13T21:08:05.805Z"
 slug: "writeup-tryhackme-el-bandito"
 categories:
     - "it"
