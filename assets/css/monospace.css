@@ -294,7 +294,7 @@ li::marker {
     height: var(--line-height);
 }
 
-input, button, textarea {
+.form input, .form button, .form textarea {
   border: var(--border-thickness) solid var(--text-color);
   padding: 
     calc(var(--line-height) / 2 - var(--border-thickness))
@@ -313,8 +313,8 @@ input, button, textarea {
   -webkit-appearance: none;
 }
 
-input[type=checkbox],
-input[type=radio] {
+.form input[type=checkbox],
+.form input[type=radio] {
   display: inline-grid;
   place-content: center;
   vertical-align: top;
@@ -322,24 +322,24 @@ input[type=radio] {
   height: var(--line-height);
   cursor: pointer;
 }
-input[type=checkbox]:checked:before,
-input[type=radio]:checked:before {
+.form input[type=checkbox]:checked:before,
+.form input[type=radio]:checked:before {
   content: "";
   width: 1ch;
   height: calc(var(--line-height) / 2);
   background: var(--text-color);
 }
-input[type=radio],
-input[type=radio]:before {
+.form input[type=radio],
+.form input[type=radio]:before {
   border-radius: 100%;
 }
 
-button:focus, input:focus {
+.form button:focus, .form input:focus {
   --border-thickness: 3px;
   outline: none;
 }
 
-input {
+.form input {
   width: calc(round(down, 100%, 1ch));
 }
 ::placeholder {
@@ -367,7 +367,7 @@ button:active {
   transform: translate(2px, 2px);
 }
 
-label {
+.form label {
   display: block;
   width: calc(round(down, 100%, 1ch));
   height: auto;
@@ -376,7 +376,7 @@ label {
   margin: 0;
 }
 
-label input {
+.form label input {
   width: 100%;
 }
 

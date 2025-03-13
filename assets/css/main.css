@@ -186,7 +186,7 @@ pre * + * {
 }
 
 blockquote {
-  border: 4px double var(--ctp-mocha-subtext0);
+  border: 2px solid var(--ctp-mocha-subtext0);
   margin-left: 0;
   margin-right: 0;
   padding-left: 2ch;
@@ -205,7 +205,7 @@ blockquote::before {
 }
 
 .callout {
-  border: 4px double var(--ctp-mocha-subtext0);
+  border: 2px solid var(--ctp-mocha-subtext0);
   padding-left: 2ch;
   padding-right: 2ch;
   position: relative;
@@ -366,12 +366,12 @@ blockquote::before {
 }
 
 .highlight {
-  border: 4px double var(--ctp-mocha-subtext0);
+  border: 2px solid var(--ctp-mocha-subtext0);
   margin-bottom: var(--line-height);
 }
 
 .highlight pre {
-  margin: 1ch;
+  margin: 2ch;
   font-size: 0.8rem;
   white-space: pre-wrap;
 }
@@ -405,7 +405,7 @@ picture img {
 
 figcaption {
   border: 2px solid var(--ctp-mocha-subtext0);
-  border-top: 2px dashed var(--ctp-mocha-subtext0);
+  border-top: 2px solid var(--ctp-mocha-subtext0);
   caption-side: bottom;
   color: var(--ctp-mocha-subtext0);
   font-style: normal;
@@ -470,4 +470,66 @@ hr, hr::after {
 
 .tree ul li:last-child {
   padding-left: calc(1.5ch + 2px);
+}
+
+
+input.toggle {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  position: absolute;
+}
+
+.tabs {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: var(--line-height);
+}
+.tabs label {
+  display: inline-block;
+  padding: 1ch 2ch;
+  cursor: pointer;
+  margin-top: 0;
+  border-top: 2px solid var(--ctp-mocha-subtext0);
+  border-right: 2px solid var(--ctp-mocha-subtext0);
+  text-transform: lowercase;
+  position: relative;
+  margin-bottom: -2px;
+}
+.tabs label:first-of-type {
+  border-left: 2px solid var(--ctp-mocha-subtext0);
+
+}
+.tabs .tabs-content {
+  order: 999;
+  width: 100%;
+  border: 2px solid var(--ctp-mocha-subtext0);
+  padding: var(--line-height) 2ch;
+  display: none;
+  margin-top: 0;
+}
+
+.tabs .tabs-content .highlight, .tabs .tabs-content .highlight pre {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.tabs input[type=radio]:checked+label::before{
+  content: "";
+  background-color: var(--background-color);
+  position: absolute;
+  height: 1ch;
+  left: 0;
+  bottom: -0.5ch;
+  width: 100%;
+}
+.tabs input[type=radio]:checked+label+.tabs-content {
+  display: block;
+}
+
+img {
+  width: unset;
+  max-width: 100%;
 }

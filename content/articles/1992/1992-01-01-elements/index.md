@@ -211,3 +211,39 @@ print s
 ### Gist
 
 {{< gist aviskase 634dba0b10f5cd0bad3f41709ed3e41c >}}
+
+
+### Tabs
+
+{{% tabs %}}
+{{% tab "Request" %}}
+```http
+GET /getMessages HTTP/2
+```
+{{% /tab %}}
+
+{{% tab "Response" %}}
+```http
+HTTP/2 200 OK
+Date: Fri, 07 Mar 2025 22:01:08 GMT
+```
+{{% /tab %}}
+
+{{% tab "Screenshot" %}}
+
+![Local image](600x400.png)
+
+{{% /tab %}}
+
+{{% tab "Text" %}}
+This is a tabbed text.
+ 
+> With _some_ lists and [link A](https://google.com) and [link B](../test):
+
+- a
+- b
+ 
+1. a
+2. b
+{{% /tab %}}
+{{% /tabs %}}
