@@ -2,7 +2,7 @@
 {{- if not (or (eq .AlertType "note") (eq .AlertType "warning") (eq .AlertType "cta") (eq .AlertType "info")) -}}
   {{ errorf "Unknown callout type." }}
 {{- end -}}
-<div class="callout {{ .AlertType }}">
+<div class="callout {{ .AlertType }}" role="note"{{- if (or (ne .AlertType "note") (ne .AlertType "cta"))  -}} aria-label="{{- strings.FirstUpper .AlertType -}}"{{- end -}}>
     {{ .Text }}
 </div>
 {{ else }}
