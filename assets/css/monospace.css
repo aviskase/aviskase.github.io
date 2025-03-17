@@ -186,7 +186,7 @@ p {
   hyphens: auto;
 }
 
-img, video {
+/* img, video {
   display: block;
   width: 100%;
   object-fit: contain;
@@ -195,7 +195,7 @@ img, video {
 img {
   font-style: italic;
   color: var(--text-color-alt);
-}
+} */
 
 details {
   border: var(--border-thickness) solid var(--text-color);
@@ -242,7 +242,7 @@ code {
   font-weight: var(--font-weight-medium);
 }
 
-figure {
+/* figure {
   margin: calc(var(--line-height) * 2) 3ch;
   overflow-x: auto;
   overflow-y: hidden;
@@ -252,7 +252,7 @@ figcaption {
   display: block;
   font-style: italic;
   margin-top: var(--line-height);
-}
+} */
 
 ul, ol {
   padding: 0;

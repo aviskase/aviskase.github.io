@@ -198,7 +198,7 @@ print s
 ![External image](https://placehold.co/300x200.png)
 
 
-![GIF test](test-homer-simpson.gif "Local GIF")
+![GIF test](test-homer-simpson.gif)
 
 ---
 
