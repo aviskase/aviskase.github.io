@@ -37,16 +37,16 @@
 {{ partial "article" . }}
 
 
-<div class="article-nav">
+<nav class="article-nav" aria-label="Post navigation">
 
     <span class="article-nav-old">{{ with $prev }}
-    <a href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"><span class="arrow">◁</span>older</a>
+    <a href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"  aria-label="Go to older post"><span class="arrow">◁</span>older</a>
     {{ end }}</span>
 
     <span class="article-nav-middle">&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;</span>
 
     <span class="article-nav-new">{{ with $next }}
-    <a href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}">newer<span class="arrow">▶</span></a>
+    <a href="{{ .Permalink }}" title="{{ partial "func/MakeTitle" (dict "title" .Title "isVisible" false ) }}"  aria-label="Go to newer post">newer<span class="arrow">▶</span></a>
     {{ end }}</span>
-</div>
+</nav>
 {{ end }}

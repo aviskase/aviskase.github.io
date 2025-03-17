@@ -4,11 +4,11 @@
   {{- if .Params.see_also }}
   <hr/>
 
-  <div class="callout see-also">
+  <nav class="callout see-also" aria-label="See also">
     <p></p>
     <ul>{{ range .Params.see_also }}
       {{ with $.Site.GetPage . }}<li><a class="internal-link" href="{{ .Permalink }}">{{ partial "func/MakeTitle" (dict "title" .Title ) }}</a></li>{{ end }}
   {{ end }}</ul>
-  </div>
+  </nav>
   {{ end }}
 </article>
