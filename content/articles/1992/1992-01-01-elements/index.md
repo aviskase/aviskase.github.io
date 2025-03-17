@@ -208,10 +208,6 @@ print s
 
 ---
 
-### Gist
-
-{{< gist aviskase 634dba0b10f5cd0bad3f41709ed3e41c >}}
-
 
 ### Tabs
 

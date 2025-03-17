@@ -428,14 +428,6 @@ hr, hr::after {
 }
 
 
-.gist {
-  filter: invert(1) hue-rotate(180deg) brightness(1);
-}
-
-.gist .gist-meta {
-  margin-top: 0;
-}
-
 .home h2:first-child {
   margin-top: 0;
 }
