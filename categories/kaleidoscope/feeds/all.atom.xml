@@ -267,7 +267,13 @@ Four shylyans were killed then:</p>
   <a href="#advent-of-code">Advent of code</a>
 </h2>
 <p>This was the first time I did <a href="https://adventofcode.com/" class="external-link">Advent of code</a> with the devs from work: nice to compare with normal people and not <em>reddit stars</em>. Cannot express how happy I&rsquo;m to be <a href="https://github.com/aviskase/advent-of-code/tree/master/2020" class="external-link">back to Python</a>, it&rsquo;s so readable and clear after JS/TS madness.</p>
-<p><img src="aoc.png" alt="Advent of Code easter egg: using itertools"></p>
+<p><figure aria-label="Advent of Code easter egg: using itertools">
+  <img
+    alt="Advent of Code easter egg: using itertools"
+    title="Advent of Code easter egg: using itertools"width="782"height="635"srcset="/articles/2020/12/30/hmms-2020/aoc_hu_bd258e0bd0b2627.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/12/30/hmms-2020/aoc_hu_f406891daa57fb63.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 ]]></content>
   </entry>
   <entry>
@@ -319,7 +325,11 @@ Four shylyans were killed then:</p>
     <p>[&hellip;] design pressure from the bottom up.</p>
 </blockquote>
 <p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
-<p><img src="floss.gif" alt="Floss dance"></p>
+<p><figure aria-label="Floss dance">
+  <img
+    alt="Floss dance"
+    title="Floss dance"width="160"height="160"src="/articles/2020/11/30/hmms-november/floss.gif"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="blog-progress" >
   <a href="#blog-progress">Blog progress</a>
 </h2>
@@ -519,7 +529,13 @@ Four shylyans were killed then:</p>
 </h2>
 <p>Since <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">migrating to Obsidian</a> for knowledge management, I&rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.</p>
 <p>Perhaps I should try to be more consistent and always write <a href="https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017" class="external-link">literature notes</a>. Alas, my current graph looks like that (obviously, I didn&rsquo;t have time to transfer older notes from other systems):</p>
-<p><img src="obsidian_july_2020.png" alt="Obsidian graph view as of July 2020"></p>
+<p><figure aria-label="Obsidian graph view as of July 2020">
+  <img
+    alt="Obsidian graph view as of July 2020"
+    title="Obsidian graph view as of July 2020"width="639"height="596"srcset="/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_e4b3e64fd00b5621.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_9c85dd8733f97575.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>In general, my topics of interests for this month were:</p>
 <ul>
 <li>jobs to be done framework</li>
@@ -559,12 +575,30 @@ Four shylyans were killed then:</p>
 </h2>
 <p>I was more into handwriting during school and university, and there are still tons of notebooks back in Kazakhstan with course notes. I followed the same process and structure for extra studies like Coursera, and the most important thing I learned was that these notes were never ever opened and referenced later. Useless waste of stationery.</p>
 <p>One of the last examples from English&amp;French practice:</p>
-<p><img src="km_oldnotes.jpg" alt="Old handwritten notebook"></p>
+<p><figure aria-label="Old handwritten notebook">
+  <img
+    alt="Old handwritten notebook"
+    title="Old handwritten notebook"width="1000"height="750"srcset="/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_e2aaebc95cc0a1c.webp 420w, /articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_c3ea1dcecd845a4c.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_oldnotes_hu_637d148097861099.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Don&rsquo;t get me wrong, I love stationery. There was a time when we visited the biggest stationery store almost every day after the classes to gawk on new cute notebooks and pens. If my handwriting wasn&rsquo;t that atrocious, perhaps I&rsquo;d be more into bullet journals and scrapbooks, but alas, it still doesn&rsquo;t make them useful for anything else besides creativity outbursts.</p>
 <p>Now I use paper only for transient scribbles consumed right away or during the day, like this problem solving for <a href="https://adventofcode.com/" class="external-link">advent of code</a>.</p>
-<p><img src="km_notes.jpg" alt="Untranslatable scribbles"></p>
+<p><figure aria-label="Untranslatable scribbles">
+  <img
+    alt="Untranslatable scribbles"
+    title="Untranslatable scribbles"width="300"height="400"srcset="/articles/2020/07/03/knowledge-management-tools/km_notes_hu_f817d0fcbc03c891.webp 300w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_notes_hu_b83af582c346a9a7.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Though, I prefer <a href="https://getrocketbook.com/" class="external-link">Rocketbook</a>, because it&rsquo;s like a mini-whiteboard and I get to enjoy all fancy colors. Here is a note from API design brainstorming:</p>
-<p><img src="km_rocketbook.jpg" alt="Brainstorming in Rocketbook"></p>
+<p><figure aria-label="Brainstorming in Rocketbook">
+  <img
+    alt="Brainstorming in Rocketbook"
+    title="Brainstorming in Rocketbook"width="1000"height="750"srcset="/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_a492ec3b34d8833e.webp 420w, /articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_bc4cfd0871f86dce.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_rocketbook_hu_fbcfa16f3d491d5.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="digital" >
   <a href="#digital">Digital</a>
 </h2>
@@ -573,14 +607,26 @@ Four shylyans were killed then:</p>
   <a href="#non-structured">Non-structured</a>
 </h3>
 <p>The first iterations were a transposition of handwritten notes into digital via <em>Google Docs.</em></p>
-<p><img src="km_gdocs.png" alt="Notes in the Google Docs"></p>
+<p><figure aria-label="Notes in the Google Docs">
+  <img
+    alt="Notes in the Google Docs"
+    title="Notes in the Google Docs"width="1304"height="381"srcset="/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_26d44052c7808c8.webp 420w, /articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_5894d30ceeab49f8.webp 789w, /articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_fb0adcf66f5c42a.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_gdocs_hu_270a640482ff29c3.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>They are as ineffective as the real notebooks. Type once and forget.</p>
 <p>The direct opposite are <em>plain text notes</em> in <a href="https://www.sublimetext.com/" class="external-link">Sublime</a> with <a href="https://github.com/aziz/PlainNotes" class="external-link">PlainNotes</a> plugin. I use them almost every day for:</p>
 <ul>
 <li>transient notes like &ldquo;did this during the smoke test&rdquo;</li>
 <li>common copy pastes</li>
 </ul>
-<p><img src="km_sublime.png" alt="Sublime with PlainNotes"></p>
+<p><figure aria-label="Sublime with PlainNotes">
+  <img
+    alt="Sublime with PlainNotes"
+    title="Sublime with PlainNotes"width="834"height="494"srcset="/articles/2020/07/03/knowledge-management-tools/km_sublime_hu_82a340189ce0b766.webp 420w, /articles/2020/07/03/knowledge-management-tools/km_sublime_hu_39be3aca41ca9269.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_sublime_hu_1b5c85ac5775e79.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h3 id="mind-maps" >
   <a href="#mind-maps">Mind maps</a>
 </h3>
@@ -591,7 +637,13 @@ Four shylyans were killed then:</p>
 <li><a href="https://www.mindomo.com/" class="external-link">Mindomo</a>: my latest selection, not free, yet has feature no one else has (more on that later).</li>
 </ul>
 <p>As of now I have an assortment of mind maps in various formats, like <a href="https://www.aviskase.com/articles/2018/03/19/mega-mind-map-version-2/" class="internal-link">Freeplane</a> or XMind:</p>
-<p><img src="km_xmind.png" alt="XMind mind map overview"></p>
+<p><figure aria-label="XMind mind map overview">
+  <img
+    alt="XMind mind map overview"
+    title="XMind mind map overview"width="564"height="394"srcset="/articles/2020/07/03/knowledge-management-tools/km_xmind_hu_210c363b5d249c2a.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_xmind_hu_b413e879cded73f5.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>I liked mind map for capturing phase, but for some inexplicable reason, I found them uncomfortable for referencing. They have the same fate as old course notes.</p>
 <h3 id="outliners" >
   <a href="#outliners">Outliners</a>
@@ -616,7 +668,13 @@ Four shylyans were killed then:</p>
 <li><a href="https://www.onenote.com/" class="external-link">OneNote</a>: I heard it&rsquo;s fine if you are Windows user. Well, I am not :)</li>
 <li><a href="https://keep.google.com/" class="external-link">Google Keep</a>: perfect inbox for quick notes, shopping, and other lists that I need to access from the phone:</li>
 </ul>
-<p><img src="km_keep.png" alt="Google Keep with transient lists"></p>
+<p><figure aria-label="Google Keep with transient lists">
+  <img
+    alt="Google Keep with transient lists"
+    title="Google Keep with transient lists"width="920"height="261"srcset="/articles/2020/07/03/knowledge-management-tools/km_keep_hu_a3d608d76198b54c.webp 420w, /articles/2020/07/03/knowledge-management-tools/km_keep_hu_b0a1fc7660b45ed3.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/03/knowledge-management-tools/km_keep_hu_db1cb7e65472f5a2.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h3 id="zettels" >
   <a href="#zettels">Zettels</a>
 </h3>
@@ -709,7 +767,13 @@ Four shylyans were killed then:</p>
 <p>Thus, I made some decision:</p>
 <p><strong>1.</strong> I left RST and MoT (and <a href="https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one" class="external-link">its abolished sister group</a>) slack communities. Stayed only in the ABT, because it&rsquo;s smaller and more enjoyable.</p>
 <p><strong>2.</strong> Won&rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS + ABT podcast is more than enough.</p>
-<p><img src="rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category"></p>
+<p><figure aria-label="45 RSS feeds in &ldquo;Testing&rdquo; category">
+  <img
+    alt="45 RSS feeds in &ldquo;Testing&rdquo; category"
+    title="45 RSS feeds in &ldquo;Testing&rdquo; category"width="353"height="237"srcset="/articles/2020/07/01/hmms-june/rss_feeds_hu_988b0f76ecd52497.webp 353w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/01/hmms-june/rss_feeds_hu_244d54edf0a1acc1.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p><strong>3.</strong> Won&rsquo;t save articles into reading queue &ldquo;just in case&rdquo;, if it&rsquo;s obvious from the title and the first paragraph that the author is repeating themselves.</p>
 <p><strong>4.</strong> Change &ldquo;About me&rdquo; page to be less role specific. I wrote it a long time ago.</p>
 <p><strong>5.</strong> Do I contribute to the same noise? Perhaps. Can&rsquo;t promise, but I&rsquo;ll try not to. Obviously, these <em>Hmms</em> aren&rsquo;t really original content, but <a href="https://eugeneyan.com/writing/reading-note-taking-writing/" class="external-link">written reflection is a great way to process information</a>, sorry!</p>
@@ -829,7 +893,13 @@ not just generic NDA-sanitized dev blog posts.</p>
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
+<p><figure aria-label="Meme: APIs, APIs everywhere">
+  <img
+    alt="Meme: APIs, APIs everywhere"
+    title="Meme: APIs, APIs everywhere"width="735"height="500"srcset="/articles/2020/03/31/hmms-march/apis_meme_hu_2a1573eb7e2f4dd5.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/03/31/hmms-march/apis_meme_hu_2baa23801fc09677.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -844,7 +914,13 @@ I haven’t heard from them since as they still haven’t shipped their product 
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
+<p><figure aria-label="Meme: APIs, APIs everywhere">
+  <img
+    alt="Meme: APIs, APIs everywhere"
+    title="Meme: APIs, APIs everywhere"width="735"height="500"srcset="/articles/2020/03/31/hmms-march/apis_meme_hu_2a1573eb7e2f4dd5.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/03/31/hmms-march/apis_meme_hu_2baa23801fc09677.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -1127,9 +1203,21 @@ probably never consider how it affects existing canon.</p>
 </ul>
 <p>But there are some disappointments. Let&rsquo;s start with the objective one: keyboard.</p>
 <p>This is my old keyboard: it has Numpad, all keys, and even separate volume controls.</p>
-<p><img src="lenovo_keyboard.jpg" alt="Lenovo G560 keyboard"></p>
+<p><figure aria-label="Lenovo G560 keyboard">
+  <img
+    alt="Lenovo G560 keyboard"
+    title="Lenovo G560 keyboard"width="752"height="461"srcset="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_b1820b13053a45bf.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_9ca4c06d6de703b3.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>This is the new one:</p>
-<p><img src="dell_keyboard.jpg" alt="Dell XPS15 keyboard"></p>
+<p><figure aria-label="Dell XPS15 keyboard">
+  <img
+    alt="Dell XPS15 keyboard"
+    title="Dell XPS15 keyboard"width="775"height="500"srcset="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_f114323fb77a6ecf.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_3a11bd974e963c7e.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn&rsquo;t even consider that there wouldn&rsquo;t be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but <a href="https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592" class="external-link">people complained about it on the Dell forum</a>. You, guys, I hate you. You&rsquo;re exactly like <a href="https://xkcd.com/1172/" class="external-link">from that XKCD comic strip</a>.</p>
 <p>Next disappointment is a display. Beware, this will be unexpected&hellip; I don&rsquo;t like HiDPI. I&rsquo;m so accustomed to shitty displays, that better ones feel wrong and uncomfortable. Colors and images are fine, but text, yikes. Letters are not crisp enough, there is something smudgy about them.</p>
 <p>I can already hear that it&rsquo;s because I&rsquo;m on Linux. NOPE. This laptop came with Windows 10 (I left it in a dual boot), but the text is blurry too. Even more, I think Linux actually does better jobs with antialiasing, because old Windows apps look particularly horrible.</p>
@@ -1276,14 +1364,12 @@ probably never consider how it affects existing canon.</p>
 <h2 id="mark-all-emails-as-read" >
   <a href="#mark-all-emails-as-read">Mark all emails as read</a>
 </h2>
-<p>If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>]]></summary>
+<p>If you ever got bothered by all archived and still unread emails in Gmail, <a href="https://gist.github.com/aviskase/634dba0b10f5cd0bad3f41709ed3e41c" class="external-link">this script can help you</a>. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>]]></summary>
     <content type="html"><![CDATA[<p>Google Apps Scripts are probably the most useful automation tools I&rsquo;ve used. They can be used as &ldquo;excel macros&rdquo; for Sheets, form processing, and much more. Here I want to share three small scripts I made to improve productivity and task management.</p>
 <h2 id="mark-all-emails-as-read" >
   <a href="#mark-all-emails-as-read">Mark all emails as read</a>
 </h2>
-<p>If you ever got bothered by all archived and still unread emails in Gmail, this script can help you. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>
-<script src="https://gist.github.com/aviskase/634dba0b10f5cd0bad3f41709ed3e41c.js"></script>
-
+<p>If you ever got bothered by all archived and still unread emails in Gmail, <a href="https://gist.github.com/aviskase/634dba0b10f5cd0bad3f41709ed3e41c" class="external-link">this script can help you</a>. It is based on <a href="https://critter.blog/2013/03/09/marking-gmail-read-with-apps-script/" class="external-link">the script by Mike Crittenden</a>.</p>
 <p>I don&rsquo;t really need it right now, because I have a filter which marks <em>all</em> incoming emails as read right away:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Matches: larger:1
 </span></span><span style="display:flex;"><span>Do this: Mark as read
@@ -1292,19 +1378,15 @@ probably never consider how it affects existing canon.</p>
   <a href="#tasks-recurring-randomly-for-amazing-marvin">Tasks recurring randomly for Amazing Marvin</a>
 </h2>
 <p>I use Amazing Marvin for task&amp;project management and currently it doesn&rsquo;t support randomly recurring items. In fact, no app I&rsquo;ve tried supports that. It&rsquo;s a shame, because there could be several use cases for that: &ldquo;spontaneous&rdquo; cleaning&amp;organizing, fun activities, ideas review.</p>
-<p>If you are able to import tasks (for example, via email), you can check this script. The most important thing is a <code>TASKS</code> list. Each item should have <code>range_start</code> and <code>range_end</code>. For example, <code>range_start = 2</code> and <code>range_end = 9</code> mean that task will be created in ranges from two to nine days after last created date. E.g. if the last time task with this <code>id</code> was created on September 10, next task will be created sometime between September 12 and September 19.</p>
+<p>If you are able to import tasks (for example, via email), you can check <a href="https://gist.github.com/aviskase/c986a50fd0d2a24f98302201fcdc9fd7" class="external-link">this script</a>. The most important thing is a <code>TASKS</code> list. Each item should have <code>range_start</code> and <code>range_end</code>. For example, <code>range_start = 2</code> and <code>range_end = 9</code> mean that task will be created in ranges from two to nine days after last created date. E.g. if the last time task with this <code>id</code> was created on September 10, next task will be created sometime between September 12 and September 19.</p>
 <p>Script ensures the task will be created at some point during this range, just make sure it&rsquo;s triggered to run daily.</p>
-<script src="https://gist.github.com/aviskase/c986a50fd0d2a24f98302201fcdc9fd7.js"></script>
-
 <h2 id="create-a-task-when-new-package-release-is-available-on-pypi" >
   <a href="#create-a-task-when-new-package-release-is-available-on-pypi">Create a task when new package release is available on PyPI</a>
 </h2>
 <p>I have a weird project which can start only after a particular release of one python package. It&rsquo;s not very urgent, so no hurry, but I don&rsquo;t want to check for releases manually.</p>
-<p>This script checks RSS for the package on <a href="https://libraries.io/" class="external-link">libraries.io</a> and if there is a new version available, it will send email to AM to create a task.</p>
-<script src="https://gist.github.com/aviskase/079fda60adaa0c74e37c84089e4bb1ae.js"></script>
-
+<p><a href="https://gist.github.com/aviskase/079fda60adaa0c74e37c84089e4bb1ae" class="external-link">This script</a> checks RSS for the package on <a href="https://libraries.io/" class="external-link">libraries.io</a> and if there is a new version available, it will send email to AM to create a task.</p>
 <hr>
-<p>I didn&rsquo;t go into details about how to setup these scripts, so if you have any questions, feel free to comment.</p>
+<p>I didn&rsquo;t go into details about how to setup these scripts, so if you have any questions, feel free to reach me.</p>
 ]]></content>
   </entry>
   <entry>

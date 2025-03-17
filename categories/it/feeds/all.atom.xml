@@ -12,14 +12,14 @@
     <updated>2025-03-13T21:08:05Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-13:/articles/2025/03/13/writeup-tryhackme-el-bandito/</id>
     
-    <summary type="html"><![CDATA[<div class="callout info">
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
 <li>Difficulty: hard</li>
 <li>Platform: web</li>
 </ul>
 <p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>]]></summary>
-    <content type="html"><![CDATA[<div class="callout info">
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
 <li>Difficulty: hard</li>
@@ -41,7 +41,7 @@
 <li>HTTP request smuggling via fake WebSocket tunnel</li>
 <li>HTTP request smuggling over HTTP 2 with CL.0 technique</li>
 </ul>
-<div class="callout toc">
+<nav class="callout toc" aria-label="Table of Contents">
 <nav id="TableOfContents">
   <ol>
     <li><a href="#information-gathering">Information gathering</a>
@@ -55,7 +55,7 @@
     <li><a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a></li>
   </ol>
 </nav>
-</div>  
+</nav>  
 <h2 id="information-gathering" >
   <a href="#information-gathering">Information gathering</a>
 </h2>
@@ -71,14 +71,32 @@
   <a href="#port-8080">Port 8080</a>
 </h3>
 <p>On port 8080 there is a landing page for Bandit-Coin. Only two links work: &ldquo;Services&rdquo; and &ldquo;Burn Token&rdquo;.</p>
-<p><img src="ctf_elbandito_8080_home.png" alt="8080 app home page"></p>
+<p><figure aria-label="8080 app home page">
+  <img
+    alt="8080 app home page"
+    title="8080 app home page"width="973"height="537"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_7b4a73bf8d3b039a.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_370ca6ce12121e40.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_1ce2ee5d1a7f9398.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>&ldquo;Services&rdquo; page shows status of related services.</p>
-<p><img src="ctf_elbandito_8080_services.png" alt="Service page showing offline status for websocket service and online status for public service"></p>
+<p><figure aria-label="Service page showing offline status for websocket service and online status for public service">
+  <img
+    alt="Service page showing offline status for websocket service and online status for public service"
+    title="Service page showing offline status for websocket service and online status for public service"width="811"height="471"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_89c8496e115fd83e.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_9df2e2e80b995052.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_9b6c1f8cf8211f58.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Status is checked via simple <code>GET</code> requests with service URL as a parameter:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GET /isOnline?url=http://bandito.public.thm
 </span></span><span style="display:flex;"><span>GET /isOnline?url=http://bandito.websocket.thm
 </span></span></code></pre></div><p>&ldquo;Burn Token&rdquo; page has a feature that doesn&rsquo;t work because it relies on WebSocket service which is currently down. Console shows a message that the service isn&rsquo;t working <em>on purpose</em>.</p>
-<p><img src="ctf_elbandito_burn_ws_error.png" alt="Burn Token page and Console pane with error messages"></p>
+<p><figure aria-label="Burn Token page and Console pane with error messages">
+  <img
+    alt="Burn Token page and Console pane with error messages"
+    title="Burn Token page and Console pane with error messages"width="958"height="860"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_501b7ee18103c369.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_c7a5d92d395285ab.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_52a3c7855df8879f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Directories enumeration with <code>gobuster</code> shows several useful endpoints.</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>...SNIP...
 </span></span><span style="display:flex;"><span>/trace <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
@@ -131,7 +149,13 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	...SNIP...
 </span></span></code></pre></div><p>Going to <code>/getMessages</code> redirects to the login form.</p>
-<p><img src="ctf_elbandito_80_signin.png" alt="Login form"></p>
+<p><figure aria-label="Login form">
+  <img
+    alt="Login form"
+    title="Login form"width="678"height="691"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_80_signin_hu_9404d3b624d9754d.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_80_signin_hu_e7bc3523ce66b20c.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="establishing-a-fake-websocket-tunnel-via-ssrf" >
   <a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a>
 </h2>
@@ -293,7 +317,13 @@
 </span></span><span style="display:flex;"><span>username:REDACTED password:REDACTED
 </span></span></code></pre></div></div>
 </div>
-<p><img src="ctf_elbandito_chat.png" alt="Chat page with several loaded messages"></p>
+<p><figure aria-label="Chat page with several loaded messages">
+  <img
+    alt="Chat page with several loaded messages"
+    title="Chat page with several loaded messages"width="1081"height="572"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_7a567263ced24fe1.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_809edaeca49698a3.webp 789w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_92681f9170ea2f3a.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_339f888e8c8c2dfb.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Having valid cookies I used <a href="https://github.com/PortSwigger/http-request-smuggler" class="external-link">HTTP Request Smuggler</a> Burp extension to confirm possibility of poisoning HTTP queue:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Found issue: CL.0 desync: h2CL|TRACE /
 </span></span><span style="display:flex;"><span>Target: https://10.10.192.13
@@ -362,7 +392,7 @@
 </span></span><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;JACK&#34;</span>:[<span style="color:#a6e3a1">&#34;The Galactic Enforcement&#39;s quantum sniffers are onto us, tracing our blockchain exploits.&#34;</span>,<span style="color:#a6e3a1">&#34;They&#39;re using predictive analytics, thinking they&#39;re ahead in a 4D chess game across the blockchain.&#34;</span>,<span style="color:#a6e3a1">&#34;You need to jump now! Awaiting your signal to close the portal.&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#fab387">null</span>,<span style="color:#a6e3a1">&#34;njk&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#f38ba8">...SNIP...</span><span style="color:#a6e3a1">&#34;GET /access HTTP/1.1\r\nhost: bandito.public.thm:80\r\nscheme: https\r\nsec-ch-ua: \&#34;Chromium\&#34;;v=\&#34;122\&#34;, \&#34;Not(A:Brand\&#34;;v=\&#34;24\&#34;, \&#34;HeadlessChrome\&#34;;v=\&#34;122\&#34;\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: \&#34;Linux\&#34;\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/122.0.6261.128 Safari/537.36\r\naccept: text/html,application/xhtml xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: none\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\naccept-encoding: gzip, deflate, br\r\ncookie: flag=THM{\u00a1!\u00a1REDACTED!\u00a1!}\r\nX-Forwa&#34;</span>,<span style="color:#fab387">null</span>],<span style="color:#cba6f7">&#34;OLIVER&#34;</span>:[]}
 </span></span></code></pre></div></div>
 </div>
-<div class="callout note">
+<div class="callout note" role="note"aria-label="Note">
     <p>You might need to try several times. HTTP smuggling isn&rsquo;t precise and can cause service disruption: I had to reboot the machine because the server kept dying.</p>
 </div>
 ]]></content>
@@ -374,7 +404,7 @@
     <updated>2025-03-05T16:35:52Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-05:/articles/2025/03/05/writeup-tryhackme-include/</id>
     
-    <summary type="html"><![CDATA[<div class="callout info">
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
 <li>Difficulty: medium</li>
@@ -383,7 +413,7 @@
 <p>This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks.</p>
 <p>Even if it&rsquo;s not accessible from the browser, can you still find a way to capture the flags and sneak into the secret admin panel?</p>
 <p>Answer the questions below</p>]]></summary>
-    <content type="html"><![CDATA[<div class="callout info">
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
 <li>Difficulty: medium</li>
@@ -404,7 +434,7 @@
 <li>SSRF</li>
 <li>LFI2RCE via log poisoning</li>
 </ul>
-<div class="callout toc">
+<nav class="callout toc" aria-label="Table of Contents">
 <nav id="TableOfContents">
   <ol>
     <li><a href="#information-gathering">Information gathering</a></li>
@@ -415,7 +445,7 @@
     <li><a href="#second-flag">Second flag</a></li>
   </ol>
 </nav>
-</div>  
+</nav>  
 <h2 id="information-gathering" >
   <a href="#information-gathering">Information gathering</a>
 </h2>
@@ -434,25 +464,55 @@
 </span></span><span style="display:flex;"><span>Service Info: Host:  mail.filepath.lab; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </span></span></code></pre></div><p>There are lots of open ports: SSH, two web apps, and a mail server.</p>
 <p>The first web app running on port 5000 is a SysMon portal. We need to find a way into it to get the first flag.</p>
-<p><img src="ctf_include_sysmon_home.png" alt="Screenshot of SysMon app"></p>
+<p><figure aria-label="Screenshot of SysMon app">
+  <img
+    alt="Screenshot of SysMon app"
+    title="Screenshot of SysMon app"width="769"height="301"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_e9e51ec0b087f81f.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_79bf31be15d475e8.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>The second web app is running on port 4000.</p>
-<p><img src="ctf_include_social_login.png" alt="Screenshot of review web app login page"></p>
+<p><figure aria-label="Screenshot of review web app login page">
+  <img
+    alt="Screenshot of review web app login page"
+    title="Screenshot of review web app login page"width="769"height="723"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_9c14b8681c5328dc.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_fefb5e66a6cf9968.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Here, I almost missed the big &ldquo;Sign In using guest/guest&rdquo; phrase.</p>
 <h2 id="privilege-escalation-via-mass-assignment-vulnerability" >
   <a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a>
 </h2>
 <p>Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered <a href="https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/" class="external-link">an excessive data exposure part of BOPLA</a> vulnerability. And there is a form which allows adding new properties.</p>
-<p><img src="ctf_include_profile.png" alt="Screenshot of user profile"></p>
+<p><figure aria-label="Screenshot of user profile">
+  <img
+    alt="Screenshot of user profile"
+    title="Screenshot of user profile"width="910"height="874"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_4f0e56a77fbe4b59.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_338bdb55f5aed5e2.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_1f17e8a4faa38302.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>The form is vulnerable to the BOPLA&rsquo;s mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of <code>isAdmin</code> property.</p>
-<p><img src="ctf_include_admin_form.png" alt="Screenshot of the form set to isAdmin and true values"></p>
-<div class="callout note">
+<p><figure aria-label="Screenshot of the form set to isAdmin and true values">
+  <img
+    alt="Screenshot of the form set to isAdmin and true values"
+    title="Screenshot of the form set to isAdmin and true values"width="910"height="268"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_639b7485c4c183d.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_4352af4527040226.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_9c027a1cadb3d3d4.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<div class="callout note" role="note"aria-label="Note">
     <p>Some writeups call this prototype pollution vulnerability, which is incorrect: we don&rsquo;t modify object prototype here.</p>
 </div>
 <h2 id="getting-admin-credentials-via-ssrf" >
   <a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a>
 </h2>
 <p>After successful privilege escalation, the page has two new links: &ldquo;API&rdquo; and &ldquo;Settings&rdquo;.</p>
-<p><img src="ctf_include_profile_admin.png" alt="Screenshot of the page with new links"></p>
+<p><figure aria-label="Screenshot of the page with new links">
+  <img
+    alt="Screenshot of the page with new links"
+    title="Screenshot of the page with new links"width="910"height="866"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_c9061309f87bea6b.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_9072d818f27e08e.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_4b421e6299a4f73f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>On &ldquo;API&rdquo; page there is information about how to access internal APIs; one endpoint allows getting administrator credentials.</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>API Dashboard
 </span></span><span style="display:flex;"><span>
@@ -482,11 +542,29 @@
 </span></span><span style="display:flex;"><span>    &#34;SysMonAppPassword&#34;: &#34;xxxxxxxxx&#34;,
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>&ldquo;Settings&rdquo; page allows changing banner image by providing URL.</p>
-<p><img src="ctf_include_admin_settings.png" alt="Screeenshot of Admin Settings page"></p>
+<p><figure aria-label="Screeenshot of Admin Settings page">
+  <img
+    alt="Screeenshot of Admin Settings page"
+    title="Screeenshot of Admin Settings page"width="823"height="416"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_398bb50d0833efd7.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_8127c87b5c6dd8da.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_3ce0638370a5118.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>This page is vulnerable to SSRF attack. Instead of image URL I provided credentials endpoint:</p>
-<p><img src="ctf_include_banner_ssrf.png" alt="Screenshot of form set to credentials API url"></p>
+<p><figure aria-label="Screenshot of form set to credentials API url">
+  <img
+    alt="Screenshot of form set to credentials API url"
+    title="Screenshot of form set to credentials API url"width="405"height="164"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f013c9458c310f0b.webp 405w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f8c4c61318ac2beb.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>The page includes the response in base64 encoded format:</p>
-<p><img src="ctf_include_ssrf_response.png" alt="Screenshot of the page displaying result of SSRF"></p>
+<p><figure aria-label="Screenshot of the page displaying result of SSRF">
+  <img
+    alt="Screenshot of the page displaying result of SSRF"
+    title="Screenshot of the page displaying result of SSRF"width="823"height="479"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_b4768e5ab8874357.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_be2ebd3a86c3a5d3.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_5226fc81a4bbf5aa.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>I used CyberChef to decode it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0= 
 </span></span><span style="display:flex;"><span>
@@ -497,7 +575,13 @@
   <a href="#first-flag">First flag</a>
 </h2>
 <p>With these credentials I logged into SysMon app and got the first flag.</p>
-<p><img src="ctf_include_sysmon_dashboard.png" alt="Screenshot of the dashboard with displayed flag"></p>
+<p><figure aria-label="Screenshot of the dashboard with displayed flag">
+  <img
+    alt="Screenshot of the dashboard with displayed flag"
+    title="Screenshot of the dashboard with displayed flag"width="932"height="447"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_fc712c1bbcf6acee.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_477b315ff7cd8b33.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_b13cd17b250b5475.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="lfi2rce-via-log-poisoning" >
   <a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a>
 </h2>
@@ -539,14 +623,14 @@
     <updated>2025-02-21T20:12:59Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-21:/articles/2025/02/21/writeup-tryhackme-smol/</id>
     
-    <summary type="html"><![CDATA[<div class="callout info">
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
 <li>Difficulty: medium</li>
 <li>Platform: web, linux</li>
 </ul>
 <p>At the heart of Smol is a WordPress website, a common target due to its extensive plugin ecosystem. The machine showcases a publicly known vulnerable plugin, highlighting the risks of neglecting software updates and security patches. Enhancing the learning experience, Smol introduces a backdoored plugin, emphasizing the significance of meticulous code inspection before integrating third-party components.</p>]]></summary>
-    <content type="html"><![CDATA[<div class="callout info">
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
 <li>Difficulty: medium</li>
@@ -567,7 +651,7 @@
 <li>Weak passwords</li>
 <li>User access misconfiguration (group access, PAM, sudoers)</li>
 </ul>
-<div class="callout toc">
+<nav class="callout toc" aria-label="Table of Contents">
 <nav id="TableOfContents">
   <ol>
     <li><a href="#information-gathering">Information gathering</a></li>
@@ -580,7 +664,7 @@
     <li><a href="#getting-the-root-flag">Getting the root flag</a></li>
   </ol>
 </nav>
-</div>  
+</nav>  
 <h2 id="information-gathering" >
   <a href="#information-gathering">Information gathering</a>
 </h2>
@@ -720,7 +804,7 @@
     <updated>2025-02-13T04:47:13Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-13:/articles/2025/02/13/writeup-tryhackme-injectics/</id>
     
-    <summary type="html"><![CDATA[<div class="callout info">
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/injectics" class="external-link">Injectics</a></li>
 <li>Difficulty: medium</li>
@@ -734,7 +818,7 @@
 </ol>
 </div>
 <p>This room acts as a final challenge for the advanced injection attacks module. Vulnerabilities explored were:</p>]]></summary>
-    <content type="html"><![CDATA[<div class="callout info">
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/room/injectics" class="external-link">Injectics</a></li>
 <li>Difficulty: medium</li>
@@ -753,7 +837,7 @@
 <li>SQL injections</li>
 <li>Server-side template injection</li>
 </ul>
-<div class="callout toc">
+<nav class="callout toc" aria-label="Table of Contents">
 <nav id="TableOfContents">
   <ol>
     <li><a href="#information-gathering">Information gathering</a></li>
@@ -763,7 +847,7 @@
     <li><a href="#reading-hidden-flag-file-rce-via-ssti">Reading hidden flag file: RCE via SSTI</a></li>
   </ol>
 </nav>
-</div>  
+</nav>  
 <h2 id="information-gathering" >
   <a href="#information-gathering">Information gathering</a>
 </h2>
@@ -828,7 +912,7 @@
 </span></span><span style="display:flex;"><span>    Payload: username<span style="color:#89dceb;font-weight:bold">=</span>superadmin<span style="color:#f38ba8">@</span>injectics<span style="color:#89dceb;font-weight:bold">.</span>thm<span style="color:#a6e3a1">&#39; RLIKE SLEEP(5)-- MGux&amp;password=&amp;function=login</span>
 </span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">---</span>
 </span></span></code></pre></div><p>With the suggested payload, I logged into the dashboard.</p>
-<div class="callout note">
+<div class="callout note" role="note"aria-label="Note">
     <p>It&rsquo;s possible to achieve the same result with a simpler payload: <code>' || 1=1;-- -</code></p>
 </div>
 <h2 id="resetting-users-sqli" >
@@ -878,7 +962,7 @@
 </span></span><span style="display:flex;"><span>Content-Type: text/html; charset=UTF-8
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Seems like database or some important table is deleted. InjecticsService is running to restore it. Please wait for 1-2 minutes.
-</span></span></code></pre></div><div class="callout note">
+</span></span></code></pre></div><div class="callout note" role="note"aria-label="Note">
     <p>As you noticed, both attempts at using sqlmap only complicated things. Try simple stupid things first!</p>
 </div>
 <h2 id="getting-the-first-flag" >
@@ -896,7 +980,13 @@
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;ls flags&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
 </span></span></code></pre></div><p>And finally, to get the flag:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;cat flags/REDACTED.txt&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
-</span></span></code></pre></div><p><img src="dashboard.png" alt="Screenshot of the dashboard with displayed flags"></p>
+</span></span></code></pre></div><p><figure aria-label="Screenshot of the dashboard with displayed flags">
+  <img
+    alt="Screenshot of the dashboard with displayed flags"
+    title="Screenshot of the dashboard with displayed flags"width="1392"height="261"srcset="/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_97ff9287aac05a1b.webp 420w, /articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_a39ce3069206302e.webp 789w, /articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_c69a4d3b4c771267.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_f97d734f2533b950.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 ]]></content>
   </entry>
   <entry>
@@ -906,14 +996,14 @@
     <updated>2025-02-05T19:03:58Z</updated>
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-05:/articles/2025/02/05/writeup-tryhackme-light/</id>
     
-    <summary type="html"><![CDATA[<div class="callout info">
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
 <li>Difficulty: easy</li>
 <li>Platform: db</li>
 </ul>
 <p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>]]></summary>
-    <content type="html"><![CDATA[<div class="callout info">
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
     <ul>
 <li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
 <li>Difficulty: easy</li>
@@ -937,7 +1027,7 @@
 </span></span></code></pre></div><p>Ok, no comments. We can do it differently:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39; or &#39;
 </span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
-</span></span></code></pre></div><div class="callout note">
+</span></span></code></pre></div><div class="callout note" role="note"aria-label="Note">
     <p>After finishing the room I learned that you can do <code>smokey' '</code> to create a <a href="https://www.w3schools.com/sql/sql_alias.asp" class="external-link">SQL alias</a> with the same result.</p>
 </div>
 <p>So, there is some filtering here. And it also checks keywords:</p>
@@ -1491,7 +1581,13 @@ Check out similar content on TryHackMe:</p>
   <a href="#how-it-looks-in-the-docs">How it looks in the docs</a>
 </h2>
 <p>Now, when we render a reference documentation, we can see all values with simple markdown formatting.</p>
-<p><img src="x_enum_render.png" alt="Redoc with modified descriptions for extensible enumerations"></p>
+<p><figure aria-label="Redoc with modified descriptions for extensible enumerations">
+  <img
+    alt="Redoc with modified descriptions for extensible enumerations"
+    title="Redoc with modified descriptions for extensible enumerations"width="1445"height="324"srcset="/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_f13891e6d99a5a72.webp 420w, /articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_aeac91e5f073f206.webp 789w, /articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_700331ee852a48d1.webp 1019w, /articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_1d02dcc3c3245978.webp 1430w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2021/08/16/using-openapi-cli-custom-preprocessing/x_enum_render_hu_1d0889f1f9ce0f32.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <div class="callout cta"><p>By the way, can you spot operations where we could have left normal <code>enum</code> and why?</p></div>
 <h2 id="why-use-a-preprocessor-here" >
   <a href="#why-use-a-preprocessor-here">Why use a preprocessor here?</a>
@@ -1742,7 +1838,13 @@ To preview a specific definition, you need to pass a definition label from confi
   <a href="#advent-of-code">Advent of code</a>
 </h2>
 <p>This was the first time I did <a href="https://adventofcode.com/" class="external-link">Advent of code</a> with the devs from work: nice to compare with normal people and not <em>reddit stars</em>. Cannot express how happy I&rsquo;m to be <a href="https://github.com/aviskase/advent-of-code/tree/master/2020" class="external-link">back to Python</a>, it&rsquo;s so readable and clear after JS/TS madness.</p>
-<p><img src="aoc.png" alt="Advent of Code easter egg: using itertools"></p>
+<p><figure aria-label="Advent of Code easter egg: using itertools">
+  <img
+    alt="Advent of Code easter egg: using itertools"
+    title="Advent of Code easter egg: using itertools"width="782"height="635"srcset="/articles/2020/12/30/hmms-2020/aoc_hu_bd258e0bd0b2627.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/12/30/hmms-2020/aoc_hu_f406891daa57fb63.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 ]]></content>
   </entry>
   <entry>
@@ -1926,7 +2028,11 @@ To preview a specific definition, you need to pass a definition label from confi
     <p>[&hellip;] design pressure from the bottom up.</p>
 </blockquote>
 <p>And, I don&rsquo;t want to spoil it, but the juiciest part comes later with one of the best case studies for business owners: how to ignore the lucrative niche created for you by your players/users and lose the opportunity to grab the market. By lucrative I mean&hellip; even those who don&rsquo;t play games know the biggest game in that genre ;)</p>
-<p><img src="floss.gif" alt="Floss dance"></p>
+<p><figure aria-label="Floss dance">
+  <img
+    alt="Floss dance"
+    title="Floss dance"width="160"height="160"src="/articles/2020/11/30/hmms-november/floss.gif"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="blog-progress" >
   <a href="#blog-progress">Blog progress</a>
 </h2>
@@ -2346,7 +2452,13 @@ To preview a specific definition, you need to pass a definition label from confi
 </h2>
 <p>Since <a href="https://www.aviskase.com/articles/2020/07/03/knowledge-management-tools/" class="internal-link">migrating to Obsidian</a> for knowledge management, I&rsquo;ve lost a track of interesting resources I read, because they are represented as atomic cross-referencing notes.</p>
 <p>Perhaps I should try to be more consistent and always write <a href="https://www.lesswrong.com/posts/T382CLwAjsy3fmecf/how-to-take-smart-notes-ahrens-2017" class="external-link">literature notes</a>. Alas, my current graph looks like that (obviously, I didn&rsquo;t have time to transfer older notes from other systems):</p>
-<p><img src="obsidian_july_2020.png" alt="Obsidian graph view as of July 2020"></p>
+<p><figure aria-label="Obsidian graph view as of July 2020">
+  <img
+    alt="Obsidian graph view as of July 2020"
+    title="Obsidian graph view as of July 2020"width="639"height="596"srcset="/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_e4b3e64fd00b5621.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/08/04/hmms-july/obsidian_july_2020_hu_9c85dd8733f97575.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>In general, my topics of interests for this month were:</p>
 <ul>
 <li>jobs to be done framework</li>
@@ -2408,7 +2520,13 @@ To preview a specific definition, you need to pass a definition label from confi
 <p>Thus, I made some decision:</p>
 <p><strong>1.</strong> I left RST and MoT (and <a href="https://www.ministryoftesting.com/news/ministry-of-testing-slacks-when-two-become-one" class="external-link">its abolished sister group</a>) slack communities. Stayed only in the ABT, because it&rsquo;s smaller and more enjoyable.</p>
 <p><strong>2.</strong> Won&rsquo;t hunt for any more testers-centric resources. Mind you, testers-centric ≠ testing-centric. Whatever I had in RSS + ABT podcast is more than enough.</p>
-<p><img src="rss_feeds.png" alt="45 RSS feeds in &ldquo;Testing&rdquo; category"></p>
+<p><figure aria-label="45 RSS feeds in &ldquo;Testing&rdquo; category">
+  <img
+    alt="45 RSS feeds in &ldquo;Testing&rdquo; category"
+    title="45 RSS feeds in &ldquo;Testing&rdquo; category"width="353"height="237"srcset="/articles/2020/07/01/hmms-june/rss_feeds_hu_988b0f76ecd52497.webp 353w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/07/01/hmms-june/rss_feeds_hu_244d54edf0a1acc1.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p><strong>3.</strong> Won&rsquo;t save articles into reading queue &ldquo;just in case&rdquo;, if it&rsquo;s obvious from the title and the first paragraph that the author is repeating themselves.</p>
 <p><strong>4.</strong> Change &ldquo;About me&rdquo; page to be less role specific. I wrote it a long time ago.</p>
 <p><strong>5.</strong> Do I contribute to the same noise? Perhaps. Can&rsquo;t promise, but I&rsquo;ll try not to. Obviously, these <em>Hmms</em> aren&rsquo;t really original content, but <a href="https://eugeneyan.com/writing/reading-note-taking-writing/" class="external-link">written reflection is a great way to process information</a>, sorry!</p>
@@ -2625,7 +2743,13 @@ Insomnia is easy to use on Linux, has plugins, and UI is clean and simple.</p>
 while others contain everything related to the particular client use case or event (i.e., cross-service).</p>
 <p>Our first examples: get current weather and forecast for Montreal. OpenWeatherMap API requires an API key,
 so you need to add it to the query parameters for each request.</p>
-<p><img src="insomnia_1.png" alt="Insomnia: basic interface"></p>
+<p><figure aria-label="Insomnia: basic interface">
+  <img
+    alt="Insomnia: basic interface"
+    title="Insomnia: basic interface"width="1920"height="570"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_4220f8665483f984.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_5bcc11dd4a9633cd.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_e94294e6b3eaae7b.webp 1019w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_e221db765c8c4166.webp 1430w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_1_hu_19c45be96c1f708f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="environments" >
   <a href="#environments">Environments</a>
 </h2>
@@ -2638,20 +2762,56 @@ so you need to add it to the query parameters for each request.</p>
 </ul>
 <p>Ok, so for this API let&rsquo;s do like this. <code>https://api.openweathermap.org/data/2.5</code> can go into base,
 because we have access only to one server.</p>
-<p><img src="insomnia_2.png" alt="Insomnia: base environment"></p>
+<p><figure aria-label="Insomnia: base environment">
+  <img
+    alt="Insomnia: base environment"
+    title="Insomnia: base environment"width="1038"height="300"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_df8cb949a0b2b0c7.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_bc42e9156c1a09f2.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_bd57057018476a1a.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_2_hu_e933e3f72a98d5ab.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>An API key is perfect for the sub environment.</p>
-<p><img src="insomnia_3.png" alt="Insomnia: sub environment"></p>
+<p><figure aria-label="Insomnia: sub environment">
+  <img
+    alt="Insomnia: sub environment"
+    title="Insomnia: sub environment"width="1011"height="300"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu_56dd88debbcdb5f3.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu_d52a5972d1e21ea4.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_3_hu_6115eba1643c2521.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p><em>&ldquo;Montreal&rdquo;</em> is stored as a folder-level value, just for the sake of example.</p>
-<p><img src="insomnia_4.png" alt="Insomnia: folder-level environment"></p>
+<p><figure aria-label="Insomnia: folder-level environment">
+  <img
+    alt="Insomnia: folder-level environment"
+    title="Insomnia: folder-level environment"width="1137"height="313"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_2f2b3ce33a870ec3.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_2570aff89152f6e5.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_fdcb1400731c3fa6.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_4_hu_e3178114f712a1e.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Then, our requests will look like (use <code>{{var_name}}</code> to access variable):</p>
-<p><img src="insomnia_5.png" alt="Insomnia: requests with variables from environments"></p>
+<p><figure aria-label="Insomnia: requests with variables from environments">
+  <img
+    alt="Insomnia: requests with variables from environments"
+    title="Insomnia: requests with variables from environments"width="1200"height="430"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_d86033cb20676766.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_bdfa0ec895b88a2a.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_f29529025837b64.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_5_hu_c89c487fafba0f6c.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>You might notice that we still have to fill out the API key query parameter for each request. Kinda boring.
 That&rsquo;s where plugins can help, in this case, it&rsquo;s <code>insomnia-plugin-defaults</code>.
 Just go into <em>Preferences &gt; Plugins</em> and type its name to install.
 This plugin allows us to set default headers and/or query parameters in the environments.</p>
-<p><img src="insomnia_6.png" alt="Insomnia: environment setup with query param defaults"></p>
+<p><figure aria-label="Insomnia: environment setup with query param defaults">
+  <img
+    alt="Insomnia: environment setup with query param defaults"
+    title="Insomnia: environment setup with query param defaults"width="1021"height="459"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_be12fa872d195a46.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_4c3fc4b5174bd3a5.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_4e01f72fab0e6005.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_6_hu_e6b1ed1e95593c7f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>And now we can remove it from requests:</p>
-<p><img src="insomnia_7.png" alt="Insomnia: requests with default query params"></p>
+<p><figure aria-label="Insomnia: requests with default query params">
+  <img
+    alt="Insomnia: requests with default query params"
+    title="Insomnia: requests with default query params"width="1146"height="376"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_7a53e0259b8388e8.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_d0a231aaf9ac11f4.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_3237d736f6219983.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_7_hu_55501311adb82c9c.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="response-querying" >
   <a href="#response-querying">Response querying</a>
 </h2>
@@ -2659,7 +2819,13 @@ This plugin allows us to set default headers and/or query parameters in the envi
 weather descriptions? We can do it by using JSONPath response filtering.</p>
 <p><code>$.list[*].weather[*].description</code> means <em>&lsquo;Get descriptions from each element of <code>weather</code>
 array that is a property of elements in the <code>list</code> array&rsquo;</em>.</p>
-<p><img src="insomnia_8.png" alt="Insomnia: querying response using JSONPath"></p>
+<p><figure aria-label="Insomnia: querying response using JSONPath">
+  <img
+    alt="Insomnia: querying response using JSONPath"
+    title="Insomnia: querying response using JSONPath"width="704"height="868"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu_491344f722f77655.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_8_hu_b123f170cce3abf1.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="generating-values" >
   <a href="#generating-values">Generating values</a>
 </h2>
@@ -2668,8 +2834,20 @@ array that is a property of elements in the <code>list</code> array&rsquo;</em>.
 cases plugins come to the rescue yet again: <code>insomnia-plugin-random</code> uses <a href="https://chancejs.com/" class="external-link">Chance</a> library
 which gives you tons of options.</p>
 <p>Here is how to generate random latitude and longitude coordinates:</p>
-<p><img src="insomnia_9.png" alt="Insomnia: random value generation"></p>
-<p><img src="insomnia_10.png" alt="Insomnia: usage of generated values in the request"></p>
+<p><figure aria-label="Insomnia: random value generation">
+  <img
+    alt="Insomnia: random value generation"
+    title="Insomnia: random value generation"width="1083"height="675"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_a99c9e7695501901.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_b3b715dc150c250.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_8250da4bf7aa93b8.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_9_hu_9e4ac726ade06e82.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p><figure aria-label="Insomnia: usage of generated values in the request">
+  <img
+    alt="Insomnia: usage of generated values in the request"
+    title="Insomnia: usage of generated values in the request"width="1247"height="401"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_e8468cc05795db57.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_c6868e3daf2092e3.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_68ad2a1b560380c0.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_2db7d9902362bd86.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>BTW, use <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Space</kbd></span>
  shortcut for the fastest template tag autocomplete.</p>
 <h2 id="reusing-response-values" >
@@ -2677,8 +2855,20 @@ which gives you tons of options.</p>
 </h2>
 <p>Another commonly used feature is sending a request with values from the response of another request.
 In Insomnia you should use <code>Response</code> template tag and JSONPath if you want to grab a value from the response body:</p>
-<p><img src="insomnia_11.png" alt="Insomnia: pulling values from previous response"></p>
-<p><img src="insomnia_12.png" alt="Insomnia: request with pulled values"></p>
+<p><figure aria-label="Insomnia: pulling values from previous response">
+  <img
+    alt="Insomnia: pulling values from previous response"
+    title="Insomnia: pulling values from previous response"width="1088"height="857"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_d593a842c7b64c5a.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_4202ea5c1b981113.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_d9792e686a7d9809.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_11_hu_eab6f45c84a6002d.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p><figure aria-label="Insomnia: request with pulled values">
+  <img
+    alt="Insomnia: request with pulled values"
+    title="Insomnia: request with pulled values"width="1178"height="388"srcset="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_c1ae1fc3fe5f0c9b.webp 420w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_920bf4827dc8848c.webp 789w, /articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_3ad3ed50ecf0e991.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_12_hu_cb82c3fc301996e7.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Pretty simple, huh?</p>
 <p>There are other useful features and no one stops you from writing a plugin if you miss anything. But, s&rsquo;il te plaît,
 don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what programming languages are for.</p>
@@ -2695,7 +2885,13 @@ don&rsquo;t try to turn it into a complex automation solution. That&rsquo;s what
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
+<p><figure aria-label="Meme: APIs, APIs everywhere">
+  <img
+    alt="Meme: APIs, APIs everywhere"
+    title="Meme: APIs, APIs everywhere"width="735"height="500"srcset="/articles/2020/03/31/hmms-march/apis_meme_hu_2a1573eb7e2f4dd5.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/03/31/hmms-march/apis_meme_hu_2baa23801fc09677.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -2710,7 +2906,13 @@ I haven’t heard from them since as they still haven’t shipped their product 
 <h2 id="top-x-videos-and-readings" >
   <a href="#top-x-videos-and-readings">Top X videos and readings</a>
 </h2>
-<p><img src="apis_meme.jpg" alt="Meme: APIs, APIs everywhere"></p>
+<p><figure aria-label="Meme: APIs, APIs everywhere">
+  <img
+    alt="Meme: APIs, APIs everywhere"
+    title="Meme: APIs, APIs everywhere"width="735"height="500"srcset="/articles/2020/03/31/hmms-march/apis_meme_hu_2a1573eb7e2f4dd5.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2020/03/31/hmms-march/apis_meme_hu_2baa23801fc09677.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <ul>
 <li>Erik Wilde started a video series about API design,
 and <a href="https://www.youtube.com/watch?v=qc_DF01qgZg" class="external-link">the last one</a> covers pros and cons of exposing system APIs.</li>
@@ -3141,7 +3343,13 @@ Even though I never played Skyrim or Morrowind, TES wiki is an awesome read for 
 <p><a href="https://github.com/zalando/zally" class="external-link">Zally</a> is a linter from Zalando, which is famous for its open-sourced <a href="https://opensource.zalando.com/restful-api-guidelines/" class="external-link">API guidelines</a>.</p>
 <p>It ticks all our requirements except for the ease of setup: Zally is written in Kotlin. I was too lazy even to try running it. I&rsquo;m sure it&rsquo;s an excellent tool, but not for us.</p>
 <p>BTW, it has nice UI:</p>
-<p><img src="zally.png" alt="Zally web UI with violations highlighting and links"></p>
+<p><figure aria-label="Zally web UI with violations highlighting and links">
+  <img
+    alt="Zally web UI with violations highlighting and links"
+    title="Zally web UI with violations highlighting and links"width="1314"height="695"srcset="/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_7106bf8ff9ed9733.webp 420w, /articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_ad4f10321e591380.webp 789w, /articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_af32d3b76c31592a.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/12/26/lunchlearn-linting-openapi-description-docs/zally_hu_8761971908d4588a.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="speccy" >
   <a href="#speccy">Speccy</a>
 </h2>
@@ -3352,9 +3560,21 @@ probably never consider how it affects existing canon.</p>
 </ul>
 <p>But there are some disappointments. Let&rsquo;s start with the objective one: keyboard.</p>
 <p>This is my old keyboard: it has Numpad, all keys, and even separate volume controls.</p>
-<p><img src="lenovo_keyboard.jpg" alt="Lenovo G560 keyboard"></p>
+<p><figure aria-label="Lenovo G560 keyboard">
+  <img
+    alt="Lenovo G560 keyboard"
+    title="Lenovo G560 keyboard"width="752"height="461"srcset="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_b1820b13053a45bf.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/lenovo_keyboard_hu_9ca4c06d6de703b3.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>This is the new one:</p>
-<p><img src="dell_keyboard.jpg" alt="Dell XPS15 keyboard"></p>
+<p><figure aria-label="Dell XPS15 keyboard">
+  <img
+    alt="Dell XPS15 keyboard"
+    title="Dell XPS15 keyboard"width="775"height="500"srcset="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_f114323fb77a6ecf.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/12/07/weekly-hmms-communities-laptops-linux/dell_keyboard_hu_3a11bd974e963c7e.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>I begrudgingly accepted not to have a Numpad and volume control keys, yet I didn&rsquo;t even consider that there wouldn&rsquo;t be separate Home, End, PgUp, and PgDn! Also, no right Fn key. Wow. What bewilders me more is that a previous model did have separate keys: but <a href="https://www.dell.com/community/XPS/Control-Home-Control-End-Keys/td-p/6212592" class="external-link">people complained about it on the Dell forum</a>. You, guys, I hate you. You&rsquo;re exactly like <a href="https://xkcd.com/1172/" class="external-link">from that XKCD comic strip</a>.</p>
 <p>Next disappointment is a display. Beware, this will be unexpected&hellip; I don&rsquo;t like HiDPI. I&rsquo;m so accustomed to shitty displays, that better ones feel wrong and uncomfortable. Colors and images are fine, but text, yikes. Letters are not crisp enough, there is something smudgy about them.</p>
 <p>I can already hear that it&rsquo;s because I&rsquo;m on Linux. NOPE. This laptop came with Windows 10 (I left it in a dual boot), but the text is blurry too. Even more, I think Linux actually does better jobs with antialiasing, because old Windows apps look particularly horrible.</p>
@@ -3738,7 +3958,13 @@ probably never consider how it affects existing canon.</p>
 </h2>
 <p>The distinction between analytical and empirical methods is that the latter investigates how real users will use the product.</p>
 <p>But don&rsquo;t assume that empirical methods are by default better than analytical: both are important because they discover different problems. <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf" class="external-link">This research</a> showed that heuristics were more efficient in finding documentation and structural problems, whereas empirical methods were more useful in finding UX and runtime specific issues.</p>
-<p><img src="api_ux_barchart.png" alt="Barchart with comparison of different issue types found via different methods"></p>
+<p><figure aria-label="Barchart with comparison of different issue types found via different methods">
+  <img
+    alt="Barchart with comparison of different issue types found via different methods"
+    title="Barchart with comparison of different issue types found via different methods"width="441"height="232"srcset="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_hu_b33503e8c8b20ff3.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_barchart_hu_7d2d46443d47145a.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h3 id="monitoring" >
   <a href="#monitoring">Monitoring</a>
 </h3>
@@ -3787,14 +4013,26 @@ probably never consider how it affects existing canon.</p>
 </ul>
 <div class="callout warning"><p>Now, I want to point out that the aforementioned language discrimination is not my invention. If you&rsquo;re lucky, perhaps you&rsquo;ll find the original article by Visual Studio usability expert, where these quirky definitions were introduced. Unfortunately, I was able to get only [its first page in the Wayback Machine][visual-studio], so you have to take my word for it. Nevertheless, I hope this example can encourage you to create your own personas.</p></div>
 <p>We can also combine personas with cognitive dimensions. Create <a href="https://en.wikipedia.org/wiki/Radar_chart" class="external-link">a radar chart</a> with 12 axes, where each axis is a cognitive dimension. Next, plot current values for your API and values according to the persona&rsquo;s expectations. This chart is great for comparing how existing API corresponds to user values.</p>
-<p><img src="api_ux_chart.png" alt="Radar chart with comparison of developer expectations vs current state of API"></p>
+<p><figure aria-label="Radar chart with comparison of developer expectations vs current state of API">
+  <img
+    alt="Radar chart with comparison of developer expectations vs current state of API"
+    title="Radar chart with comparison of developer expectations vs current state of API"width="286"height="286"srcset="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu_5bb3f89b2257838d.webp 286w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_chart_hu_4a82c895aa7cd3cd.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Developer from the example chart (blue line) prefers API with a high level of consistency (10) and hates writing boilerplate (4). As we can see, the current state of API (black line) doesn&rsquo;t satisfy these criteria.</p>
 <h2 id="summing-up" >
   <a href="#summing-up">Summing up</a>
 </h2>
 <p>Readers comfortable with GUI usability testing would say: &ldquo;That&rsquo;s exactly the same stuff!&rdquo;. And you&rsquo;re right, there is nothing supernatural about API usability. Even though it&rsquo;s called an <em>application programming</em> interface, programs are yet to learn how to find other APIs and use them automatically; they still need us, meatbags. That&rsquo;s why almost everything applied for GUI usability evaluation is reusable for API with some adjustments.</p>
 <p>Now, what about <em>the best method?</em>  None, apply them all! <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-34347-6_10.pdf" class="external-link">According to this research</a>, each method can identify unique issues.</p>
-<p><img src="api_ux_stats.png" alt="Venn diagram showing how different methods overlap in finding different issues"></p>
+<p><figure aria-label="Venn diagram showing how different methods overlap in finding different issues">
+  <img
+    alt="Venn diagram showing how different methods overlap in finding different issues"
+    title="Venn diagram showing how different methods overlap in finding different issues"width="457"height="207"srcset="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu_d25cf3a352b3cd83.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/10/19/how-to-test-api-usability-part-2/api_ux_stats_hu_e21e7496479742f9.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>If you are tight on resources, I suggest using the least expensive methods: heuristics, cognitive dimensions, walkthrough, and support tickets. Even the simplest techniques can drive API improvements.</p>
 <p>Someone would argue that API usability is not that important: &ldquo;we don&rsquo;t have time for that, it&rsquo;s a dev thingy.&rdquo; But developers created <a href="https://github.com/google/styleguide" class="external-link">style guides</a> not just to be fancy; this serves to accelerate the achievement of shippable quality. We care about hidden code quality, therefore we need to care about externally visible code like APIs even more.</p>
 ]]></content>
@@ -3869,7 +4107,13 @@ There was a time when every new tester came to me during the onboarding and aske
   <a href="#cognitive-walkthrough">Cognitive walkthrough</a>
 </h3>
 <p>While the first two methods are based on checking API against some kind of list of criteria, cognitive walkthrough is closer to scenario-based testing. Essentially, an expert comes up with typical API usage scenarios and attempts to perform them.</p>
-<p><img src="walkthrough.png" alt="Cognitive walkthrough example"></p>
+<p><figure aria-label="Cognitive walkthrough example">
+  <img
+    alt="Cognitive walkthrough example"
+    title="Cognitive walkthrough example"width="442"height="200"srcset="/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hu_b46693d0c6c4a966.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/10/13/how-to-test-api-usability-part-1/walkthrough_hu_516e2675d9a0c8f0.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>You can combine this method with heuristics. When we analyzed services, we found out that there were  problems with the consistency: when you sent a request to create an entity, some services responded with entity version id, while others provided root id. Moreover, most of the services required entity id for creation of other entities, and again, it could be either root or version id. It didn&rsquo;t look that bad, until we tried walking through a business scenario:</p>
 <ol>
 <li>Create an entitling document</li>
@@ -4098,7 +4342,13 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>As I said before, you need to start testing with documentation. For that you can use special editors. Two most common are <a href="https://www.oxygenxml.com/" class="external-link">Oxygen</a> (cross-platform) and <a href="https://www.altova.com/" class="external-link">Altova</a> (Windows-only); both are not free. These are feature-heavy applications used by analysts.</p>
 <p>I routinely use three features: XSD visualization, XML generation, and XML validation.</p>
 <p><strong>XSD visualization</strong> is helpful to easily spot schema elements, attributes, and restrictions. For example, <code>CheckTextRequest</code> has a required <code>text</code> element, whereas all three attributes are optional. In addition, attribute <code>option</code> has a default value <code>0</code>.</p>
-<p><img src="oxygen.png" alt="XSD visualization in Oxygen"></p>
+<p><figure aria-label="XSD visualization in Oxygen">
+  <img
+    alt="XSD visualization in Oxygen"
+    title="XSD visualization in Oxygen"width="391"height="284"srcset="/articles/2019/09/15/soap-testing-101/oxygen_hu_a167136a738cd6ab.webp 391w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/09/15/soap-testing-101/oxygen_hu_7ef3e9423462b196.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>Visualization is handy when there are lots of types and restrictions. If you need only this feature and you don&rsquo;t want to buy apps, you can check
 <a href="http://stackoverflow.com/questions/2486758/how-to-visualize-an-xml-schema" class="external-link">free alternatives</a> like JDeveloper.</p>
 <p>You can use <strong>XML generation</strong> to quickly create examples of messages based on supplied XSD. I use is for exploration and experimentation on possible XMLs and checking how restrictions are applied.</p>
@@ -4258,7 +4508,13 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>Service is reliable if it works when it&rsquo;s expected to be working and provides timely feedback in case of any problems.</p>
 <p>Worst performance problems I encountered were with export services. One of them was working perfectly fine until the biggest organization in the system started using it and crashing application servers. Hot-fixes after hot-fixes, optimizations, new version; nothing helped. And we couldn&rsquo;t disable that service or completely rewrite its public API because of contractual obligations.</p>
 <p>So, what if your service experiences problems? How external users will learn about it? Will there be any alert about temporary issues or downtimes? Any resolution time frames? Usually, there is a special web page with answers to these question, with a table like this:</p>
-<p><img src="api_status.png" alt="API status table"></p>
+<p><figure aria-label="API status table">
+  <img
+    alt="API status table"
+    title="API status table"width="616"height="279"srcset="/articles/2019/09/02/your-api-is-your-public-image/api_status_hu_6cfcfd6c45bc295a.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/09/02/your-api-is-your-public-image/api_status_hu_4f52479c61c3c349.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>And beware, this page should not on the same infrastructure as the services it&rsquo;s showing! It would be quite embarrassing if <a href="https://twitter.com/awscloud/status/836656664635846656" class="external-link">it goes down at the same time your services go down</a>.</p>
 <h3 id="crappy-usability" >
   <a href="#crappy-usability">Crappy usability</a>
@@ -4278,7 +4534,13 @@ There was a time when every new tester came to me during the onboarding and aske
 <ul>
 <li>Service works fine, but error messages are not that informative? Users won&rsquo;t understand how to fix an error (and probably will open a support ticket, so you&rsquo;ll needlessly spend time resolving non-existing issue).</li>
 </ul>
-<p><img src="bad_error_message.png" alt="Unhelpful error message"></p>
+<p><figure aria-label="Unhelpful error message">
+  <img
+    alt="Unhelpful error message"
+    title="Unhelpful error message"width="565"height="241"srcset="/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu_3f0e450172729818.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2019/09/02/your-api-is-your-public-image/bad_error_message_hu_38d17789d43eaf96.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <ul>
 <li>You have UI and API? Don&rsquo;t forget to check they correspond to each other. The most common problem is when constraints on UI fields don&rsquo;t match same fields in API: for example, UI can accept maximum 50 characters for the name and API only 20, which leads to errors when trying to export anything created on UI.</li>
 <li>Don&rsquo;t forget about versionning (in API and its documentation). The older your services are, more careful you should be with incompatible changes. Documentation should always be up-to-date: sounds obvious, but we had a big fuck up when someone accidentally published documentation for upcoming API version and external developers started trying to use these new features, didn&rsquo;t find them, and bombed support team with &ldquo;nothing works again&rdquo; tickets.</li>
@@ -4333,9 +4595,21 @@ There was a time when every new tester came to me during the onboarding and aske
     <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2018-03-19:/articles/2018/03/19/mega-mind-map-version-2/</id>
     
     <summary type="html"><![CDATA[<p>My <a href="https://github.com/aviskase/mega-mind-map" class="external-link">not-so-mega mind map</a> has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &ldquo;Exploratory Software Testing&rdquo; by James A. Whittaker.</p>
-<p><img src="mmm_v2.png" alt="Mega mind map version 2"></p>]]></summary>
+<p><figure aria-label="Mega mind map version 2">
+  <img
+    alt="Mega mind map version 2"
+    title="Mega mind map version 2"width="1182"height="2858"srcset="/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_cae47c9be3c0eba8.webp 420w, /articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_24aa2c5cf1c83af4.webp 789w, /articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_697e2e68365486b2.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_40a3fee6f663c007.jpg"decoding="async"
+      loading="lazy"/></figure></p>]]></summary>
     <content type="html"><![CDATA[<p>My <a href="https://github.com/aviskase/mega-mind-map" class="external-link">not-so-mega mind map</a> has grown a little bit. I finally added exploratory testing tours and ideas on how to make test cases less rigid, all that great stuff from &ldquo;Exploratory Software Testing&rdquo; by James A. Whittaker.</p>
-<p><img src="mmm_v2.png" alt="Mega mind map version 2"></p>
+<p><figure aria-label="Mega mind map version 2">
+  <img
+    alt="Mega mind map version 2"
+    title="Mega mind map version 2"width="1182"height="2858"srcset="/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_cae47c9be3c0eba8.webp 420w, /articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_24aa2c5cf1c83af4.webp 789w, /articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_697e2e68365486b2.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/03/19/mega-mind-map-version-2/mmm_v2_hu_40a3fee6f663c007.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 ]]></content>
   </entry>
   <entry>
@@ -4355,20 +4629,44 @@ There was a time when every new tester came to me during the onboarding and aske
 <p>Imagine an ideal world of software development. Scope is clear. Everything is done on time in relaxed manner without rush. Everybody is motivated to create the best product. Everybody has happy life outside of work. No stress. Users are eager to help too. And all these aren&rsquo;t just for one product, but true for all software in the world. Great, isn&rsquo;t it?</p>
 <p>Now, when I&rsquo;m thinking about this <em>ideal</em> world, I can&rsquo;t find a place for testers in it. There is just no place for bugs. Developers and analysts have all the time to design and build a product without real bugs. Remember, they don&rsquo;t have just a time, they&rsquo;re also motivated, so they definitively test product. They do it themselves&hellip; so there is no need for a <em>separate</em> role of a tester.</p>
 <p>Let&rsquo;s visualize this tester-less world as a perfect disk:</p>
-<p><img src="world_1.png" alt="Ideal world of development"></p>
+<p><figure aria-label="Ideal world of development">
+  <img
+    alt="Ideal world of development"
+    title="Ideal world of development"width="302"height="302"srcset="/articles/2018/01/23/testers-in-this-world/world_1_hu_ee2af8d9702becce.webp 302w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/01/23/testers-in-this-world/world_1_hu_51f3bfb98b2e949d.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="real-world-of-software-development" >
   <a href="#real-world-of-software-development">Real world of software development</a>
 </h2>
 <p>But our current world is not ideal. No one has enough time. Overtimes. Burning out. Problems outside work. Toxic environment. No motivation. Some rogue manager keeps adding features out of scope. And bugs, bugs everywhere. This world is distorted, some products are a bit better than others, but no one is perfect.</p>
-<p><img src="world_2.png" alt="Real world of development"></p>
+<p><figure aria-label="Real world of development">
+  <img
+    alt="Real world of development"
+    title="Real world of development"width="295"height="295"srcset="/articles/2018/01/23/testers-in-this-world/world_2_hu_ff95e331acedd9a4.webp 295w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/01/23/testers-in-this-world/world_2_hu_9a91f78da0372c5.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="testers-in-the-real-world-of-software-development" >
   <a href="#testers-in-the-real-world-of-software-development">Testers in the real world of software development</a>
 </h2>
 <p>And that&rsquo;s where testers are coming. We are like clay, like sealing foam. We patch this not-ideal world. We make it less distorted.</p>
-<p><img src="world_3.png" alt="Real world of development with testers"></p>
+<p><figure aria-label="Real world of development with testers">
+  <img
+    alt="Real world of development with testers"
+    title="Real world of development with testers"width="413"height="302"srcset="/articles/2018/01/23/testers-in-this-world/world_3_hu_8ae397652e598bd6.webp 413w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/01/23/testers-in-this-world/world_3_hu_f113aa3fa83045bb.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>All products are distorted in different ways, that&rsquo;s why you can see testers doing all kind of things. Some are just &ldquo;manual monkeys.&rdquo; On a different extreme are those who automate test cases that are written by others. Most are somewhere in between. There are projects where testers have a hat of analytic. Or support. Or both. Or PM. Someone, maybe gurus, don&rsquo;t test at all: they mentor a team to test themselves, control that quality is efficiently insured by others.</p>
 <p>Here is a fun fact. That patched version is still a lie. Testers are also not perfect. Thus, our world looks more like this:</p>
-<p><img src="world_4.png" alt="Even more real world of development with testers"></p>
+<p><figure aria-label="Even more real world of development with testers">
+  <img
+    alt="Even more real world of development with testers"
+    title="Even more real world of development with testers"width="326"height="302"srcset="/articles/2018/01/23/testers-in-this-world/world_4_hu_3721fa8aff48dbf8.webp 326w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/01/23/testers-in-this-world/world_4_hu_e8d96177847d857b.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <p>We can&rsquo;t patch all holes. But we are here to try.</p>
 ]]></content>
   </entry>
@@ -4391,7 +4689,13 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>APV aka ДПЗ (Actions / Parameters / Values)</li>
 <li>Value analysis</li>
 </ul>
-<p><img src="mmm_v1.jpg" alt="Mega mind map version 1"></p>
+<p><figure aria-label="Mega mind map version 1">
+  <img
+    alt="Mega mind map version 1"
+    title="Mega mind map version 1"width="1603"height="2402"srcset="/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_caffa64a57c4ed3e.webp 420w, /articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_2fc95592e5f0e75d.webp 789w, /articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_120111eb678ae494.webp 1019w, /articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_86cbad72565fd75.webp 1430w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2018/01/06/2018-and-mega-mind-map/mmm_v1_hu_51e72508a91f9dd3.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 ]]></content>
   </entry>
   <entry>
@@ -4784,7 +5088,13 @@ There was a time when every new tester came to me during the onboarding and aske
 <li>growth measurement</li>
 <li>debugging metrics</li>
 </ul>
-<p><img src="monitoring_systems.png" alt="Monitoring systems"></p>
+<p><figure aria-label="Monitoring systems">
+  <img
+    alt="Monitoring systems"
+    title="Monitoring systems"width="653"height="283"srcset="/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu_c95b2b4c3c75951c.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2016/07/17/course-intro-to-devops-by-udacity/monitoring_systems_hu_35ef8ff9b1c3fb7d.jpg"decoding="async"
+      loading="lazy"/></figure></p>
 <h2 id="additional-resources" >
   <a href="#additional-resources">Additional resources</a>
 </h2>
