@@ -7,6 +7,12 @@
 :root {
   --background-color:  var(--ctp-mocha-base);
   --text-color: var(--ctp-mocha-text);
+  --text-muted: var(--ctp-mocha-subtext0);
+  --border-muted: var(--ctp-mocha-subtext0);
+  --text-link: var(--ctp-mocha-blue);
+  --text-code: var(--ctp-mocha-blue);
+  --text-bg: var(--ctp-mocha-surface0);  /* for headers */
+  --warning: var(--ctp-mocha-red);
   --line-height: 1.6rem;
   font-size: 20px;
 }
@@ -37,7 +43,7 @@ header  {
 }
 
 header a {
-  color: var(--ctp-mocha-text);
+  color: var(--text-color);
 }
 
 header a.current-page {
@@ -46,7 +52,7 @@ header a.current-page {
 
 
 header .title  {
-  background: var(--ctp-mocha-base);
+  background: var(--background-color);
   color: var(--ctp-mocha-yellow);
   top: 1ch;
   right: 2ch;
@@ -69,7 +75,7 @@ footer {
 footer a:link, footer a:visited, footer span {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--ctp-mocha-subtext0);
+  color: var(--text-muted);
 }
 
 footer a::before {
@@ -77,7 +83,7 @@ footer a::before {
 }
 
 footer svg {
-  fill: var(--ctp-mocha-subtext0);
+  fill: var(--text-muted);
   vertical-align: middle;
 }
 
@@ -87,12 +93,12 @@ h1 {
 
 a.external-link {
   text-decoration: underline;
-  color: var(--ctp-mocha-blue);
+  color: var(--text-link);
 }
 
 a.external-link:hover, .article-list a:hover, .article-props a:hover, .toc a:hover {
-  background: var(--ctp-mocha-blue);
-  color: var(--ctp-mocha-base);
+  background: var(--text-link);
+  color: var(--background-color);
 }
 
 a.internal-link::before {
@@ -104,14 +110,14 @@ a.internal-link::after {
 }
 
 a.internal-link::before, a.internal-link::after {
-  color: var(--ctp-mocha-blue);
+  color: var(--text-link);
 }
 
 a.internal-link:hover, a.internal-link:focus,
 a.internal-link:hover::before, a.internal-link:hover::after,
 a.internal-link:focus::before, a.internal-link:focus::after {
-  background: var(--ctp-mocha-blue);
-  color: var(--ctp-mocha-base);
+  background: var(--text-link);
+  color: var(--background-color);
 }
 
 em {
@@ -123,7 +129,7 @@ strong, strong > em {
 }
 
 .article-props th, .article-props td, .article-props tr:first-child > * {
-  color: var(--ctp-mocha-subtext0);
+  color: var(--text-muted);
   border: none;
   font-size: 0.8rem;
   padding: 0;
@@ -132,7 +138,7 @@ strong, strong > em {
 }
 
 .article-props a {
-  color: var(--ctp-mocha-subtext0);
+  color: var(--text-muted);
   text-decoration: underline;
 
 }
@@ -140,7 +146,7 @@ strong, strong > em {
 
 /* h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link,
   h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
-  color: var(--ctp-mocha-base);
+  color: var(--background-color);
 } */
 
 
@@ -162,15 +168,15 @@ code::after, code::before {
 
 p > code, li > code, .kbd {
   background-color: var(--background-colour);
-  border: 1px dotted var(--ctp-mocha-blue);
-  color: var(--ctp-mocha-blue);
+  border: 1px dotted var(--text-code);
+  color: var(--text-code);
   border-radius: 2px;
   overflow-wrap: anywhere;
   padding-inline: .5rem;
 }
 
 .kbd {
-  border-bottom: 2px solid var(--ctp-mocha-blue);
+  border-bottom: 2px solid var(--text-code);
 }
 
 
@@ -186,7 +192,7 @@ pre * + * {
 }
 
 blockquote {
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   margin-left: 0;
   margin-right: 0;
   padding-left: 2ch;
@@ -197,15 +203,15 @@ blockquote {
 blockquote::before {
   content: "«...»";
   position: absolute;
-  color: var(--ctp-mocha-subtext0);
-  background-color: var(--ctp-mocha-base);
+  color: var(--border-muted);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
 }
 
 .callout {
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   padding-left: 2ch;
   padding-right: 2ch;
   position: relative;
@@ -219,7 +225,7 @@ blockquote::before {
   content: "note";
   position: absolute;
   color: var(--ctp-mocha-sky);
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -229,7 +235,7 @@ blockquote::before {
   content: "table of contents";
   position: absolute;
   color: var(--ctp-mocha-yellow);
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -241,7 +247,7 @@ blockquote::before {
 
 
 .callout.warning {
-  border-color: var(--ctp-mocha-red);
+  border-color: var(--warning);
 }
 
 .callout.note {
@@ -255,8 +261,8 @@ blockquote::before {
 .callout.warning::before {
   content: "warning";
   position: absolute;
-  color: var(--ctp-mocha-red);
-  background-color: var(--ctp-mocha-base);
+  color: var(--warning);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -266,7 +272,7 @@ blockquote::before {
   content: "!!!";
   position: absolute;
   color: var(--ctp-mocha-peach);
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -275,7 +281,7 @@ blockquote::before {
 .callout.info::before {
   content: "info";
   position: absolute;
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -284,7 +290,7 @@ blockquote::before {
 .callout.see-also::before {
   content: "see also";
   position: absolute;
-  background-color: var(--ctp-mocha-base);
+  background-color: var(--background-color);
   top: -1rem;
   left: 0.8rem;
   padding: 0 0.4rem;
@@ -356,17 +362,17 @@ blockquote::before {
 
 
 .see-more a {
-  border: 2px solid var(--ctp-mocha-text);
+  border: 2px solid var(--text-color);
   padding: 1ch;
 }
 
 .see-more a:hover {
-  color: var(--ctp-mocha-blue);
-  border-color: var(--ctp-mocha-blue);
+  color: var(--text-link);
+  border-color: var(--text-link);
 }
 
 .highlight {
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   margin-bottom: var(--line-height);
 }
 
@@ -396,7 +402,7 @@ article ol ol > li:before {
 
 
 img {
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   display: block;
   max-width: 100%;
   height: auto;
@@ -411,11 +417,11 @@ figure {
 }
 
 figcaption {
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   border-top: none;
   display: table-caption;
   caption-side: bottom;
-  color: var(--ctp-mocha-subtext0);
+  color: var(--text-muted);
   font-style: normal;
   text-align: center;
   font-size: 0.8rem;
@@ -423,8 +429,8 @@ figcaption {
 }
 
 hr, hr::after {
-  color: var(--ctp-mocha-subtext0);
-  border-color: var(--ctp-mocha-subtext0);
+  color: var(--border-muted);
+  border-color: var(--border-muted);
 }
 
 
@@ -434,7 +440,7 @@ hr, hr::after {
 
 .home h2 {
   margin-bottom: 0;
-  background-color: var(--ctp-mocha-surface0);
+  background-color: var(--text-bg);
 }
 
 .home h2::before {  content: "░ "; }
@@ -487,20 +493,20 @@ input.toggle {
   padding: 1ch 2ch;
   cursor: pointer;
   margin-top: 0;
-  border-top: 2px solid var(--ctp-mocha-subtext0);
-  border-right: 2px solid var(--ctp-mocha-subtext0);
+  border-top: 2px solid var(--border-muted);
+  border-right: 2px solid var(--border-muted);
   text-transform: lowercase;
   position: relative;
   margin-bottom: -2px;
 }
 .tabs label:first-of-type {
-  border-left: 2px solid var(--ctp-mocha-subtext0);
+  border-left: 2px solid var(--border-muted);
 
 }
 .tabs .tabs-content {
   order: 999;
   width: 100%;
-  border: 2px solid var(--ctp-mocha-subtext0);
+  border: 2px solid var(--border-muted);
   padding: var(--line-height) 2ch;
   display: none;
   margin-top: 0;
