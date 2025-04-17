@@ -1,7 +1,6 @@
 ---
 title: "Writeup: TryHackMe Billing"
 date: "2025-04-17T04:46:09.686Z"
-draft: true
 slug: "writeup-tryhackme-billing"
 categories:
     - "it"
