@@ -23,7 +23,7 @@ Quick room to test your command injection skills (as in-your-face hinted in the 
 
 ## Confirming command injection vulnerability
 
-Machine is running a simple website which accepts timestamp via unfiltered input field and uses it in `date` command. I confirned command injection using simple semicolon:
+Machine is running a simple website which accepts timestamp via unfiltered input field and uses it in `date` command. I confirmed command injection using simple semicolon:
 
 ```sh
 ; id
@@ -33,11 +33,11 @@ Machine is running a simple website which accepts timestamp via unfiltered input
 
 ## Getting the flag
 
-Getting the flag proved to be more complicated; it wasn't present at usual places. I had to check room hint:
+Getting the flag proved to be more complicated; it wasn't present at usual places. I had to check the room hint:
 
 > The developer likes to store data in environment variables, can you find anything of interest there?
 
-Oops, that's _is_ a good place to check always! So, by changing payload to print environment variables I got the flag.
+Oops, right, good place to check! So, by changing the payload to print environment variables, I got the flag.
 
 ```
 ; printenv
