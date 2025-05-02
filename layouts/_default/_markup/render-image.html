@@ -19,7 +19,11 @@
     {{- $image_width = math.Floor (math.Div $image_width 2) -}}
     {{- $image_height = math.Floor (math.Div $image_height 2) -}}
   {{- end -}}
-  {{- $fallback_image = ($image.Resize (print "789x jpg " $image_quality)) -}}
+  {{- if lt $image.Width 789 -}}
+    {{- $fallback_image = ($image.Process (print "jpg " $image_quality)) -}}
+   {{- else -}}
+    {{- $fallback_image = ($image.Resize (print "789x jpg " $image_quality)) -}}
+  {{- end -}}
 {{- end -}}
 <figure aria-label="{{- $label | plainify -}}">
   <img
@@ -37,12 +41,19 @@
           {{- with $image.Resize (print $image.Width "x webp " $image_quality) -}}
             {{- print .RelPermalink " " .Width "w, " -}}
           {{- end -}}
-        {{- end -}}
-        {{- with $image_sizes -}}
-          {{- range $index, $size := . -}}
-            {{- if ge $image.Width $size -}}
-              {{- with $image.Resize (print $size "x webp " $image_quality) -}}
-                {{- print .RelPermalink " " $size "w, " -}}
+        {{- else -}}
+          {{- $lastSize := index $image_sizes (sub (len $image_sizes) 1) -}}
+          {{- if lt $image.Width (int $lastSize) -}}
+            {{- with $image.Resize (print $image.Width "x webp " $image_quality) -}}
+              {{- print .RelPermalink " " .Width "w, " -}}
+            {{- end -}}
+          {{- end -}}
+          {{- with $image_sizes -}}
+            {{- range $index, $size := . -}}
+              {{- if ge $image.Width (int $size) -}}
+                {{- with $image.Resize (print $size "x webp " $image_quality) -}}
+                  {{- print .RelPermalink " " $size "w, " -}}
+                {{- end -}}
               {{- end -}}
             {{- end -}}
           {{- end -}}
