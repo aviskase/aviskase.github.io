@@ -2,9 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>it on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-05-02T14:04:40Z</updated>
+  <updated>2025-07-27T04:27:08Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/it/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/it/" hreflang="en"/>
+  <entry>
+    <title>Writing experience: Emacs, you won</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/07/27/writing-experience-emacs-won/" hreflang="en"/>
+    <published>2025-07-27T04:27:08Z</published>
+    <updated>2025-07-27T04:27:08Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-07-27:/articles/2025/07/27/writing-experience-emacs-won/</id>
+    
+    <summary type="html"><![CDATA[<p>Mastodon feed for <em>#emacs</em> tag brought to my attention that there is a blog carnival going on with a prompt being <a href="https://gregnewman.io/blog/emacs-carnival-2025-07-writing-experience/" class="external-link">Writing experience</a>.</p>
+<p>Impostor syndrome kicks in hard, nevertheless, I&rsquo;d like to use this opportunity to admit that I gave up and now use the org-mode (even though <a href="https://infosec.exchange/@aviskase/114569892013739109" class="external-link">just in May I was saying nope</a>).</p>]]></summary>
+    <content type="html"><![CDATA[<p>Mastodon feed for <em>#emacs</em> tag brought to my attention that there is a blog carnival going on with a prompt being <a href="https://gregnewman.io/blog/emacs-carnival-2025-07-writing-experience/" class="external-link">Writing experience</a>.</p>
+<p>Impostor syndrome kicks in hard, nevertheless, I&rsquo;d like to use this opportunity to admit that I gave up and now use the org-mode (even though <a href="https://infosec.exchange/@aviskase/114569892013739109" class="external-link">just in May I was saying nope</a>).</p>
+<p>Let&rsquo;s start from the beginning. I&rsquo;m a tech person. I knew about Emacs. But I had never tried it. It has a kind of mythical aura around it, something you&rsquo;d feel intimidated to touch. So I didn&rsquo;t.</p>
+<p>I am also well aware of the editor wars with vim. This one I use sometimes. You don&rsquo;t really have a choice. Lots of people praise it so much and use vim bindings everywhere else. Thus, I made several attempts at learning more than just a couple of keys, yet it never stuck with me. Bleh.</p>
+<p>A month ago, I had to decide which subscription services to continue using. And painfully, I chose not to renew <a href="https://amazingmarvin.com/" class="external-link">Amazing Marvin</a>. I love it! I wish all the best to the team (Christina, Mark, Branko); you&rsquo;re great people doing impressive work. But I needed to go. First, I checked the usual alternatives: Remember The Milk, TickTick, Todoist. Nope, nope, and meh.</p>
+<p>So, I continued my research. Obscure services, self-hosted options. While nap trapped, I stumbled upon <a href="https://www.orgzlyrevived.com/" class="external-link">Orgzly</a> in f-droid and learned that it supports:</p>
+<ul>
+<li>different task states: TODO, NEXT, BLOCKED, DONE, CANCELLED, whatever you desire</li>
+<li>separate schedule and due dates</li>
+<li><em>three</em> repeating patterns: every, after, catch-up (the best pattern ever)</li>
+<li>nested tasks / projects</li>
+<li>pretty good filtering (though not perfect)</li>
+</ul>
+<p>Huh. This was exactly what I needed. So, I thought, OK, let&rsquo;s try the legendary org-mode.</p>
+<p>Fast forward two weeks, and I&rsquo;m writing this post to say how thrilled I am. Emacs is surprisingly noob user friendly. I am not forced to be a keyboard warrior when I just want to sit back and poke with my mouse. Or I&rsquo;m nap trapped.</p>
+<p>And when I want to use a keyboard fully, it feels like spell-casting. I&rsquo;m mesmerized by Emacs magic incantations. Some say that all the Ctrl&rsquo;s, Meta&rsquo;s, and Shift&rsquo;s are annoying, whereas I find them natural and flowing compared to jumping back and forth between vim modes.</p>
+<p>I&rsquo;ve just started. My config is almost empty: I follow <a href="https://www.masteringemacs.org/" class="external-link">Mastering Emacs</a> advice to learn the vanilla thing first. And there are of course some frustrations:</p>
+<ul>
+<li>The documentation is extensive, yet some parts require deep reading to understand. Skimming through doesn&rsquo;t work (me struggling with <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Version-Control.html" class="external-link">version control docs</a>; <a href="https://magit.vc/" class="external-link">magit docs</a> aren&rsquo;t better).</li>
+<li>Haven&rsquo;t got to this yet, but I write in Latin and Cyrillic scripts. Apparently, it&rsquo;s preferable to use Emacs internal language control instead of the system&rsquo;s one. So I&rsquo;ll have to rework my hand memory and <a href="https://github.com/dunmaksim/emacs-russian-techwriter-input-method" class="external-link">research good configs</a>.</li>
+<li>Windows and buffers are unpredictable on the surface. In what window a help or a vc buffer appears still surprises me, which is annoying.</li>
+<li>So. Much. To. Learn. It&rsquo;s a blessing and a curse, I need to make a conscious decision not to chase yet another shiny feature to actually finish the tasks at hand.</li>
+</ul>
+<p>Emacs is a big brain and time investment. I&rsquo;m amazed enough to pursue it, yet I wouldn&rsquo;t recommend it to everyone. For now, I&rsquo;ll continue using Obsidian for PKM because the mobile app is just easier. There is an Emacs for Android and <a href="https://orgro.org/" class="external-link">Orgro</a>, alas, they can&rsquo;t compete. I recall <a href="https://logseq.com/" class="external-link">Logseq</a> supporting org files, but AFAIK it was too restrictive with the structure and I didn&rsquo;t like the overall UX. Also <a href="https://karl-voit.at/2024/01/28/logseq-from-org-pov/" class="external-link">Karl Voit mentions org support is gonna go anyway</a>.</p>
+<p>So, at the moment I mostly use org-mode as a task manager and a calendar. And I use Emacs for my <a href="https://cooklang.org/" class="external-link">cooklang</a> recipe collection. It ain&rsquo;t much, but it&rsquo;s an honest start, right? :)</p>
+]]></content>
+  </entry>
   <entry>
     <title>Writeup: TryHackMe W1seGuy</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/05/02/writeup-tryhackme-w1seguy/" hreflang="en"/>
