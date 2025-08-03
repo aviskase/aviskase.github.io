@@ -1,1 +1,3 @@
+{{- /* chomp trailing newline */ -}}
 <span class="kbd">{{ delimit (apply .Params "printf" "<kbd>%s</kbd>" "." ) "<span>+</span>" | safeHTML }}</span>
+{{- /* chomp trailing newline */ -}}
