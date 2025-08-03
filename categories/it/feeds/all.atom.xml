@@ -2,9 +2,42 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>it on aviskase</title>
   <id>https://www.aviskase.com/</id>
-  <updated>2025-07-27T04:27:08Z</updated>
+  <updated>2025-08-03T02:18:09Z</updated>
   <link rel="self" type="application/atom+xml" href="https://www.aviskase.com/categories/it/feeds/all.atom.xml" hreflang="en"/>
   <link rel="alternate" type="text/html" href="https://www.aviskase.com/categories/it/" hreflang="en"/>
+  <entry>
+    <title>New keyboard layout habits for Emacs</title>
+    <link rel="alternate" href="https://www.aviskase.com/articles/2025/08/03/keyboard-layout-habits-emacs/" hreflang="en"/>
+    <published>2025-08-03T02:18:09Z</published>
+    <updated>2025-08-03T02:18:09Z</updated>
+    <author><name>Yuliya Bagriy</name></author><id>tag:www.aviskase.com,2025-08-03:/articles/2025/08/03/keyboard-layout-habits-emacs/</id>
+    
+    <summary type="html"><![CDATA[<p>The first thing  <a href="/articles/2025/07/27/writing-experience-emacs-won/" class="internal-link">a newbie Emacs user</a> learns is that it&rsquo;s recommended to switch <span class="kbd"><kbd>CapsLock</kbd></span> to <span class="kbd"><kbd>Ctrl</kbd></span>. Great idea, except I was using it to switch keyboard layouts (Russian &lt;-&gt; English).</p>
+<p>I explored some options:</p>
+<ul>
+<li>Switch <span class="kbd"><kbd>CapsLock</kbd></span> to <span class="kbd"><kbd>Ctrl</kbd></span> and use the default <span class="kbd"><kbd>Win</kbd><span>+</span><kbd>Space</kbd></span> for layouts;</li>
+<li>Keep <span class="kbd"><kbd>CapsLock</kbd></span> for the  layout change, setup pressed <span class="kbd"><kbd>Space</kbd></span> to act as <span class="kbd"><kbd>Ctrl</kbd></span>.</li>
+</ul>
+<p>There was also a question of Compose key which was mapped to <span class="kbd"><kbd>AltGr</kbd></span>. And don&rsquo;t forget the need for an occasional use of the real <span class="kbd"><kbd>CapsLock</kbd></span>.</p>]]></summary>
+    <content type="html"><![CDATA[<p>The first thing  <a href="/articles/2025/07/27/writing-experience-emacs-won/" class="internal-link">a newbie Emacs user</a> learns is that it&rsquo;s recommended to switch <span class="kbd"><kbd>CapsLock</kbd></span> to <span class="kbd"><kbd>Ctrl</kbd></span>. Great idea, except I was using it to switch keyboard layouts (Russian &lt;-&gt; English).</p>
+<p>I explored some options:</p>
+<ul>
+<li>Switch <span class="kbd"><kbd>CapsLock</kbd></span> to <span class="kbd"><kbd>Ctrl</kbd></span> and use the default <span class="kbd"><kbd>Win</kbd><span>+</span><kbd>Space</kbd></span> for layouts;</li>
+<li>Keep <span class="kbd"><kbd>CapsLock</kbd></span> for the  layout change, setup pressed <span class="kbd"><kbd>Space</kbd></span> to act as <span class="kbd"><kbd>Ctrl</kbd></span>.</li>
+</ul>
+<p>There was also a question of Compose key which was mapped to <span class="kbd"><kbd>AltGr</kbd></span>. And don&rsquo;t forget the need for an occasional use of the real <span class="kbd"><kbd>CapsLock</kbd></span>.</p>
+<p>While I liked an idea of using <span class="kbd"><kbd>Space</kbd></span> and potentially getting used to keyboards which might have dedicated thumb keys for modifier, the setup was slightly more annoing and even more so if I ever need to use Windows. Thus, I settled on this:</p>
+<ul>
+<li><span class="kbd"><kbd>CapsLock</kbd></span> to <span class="kbd"><kbd>Ctrl</kbd></span>: in GNOME Tweaks go to Keyboard -&gt; Additional Layout Options -&gt; Caps Lock behavior -&gt; Make Caps Lock an additional Ctrl;</li>
+<li>Keep left <span class="kbd"><kbd>Ctrl</kbd></span> as is for now to get used to the new layout;</li>
+<li>Double <span class="kbd"><kbd>Shift</kbd></span> as <span class="kbd"><kbd>CapsLock</kbd></span>: in GNOME Tweaks go to Keyboard -&gt; Additional Layout Options -&gt; Compatibility options -&gt; Both Shifts together enable Caps Lock;</li>
+<li>Use default layout change on <span class="kbd"><kbd>Win</kbd><span>+</span><kbd>Space</kbd></span> but install <a href="https://extensions.gnome.org/extension/4559/quick-lang-switch/" class="external-link">Quick Lang Switch</a> GNOME extenstion to hide the annoying switcher popup;</li>
+<li>To be able to use Emacs layout change separately from system&rsquo;s enable &ldquo;Switch input sources individually for each window&rdquo; in GNOME settings -&gt; Keyboard.</li>
+<li>Use <span class="kbd"><kbd>ScrLk</kbd></span> as a Compose key:  in GNOME Settings go to Keyboard -&gt; Compose key. I&rsquo;m using Dell XPS laptop, so for times without external keyboard: <span class="kbd"><kbd>ScrLk</kbd></span> == <span class="kbd"><kbd>Fn</kbd><span>+</span><kbd>S</kbd></span>.</li>
+</ul>
+<p>By the way, there is a setting in GNOME Tweaks to enable Emacs input to override default shortcuts. Here is <a href="https://blog.karssen.org/2024/06/05/using-emacs-key-bindings-in-gnome-firefox-and-other-applications/" class="external-link">a guide on how to enable it and fix other programs</a>. You should also be aware of <a href="https://bbs.archlinux.org/viewtopic.php?id=162794" class="external-link">potential problems with select all and copy to clipboard shortcuts</a>. I haven&rsquo;t turned on this setting yet, but it&rsquo;s a nice option to have.</p>
+]]></content>
+  </entry>
   <entry>
     <title>Writing experience: Emacs, you won</title>
     <link rel="alternate" href="https://www.aviskase.com/articles/2025/07/27/writing-experience-emacs-won/" hreflang="en"/>
@@ -1507,8 +1540,7 @@ Check out similar content on TryHackMe:</p>
 <li><a href="https://cybersecurity.bsy.fel.cvut.cz/docs/about/" class="external-link">CTU MOOC Introduction to security</a></li>
 <li>TryHackMe: Web Application Pentesting (probably won&rsquo;t finish this year)</li>
 </ul>
-<p>So, I mostly worked on TryHackMe stuff. I did some HTB things, but THM courses seem to be more to the point and less buggy. Also, the pet peeve of mine: HTB requires you to click on &ldquo;Submit&rdquo; button, pressing <span class="kbd"><kbd>Enter</kbd></span>
- is not enough, bleh.</p>]]></summary>
+<p>So, I mostly worked on TryHackMe stuff. I did some HTB things, but THM courses seem to be more to the point and less buggy. Also, the pet peeve of mine: HTB requires you to click on &ldquo;Submit&rdquo; button, pressing <span class="kbd"><kbd>Enter</kbd></span> is not enough, bleh.</p>]]></summary>
     <content type="html"><![CDATA[<p>As I&rsquo;m approching my due date (literally today), here is what I&rsquo;ve done so far:</p>
 <p>Done:</p>
 <ul>
@@ -1522,8 +1554,7 @@ Check out similar content on TryHackMe:</p>
 <li><a href="https://cybersecurity.bsy.fel.cvut.cz/docs/about/" class="external-link">CTU MOOC Introduction to security</a></li>
 <li>TryHackMe: Web Application Pentesting (probably won&rsquo;t finish this year)</li>
 </ul>
-<p>So, I mostly worked on TryHackMe stuff. I did some HTB things, but THM courses seem to be more to the point and less buggy. Also, the pet peeve of mine: HTB requires you to click on &ldquo;Submit&rdquo; button, pressing <span class="kbd"><kbd>Enter</kbd></span>
- is not enough, bleh.</p>
+<p>So, I mostly worked on TryHackMe stuff. I did some HTB things, but THM courses seem to be more to the point and less buggy. Also, the pet peeve of mine: HTB requires you to click on &ldquo;Submit&rdquo; button, pressing <span class="kbd"><kbd>Enter</kbd></span> is not enough, bleh.</p>
 <p>I completed two easy HTB boxes, and it was humbling. I need to stop overthinking and just go with dumb things first. Like trying to use the same password for linux user as in CMS admin panel. Or spend more time just checking/opening files.</p>
 <p>But overall it&rsquo;s been fun. There are tons of tools&amp;techniques to learn, and it&rsquo;s more about checking off unknown unknowns than being a g0d-][ack3r. In the software testing community there is kinda a warlike dichotomy between exploratory and automation sides. In the pentest, it&rsquo;s &ldquo;duh? be and use both&rdquo;.</p>
 ]]></content>
@@ -3239,8 +3270,7 @@ which gives you tons of options.</p>
         sizes="(min-width: 800px) 50vw, 100vw"
         src="/articles/2020/04/22/using-insomnia-for-api-exploration/insomnia_10_hu_2db7d9902362bd86.jpg"decoding="async"
       loading="lazy"/></figure></p>
-<p>BTW, use <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Space</kbd></span>
- shortcut for the fastest template tag autocomplete.</p>
+<p>BTW, use <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Space</kbd></span> shortcut for the fastest template tag autocomplete.</p>
 <h2 id="reusing-response-values" >
   <a href="#reusing-response-values">Reusing response values</a>
 </h2>
@@ -5385,25 +5415,15 @@ There was a time when every new tester came to me during the onboarding and aske
 </span></span><span style="display:flex;"><span>touch {fileA,fileB}.txt
 </span></span></code></pre></div><p>tmux &mdash; terminal multiplexor</p>
 <ul>
-<li>Go to commands mode: <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>b</kbd></span>
-</li>
-<li>Create new window: commands mode and <span class="kbd"><kbd>c</kbd></span>
-</li>
-<li>Create vertical split: commands mode and <span class="kbd"><kbd>%</kbd></span>
-</li>
-<li>Create horizontal split: commands mode and <span class="kbd"><kbd>"</kbd></span>
-</li>
-<li>Go to window number 1 &hellip; 9: commands mode and <span class="kbd"><kbd>1</kbd></span>
- &hellip; <span class="kbd"><kbd>9</kbd></span>
-</li>
-<li>Go to next window: commands mode and <span class="kbd"><kbd>n</kbd></span>
-</li>
-<li>Go to previous window: commands mode and <span class="kbd"><kbd>p</kbd></span>
-</li>
-<li>Close window or split: commands mode and <span class="kbd"><kbd>x</kbd></span>
-</li>
-<li>Detach (temporal exit): commands mode and <span class="kbd"><kbd>d</kbd></span>
-</li>
+<li>Go to commands mode: <span class="kbd"><kbd>Ctrl</kbd><span>+</span><kbd>b</kbd></span></li>
+<li>Create new window: commands mode and <span class="kbd"><kbd>c</kbd></span></li>
+<li>Create vertical split: commands mode and <span class="kbd"><kbd>%</kbd></span></li>
+<li>Create horizontal split: commands mode and <span class="kbd"><kbd>"</kbd></span></li>
+<li>Go to window number 1 &hellip; 9: commands mode and <span class="kbd"><kbd>1</kbd></span> &hellip; <span class="kbd"><kbd>9</kbd></span></li>
+<li>Go to next window: commands mode and <span class="kbd"><kbd>n</kbd></span></li>
+<li>Go to previous window: commands mode and <span class="kbd"><kbd>p</kbd></span></li>
+<li>Close window or split: commands mode and <span class="kbd"><kbd>x</kbd></span></li>
+<li>Detach (temporal exit): commands mode and <span class="kbd"><kbd>d</kbd></span></li>
 <li>Return to tmux: <code>tmux attach / tmux a</code></li>
 <li>List all running tmux: <code>tmux list-sessions</code></li>
 </ul>
