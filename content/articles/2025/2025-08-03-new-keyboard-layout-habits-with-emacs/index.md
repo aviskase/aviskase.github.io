@@ -1,7 +1,6 @@
 ---
 title: "New keyboard layout habits for Emacs"
 date: "2025-08-03T02:18:09.630Z"
-draft: true
 slug: "keyboard-layout-habits-emacs"
 categories:
     - "it"
@@ -22,6 +21,7 @@ While I liked an idea of using {{<kbd Space>}} and potentially getting used to k
 - Keep left {{<kbd  Ctrl>}} as is for now to get used to the new layout;
 - Double {{<kbd Shift>}} as {{<kbd CapsLock>}}: in GNOME Tweaks go to Keyboard -> Additional Layout Options -> Compatibility options -> Both Shifts together enable Caps Lock;
 - Use default layout change on {{<kbd Win Space>}} but install [Quick Lang Switch](https://extensions.gnome.org/extension/4559/quick-lang-switch/) GNOME extenstion to hide the annoying switcher popup;
+- To be able to use Emacs layout change separately from system's enable "Switch input sources individually for each window" in GNOME settings -> Keyboard.
 - Use {{<kbd ScrLk>}} as a Compose key:  in GNOME Settings go to Keyboard -> Compose key. I'm using Dell XPS laptop, so for times without external keyboard: {{<kbd ScrLk>}} == {{<kbd Fn S>}}.
 
 By the way, there is a setting in GNOME Tweaks to enable Emacs input to override default shortcuts. Here is [a guide on how to enable it and fix other programs](https://blog.karssen.org/2024/06/05/using-emacs-key-bindings-in-gnome-firefox-and-other-applications/). You should also be aware of [potential problems with select all and copy to clipboard shortcuts](https://bbs.archlinux.org/viewtopic.php?id=162794). I haven't turned on this setting yet, but it's a nice option to have.
