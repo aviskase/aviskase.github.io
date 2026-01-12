@@ -29,3 +29,8 @@ hugo.darwin
 hugo.linux
 
 node_modules
+
+
+.obsidian/
+content/articles/templates
+content/articles/meta

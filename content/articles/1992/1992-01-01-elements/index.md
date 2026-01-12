@@ -13,6 +13,7 @@ slug: "its-a-check-with-some-not-code-test"
 
 Here is an example of headings. You can use this heading by the following markdown rules. For example: use `#` for heading 1 and use `######` for heading 6.
 
+
 Do not use `#` (heading 1) in articles.
 
 ## Heading 2

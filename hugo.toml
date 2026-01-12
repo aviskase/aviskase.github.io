@@ -9,6 +9,12 @@ publishDir = "output"
 summaryLength = 50
 capitalizeListTitles = false
 
+[module]
+[[module.mounts]]
+excludeFiles = ['articles/templates/*', 'articles/meta/*']
+source = 'content'
+target = 'content'
+
 [taxonomies]
   category = 'categories'
 
